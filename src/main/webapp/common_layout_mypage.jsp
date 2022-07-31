@@ -33,7 +33,7 @@
 
     <!-- Contact Start -->
     <!-- 마이페이지 공통 (헤더부터 바디 좌측까지) -->
-    <jsp:include page="commonjsp/common_mypage.jsp"></jsp:include>
+    <jsp:include page="commonjsp/common_mypage_header.jsp"></jsp:include>
     <!-- 마이페이지 공통 (헤더부터 바디 좌측까지 끝) -->
                 <!-- 우측하단 시작 -->
                 <div class="col-lg-9 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
@@ -46,10 +46,11 @@
 
                 </div>
                 <!-- 우측하단 끝 -->
-            </div>
-            <!-- 마이페이지 메인 바디 끝 -->
-        </div>
-    </div>
+                
+            <!-- 공통 마이페이지 바텀 -->
+            <jsp:include page="commonjsp/common_mypage_bottom.jsp"></jsp:include>
+            <!-- 공통 마이페이지 바텀 끝 -->
+            
     <!-- Contact End -->
 
 
