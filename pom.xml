@@ -41,11 +41,11 @@
 		</dependency>
 		
 		<!-- Oracle Driver -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>com.oracle</groupId>
-			<artifactId>ojdbc8</artifactId>
-			<version>18.15</version>
-		</dependency>
+			<artifactId>ojdbc11</artifactId>
+			<version>21.15</version>
+		</dependency> -->
 		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-dbcp2 -->
 		<dependency>
 		    <groupId>org.apache.commons</groupId>
