@@ -1,22 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
 	<!-- Common head include -->
     <jsp:include page="common_head.jsp"></jsp:include>
-    
-    
 </head>
-
 <body>
-    <!-- Common header include -->
+	<!-- Common header include -->
     <jsp:include page="common_header.jsp"></jsp:include>
     <!-- Common header include End -->
-
-
+    
     <!-- Page Header Start -->
+    <!-- 아래 텍스트는 수정가능 My page, Home, Pages, Contact Us 는 각 페이지마다 다를 수 있으므로-->
     <div class="container-fluid page-header wow fadeIn" data-wow-delay="0.1s">
         <div class="container">
             <h1 class="display-3 mb-3 animated slideInDown">My Page</h1>
@@ -30,8 +26,10 @@
         </div>
     </div>
     <!-- Page Header End -->
-
-    <!-- Contact Start -->
+    
+	<!-- 여기서부터 바디 작업 하면됨 (현재 마이페이지 기준) -->    
+	
+	<!-- Contact Start -->
     <div class="container-xxl py-6">
         <div class="container">
             <div class="section-header text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s"
@@ -186,15 +184,13 @@
             <!-- 마이페이지 메인 바디 끝 -->
         </div>
     </div>
-    <!-- Contact End -->
-
-
+    <!-- Contact End -->    
+    
+    
     <!-- Footer Start -->
     	<!-- Common Footer include -->
         <jsp:include page="common_footer.jsp"></jsp:include>
         
 	<!-- Footer End -->
-	
 </body>
-
 </html>
