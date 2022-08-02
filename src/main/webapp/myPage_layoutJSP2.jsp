@@ -15,7 +15,7 @@
     <jsp:include page="./format/common_header.jsp"></jsp:include>
     <!-- Common header include End -->
 
-	    <jsp:include page="./format/mypage_topCommon.jsp"></jsp:include>
+	 <jsp:include page="./format/mypage_topCommon.jsp"></jsp:include>
    
                     <!-- 여기 삽입 -->
 
