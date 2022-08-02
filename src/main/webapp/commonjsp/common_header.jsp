@@ -39,15 +39,7 @@
                 <div class="navbar-nav ms-auto p-4 p-lg-0">
 
 
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">공지사항</a>
-                        <div class="dropdown-menu m-0">
-                            <a href="blog.html" class="dropdown-item">소개</a>
-                            <a href="feature.html" class="dropdown-item">공지사항</a>
-                            <a href="testimonial.html" class="dropdown-item">Q&A</a>
-
-                        </div>
-                    </div>
+                <a href="product.html" class="nav-item nav-link">소개</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">국내 도서</a>
                         <div class="dropdown-menu m-0">
@@ -70,15 +62,13 @@
                             <a href="404.html" class="dropdown-item">문제집</a>
                         </div>
                     </div>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">신간</a>
+               
+                         <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">공지사항</a>
                         <div class="dropdown-menu m-0">
-                            <a href="blog.html" class="dropdown-item">아동 서적</a>
-                            <a href="feature.html" class="dropdown-item">무협 서적</a>
-                            <a href="testimonial.html" class="dropdown-item">SF소설</a>
-                            <a href="404.html" class="dropdown-item">수필</a>
-                            <a href="404.html" class="dropdown-item">참고서</a>
-                            <a href="404.html" class="dropdown-item">문제집</a>
+                            <a href="feature.html" class="dropdown-item">공지사항</a>
+                            <a href="testimonial.html" class="dropdown-item">Q&A</a>
+
                         </div>
                     </div>
                     <a href="product.html" class="nav-item nav-link">이벤트</a>
