@@ -60,6 +60,7 @@
     </div>
     <!-- Footer End -->
     <div class="fix">
+
         <!-- 실시간 -->
         <div class="col-4" id="real_chatSum">
             <div id="real_chat" class="col-12 hide">
@@ -130,19 +131,11 @@
         <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i
                 class="bi bi-arrow-up"></i></a>
     </div>
+
     <!-- JavaScript Libraries -->
-    
-    <!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
-    
-    <!--  jQuery CDN -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="lib/wow/wow.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
     <script type="text/javascript">
@@ -152,29 +145,11 @@
                 $("#real_chat").toggleClass("hide");
             });
 
-
             $("#search_btn").click(function () {
 
                 $("#main_search").toggleClass("hide");
             });
             search_btn
-        });
-
-
-    </script>
-    <script type="text/javascript">
-        $(function () {
-            $("#review_btnBox").click(function () {
-                $("#bottom_detail").css("box-shadow", "");
-                $("#item_detail").addClass("hide");
-                $("#reviews").removeClass("hide");
-            });
-            $("#item_btnBox").click(function () {
-                $("#bottom_detail").css("box-shadow", "0px 0px 20px gray");
-                $("#reviews").addClass("hide");
-                $("#item_detail").removeClass("hide");
-
-            });
         });
 
 

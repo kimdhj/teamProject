@@ -27,7 +27,8 @@
         </div>
 
         <nav class="navbar navbar-expand-lg navbar-light py-lg-0 px-lg-5 wow fadeIn" data-wow-delay="0.1s">
-            <a href="index.html" class="navbar-brand ms-4 ms-lg-0">
+            <a href="index.html" id="logo" class="navbar-brand ms-4 ms-lg-0">
+                <img src="./서점로고.ico" alt="">
                 <h1 class="fw-bold text-primary m-0">낭<span class="text-secondary">만</span>서점</h1>
             </a>
             <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse"
@@ -81,6 +82,7 @@
                         </div>
                     </div>
                     <a href="product.html" class="nav-item nav-link">이벤트</a>
+                    <a href="product.html" class="nav-item nav-link">구독</a>
 
 
                 </div>
