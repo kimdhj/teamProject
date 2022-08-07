@@ -138,19 +138,5 @@
     <script src="lib/wow/wow.min.js"></script>
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-    <script type="text/javascript">
-        $(function () {
-            $("#chat_button").click(function () {
-
-                $("#real_chat").toggleClass("hide");
-            });
-
-            $("#search_btn").click(function () {
-
-                $("#main_search").toggleClass("hide");
-            });
-            search_btn
-        });
-
-
-    </script>
+    <script src="./js/index.js" type="text/javascript"></script>    
+   
