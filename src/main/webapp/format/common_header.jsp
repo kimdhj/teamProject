@@ -27,8 +27,7 @@
         </div>
 
         <nav class="navbar navbar-expand-lg navbar-light py-lg-0 px-lg-5 wow fadeIn" data-wow-delay="0.1s">
-            <a href="index.html" id="logo" class="navbar-brand ms-4 ms-lg-0">
-                <img src="./서점로고.ico" alt="">
+            <a href="index.html" class="navbar-brand ms-4 ms-lg-0">
                 <h1 class="fw-bold text-primary m-0">낭<span class="text-secondary">만</span>서점</h1>
             </a>
             <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse"
@@ -39,7 +38,7 @@
                 <div class="navbar-nav ms-auto p-4 p-lg-0">
 
 
-                <a href="product.html" class="nav-item nav-link">소개</a>
+                	 <a href="product.html" class="nav-item nav-link">소개</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">국내 도서</a>
                         <div class="dropdown-menu m-0">
@@ -62,17 +61,16 @@
                             <a href="404.html" class="dropdown-item">문제집</a>
                         </div>
                     </div>
-               
-                         <div class="nav-item dropdown">
+                        <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">공지사항</a>
-                        <div class="dropdown-menu m-0">
+                        <div class="dropdown-menu m-0">     
                             <a href="feature.html" class="dropdown-item">공지사항</a>
                             <a href="testimonial.html" class="dropdown-item">Q&A</a>
 
                         </div>
                     </div>
+                    
                     <a href="product.html" class="nav-item nav-link">이벤트</a>
-                    <a href="product.html" class="nav-item nav-link">구독</a>
 
 
                 </div>
