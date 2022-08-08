@@ -3,8 +3,8 @@
     
     
     <div id="footer" class="container-fluid bg-dark footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
-        <div id="footer_row" class=" row container py-5">
-            <div id="footer_des" class=" g-5">
+        <div id="footer_row" class="row">
+            <div id="footer_des" >
                 <div id="foot_address" class=" col-lg-3 col-md-6">
                     <h4 class="text-light mb-4 col-3">Address</h4>
                     <p><i class="fa fa-map-marker-alt me-3"></i>&nbsp&nbsp 123 Street, New York, USA</p>
@@ -138,5 +138,5 @@
     <script src="lib/wow/wow.min.js"></script>
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-    <script src="./js/index.js" type="text/javascript"></script>    
+    <script src="js/index.js"></script>    
    
