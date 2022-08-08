@@ -11,9 +11,9 @@
     <jsp:include page="commonjsp/common_header.jsp"></jsp:include>
     <!-- Common header include End -->
     
-    <!-- Page Header Start -->
-    <!-- 아래 텍스트는 수정가능 My page, Home, Pages, Contact Us 는 각 페이지마다 다를 수 있으므로-->
-    <div class="container-fluid page-header wow fadeIn" data-wow-delay="0.1s">
+   	<!-- Page Header Start -->
+    <!-- 여기 사진부분인데 빼기로해서 주석처리해둠 -->
+    <!-- <div class="container-fluid page-header wow fadeIn" data-wow-delay="0.1s">
         <div class="container">
             <h1 class="display-3 mb-3 animated slideInDown">My Page</h1>
             <nav aria-label="breadcrumb animated slideInDown">
@@ -24,7 +24,7 @@
                 </ol>
             </nav>
         </div>
-    </div>
+    </div> -->
     <!-- Page Header End -->
     
 	<!-- 여기서부터 바디 작업 하면됨 -->    
