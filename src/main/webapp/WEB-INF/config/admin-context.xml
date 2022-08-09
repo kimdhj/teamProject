@@ -14,5 +14,7 @@
 		<property name="prefix" value="/WEB-INF/admin/"></property>
 		<property name="suffix" value=".jsp"></property>
 	</bean>
+	
+	
 
 </beans>
