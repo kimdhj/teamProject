@@ -61,7 +61,7 @@
                     <div class="col-auto " id="btn_my"><button type="button"
                             class="bg-gray fs-4 border text-white border-gray rounded-pill mb-3 p-3">마이페이지</button>
                     </div>
-                    <div class="col"></div>
+                    <div class="col-1"></div>
                     <div class="col-auto " id="btn_main"><button type="button"
                             class="bg-dark fs-4 text-white rounded-pill mb-3 p-3">메인페이지</button></div>
                 </div>
