@@ -53,17 +53,15 @@
 					<div id="nowBook_title">현재 대여책:</div>
 					<div id="nowBook_content">오늘도 놀고 싶다</div>
 				</div>
-				<div id="nextBook">
-					<div id="nowBook_title">현재 대여책:</div>
-					<div id="nowBook_content">오늘도 놀고 싶다</div>
+				<div id="nowBook">
+					<div id="nowBook_title">대여 수:</div>
+					<div id="nowBook_content"><input type="number" id="book_count" name="book_count"/>권</div>
 				</div>
+
 
 				<form id="zipCode" class="row g-3">
 					<div class="row" id="zipcode_line">
-						<div class="col-1">
-							<input type="text" readonly class="form-control-plaintext"
-								id="staticEmail2" value="주소:">
-						</div>
+						<div class="col-auto" id="nowBook_title">주소:</div>
 						<div class="col-auto">
 							<input readonly type="text" class="form-control" id="zipCodeIn"
 								placeholder="우편번호">
@@ -75,14 +73,14 @@
 					</div>
 					<div class="row" id="address_line">
 						<div class="col-1"></div>
-						<div class="col-6">
+						<div class="col-6 ">
 							<input readonly type="text" class="form-control" id="address"
 								placeholder="주소">
 						</div>
 					</div>
 					<div class="row" id="addressEtc_line">
 						<div class="col-1"></div>
-						<div class="col-6">
+						<div class="col-6 ">
 							<input type="text" class="form-control" id="etc"
 								placeholder="추가 주소">
 						</div>

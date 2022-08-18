@@ -180,7 +180,7 @@
 					</form>
 				</div>
 			</div>
-		</div>
+		</div>g
 	</div>
 
 	<jsp:include page="./commonjsp/common_mypage_bottom.jsp"></jsp:include>

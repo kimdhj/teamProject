@@ -55,3 +55,24 @@
   font-size: 1vw;
   opacity: 0.7;
 }
+/*팝업  */
+#main_wrapper {
+  position: relative;
+}
+#coupon_popUp {
+  position: absolute;
+  top: 9%;
+  left: 0;
+  z-index: 1;
+}
+#body_popUp {
+  border-radius: 0px 0px 20px 20px !important;
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+#Address_Add{
+	border-radius:15px;
+}

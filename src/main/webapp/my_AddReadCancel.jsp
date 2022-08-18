@@ -37,25 +37,22 @@
                     <div class="col-2"></div>
                 </div>
                 <div id="personal_info" class="row">
-                    <div id="months">
+                    <div class="align-items-center" id="months">
                         <div id="months_name">이승재님</div>
                         <div id="months_count">10</div>
                         <div id="months_etc">개월 째 이용 중 입니다.</div>
                     </div>
-                    <div id="money">
+                    <div class="align-items-center" id="money">
                         <div id="money_title">지금 까지 결제 금액:</div>
-                        <div id="money_count">20000 원</div>
+                        <div  id="money_count">20000 원</div>
 
                     </div>
-                    <div id="nowBook">
+                    <div class="align-items-center" id="nowBook">
                         <div id="nowBook_title">현재 대여책:</div>
                         <div id="nowBook_content">오늘도 놀고 싶다</div>
                     </div>
-                    <div id="nextBook">
-                        <div id="nowBook_title">현재 대여책:</div>
-                        <div id="nowBook_content">오늘도 놀고 싶다</div>
-                    </div>
-                    <div id="selectType">
+                   
+                    <div class="align-items-center" id="selectType">
                         <div id="selectType_title">선택된 장르:</div>
                         <div id="selectType_content">무협,소설,로맨스</div>
                     </div>
