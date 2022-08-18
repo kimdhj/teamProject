@@ -30,51 +30,28 @@
 					<tr>
 						<th scope="col-3">QnA</th>
 						<th scope="col-7">제목내용(예치금은 어떻게넣나요?)</th>
-						<th scope="col-2">이승재</th>
+						<th scope="col-2">(2022-08-10)</th>
+					</tr>
+					<tr>
+						<th scope="col-3">QnA</th>
+						<th scope="col-7">배송은 얼마나걸리나요</th>
+						<th scope="col-2">(2022-08-07)</th>
+					</tr>
+					<tr>
+						<th scope="col-3">QnA</th>
+						<th scope="col-7">마일리지는 아무데나 쓸수있나요</th>
+						<th scope="col-2">(2022-08-05)</th>
+					</tr>
+					<tr>
+						<th scope="col-3">QnA</th>
+						<th scope="col-7">메롱이다</th>
+						<th scope="col-2">(2022-08-01)</th>
 					</tr>
 				</thead>
-				<tbody>
-					<tr>
-						<th scope="row" colspan="3">예치금넣는거 알려줘어어어어어어어</th>
-					</tr>
-				</tbody>
-				<thead>
-					<tr>
-						<th scope="col-3">Re</th>
-						<th scope="col-7"></th>
-						<th scope="col-2">관리자</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th scope="row" colspan="3">안알랴줌</th>
-					</tr>
-				</tbody>
-				<thead>
-					<tr>
-						<th scope="col-3">Re</th>
-						<th scope="col-7"></th>
-						<th scope="col-2">이승재</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th scope="row" colspan="3">알려줘어어어어어어어</th>
-					</tr>
-				</tbody>
+				
 			</table>
 			<!-- 문의글 끝 -->
 			
-			<!-- 답글작성 시작 -->
-			<div class="mb-3">
-			  <label for="exampleFormControlTextarea1" class="form-label">답글 작성</label>
-			  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea><form>
-			</div>
-			<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-				<button class="btn btn-primary me-md-2" type="button">등록하기</button>
-				<button class="btn btn-primary" type="button">목록으로</button>
-			</div>
-			<!-- 답글작성 끝 -->
 		</div>
 	</form>
 
