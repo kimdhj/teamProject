@@ -72,17 +72,11 @@
 						</table>
 						<!-- 문의글 끝 -->
 						
-						<div class="container">
-						  <div class="row">
-						    <div class="col-8"></div>
-						    <div class="col-2">
-						    	<button type="submit" class="btn btn-primary">문의접수</button>
-							</div>
-							<div class="col-2">
-						    	<button type="button" class="btn btn-light">목록</button>
-							</div>
-						  </div>
+						<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+							<button class="btn btn-primary me-md-2" type="button">문의접수</button>
+							<button class="btn btn-primary" type="button">문의목록</button>
 						</div>
+						
                   	</form>  
 
              
