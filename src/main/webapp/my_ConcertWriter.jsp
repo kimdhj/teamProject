@@ -33,7 +33,7 @@
                         <div id="table_title" class="row">
                             <div class="col-3">관심 등록일</div>
                             <div class="col-3">작가</div>
-                            <div class="col">제목</div>
+                            <div class="col">랜덤 책 제목</div>
                             <div class="col-1">선택</div>
 
                         </div>

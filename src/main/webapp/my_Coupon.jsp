@@ -42,7 +42,7 @@
                             <div class="col-4">발행일</div>
                             <div class="col">쿠폰명</div>
                             <div class="col">할인</div>
-                            <div class="col-1">수량</div>
+                          
 
                         </div>
 
@@ -50,19 +50,19 @@
                             <div class="col-4">2022-11-17</div>
                             <div class="col">잘생김 주의</div>
                             <div class="col">101%</div>
-                            <div class="col-1">100</div>
+                        
                         </div>
                         <div id="table_item" class="row">
                             <div class="col-4">2022-11-17</div>
                             <div class="col">잘생김 주의</div>
                             <div class="col">101%</div>
-                            <div class="col-1">100</div>
+                           
                         </div>
                         <div id="table_item" class="row">
                             <div class="col-4">2022-11-17</div>
                             <div class="col">잘생김 주의</div>
                             <div class="col">101%</div>
-                            <div class="col-1">100</div>
+                            
                         </div>
                         <div id="table_bottom" class="row">
                             <nav aria-label="Page navigation example">
