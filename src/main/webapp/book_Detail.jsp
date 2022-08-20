@@ -23,7 +23,7 @@
                 <!-- 상단 -->
                 <div id="top_total" class="row">
                     <div class="col-3" id="img_box">
-                        <img src="./img/book.jpg" height="100%" class="img-fluid" alt="...">
+                        <img src="/img/book.jpg" height="100%" class="img-fluid" alt="...">
                     </div>
                     <div class="col-9" id="top_content">
                         <div class="row" id="star_box">
@@ -92,7 +92,7 @@
                     <div class="row" id="reviews">
                         <div class="row" id="review">
                             <div class=" col-3">
-                                <img height="100%" src="./img/book.jpg" class="img-fluid" alt="...">
+                                <img height="100%" src="/img/book.jpg" class="img-fluid" alt="...">
                             </div>
                             <div class="col-9">
 
@@ -135,7 +135,7 @@
                         </div>
                         <div class="row" id="review">
                             <div class=" col-3">
-                                <img height="100%" src="./img/book.jpg" class="img-fluid" alt="...">
+                                <img height="100%" src="/img/book.jpg" class="img-fluid" alt="...">
                             </div>
                             <div class="col-9">
 
@@ -178,7 +178,7 @@
                         </div>
                         <div class="row" id="review">
                             <div class=" col-3">
-                                <img height="100%" src="./img/book.jpg" class="img-fluid" alt="...">
+                                <img height="100%" src="/img/book.jpg" class="img-fluid" alt="...">
                             </div>
                             <div class="col-9">
 
@@ -245,7 +245,7 @@
                     <!-- 상품정보 -->
                     <div class="row  hide" id="item_detail">
                         <div id="item_imgBox" class="row">
-                            <img src="./img/book.jpg" class="img-fluid" alt="...">
+                            <img src="/img/book.jpg" class="img-fluid" alt="...">
                         </div>
                         <div id="item_detailText" class="row">
                             이책은 정말 좋고 읽어보면 좋고 나같은 사람이 일거야되이책은 정말 좋고 읽어보면 좋고 나같은 사람이 일거야되이책은 정말 좋고 읽어보면 좋고 나같은 사람이
@@ -276,7 +276,7 @@
                                 <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                                     <div class="product-item">
                                         <div class="position-relative bg-light overflow-hidden">
-                                            <img class="img-fluid w-100" src="img/product1-1.jpg" alt="">
+                                            <img class="img-fluid w-100" src="/img/product1-1.jpg" alt="">
                                             <div
                                                 class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
                                                 월간</div>
@@ -302,7 +302,7 @@
                                 <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                                     <div class="product-item">
                                         <div class="position-relative bg-light overflow-hidden">
-                                            <img class="img-fluid w-100" src="img/product1-2.jpg" alt="">
+                                            <img class="img-fluid w-100" src="/img/product1-2.jpg" alt="">
                                             <div
                                                 class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
                                                 New</div>
@@ -329,7 +329,7 @@
                                 <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                                     <div class="product-item">
                                         <div class="position-relative bg-light overflow-hidden">
-                                            <img class="img-fluid w-100" src="img/product1-3.jpg" alt="">
+                                            <img class="img-fluid w-100" src="/img/product1-3.jpg" alt="">
                                             <div
                                                 class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
                                                 New</div>
@@ -356,7 +356,7 @@
                                 <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
                                     <div class="product-item">
                                         <div class="position-relative bg-light overflow-hidden">
-                                            <img class="img-fluid w-100" src="img/product1-4.jpg" alt="">
+                                            <img class="img-fluid w-100" src="/img/product1-4.jpg" alt="">
                                             <div
                                                 class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
                                                 New</div>
@@ -383,7 +383,7 @@
                                 <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                                     <div class="product-item">
                                         <div class="position-relative bg-light overflow-hidden">
-                                            <img class="img-fluid w-100" src="img/product1-5.jpg" alt="">
+                                            <img class="img-fluid w-100" src="/img/product1-5.jpg" alt="">
                                             <div
                                                 class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
                                                 New</div>
@@ -410,7 +410,7 @@
                                 <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                                     <div class="product-item">
                                         <div class="position-relative bg-light overflow-hidden">
-                                            <img class="img-fluid w-100" src="img/product1-6.jpg" alt="">
+                                            <img class="img-fluid w-100" src="/img/product1-6.jpg" alt="">
                                             <div
                                                 class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
                                                 New</div>
@@ -437,7 +437,7 @@
                                 <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                                     <div class="product-item">
                                         <div class="position-relative bg-light overflow-hidden">
-                                            <img class="img-fluid w-100" src="img/product1-7.jpg" alt="">
+                                            <img class="img-fluid w-100" src="/img/product1-7.jpg" alt="">
                                             <div
                                                 class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
                                                 New</div>
@@ -464,7 +464,7 @@
                                 <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
                                     <div class="product-item">
                                         <div class="position-relative bg-light overflow-hidden">
-                                            <img class="img-fluid w-100" src="img/product1-8.jpg" alt="">
+                                            <img class="img-fluid w-100" src="/img/product1-8.jpg" alt="">
                                             <div
                                                 class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
                                                 New</div>
