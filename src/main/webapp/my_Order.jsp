@@ -5,7 +5,7 @@
 
 <head>
 	<!-- Common head include -->
-    <jsp:include page="./commonjsp/common_head.jsp"></jsp:include>
+    <jsp:include page="/commonjsp/common_head.jsp"></jsp:include>
     
     <!-- DatePicker -->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
@@ -15,10 +15,10 @@
 
 <body>
     <!-- Common header include -->
-    <jsp:include page="./commonjsp/common_header.jsp"></jsp:include>
+    <jsp:include page="/commonjsp/common_header.jsp"></jsp:include>
     <!-- Common header include End -->
 	
-	<jsp:include page="./commonjsp/common_mypage_header.jsp"></jsp:include>
+	<jsp:include page="/commonjsp/common_mypage_header.jsp"></jsp:include>
 
     
                     <!-- 여기 삽입 -->
@@ -26,37 +26,37 @@
 	   	            <div class="container">
 					  <div class="row justify-content-center">
 					    <div class="col-md-auto align-self-center">
-					      	<img src="img/mypage_delivery_1.png" class="rounded" alt="...">
+					      	<img src="/img/mypage_delivery_1.png" class="rounded" alt="...">
 					    </div>
 					    <div class="col-md-auto align-self-center">
-					      	<img src="img/mypage_delivery_7.png" class="rounded" alt="...">
+					      	<img src="/img/mypage_delivery_7.png" class="rounded" alt="...">
 					    </div>
 					    <div class="col-md-auto align-self-center">
-					      	<img src="img/mypage_delivery_2.png" class="rounded" alt="...">
+					      	<img src="/img/mypage_delivery_2.png" class="rounded" alt="...">
 					    </div>
 					    <div class="col-md-auto align-self-center">
-					      	<img src="img/mypage_delivery_7.png" class="rounded" alt="...">
+					      	<img src="/img/mypage_delivery_7.png" class="rounded" alt="...">
 					    </div>
 					    <div class="col-md-auto align-self-center">
-					      	<img src="img/mypage_delivery_3.png" class="rounded" alt="...">
+					      	<img src="/img/mypage_delivery_3.png" class="rounded" alt="...">
 					    </div>
 					    <div class="col-md-auto align-self-center">
-					      	<img src="img/mypage_delivery_7.png" class="rounded" alt="...">
+					      	<img src="/img/mypage_delivery_7.png" class="rounded" alt="...">
 					    </div>
 					    <div class="col-md-auto align-self-center">
-					      	<img src="img/mypage_delivery_4.png" class="rounded" alt="...">
+					      	<img src="/img/mypage_delivery_4.png" class="rounded" alt="...">
 					    </div>
 					    <div class="col-md-auto align-self-center">
-					      	<img src="img/mypage_delivery_7.png" class="rounded" alt="...">
+					      	<img src="/img/mypage_delivery_7.png" class="rounded" alt="...">
 					    </div>
 					    <div class="col-md-auto align-self-center">
-					      	<img src="img/mypage_delivery_5.png" class="rounded" alt="...">
+					      	<img src="/img/mypage_delivery_5.png" class="rounded" alt="...">
 					    </div>
 					    <div class="col-md-auto align-self-center">
-					      	<img src="img/mypage_delivery_7.png" class="rounded" alt="...">
+					      	<img src="/img/mypage_delivery_7.png" class="rounded" alt="...">
 					    </div>
 					    <div class="col-md-auto align-self-center">
-					      	<img src="img/mypage_delivery_6.png" class="rounded" alt="...">
+					      	<img src="/img/mypage_delivery_6.png" class="rounded" alt="...">
 					    </div>
 					    <div class="col-md-auto">
 					      	<ul class="list-group list-group-flush">
@@ -194,7 +194,7 @@
 
                 
             <!-- 공통 마이페이지 바텀 -->
-            <jsp:include page="./commonjsp/common_mypage_bottom.jsp"></jsp:include>
+            <jsp:include page="/commonjsp/common_mypage_bottom.jsp"></jsp:include>
             <!-- 공통 마이페이지 바텀 끝 -->
             
     <!-- Contact End -->
@@ -202,7 +202,7 @@
 
     <!-- Footer Start -->
     	<!-- Common Footer include -->
-        <jsp:include page="./commonjsp/common_footer.jsp"></jsp:include>
+        <jsp:include page="/commonjsp/common_footer.jsp"></jsp:include>
         
 	<!-- Footer End -->
 	<!-- js -->
@@ -226,7 +226,7 @@
             //시작일.
             $('#fromDate').datepicker({
                 showOn: "both",                     // 달력을 표시할 타이밍 (both: focus or button)
-                buttonImage: "img/calendar.png", 	// 버튼 이미지
+                buttonImage: "/img/calendar.png", 	// 버튼 이미지
                 buttonImageOnly : true,             // 버튼 이미지만 표시할지 여부
                 buttonText: "날짜선택",             // 버튼의 대체 텍스트
                 dateFormat: "yy-mm-dd",             // 날짜의 형식
@@ -243,7 +243,7 @@
             //종료일
             $('#toDate').datepicker({
                 showOn: "both", 
-                buttonImage: "img/calendar.png", 
+                buttonImage: "/img/calendar.png", 
                 buttonImageOnly : true,
                 buttonText: "날짜선택",
                 dateFormat: "yy-mm-dd",
