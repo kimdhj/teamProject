@@ -105,7 +105,7 @@
 						        </form>
 							</div>
 					      </td>
-					      <td rowspan="2" class="align-middle">
+					      <td class="align-middle">
 					      	<button type="button" class="btn btn-secondary">조회</button>
 					      </td>
 					    </tr>
@@ -117,10 +117,10 @@
 					          <option value = "MATLAB">주문번호</option>
 					          <option value = "HTML">받는분 이름</option>
 					       </select>
-					       
-							  
-							  <input type="text" class="form-control" id="" placeholder="">
-							
+						   <input type="text" class="form-control" id="" placeholder="">	  
+					     </td>
+					     <td>
+					     	<button type="button" class="btn btn-secondary">검색</button>
 					     </td>
 					    </tr>
 					    
