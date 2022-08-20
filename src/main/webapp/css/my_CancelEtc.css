@@ -120,4 +120,10 @@ img {
   padding: 2px;
   background-color: transparent;
 }
+#day_calendar>input{
+	font-size: 0.5vw;
+}
+#top_total *{
+	font-size: 0.6vw;
+}
 /* 별 */
