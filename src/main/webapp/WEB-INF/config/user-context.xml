@@ -7,11 +7,11 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
-	<context:component-scan base-package="com.spring.user"></context:component-scan>
+	<context:component-scan base-package="com.spring.mystore.user"></context:component-scan>
 	
 	<!-- ViewResolver 등록 -->
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/user/"></property>
+		<property name="prefix" value="/"></property>
 		<property name="suffix" value=".jsp"></property>
 	</bean>
 

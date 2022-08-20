@@ -4,14 +4,14 @@
 
     <head>
         <!-- Common head include -->
-        <jsp:include page="commonjsp/common_head.jsp"></jsp:include>
+        <jsp:include page="/commonjsp/common_head.jsp"></jsp:include>
         <!-- 여기에 css 관련  -->
-        <link href="./css/book_Detail.css" rel="stylesheet">
+        <link href="/css/book_Detail.css" rel="stylesheet">
     </head>
 
     <body>
         <!-- Common header include -->
-        <jsp:include page="commonjsp/common_header.jsp"></jsp:include>
+        <jsp:include page="/commonjsp/common_header.jsp"></jsp:include>
         <!-- Common header include End -->
 
 
@@ -506,9 +506,9 @@
 
         <!-- Footer Start -->
         <!-- Common Footer include -->
-        <jsp:include page="commonjsp/common_footer.jsp"></jsp:include>
+        <jsp:include page="/commonjsp/common_footer.jsp"></jsp:include>
         <!-- 여기에 js관련  -->
-        <script src="js/book_Detail.js"></script>
+        <script src="/js/book_Detail.js"></script>
         <!-- Footer End -->
     </body>
 

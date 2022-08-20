@@ -5,17 +5,17 @@
 
 <head>
 	<!-- Common head include -->
-    <jsp:include page="./commonjsp/common_head.jsp"></jsp:include>
+    <jsp:include page="/commonjsp/common_head.jsp"></jsp:include>
     
     
 </head>
 
 <body>
     <!-- Common header include -->
-    <jsp:include page="./commonjsp/common_header.jsp"></jsp:include>
+    <jsp:include page="/commonjsp/common_header.jsp"></jsp:include>
     <!-- Common header include End -->
 
-	<jsp:include page="./commonjsp/common_mypage_header.jsp"></jsp:include>
+	<jsp:include page="/commonjsp/common_mypage_header.jsp"></jsp:include>
     
                     <!-- 여기 삽입 -->
                     <!-- 배송정보 시작 -->
@@ -126,7 +126,7 @@
                     <!-- 안내테이블 -->
                     <table class="table">
 					  <thead class="table-light">
-					    <th scope="col"><img src="img/mypage_warning.png" class="rounded float-first" alt="...">&nbsp;안내사항</th>
+					    <th scope="col"><img src="/img/mypage_warning.png" class="rounded float-first" alt="...">&nbsp;안내사항</th>
 					  </thead>
 					  <tbody>
 					    <tr>
@@ -144,7 +144,7 @@
 					<!-- 안내테이블 끝 -->
                 
             <!-- 공통 마이페이지 바텀 -->
-            <jsp:include page="./commonjsp/common_mypage_bottom.jsp"></jsp:include>
+            <jsp:include page="/commonjsp/common_mypage_bottom.jsp"></jsp:include>
             <!-- 공통 마이페이지 바텀 끝 -->
             
     <!-- Contact End -->
@@ -152,7 +152,7 @@
 
     <!-- Footer Start -->
     	<!-- Common Footer include -->
-        <jsp:include page="./commonjsp/common_footer.jsp"></jsp:include>
+        <jsp:include page="/commonjsp/common_footer.jsp"></jsp:include>
         
 	<!-- Footer End -->
 	

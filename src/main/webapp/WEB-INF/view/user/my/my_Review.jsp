@@ -5,7 +5,7 @@
     <head>
         <!-- Common head include -->
         <jsp:include page="/commonjsp/common_head.jsp"></jsp:include>
-        <link href="${pageContext.request.contextPath}/css/my_Review.css" rel="stylesheet">
+        <link href="./css/my_Review.css" rel="stylesheet">
 
     </head>
 
