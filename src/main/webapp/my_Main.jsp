@@ -142,6 +142,7 @@
 					  </tbody>
 					</table>
 					<!-- 안내테이블 끝 -->
+					
                 
             <!-- 공통 마이페이지 바텀 -->
             <jsp:include page="/commonjsp/common_mypage_bottom.jsp"></jsp:include>
