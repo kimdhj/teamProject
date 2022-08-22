@@ -5,17 +5,17 @@
 
 <head>
 <!-- Common head include -->
-<jsp:include page="./commonjsp/common_head.jsp"></jsp:include>
-<link href="./css/my_MyAddress.css" rel="stylesheet">
+<jsp:include page="/commonjsp/common_head.jsp"></jsp:include>
+<link href="/css/my_MyAddress.css" rel="stylesheet">
 
 </head>
 
 <body>
 	<!-- Common header include -->
-	<jsp:include page="./commonjsp/common_header.jsp"></jsp:include>
+	<jsp:include page="/commonjsp/common_header.jsp"></jsp:include>
 	<!-- Common header include End -->
 
-	<jsp:include page="./commonjsp/common_mypage_header.jsp"></jsp:include>
+	<jsp:include page="/commonjsp/common_mypage_header.jsp"></jsp:include>
 
 	<!-- 여기 삽입 -->
 	<div class="row" id="main_wrapper">
@@ -226,14 +226,14 @@
 		</div>
 	</div>
 	
-	<jsp:include page="./commonjsp/common_mypage_bottom.jsp"></jsp:include>
+	<jsp:include page="/commonjsp/common_mypage_bottom.jsp"></jsp:include>
 
 	<!-- Footer Start -->
 	<!-- Common Footer include -->
-	<jsp:include page="./commonjsp/common_footer.jsp"></jsp:include>
+	<jsp:include page="/commonjsp/common_footer.jsp"></jsp:include>
 	<script
 		src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<script src="js/my_MyAddress.js"></script>
+	<script src="/js/my_MyAddress.js"></script>
 	<!-- Footer End -->
 </body>
 

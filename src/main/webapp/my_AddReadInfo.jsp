@@ -4,24 +4,24 @@
 
     <head>
         <!-- Common head include -->
-        <jsp:include page="./commonjsp/common_head.jsp"></jsp:include>
-        <link href="./css/my_AddReadInfo.css" rel="stylesheet">
+        <jsp:include page="/commonjsp/common_head.jsp"></jsp:include>
+        <link href="/css/my_AddReadInfo.css" rel="stylesheet">
 
     </head>
 
     <body>
         <!-- Common header include -->
-        <jsp:include page="./commonjsp/common_header.jsp"></jsp:include>
+        <jsp:include page="/commonjsp/common_header.jsp"></jsp:include>
         <!-- Common header include End -->
 
-        <jsp:include page="./commonjsp/common_mypage_header.jsp"></jsp:include>
+        <jsp:include page="/commonjsp/common_mypage_header.jsp"></jsp:include>
 
         <!-- 여기 삽입 -->
         <div id="main_wrapper" class="row">
             <div class="col">
                 <div id="top_info" class="row">
                     <div id="img_box" class="col-2">
-                        <img src="./서점로고.ico" width="100%" height="100%" alt="" id="item_img" />
+                        <img src="/서점로고.ico" width="100%" height="100%" alt="" id="item_img" />
                     </div>
                     <div class="col" id="text">
                         <div class="row" id="title">
@@ -86,7 +86,7 @@
                                 <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6  wow fadeInUp" data-wow-delay="0.1s">
                                     <div class="product-item">
                                         <div class="position-relative bg-light overflow-hidden">
-                                            <img class="img-fluid w-100" src="img/product1-1.jpg" alt="">
+                                            <img class="img-fluid w-100" src="/img/product1-1.jpg" alt="">
                                             <div
                                                 class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
                                                 월간</div>
@@ -113,7 +113,7 @@
                                 <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6  wow fadeInUp" data-wow-delay="0.3s">
                                     <div class="product-item">
                                         <div class="position-relative bg-light overflow-hidden">
-                                            <img class="img-fluid w-100" src="img/product1-2.jpg" alt="">
+                                            <img class="img-fluid w-100" src="/img/product1-2.jpg" alt="">
                                             <div
                                                 class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
                                                 New</div>
@@ -141,7 +141,7 @@
                                 <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6  wow fadeInUp" data-wow-delay="0.5s">
                                     <div class="product-item">
                                         <div class="position-relative bg-light overflow-hidden">
-                                            <img class="img-fluid w-100" src="img/product1-3.jpg" alt="">
+                                            <img class="img-fluid w-100" src="/img/product1-3.jpg" alt="">
                                             <div
                                                 class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
                                                 New</div>
@@ -175,11 +175,11 @@
         </div>
 
 
-        <jsp:include page="./commonjsp/common_mypage_bottom.jsp"></jsp:include>
+        <jsp:include page="/commonjsp/common_mypage_bottom.jsp"></jsp:include>
 
         <!-- Footer Start -->
         <!-- Common Footer include -->
-        <jsp:include page="./commonjsp/common_footer.jsp"></jsp:include>
+        <jsp:include page="/commonjsp/common_footer.jsp"></jsp:include>
 
         <!-- Footer End -->
 

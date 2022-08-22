@@ -4,8 +4,8 @@
 
     <head>
         <!-- Common head include -->
-        <jsp:include page="./commonjsp/common_head.jsp"></jsp:include>
-        <link href="./css/my_Review.css" rel="stylesheet">
+        <jsp:include page="/commonjsp/common_head.jsp"></jsp:include>
+        <link href="/css/my_Review.css" rel="stylesheet">
 
     </head>
 
@@ -43,7 +43,7 @@
                             <div class="col-3">호모나 이타다기</div>
                             <div class="col">오늘도 맛있는 이타다기</div>
                             <div id="starBox" class="col-1">
-                                <form class="row" name="myform" id="myform" method="post" action="./save">
+                                <form class="row" name="myform" id="myform" method="post" action="/save">
                                     <fieldset>
                                         <input disabled type="radio" class="col" name="rating" value="5"
                                             id="rate1"><label for="rate1">⭐</label>
@@ -64,7 +64,7 @@
                             <div class="col-3">호모나 이타다기</div>
                             <div class="col">오늘도 맛있는 이타다기</div>
                             <div id="starBox" class="col-1">
-                                <form class="row" name="myform" id="myform" method="post" action="./save">
+                                <form class="row" name="myform" id="myform" method="post" action="/save">
                                     <fieldset>
                                         <input disabled type="radio" class="col" name="rating" value="5"
                                             id="rate1"><label for="rate1">⭐</label>
@@ -85,7 +85,7 @@
                             <div class="col-3">호모나 이타다기</div>
                             <div class="col">오늘도 맛있는 이타다기</div>
                             <div id="starBox" class="col-1">
-                                <form class="row" name="myform" id="myform" method="post" action="./save">
+                                <form class="row" name="myform" id="myform" method="post" action="/save">
                                     <fieldset>
                                         <input disabled type="radio" class="col" name="rating" value="5"
                                             id="rate1"><label for="rate1">⭐</label>
