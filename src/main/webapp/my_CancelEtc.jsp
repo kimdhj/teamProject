@@ -4,18 +4,18 @@
 
     <head>
         <!-- Common head include -->
-        <jsp:include page="./commonjsp/common_head.jsp"></jsp:include>
-        <link href="./datepicker/css/datepicker.min.css" rel="stylesheet" type="text/css" media="all" defer>
-        <link href="./css/my_CancelEtc.css" rel="stylesheet">
+        <jsp:include page="/commonjsp/common_head.jsp"></jsp:include>
+        <link href="/datepicker/css/datepicker.min.css" rel="stylesheet" type="text/css" media="all" defer>
+        <link href="/css/my_CancelEtc.css" rel="stylesheet">
 
     </head>
 
     <body>
         <!-- Common header include -->
-        <jsp:include page="./commonjsp/common_header.jsp"></jsp:include>
+        <jsp:include page="/commonjsp/common_header.jsp"></jsp:include>
         <!-- Common header include End -->
 
-        <jsp:include page="./commonjsp/common_mypage_header.jsp"></jsp:include>
+        <jsp:include page="/commonjsp/common_mypage_header.jsp"></jsp:include>
 
         <!-- 여기 삽입 -->
 
@@ -28,62 +28,62 @@
                     <div class="col-8" id="main_icon">
                         <div class="row justify-content-center">주문접수0</div>
                         <div id="img" class="row">
-                            <img src="./img/mypage_delivery_1.png" class="img-fluid" />
+                            <img src="/img/mypage_delivery_1.png" class="img-fluid" />
                         </div>
                     </div>
                     <div id="arrowimg" class="col-4 align-self-center justify-content-center">
-                        <img class="row" class="img-fluid" src="./img/mypage_delivery_7.png">
+                        <img class="row" class="img-fluid" src="/img/mypage_delivery_7.png">
                     </div>
                 </div>
                 <div class="col" id="order">
                     <div class="col-8" id="main_icon">
                         <div class="row justify-content-center">주문접수0</div>
                         <div id="img" class="row">
-                            <img src="./img/mypage_delivery_2.png" class="img-fluid" />
+                            <img src="/img/mypage_delivery_2.png" class="img-fluid" />
                         </div>
                     </div>
                     <div id="arrowimg" class="col-4 align-self-center justify-content-center">
-                        <img class="row" class="img-fluid" src="./img/mypage_delivery_7.png">
+                        <img class="row" class="img-fluid" src="/img/mypage_delivery_7.png">
                     </div>
                 </div>
                 <div class="col" id="order">
                     <div class="col-8" id="main_icon">
                         <div class="row justify-content-center">주문접수0</div>
                         <div id="img" class="row">
-                            <img src="./img/mypage_delivery_3.png" class="img-fluid" />
+                            <img src="/img/mypage_delivery_3.png" class="img-fluid" />
                         </div>
                     </div>
                     <div id="arrowimg" class="col-4 align-self-center justify-content-center">
-                        <img class="row" class="img-fluid" src="./img/mypage_delivery_7.png">
+                        <img class="row" class="img-fluid" src="/img/mypage_delivery_7.png">
                     </div>
                 </div>
                 <div class="col" id="order">
                     <div class="col-8" id="main_icon">
                         <div class="row justify-content-center">주문접수0</div>
                         <div id="img" class="row">
-                            <img src="./img/mypage_delivery_4.png" class="img-fluid" />
+                            <img src="/img/mypage_delivery_4.png" class="img-fluid" />
                         </div>
                     </div>
                     <div id="arrowimg" class="col-4 align-self-center justify-content-center">
-                        <img class="row" class="img-fluid" src="./img/mypage_delivery_7.png">
+                        <img class="row" class="img-fluid" src="/img/mypage_delivery_7.png">
                     </div>
                 </div>
                 <div class="col" id="order">
                     <div class="col-8" id="main_icon">
                         <div class="row justify-content-center">주문접수0</div>
                         <div id="img" class="row">
-                            <img src="./img/mypage_delivery_5.png" class="img-fluid" />
+                            <img src="/img/mypage_delivery_5.png" class="img-fluid" />
                         </div>
                     </div>
                     <div id="arrowimg" class="col-4 align-self-center justify-content-center">
-                        <img class="row" class="img-fluid" src="./img/mypage_delivery_7.png">
+                        <img class="row" class="img-fluid" src="/img/mypage_delivery_7.png">
                     </div>
                 </div>
                 <div class="col" id="order">
                     <div class="col-8" id="main_icon">
                         <div class="row justify-content-center">주문접수0</div>
                         <div id="img" class="row">
-                            <img src="./img/mypage_delivery_6.png" class="img-fluid" />
+                            <img src="/img/mypage_delivery_6.png" class="img-fluid" />
                         </div>
                     </div>
                     <div id="arrowimg" class="col-4 align-self-center justify-content-center">
@@ -214,14 +214,14 @@
 
             <!-- 우측하단 끝 -->
         </div>
-        <jsp:include page="./commonjsp/common_mypage_bottom.jsp"></jsp:include>
+        <jsp:include page="/commonjsp/common_mypage_bottom.jsp"></jsp:include>
 
         <!-- Footer Start -->
         <!-- Common Footer include -->
-        <jsp:include page="./commonjsp/common_footer.jsp"></jsp:include>
-        <script src="./datepicker/js/datepicker.js"></script> <!-- Air datepicker js -->
-        <script src="./datepicker/js/datepicker.ko.js"></script> <!-- 달력 한글 추가를 위해 커스텀 -->
-        <script src="./js/my_CancelEtc.js"></script>
+        <jsp:include page="/commonjsp/common_footer.jsp"></jsp:include>
+        <script src="/datepicker/js/datepicker.js"></script> <!-- Air datepicker js -->
+        <script src="/datepicker/js/datepicker.ko.js"></script> <!-- 달력 한글 추가를 위해 커스텀 -->
+        <script src="/js/my_CancelEtc.js"></script>
         <!-- Footer End -->
 
     </body>

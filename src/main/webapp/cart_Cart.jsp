@@ -4,14 +4,14 @@
 
     <head>
         <!-- Common head include -->
-        <jsp:include page="commonjsp/common_head.jsp"></jsp:include>
+        <jsp:include page="/commonjsp/common_head.jsp"></jsp:include>
         <!-- 여기에 css 관련  -->
-        <link href="./css/cart_Cart.css" rel="stylesheet">
+        <link href="/css/cart_Cart.css" rel="stylesheet">
     </head>
 
     <body>
         <!-- Common header include -->
-        <jsp:include page="commonjsp/common_header.jsp"></jsp:include>
+        <jsp:include page="/commonjsp/common_header.jsp"></jsp:include>
         <!-- Common header include End -->
 
 
@@ -24,7 +24,7 @@
                     <div class="col"></div>
                     <div id="img_box" class="col-6 align-items-center  ">
                         <img width="100%" height="100%" id="use_img" class="rounded-circle border-1 border border-dark"
-                            src="./img/book.jpg" />
+                            src="/img/book.jpg" />
 
                     </div>
                     <div class="col"></div>
@@ -74,7 +74,7 @@
                         </div>
                         <div class="col-3" id="img_line">
                             <div class="row" id="img_btns">
-                                <img src="./img/book.jpg" width="100%" height="100%" />
+                                <img src="/img/book.jpg" width="100%" height="100%" />
                             </div>
                         </div>
                         <div class="col d-flex flex-column justify-content-between" id="tex_line">
@@ -119,7 +119,7 @@
                         </div>
                         <div class="col-3" id="img_line">
                             <div class="row" id="img_btns">
-                                <img src="./img/book.jpg" width="100%" height="100%" />
+                                <img src="/img/book.jpg" width="100%" height="100%" />
                             </div>
                         </div>
                         <div class="col d-flex flex-column justify-content-between" id="tex_line">
@@ -164,7 +164,7 @@
                         </div>
                         <div class="col-3" id="img_line">
                             <div class="row" id="img_btns">
-                                <img src="./img/book.jpg" width="100%" height="100%" />
+                                <img src="/img/book.jpg" width="100%" height="100%" />
                             </div>
                         </div>
                         <div class="col d-flex flex-column justify-content-between" id="tex_line">
@@ -239,9 +239,9 @@
 
         <!-- Footer Start -->
         <!-- Common Footer include -->
-        <jsp:include page="commonjsp/common_footer.jsp"></jsp:include>
+        <jsp:include page="/commonjsp/common_footer.jsp"></jsp:include>
         <!-- 여기에 js관련  -->
-        <script src="./js/cart_Cart.js"></script>
+        <script src="/js/cart_Cart.js"></script>
         <!-- Footer End -->
     </body>
 

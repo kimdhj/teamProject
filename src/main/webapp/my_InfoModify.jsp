@@ -5,18 +5,18 @@
 
 <head>
 <!-- Common head include -->
-<jsp:include page="./commonjsp/common_head.jsp"></jsp:include>
-<link href="./datepicker/css/datepicker.min.css" rel="stylesheet"
+<jsp:include page="/commonjsp/common_head.jsp"></jsp:include>
+<link href="/datepicker/css/datepicker.min.css" rel="stylesheet"
 	type="text/css" media="all" defer>
-<link href="./css/my_InfoModify.css" rel="stylesheet">
+<link href="/css/my_InfoModify.css" rel="stylesheet">
 </head>
 
 <body>
 	<!-- Common header include -->
-	<jsp:include page="./commonjsp/common_header.jsp"></jsp:include>
+	<jsp:include page="/commonjsp/common_header.jsp"></jsp:include>
 	<!-- Common header include End -->
 
-	<jsp:include page="./commonjsp/common_mypage_header.jsp"></jsp:include>
+	<jsp:include page="/commonjsp/common_mypage_header.jsp"></jsp:include>
 
 	<!-- 여기 삽입 -->
 	<div id="main_wrapper" class="row">
@@ -183,18 +183,18 @@
 		</div>g
 	</div>
 
-	<jsp:include page="./commonjsp/common_mypage_bottom.jsp"></jsp:include>
+	<jsp:include page="/commonjsp/common_mypage_bottom.jsp"></jsp:include>
 
 	<!-- Footer Start -->
 	<!-- Common Footer include -->
-	<jsp:include page="./commonjsp/common_footer.jsp"></jsp:include>
-	<script src="./datepicker/js/datepicker.js"></script>
+	<jsp:include page="/commonjsp/common_footer.jsp"></jsp:include>
+	<script src="/datepicker/js/datepicker.js"></script>
 	<!-- Air datepicker js -->
-	<script src="./datepicker/js/datepicker.ko.js"></script>
+	<script src="/datepicker/js/datepicker.ko.js"></script>
 	<!-- 달력 한글 추가를 위해 커스텀 -->
 	<script
 		src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<script src="js/my_InfoModify.js"></script>
+	<script src="/js/my_InfoModify.js"></script>
 	<!-- Footer End -->
 
 </body>

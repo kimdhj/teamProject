@@ -4,17 +4,17 @@
 
     <head>
         <!-- Common head include -->
-        <jsp:include page="./commonjsp/common_head.jsp"></jsp:include>
-        <link href="./css/my_AddReadCancel.css" rel="stylesheet">
+        <jsp:include page="/commonjsp/common_head.jsp"></jsp:include>
+        <link href="/css/my_AddReadCancel.css" rel="stylesheet">
 
     </head>
 
     <body>
         <!-- Common header include -->
-        <jsp:include page="./commonjsp/common_header.jsp"></jsp:include>
+        <jsp:include page="/commonjsp/common_header.jsp"></jsp:include>
         <!-- Common header include End -->
 
-        <jsp:include page="./commonjsp/common_mypage_header.jsp"></jsp:include>
+        <jsp:include page="/commonjsp/common_mypage_header.jsp"></jsp:include>
 
         <!-- 여기 삽입 -->
 
@@ -22,7 +22,7 @@
             <div class="col">
                 <div id="top_info" class="row">
                     <div id="img_box" class="col-2">
-                        <img src="./서점로고.ico" width="100%" height="100%" alt="" id="item_img" />
+                        <img src="/서점로고.ico" width="100%" height="100%" alt="" id="item_img" />
                     </div>
                     <div class="col" id="text">
                         <div class="row" id="title">
@@ -76,11 +76,11 @@
             </div>
 
         </div>
-        <jsp:include page="./commonjsp/common_mypage_bottom.jsp"></jsp:include>
+        <jsp:include page="/commonjsp/common_mypage_bottom.jsp"></jsp:include>
 
         <!-- Footer Start -->
         <!-- Common Footer include -->
-        <jsp:include page="./commonjsp/common_footer.jsp"></jsp:include>
+        <jsp:include page="/commonjsp/common_footer.jsp"></jsp:include>
 
         <!-- Footer End -->
 

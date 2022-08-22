@@ -4,17 +4,17 @@
 
     <head>
         <!-- Common head include -->
-        <jsp:include page="./commonjsp/common_head.jsp"></jsp:include>
-        <link href="./css/my_Review.css" rel="stylesheet">
+        <jsp:include page="/commonjsp/common_head.jsp"></jsp:include>
+        <link href="/css/my_Review.css" rel="stylesheet">
 
     </head>
 
     <body>
         <!-- Common header include -->
-        <jsp:include page="./commonjsp/common_header.jsp"></jsp:include>
+        <jsp:include page="/commonjsp/common_header.jsp"></jsp:include>
         <!-- Common header include End -->
 
-        <jsp:include page="./commonjsp/common_mypage_header.jsp"></jsp:include>
+        <jsp:include page="/commonjsp/common_mypage_header.jsp"></jsp:include>
 
         <!-- 여기 삽입 -->
         <div class="row" id="main_wrapper">
@@ -43,7 +43,7 @@
                             <div class="col-3">호모나 이타다기</div>
                             <div class="col">오늘도 맛있는 이타다기</div>
                             <div id="starBox" class="col-1">
-                                <form class="row" name="myform" id="myform" method="post" action="./save">
+                                <form class="row" name="myform" id="myform" method="post" action="/save">
                                     <fieldset>
                                         <input disabled type="radio" class="col" name="rating" value="5"
                                             id="rate1"><label for="rate1">⭐</label>
@@ -64,7 +64,7 @@
                             <div class="col-3">호모나 이타다기</div>
                             <div class="col">오늘도 맛있는 이타다기</div>
                             <div id="starBox" class="col-1">
-                                <form class="row" name="myform" id="myform" method="post" action="./save">
+                                <form class="row" name="myform" id="myform" method="post" action="/save">
                                     <fieldset>
                                         <input disabled type="radio" class="col" name="rating" value="5"
                                             id="rate1"><label for="rate1">⭐</label>
@@ -85,7 +85,7 @@
                             <div class="col-3">호모나 이타다기</div>
                             <div class="col">오늘도 맛있는 이타다기</div>
                             <div id="starBox" class="col-1">
-                                <form class="row" name="myform" id="myform" method="post" action="./save">
+                                <form class="row" name="myform" id="myform" method="post" action="/save">
                                     <fieldset>
                                         <input disabled type="radio" class="col" name="rating" value="5"
                                             id="rate1"><label for="rate1">⭐</label>
@@ -132,11 +132,11 @@
 
         </div>
 
-        <jsp:include page="./commonjsp/common_mypage_bottom.jsp"></jsp:include>
+        <jsp:include page="/commonjsp/common_mypage_bottom.jsp"></jsp:include>
 
         <!-- Footer Start -->
         <!-- Common Footer include -->
-        <jsp:include page="./commonjsp/common_footer.jsp"></jsp:include>
+        <jsp:include page="/commonjsp/common_footer.jsp"></jsp:include>
 
         <!-- Footer End -->
 
