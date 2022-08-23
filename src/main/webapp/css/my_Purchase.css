@@ -55,11 +55,11 @@
   word-break: keep-all;
 }
 #day_find > * {
-  border-top: 1px solid blue;
+  border-top: 1px solid black;
 }
 #option_find > * {
   border-top: 1px solid gray;
-  border-bottom: 1px solid blue;
+  border-bottom: 1px solid black;
 }
 #day_title,
 #option_title {
@@ -67,6 +67,7 @@
   background-color: rgb(247, 247, 247);
   padding: 2% !important;
   text-align: center;
+  font-weight: bolder;
 }
 #day_btn {
   padding: 2% !important;
@@ -98,4 +99,8 @@
 #day_calendar {
   display: flex;
   justify-content: center;
+}
+
+.status{
+	font-weight: bolder;
 }

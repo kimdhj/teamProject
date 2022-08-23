@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<jsp:include page="./header.jsp"></jsp:include>
 <head>
-<link href="./css/notice_Cs.css" rel="stylesheet">
-<script type="text/javascript" src="./js/jquery-3.6.0.min.js"></script>
-
+<jsp:include page="/commonjsp/common_head.jsp"></jsp:include>
+<link href="/css/notice_Cs.css" rel="stylesheet">
 </head>
+<jsp:include page="/commonjsp/common_header.jsp"></jsp:include>
 	<div class="row cs_top">
 		<div class="col-2"></div>
 		<div class="col-8">
@@ -280,8 +279,8 @@
 			</ul>
 		</nav>
 	</div>
-
-	<script>
+<jsp:include page="/commonjsp/common_footer.jsp"></jsp:include>
+<script>
 <!-- 주문/결제 -->
 $(function () {
     $("#img_payment").click(function () {
@@ -367,4 +366,5 @@ $(".switch4").click(function(){
     }
 });
 </script>
-	<jsp:include page="./footer.jsp"></jsp:include>
+</body>
+</html>

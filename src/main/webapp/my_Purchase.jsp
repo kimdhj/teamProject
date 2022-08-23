@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <head>
-<jsp:include page="./header.jsp"></jsp:include>
-<link href="./datepicker/css/datepicker.min.css" rel="stylesheet" type="text/css" media="all">
-<link href="./css/mypage_Purchase.css" rel="stylesheet">
+<jsp:include page="/commonjsp/common_head.jsp"></jsp:include>
+<link href="/datepicker/css/datepicker.min.css" rel="stylesheet" type="text/css" media="all">
+<link href="/css/my_Purchase.css" rel="stylesheet">
 </head>
+<jsp:include page="/commonjsp/common_header.jsp"></jsp:include>
 <!-- Page Header Start -->
 <div class="container-fluid page-header wow fadeIn"
 	data-wow-delay="0.1s">
@@ -205,7 +206,7 @@
 						<div class="col-8" id="option_select">
 							<div class="col-4" id="option_dropdown">
 								<select class="form-select form-select-sm"
-									aria-label=".form-select-sm example">
+									aria-label=".form-select-sm example" style="height: 37px; margin-top: 2px;">
 									<option selected>상품명</option>
 									<option value="1">가격</option>
 									<option value="2">장르</option>
@@ -213,11 +214,8 @@
 							</div>&nbsp;
 							<div class="col" id="option_input">
 								<div class="input-group mb-3 ">
-									<input type="text" class="form-control"
-										placeholder="Recipient's username"
-										aria-label="Recipient's username"
-										aria-describedby="basic-addon2"> <span
-										class="input-group-text" id="basic-addon2">조회</span>
+									<input type="text" class="form-control" aria-describedby="basic-addon2">
+									<span class="input-group-text" id="basic-addon2">조회</span>
 								</div>
 							</div>
 						</div>
@@ -236,7 +234,7 @@
 								<div class="col-8">바보 | 2022.07.23</div>
 							</div>
 							<div class="row">
-								<div class="col-7">배송준비중</div>
+								<div class="col-7 status">배송준비중</div>
 								<div class="col-2">수량: 1개</div>
 							</div>
 							<div class="row">
@@ -267,7 +265,7 @@
 								<div class="col-8">바보 | 2022.07.23</div>
 							</div>
 							<div class="row">
-								<div class="col-7">발송완료</div>
+								<div class="col-7 status">발송완료</div>
 								<div class="col-2">수량: 1개</div>
 							</div>
 							<div class="row">
@@ -286,7 +284,7 @@
 				</div>
 
 				<!-- 페이징 -->
-				<div>
+				<div class="mt-5">
 					<nav aria-label="Page navigation example">
 						<ul class="pagination justify-content-center">
 							<li class="page-item disabled"><a class="page-link">Previous</a>
@@ -304,15 +302,13 @@
 		<!-- 마이페이지 메인 바디 끝 -->
 	</div>
 </div>
-<jsp:include page="./footer.jsp"></jsp:include>
+<jsp:include page="/commonjsp/common_mypage_bottom.jsp"></jsp:include>
+<jsp:include page="/commonjsp/common_footer.jsp"></jsp:include>
 <!-- Contact End -->
-<script type="text/javascript" src="./js/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <!-- alert 창 예쁘게 -->
 <script src="./datepicker/js/datepicker.js"></script>
-<!-- Air datepicker js -->
 <script src="./datepicker/js/datepicker.ko.js"></script>
-<!-- 달력 한글 추가를 위해 커스텀 -->
 <script>
         // 날짜 더하기
         $("#start_date").val(new Date());
@@ -460,6 +456,6 @@
             });
 
         });
-    </script>
+</script>
 </body>
 </html>

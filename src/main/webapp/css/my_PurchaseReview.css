@@ -28,12 +28,32 @@
 
 #review_textarea {
 	margin-bottom: 1.5%;
+	font-size: 1vw;
 }
 
 #review_btn {
 	margin-bottom: 2%;
 }
 
+.note-color-all button.active +.note-dropdown-menu>div:nth-child(2) {
+
+   display:none !important;
+}
+.note-color-all button.active +.note-dropdown-menu {
+
+   min-width:0px !important;
+}
+.note-current-fontsize + .note-icon-caret:before,.note-current-fontname + .note-icon-caret:before, .note-icon-table + .note-icon-caret:before, .note-icon-align-left + .note-icon-caret:before, .note-icon-text-height + .note-icon-caret:before{
+	content: "" !important;
+}
+
+.note-current-color-button + .dropdown-toggle:after{
+	content:none !important;
+}
+
+#input_line_top *{
+	font-size: 0.8vw;
+}
 #review_btn>* {
 	margin-right: 10%;
 }
