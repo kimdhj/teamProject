@@ -41,11 +41,12 @@
 			<div class="col-md-1">
 				<button type="button" class="btn btn-light btn-outline-dark">검색</button>
 			</div>
-			<div class="col-md-3">
+			<div class="col-md-5">
 				<div class="btn-group" role="group"
 					aria-label="Basic mixed styles example">
 					<button type="button" class="btn btn-danger">구독</button>
 					<button type="button" class="btn btn-warning">일반</button>
+					<button type="button" class="btn btn-dark">블랙</button>
 					<button type="button" class="btn btn-success">전체</button>
 				</div>
 			</div>
@@ -63,7 +64,7 @@
 						<th scope="col">Email</th>
 						<th scope="col">마일리지</th>
 						<th scope="col">보유쿠폰</th>
-						<th scope="col">삭제</th>
+						<th scope="col">조회</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -78,7 +79,20 @@
 						<td>233,312,123</td>
 						<td>32</td>
 						<td><button type="button"
-								class="btn btn-light btn-outline-dark">삭제</button></td>
+								class="btn btn-light btn-outline-dark">조회</button></td>
+					</tr>
+					<tr>
+						<td scope="row">412544</td>
+						<td>강감찬</td>
+						<td>tommy</td>
+						<td>블랙</td>
+						<td>1023-01-23</td>
+						<td>010-9313-1323</td>
+						<td>tommy@hanmail.net</td>
+						<td>233,312,123</td>
+						<td>32</td>
+						<td><button type="button"
+								class="btn btn-light btn-outline-dark">조회</button></td>
 					</tr>
 				</tbody>
 			</table>
