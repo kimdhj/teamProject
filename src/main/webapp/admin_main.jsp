@@ -17,7 +17,7 @@
 
 	<div class="container">
 		<div class="d-flex flex-row">
-			<div class="col-md-6 col-xl-3">
+			<div class="col-md-3">
 				<article class="stat-cards-item">
 					<div class="stat-cards-icon primary">
 						<i data-feather="bar-chart-2" aria-hidden="true"></i>
@@ -33,7 +33,7 @@
 					</div>
 				</article>
 			</div>
-			<div class="col-md-6 col-xl-3">
+			<div class="col-md-3">
 				<article class="stat-cards-item">
 					<div class="stat-cards-icon warning">
 						<i data-feather="file" aria-hidden="true"></i>
@@ -49,7 +49,7 @@
 					</div>
 				</article>
 			</div>
-			<div class="col-md-6 col-xl-3">
+			<div class="col-md-3">
 				<article class="stat-cards-item">
 					<div class="stat-cards-icon purple">
 						<i data-feather="file" aria-hidden="true"></i>
@@ -65,7 +65,7 @@
 					</div>
 				</article>
 			</div>
-			<div class="col-md-6 col-xl-3">
+			<div class="col-md-3">
 				<article class="stat-cards-item">
 					<div class="stat-cards-icon success">
 						<i data-feather="feather" aria-hidden="true"></i>
