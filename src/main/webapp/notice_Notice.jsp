@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <head>
-	<link href="./css/notice_Notice.css" rel="stylesheet">
+<jsp:include page="/commonjsp/common_head.jsp"></jsp:include>
+<link href="/css/notice_Notice.css" rel="stylesheet">
 </head>	
-<jsp:include page="./header.jsp"></jsp:include>
+<jsp:include page="/commonjsp/common_header.jsp"></jsp:include>
 <div class="row">
 	<div class="col-2"></div>
 	<div class="col-8">
@@ -67,4 +68,6 @@
 		</ul>
 	</nav>
 </div>
-<jsp:include page="./footer.jsp"></jsp:include>
+<jsp:include page="/commonjsp/common_footer.jsp"></jsp:include>
+</body>
+</html>

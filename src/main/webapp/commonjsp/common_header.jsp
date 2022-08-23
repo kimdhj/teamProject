@@ -39,7 +39,7 @@
                 <div class="navbar-nav ms-auto p-4 p-lg-0">
 
 
-                <a href="product.html" class="nav-item nav-link">소개</a>
+                <a href="info_Info.jsp" class="nav-item nav-link">소개</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">국내 도서</a>
                         <div class="dropdown-menu m-0">

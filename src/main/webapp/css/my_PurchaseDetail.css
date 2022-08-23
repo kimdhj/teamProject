@@ -18,6 +18,8 @@
 
 #purchaseDetail_box {
 	border: 1px solid black;
+	border-left: 0px;
+	border-right: 0px;
 	margin: auto;
 	padding: 1%;
 }
@@ -33,6 +35,7 @@
 .purchaseDetail_order {
 	border: 1px solid black;
 	border-top: 0px;
+	border-right: 0px;
 	border-bottom: 0px;
 	background-color: rgb(247, 247, 247);
 	min-height: 15vh;
@@ -123,6 +126,7 @@
 .purchaseDetail_orderer {
 	border: 1px solid black;
 	border-bottom: 0.5px solid white;
+	border-right: 0px;
 	border-top: 0px;
 	font-size : 0.8vw;
 	font-weight: bold;
@@ -135,6 +139,7 @@
 
 .purchaseDetail_orderer2 {
 	border: 1px solid black;
+	border-right: 0px;
 	display: flex;
 	align-items: center;
 	justify-content: center;

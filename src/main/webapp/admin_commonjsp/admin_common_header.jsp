@@ -71,10 +71,10 @@
 							</span>
 						</a>
 							<ul class="cat-sub-menu">
-								<li><a href="pages.html">공지 사항</a></li>
-								<li><a href="new-page.html">리뷰</a></li>
-								<li><a href="new-page.html">FAQ</a></li>
-								<li><a href="new-page.html">문의(Q&A)</a></li>
+								<li><a href="admin_post_Notice.jsp">공지 사항</a></li>
+								<li><a href="admin_post_Review.jsp">리뷰</a></li>
+								<li><a href="admin_post_Faq.jsp">FAQ</a></li>
+								<li><a href="admin_post_Qna.jsp">문의(Q&A)</a></li>
 							</ul></li>
 						<li><a class="show-cat-btn" href="##"> <span
 								class=" fs-5 marketing"><i class="bi bi-newspaper"></i></span>마케팅

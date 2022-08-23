@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<jsp:include page="./header.jsp"></jsp:include>
-<link href="./css/mypage_PurchaseDetail.css" rel="stylesheet">
+<head>
+	<jsp:include page="/commonjsp/common_head.jsp"></jsp:include>
+	<link href="/css/my_PurchaseDetail.css" rel="stylesheet">
+</head>
+<jsp:include page="/commonjsp/common_header.jsp"></jsp:include>
 <!-- Page Header Start -->
 <div class="container-fluid page-header wow fadeIn"
 	data-wow-delay="0.1s">
@@ -365,4 +368,7 @@
 		<!-- 마이페이지 메인 바디 끝 -->
 	</div>
 </div>
-<jsp:include page="./footer.jsp"></jsp:include>
+<jsp:include page="/commonjsp/common_mypage_bottom.jsp"></jsp:include>
+<jsp:include page="/commonjsp/common_footer.jsp"></jsp:include>
+</body>
+</html>
