@@ -4,6 +4,8 @@
 <html>
 <head>
 <jsp:include page="/admin_commonjsp/admin_common_head.jsp"></jsp:include>
+<link href="/css/test.css" rel="stylesheet">
+<link href="/css/log.css" rel="stylesheet" />
 <link href="/css/admin_post_Faq.css" rel="stylesheet" />
 </head>
 <body>
@@ -146,37 +148,7 @@
 			</div>
 		</div>
 	</div>
-
 <jsp:include page="/admin_commonjsp/admin_common_footer.jsp"></jsp:include>
-<!-- 여기서부터 JS 추가 -->
-<script>
-$(function () {
-    $("#level").change(function () {
-    	if($("#level").val() == "1"){
-			$(".form-select1").removeClass("hide");
-			$(".form-select2").addClass("hide");
-			$(".form-select3").addClass("hide");
-			$(".form-select4").addClass("hide");
-    	}else if($("#level").val() == "2"){
-	        $(".form-select2").removeClass("hide");
-    	    $(".form-select1").addClass("hide");
-    	    $(".form-select3").addClass("hide");
-			$(".form-select4").addClass("hide");
-    	}else if($("#level").val() == "3"){
-    		$(".form-select3").removeClass("hide");
-    	    $(".form-select1").addClass("hide");
-    	    $(".form-select2").addClass("hide");
-			$(".form-select4").addClass("hide");
-    	}else if($("#level").val() == "4"){
-    		$(".form-select4").removeClass("hide");
-    	    $(".form-select1").addClass("hide");
-    	    $(".form-select2").addClass("hide");
-			$(".form-select3").addClass("hide");
-    	}
-        console.log($("#level").val());
-    });
-});
-</script>
-
+<script src="/js/admin_post_Faq.js"></script>
 </body>
 </html>

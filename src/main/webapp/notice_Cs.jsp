@@ -212,11 +212,21 @@
 
 			<!-- QnA : 고정 -->
 			<div class="row cs_qna">
-				<div class="col-7 m-0 mt-4" id="cs_name2">QnA</div>
-				<div class="col m-0 align-items-center">
-					<button class="mt-5" id="cs_btn">문의하기</button>
-					<input type="text">&nbsp;
-					<button>검색</button>
+				<div class="col-2 m-0" id="cs_name2">QnA</div>
+				<div class="col-2" id="option_dropdown" style="align-items: center; display: flex;">
+					<select class="form-select form-select-sm" aria-label=".form-select-sm example" style="height: 37px; margin-top: 2px;">
+						<option value="1" selected>제목</option>
+						<option value="2">작성자</option>
+					</select>
+				</div>
+				<div class="col-6" id="option_input" style="align-items: center; display: flex;">
+					<div class="input-group">
+						<input type="text" class="form-control" aria-describedby="basic-addon2">
+						<button class="input-group-text" id="basic-addon2">조회</button>
+					</div>
+				</div>
+				<div class="col m-0 align-items-center" style="align-items: center; display: flex;">
+					<button class="input-group-text" id="basic-addon2">문의하기</button>
 				</div>
 			</div>
 			<div class="table" id="table_table2">
@@ -280,91 +290,6 @@
 		</nav>
 	</div>
 <jsp:include page="/commonjsp/common_footer.jsp"></jsp:include>
-<script>
-<!-- 주문/결제 -->
-$(function () {
-    $("#img_payment").click(function () {
-        $("#form-select1").removeClass("hide");
-        $("#form-select2").addClass("hide");
-        $("#form-select3").addClass("hide");
-        $("#form-select4").addClass("hide");
-    });
-});
-
-<!-- 배송 -->
-$(function () {
-    $("#img_delivery").click(function () {
-        $("#form-select2").removeClass("hide");
-        $("#form-select1").addClass("hide");
-        $("#form-select3").addClass("hide");
-        $("#form-select4").addClass("hide");
-    });
-});
-
-<!-- 환불 -->
-$(function () {
-    $("#img_exchange").click(function () {
-        $("#form-select3").removeClass("hide");
-        $("#form-select1").addClass("hide");
-        $("#form-select2").addClass("hide");
-        $("#form-select4").addClass("hide");
-    });
-});
-
-<!-- 로그인 -->
-$(function () {
-    $("#img_user").click(function () {
-        $("#form-select4").removeClass("hide");
-        $("#form-select1").addClass("hide");
-        $("#form-select2").addClass("hide");
-        $("#form-select3").addClass("hide");
-    });
-});
-
-<!-- toggleClass -->
-$(".switch1").click(function(){
-	console.log($(this).parents("#table_payment_content").next().hasClass('hide'));
-	let ch = $(this).parents("#table_payment_content").next().hasClass('hide');
-    $(".fold").addClass("hide");
-    $(this).parents("#table_payment_content").next().toggleClass("hide");
-    
-    if(!ch){
-    	$(this).parents("#table_payment_content").next().addClass("hide");
-    }
-});
-
-$(".switch2").click(function(){
-	console.log($(this).parents("#table_delivery_content").next().hasClass('hide'));
-	let ch = $(this).parents("#table_delivery_content").next().hasClass('hide');
-    $(".fold").addClass("hide");
-    $(this).parents("#table_delivery_content").next().toggleClass("hide");
-    
-    if(!ch){
-    	$(this).parents("#table_delivery_content").next().addClass("hide");
-    }
-});
-
-$(".switch3").click(function(){
-	console.log($(this).parents("#table_change_content").next().hasClass('hide'));
-	let ch = $(this).parents("#table_change_content").next().hasClass('hide');
-    $(".fold").addClass("hide");
-    $(this).parents("#table_change_content").next().toggleClass("hide");
-    
-    if(!ch){
-    	$(this).parents("#table_change_content").next().addClass("hide");
-    }
-});
-
-$(".switch4").click(function(){
-	console.log($(this).parents("#table_user_content").next().hasClass('hide'));
-	let ch = $(this).parents("#table_user_content").next().hasClass('hide');
-    $(".fold").addClass("hide");
-    $(this).parents("#table_user_content").next().toggleClass("hide");
-    
-    if(!ch){
-    	$(this).parents("#table_user_content").next().addClass("hide");
-    }
-});
-</script>
+<script src="/js/notice_Cs.js"></script>
 </body>
 </html>

@@ -17,7 +17,7 @@
 	font-size: 2rem;
 	font-weight: bolder;
 	text-align: center;
-	margin-top: 5%;
+	margin-top: 2%;
 	margin-bottom: 2%;
 }
 
@@ -33,7 +33,7 @@
 }
 
 #img {
-	margin-top: 15%;
+	margin-top: 18%;
 	filter: alpha;
 	margin-bottom: 2%;
 	opacity: 0.85;
@@ -48,6 +48,7 @@
 	margin-bottom: 8%;
 }
 
-#info_sub {
+#info_sub1, #info_sub2, #info_sub3  {
+	margin-top: 1%;
 	margin-left: 10%;
 }
