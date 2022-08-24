@@ -10,8 +10,39 @@
 <body>
 	<jsp:include page="/admin_commonjsp/admin_common_header.jsp"></jsp:include>
 	<!-- 여기서부터 화면 작성 시작 -->
-	
-	약관읽기 및 수정 입니당
+	<div class="container">
+		<div class="d-flex flex-row">
+			<div class="col-md-12">
+				<form>
+					<div class="card border-light">
+						<div class="card-header">
+							<div class="d-flex flex-row">
+								<div class="col-md-6">약관제목</div>
+								<div class="col-md-6">
+									<button type="button"
+										class="btn btn-light btn-outline-dark btn-sm"
+										style="float: right;">약관선택</button>
+								</div>
+							</div>
+						</div>
+						<div class="card-body">
+							<div class="mb-3">
+								<textarea class="form-control" id="" rows="10"></textarea>
+							</div>
+						</div>
+						<div class="card-footer">
+							<button type="button"
+								class="btn btn-light btn-outline-dark btn-sm"
+								style="float: right;">목록</button>
+							<button type="button"
+								class="btn btn-light btn-outline-dark btn-sm"
+								style="float: right;">수정</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 
 
 	<jsp:include page="/admin_commonjsp/admin_common_footer.jsp"></jsp:include>
