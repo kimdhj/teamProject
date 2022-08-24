@@ -15,4 +15,4 @@
 <!-- Template Stylesheet -->
 <link href="/css/style.css" rel="stylesheet">
 <link href="/css/test.css" rel="stylesheet">
-<link href="/log.css" rel="stylesheet" />
+<link href="/css/log.css" rel="stylesheet" />
