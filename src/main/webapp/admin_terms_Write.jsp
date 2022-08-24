@@ -4,6 +4,8 @@
 <html>
 <head>
 <jsp:include page="/admin_commonjsp/admin_common_head.jsp"></jsp:include>
+<link href="/css/test.css" rel="stylesheet">
+<link href="/css/log.css" rel="stylesheet" />
 </head>
 <body>
 	<jsp:include page="/admin_commonjsp/admin_common_header.jsp"></jsp:include>

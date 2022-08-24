@@ -4,6 +4,8 @@
 <html>
 <head>
 <jsp:include page="/admin_commonjsp/admin_common_head.jsp"></jsp:include>
+<link href="/css/test.css" rel="stylesheet">
+<link href="/css/log.css" rel="stylesheet" />
 <link href="/css/admin_post_FaqInsert.css" rel="stylesheet" />
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 </head>
