@@ -14,5 +14,3 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 <!-- Template Stylesheet -->
 <link href="/css/style.css" rel="stylesheet">
-<link href="/css/test.css" rel="stylesheet">
-<link href="/css/log.css" rel="stylesheet" />
