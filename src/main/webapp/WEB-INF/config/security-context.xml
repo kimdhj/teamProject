@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-5.7.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<security:http>
+		<security:intercept-url pattern="/all.do"
+			access="permitAll" />
+		<security:intercept-url pattern="/member.do"
+			access="hasRole('ROLE_MEMBER')" />
+		<security:intercept-url pattern="/admin.do"
+			access="hasRole('ROLE_ADMIN')" />
+		<security:form-login username-parameter="username"
+			password-parameter="userpassword" login-page="/Customlogin.do"
+			authentication-success-handler-ref="LoginSuccessHandler" />
+		<security:access-denied-handler
+			error-page="/accessError.do" />
+		<security:logout logout-url="/logout"
+			logout-success-url="/Customlogin.do" invalidate-session="true"
+			delete-cookies="remember-me,JSESSION_ID" />
+		<security:remember-me
+			data-source-ref="dataSource" token-validity-seconds="604800" />
+
+
+	</security:http>
+	<security:authentication-manager>
+		<security:authentication-provider>
+			<security:jdbc-user-service
+				data-source-ref="dataSource"
+				authorities-by-username-query="select username,authority from userTest where username=?"
+				users-by-username-query="select username,password,enabled  from userTest where username=?" />
+			<security:password-encoder
+				ref="bcryptPasswordEncoder" />
+			<!-- <security:password-encoder ref="NocryPassword" /> -->
+		</security:authentication-provider>
+
+	</security:authentication-manager>
+	<bean id="bcryptPasswordEncoder"
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+	<context:component-scan
+		base-package="com.romance"></context:component-scan>
+</beans>
