@@ -42,57 +42,45 @@
 				<button type="button" class="btn btn-light btn-outline-dark">검색</button>
 			</div>
 			<div class="col-md-5">
-				<div class="btn-group" role="group"
-					aria-label="Basic mixed styles example">
-					<button type="button" class="btn btn-danger">구독</button>
-					<button type="button" class="btn btn-warning">일반</button>
-					<button type="button" class="btn btn-dark">블랙</button>
-					<button type="button" class="btn btn-success">전체</button>
-				</div>
+				
 			</div>
 		</div>
 		<div class="d-flex flex-row">
 			<table class="table text-center">
 				<thead class="table-dark">
 					<tr>
-						<th scope="col">회원번호</th>
+						<th scope="col">관리자번호</th>
 						<th scope="col">이름</th>
 						<th scope="col">아이디</th>
 						<th scope="col">구분</th>
 						<th scope="col">생년월일</th>
 						<th scope="col">연락처</th>
 						<th scope="col">Email</th>
-						<th scope="col">마일리지</th>
-						<th scope="col">보유쿠폰</th>
-						<th scope="col">조회</th>
+						<th scope="col">삭제</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
 						<td scope="row">112344</td>
 						<td>홍길동</td>
-						<td>tommy</td>
-						<td>구독</td>
+						<td>aa01</td>
+						<td>마스터</td>
 						<td>2023-01-23</td>
 						<td>010-2313-1323</td>
 						<td>tommy@hanmail.net</td>
-						<td>233,312,123</td>
-						<td>32</td>
 						<td><button type="button"
-								class="btn btn-light btn-outline-dark">조회</button></td>
+								class="btn btn-light btn-outline-dark">삭제</button></td>
 					</tr>
 					<tr>
 						<td scope="row">412544</td>
 						<td>강감찬</td>
-						<td>tommy</td>
-						<td>블랙</td>
+						<td>aa02</td>
+						<td>관리자</td>
 						<td>1023-01-23</td>
 						<td>010-9313-1323</td>
 						<td>tommy@hanmail.net</td>
-						<td>233,312,123</td>
-						<td>32</td>
 						<td><button type="button"
-								class="btn btn-light btn-outline-dark">조회</button></td>
+								class="btn btn-light btn-outline-dark">삭제</button></td>
 					</tr>
 				</tbody>
 			</table>
@@ -117,6 +105,9 @@
 				</nav>
 			</div>
 		</div>
+		
+		관리자 계정 추가 넣어야함 (마스터만 추가할 수 있도록)
+		
 	</div>
 
 
