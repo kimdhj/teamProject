@@ -153,7 +153,7 @@
 				</div>
 				<div class="col-md-8">
 					<button type="button" class="btn btn-light btn-outline-dark"
-						style="float: right;">등록테스트</button>
+						style="float: right;">등록</button>
 				</div>
 			</div>
 			<div class="col-md-6"></div>
