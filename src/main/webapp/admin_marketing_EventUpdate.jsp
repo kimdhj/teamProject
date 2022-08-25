@@ -25,7 +25,7 @@
           <div class="col">
             <!-- 이 안에 내용 -->
             <div id="bigbig_title" class="bg-light align-left">
-              이벤트 추가
+              이벤트 수정
             </div>
             <form>
               <table class="table">
@@ -125,7 +125,7 @@
                   <div class="col-8"></div>
                   <div class="col-2">
                     <button type="submit" class="btn btn-primary">
-                      이벤트 생성
+                      이벤트 수정
                     </button>
                   </div>
                   <div class="col-2">

@@ -75,7 +75,31 @@
 		</div>
 		<div class="d-flex flex-row">
 			<div class="col-md-12">
-				<button type="button" class="btn btn-light btn-outline-dark" style="float:right;">수정</button>
+				<button type="button" class="btn btn-light btn-outline-dark btn-sm"
+					style="float: right;">수정</button>
+			</div>
+		</div>
+		<div class="d-flex flex-row">
+			<div class="col-md-6">
+				<form>
+					<div class="card border-light">
+						<div class="card-header">쪽지</div>
+						<div class="card-body">
+							<div class="mb-3">
+								<textarea class="form-control" id="" rows="10"></textarea>
+							</div>
+						</div>
+						<div class="card-footer">
+							<button type="button" class="btn btn-light btn-outline-dark btn-sm" style="float: right;">전송</button>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="col-md-6">
+				<div class="card border-light">
+					<div class="card-header">Header</div>
+					<div class="card-body"></div>
+				</div>
 			</div>
 		</div>
 	</div>

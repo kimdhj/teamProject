@@ -270,9 +270,17 @@
     	//송장번호 입력
     	function deliveryTracking()  {
 	    	const deliveryNumber = document.getElementById("deliveryNumber").value; //입력받은 운송장번호
-    		let target = document.getElementById("select_logistics");//선택한 택배회사
-    		let logistics = target.options[target.selectedIndex].text;//택배회사이름
+    		const target = document.getElementById("select_logistics");//선택한 택배회사
+    		const logistics = target.options[target.selectedIndex].text;//택배회사이름
     		let link = "https://tracker.delivery/#/";
+    		
+    		//팝업창 크기
+    		const _width = '800';
+    		const _height = '350';
+    		//화면 중단점에 띄우기 위한 top, left 여백 구하기
+    		const _left = Math.ceil((window.screen.width - _width)/2);
+    		const _top = Math.ceil((window.screen.height - _height)/2);
+    		
     		
     		if(logistics === "우체국택배") {
     			alert("우체국택배");
@@ -287,7 +295,8 @@
     			link += "kr.logen/"
     		}
     		link += deliveryNumber;
-    		location.href = link;
+    		window.open(link, '_blank', 'width=' + _width + ', height=' + _height + ', left=' + _left + ', top=' + _top);
+    		//window.location.href = link;
     	}
     	
     </script>

@@ -4,6 +4,8 @@
 <html>
 <head>
 <jsp:include page="/admin_commonjsp/admin_common_head.jsp"></jsp:include>
+<link href="/css/test.css" rel="stylesheet">
+<link href="/css/log.css" rel="stylesheet" />
 </head>
 <body>
 	<jsp:include page="/admin_commonjsp/admin_common_header.jsp"></jsp:include>
@@ -17,6 +19,7 @@
 						<th scope="col">번호</th>
 						<th scope="col">약관제목</th>
 						<th scope="col">등록일</th>
+						<th scope="col">상태</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -24,16 +27,19 @@
 						<td scope="row">112344</td>
 						<td>홍길동이 대충 끄적거린 약관</td>
 						<td>2090-11-23</td>
+						<td>Y</td>
 					</tr>
 					<tr>
 						<td scope="row">112344</td>
 						<td>강감찬이 열심히 끄적거린 약관</td>
 						<td>2090-11-23</td>
+						<td>N</td>
 					</tr>
 					<tr>
 						<td scope="row">112344</td>
 						<td>고길동이 쓰다만</td>
 						<td>2090-11-23</td>
+						<td>N</td>
 					</tr>
 				</tbody>
 			</table>

@@ -63,10 +63,9 @@ table {
 .row {
   display: block;
 }
-.marketing {
-  color: white;
-  margin-right: 10px;
+.container {
+  font-size: 0.8vw;
 }
-.logo {
-  background-image: url(/img/서점로고.ico);
+#main_wrapper{
+	margin-top:5%;
 }
