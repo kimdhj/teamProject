@@ -18,21 +18,21 @@
 <body>
 	<jsp:include page="/admin_commonjsp/admin_common_header.jsp"></jsp:include>
 	<!-- 여기서부터 화면 작성 시작 -->
-	 <div class="row d-flex" id="main_wrapper">
+	 <div class="row d-flex w-100" id="main_wrapper">
       <div class="col-12" id="icon_content">
         <div class="row d-flex">
           <div class="col-1"></div>
           <div class="col">
             <!-- 이 안에 내용 -->
             <div id="bigbig_title" class="bg-light align-left">
-              이벤트 추가!!!!!!!!!!!!!!!!!!!!
+              이벤트 추가
             </div>
             <form>
               <table class="table">
                 <thead></thead>
                 <tbody>
                   <tr>
-                    <th scope="row" class="bg-light align-middle">제목</th>
+                    <th scope="row" class="bg-light align-middle text-center">제목</th>
                     <td colspan="3">
                       <div class="form-floating mb-3">
                         <input
@@ -46,15 +46,14 @@
                     </td>
                   </tr>
                   <tr>
-                    <th class="bg-light">대상</th>
+                    <th class="bg-light text-center">대상</th>
                     <td>
                       <input type="text" id="event_target" />
                     </td>
-                    <th class="bg-light">기간</th>
+                    <th class="bg-light text-center">기간</th>
                     <td>
-                      <div class="row" id="day_find">
-                        <div class="col-4" id="day_title">기간 조회</div>
-                        <div class="col-8 row" id="day_select">
+                      <div class="row d-flex">
+                        <div class="col row" id="day_select">
                           <div id="day_calendar" class="col">
                             <input
                               class="col-5"
@@ -73,7 +72,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <th class="bg-light align-middle">간략 내용</th>
+                    <th class="bg-light align-middle text-center">간략 내용</th>
                     <td colspan="3">
                       <div class="form-floating">
                         <textarea
@@ -87,7 +86,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <th class="bg-light">썸네일</th>
+                    <th class="bg-light text-center">썸네일</th>
                     <td colspan="2">
                       <input
                         type="file"
@@ -103,7 +102,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <th class="bg-light">내용 첨부</th>
+                    <th class="bg-light text-center">내용 첨부</th>
                     <td colspan="2">
                       <input
                         type="file"

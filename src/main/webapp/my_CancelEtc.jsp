@@ -25,7 +25,7 @@
             <div class="row" id="top_menu">
 
                 <div class="col" id="order">
-                    <div class="col-8" id="main_icon">
+                    <div class="col-8 align-self-center" id="main_icon">
                         <div class="row justify-content-center">주문접수0</div>
                         <div id="img" class="row">
                             <img src="/img/mypage_delivery_1.png" class="img-fluid" />
@@ -36,7 +36,7 @@
                     </div>
                 </div>
                 <div class="col" id="order">
-                    <div class="col-8" id="main_icon">
+                    <div class="col-8 align-self-center" id="main_icon">
                         <div class="row justify-content-center">주문접수0</div>
                         <div id="img" class="row">
                             <img src="/img/mypage_delivery_2.png" class="img-fluid" />
@@ -47,7 +47,7 @@
                     </div>
                 </div>
                 <div class="col" id="order">
-                    <div class="col-8" id="main_icon">
+                    <div class="col-8 align-self-center" id="main_icon">
                         <div class="row justify-content-center">주문접수0</div>
                         <div id="img" class="row">
                             <img src="/img/mypage_delivery_3.png" class="img-fluid" />
@@ -58,7 +58,7 @@
                     </div>
                 </div>
                 <div class="col" id="order">
-                    <div class="col-8" id="main_icon">
+                    <div class="col-8 align-self-center" id="main_icon">
                         <div class="row justify-content-center">주문접수0</div>
                         <div id="img" class="row">
                             <img src="/img/mypage_delivery_4.png" class="img-fluid" />
@@ -69,7 +69,7 @@
                     </div>
                 </div>
                 <div class="col" id="order">
-                    <div class="col-8" id="main_icon">
+                    <div class="col-8 align-self-center" id="main_icon">
                         <div class="row justify-content-center">주문접수0</div>
                         <div id="img" class="row">
                             <img src="/img/mypage_delivery_5.png" class="img-fluid" />
@@ -80,7 +80,7 @@
                     </div>
                 </div>
                 <div class="col" id="order">
-                    <div class="col-8" id="main_icon">
+                    <div class="col-8 align-self-center" id="main_icon">
                         <div class="row justify-content-center">주문접수0</div>
                         <div id="img" class="row">
                             <img src="/img/mypage_delivery_6.png" class="img-fluid" />

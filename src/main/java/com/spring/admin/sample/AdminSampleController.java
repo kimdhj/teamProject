@@ -10,4 +10,5 @@ public class AdminSampleController {
 		System.out.println("Admid service Ã³¸®");
 		return "adminTest";
 	}
+	
 }

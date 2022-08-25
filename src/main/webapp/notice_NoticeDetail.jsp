@@ -43,22 +43,6 @@
 	<div class="col-2"></div>
 </div>
 <jsp:include page="/commonjsp/common_footer.jsp"></jsp:include>
-<script type="text/javascript">
-	$(function() {
-		$("#chat_button").click(function() {
-			$("#real_chat").toggleClass("hide");
-		});
-		$("#search_btn").click(function() {
-			$("#main_search").toggleClass("hide");
-		});
-	});
-</script>
-<script type="text/javascript">
-	$(function() {
-		$("#endPoint").click(function() {
-			$("html").scrollTop("0");
-		});
-	});
-</script>
+<script src="/js/notice_NoticeDetail.js"></script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 #main_wrapper * {
   font-size: 0.8vw;
   font-weight: bolder;
-  margin: 0px;
+  
 }
 #order {
   display: flex;
@@ -126,4 +126,5 @@ img {
 #top_total *{
 	font-size: 0.6vw;
 }
+
 /* 별 */
