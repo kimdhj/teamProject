@@ -63,26 +63,23 @@
 		</div>
 
 		<!-- 문의 답변 작성란 -->
-		<div class="mb-0 p-0 form1 hide">
+		<div class="mb-0 mt-5 p-0 form1 hide">
 			<button id="all" class="select p-2">문의 답변하기</button>
 		</div>
 
 		<div id="all_box" class="bg-white w-100 form1 hide">
-			<div class="row d-flex align-items-center" id="input_line_top">
-				<div class="col-1 mt-2 mb-2 qnaDetail_font">제목</div>
-				<div class="col-3" style="padding-left: 0px;">[답변완료]문의드립니다.</div>
-				<div class="col-1 qnaDetail_font" style="padding-right: 0px;">파일첨부</div>
-				<div class="col-3" style="padding-left: 0px;">
-					<input type="file">
-				</div>
-				<div class="row"></div>
+			<div class="row d-flex align-items-center mt-2" id="input_line_top">
 				<div class="col-1 mb-2 qnaDetail_font" style="padding-right: 0px;">번호</div>
 				<div class="col-3 mb-2" style="padding-left: 0px;">31394</div>
 				<div class="col-1 mb-2 qnaDetail_font" style="padding-right: 0px;">작성자</div>
 				<div class="col-3 mb-2" style="padding-left: 0px;">관리자</div>
-				<div class="col-1 mb-2 qnaDetail_font"
-					style="padding-right: 0px; margin-left: 5%;">등록일자</div>
-				<div class="col mb-2" style="padding-left: 0px;">2018.08.14</div>
+				<div class="row"></div>
+				<div class="col-1 mb-2 qnaDetail_font" style="padding-right: 0px;">등록일자</div>
+				<div class="col-3 mb-2" style="padding-left: 0px;">2018.08.14</div>
+				<div class="col-1 qnaDetail_font mb-2" style="padding-right: 0px;">파일첨부</div>
+				<div class="col-3 mb-2" style="padding-left: 0px;">
+					<input type="file">
+				</div>
 			</div>
 		</div>
 
