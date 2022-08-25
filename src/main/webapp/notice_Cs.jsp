@@ -231,46 +231,53 @@
 			</div>
 			<div class="table" id="table_table2">
 				<div class="row" id="table_height2">
-					<div class="col-3">번호</div>
+					<div class="col-2">번호</div>
 					<div class="col-3">제목</div>
-					<div class="col-3">작성자</div>
+					<div class="col-2">작성자</div>
 					<div class="col-3">등록일자</div>
+					<div class="col-2">답변</div>
 				</div>
 				<div class="row" id="table_content2">
-					<div class="col-3">1</div>
-					<div class="col-3">얼</div>
-					<div class="col-3">작성자</div>
-					<div class="col-3">2022</div>
+					<div class="col-2">1</div>
+					<div class="col-3">문의드립니다.</div>
+					<div class="col-2">qjawns</div>
+					<div class="col-3">2022.11.11</div>
+					<div class="col-2">&nbsp;</div>
 				</div>
 				<div class="row" id="table_content2">
-					<div class="col-3">ㄴ</div>
-					<div class="col-3">[답변완료] 얼</div>
-					<div class="col-3">작성자</div>
-					<div class="col-3">2022</div>
+					<div class="col-2">2</div>
+					<div class="col-3">어떻게 하는건가요</div>
+					<div class="col-2">heysong_93</div>
+					<div class="col-3">2022.11.11</div>
+					<div class="col-2">답변 완료</div>
 				</div>
 				<div class="row" id="table_content2">
-					<div class="col-3">&nbsp;ㄴ</div>
-					<div class="col-3">냐옹</div>
-					<div class="col-3">작성자</div>
-					<div class="col-3">2022</div>
+					<div class="col-2">3</div>
+					<div class="col-3">뭥미</div>
+					<div class="col-2">동현</div>
+					<div class="col-3">2022.11.11</div>
+					<div class="col-2">답변 완료</div>
 				</div>
 				<div class="row" id="table_content2">
-					<div class="col-3">1</div>
-					<div class="col-3">얼</div>
-					<div class="col-3">작성자</div>
-					<div class="col-3">2022</div>
+					<div class="col-2">4</div>
+					<div class="col-3">뭥미</div>
+					<div class="col-2">소현</div>
+					<div class="col-3">2022.11.11</div>
+					<div class="col-2">답변 완료</div>
 				</div>
 				<div class="row" id="table_content2">
-					<div class="col-3">1</div>
-					<div class="col-3">얼</div>
-					<div class="col-3">작성자</div>
-					<div class="col-3">2022</div>
+					<div class="col-2">5</div>
+					<div class="col-3">뭥미</div>
+					<div class="col-2">준혁</div>
+					<div class="col-3">2022.11.11</div>
+					<div class="col-2">답변 완료</div>
 				</div>
 				<div class="row" id="table_content2">
-					<div class="col-3">1</div>
-					<div class="col-3">얼</div>
-					<div class="col-3">작성자</div>
-					<div class="col-3">2022</div>
+					<div class="col-2">6</div>
+					<div class="col-3">나는야 1조 공주</div>
+					<div class="col-2">eunxi</div>
+					<div class="col-3">2022.11.11</div>
+					<div class="col-2">답변 완료</div>
 				</div>
 			</div>
 		</div>

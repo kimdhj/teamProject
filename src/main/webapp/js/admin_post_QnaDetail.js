@@ -65,7 +65,7 @@
     $(".answer_add").click(function () {
         Swal.fire({
            	text: '답변을 등록하시겠습니까?',
-            icon: 'warning',
+            icon: 'success',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
