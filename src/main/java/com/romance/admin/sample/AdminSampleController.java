@@ -1,4 +1,4 @@
-package com.spring.admin.sample;
+package com.romance.admin.sample;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AdminSampleController {
 	@RequestMapping("/test.mdo")
 	public String testAdmin() {
-		System.out.println("Admid service Ã³¸®");
+		System.out.println("Admid service Ã³ï¿½ï¿½");
 		return "adminTest";
 	}
 	
