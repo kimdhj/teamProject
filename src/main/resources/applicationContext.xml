@@ -15,9 +15,10 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 	
-	<context:property-placeholder location="classpath:config/database.properties"/>
 	
-	<!-- mybatis 설정 -->
+	<context:component-scan base-package="com.romance"></context:component-scan>
+	
+	<!-- Mybatis 설정 -->
 	<bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation" value="classpath:mybatis-config.xml" />
@@ -26,6 +27,7 @@
 		<constructor-arg ref="sessionFactory" />
 	</bean>
 	
+	<context:property-placeholder location="classpath:config/database.properties"/>
 	<!-- DataSource 등록 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="${jdbc.driver}"/>
