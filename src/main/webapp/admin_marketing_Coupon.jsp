@@ -240,7 +240,7 @@
           </div>
           <div id="create_detail" class="mt-2 mb-2">
 
-            <div class="input-group mb-3 justify-content-center ">
+            <div class="input-group mb-3 justify-content-center">
               <button id="cre_btn" type="button" class="btn btn-info rounded-pill text-white w-100 ">쿠폰 생성</button>
             </div>
           </div>

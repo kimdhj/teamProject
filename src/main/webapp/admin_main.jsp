@@ -229,7 +229,7 @@
 		})
 
 		let barChartFour = new Chart(myChartFour, {
-			type : 'doughnut', //pie, line, doughnut, polarArea
+			type : 'line', //pie, line, doughnut, polarArea
 			data : {
 				labels : [ '10대', '20대', '30대', '40대', '50대이상' ],
 				datasets : [ {
@@ -252,7 +252,7 @@
 					},
 					legend : {
 						display : true,
-						position : 'right'
+						position : 'top'
 					},
 					tooltip : {
 						enabled : true
@@ -261,8 +261,8 @@
 				},
 				layout : {
 					padding : {
-						left : 150,
-						right : 150,
+						left : 0,
+						right : 0,
 						top : 0,
 						bottom : 0
 					}

@@ -107,11 +107,11 @@
 			<artifactId>spring-jdbc</artifactId>
 			<version>5.3.20</version>
 		</dependency>
-		<dependency>
+		<!-- <dependency>
 			<groupId>com.oracle</groupId>
 			<artifactId>ojdbc11</artifactId>
 			<version>21.6</version>
-		</dependency>
+		</dependency> -->
 		<!-- AOP기능 -->
 		<!-- AspectJ -->
 		<dependency>
