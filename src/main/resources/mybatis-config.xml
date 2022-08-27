@@ -5,8 +5,10 @@
 <configuration>
 	<typeAliases>
 		<!-- <typeAlias alias="myboard" type="tommy.spring.web.board.BoardVO" /> -->
+		<typeAlias type="com.romance.socket.chatVO" alias="chat" />
 	</typeAliases>
 	<mappers>
 		<!-- <mapper resource="mappings/board-mapping.xml" /> -->
+		<mapper resource="mappings/ajax-mapping.xml" />
 	</mappers>
 </configuration>

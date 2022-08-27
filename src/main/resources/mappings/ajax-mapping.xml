@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ChatDAO">
+	<resultMap type="chat" id="chatResult">
+		<result property="sessionid" column="sessionid" />
+		<result property="name" column="name" />
+		<result property="regdate" column="regdate" />
+		<result property="content" column="content" />
+		<result property="state" column="state" />
+		<result property="num" column="num" />
+	</resultMap>
+	<select parameterType="map" resultType="chat" id="selectmy">
+		<![CDATA[select * from
+		real_chat where name=#{myname} or name=#{adminname} order by regdate desc ]]>
+	</select>
+	<update id="updatestate" parameterType="chat">
+		update real_chat set
+		state='t' where name=#{name}
+	</update>
+	<delete parameterType="chat" id="deletename">
+		delete from real_chat
+		<if test="sessionid!=null">
+			where sessionid=#{sessionid}
+		</if>
+		<if test="name!=null">
+			where name=#{name}
+		</if>
+	</delete>
+	<select resultMap="chatResult" id="selectmain">
+		select distinct
+		name,sessionid,max(regdate) as regdate,count(case when state='f' then
+		1
+		end ) as num from real_chat group by name order by num
+		desc,regdate desc
+	</select>
+	<select parameterType="chat" resultType="chat"
+		id="selectcontent">
+		<![CDATA[	 select
+		content,regdate,rnum from (select content,regdate, @rownum:=@rownum+1 as rnum
+		from
+		(select sessionid,content,regdate from real_chat,(select @rownum := 0 ) C
+		where
+		sessionid=#{sessionid} order by seq desc)B,(select @rownum := 0 ) E) D,(select @rownum := 0 ) F where rnum=1]]>
+	</select>
+	<select parameterType="chat" resultType="int" id="selectnum">
+		select num from
+		(
+		select
+		count(state) as num from real_chat where state='f' and
+		sessionid=#{sessionid}) b
+	</select>
+	<insert parameterType="chat" id="insertchat">
+		insert into real_chat
+		values(null,#{sessionid},#{name},#{content},now(),'f')
+	</insert>
+
+
+
+
+</mapper>
