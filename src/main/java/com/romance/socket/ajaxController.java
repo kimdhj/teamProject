@@ -17,6 +17,7 @@ public class ajaxController {
 	@ResponseBody
 	public List<chatVO> selectmy(String myname,String adminname){
 		System.out.println(myname+adminname);
+	
 		return ser.selectmy(myname,adminname);
 	}
 	@RequestMapping("/updatestate.do")

@@ -49,8 +49,8 @@
 					success : function(data) {
 						$("#msgArea").html("");
 						for (let i = 0; i < data.length; i++) {
-							if (data[i].name.indexOf("admin") < 0) {
-								let add = "/chatAdmin.do?user=" + data[i].name
+							if (data[i].real_chat_name.indexOf("admin") < 0) {
+								let add = "/chatAdmin.do?user=" + data[i].real_chat_name
 										+ "admin"
 								let str = `<button onclick='del(this)' class="col-auto">` + "삭제"
 										+ `</button>`
@@ -58,10 +58,10 @@
 								str += "<div class='alert alert-secondary d-flex'>";
 
 								str += `<div class="col-auto" id="name">`
-										+ data[i].name + `</div>`
-								str += `<div class="col">` + data[i].content
+										+ data[i].real_chat_name + `</div>`
+								str += `<div class="col">` + data[i].real_chat_content
 										+ `</div>`
-								str += `<div id="`+data[i].sessionid+`" class="`+data[i].name+` col-auto" >`
+								str += `<div id="`+data[i].real_chat_session+`" class="`+data[i].real_chat_name+` col-auto" >`
 										+ data[i].num + `</div>`
 								str += "</div></div></a>";
 
@@ -80,7 +80,7 @@
 		$.ajax({
 			url : "/delet.do",
 			data : {
-				name : name,
+				real_chat_name : name,
 
 			},
 			async:true,
@@ -94,7 +94,7 @@
 		$.ajax({
 			url : "/delet.do",
 			data : {
-				name : name+"admin"
+				real_chat_name : name+"admin"
 
 			},
 			async:true,
