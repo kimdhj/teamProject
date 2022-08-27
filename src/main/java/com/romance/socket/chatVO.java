@@ -4,56 +4,52 @@ import java.util.Date;
 
 public class chatVO {
 	int num;
-	String sessionid;
-	String name;
-	Date regdate;
-	String content;
-	String state;
-	@Override
-	public String toString() {
-		return "chatVO [num=" + num + ", sessionid=" + sessionid + ", name=" + name + ", regdate=" + regdate
-				+ ", content=" + content + ", state=" + state + "]";
-	}
-	
-	
+	String real_chat_session;
+	String real_chat_name;
+	Date real_chat_date;
+	String real_chat_content;
+	String real_chat_state;
 	public int getNum() {
 		return num;
 	}
-
-
 	public void setNum(int num) {
 		this.num = num;
 	}
-
-
-	public String getSessionid() {
-		return sessionid;
+	public String getReal_chat_session() {
+		return real_chat_session;
 	}
-	public void setSessionid(String sessionid) {
-		this.sessionid = sessionid;
+	public void setReal_chat_session(String real_chat_session) {
+		this.real_chat_session = real_chat_session;
 	}
-	public String getName() {
-		return name;
+	public String getReal_chat_name() {
+		return real_chat_name;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setReal_chat_name(String real_chat_name) {
+		this.real_chat_name = real_chat_name;
 	}
-	public Date getRegdate() {
-		return regdate;
+	public Date getReal_chat_date() {
+		return real_chat_date;
 	}
-	public void setRegdate(Date regdate) {
-		this.regdate = regdate;
+	public void setReal_chat_date(Date real_chat_date) {
+		this.real_chat_date = real_chat_date;
 	}
-	public String getContent() {
-		return content;
+	public String getReal_chat_content() {
+		return real_chat_content;
 	}
-	public void setContent(String content) {
-		this.content = content;
+	public void setReal_chat_content(String real_chat_content) {
+		this.real_chat_content = real_chat_content;
 	}
-	public String getState() {
-		return state;
+	public String getReal_chat_state() {
+		return real_chat_state;
 	}
-	public void setState(String state) {
-		this.state = state;
+	public void setReal_chat_state(String real_chat_state) {
+		this.real_chat_state = real_chat_state;
 	}
+	@Override
+	public String toString() {
+		return "chatVO [num=" + num + ", real_chat_session=" + real_chat_session + ", real_chat_name=" + real_chat_name
+				+ ", real_chat_date=" + real_chat_date + ", real_chat_content=" + real_chat_content
+				+ ", real_chat_state=" + real_chat_state + "]";
+	}
+	
 }

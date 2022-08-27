@@ -37,10 +37,10 @@ public class EchoHandler extends TextWebSocketHandler {
         System.out.println("{}로 부터 {} 받음"+ session.getId()+message.getPayload());
         //받은메세지 데이터베이스에 등록(db)
         chatVO vo=new chatVO();
-        vo.setSessionid(session.getId());
+        vo.setReal_chat_session(session.getId());
         String[] arr=message.getPayload().split(":");
-        vo.setName(arr[0]);
-        vo.setContent(arr[1]);
+        vo.setReal_chat_name(arr[0]);
+        vo.setReal_chat_content(arr[1]);
         ser.insertchat(vo);
         //모든 유저에게 메세지 출력
         for(WebSocketSession sess : sessionList){

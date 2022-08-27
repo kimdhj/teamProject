@@ -61,7 +61,7 @@ function init(){
 			for(let co=0;co<data.length;co++){
 			var str = "<div class='col-6'>";
 			str += "<div class='alert alert-secondary'>";
-			str += "<b>" + data[co].name + " : " + data[co].content + "</b>";
+			str += "<b>" + data[co].real_chat_name + " : " + data[co].real_chat_content + "</b>";
 			str += "</div></div>";
 
 			$("#msgArea").append(str);

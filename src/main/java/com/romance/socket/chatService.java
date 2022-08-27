@@ -53,8 +53,8 @@ public class chatService implements chatServiceInter {
 			for (chatVO ch : chatlist) {
 				tra = dao.selectcontent(ch);
 
-				ch.setContent(tra.getContent());
-				ch.setRegdate(tra.getRegdate());
+				ch.setReal_chat_content(tra.getReal_chat_content());
+				ch.setReal_chat_date(tra.getReal_chat_date());
 
 			}
 		}
