@@ -48,7 +48,7 @@ public class chatService implements chatServiceInter {
 		// TODO Auto-generated method stub
 		chatVO tra = null;
 		List<chatVO> chatlist = dao.selectmain(vo);
-		System.out.println(chatlist.size());
+		System.out.println(chatlist+":chlist");
 		if (chatlist.size() >= 1) {
 			for (chatVO ch : chatlist) {
 				tra = dao.selectcontent(ch);
