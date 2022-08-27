@@ -12,7 +12,7 @@
 	</resultMap>
 	<select parameterType="map" resultType="chat" id="selectmy">
 		<![CDATA[select * from
-		real_chat where name=#{myname} or name=#{adminname} order by regdate desc ]]>
+		real_chat where name=#{myname} or name=#{adminname} order by regdate asc ]]>
 	</select>
 	<update id="updatestate" parameterType="chat">
 		update real_chat set

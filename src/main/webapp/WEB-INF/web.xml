@@ -2,6 +2,18 @@
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://Java.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	<!-- css js jpg 서블렛 제외 -->
+
+	 
+	<servlet-mapping>      
+		<servlet-name>default</servlet-name>	       
+		<url-pattern>/css/*</url-pattern>
+		<url-pattern>/img/*</url-pattern>	   
+		<url-pattern>/js/*</url-pattern>	   				   
+	</servlet-mapping>
+	   
+
+
 	<!-- spring security -->
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>
@@ -51,6 +63,7 @@
 			<param-name>contextConfigLocation</param-name>
 			<param-value>/WEB-INF/config/user-context.xml</param-value>
 		</init-param>
+		<async-supported>true</async-supported>
 		<load-on-startup>0</load-on-startup>
 	</servlet>
 
@@ -68,6 +81,7 @@
 			<param-name>contextConfigLocation</param-name>
 			<param-value>/WEB-INF/config/admin-context.xml</param-value>
 		</init-param>
+		<async-supported>true</async-supported>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 
@@ -75,6 +89,7 @@
 		<servlet-name>admin</servlet-name>
 		<url-pattern>*.mdo</url-pattern>
 	</servlet-mapping>
+
 	<servlet>
 		<servlet-name>socket</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet
@@ -87,6 +102,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>socket</servlet-name>
+
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 </web-app>
