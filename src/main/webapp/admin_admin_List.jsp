@@ -51,7 +51,6 @@
 						<th scope="col">이름</th>
 						<th scope="col">아이디</th>
 						<th scope="col">구분</th>
-						<th scope="col">생년월일</th>
 						<th scope="col">연락처</th>
 						<th scope="col">Email</th>
 						<th scope="col">삭제</th>
@@ -63,7 +62,6 @@
 						<td>홍길동</td>
 						<td>aa01</td>
 						<td>마스터</td>
-						<td>2023-01-23</td>
 						<td>010-2313-1323</td>
 						<td>tommy@hanmail.net</td>
 						<td><button type="button"
@@ -74,7 +72,6 @@
 						<td>강감찬</td>
 						<td>aa02</td>
 						<td>관리자</td>
-						<td>1023-01-23</td>
 						<td>010-9313-1323</td>
 						<td>tommy@hanmail.net</td>
 						<td><button type="button"
@@ -109,82 +106,87 @@
 
 		<div class="d-flex flex-row">
 			<div class="col-md-6">
-				<div class="col-md-8">
+				<div class="col-md-12">
 
 					<form action="">
 						<table class="table text-center">
 							<thead class="table-dark">
 								<tr>
-									<th colspan=2>관리자계정 생성</th>
+									<th colspan=3>관리자계정 생성</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
 									<th>이름</th>
-									<td><input type="text" id="" style="float: left;" /></td>
+									<td colspan=2><input class="form-control" type="text"
+										id="" style="float: left;" placeholder="이름을 입력하세요" /></td>
 								</tr>
 								<tr>
 									<th>아이디</th>
-									<td><input type="text" id="" style="float: left;" />
+									<td><input class="form-control" type="text" id=""
+										style="float: left;" placeholder="아이디를 입력하세요" /></td>
+									<td>
 										<button type="button" class="btn btn-light btn-outline-dark"
-											style="float: right;" onclick="idOverlapCheck();">중복확인</button></td>
+											style="float: right;" onclick="">중복확인</button>
+									</td>
 								</tr>
 								<tr>
 									<th>비밀번호</th>
-									<td><input type="password" id="" style="float: left;" /></td>
+									<td colspan=2><input class="form-control" type="password"
+										onkeyup="passwordCheckFunction();" id="adminPassword1"
+										style="float: left;" placeholder="비밀번호를 입력하세요" /></td>
 								</tr>
 								<tr>
-									<th>생년월일</th>
-									<td><input type="text" id="birthDay" name="birthDay"
-										style="float: left;" /></td>
+									<th>비밀번호확인</th>
+									<td colspan=2><input class="form-control" type="password"
+										onkeyup="passwordCheckFunction();" id="adminPassword2"
+										style="float: left;" placeholder="비밀번호 확인" /></td>
 								</tr>
 								<tr>
 									<th>연락처</th>
-									<td><input type="text" id="" onkeypress="checkNum();"
-										maxlength="11" style="float: left;" /></td>
+									<td colspan=2><input class="form-control" type="text"
+										id="" maxlength="11" style="float: left;" placeholder="전화번호를 입력하세요" /></td>
 								</tr>
 								<tr>
 									<th>이메일</th>
-									<td><input type="email" id="" style="float: left;" /></td>
+									<td colspan=2><input class="form-control" type="email"
+										id="" style="float: left;" placeholder="이메일을 입력하세요" /></td>
+								</tr>
+								<tr>
+									<td colspan=2><h6 style="color: red;"
+											id="passwordCheckMessage"></h6></td>
+									<td><button type="submit"
+											class="btn btn-light btn-outline-dark" style="float: right;">등록</button></td>
 								</tr>
 							</tbody>
 						</table>
 					</form>
 				</div>
-				<div class="col-md-8">
-					<button type="button" class="btn btn-light btn-outline-dark"
-						style="float: right;">등록</button>
-				</div>
 			</div>
 			<div class="col-md-6"></div>
 		</div>
-
-
 	</div>
-
-
-
-
-
-
-
-
 
 	<jsp:include page="/admin_commonjsp/admin_common_footer.jsp"></jsp:include>
 	<!-- 여기서부터 JS 추가 -->
+	<script src="/js/admin_admin_List.js"></script>
 	<script>
-		function checkNum() { //key code reference table 48(0) ~ 57(9)
-			if(event.keyCode < 48 || event.keyCode > 57) {
-				event.returnValue = false;
-			}
+	function checkNum() { //key code reference table 48(0) ~ 57(9)
+		if (event.keyCode < 48 || event.keyCode > 57) {
+			event.returnValue = false;
 		}
-		
-		function idOverlapCheck() {
+	}
+	function passwordCheckFunction() {
+		let adminPassword1 = $('#adminPassword1').val();
+		let adminPassword2 = $('#adminPassword2').val();
 			
+		if (adminPassword1 != adminPassword2) {
+			$('#passwordCheckMessage').html('비밀번호가 일치하지 않습니다.');
+		} else {
+			$('#passwordCheckMessage').html('');
 		}
+	}
 	</script>
-
-	
 
 </body>
 </html>
