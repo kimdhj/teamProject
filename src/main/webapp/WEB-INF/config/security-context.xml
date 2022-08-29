@@ -6,14 +6,14 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-5.7.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
-
+<security:http pattern="/*.mdo" security="none" />
 	<security:http>
 		<security:intercept-url pattern="/all.do"
 			access="permitAll" />
 		<security:intercept-url pattern="/member.do"
 			access="hasRole('ROLE_MEMBER')" />
 		<security:intercept-url pattern="/admin.do"
-			access="hasRole('ROLE_ADMIN')" />
+			access="hasRole('ROLE_MEMBER')" />
 		<security:form-login username-parameter="username"
 			password-parameter="userpassword" login-page="/Customlogin.do"
 			authentication-success-handler-ref="LoginSuccessHandler" />
@@ -31,8 +31,8 @@
 		<security:authentication-provider>
 			<security:jdbc-user-service
 				data-source-ref="dataSource"
-				authorities-by-username-query="select username,authority from userTest where username=?"
-				users-by-username-query="select username,password,enabled  from userTest where username=?" />
+				authorities-by-username-query="select user_id,user_role from user where user_id=?"
+				users-by-username-query="select user_id,user_password,user_enabled  from user where user_id=?" />
 			<security:password-encoder
 				ref="bcryptPasswordEncoder" />
 			<!-- <security:password-encoder ref="NocryPassword" /> -->
