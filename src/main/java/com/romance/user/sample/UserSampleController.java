@@ -82,4 +82,45 @@ public class UserSampleController {
 		model.addAttribute("userid", user);
 		return "/socketTest/chatList";
 	}
+//	암호화 회원가입
+//	@Autowired
+//	private PasswordEncoder pwencoder;
+//	@GetMapping("/make.do")
+//	public String make() {
+//		System.out.println("hi");
+//		String sql = "insert into userTest values(?,?,'1',?)";
+//		Connection con = null;
+//		PreparedStatement pstmt = null;
+//		try {
+//			con = ds.getConnection();
+//			pstmt = con.prepareStatement(sql);
+//			pstmt.setString(1, "admin");
+//			pstmt.setString(2, pwencoder.encode("admin"));
+//			pstmt.setString(3, "ROLE_ADMIN");
+//			pstmt.executeUpdate();
+//			pstmt.setString(1, "member");
+//			pstmt.setString(2, pwencoder.encode("member"));
+//			pstmt.setString(3, "ROLE_MEMBER");
+//			pstmt.executeUpdate();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			if (pstmt != null)
+//				try {
+//					pstmt.close();
+//				} catch (SQLException e) { // TODO
+//					e.printStackTrace();
+//				}
+//			if (con != null)
+//				try {
+//					con.close();
+//				} catch (SQLException e) { // TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//		}
+//
+//		return "redirect:admin.do";
+//	}
+
+
 }

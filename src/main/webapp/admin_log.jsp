@@ -10,7 +10,7 @@
 <body>
 	<jsp:include page="/admin_commonjsp/admin_common_header.jsp"></jsp:include>
 	<!-- 여기서부터 화면 작성 시작 -->
-	    <div id="mainWrapper" class="row m-3">
+ <div id="mainWrapper" class="row m-3">
       <div class="col">
         <div class="row d-flex align-items-center m-5 p-2 rounded bg-back" id="filter_box">
           <div class="col-10" id="content_search">
@@ -83,7 +83,7 @@
                 <th>아이디</th>
                 <th>활동</th>
                 <th>시간</th>
-                <th>카테고리</th>
+
               </tr>
             </thead>
             <tbody>
@@ -103,10 +103,6 @@
                     11:15
                   </p>
                 </td>
-                <td>
-                  <p class="rowColumn" contenteditable="false" data-default="관리자">관리자</p>
-                </td>
-
               </tr>
               <tr>
                 <td>
@@ -123,10 +119,6 @@
                     11:15
                   </p>
                 </td>
-                <td>
-                  <p class="rowColumn" contenteditable="false" data-default="관리자">관리자</p>
-                </td>
-
               </tr>
               <tr>
                 <td>
@@ -143,10 +135,6 @@
                     11:15
                   </p>
                 </td>
-                <td>
-                  <p class="rowColumn" contenteditable="false" data-default="관리자">관리자</p>
-                </td>
-
               </tr>
               <tr>
                 <td>
@@ -163,10 +151,6 @@
                     11:15
                   </p>
                 </td>
-                <td>
-                  <p class="rowColumn" contenteditable="false" data-default="관리자">관리자</p>
-                </td>
-
               </tr>
               <tr>
                 <td>
@@ -183,98 +167,13 @@
                     11:15
                   </p>
                 </td>
-                <td>
-                  <p class="rowColumn" contenteditable="false" data-default="관리자">관리자</p>
-                </td>
-
-              </tr>
-              <tr>
-                <td>
-                  <p class="rowColumn" contenteditable="false" data-default="1">1</p>
-                </td>
-                <td>
-                  <p class="rowColumn" contenteditable="false" data-default="qjawns">qjawns</p>
-                </td>
-                <td>
-                  <p class="rowColumn" contenteditable="false" data-default="회원가입">회원가입</p>
-                </td>
-                <td>
-                  <p class="rowColumn" contenteditable="false" data-default="2022-11-15 11:15">2022-11-15
-                    11:15
-                  </p>
-                </td>
-                <td>
-                  <p class="rowColumn" contenteditable="false" data-default="관리자">관리자</p>
-                </td>
-
-              </tr>
-              <tr>
-                <td>
-                  <p class="rowColumn" contenteditable="false" data-default="1">1</p>
-                </td>
-                <td>
-                  <p class="rowColumn" contenteditable="false" data-default="qjawns">qjawns</p>
-                </td>
-                <td>
-                  <p class="rowColumn" contenteditable="false" data-default="회원가입">회원가입</p>
-                </td>
-                <td>
-                  <p class="rowColumn" contenteditable="false" data-default="2022-11-15 11:15">2022-11-15
-                    11:15
-                  </p>
-                </td>
-                <td>
-                  <p class="rowColumn" contenteditable="false" data-default="관리자">관리자</p>
-                </td>
-
-              </tr>
-              <tr>
-                <td>
-                  <p class="rowColumn" contenteditable="false" data-default="1">1</p>
-                </td>
-                <td>
-                  <p class="rowColumn" contenteditable="false" data-default="qjawns">qjawns</p>
-                </td>
-                <td>
-                  <p class="rowColumn" contenteditable="false" data-default="회원가입">회원가입</p>
-                </td>
-                <td>
-                  <p class="rowColumn" contenteditable="false" data-default="2022-11-15 11:15">2022-11-15
-                    11:15
-                  </p>
-                </td>
-                <td>
-                  <p class="rowColumn" contenteditable="false" data-default="관리자">관리자</p>
-                </td>
-
-              </tr>
-
-              <tr>
-                <td>
-                  <p class="rowColumn" contenteditable="false" data-default="1">1</p>
-                </td>
-                <td>
-                  <p class="rowColumn" contenteditable="false" data-default="qjawns">qjawns</p>
-                </td>
-                <td>
-                  <p class="rowColumn" contenteditable="false" data-default="회원가입">회원가입</p>
-                </td>
-                <td>
-                  <p class="rowColumn" contenteditable="false" data-default="2022-11-15 11:15">2022-11-15
-                    11:15
-                  </p>
-                </td>
-                <td>
-                  <p class="rowColumn" contenteditable="false" data-default="관리자">관리자</p>
-                </td>
-
               </tr>
             </tbody>
           </table>
         </div>
         <div id="page" class="row justify-content-center d-flex">
           <div class="col"></div>
-          <nav class="col d-flex" aria-label="...">
+          <nav class="col d-flex justify-content-center" aria-label="...">
             <ul class="pagination">
               <li class="page-item disabled">
                 <span class="page-link">
@@ -301,6 +200,7 @@
 
 	<jsp:include page="/admin_commonjsp/admin_common_footer.jsp"></jsp:include>
 	<!-- 여기서부터 JS 추가 -->
-
+	 
+	
 </body>
 </html>
