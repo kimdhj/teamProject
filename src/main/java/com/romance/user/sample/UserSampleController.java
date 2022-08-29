@@ -82,4 +82,5 @@ public class UserSampleController {
 		model.addAttribute("userid", user);
 		return "/socketTest/chatList";
 	}
+
 }
