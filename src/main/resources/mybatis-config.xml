@@ -24,9 +24,7 @@
 			type="com.romance.admin.sample.navcategory.NavCategoryVO"
 			alias="navcategoryVO" />
 
-		<typeAlias type="com.romance.admin.login.UserVO"
-			alias="user" />
-
+		
 	</typeAliases>
 	<mappers>
 		<!-- <mapper resource="mappings/board-mapping.xml" /> -->
@@ -35,7 +33,6 @@
 		<mapper resource="mappings/category-mapping.xml" />
 		 <mapper resource="mappings/navcategory-mapping.xml" /> 
 
-		<mapper resource="mappings/uAdmin-mapping.xml" />
-
+		
 	</mappers>
 </configuration>
