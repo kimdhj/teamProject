@@ -15,40 +15,46 @@
 			<div>
 				<div class="table" id="table_table">
 					<div class="row" id="table_height">
-						<div class="col-3">번호</div>
+						<div class="col-2">번호</div>
 						<div class="col-3">제목</div>
-						<div class="col-3">작성자</div>
+						<div class="col-2">작성자</div>
 						<div class="col-3">등록일자</div>
+						<div class="col-2">조회수</div>
 					</div>
 					<div class="row" id="table_content">
-						<div class="col-3">1</div>
+						<div class="col-2">184617</div>
 						<div class="col-3">얼</div>
-						<div class="col-3">작성자</div>
+						<div class="col-2">관리자</div>
 						<div class="col-3">2022</div>
+						<div class="col-2">1800</div>
 					</div>
 					<div class="row" id="table_content">
-						<div class="col-3">2</div>
+						<div class="col-2">184617</div>
 						<div class="col-3">얼</div>
-						<div class="col-3">작성자</div>
+						<div class="col-2">관리자</div>
 						<div class="col-3">2022</div>
+						<div class="col-2">1800</div>
 					</div>
 					<div class="row" id="table_content">
-						<div class="col-3">3</div>
+						<div class="col-2">184617</div>
 						<div class="col-3">얼</div>
-						<div class="col-3">작성자</div>
+						<div class="col-2">관리자</div>
 						<div class="col-3">2022</div>
+						<div class="col-2">1800</div>
 					</div>
 					<div class="row" id="table_content">
-						<div class="col-3">4</div>
+						<div class="col-2">184617</div>
 						<div class="col-3">얼</div>
-						<div class="col-3">작성자</div>
+						<div class="col-2">관리자</div>
 						<div class="col-3">2022</div>
+						<div class="col-2">1800</div>
 					</div>
 					<div class="row" id="table_content">
-						<div class="col-3">5</div>
+						<div class="col-2">184617</div>
 						<div class="col-3">얼</div>
-						<div class="col-3">작성자</div>
+						<div class="col-2">관리자</div>
 						<div class="col-3">2022</div>
+						<div class="col-2">1800</div>
 					</div>
 				</div>
 			</div>

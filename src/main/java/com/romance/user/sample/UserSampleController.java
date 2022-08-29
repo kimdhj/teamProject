@@ -58,30 +58,7 @@ public class UserSampleController {
 	public String logout() {
 		return "/securityTest/Customlogout";
 	}
-	@GetMapping("/chat.do")
-	public String chat(String user,Model model) {
-		
-		
-		
-		model.addAttribute("userid", user);
-		return "/socketTest/chat";
-	}
-	@GetMapping("/chatAdmin.do")
-	public String chatAdmin(String user,Model model) {
-		
-		
-		
-		model.addAttribute("userid", user);
-		return "/socketTest/chatAdmin";
-	}
-	@GetMapping("/chatList.do")
-	public String chatList(String user,Model model) {
-		
-		
-		
-		model.addAttribute("userid", user);
-		return "/socketTest/chatList";
-	}
+	
 //	암호화 회원가입
 //	@Autowired
 //	private PasswordEncoder pwencoder;

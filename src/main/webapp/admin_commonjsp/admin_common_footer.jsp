@@ -23,5 +23,7 @@
 	<script src="/plugins/chart.min.js"></script>
 	<!-- Icons library -->
 	<script src="/plugins/feather.min.js"></script>
+	<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
 	<!-- Custom scripts -->
 	<script src="/js/script_admin.js"></script>

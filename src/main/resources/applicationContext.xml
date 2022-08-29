@@ -15,8 +15,7 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 	
-	
-	<context:component-scan base-package="com.romance"></context:component-scan>
+	<context:component-scan base-package="com.romance.*"></context:component-scan>
 	
 	<!-- Mybatis 설정 -->
 	<bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -40,6 +39,5 @@
 	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
-
 
 </beans>
