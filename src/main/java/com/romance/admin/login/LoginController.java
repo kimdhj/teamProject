@@ -1,9 +1,8 @@
 package com.romance.admin.login;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,22 +23,15 @@ public class LoginController {
 	}
 	
 	@PostMapping("admin_login.mdo")
-	public String login(UserVO vo, HttpSession session) {
+	public String login(UserVO vo, Model model) {
 		
-		System.out.println("로그인처리 메서드 실행");
-		if(vo.getUser_id() == null || vo.getUser_id().equals("")) {
-			throw new IllegalAccessError("아이디를 반드시 입력하세요.");
+		UserVO vo1 = userService.getUser(vo);
+		model.addAttribute("user", vo1);
+		
+		if(vo1.getUser_id() != null) {
+			return "admin_madin"; //성공
 		}
-		
-		UserVO userVO = userService.getUser(vo);
-//		model.addAttribute("user", vo1);
-		
-		if(userVO.getUser_id() != null) {
-			return "admin_main"; //성공
-		} else {
-			return "admin_login";
-		}
-		
+		return null;
 	}
 
 }
