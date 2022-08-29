@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%--     <%@ page import="com.romance.event.board.BoardVO"%>
+<%@ page import="java.util.List"%> --%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,69 +39,28 @@
             </div>
 
             <div class="row g-4">
+            	<c:forEach var="top_event_list" items="${eventList }" >
               <div
                 class="col-lg-4 col-md-6 wow fadeInUp"
                 id="imgsize"
                 data-wow-delay="0.1s"
               >
                 <a href="">
-                  <img class="img-fluid" src="/img/check.jpg" alt="" />
+                  <img class="img-fluid" src="${event.thumbnail }" alt="" />
                 </a>
                 <div class="bg-light p-4">
                   <div class="text-muted border-top pt-4">
                     <small class="me-3"
                       ><i class="fa fa-map-marker-alt text-primary me-2"></i
-                      >10월 출석 체크!</small
+                      >${event_title }</small
                     ><br />
                     <small class="me-3"
-                      ><i class="fa fa-calendar text-primary me-2"></i>30 Sep,
-                      2022 ~ 30 Oct, 2022</small
+                      ><i class="fa fa-calendar text-primary me-2"></i><fmt:formatDate value="${event.start_date }" pattern="yyyy-MM-dd"/>~<fmt:formatDate value="${event.end_date }" pattern="yyyy-MM-dd"/></small
                     >
                   </div>
                 </div>
               </div>
-              <div
-                class="col-lg-4 col-md-6 wow fadeInUp"
-                id="imgsize"
-                data-wow-delay="0.3s"
-              >
-                <a href="">
-                  <img class="img-fluid" src="/img/getReady.png" alt="" />
-                </a>
-                <div class="bg-light p-4">
-                  <div class="text-muted border-top pt-4">
-                    <small class="me-3"
-                      ><i class="fa fa-map-marker-alt text-primary me-2"></i
-                      >두근두근 뭐가 생길까?</small
-                    ><br />
-                    <small class="me-3"
-                      ><i class="fa fa-calendar text-primary me-2"></i>30 Sep,
-                      2022 ~
-                    </small>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="col-lg-4 col-md-6 wow fadeInUp"
-                id="imgsize"
-                data-wow-delay="0.5s"
-              >
-                <a href="">
-                  <img class="img-fluid" src="/img/getReady.png" alt="" />
-                </a>
-                <div class="bg-light p-4">
-                  <div class="text-muted border-top pt-4">
-                    <small class="me-3"
-                      ><i class="fa fa-map-marker-alt text-primary me-2"></i
-                      >세근세근 뭐가 생길까?</small
-                    ><br />
-                    <small class="me-3"
-                      ><i class="fa fa-calendar text-primary me-2"></i>30 Sep,
-                      2022 ~
-                    </small>
-                  </div>
-                </div>
-              </div>
+              </c:forEach>
             </div>
           </div>
         </div>
@@ -112,10 +76,11 @@
         <!-- 하위 이벤트 -->
         <div class="event_con">
           <ul>
+            <c:forEach var="bottom_event_list" items="${eventList }" >
             <li>
               <div style="float: left">
                 <a href="#">
-                  <img id="southImg" src="/img/subscribe.JPG" />
+                  <img id="southImg" src="${event.thumbnail }" />
                 </a>
               </div>
               <div style="float: left; width: 440px">
@@ -123,60 +88,19 @@
                   <div></div>
                   &nbsp;
                   <strong
-                    ><a href="#">낭만서점 회원들만의 구독 서비스!</a></strong
+                    ><a href="#">${event.title }</a></strong
                   ><br />
                 </div>
                 <div style="height: 40px; margin: 3px 0 0 10px" id="southFont">
-                  모든 회원<br />365일
+                  ${event.target }<br /><fmt:formatDate value="${event.start_date }" pattern="yyyy-MM-dd"/>~<fmt:formatDate value="${event.end_date }" pattern="yyyy-MM-dd"/>
                 </div>
                 <div style="margin: 3px 0 0 10px" id="southFont">
-                  매달 관심인기서적 랜덤 배송!<br />장기 구독시 할인 혜택까지!!
+                  ${event.content }
                 </div>
               </div>
               <br />
             </li>
-            <li>
-              <div style="float: left">
-                <a href="#">
-                  <img id="southImg" src="/img/rullet.jpg" />
-                </a>
-              </div>
-              <div style="float: left; width: 440px">
-                <div style="line-height: 19px">
-                  <div></div>
-                  &nbsp; <strong><a href="#">돌려돌려 돌림판</a></strong
-                  ><br />
-                </div>
-                <div style="height: 40px; margin: 3px 0 0 10px" id="southFont">
-                  모든 회원<br />365일
-                </div>
-                <div style="margin: 3px 0 0 10px" id="southFont">
-                  매일 돌림판 돌리고 포인트 받자!<br />낮은 확률로 대박 당첨의
-                  기회를!!
-                </div>
-              </div>
-            </li>
-            <li>
-              <div style="float: left">
-                <a href="#">
-                  <img id="southImg" src="/img/helper.JPG" />
-                </a>
-              </div>
-              <div style="float: left; width: 440px">
-                <div style="line-height: 19px">
-                  <div></div>
-                  &nbsp; <strong><a href="#">친구야 여기 어때?</a></strong
-                  ><br />
-                </div>
-                <div style="height: 40px; margin: 3px 0 0 10px" id="southFont">
-                  모든 회원<br />365일
-                </div>
-                <div style="margin: 3px 0 0 10px" id="southFont">
-                  신규 회원 추천인 기입시 포인트 지급!<br />매달 최고의
-                  추천인에게 추가 포인트를!
-                </div>
-              </div>
-            </li>
+            </c:forEach>
           </ul>
         </div>
 
