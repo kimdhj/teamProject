@@ -28,6 +28,7 @@
 
 
 	</security:http>
+	
 	<security:authentication-manager>
 		<security:authentication-provider>
 			<security:jdbc-user-service

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
 <jsp:include page="/admin_commonjsp/admin_common_head.jsp"></jsp:include>
@@ -15,7 +16,7 @@
 	<!-- 여기서부터 화면 작성 시작 -->
 	<div id="main_wrapper" class="m-2  w-100 row">
 		<div class="mb-0 p-0">
-			<button id="all" class="select p-2">전체 공지사항</button>
+			<button onclick="location.reload();" id="all" class="select p-2">전체 공지사항</button>
 		</div>
 
 		<div id="all_box" class="bg-white w-100">
@@ -79,110 +80,32 @@
 								<th>제목</th>
 								<th>작성자</th>
 								<th>등록일자</th>
-								<th><button class="btn btn-warning rounded-pill seldel">선택
-										삭제</button></th>
+								<th><button class="btn btn-warning rounded-pill seldel">선택 삭제</button></th>
 							</tr>
 						</thead>
 						<tbody>
+							<c:forEach items="${noticeList }" var="notice">
 							<tr>
-								<td><input
-									class="form-check-input border-1 border-dark delche"
-									type="checkbox" value="" id="flexCheckChecked" checked>
+								<td><input class="form-check-input border-1 border-dark delche" type="checkbox" value="" id="flexCheckChecked" checked></td>
+								<td>
+									<p>${notice.notice_seq }</p>
 								</td>
 								<td>
-									<p contenteditable="false" data-default="1">1</p>
+									<p class="rowColumn">${notice.notice_title }</p>
 								</td>
 								<td>
-									<p class="rowColumn" contenteditable="true"
-										data-default="로그인 로딩 지연 안내">로그인 로딩 지연 안내</p>
+									<p class="selectColumn">${notice.notice_writer }</p>
 								</td>
 								<td>
-									<p class="selectColumn" contenteditable="false"
-										data-default="admin">admin</p>
+									<p class="rowColumn">
+										<fmt:formatDate value="${notice.notice_date }" pattern="yyyy-MM-dd"/>
+									</p>
 								</td>
 								<td>
-									<p class="rowColumn" contenteditable="false"
-										data-default="2022-11-15 11:15">2022-11-15 11:15</p>
-								</td>
-								<td>
-									<button class="btn btn-danger rounded-pill del">삭제</button>
+									<button class="btn btn-danger rounded-pill del" onclick="location.href='deleteNotice.do?notice_seq=${notice.notice_seq}'">삭제</button>
 								</td>
 							</tr>
-
-							<tr>
-								<td><input
-									class="form-check-input border-1 border-dark delche"
-									type="checkbox" value="" id="flexCheckChecked" checked>
-								</td>
-								<td>
-									<p contenteditable="false" data-default="1">1</p>
-								</td>
-								<td>
-									<p class="rowColumn" contenteditable="true"
-										data-default="로그인 로딩 지연 안내">로그인 로딩 지연 안내</p>
-								</td>
-								<td>
-									<p class="selectColumn" contenteditable="false"
-										data-default="admin">admin</p>
-								</td>
-								<td>
-									<p class="rowColumn" contenteditable="false"
-										data-default="2022-11-15 11:15">2022-11-15 11:15</p>
-								</td>
-								<td>
-									<button class="btn btn-danger rounded-pill del">삭제</button>
-								</td>
-							</tr>
-
-							<tr>
-								<td><input
-									class="form-check-input border-1 border-dark delche"
-									type="checkbox" value="" id="flexCheckChecked" checked>
-								</td>
-								<td>
-									<p contenteditable="false" data-default="1">1</p>
-								</td>
-								<td>
-									<p class="rowColumn" contenteditable="true"
-										data-default="로그인 로딩 지연 안내">로그인 로딩 지연 안내</p>
-								</td>
-								<td>
-									<p class="selectColumn" contenteditable="false"
-										data-default="admin">admin</p>
-								</td>
-								<td>
-									<p class="rowColumn" contenteditable="false"
-										data-default="2022-11-15 11:15">2022-11-15 11:15</p>
-								</td>
-								<td>
-									<button class="btn btn-danger rounded-pill del">삭제</button>
-								</td>
-							</tr>
-
-							<tr>
-								<td><input
-									class="form-check-input border-1 border-dark delche"
-									type="checkbox" value="" id="flexCheckChecked" checked>
-								</td>
-								<td>
-									<p contenteditable="false" data-default="1">1</p>
-								</td>
-								<td>
-									<p class="rowColumn" contenteditable="true"
-										data-default="로그인 로딩 지연 안내">로그인 로딩 지연 안내</p>
-								</td>
-								<td>
-									<p class="selectColumn" contenteditable="false"
-										data-default="admin">admin</p>
-								</td>
-								<td>
-									<p class="rowColumn" contenteditable="false"
-										data-default="2022-11-15 11:15">2022-11-15 11:15</p>
-								</td>
-								<td>
-									<button class="btn btn-danger rounded-pill del">삭제</button>
-								</td>
-							</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 				</div>
