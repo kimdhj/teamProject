@@ -4,12 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class ajaxController {
+public class chatController {
 	@Autowired
 	chatServiceInter ser;
 	
@@ -65,6 +66,29 @@ public class ajaxController {
 		System.out.println("hi");
 		return "redirect:/socketTest/chat.jsp";
 	}
-
+	@GetMapping("/chat.do")
+	public String chat(String user,Model model) {
+		
+		System.out.println("chat");
+		
+		model.addAttribute("userid", user);
+		return "admin_realchat_user";
+	}
+	@GetMapping("/chatAdmin.do")
+	public String chatAdmin(String user,Model model) {
+		
+		
+		
+		model.addAttribute("userid", user);
+		return "admin_realchat_admin";
+	}
+	@GetMapping("/chatList.do")
+	public String chatList(String user,Model model) {
+		
+		
+		
+		model.addAttribute("userid", user);
+		return "/socketTest/chatList";
+	}
 
 }
