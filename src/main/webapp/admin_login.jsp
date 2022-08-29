@@ -37,7 +37,7 @@
 									</div>
 									<input type="text" name="user_name" id="user_name"
 										class="form-control" placeholder="" required
-										aria-label="Username" aria-describedby="addon-wrapping">
+										aria-label="Username" aria-describedby="addon-wrapping" value="test" />
 								</div>
 								<div class="input-group flex-nowrap" style="padding: 8px">
 									<div class="input-group-prepend">
@@ -45,7 +45,7 @@
 									</div>
 									<input type="password" name="user_password" id="user_password"
 										class="form-control" placeholder="" required
-										aria-label="Username" aria-describedby="addon-wrapping">
+										aria-label="Username" aria-describedby="addon-wrapping" value="test" />
 								</div>
 								<button type="submit" style="margin: 8px"
 									class="btn btn-outline-info" name="button">로그인</button>
