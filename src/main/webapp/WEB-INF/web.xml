@@ -10,6 +10,11 @@
 		<url-pattern>/css/*</url-pattern>
 		<url-pattern>/img/*</url-pattern>	   
 		<url-pattern>/js/*</url-pattern>	   				   
+		<url-pattern>/fonts/*</url-pattern>	   				   
+		<url-pattern>/datepicker/*</url-pattern>	   				   
+		<url-pattern>/plugins/*</url-pattern>	   				   
+		<url-pattern>/scss/*</url-pattern>	   				   
+		<url-pattern>/lib/*</url-pattern>	   				   
 	</servlet-mapping>
 	   
 
