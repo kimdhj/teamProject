@@ -11,16 +11,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.romance.admin.sample.navcategory.NavCategoryVO;
+
+
 @Controller
 public class CategoryController {
 	@Autowired
 	CategoryService service;
 	@GetMapping("category.mdo")
 	public String category(CateSearchVO vos,Model model) {
-		
+		System.out.println(vos+"vos");
 		List<CategoryVO> categoryList=service.getCategoryList(vos);
 		int count=service.getCount(vos);
-		
+		List<NavCategoryVO> navvo=service.getNavCategoryList();
 		model.addAttribute("all_categoryList",categoryList);
 		model.addAttribute("all_count",count-(vos.getPage()-1)*5);
 		if(count%5==0) {
@@ -29,6 +32,8 @@ public class CategoryController {
 		model.addAttribute("all_sum",count);
 		model.addAttribute("all_page",vos.getPage());
 		model.addAttribute("all_vos",vos);
+		model.addAttribute("navlist",navvo);
+
 		return "admin_category";
 		
 	}
