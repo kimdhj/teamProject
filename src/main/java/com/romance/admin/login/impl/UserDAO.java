@@ -13,7 +13,8 @@ public class UserDAO {
 	private SqlSessionTemplate sqlSessionTemplate;
 	
 	public UserVO getUser(UserVO vo) {
-		return sqlSessionTemplate.selectOne("UserDAO.user", vo);
+		System.out.println("===> Mybatis로 getUser() 기능 처리");
+		return (UserVO) sqlSessionTemplate.selectOne("UserDAO.getUser", vo);
 	}
 	
 }

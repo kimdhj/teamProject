@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,12 +24,13 @@
 
 
 			<div class="container h-100">
-				<div class="row d-flex justify-content-center align-items-center h-100">
+				<div
+					class="row d-flex justify-content-center align-items-center h-100">
 					<div class="col-2"></div>
-					
+
 					<!-- <div class="col-2"></div> -->
 					<div class="col-4 text-center">
-						<form class="" action="" method="post">
+						<form class="" action="admin_login.mdo" method="post">
 							<div class="card" style="padding: 8px">
 								<h4>Reset Password</h4>
 								<div class="input-group flex-nowrap" style="padding: 8px">
@@ -37,7 +39,8 @@
 									</div>
 									<input type="text" name="user_name" id="user_name"
 										class="form-control" placeholder="" required
-										aria-label="Username" aria-describedby="addon-wrapping" value="test" />
+										aria-label="Username" aria-describedby="addon-wrapping"
+										value="${userVO.userId }" />
 								</div>
 								<div class="input-group flex-nowrap" style="padding: 8px">
 									<div class="input-group-prepend">
@@ -45,13 +48,15 @@
 									</div>
 									<input type="password" name="user_password" id="user_password"
 										class="form-control" placeholder="" required
-										aria-label="Username" aria-describedby="addon-wrapping" value="test" />
+										aria-label="Username" aria-describedby="addon-wrapping"
+										value="${userVO.userPassword }" />
 								</div>
 								<button type="submit" style="margin: 8px"
 									class="btn btn-outline-info" name="button">로그인</button>
 							</div>
 						</form>
 					</div>
+
 
 					<div class="col-2"></div>
 				</div>

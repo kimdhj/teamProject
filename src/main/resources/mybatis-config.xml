@@ -12,7 +12,7 @@
 	<typeAliases>
 		<!-- <typeAlias alias="myboard" type="tommy.spring.web.board.BoardVO" /> -->
 		<typeAlias type="com.romance.socket.chatVO" alias="chat" />
-		<typeAlias type="com.romance.admin.login.UserVO" alias="user" />
+		<typeAlias type="com.romance.admin.login.UserVO" alias="uAdmin" />
 	</typeAliases>
 	<mappers>
 		<!-- <mapper resource="mappings/board-mapping.xml" /> -->
