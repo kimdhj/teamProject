@@ -13,7 +13,7 @@ public class UserDAO {
 	private SqlSessionTemplate sqlSessionTemplate;
 	
 	public UserVO getUser(UserVO vo) {
-		return sqlSessionTemplate.selectOne("UserDAO.user", vo);
+		return sqlSessionTemplate.selectOne("UserDAO.getUser", vo);
 	}
 	
 }
