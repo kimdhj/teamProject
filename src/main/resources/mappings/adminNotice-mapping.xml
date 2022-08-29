@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="NoticeDAO">
+	<select id="getNoticeList" resultType="notice">
+		SELECT * FROM notice ORDER BY notice_seq desc
+	</select>
+	
+	<delete id="deletrNotice" parameterType="notice">
+		DELETE FROM notice WHERE notice_seq = #{notice_seq}
+	</delete>
+</mapper>
