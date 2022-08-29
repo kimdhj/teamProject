@@ -5,6 +5,8 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.romance.admin.sample.navcategory.NavCategoryVO;
 @Repository
 public class CategoryDAO {
 	@Autowired
@@ -33,5 +35,8 @@ public class CategoryDAO {
 	public int categoryMod(CategoryVO vo) {
 		// TODO Auto-generated method stub
 		return sqlsession.update("Category.categoryMod",vo);
+	}
+	public List<NavCategoryVO> getNavCategoryList(){
+		return sqlsession.selectList("navCategory.getList");
 	}
 }

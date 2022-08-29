@@ -10,7 +10,7 @@
 			<if test="name != null"><![CDATA[AND category_name like CONCAT('%',#{name},'%')]]></if>
 			<if test="num != 0">AND category_num=#{num}</if>
 		</trim>
-		<![CDATA[ order by category_num) B where rnum>(#{page}-1)*5 AND rnum<=#{page}*5 order by category_num ]]>
+		<![CDATA[order by category_num) B where rnum>(#{page}-1)*5 AND rnum<=#{page}*5 order by category_num ]]>
 	</select>
 	<select parameterType="cateSearchVO"  resultType="int"
 		id="getCount">

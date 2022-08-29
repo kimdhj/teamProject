@@ -143,88 +143,29 @@
 						<th>번호</th>
 						<th>이름</th>
 						<th>카테고리 코드</th>
-						<th><button class="btn btn-warning rounded-pill">수정
+						<th><button id="navmod" class="btn btn-warning rounded-pill">수정
 								완료</button></th>
 					</tr>
 				</thead>
 				<tbody>
-
+				<c:forEach var="nav" items="${navlist}">
 					<tr>
 						<td>
-							<p contenteditable="false" data-default="1">1</p>
+							<p contenteditable="false" class="order" data-default="${nav.nav_category_order}">${nav.nav_category_order}</p>
 						</td>
 						<td>
-							<p contenteditable="true" id="name" data-default="">무협</p>
+							<p contenteditable="true" class="name" data-default="${nav.nav_category_name}">${nav.nav_category_name}</p>
 						</td>
 						<td>
 							<p class="rowColumn num" contenteditable="false"
-								data-default="A$#$FFD">A$#$FFD</p>
+								data-default="${nav.category_num}">${nav.category_num}</p>
 						</td>
 						<td>
 							<button class="btn btn-danger rounded-pill reset">초기화</button>
 						</td>
 					</tr>
-
-					<tr>
-						<td>
-							<p contenteditable="false" data-default="2">2</p>
-						</td>
-						<td>
-							<p contenteditable="true" id="name" data-default="">무협</p>
-						</td>
-						<td>
-							<p class="rowColumn num" contenteditable="false"
-								data-default="A$#$FFD">A$#$FFD</p>
-						</td>
-						<td>
-							<button class="btn btn-danger rounded-pill reset">초기화</button>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<p contenteditable="false" data-default="3">3</p>
-						</td>
-						<td>
-							<p contenteditable="true" id="name" data-default="">무협</p>
-						</td>
-						<td>
-							<p class="rowColumn num" contenteditable="false"
-								data-default="A$#$FFD">A$#$FFD</p>
-						</td>
-						<td>
-							<button class="btn btn-danger rounded-pill reset">초기화</button>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<p contenteditable="false" data-default="4">4</p>
-						</td>
-						<td>
-							<p contenteditable="true" id="name" data-default="">무협</p>
-						</td>
-						<td>
-							<p class="rowColumn num" contenteditable="false"
-								data-default="A$#$FFD">A$#$FFD</p>
-						</td>
-						<td>
-							<button class="btn btn-danger rounded-pill reset">초기화</button>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<p contenteditable="false" data-default="5">5</p>
-						</td>
-						<td>
-							<p contenteditable="true" id="name" data-default="">무협</p>
-						</td>
-						<td>
-							<p class="rowColumn num" contenteditable="false"
-								data-default="A$#$FFD">A$#$FFD</p>
-						</td>
-						<td>
-							<button class="btn btn-danger rounded-pill reset">초기화</button>
-						</td>
-					</tr>
+				</c:forEach>
+				
 				</tbody>
 			</table>
 		</div>
