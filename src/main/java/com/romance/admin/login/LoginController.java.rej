@@ -1,0 +1,30 @@
+diff a/src/main/java/com/romance/admin/login/LoginController.java b/src/main/java/com/romance/admin/login/LoginController.java	(rejected hunks)
+@@ -24,15 +24,22 @@
+ 	}
+ 	
+ 	@PostMapping("admin_login.mdo")
+-	public String login(UserVO vo, Model model) {
++	public String login(UserVO vo, HttpSession session) {
++		
++		System.out.println("로그인처리 메서드 실행");
++		if(vo.getUser_id() == null || vo.getUser_id().equals("")) {
++			throw new IllegalAccessError("아이디를 반드시 입력하세요.");
++		}
+ 		
+-		UserVO vo1 = userService.getUser(vo);
+-		model.addAttribute("user", vo1);
++		UserVO userVO = userService.getUser(vo);
++//		model.addAttribute("user", vo1);
+ 		
+-		if(vo1.getUser_id() != null) {
+-			return "admin_madin"; //성공
++		if(userVO.getUser_id() != null) {
++			return "admin_main"; //성공
++		} else {
++			return "admin_login";
+ 		}
+-		return null;
++		
+ 	}
+ 
+ }
