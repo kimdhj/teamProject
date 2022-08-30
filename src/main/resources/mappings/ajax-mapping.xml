@@ -3,30 +3,31 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ChatDAO">
 	<resultMap type="chat" id="chatResult">
-		<result property="sessionid" column="sessionid" />
-		<result property="name" column="name" />
-		<result property="regdate" column="regdate" />
-		<result property="content" column="content" />
-		<result property="state" column="state" />
+		<result property="real_chat_session" column="real_chat_session" />
+		<result property="realchatname" column="real_chat_name" />
+
+		<result property="real_chat_content" column="real_chat_content" />
+		<result property="user_id" column="user_id" />
 		<result property="num" column="num" />
 	</resultMap>
-	<select parameterType="map" resultType="chat" id="selectmy">
+	<select parameterType="map" resultMap="chatResult" id="selectmy">
 		<![CDATA[select * from
 		real_chat where real_chat_name=#{myname} or real_chat_name=#{adminname} order by real_chat_date asc ]]>
 	</select>
 	<update id="updatestate" parameterType="chat">
-		update real_chat set
-		real_chat_state=true where real_chat_name=#{real_chat_name}
+		<![CDATA[update real_chat set
+		real_chat_state=true where real_chat_name=#{realchatname}]]>
 	</update>
-	<delete parameterType="chat" id="deletename">
-		delete from real_chat
-		<if test="real_chat_session!=null">
-			where real_chat_session=#{real_chat_session}
+	<delete parameterType="chat" id="delname">
+	<![CDATA[delete from real_chat ]]>
+		<if test="real_chat_session != null">
+		<![CDATA[where real_chat_session=#{real_chat_session}]]>
 		</if>
-		<if test="real_chat_name!=null">
-			where real_chat_name=#{real_chat_name}
+		<if test="realchatname != null">
+			<![CDATA[where real_chat_name=#{realchatname}]]>
 		</if>
 	</delete>
+	
 	<select resultMap="chatResult" id="selectmain">
 		select distinct
 		real_chat_name,real_chat_session,max(real_chat_date) as real_chat_date,count(case when real_chat_state=false then
@@ -34,7 +35,7 @@
 		end ) as num from real_chat group by real_chat_name order by num
 		desc,real_chat_date desc
 	</select>
-	<select parameterType="chat" resultType="chat"
+	<select parameterType="chat" resultMap="chatResult"
 		id="selectcontent">
 		<![CDATA[	 select
 		real_chat_content,real_chat_date,rnum from (select real_chat_content,real_chat_date, @rownum:=@rownum+1 as rnum
@@ -52,7 +53,7 @@
 	</select>
 	<insert parameterType="chat" id="insertchat">
 		insert into real_chat(real_chat_seq,real_chat_session,real_chat_name,real_chat_content,real_chat_date,real_chat_state)
-		values(null,#{real_chat_session},#{real_chat_name},#{real_chat_content},CURRENT_TIMESTAMP,false)
+		values(null,#{real_chat_session},#{realchatname},#{real_chat_content},CURRENT_TIMESTAMP,false)
 	</insert>
 
 

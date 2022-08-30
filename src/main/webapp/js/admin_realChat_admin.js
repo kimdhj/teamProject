@@ -21,10 +21,10 @@ function init() {
 			$("#contents").html("");
 			var str = "";
 			for (let co = 0; co < data.length; co++) {
-				if (data[co].real_chat_name == userid) {
+				if (data[co].realchatname == userid) {
 					str += `<div class="chat row  m-0">
             <div class="row">
-              <div class="send row col-auto">${data[co].real_chat_name}</div>
+              <div class="send row col-auto">${data[co].realchatname}</div>
             </div>
             <div class="row">
               <div class="content row col-auto">${data[co].real_chat_content}</div>
@@ -33,7 +33,7 @@ function init() {
 				} else {
 					str += `<div class="chat row  m-0">
             <div class="row justify-content-end">
-              <div class="send row col-auto">${data[co].real_chat_name}</div>
+              <div class="send row col-auto">${data[co].realchatname}</div>
             </div>
             <div class="row justify-content-end">
               <div class="content row col-auto">${data[co].real_chat_content}</div>
@@ -56,7 +56,7 @@ function del() {
 	$.ajax({
 		url: "/delet.do",
 		data: {
-			real_chat_name: userid,
+			realchatname: userid,
 
 		},
 		method: "GET",
@@ -108,11 +108,11 @@ function sendMessage() {
 	//메세지 알림을 지워줌
 	//메세지 상태 변경(db)
 	let adn = userid.replaceAll("admin", '');
-	console.log(adn);
+	console.log(adn,"adn");
 	$.ajax({
 		url: "/updatestate.do",
 		data: {
-			name: adn
+			realchatname: adn
 		},
 		method: "GET",
 		dataType: "json",

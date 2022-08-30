@@ -26,14 +26,15 @@ public class chatDAO implements chatDAOInter {
 	@Override
 	public void updatestate(chatVO vo) {
 		// TODO Auto-generated method stub
+
 		myba.update("ChatDAO.updatestate",vo);
 	}
 
 	@Override
 	public void deletename(chatVO vo) {
 		// TODO Auto-generated method stub
-		System.out.println(vo+"dao");
-		myba.delete("ChatDAO.deletename", vo);
+		System.out.println(vo.getRealchatname()+"dao");
+		myba.delete("ChatDAO.delname", vo);
 	}
 
 	@Override

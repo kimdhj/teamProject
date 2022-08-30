@@ -1,3 +1,4 @@
+	var userid = $("#userid").val();
 	init();
 	function init() {
 		$
@@ -7,40 +8,66 @@
 					dataType : "json",
 					async:true,
 					success : function(data) {
-						$("#msgArea").html("");
+					let str="";
+					console.log(data+data.length);
+						$("tbody").html("");
 						for (let i = 0; i < data.length; i++) {
-							if (data[i].real_chat_name.indexOf("admin") < 0) {
-								let add = "/chatAdmin.do?user=" + data[i].real_chat_name
-										+ "admin"
-								let str = `<button onclick='del(this)' class="col-auto">` + "삭제"
-										+ `</button>`
-								str += "<a id='parents' target='_blank' href='"+add+"'><div class='col-6'>";
-								str += "<div class='alert alert-secondary d-flex'>";
+						let num=0;
+							console.log(data[i].realchatname.indexOf("admin"));
+							if (data[i].realchatname.indexOf("admin") < 0) {
+							console.log("hi1");
+							num++;
+							str += ` <tr>
+                            <td>
+                                <input class="form-check-input border-1 border-dark delche" type="checkbox" value=""
+                                    id="flexCheckChecked" checked>
+                            </td>
+                      
+                            <td>
+                                 <a href="/chatAdmin.mdo?user=${data[i].realchatname}admin"> ${num}</a> 
+                            </td>
+                            
+                            <td>
+                               <a href="/chatAdmin.mdo?user=${data[i].realchatname}admin">${data[i].realchatname}</a>
+                            </td>
+                            <td>
+                              <a href="/chatAdmin.mdo?user=${data[i].realchatname}admin">${data[i].real_chat_content}</a>
+                            </td>
+                            <td>
+                                
+                                 <a href="/chatAdmin.mdo?user=${data[i].realchatname}admin">   ${data[i].real_chat_date}</a>
+                                
+                            </td>
 
-								str += `<div class="col-auto" id="name">`
-										+ data[i].real_chat_name + `</div>`
-								str += `<div class="col">` + data[i].real_chat_content
-										+ `</div>`
-								str += `<div id="`+data[i].real_chat_session+`" class="`+data[i].real_chat_name+` col-auto" >`
-										+ data[i].num + `</div>`
-								str += "</div></div></a>";
+                            <td>
+                                
+                                   <a href="/chatAdmin.mdo?user=${data[i].realchatname}admin"> ${data[i].num}</a>
+                               
+                            </td>
+                          
+                            <td>
+                                <button onclick="del(this)" class="btn btn-danger rounded-pill del">삭제</button>
+                            </td>
+                        </tr>`
+							console.log(str);
 
-								$("#msgArea").append(str);
+								
 							}
 						}
 						console.log(data);
+						$("tbody").html(str);
 
 					}
 
 				})
 	}
 	function del(e) {
-		console.log($(e).next().children().children().children("#name").text());
-		let name=$(e).next().children().children().children("#name").text();
+		console.log($(e).parents("tr").children("td:eq(2)").text());
+		let name=$(e).parents("tr").children("td:eq(2)").text();
 		$.ajax({
-			url : "/delet.do",
+			url : "/delete.do",
 			data : {
-				real_chat_name : name,
+				realchatname : name.trim(),
 
 			},
 			async:true,
@@ -51,10 +78,11 @@
 
 			}
 		});
+		let admin=name+"admin";
 		$.ajax({
-			url : "/delet.do",
+			url : "/delete.do",
 			data : {
-				real_chat_name : name+"admin"
+				realchatname : admin.trim()
 
 			},
 			async:true,
@@ -66,23 +94,19 @@
 			}
 		});
 		
+
 		
 	}
 
 	let names = [];
-	//전송 버튼 누르는 이벤트
-	$("#button-send").on("click", function(e) {
-		sendMessage();
-		$('#msg').val('')
-	});
 
 	var sock = new SockJS('http://localhost:8080/echo');
 	sock.onmessage = onMessage;
-	sock.onclose = onClose;
-	sock.onopen = onOpen;
+
+
 	let sessionId = null;
 	function sendMessage() {
-		let mes = '${userid}' + ":" + $("#msg").val();
+		let mes = userid + ":" + $("#msg").val();
 		sock.send(mes);
 	}
 	//서버에서 메시지를 받았을 때
@@ -98,7 +122,7 @@
 			console.log('arr[' + i + ']: ' + arr[i]);
 		}
 
-		var cur_session = '${userid}'; //현재 세션에 로그인 한 사람
+		var cur_session = userid; //현재 세션에 로그인 한 사람
 		console.log("cur_session : " + cur_session);
 		console.log("names", names);
 		sessionId = arr[1];
@@ -135,19 +159,40 @@
 		 }
 		 */
 	}
-	//채팅창에서 나갔을 때
-	function onClose(evt) {
-
-		var user = '${userid}';
-		var str = user + " 님이 퇴장하셨습니다.";
-
-		$("#msgArea").append(str);
-	}
-	//채팅창에 들어왔을 때
-	function onOpen(evt) {
-		console.log(evt);
-		var user = '${userid}';
-		var str = user + "님이 입장하셨습니다.";
-
-		$("#msgArea").append(str);
-	}
+// 해제시 전체 클릭 비활성화+모두 클릭되면 전체 클릭 활성화
+	$(document).on('click',".delche:checked",function() {
+		// 해제시 전체 클릭 비활성화
+		$(".allche").prop("checked", false);
+		//  모두 클릭되면 전체 클릭 활성화
+		console.log($("tbody>tr").length);
+		console.log($(".delche:checked").length);
+		if ($("tbody>tr").length == $(".delche:checked").length) {
+			$(".allche").prop("checked", true);
+		}
+	});
+	//  전체 클릭 클릭시 전체온오프
+	$(".allche").click(function() {
+		if ($(".allche").is(":checked")) {
+			$(".delche").prop("checked", true);
+		} else {
+			$(".delche").prop("checked", false);
+		}
+	});
+	// checked 초기화
+	$(".delche").prop("checked", false);
+	$(".allche").prop("checked", false);
+	// 하단에 있는 카테고리 홍보 코드
+	// 리셋 버튼 코드 초기화
+	$(".reset").click(function(e) {
+		$(this).parents("tr").children("td:eq(1)").children().text("default");
+		$(this)
+			.parents("tr")
+			.children("td:eq(2)")
+			.children()
+			.attr("data-default", "0");
+		(this)
+			.parents("tr")
+			.children("td:eq(2)")
+			.children()
+			.text("0");
+	});
