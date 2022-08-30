@@ -27,7 +27,7 @@
             <div id="bigbig_title" class="bg-light align-left">
               이벤트 추가
             </div>
-            <form action="insertEvent.do" method="POST"  enctype="multipart/form-data">
+            <form action="insertEvent.mdo" method="POST" id="upload" name="upload"  enctype="multipart/form-data">
               <table class="table">
                 <thead></thead>
                 <tbody>
@@ -59,13 +59,13 @@
                             <input
                               class="col-5"
                               placeholder="시작날짜"
-                              type="text"
+                              type="date"
                               id="event_start_date"
                               name="event_start_date"
                             />~<input
                               class="col-5"
                               placeholder="마지막 날짜"
-                              type="text"
+                              type="date"
                               id="event_end_date"
                               name="event_end_date"
                             />
@@ -95,7 +95,6 @@
                       <input
                         type="file"
                         accept="image/*,.txt"
-                        multiple
                         name="uploadThumbnail"
                         id="uploadThumbnail"
                         onchange="aaa"
@@ -111,7 +110,6 @@
                       <input
                         type="file"
                         accept="image/*,.txt"
-                        multiple
                         name="uploadFile1"
                         id="uploadFile1"
                         onchange="aaa"
@@ -127,7 +125,6 @@
                       <input
                         type="file"
                         accept="image/*,.txt"
-                        multiple
                         name="uploadFile2"
                         id="uploadFile2"
                         onchange="aaa"
@@ -143,7 +140,6 @@
                       <input
                         type="file"
                         accept="image/*,.txt"
-                        multiple
                         name="uploadFile3"
                         id="uploadFile3"
                         onchange="aaa"
@@ -159,7 +155,6 @@
                       <input
                         type="file"
                         accept="image/*,.txt"
-                        multiple
                        name="uploadFile4"
                        id="uploadFile4"
                         onchange="aaa"

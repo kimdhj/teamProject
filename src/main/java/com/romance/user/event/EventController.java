@@ -8,9 +8,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
+
 
 
 
@@ -39,40 +41,36 @@ public class EventController {
 //        return conditionMap;
 //    }
 	
-	@RequestMapping("/insertEvent.do")
-	public String insertEvent(EventVO vo) throws IOException {
-		System.out.println("글 등록 처리12");
+	@RequestMapping(value = "insertEvent.mdo", method = RequestMethod.POST)
+	public String insertEvent(@RequestParam(name="uploadFile1") MultipartFile uploadFile1, @RequestParam(name="uploadFile2") MultipartFile uploadFile2, @RequestParam(name="uploadFile3") MultipartFile uploadFile3, @RequestParam(name="uploadFile4") MultipartFile uploadFile4, @RequestParam(name="uploadThumbnail") MultipartFile uploadThumbnail, EventVO vo) throws IOException {
+		System.out.println("글 등록 처리");
 		System.out.println(vo);
-		MultipartFile uploadFile1 = vo.getUploadFile1();
-		if (uploadFile1!=null) {
+		if (!uploadFile1.isEmpty()) {
 			String fileName = uploadFile1.getOriginalFilename();
 			uploadFile1.transferTo(new File("C:/myProject/" + fileName));
 			vo.setEvent_file1(fileName);
 		}
-		MultipartFile uploadFile2 = vo.getUploadFile2();
-		if (uploadFile2!=null) {
+		if (!uploadFile2.isEmpty()) {
 			String fileName = uploadFile2.getOriginalFilename();
 			uploadFile2.transferTo(new File("C:/myProject/" + fileName));
 			vo.setEvent_file2(fileName);
 		}
-		MultipartFile uploadFile3 = vo.getUploadFile3();
-		if (uploadFile3!=null) {
+		if (!uploadFile3.isEmpty()) {
 			String fileName = uploadFile3.getOriginalFilename();
 			uploadFile3.transferTo(new File("C:/myProject/" + fileName));
 			vo.setEvent_file3(fileName);
 		}
-		MultipartFile uploadFile4 = vo.getUploadFile4();
-		if (uploadFile4!=null) {
+		if (!uploadFile4.isEmpty()) {
 			String fileName = uploadFile4.getOriginalFilename();
 			uploadFile4.transferTo(new File("C:/myProject/" + fileName));
 			vo.setEvent_file4(fileName);
 		}
-		MultipartFile uploadThumbnail = vo.getUploadThumbnail();
-		if (uploadThumbnail!=null) {
+		if (!uploadThumbnail.isEmpty()) {
 			String fileName = uploadThumbnail.getOriginalFilename();
 			uploadThumbnail.transferTo(new File("C:/myProject/" + fileName));
 			vo.setEvent_thumbnail(fileName);
 		}
+		
 		eventService.insertEvent(vo);
 		return "redirect:getEventList.do";
 	}
@@ -109,6 +107,9 @@ public class EventController {
 //			vo.setSearchKeyword("");
 		model.addAttribute("top_eventList", eventService.getEventListTop(vo));
 		model.addAttribute("bottom_eventList", eventService.getEventListBottom(vo));		
+		
+		System.out.println(eventService.getEventListTop(vo));
+		System.out.println(model);
 		return "event_List";
 	}
 }
