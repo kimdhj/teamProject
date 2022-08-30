@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- Mybatis에서 테이블의 언더바(_) 컬럼을 카멜형식으로 변환설정 -->
+	<!-- 전통적인 데이터베이스 칼럼명 형태인 A_COLUMN을 CamelCase 형태의 자바 프로퍼티명 형태인 aColumn으로 자동으로 매핑하도록 한다. -->
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+	</settings>
+	
+	<typeAliases>
+		<!-- <typeAlias alias="myboard" type="tommy.spring.web.board.BoardVO" /> -->
+		<typeAlias type="com.romance.socket.chatVO" alias="chat" />
+
+			<typeAlias type="com.romance.admin.sample.category.CategoryVO" alias="categoryVO" />
+			<typeAlias type="com.romance.admin.sample.category.CateSearchVO" alias="cateSearchVO" />
+
+		<typeAlias type="com.romance.admin.login.UserVO" alias="user" />
+
+	</typeAliases>
+	<mappers>
+		<!-- <mapper resource="mappings/board-mapping.xml" /> -->
+		<mapper resource="mappings/ajax-mapping.xml" />
+
+		<mapper resource="mappings/category-mapping.xml" />
+
+		<mapper resource="mappings/uAdmin-mapping.xml" />
+
+	</mappers>
+</configuration>

@@ -1,5 +1,15 @@
 package com.romance.user.event;
 
-public interface EventService {
+import java.util.List;
 
+public interface EventService {
+	
+	void insertEvent(EventVO vo);
+	void updateEvent(EventVO vo);
+	void deleteEvent(EventVO vo);
+	EventVO getEvent(EventVO vo);
+	List<EventVO> getEventListTop(EventVO vo);
+	List<EventVO> getEventListBottom(EventVO vo);	
+	void countCnt(int seq);
+	
 }
