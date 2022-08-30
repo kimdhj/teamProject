@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="EventDAO">
+	<resultMap type="event_event" id="eventResult">
+		<id property="event_seq" column="EVENT_SEQ" />
+		<result property="event_title" column="EVENT_TITLE" />
+		<result property="event_target" column="EVENT_TARGET" />
+		<result property="event_start_date" column="EVENT_START_DATE" />
+		<result property="event_end_date" column="EVENT_END_DATE" />
+		<result property="event_allday" column="EVENT_ALLDAY" />
+		<result property="event_content" column="EVENT_CONTENT" />
+		<result property="event_top_event" column="EVENT_TOP_EVENT" />
+		<result property="event_file1" column="EVENT_FILE1" />
+		<result property="event_file2" column="EVENT_FILE2" />
+		<result property="event_file3" column="EVENT_FILE3" />
+		<result property="event_file4" column="EVENT_FILE4" />
+		<result property="event_thumbnail" column="EVENT_THUMBNAIL" />
+		<result property="event_cnt" column="EVENT_CNT" />
+	</resultMap>
+	<insert id="insertEvent" parameterType="event_event">
+		INSERT INTO event (event_title, event_target, event_content, event_start_date, event_end_date, event_allday, event_top_event, event_file1, event_file2, event_file3, event_file4, event_thumbnail)
+		VALUES(#{event_title}, #{event_target}, #{event_content}, #{event_start_date}, #{event_end_date}, #{event_allday}, #{event_top_event}, #{event_file1}, #{event_file2}, #{event_file3}, #{event_file4}, #{event_thumbnail})
+	</insert>
+	<update id="updateEvent" parameterType="event_event">
+		UPDATE event
+		SET event_title=#{event_title}, event_target=#{event_target}, event_allday=#{event_allday}, event_content=#{event_content}, event_top_event=#{event_top_event} WHERE event_seq = #{event_seq}
+	</update>
+	<update id="countCnt" parameterType="event_event">
+		 UPDATE event SET event_cnt = event_cnt + 1 WHERE event_seq = #{event_seq}
+	</update>
+	<delete id="deleteEvent" parameterType="event_event">
+		DELETE FROM event WHERE event_seq = #{event_seq}
+	</delete>
+	<select id="getEvent" resultType="event_event">
+		SELECT * FROM event WHERE event_seq=#{event_seq}
+	</select>
+	<select id="getEventListTop" resultMap="eventResult">
+		SELECT * FROM event
+		WHERE event_top_event=true
+	</select>
+	<select id="getEventListBottom" resultMap="eventResult">
+		SELECT * FROM event
+		WHERE event_top_event=false
+	</select>
+</mapper>
