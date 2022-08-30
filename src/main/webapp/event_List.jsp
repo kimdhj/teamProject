@@ -39,7 +39,7 @@
             </div>
 
             <div class="row g-4">
-            	<c:forEach var="top_event_list" items="${eventList }" >
+            	<c:forEach var="top_eventList" items="${eventList }" >
               <div
                 class="col-lg-4 col-md-6 wow fadeInUp"
                 id="imgsize"
@@ -76,7 +76,7 @@
         <!-- 하위 이벤트 -->
         <div class="event_con">
           <ul>
-            <c:forEach var="bottom_event_list" items="${eventList }" >
+            <c:forEach var="bottom_eventList" items="${eventList }" >
             <li>
               <div style="float: left">
                 <a href="#">

@@ -42,42 +42,43 @@ public class EventController {
 	@RequestMapping("/insertEvent.do")
 	public String insertEvent(EventVO vo) throws IOException {
 		System.out.println("글 등록 처리12");
+		System.out.println(vo);
 		MultipartFile uploadFile1 = vo.getUploadFile1();
-		if (!uploadFile1.isEmpty()) {
+		if (uploadFile1!=null) {
 			String fileName = uploadFile1.getOriginalFilename();
 			uploadFile1.transferTo(new File("C:/myProject/" + fileName));
-			vo.setFile1(fileName);
+			vo.setEvent_file1(fileName);
 		}
 		MultipartFile uploadFile2 = vo.getUploadFile2();
-		if (!uploadFile2.isEmpty()) {
+		if (uploadFile2!=null) {
 			String fileName = uploadFile2.getOriginalFilename();
 			uploadFile2.transferTo(new File("C:/myProject/" + fileName));
-			vo.setFile2(fileName);
+			vo.setEvent_file2(fileName);
 		}
 		MultipartFile uploadFile3 = vo.getUploadFile3();
-		if (!uploadFile3.isEmpty()) {
+		if (uploadFile3!=null) {
 			String fileName = uploadFile3.getOriginalFilename();
 			uploadFile3.transferTo(new File("C:/myProject/" + fileName));
-			vo.setFile3(fileName);
+			vo.setEvent_file3(fileName);
 		}
 		MultipartFile uploadFile4 = vo.getUploadFile4();
-		if (!uploadFile4.isEmpty()) {
+		if (uploadFile4!=null) {
 			String fileName = uploadFile4.getOriginalFilename();
 			uploadFile4.transferTo(new File("C:/myProject/" + fileName));
-			vo.setFile4(fileName);
+			vo.setEvent_file4(fileName);
 		}
 		MultipartFile uploadThumbnail = vo.getUploadThumbnail();
-		if (!uploadThumbnail.isEmpty()) {
+		if (uploadThumbnail!=null) {
 			String fileName = uploadThumbnail.getOriginalFilename();
 			uploadThumbnail.transferTo(new File("C:/myProject/" + fileName));
-			vo.setThumbnail(fileName);
+			vo.setEvent_thumbnail(fileName);
 		}
 		eventService.insertEvent(vo);
 		return "redirect:getEventList.do";
 	}
 
 	@RequestMapping("/updateEvent.do")
-	public String updateEvent(@ModelAttribute("event") EventVO vo) {
+	public String updateEvent(@ModelAttribute("event_event") EventVO vo) {
 		System.out.println("글 수정 기능 처리");
 		eventService.updateEvent(vo);
 		return "redirect:getEventList.do";
@@ -106,7 +107,8 @@ public class EventController {
 //			vo.setSearchCondition("TITLE");
 //		if (vo.getSearchKeyword() == null)
 //			vo.setSearchKeyword("");
-		model.addAttribute("eventList", eventService.getEventList(vo));
-		return "getEventList";
+		model.addAttribute("top_eventList", eventService.getEventListTop(vo));
+		model.addAttribute("bottom_eventList", eventService.getEventListBottom(vo));		
+		return "event_List";
 	}
 }
