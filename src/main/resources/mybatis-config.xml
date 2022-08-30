@@ -3,6 +3,7 @@
  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+
 	<typeAliases>
 		<!-- <typeAlias alias="myboard" type="tommy.spring.web.board.BoardVO" /> -->
 		<typeAlias type="com.romance.socket.chatVO" alias="chat" />
@@ -19,10 +20,9 @@
 			alias="navcategoryVO" />
 		<typeAlias type="com.romance.admin.login.AdminUserVO"
 			alias="adminUserVO" />
-
-
 		<typeAlias type="com.romance.user.event.EventVO" alias="event_event" />
-		
+
+
 	</typeAliases>
 	<mappers>
 		<!-- <mapper resource="mappings/board-mapping.xml" /> -->
@@ -32,6 +32,5 @@
 		<mapper resource="mappings/event-mapping.xml" />
 		<mapper resource="mappings/navcategory-mapping.xml" />
 		<mapper resource="mappings/adminuser-mapping.xml" />
-
 	</mappers>
 </configuration>
