@@ -1,40 +1,30 @@
 package com.romance.admin.login;
 
+import java.util.Date;
+
+import lombok.Data;
+
+@Data
 public class AdminUserVO {
 	private String user_id;
 	private String user_password;
-	private String user_role;
 	private String user_name;
-	
-	public String getUser_id() {
-		return user_id;
-	}
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
-	}
-	public String getUser_password() {
-		return user_password;
-	}
-	public void setUser_password(String user_password) {
-		this.user_password = user_password;
-	}
-	public String getUser_role() {
-		return user_role;
-	}
-	public void setUser_role(String user_role) {
-		this.user_role = user_role;
-	}
-	public String getUser_name() {
-		return user_name;
-	}
-	public void setUser_name(String user_name) {
-		this.user_name = user_name;
-	}
-	@Override
-	public String toString() {
-		return "AdminUserVO [user_id=" + user_id + ", user_password=" + user_password + ", user_role=" + user_role
-				+ ", user_name=" + user_name + "]";
-	}
-	
+	private String user_phone;
+	private String user_email;
+	private int user_point;
+	private String user_zipcode;
+	private String user_address;
+	private String user_sub;
+	private String user_role;
+	private String user_remain_address;
+	private Date user_sub_start;
+	private String user_logintype;
+	private int user_sub_count;
+	private Date user_login_day;
+	private String user_birth;
+	private int user_state;
+	private int user_sub_pay_after;
+	private int user_sub_pay_before;
+	private int user_enabled;
 	
 }
