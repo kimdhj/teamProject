@@ -13,7 +13,9 @@
 		<url-pattern>/plugins/*</url-pattern>	   				   
 		<url-pattern>/scss/*</url-pattern>	   				   
 		<url-pattern>/datepicker/*</url-pattern>	   				   
-		<url-pattern>/fonts/*</url-pattern>	   				    				    				   
+		<url-pattern>/fonts/*</url-pattern>	   				    				   
+		 				   
+
 	</servlet-mapping>
 	<!-- spring security -->
 	<filter>
