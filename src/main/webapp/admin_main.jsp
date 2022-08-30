@@ -87,7 +87,7 @@
 		<div class="d-flex flex-row">
 			<div class="col-md-6">
 				<div class="card border-light">
-					<div class="card-header">Header</div>
+					<div class="card-header">header</div>
 					<div class="card-body">
 						<canvas id="myChartOne"></canvas>
 					</div>

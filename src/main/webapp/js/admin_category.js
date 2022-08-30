@@ -44,12 +44,17 @@ $(document).ready(function() {
 	// 하단에 있는 카테고리 홍보 코드
 	// 리셋 버튼 코드 초기화
 	$(".reset").click(function(e) {
-		$(this).parents("tr").children("td:eq(3)").children().text("default");
+		$(this).parents("tr").children("td:eq(1)").children().text("default");
 		$(this)
 			.parents("tr")
-			.children("td:eq(3)")
+			.children("td:eq(2)")
 			.children()
-			.attr("data-default", "default");
+			.attr("data-default", "0");
+		(this)
+			.parents("tr")
+			.children("td:eq(2)")
+			.children()
+			.text("0");
 	});
 	// 코드 변화 감지에 따른 행동
 	observer = new MutationObserver(function(mutations) {
@@ -198,7 +203,7 @@ $(document).ready(function() {
 		let name = $("#all_box #name").val();
 
 		if (Number($("#all_box #category_btn").val()) != 0 && Number($("#all_box #level").val()) != 0 && name != null) {
-			console.log("hi");
+
 			$.ajax({
 				url: "/categoryInsert.mdo",
 				method: "get",
@@ -211,7 +216,6 @@ $(document).ready(function() {
 				},
 				success: function(re) {
 					if (re != null) {
-						console.log("11");
 
 						make();
 
@@ -372,7 +376,7 @@ $(document).ready(function() {
 				num
 			},
 			success: function(e) {
-				console.log(e);
+
 				make();
 			},
 			error: function() {
@@ -382,12 +386,12 @@ $(document).ready(function() {
 	});
 	//클린된것들 수정
 	$(document).on('click', '#selmod', function() {
-		console.log($(".delche").parents("tr").children('td:eq(3)').html());
+
 		let num = [];
 		let name = [];
 		let seq = [];
 		$(".delche").map((che, el) => {
-			console.log($(el).is(':checked'));
+
 			if ($(el).is(':checked')) {
 				name.push($(el).parents("tr").children('td:eq(2)').text().trim());
 				num.push($(el).parents("tr").children('td:eq(3)').text().trim());
@@ -395,29 +399,97 @@ $(document).ready(function() {
 				seq.push($(el).parents("tr").children('td:eq(4)').text().trim());
 			}
 		});
-	console.log(name,num,seq);
+		if (num.length > 0) {
+			$.ajax({
+				url: "/categoryMod.mdo",
+				method: "get",
+				dataType: 'json',
+				async: false,
+				data: {
+					num: num,
+					name: name,
+					seq: seq
+
+				},
+				success: function(e) {
+					if (e.length > 0) {
+						alert(e, "를 수정에 실패했습니다.");
+					}
+					make();
+
+				},
+				error: function(e) {
+
+				}
+			});
+		};
+
+	});
+	$(document).on('click', '#cate_box #navmod', function() {
+
+		let num = [];
+		let order = [];
+		$(".num").map((index, el) => {
+			num.push($(el).text());
+		});
+		$(".order").map((index, el) => {
+			order.push($(el).text());
+		});
+
+
 		$.ajax({
-			url: "/categoryMod.mdo",
+			url: "/navcateupdate.mdo",
 			method: "get",
 			dataType: 'json',
 			async: false,
 			data: {
-				num:num,
-				name:name,
-				seq:seq
-
+				num,
+				order
 			},
-			success: function(e) {
-				if (e.length > 0) {
-					alert(e, "를 수정에 실패했습니다.");
-				}
-					make();
+			success: function(re) {
 
+				manav();
 			},
-			error: function(e) {
-				console.log(e);
+			error: function() {
+				alert("일부 수정 실패");
+				manav();
 			}
 		});
 
 	});
+	function manav() {
+		$.ajax({
+			url: "/navList.mdo",
+			method: "get",
+			dataType: 'json',
+			async: false,
+			success: function(re) {
+				let con = '';
+				for (let i = 0; i < re.length; i++) {
+					con += `<tr>
+						<td>
+							<p contenteditable="false" class="order" data-default="${re[i].nav_category_order}">${re[i].nav_category_order}</p>
+						</td>
+						<td>
+							<p contenteditable="true" class="name" data-default="${re[i].nav_category_name}">${re[i].nav_category_name}</p>
+						</td>
+						<td>
+							<p class="rowColumn num" contenteditable="false"
+								data-default="${re[i].category_num}">${re[i].category_num}</p>
+						</td>
+						<td>
+							<button class="btn btn-danger rounded-pill reset">초기화</button>
+						</td>
+					</tr>`;
+				};
+
+				$("#cate_box tbody").html(con);
+
+
+
+			}
+		});
+
+	};
+
 })

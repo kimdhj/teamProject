@@ -17,28 +17,28 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
 @SessionAttributes("event_event")
 public class EventController {
-	@Autowired
-	private EventService eventService;
+    @Autowired
+    private EventService eventService;
 
-//	@RequestMapping("/dataTransform.do")
-//	@ResponseBody
-//	public BoardListVO dataTransform(BoardVO vo) {
-//		vo.setSearchCondition("TITLE");
-//		vo.setSearchKeyword("");
-//		List<BoardVO> boardList = boardService.getBoardList(vo);
-//		BoardListVO boardListVO = new BoardListVO();
-//		boardListVO.setBoardList(boardList);
-//		return boardListVO;
-//	}
+//    @RequestMapping("/dataTransform.do")
+//    @ResponseBody
+//    public BoardListVO dataTransform(BoardVO vo) {
+//        vo.setSearchCondition("TITLE");
+//        vo.setSearchKeyword("");
+//        List<BoardVO> boardList = boardService.getBoardList(vo);
+//        BoardListVO boardListVO = new BoardListVO();
+//        boardListVO.setBoardList(boardList);
+//        return boardListVO;
+//    }
 
-//	@ModelAttribute("conditionMap")
-//	public Map<String, String> searchConditionMap() {
-//		Map<String, String> conditionMap = new HashMap<String, String>();
-//		conditionMap.put("제목", "TITLE");
-//		conditionMap.put("내용", "CONTENT");
-//		return conditionMap;
-//	}
-
+//    @ModelAttribute("conditionMap")
+//    public Map<String, String> searchConditionMap() {
+//        Map<String, String> conditionMap = new HashMap<String, String>();
+//        conditionMap.put("제목", "TITLE");
+//        conditionMap.put("내용", "CONTENT");
+//        return conditionMap;
+//    }
+	
 	@RequestMapping("/insertEvent.do")
 	public String insertEvent(EventVO vo) throws IOException {
 		System.out.println("글 등록 처리12");

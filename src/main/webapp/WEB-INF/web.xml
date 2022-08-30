@@ -3,7 +3,6 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://Java.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 	<!-- css js jpg 서블렛 제외 -->
-
 	 
 	<servlet-mapping>      
 		<servlet-name>default</servlet-name>	       
@@ -16,8 +15,6 @@
 		<url-pattern>/scss/*</url-pattern>	   				   
 		<url-pattern>/lib/*</url-pattern>	   				   
 	</servlet-mapping>
-	   
-
 
 	<!-- spring security -->
 	<filter>

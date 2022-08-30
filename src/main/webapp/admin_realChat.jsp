@@ -10,7 +10,7 @@
 <body>
 	<jsp:include page="/admin_commonjsp/admin_common_header.jsp"></jsp:include>
 	<!-- 여기서부터 화면 작성 시작 -->
-	<div id="mainWrapper" class="row m-3">
+	<div id="mainWrapper" class="col-10 m-3">
             <div class="col">
                 <div class="row d-flex align-items-center m-5 p-2 rounded bg-back" id="filter_box">
                     <form>
@@ -212,7 +212,7 @@
             </div>
             <div id="page" class="row justify-content-center d-flex">
                 <div class="col"></div>
-                <nav class="col d-flex" aria-label="...">
+                <nav class="col justify-content-center d-flex" aria-label="...">
                     <ul class="pagination">
                         <li class="page-item disabled">
                             <span class="page-link">
@@ -238,5 +238,6 @@
 	<jsp:include page="/admin_commonjsp/admin_common_footer.jsp"></jsp:include>
 	<!-- 여기서부터 JS 추가 -->
    <script src="js/category.js"></script>
+   <script src="js/admin_realChat.js"></script>
 </body>
 </html>

@@ -4,16 +4,17 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.romance.admin.login.UserVO;
+import com.romance.admin.login.AdminUserVO;
 
 @Repository
-public class UserDAO {
+public class AdminUserDAO {
 	
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 	
-	public UserVO getUser(UserVO vo) {
-		return sqlSessionTemplate.selectOne("UserDAO.user", vo);
+	public AdminUserVO getUser(AdminUserVO vo) {
+		System.out.println("Mybatis로 getUser() 기능 처리");
+		return sqlSessionTemplate.selectOne("AdminUserDAO.getUser", vo);
 	}
 	
 }

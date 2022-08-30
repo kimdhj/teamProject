@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="navCategory">
+
+	<select resultType="navcategoryVO" id="getList">select * from nav_category order by nav_category_order
+	</select>
+	<select parameterType="navcategoryVO" resultType="navcategoryVO" id="getItem">
+		select category_name  as nav_category_name from category where category_num=${category_num};
+	</select>
+	<update parameterType="navcategoryVO" id="updateItem">
+	update nav_category set nav_category_name=#{nav_category_name},category_num=#{category_num}  where nav_category_order=#{nav_category_order};
+	</update>
+
+
+</mapper>
