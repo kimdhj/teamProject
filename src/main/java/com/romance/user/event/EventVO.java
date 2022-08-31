@@ -8,7 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 import lombok.Data;
 
 @Data
-public class BoardVO {
+public class EventVO {
 	private int seq;
 	private String title;
 	private String target;
