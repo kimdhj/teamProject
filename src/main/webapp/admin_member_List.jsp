@@ -77,7 +77,7 @@
 							<td>${adminAccount.user_phone }</td>
 							<td>${adminAccount.user_email }</td>
 							<td>${adminAccount.user_point }</td>
-							<td>32</td>
+							<td>${adminAccount.user_coupon_cnt }</td>
 							<td><button type="button"
 									class="btn btn-light btn-outline-dark">조회</button></td>
 						</tr>
