@@ -1,0 +1,17 @@
+#fin_wrapper {
+  margin-top: 15%;
+}
+#fin_wrapper * {
+  font-size: 1vw;
+  font-weight: bolder;
+}
+.bg-gray {
+  background-color: rgb(108, 117, 125) !important;
+}
+.border-gray {
+  border-color: rgb(108, 117, 125) !important;
+}
+.rounded {
+  border-radius: 15px !important;
+  background-color: rgb(219, 219, 219) !important;
+}

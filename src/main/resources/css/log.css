@@ -1,0 +1,25 @@
+#mainWrapper * {
+  font-size: 1.3vw;
+  word-break: keep-all;
+}
+.bg-back {
+  background-color: rgb(239, 241, 250);
+}
+.rounded {
+  border-radius: 10px !important;
+}
+.rounded-start {
+  border-bottom-left-radius: 10px !important;
+  border-top-left-radius: 10px !important;
+}
+.rounded-end {
+  border-top-right-radius: 10px !important;
+  border-bottom-right-radius: 10px !important;
+}
+#time_real {
+  overflow: hidden !important;
+}
+
+input:enabled:read-write:-webkit-any(:focus, :hover)::-webkit-calendar-picker-indicator {
+  display: block !important;
+}

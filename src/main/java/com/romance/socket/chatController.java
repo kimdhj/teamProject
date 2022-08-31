@@ -101,7 +101,7 @@ public class chatController {
 
 		return "admin_realChat";
 	}
-
+//책에 데이터 넣기
 	@RequestMapping("/country.do")
 	@ResponseBody
 	public JSONObject country(API vo1, Model model1)
