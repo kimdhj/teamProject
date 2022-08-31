@@ -1,6 +1,7 @@
 package com.romance.user.event.impl;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,5 +48,22 @@ public class EventServiceImpl implements EventService {
 	@Override
 	public void countCnt(int seq) {
 		EventDAO.countCnt(seq);
+	}
+	
+	@Override
+	public void topEvent(List<String> event_seq) {
+		List<Integer> reqList = event_seq.stream().map(s -> Integer.parseInt(s)).collect(Collectors.toList());
+		EventDAO.bottomEvent();
+		System.out.println(reqList);
+		for(int j=0; j<event_seq.size(); j++) {
+			Integer sendReq = reqList.get(j);
+			EventDAO.topEvent(sendReq);
+			System.out.println(sendReq);
+		}
+	}
+	
+	@Override
+	public void ajaxDel(int del) {
+		EventDAO.ajaxDel(del);
 	}
 }

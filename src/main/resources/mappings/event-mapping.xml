@@ -24,15 +24,24 @@
 	</insert>
 	<update id="updateEvent" parameterType="event_event">
 		UPDATE event
-		SET event_title=#{event_title}, event_target=#{event_target}, event_allday=#{event_allday}, event_content=#{event_content}, event_top_event=#{event_top_event} WHERE event_seq = #{event_seq}
+		SET event_title=#{event_title}, event_target=#{event_target}, event_content=#{event_content}, event_start_date=#{event_start_date}, event_end_date=#{event_end_date}, event_allday=#{event_allday}, event_top_event=#{event_top_event}, event_file1=#{event_file1}, event_file2=#{event_file2}, event_file3=#{event_file3}, event_file4=#{event_file4}, event_thumbnail=#{event_thumbnail} WHERE event_seq = #{event_seq}
 	</update>
 	<update id="countCnt" parameterType="event_event">
 		 UPDATE event SET event_cnt = event_cnt + 1 WHERE event_seq = #{event_seq}
 	</update>
+	<update id="bottomEvent">
+		 UPDATE event SET event_top_event = false WHERE event_top_event = true
+	</update>
+	<update id="topEvent" parameterType="event_event">
+		 UPDATE event SET event_top_event = true WHERE event_seq = #{event_seq}
+	</update>	
 	<delete id="deleteEvent" parameterType="event_event">
 		DELETE FROM event WHERE event_seq = #{event_seq}
 	</delete>
-	<select id="getEvent" resultType="event_event">
+	<delete id="ajaxDel" parameterType="event_event">
+		DELETE FROM event WHERE event_seq = #{event_seq}
+	</delete>
+	<select id="getEvent" parameterType="event_event" resultMap="eventResult">
 		SELECT * FROM event WHERE event_seq=#{event_seq}
 	</select>
 	<select id="getEventListTop" resultMap="eventResult">
