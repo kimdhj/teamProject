@@ -24,6 +24,7 @@
 		<result property="user_sub_pay_after" column="USER_SUB_PAY_AFTER" />
 		<result property="user_sub_pay_before" column="USER_SUB_PAY_BEFORE" />
 		<result property="user_enabled" column="USER_ENABLED" />
+		<result property="user_coupon_cnt" column="USER_COUPON_CNT" />
 	</resultMap>
 	
 	
@@ -32,7 +33,7 @@
 	</select>
 	
 	<select id="getUserList" resultMap="adminUserResult">
-		SELECT * FROM user
+		SELECT a.*, b.user_coupon_cnt FROM user a LEFT JOIN (SELECT user_id, count(user_id) AS user_coupon_cnt FROM user_coupon GROUP BY user_id) b ON a.user_id = b.user_id;
 	</select>
 
 </mapper>
