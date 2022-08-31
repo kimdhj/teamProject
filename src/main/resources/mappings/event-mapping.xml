@@ -52,4 +52,8 @@
 		SELECT * FROM event
 		WHERE event_top_event=false
 	</select>
+	<select id="selectFile" resultMap="eventResult">
+		SELECT event_file1, event_file2, event_file3, event_file4, event_thumbnail
+		FROM event WHERE event_seq = #{event_seq}
+	</select>
 </mapper>
