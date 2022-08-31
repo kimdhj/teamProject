@@ -51,8 +51,8 @@
 		<div id="all_box" class="bg-white w-100">
 			<div class="row d-flex align-items-center" id="input_line_top">
 				<div class="row"></div>
-				<div name="notice_content" class="summernote">${notice.notice_content }</div>
-				<input type="hidden" name="notice_content" id="notice_content"/>
+				<div name="notice_content1" class="summernote">${notice.notice_content }</div>
+				<input type="hidden" name="notice_content2" id="notice_content"/>
 			</div>
 		</div>
 		<div id="all_box" class="bg-white w-100">

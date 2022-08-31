@@ -36,6 +36,15 @@ function i(){
 	console.log($("#notice_content").val());
 };
 
+function goUpdate(frm){
+	var passwd = frm.notice_passwd.value;
+	if(notice_passwd() == ''){
+		alert("비밀번호를 입력해주세요!");
+		return false;
+	}
+	frm.submit();
+}
+
 $().ready(function () {
     $(".noticeupdate").click(function () {
     	Swal.fire({
@@ -73,14 +82,14 @@ $().ready(function () {
         	                })
         				}else{ // ajax 실행 실패
         					 Swal.fire({
-        		                	text: "수정 실패",
+        		                	text: "비밀번호를 다시 입력해주세요.",
         		                	icon: "error"
         		                })
         				}
         			},
         			error: function(){ // 
         				Swal.fire({
-                        	text: "비밀번호가 일치하지않습니다.",
+                        	text: "수정 실패!",
                         	icon: "error"
                         })
         			}
