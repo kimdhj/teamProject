@@ -57,4 +57,8 @@ public class EventDAO {
 	public void ajaxDel(int del) {
 		sqlSessionTemplate.delete("EventDAO.ajaxDel", del);
 	}
+	public EventVO selectFile(int del) {
+		return sqlSessionTemplate.selectOne("EventDAO.selectFile", del);
+	}
+	
 }
