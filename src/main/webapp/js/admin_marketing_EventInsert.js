@@ -1,10 +1,10 @@
 // 날짜 더하기
-$("#start_date").val(new Date());
+$("#event_start_date").val(new Date());
 let date = new Date();
 date.setMonth(date.getMonth() + 1);
 
-$("#end_date").val(date);
-datePickerSet($("#start_date"), $("#end_date"), true); //다중은 시작하는 달력 먼저, 끝달력 2번째
+$("#event_end_date").val(date);
+datePickerSet($("#event_start_date"), $("#event_end_date"), true); //다중은 시작하는 달력 먼저, 끝달력 2번째
 // var date2 = $('#start_dat').datepicker('getDate', '+1d');
 //     date2.setDate(date2.getDate() + 1);
 //     $('.dropoffDate').datepicker('setDate', date2)
@@ -91,33 +91,33 @@ function datePickerSet(sDate, eDate, flag) {
 }
 $(function () {
   $(".week").click(function () {
-    let st = new Date($("#start_date").val());
+    let st = new Date($("#event_start_date").val());
     st.setDate(st.getDate() - 7);
-    $("#start_date").val(st);
-    datePickerSet($("#start_date"), $("#end_date"), true);
+    $("#event_start_date").val(st);
+    datePickerSet($("#event_start_date"), $("#event_end_date"), true);
   });
   $(".month").click(function () {
-    let st = new Date($("#start_date").val());
+    let st = new Date($("#event_start_date").val());
     st.setMonth(st.getMonth() - 1);
-    $("#start_date").val(st);
-    datePickerSet($("#start_date"), $("#end_date"), true);
+    $("#event_start_date").val(st);
+    datePickerSet($("#event_start_date"), $("#event_end_date"), true);
   });
   $(".threemonth").click(function () {
-    let st = new Date($("#start_date").val());
+    let st = new Date($("#event_start_date").val());
     st.setMonth(st.getMonth() - 3);
-    $("#start_date").val(st);
-    datePickerSet($("#start_date"), $("#end_date"), true);
+    $("#event_start_date").val(st);
+    datePickerSet($("#event_start_date"), $("#event_end_date"), true);
   });
   $(".sixmonth").click(function () {
-    let st = new Date($("#start_date").val());
+    let st = new Date($("#event_start_date").val());
     st.setMonth(st.getMonth() - 6);
-    $("#start_date").val(st);
-    datePickerSet($("#start_date"), $("#end_date"), true);
+    $("#event_start_date").val(st);
+    datePickerSet($("#event_start_date"), $("#event_end_date"), true);
   });
   $(".year").click(function () {
-    let st = new Date($("#start_date").val());
+    let st = new Date($("#event_start_date").val());
     st.setFullYear(st.getFullYear() - 1);
-    $("#start_date").val(st);
-    datePickerSet($("#start_date"), $("#end_date"), true);
+    $("#event_start_date").val(st);
+    datePickerSet($("#event_start_date"), $("#event_end_date"), true);
   });
 });

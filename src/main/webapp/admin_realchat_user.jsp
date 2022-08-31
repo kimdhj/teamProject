@@ -50,7 +50,7 @@
 
 	<jsp:include page="/admin_commonjsp/admin_common_footer.jsp"></jsp:include>
 	<!-- 여기서부터 JS 추가 -->
-	<script src="/js/admin_realChat_admin.js"></script>
+	<script src="/js/admin_realChat_user.js"></script>
 
 </body>
 </html>

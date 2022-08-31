@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%--     <%@ page import="com.romance.event.board.BoardVO"%>
-<%@ page import="java.util.List"%> --%>
+<%@ page import="com.romance.user.event.EventVO" %>
+<%@ page import="java.util.List"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -39,23 +39,23 @@
             </div>
 
             <div class="row g-4">
-            	<c:forEach var="top_event_list" items="${eventList }" >
+            	<c:forEach var="top" items="${top_eventList }" >
               <div
                 class="col-lg-4 col-md-6 wow fadeInUp"
                 id="imgsize"
                 data-wow-delay="0.1s"
               >
                 <a href="">
-                  <img class="img-fluid" src="${event.thumbnail }" alt="" />
+                  <img class="img-fluid" width="100" height="100" src="${top.event_thumbnail }" alt="" />
                 </a>
                 <div class="bg-light p-4">
                   <div class="text-muted border-top pt-4">
                     <small class="me-3"
                       ><i class="fa fa-map-marker-alt text-primary me-2"></i
-                      >${event_title }</small
+                      >${top.event_title }</small
                     ><br />
                     <small class="me-3"
-                      ><i class="fa fa-calendar text-primary me-2"></i><fmt:formatDate value="${event.start_date }" pattern="yyyy-MM-dd"/>~<fmt:formatDate value="${event.end_date }" pattern="yyyy-MM-dd"/></small
+                      ><i class="fa fa-calendar text-primary me-2"></i><fmt:formatDate value="${top.event_start_date }" pattern="yyyy-MM-dd"/>~<fmt:formatDate value="${top.event_end_date }" pattern="yyyy-MM-dd"/></small
                     >
                   </div>
                 </div>
@@ -76,11 +76,11 @@
         <!-- 하위 이벤트 -->
         <div class="event_con">
           <ul>
-            <c:forEach var="bottom_event_list" items="${eventList }" >
+            <c:forEach var="bottom" items="${bottom_eventList }" >
             <li>
               <div style="float: left">
                 <a href="#">
-                  <img id="southImg" src="${event.thumbnail }" />
+                  <img id="southImg" src="${bottom.event_thumbnail }" />
                 </a>
               </div>
               <div style="float: left; width: 440px">
@@ -88,14 +88,14 @@
                   <div></div>
                   &nbsp;
                   <strong
-                    ><a href="#">${event.title }</a></strong
+                    ><a href="#">${bottom.event_title }</a></strong
                   ><br />
                 </div>
                 <div style="height: 40px; margin: 3px 0 0 10px" id="southFont">
-                  ${event.target }<br /><fmt:formatDate value="${event.start_date }" pattern="yyyy-MM-dd"/>~<fmt:formatDate value="${event.end_date }" pattern="yyyy-MM-dd"/>
+                  ${bottom.event_target }<br /><fmt:formatDate value="${bottom.event_start_date }" pattern="yyyy-MM-dd"/>~<fmt:formatDate value="${bottom.event_end_date }" pattern="yyyy-MM-dd"/>
                 </div>
                 <div style="margin: 3px 0 0 10px" id="southFont">
-                  ${event.content }
+                  ${bottom.event_content }
                 </div>
               </div>
               <br />

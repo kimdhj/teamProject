@@ -37,10 +37,10 @@
 									<div class="input-group-prepend">
 										<span class="input-group-text" id="addon-wrapping">&nbsp;아이디&nbsp;</span>
 									</div>
-									<input type="text" name="user_name" id="user_name"
+									<input type="text" name="user_id" id="user_id"
 										class="form-control" placeholder="" required
 										aria-label="Username" aria-describedby="addon-wrapping"
-										value="${userVO.userId }" />
+										value="${adminUserVO.user_id }" />
 								</div>
 								<div class="input-group flex-nowrap" style="padding: 8px">
 									<div class="input-group-prepend">
@@ -49,7 +49,7 @@
 									<input type="password" name="user_password" id="user_password"
 										class="form-control" placeholder="" required
 										aria-label="Username" aria-describedby="addon-wrapping"
-										value="${userVO.userPassword }" />
+										value="${adminUserVO.user_password }" />
 								</div>
 								<button type="submit" style="margin: 8px"
 									class="btn btn-outline-info" name="button">로그인</button>

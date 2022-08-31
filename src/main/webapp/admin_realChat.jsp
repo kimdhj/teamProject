@@ -10,7 +10,7 @@
 <body>
 	<jsp:include page="/admin_commonjsp/admin_common_header.jsp"></jsp:include>
 	<!-- 여기서부터 화면 작성 시작 -->
-	<div id="mainWrapper" class="row m-3">
+	<div id="mainWrapper" class="col-10 m-3">
             <div class="col">
                 <div class="row d-flex align-items-center m-5 p-2 rounded bg-back" id="filter_box">
                     <form>
@@ -59,6 +59,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                        
                         <tr>
                             <td>
                                 <input class="form-check-input border-1 border-dark delche" type="checkbox" value=""
@@ -88,123 +89,7 @@
                                 <button class="btn btn-danger rounded-pill del">삭제</button>
                             </td>
                         </tr>
-                        <tr>
-                            <td>
-                                <input class="form-check-input border-1 border-dark delche" type="checkbox" value=""
-                                    id="flexCheckChecked" checked>
-                            </td>
-                            <td>
-                                <p contenteditable="false" data-default="1">1</p>
-                            </td>
-                            <td>
-                                <p contenteditable="true" data-default="qjawns">qjawns</p>
-                            </td>
-                            <td>
-                                <p contenteditable="false" data-default="메시지 내용은 어쩌고 저쩌고">메시지 내용은 어쩌고 저쩌고</p>
-                            </td>
-                            <td>
-                                <p contenteditable="false" data-default="2022-11-15 11:15">
-                                    2022-11-15
-                                    11:15
-                                </p>
-                            </td>
-                            <td>
-                                <p contenteditable="false" data-default="12">
-                                    12
-                                </p>
-                            </td>
-                            <td>
-                                <button class="btn btn-danger rounded-pill del">삭제</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input class="form-check-input border-1 border-dark delche" type="checkbox" value=""
-                                    id="flexCheckChecked" checked>
-                            </td>
-                            <td>
-                                <p contenteditable="false" data-default="1">1</p>
-                            </td>
-                            <td>
-                                <p contenteditable="true" data-default="qjawns">qjawns</p>
-                            </td>
-                            <td>
-                                <p contenteditable="false" data-default="메시지 내용은 어쩌고 저쩌고">메시지 내용은 어쩌고 저쩌고</p>
-                            </td>
-                            <td>
-                                <p contenteditable="false" data-default="2022-11-15 11:15">
-                                    2022-11-15
-                                    11:15
-                                </p>
-                            </td>
-                            <td>
-                                <p contenteditable="false" data-default="12">
-                                    12
-                                </p>
-                            </td>
-                            <td>
-                                <button class="btn btn-danger rounded-pill del">삭제</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input class="form-check-input border-1 border-dark delche" type="checkbox" value=""
-                                    id="flexCheckChecked" checked>
-                            </td>
-                            <td>
-                                <p contenteditable="false" data-default="1">1</p>
-                            </td>
-                            <td>
-                                <p contenteditable="true" data-default="qjawns">qjawns</p>
-                            </td>
-                            <td>
-                                <p contenteditable="false" data-default="메시지 내용은 어쩌고 저쩌고">메시지 내용은 어쩌고 저쩌고</p>
-                            </td>
-                            <td>
-                                <p contenteditable="false" data-default="2022-11-15 11:15">
-                                    2022-11-15
-                                    11:15
-                                </p>
-                            </td>
-                            <td>
-                                <p contenteditable="false" data-default="12">
-                                    12
-                                </p>
-                            </td>
-                            <td>
-                                <button class="btn btn-danger rounded-pill del">삭제</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input class="form-check-input border-1 border-dark delche" type="checkbox" value=""
-                                    id="flexCheckChecked" checked>
-                            </td>
-                            <td>
-                                <p contenteditable="false" data-default="1">1</p>
-                            </td>
-                            <td>
-                                <p contenteditable="true" data-default="qjawns">qjawns</p>
-                            </td>
-                            <td>
-                                <p contenteditable="false" data-default="메시지 내용은 어쩌고 저쩌고">메시지 내용은 어쩌고 저쩌고</p>
-                            </td>
-                            <td>
-                                <p contenteditable="false" data-default="2022-11-15 11:15">
-                                    2022-11-15
-                                    11:15
-                                </p>
-                            </td>
-                            <td>
-                                <p contenteditable="false" data-default="12">
-                                    12
-                                </p>
-                            </td>
-                            <td>
-                                <button class="btn btn-danger rounded-pill del">삭제</button>
-                            </td>
-                        </tr>
-
+                
 
 
                     </tbody>
@@ -212,7 +97,7 @@
             </div>
             <div id="page" class="row justify-content-center d-flex">
                 <div class="col"></div>
-                <nav class="col d-flex" aria-label="...">
+                <nav class="col justify-content-center d-flex" aria-label="...">
                     <ul class="pagination">
                         <li class="page-item disabled">
                             <span class="page-link">
@@ -233,10 +118,11 @@
         </div>
 
 	
-
+<input type="hidden" id="userid" value="adminadmin"/>
 
 	<jsp:include page="/admin_commonjsp/admin_common_footer.jsp"></jsp:include>
 	<!-- 여기서부터 JS 추가 -->
-   <script src="js/category.js"></script>
+  
+   <script src="/js/admin_realChat.js"></script>
 </body>
 </html>

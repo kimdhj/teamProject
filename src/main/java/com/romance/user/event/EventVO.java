@@ -9,26 +9,26 @@ import lombok.Data;
 
 @Data
 public class EventVO {
-	private int seq;
-	private String title;
-	private String target;
+	private int event_seq;
+	private String event_title;
+	private String event_target;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date start_date;
+	private Date event_start_date;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date end_date;
-	private boolean allday;
-	private String content;
-	private boolean top_event;
-	private String file1;
+	private Date event_end_date;
+	private boolean event_allday;
+	private String event_content;
+	private boolean event_top_event;
+	private String event_file1;
 	private MultipartFile uploadFile1;
-	private String file2;
+	private String event_file2;
 	private MultipartFile uploadFile2;
-	private String file3;
+	private String event_file3;
 	private MultipartFile uploadFile3;
-	private String file4;
+	private String event_file4;
 	private MultipartFile uploadFile4;
-	private int cnt;
-	private String thumbnail;
+	private int event_cnt;
+	private String event_thumbnail;
 	private MultipartFile uploadThumbnail;
 
 //	@XmlTransient

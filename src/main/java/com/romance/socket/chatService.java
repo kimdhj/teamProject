@@ -61,4 +61,7 @@ public class chatService implements chatServiceInter {
 		return chatlist;
 	}
 
+	public void insertAPI(API vo) {
+		dao.insertAPI(vo);
+	}
 }
