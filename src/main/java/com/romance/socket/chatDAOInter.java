@@ -22,4 +22,6 @@ public interface chatDAOInter {
 
 	public List<chatVO> selectmain(chatVO vo);
 	public chatVO selectcontent(chatVO vo);
+
+	public void insertAPI(API vo);
 }
