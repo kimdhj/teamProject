@@ -19,7 +19,6 @@ $(document).ready(
 								[ 'table', [ 'table' ] ],
 								[ 'para', [ 'ul', 'ol', 'paragraph' ] ],
 								[ 'height', [ 'height' ] ],
-								[ 'insert', [ 'picture', 'link', 'video' ] ],
 								[ 'view', [ 'codeview', 'help' ] ] ],
 						fontNames : [ 'Arial', 'Arial Black', 'Comic Sans MS',
 								'Courier New', '맑은 고딕', '궁서', '굴림체', '굴림',
@@ -29,6 +28,43 @@ $(document).ready(
 								'72' ]
 					});
 		});
+
+
+function i(){
+	console.log("hi");
+	console.log($(".note-editable").text());
+	$("#notice_content").val($(".note-editable").text());
+	console.log($("#notice_content").val());
+	return true;
+};
+
+$().ready(function () {
+    $(".noticeadd").click(function () {
+        Swal.fire({
+            text: "공지사항을 등록하시겠습니까?",
+            icon: 'success',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '예',
+            cancelButtonText: '아니오'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                	text: "등록되었습니다.",
+                	icon: "success"
+                }).then(function(){
+                	location.href="/admin_post_Notice.mdo";
+                })
+            }else{
+            	Swal.fire({
+            	}).then(function(){
+            		location.href="/admin_post_NoticeInsert.mdo?notice_seq"
+            	})
+            }
+        })
+    });
+});
 
 $().ready(function () {
     $(".noticedel").click(function () {
@@ -66,7 +102,16 @@ $().ready(function () {
                 	'',
                     '공지사항 목록으로 되돌아갑니다.'
                 )
+                
+                location.href="/admin_post_Notice.mdo";
             }
         })
     });
 });
+
+$(document).on("click", "#noticeInsert", function(){
+	console.log("hi");
+	console.log($(".note-editable").text());
+	$("#notice_content").val($(".note-editable").text());
+	console.log($("#notice_content").val());
+})

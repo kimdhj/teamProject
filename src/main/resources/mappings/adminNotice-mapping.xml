@@ -6,7 +6,28 @@
 		SELECT * FROM notice ORDER BY notice_seq desc
 	</select>
 	
-	<delete id="deletrNotice" parameterType="notice">
+	<insert id="insertNotice" parameterType="notice">
+		INSERT INTO notice(notice_seq, notice_title, notice_writer, notice_date, notice_content, notice_file, notice_location, notice_passwd, notice_cnt) 
+		VALUES (null, #{notice_title}, #{notice_writer}, default, #{notice_content}, #{notice_fileName}, #{notice_location}, #{notice_passwd}, #{notice_cnt})
+	</insert>
+	
+	<select id="selectSeq" resultType="notice" parameterType="int">
+		SELECT * FROM notice WHERE notice_seq = #{notice_seq}
+	</select>
+	
+	<select id="getNotice" resultType="notice" parameterType="notice">
+		SELECT * FROM notice WHERE notice_seq = #{notice_seq}
+	</select>
+	
+	<delete id="deleteNotice" parameterType="notice">
 		DELETE FROM notice WHERE notice_seq = #{notice_seq}
 	</delete>
+	
+	<update id="updateNotice" parameterType="notice">
+		UPDATE notice SET notice_title=#{notice_title}, notice_file=#{notice_fileName}, notice_content=#{notice_content}, notice_location=#{notice_location} WHERE notice_seq=#{notice_seq}
+	</update>
+	
+	<select id="checkPW" resultType="int" parameterType="notice">
+		SELECT COUNT(*) FROM notice WHERE notice_seq = #{notice_seq} AND notice_passwd = #{notice_passwd}
+	</select>
 </mapper>
