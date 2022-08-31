@@ -64,13 +64,12 @@
 						<button id="add_btn"
 							class="btn bg-blue text-white rounded-pill col">검색</button>
 						&nbsp;&nbsp;
-						<button id="add_btn"
-							class="btn bg-blue text-white rounded-pill col">추가</button>
+						<button id="add_btn" class="btn bg-blue text-white rounded-pill col" onclick="location.href='/admin_post_NoticeInsert.jsp'">추가</button>
 					</div>
 
 				</div>
 				<div class="row d-flex m-1" id="table_box">
-					<table class="table " id="table">
+					<table class="table" id="table">
 						<thead>
 							<tr>
 								<th><input
@@ -91,7 +90,11 @@
 									<p>${notice.notice_seq }</p>
 								</td>
 								<td>
-									<p class="rowColumn">${notice.notice_title }</p>
+									<p class="rowColumn">
+									<a href="/admin_post_NoticeDetail.mdo?notice_seq=${notice.notice_seq}">
+									${notice.notice_title }
+									</a>
+									</p>
 								</td>
 								<td>
 									<p class="selectColumn">${notice.notice_writer }</p>
@@ -102,7 +105,7 @@
 									</p>
 								</td>
 								<td>
-									<button class="btn btn-danger rounded-pill del" onclick="location.href='deleteNotice.do?notice_seq=${notice.notice_seq}'">삭제</button>
+									<button class="btn btn-danger rounded-pill del" onclick="del(${notice.notice_seq})">삭제</button>
 								</td>
 							</tr>
 							</c:forEach>
@@ -117,6 +120,8 @@
 <!-- 여기서부터 JS 추가 -->
 <script src="./datepicker/js/datepicker.js"></script>
 <script src="./datepicker/js/datepicker.ko.js"></script>
+<!-- 알림창 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="/js/admin_post_Notice.js"></script>
 
 </body>
