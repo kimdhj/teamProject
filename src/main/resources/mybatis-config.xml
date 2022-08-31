@@ -6,14 +6,11 @@
 
 	<!-- Mybatis에서 테이블의 언더바(_) 컬럼을 카멜형식으로 변환설정 -->
 	<!-- 전통적인 데이터베이스 칼럼명 형태인 A_COLUMN을 CamelCase 형태의 자바 프로퍼티명 형태인 aColumn으로 자동으로 매핑하도록 한다. -->
-
-	<!-- 전통적인 데이터베이스 칼럼명 형태인 A_COLUMN을 CamelCase 형태의 자바 프로퍼티명 형태인 aColumn으로 
-		자동으로 매핑하도록 한다. -->
-	<settings> <setting name="mapUnderscoreToCamelCase" value="true" /> 
-		</settings>
-
-
-
+	<!-- 
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+	</settings>
+	 -->
 	<typeAliases>
 		<!-- <typeAlias alias="myboard" type="tommy.spring.web.board.BoardVO" /> -->
 		<typeAlias type="com.romance.socket.chatVO" alias="chat" />
@@ -32,26 +29,14 @@
 			alias="adminUserVO" />
 		<typeAlias type="com.romance.user.event.EventVO" alias="event_event" />
 		<typeAlias type="com.romance.socket.API" alias="API" />
-
-
 	</typeAliases>
 	<mappers>
 		<!-- <mapper resource="mappings/board-mapping.xml" /> -->
 		<mapper resource="mappings/ajax-mapping.xml" />
-		<mapper resource="mappings/adminNotice-mapping.xml" />
+		<mapper resource="mappings/adminNotice-mapping.xml"/>
 		<mapper resource="mappings/category-mapping.xml" />
-
-<!-- 		<mapper resource="mappings/uAdmin-mapping.xml" /> -->
-
+		<mapper resource="mappings/navcategory-mapping.xml" /> 
 		<mapper resource="mappings/event-mapping.xml" />
-		<mapper resource="mappings/navcategory-mapping.xml" />
 		<mapper resource="mappings/adminuser-mapping.xml" />
-		<mapper resource="mappings/navcategory-mapping.xml" />
-		<mapper resource="mappings/adminuser-mapping.xml" />
-		<mapper resource="mappings/event-mapping.xml" />
-		<mapper resource="mappings/event-mapping.xml" />
-		<mapper resource="mappings/navcategory-mapping.xml" />
-		<mapper resource="mappings/adminuser-mapping.xml" />
-
 	</mappers>
 </configuration>

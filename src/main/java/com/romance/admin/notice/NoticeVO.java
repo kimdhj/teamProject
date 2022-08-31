@@ -3,6 +3,7 @@ package com.romance.admin.notice;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 public class NoticeVO {
 	private int notice_seq;
@@ -11,11 +12,18 @@ public class NoticeVO {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date notice_date;
 	private String notice_content;
-	private String notice_file;
+	private MultipartFile notice_file;
+	private String notice_fileName;
 	private String notice_location;
 	private String notice_passwd;
 	private int notice_cnt;
 	
+	public String getNotice_fileName() {
+		return notice_fileName;
+	}
+	public void setNotice_fileName(String notice_fileName) {
+		this.notice_fileName = notice_fileName;
+	}
 	public int getNotice_seq() {
 		return notice_seq;
 	}
@@ -46,10 +54,10 @@ public class NoticeVO {
 	public void setNotice_content(String notice_content) {
 		this.notice_content = notice_content;
 	}
-	public String getNotice_file() {
+	public MultipartFile getNotice_file() {
 		return notice_file;
 	}
-	public void setNotice_file(String notice_file) {
+	public void setNotice_file(MultipartFile notice_file) {
 		this.notice_file = notice_file;
 	}
 	public String getNotice_location() {

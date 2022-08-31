@@ -57,15 +57,45 @@ $(document)
 					// 상단 모든 카테고리 코드
 					// 클릭해서 삭제
 					$(".del").click(function(e) {
-
-						$(this).parents('tr').remove();
+				        Swal.fire({
+				            text: "해당 공지사항을 삭제하시겠습니까?",
+				            icon: 'warning',
+				            showCancelButton: true,
+				            confirmButtonColor: '#3085d6',
+				            cancelButtonColor: '#d33',
+				            confirmButtonText: '예',
+				            cancelButtonText: '아니오'
+				        }).then((result) => {
+				            if (result.isConfirmed) {
+				                Swal.fire(
+				                	'',
+				                    '삭제되었습니다.'
+				                )
+				                $(this).parents('tr').remove();
+				            }
+				        })
 					})
 					// 선택 된 요소 삭제
 					$(".seldel").click(function(e) {
-
-						console.log($('.delche:checked'))
-						$('.delche:checked').parents('tr').remove();
-						$('.allche').removeAttr('checked');
+						Swal.fire({
+				            text: "선택한 공지사항을 삭제하시겠습니까?",
+				            icon: 'warning',
+				            showCancelButton: true,
+				            confirmButtonColor: '#3085d6',
+				            cancelButtonColor: '#d33',
+				            confirmButtonText: '예',
+				            cancelButtonText: '아니오'
+				        }).then((result) => {
+				            if (result.isConfirmed) {
+				                Swal.fire(
+				                	'',
+				                    '삭제되었습니다.'
+				                )
+				                console.log($('.delche:checked'))
+								$('.delche:checked').parents('tr').remove();
+				            }
+				        })
+				        $('.allche').removeAttr('checked'); // 체크된 부분 제거
 					});
 					// 해제시 전체 클릭 비활성화+모두 클릭되면 전체 클릭 활성화
 					$('.delche:checked')
@@ -205,3 +235,24 @@ function datePickerSet(sDate, eDate, flag) {
 			return false;
 	}
 }
+
+/*$().ready(function () {
+    $(".del").click(function () {
+        Swal.fire({
+            text: "해당 공지사항을 삭제하시겠습니까?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '예',
+            cancelButtonText: '아니오'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                	'',
+                    '삭제되었습니다.'
+                )
+            }
+        })
+    });
+});*/
