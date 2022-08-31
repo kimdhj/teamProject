@@ -11,5 +11,7 @@ public interface EventService {
 	List<EventVO> getEventListTop(EventVO vo);
 	List<EventVO> getEventListBottom(EventVO vo);	
 	void countCnt(int seq);
+	void topEvent(List<String> event_seq);
+	void ajaxDel(int del);
 	
 }

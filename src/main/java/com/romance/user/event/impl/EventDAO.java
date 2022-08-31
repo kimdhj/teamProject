@@ -46,5 +46,15 @@ public class EventDAO {
 	public void countCnt(int seq) {
 		sqlSessionTemplate.update("EventDAO.countCnt", seq);
 	}
-
+	
+	public void bottomEvent() {
+		sqlSessionTemplate.update("EventDAO.bottomEvent");
+	}
+	public void topEvent(Integer sendReq) {
+		sqlSessionTemplate.update("EventDAO.topEvent", sendReq);
+	}
+	
+	public void ajaxDel(int del) {
+		sqlSessionTemplate.delete("EventDAO.ajaxDel", del);
+	}
 }
