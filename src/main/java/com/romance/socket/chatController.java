@@ -30,10 +30,10 @@ public class chatController {
 		return vo;
 		
 	}
-	@RequestMapping("/delet.do")
+	@RequestMapping("/delete.do")
 	@ResponseBody
 	public chatVO deletename(chatVO vo){
-		System.out.println(vo);
+		System.out.println(vo+"del");
 		ser.deletename(vo);
 		return vo;
 	}
@@ -74,7 +74,7 @@ public class chatController {
 		model.addAttribute("userid", user);
 		return "admin_realchat_user";
 	}
-	@GetMapping("/chatAdmin.do")
+	@GetMapping("/chatAdmin.mdo")
 	public String chatAdmin(String user,Model model) {
 		
 		
@@ -82,13 +82,10 @@ public class chatController {
 		model.addAttribute("userid", user);
 		return "admin_realchat_admin";
 	}
-	@GetMapping("/chatList.do")
-	public String chatList(String user,Model model) {
-		
-		
-		
-		model.addAttribute("userid", user);
-		return "/socketTest/chatList";
+	@GetMapping("/chatList.mdo")
+	public String chatList() {
+
+		return "admin_realChat";
 	}
 
 }

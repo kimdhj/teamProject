@@ -39,7 +39,7 @@ public class EchoHandler extends TextWebSocketHandler {
         chatVO vo=new chatVO();
         vo.setReal_chat_session(session.getId());
         String[] arr=message.getPayload().split(":");
-        vo.setReal_chat_name(arr[0]);
+        vo.setRealchatname(arr[0]);
         vo.setReal_chat_content(arr[1]);
         ser.insertchat(vo);
         //모든 유저에게 메세지 출력

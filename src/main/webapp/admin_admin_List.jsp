@@ -31,8 +31,6 @@
 					aria-label=".form-select-lg example">
 					<option selected>이름</option>
 					<option value="1">아이디</option>
-					<option value="2">Two</option>
-					<option value="3">Three</option>
 				</select>
 			</div>
 			<div class="col-md-2">

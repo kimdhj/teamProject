@@ -19,14 +19,14 @@ function init() {
 		method: "GET",
 		dataType: "json",
 		success: function(data) {
-			console.log(data);
+		console.log(data);
 			$("#contents").html("");
 			var str = "";
 			for (let co = 0; co < data.length; co++) {
-				if (data[co].real_chat_name == userid) {
+				if (data[co].realchatname == userid) {
 					str += `<div class="chat row  m-0">
             <div class="row">
-              <div class="send row col-auto">${data[co].real_chat_name}</div>
+              <div class="send row col-auto">${data[co].realchatname}</div>
             </div>
             <div class="row">
               <div class="content row col-auto">${data[co].real_chat_content}</div>

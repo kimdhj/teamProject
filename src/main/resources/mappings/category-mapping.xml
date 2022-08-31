@@ -31,7 +31,7 @@
 	<insert parameterType="cateSearchVO" id="cateInsert">
 		insert into category(category_num,category_name) values(#{num},#{name})
 	</insert>
-	<delete id="categorydel" parameterType="cateSearchVO">
+	<delete id="categorydel"  parameterType="cateSearchVO">
 		delete from category where category_num=#{num}
 	</delete>
 	<update parameterType="categoryVO" id="categoryMod">
