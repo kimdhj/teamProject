@@ -1,0 +1,54 @@
+@charset "UTF-8";
+
+.info_hr {
+	border: 1px solid black;
+	border-bottom: 0px;
+	border-right: 0px;
+	border-left: 0px;
+	margin-top: 2%;
+	margin-bottom: 2%;
+}
+
+#info_name {
+	font-weight: bolder;
+}
+
+#info_location {
+	font-size: 2rem;
+	font-weight: bolder;
+	text-align: center;
+	margin-top: 2%;
+	margin-bottom: 2%;
+}
+
+#info_description2 {
+	margin-top: 10%;
+	margin-bottom: 10%;
+}
+
+#info_description3 {
+	margin-top: 4%;
+	margin-left: 32%;
+	font-weight: bold;
+}
+
+#img {
+	margin-top: 18%;
+	filter: alpha;
+	margin-bottom: 2%;
+	opacity: 0.85;
+}
+
+#img:hover {
+	opacity: 1.0;
+	filter: alpha;
+}
+
+#map {
+	margin-bottom: 8%;
+}
+
+#info_sub1, #info_sub2, #info_sub3  {
+	margin-top: 1%;
+	margin-left: 10%;
+}

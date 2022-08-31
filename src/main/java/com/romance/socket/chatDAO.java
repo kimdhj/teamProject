@@ -62,6 +62,9 @@ public class chatDAO implements chatDAOInter {
 		// TODO Auto-generated method stub
 		return myba.selectOne("ChatDAO.selectcontent",vo);
 	}
+	public void insertAPI(API vo) {
+		myba.insert("ChatDAO.API",vo);
+	}
 
 	
 }
