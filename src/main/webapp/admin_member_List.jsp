@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,32 +67,21 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td scope="row">112344</td>
-						<td>홍길동</td>
-						<td>tommy</td>
-						<td>구독</td>
-						<td>2023-01-23</td>
-						<td>010-2313-1323</td>
-						<td>tommy@hanmail.net</td>
-						<td>233,312,123</td>
-						<td>32</td>
-						<td><button type="button"
-								class="btn btn-light btn-outline-dark">조회</button></td>
-					</tr>
-					<tr>
-						<td scope="row">412544</td>
-						<td>강감찬</td>
-						<td>tommy</td>
-						<td>블랙</td>
-						<td>1023-01-23</td>
-						<td>010-9313-1323</td>
-						<td>tommy@hanmail.net</td>
-						<td>233,312,123</td>
-						<td>32</td>
-						<td><button type="button"
-								class="btn btn-light btn-outline-dark">조회</button></td>
-					</tr>
+					<c:forEach var="adminAccount" items="${adminUserList }">
+						<tr>
+							<td scope="row">112344</td>
+							<td>${adminAccount.user_name }</td>
+							<td>${adminAccount.user_id }</td>
+							<td>${adminAccount.user_sub }</td>
+							<td>${adminAccount.user_birth }</td>
+							<td>${adminAccount.user_phone }</td>
+							<td>${adminAccount.user_email }</td>
+							<td>${adminAccount.user_point }</td>
+							<td>32</td>
+							<td><button type="button"
+									class="btn btn-light btn-outline-dark">조회</button></td>
+						</tr>
+					</c:forEach>
 				</tbody>
 			</table>
 		</div>
