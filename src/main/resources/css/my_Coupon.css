@@ -1,0 +1,66 @@
+#main_wrapper * {
+  font-size: 1.5vw;
+  font-weight: bolder;
+
+  margin: 0px;
+}
+/* 테이블 */
+#under_menu {
+  margin-top: 2%;
+}
+#under_topText {
+  display: flex;
+
+  align-items: center;
+}
+#table_title {
+  background-color: rgb(224, 224, 224);
+  border-radius: 20px 20px 0px 0px;
+  margin-top: 2%;
+}
+#table_title * {
+  padding: 1%;
+}
+#table_title > *,
+#table_item > *,
+#table_bottom > * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#table_item {
+  margin: 1% 0%;
+}
+#table_bottom {
+  background-color: rgb(224, 224, 224);
+  border-radius: 0px 0px 20px 20px;
+  margin-bottom: 2%;
+}
+#table_bottom * {
+  padding: 1px;
+  background-color: transparent;
+  margin: 0px;
+}
+#main_wrapper {
+  position: relative;
+}
+.bg-secondary {
+  background-color: rgb(127, 127, 127) !important;
+  border-radius: 20px 20px 0px 0px;
+}
+.bg-body {
+  background-color: rgb(224, 224, 224) !important;
+}
+#popup_textTitle {
+  display: flex;
+}
+#body_popUp {
+  border-radius: 0px 0px 20px 20px !important;
+}
+/* 팝업 */
+#coupon_popUp {
+  position: absolute;
+  top: 9%;
+  left: 0;
+  z-index: 1;
+}

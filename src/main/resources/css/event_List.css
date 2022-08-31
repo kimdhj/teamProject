@@ -1,0 +1,46 @@
+#imgsize > a > img {
+  height: 80%;
+  width: 100%;
+}
+#main_wrapper {
+  margin-top: 10%;
+}
+#bottomRow {
+  border-bottom: 2px solid #696363;
+  padding-bottom: 20px;
+}
+#dmz {
+  border-bottom: 2px solid #696363;
+  padding-bottom: 20px;
+}
+.event_con li {
+  height: 124px;
+  margin: 10px 0;
+  border-bottom: 1px solid #f1f1f1;
+  list-style: none;
+}
+.event_con img {
+  margin: 0 10px 0 0;
+  border: 1px solid #d9d9d9;
+}
+#southImg {
+  height: 109px;
+  width: 109px;
+}
+#southFont {
+  font-size: 0.8em;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+#ec-jigsaw-area-payment {
+  width: 100%;
+}
+#goMiddle {
+  display: flex;
+  justify-content: center;
+}
+#goMiddle > nav {
+  width: auto;
+}
+.container > * {
+  font-size: 1vw;
+}

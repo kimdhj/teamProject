@@ -1,0 +1,151 @@
+@charset "UTF-8";
+
+#purchaseDetail_name {
+	margin-top: 4%
+}
+
+.purchaseDetail_name2 {
+	margin-top: 5%;
+}
+
+.purchaseDetail_name3 {
+	margin-top: 5%;
+}
+
+#purchaseDetail_name4 {
+	margin-top: 5%;
+}
+
+#purchaseDetail_box {
+	border: 1px solid black;
+	border-left: 0px;
+	border-right: 0px;
+	margin: auto;
+	padding: 1%;
+}
+
+.purchaseDetail_productinfo>* {
+	margin-top: 3%
+}
+
+.purchaseDetail_productinfo>*>* {
+	text-align: center;
+}
+
+.purchaseDetail_order {
+	border: 1px solid black;
+	border-top: 0px;
+	border-right: 0px;
+	border-bottom: 0px;
+	background-color: rgb(247, 247, 247);
+	min-height: 15vh;
+	margin-right: 12px;
+}
+
+.purchaseDetail_recipientInfo {
+	background-color: rgb(238, 238, 238);
+	padding-left: 1%;
+	font-weight: bold;
+	padding-bottom: 0.5%;
+	padding-top: 0.5%;
+	border-top: 0.5px solid white;
+	border-bottom: 1px solid black;
+}
+
+#purchaseDetail_box {
+	font-weight: bold;
+	background-color: rgb(247, 247, 247);
+}
+
+.purchaseDetail_box2 {
+	margin-bottom: 2%;
+}
+
+.purchaseDetail_box3{
+	border-bottom: 1px solid black;
+}
+
+.purchaseDetail_content1 {
+	font-weight: normal;
+}
+
+.purcahseDetail_content2>* {
+	margin: auto;
+	text-align: center;
+	font-weight: bold;
+}
+
+.purcahseDetail_content3>* {
+	margin: auto;
+	text-align: center;
+}
+
+.purchaseDetail_font {
+	font-size: 0.7vw;
+}
+
+.purchaseDetail_font>* {
+	font-size: 0.7vw;
+}
+
+.purchaseDetial_font1 {
+	font-size: x-small;
+}
+
+.purchaseDetail_font2>* {
+	font-weight: bold;
+}
+
+.purchaseDetail_font3 {
+	font-size: xx-small;
+}
+
+.purchaseDetail_font4 {
+	font-size: 0.7vw;
+	font-weight: bold;
+}
+
+.purchaseDetail_font5 {
+	font-size: 0.7vw;
+	text-align: left;
+}
+
+.purchaseDetail_font6 {
+	padding-left: 1%;
+	padding-bottom: 0.5%;
+	padding-top: 0.5%;
+	font-size: 0.8vw;
+	border-bottom: 1px solid black;
+}
+
+.purchaseDetail_hr {
+	border: 1px solid black;
+	border-top: 0px;
+}
+
+.purchaseDetail_orderer {
+	border: 1px solid black;
+	border-bottom: 0.5px solid white;
+	border-right: 0px;
+	border-top: 0px;
+	font-size : 0.8vw;
+	font-weight: bold;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: rgb(247, 247, 247);
+	font-size: 0.8vw;
+}
+
+.purchaseDetail_orderer2 {
+	border: 1px solid black;
+	border-right: 0px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: small;
+}
+
+#purchaseDetail_box3{
+	border-bottom: 1px solid black;
+}
