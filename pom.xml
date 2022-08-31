@@ -15,11 +15,8 @@
 		<org.slf4j-version>1.7.36</org.slf4j-version>
 	</properties>
 	<dependencies>
-	<!--rudfh  -->
-		<dependency>
-			<groupId>org.apache.tomcat.embed</groupId>
-			<artifactId>tomcat-embed-jasper</artifactId>
-		</dependency>
+
+
 		<!-- aws 파일 업로드 -->
 		<dependency>
 			<groupId>com.amazonaws</groupId>
