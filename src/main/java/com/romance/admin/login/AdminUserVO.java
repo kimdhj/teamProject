@@ -27,5 +27,7 @@ public class AdminUserVO {
 	private int user_sub_pay_before;
 	private int user_enabled;
 	private String user_coupon_cnt;
+	private String searchCondition;
+	private String searchKeyword;
 	
 }
