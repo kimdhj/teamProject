@@ -13,5 +13,6 @@ public interface EventService {
 	void countCnt(int seq);
 	void topEvent(List<String> event_seq);
 	void ajaxDel(int del);
+	int topCheck(EventVO vo);
 	
 }

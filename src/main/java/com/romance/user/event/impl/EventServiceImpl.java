@@ -20,6 +20,11 @@ public class EventServiceImpl implements EventService {
 	public void insertEvent(EventVO vo) {
 		EventDAO.insertEvent(vo);
 	}
+	
+	@Override
+	public int topCheck(EventVO vo) {
+		return EventDAO.topCheck(vo);
+	}
 
 	@Override
 	public void updateEvent(EventVO vo) {

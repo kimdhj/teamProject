@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -166,7 +169,16 @@
                   </tr>
                   <tr>
 					<td>상단노출</td>
-					<td><input type="checkbox" name="event_top_event"  id="event_top_event"/></td>
+					<td>
+					<c:choose>
+					<c:when test="${top_check<4 }">
+					<input type="checkbox" name="event_top_event"  id="event_top_event"/>
+					</c:when>
+					<c:when test="${top_check>3 }">
+					<input type="checkbox" name="event_top_event"  id="event_top_event" disabled/>
+					</c:when>
+					</c:choose>
+					</td>
 				</tr>
 				<tr>
 					<td>항시적용</td>
