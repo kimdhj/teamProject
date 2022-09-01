@@ -19,8 +19,8 @@ import com.amazonaws.services.s3.model.PutObjectRequest;
 
 public class AwsS3 {
 	private AmazonS3 s3Client;
-	final private String accessKey="AKIAY4WZPUWJVOLP2KUL";
-	final private String secretKey="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";
+	final private String accessKey="AKIAY4WZPUWJX4JD4X4E";
+	final private String secretKey="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";
 	
 	private Regions clientRegion = Regions.AP_NORTHEAST_2;
 	private String bucket = "doublejo";
