@@ -46,7 +46,11 @@ public class EventController {
 //        conditionMap.put("내용", "CONTENT");
 //        return conditionMap;
 //    }
-	
+	@RequestMapping("moveInsert.mdo")
+	public String moveInsert() {
+		return "admin_marketing_EventInsert";
+	}
+    
 	@RequestMapping(value = "insertEvent.mdo", method = RequestMethod.POST)
 	public String insertEvent(@RequestParam(name="uploadFile1") MultipartFile uploadFile1, @RequestParam(name="uploadFile2") MultipartFile uploadFile2, @RequestParam(name="uploadFile3") MultipartFile uploadFile3, @RequestParam(name="uploadFile4") MultipartFile uploadFile4, @RequestParam(name="uploadThumbnail") MultipartFile uploadThumbnail, EventVO vo) throws IOException {
 		System.out.println("글 등록 처리");
