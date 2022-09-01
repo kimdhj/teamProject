@@ -1,0 +1,177 @@
+
+.notice {
+  padding: 15px 20px;
+  position: fixed;
+  bottom: -70px;
+  transition: transform 0.3s ease-in-out;
+  background:rgba(0,0,0,.3);
+  border-radius: 10px 10px 0 0;
+  color: #fff;
+}
+
+.notice.show {
+  transform: translateY(-50px);
+}
+.btn {
+  border: none;
+  text-align: right;
+  cursor: pointer;
+  text-transform: uppercase;
+  outline: none;
+  overflow: hidden;
+  position: relative;
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  background-color: rgba(237, 177, 46, 0.847);
+  padding: 17px 60px;
+  margin: 25px ;
+  box-shadow: 0 5px 15px rgba(228, 20, 20, 0.2);
+}
+
+.btn span {
+  position: relative; 
+  z-index: 1;
+}
+
+.btn:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 490%;
+  width: 140%;
+  background: #e36b38;
+  -webkit-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
+  -webkit-transform: translateX(-98%) translateY(-25%) rotate(45deg);
+  transform: translateX(-98%) translateY(-25%) rotate(45deg);
+}
+
+.btn:hover:after {
+  -webkit-transform: translateX(-9%) translateY(-25%) rotate(45deg);
+  transform: translateX(-9%) translateY(-25%) rotate(45deg);
+}
+
+.link {
+  font-size: 20px;
+  margin-top: 30px;
+}
+
+.link a {
+  color: #000;
+  font-size: 25px; 
+}
+
+.wrap {
+  border-radius: 10px;
+  box-shadow: -5px -5px 10px rgb(239, 207, 138), 5px 5px 10px #babebc;
+  position: relative;
+  width: 600px;
+  min-height: 480px;
+  overflow: hidden;
+  margin: auto;
+}
+form {
+  background: #efeddb64;
+  display: flex;
+  flex-direction: column;
+  padding: 0 40px;
+  height: 100%;
+  justify-content: left;
+  align-items: left;
+}
+.u_name .u_id .pwd .repwd {
+  background: rgba(240, 201, 201, 0.687);
+  padding: 15px;
+  margin: 8px 0;
+  width: 80%;
+  border: 0;
+  outline: none;
+  border-radius: 25px;
+  box-shadow: inset 7px 2px 10px #eba290, inset -5px -5px 12px rgb(230, 144, 144);
+}
+button {
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 10px 10px;
+  margin: 5px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 80ms ease-in;
+}
+
+
+form h1 {
+  font-weight: bold;
+  margin: 0;
+  color: #000;
+}
+
+p {
+  font-size: 15px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  margin: 5px px;
+}
+span {
+  font-size: 12px;
+  color: #000;
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+}
+
+form {
+  width: 600px;
+  margin: auto;
+}
+
+form legend {
+  font-size: 35px;
+  text-align: center;
+}
+
+form p span {
+  font-size: 13px;
+  color: rgb(0, 60, 255);
+  font-style: italic;
+}
+
+img {
+  width: 200px;
+  height: 80px;
+  display: block;
+  margin: 25px auto 1px;
+}
+
+#bir_wrap {
+  display: table;
+  width: 10%;
+}
+
+#bir_yy {
+  display: table-cell;
+  width: 10%;
+  vertical-align: left;
+
+}
+
+#bir_mm {
+  display: table-cell;
+  width: 100px;
+  vertical-align: left center;
+}
+
+#bir_dd {
+  display: table-cell;
+  width: 10px;
+}
+
+#bir_mm,
+#bir_dd {
+  padding-left: 10px;
+}
