@@ -23,7 +23,7 @@ public class AwsS3 {
 	final private String secretKey="dEF04b1B6eQiJEnLt2+fp9jj2AkEVtBdeSLpeVl0";
 	
 	private Regions clientRegion = Regions.AP_NORTHEAST_2;
-	private String bucket = "testmanbuc";
+	private String bucket = "doublejo";
 
 	private AwsS3() {
 		createS3Client();

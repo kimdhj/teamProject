@@ -94,10 +94,12 @@
         <div class="row d-flex">
           <div class="col-8">※ 3번째 항목까지는 상단에 크게 위치하구 4번째 항목부터는 하단에 간략하게 출력됩니다.</div>
           <div class="col-2">
-            <button type="submit" class="btn btn-primary" id="listChange">수정</button>
+            <a href="/moveInsert.mdo">
+            <button type="button" class="btn btn-light">추가</button>
+            </a>
           </div>
           <div class="col-2">
-            <button type="button" class="btn btn-light">취소</button>
+            <button type="submit" class="btn btn-primary" id="listChange">수정</button>
           </div>
         </div>
       </div>
