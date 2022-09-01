@@ -252,9 +252,6 @@ $(document).ready(function() {
 
 	//화면 구성
 	function makeDisplay(e) {
-
-
-
 		if ($(e.target).text() == "<") {
 			$("#all_box #pageche").val(Number($("#all_box #pageche").val()) - 1);
 		} else if ($(e.target).text() == ">") {
@@ -265,6 +262,7 @@ $(document).ready(function() {
 
 		make();
 	}
+	
 	//내용변경
 	function make() {
 		$.ajax({
