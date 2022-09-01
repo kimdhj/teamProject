@@ -61,7 +61,7 @@ $().ready(function () {
         		// ajax 로 사용해서 비밀번호 비교
         		$.ajax({
         			type: "post", // 전송방식
-        			url: "/amin_post_NoticeUpdate_checkPW.mdo", // 컨트롤러 사용할 때, 내가 보낼 데이터의 주소
+        			url: "/admin_post_NoticeUpdate_checkPW.mdo", // 컨트롤러 사용할 때, 내가 보낼 데이터의 주소
         			data: {"notice_passwd" : noticeUpdateForm.notice_passwd.value, "notice_seq" : noticeUpdateForm.notice_seq.value},
         			dataType: "text", // 데이터 타입
         			async: false,
