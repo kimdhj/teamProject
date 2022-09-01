@@ -1,4 +1,7 @@
-$(document).on("click","#listChange",function(){
+
+
+// ajax 수정버튼
+$(document).on("click","#listChange, #remove",function(){
 	var i = $(".listNum");
 	console.log($(numnum).val());
 	let liist = [];
@@ -17,16 +20,98 @@ $(document).on("click","#listChange",function(){
 $.ajax({
     url : "/ajax_list.mdo",
     type : 'POST',
+	async : false,
     data : {
        event_seq : liist
     },
 	success: function(data) {
 		console.log(data);
+			$.ajax({
+    				url : "/ajax_ref1.mdo",
+    				type : 'POST',
+					async : false,
+					success: function(data) {
+						let str="";
+						data.map((top,ind)=>{
+						console.log(Date(top.event_end_date));
+						str+=`<tr class="toptop">
+                <td>
+                  <div class="rowColumn" contenteditable="false" data-default="${top.event_title }">${top.event_title }</div>
+                </td>
+                <td>
+                  <div class="rowColumn" contenteditable="false" data-default="${top.event_end_date }">${top.event_end_date }</div>
+                </td>
+                <td>
+                  <div class="rowColumn" contenteditable="false" data-default="${top.event_target }">${top.event_target }</div>
+                </td>
+                <td>
+                  <a href="/getEvent.mdo?event_seq=${top.event_seq }">
+                 <button onclick="detailUpdate()">수정</button>
+                  </a>
+                </td>
+                <td>
+                  <button onclick="tableDelete(this)" id="remove">삭제</button>
+                  <input type="hidden" class="listNum" value="${top.event_seq }" />
+                </td>
+                <td>
+                  <button type="button" onclick="moveUp(this)">위로</button>
+                  <button type="button" onclick="moveDown(this)">아래로</button>
+                </td>
+              </tr>`;
+						});
+						console.log(str);
+						$("tbody").html("");
+						$("tbody").append(str);
+					},
+					error: function(jqXHR, textStatus, errorThrown) {
+						console.log('error while post');
+						}
+					});
+					$.ajax({
+    				url : "/ajax_ref2.mdo",
+    				type : 'POST',
+					async : false,
+					success: function(data) {
+						let str="";
+						data.map((bottom,ind)=>{
+						str+=`<tr class="botbot">
+                <td>
+                  <div class="rowColumn" contenteditable="false" data-default="${bottom.event_title }">${bottom.event_title }</div>
+                </td>
+                <td>
+                  <div class="rowColumn" contenteditable="false" data-default="${bottom.event_end_date }">${bottom.event_end_date }</div>
+                </td>
+                <td>
+                  <div class="rowColumn" contenteditable="false" data-default="${bottom.event_target }">${bottom.event_target }</div>
+                </td>
+                <td>
+                  <a href="/getEvent.mdo?event_seq=${bottom.event_seq }">
+                 <button onclick="detailUpdate()">수정</button>
+                  </a>
+                </td>
+                <td>
+                  <button onclick="tableDelete(this)" id="remove">삭제</button>
+                  <input type="hidden" class="listNum" value="${bottom.event_seq }" />
+                </td>
+                <td>
+                  <button type="button" onclick="moveUp(this)">위로</button>
+                  <button type="button" onclick="moveDown(this)">아래로</button>
+                </td>
+              </tr>`;
+						});
+						console.log(str);
+						$("tbody").append(str);
+					},
+					error: function(jqXHR, textStatus, errorThrown) {
+						console.log('error while post');
+						}
+					});
 	},
 	error: function(jqXHR, textStatus, errorThrown) {
 		console.log('error while post');
 		}
 	});
+	
 });
 
 function detailUpdate() {

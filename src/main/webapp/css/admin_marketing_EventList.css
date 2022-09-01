@@ -69,3 +69,14 @@ table {
 #main_wrapper{
 	margin-top:5%;
 }
+.toptop{
+	background-color: rgb(230, 230, 255);
+}
+.botbot{
+	background-color: rgb(244, 244, 255);	
+}
+button{
+	background-color: #BCC7DC;	
+	color: #565255;
+	line-height: initial;
+}

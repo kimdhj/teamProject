@@ -1,3 +1,57 @@
+//파일 삭제 버튼
+$("#delFile1").on("click", function () {
+	var uFile = $("#uploadFile1").val("");
+});
+$("#delFile2").on("click", function () {
+	var uFile = $("#uploadFile2").val("");
+});
+$("#delFile3").on("click", function () {
+	var uFile = $("#uploadFile3").val("");
+});
+$("#delFile4").on("click", function () {
+	var uFile = $("#uploadFile4").val("");
+});
+$("#delFile5").on("click", function () {
+	var uFile = $("#uploadThumbnail").val("");
+});
+
+
+// 이벤트 유효성 체크
+function event_writeCheck() {
+	var event_title = document.getElementById("event_title");
+	var event_target = document.getElementById("event_target");
+	var event_start_date = document.getElementById("event_start_date");
+	var event_content = document.getElementById("event_content");
+	var uploadThumbnail = document.getElementById("uploadThumbnail");
+	
+	if(event_title.value == "") {
+	alert("제목을 입력하세요!");
+	event_title.focus();
+	return false;
+	};
+	if(event_target.value == "") {
+	alert("대상을 입력하세요!");
+	event_target.focus();
+	return false;
+	};
+	if(event_start_date.value == "") {
+	alert("시작날짜를 입력하세요!");
+	event_title.focus();
+	return false;
+	};
+	if(event_content.value == "") {
+	alert("내용을 입력하세요!");
+	event_content.focus();
+	return false;
+	};
+	if(uploadThumbnail.value == "") {
+	alert("썸네일을 추가하세요!");
+	uploadThumbnail.focus();
+	return false;
+	};
+	document.upload.submit();
+};
+
 // 날짜 더하기
 $("#event_start_date").val(new Date());
 let date = new Date();
