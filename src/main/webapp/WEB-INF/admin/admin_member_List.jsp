@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,19 +27,45 @@
 	</div> -->
 	<div class="container">
 		<div class="d-flex flex-row">
-			<div class="col-md-2">
-				<select class="form-select form-select mb-3"
+			<div class="col-md-7">
+				<form >
+					<div class="d-flex flex-row">
+						<div class="col-md-4">
+							<select class="form-select form-select mb-3"
+								aria-label=".form-select-lg example" name="searchCondition">
+								<c:forEach items="${conditionMap }" var="option">
+									<option value="${option.value }">${option.key }</option>
+								</c:forEach>
+							</select>
+						</div>
+						<div class="col-md-6">
+							<input type="text" class="form-control" id=""
+								name="searchKeyword" placeholder="입력하세요">
+						</div>
+						<div class="col-md-2">
+							<button type="submit" class="btn btn-light btn-outline-dark">검색</button>
+						</div>
+					</div>
+				</form>
+				<!-- <select class="form-select form-select mb-3"
 					aria-label=".form-select-lg example">
 					<option selected>이름</option>
 					<option value="1">아이디</option>
-				</select>
+				</select> -->
+				<%-- <select class="form-select form-select mb-3"
+					aria-label=".form-select-lg example" name="searchCondition">
+					<c:forEach items="${conditionMap }" var="option">
+						<option value="${option.value }">${option.key }</option>
+					</c:forEach>
+				</select> --%>
 			</div>
-			<div class="col-md-2">
-				<input type="text" class="form-control" id="" placeholder="입력하세요">
+			<!-- <div class="col-md-2">
+				<input type="text" class="form-control" id="" name="searchKeyword"
+					placeholder="입력하세요">
 			</div>
 			<div class="col-md-1">
-				<button type="button" class="btn btn-light btn-outline-dark">검색</button>
-			</div>
+				<button type="submit" class="btn btn-light btn-outline-dark">검색</button>
+			</div> -->
 			<div class="col-md-5">
 				<div class="btn-group" role="group"
 					aria-label="Basic mixed styles example">
