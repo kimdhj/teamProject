@@ -171,10 +171,10 @@
 					<td>상단노출</td>
 					<td>
 					<c:choose>
-					<c:when test="${top_check<4 }">
+					<c:when test="${top_check lt 4 }">
 					<input type="checkbox" name="event_top_event"  id="event_top_event"/>
 					</c:when>
-					<c:when test="${top_check>3 }">
+					<c:when test="${top_check gt 3 }">
 					<input type="checkbox" name="event_top_event"  id="event_top_event" disabled/>
 					</c:when>
 					</c:choose>

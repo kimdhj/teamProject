@@ -23,6 +23,7 @@ public class EventServiceImpl implements EventService {
 	
 	@Override
 	public int topCheck(EventVO vo) {
+		System.out.println(EventDAO.topCheck(vo));
 		return EventDAO.topCheck(vo);
 	}
 
