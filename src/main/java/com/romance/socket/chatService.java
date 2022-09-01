@@ -64,4 +64,18 @@ public class chatService implements chatServiceInter {
 	public void insertAPI(API vo) {
 		dao.insertAPI(vo);
 	}
+
+	@Override
+	public void author() {
+		// TODO Auto-generated method stub
+		List<String> au=dao.author();
+		System.out.println(au);
+		for(int i=0;i<au.size();i++) {
+			System.out.println(au.get(i));
+			dao.authorinser(au.get(i));
+		}
+	}
+
+
+	
 }
