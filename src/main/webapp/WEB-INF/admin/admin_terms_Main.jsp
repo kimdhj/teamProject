@@ -6,44 +6,52 @@
 <jsp:include page="/WEB-INF/admin_commonjsp/admin_common_head.jsp"></jsp:include>
 <link href="/css/test.css" rel="stylesheet">
 <link href="/css/log.css" rel="stylesheet" />
+<link href="/css/admin_terms.css" rel="stylesheet" />
 </head>
 <body>
 	<jsp:include page="/WEB-INF/admin_commonjsp/admin_common_header.jsp"></jsp:include>
 	<!-- 여기서부터 화면 작성 시작 -->
 
 	<div class="container">
-		<div class="d-flex flex-row">
-			<table class="table">
-				<thead class="table-dark">
-					<tr>
-						<th scope="col">번호</th>
-						<th scope="col">약관제목</th>
-						<th scope="col">등록일</th>
-						<th scope="col">상태</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td scope="row">112344</td>
-						<td>홍길동이 대충 끄적거린 약관</td>
-						<td>2090-11-23</td>
-						<td>Y</td>
-					</tr>
-					<tr>
-						<td scope="row">112344</td>
-						<td>강감찬이 열심히 끄적거린 약관</td>
-						<td>2090-11-23</td>
-						<td>N</td>
-					</tr>
-					<tr>
-						<td scope="row">112344</td>
-						<td>고길동이 쓰다만</td>
-						<td>2090-11-23</td>
-						<td>N</td>
-					</tr>
-				</tbody>
-			</table>
+		<div class="terms_header">
+			<div class="card border-light">
+				<div class="card-header">
+					<div class="d-flex flex-row">
+						<div class="col-md-6" id="terms_header">약관 목록</div>
+						<div class="col-md-6">
+							<button type="button"
+								class="btn btn-light btn-outline-dark btn-sm"
+								style="float: right;">조항 추가</button>
+						</div>
+					</div>
+				</div>
+				<div class="card-body">
+					<div class="d-flex flex-row">
+						<table class="table">
+							<thead class="table-dark">
+								<tr>
+									<th width="70" scope="col">번호</th>
+									<th width="70" scope="col">조항</th>
+									<th width="150" scope="col">약관제목</th>
+									<th width="70" scope="col">등록일</th>
+									<th width="70" scope="col">상태</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td scope="row">1번</td>
+									<td>제 1조</td>
+									<td><a href="admin_terms_Read.jsp">목적</a></td>
+									<td>2090-11-23</td>
+									<td>Y</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
 		</div>
+
 		<div class="d-flex flex-row">
 			<div class="col-md-12">
 				<nav aria-label="Page navigation example">
@@ -65,7 +73,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 
 	<jsp:include page="/WEB-INF/admin_commonjsp/admin_common_footer.jsp"></jsp:include>
 	<!-- 여기서부터 JS 추가 -->
