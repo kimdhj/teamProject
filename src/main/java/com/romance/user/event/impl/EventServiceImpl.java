@@ -20,6 +20,11 @@ public class EventServiceImpl implements EventService {
 	public void insertEvent(EventVO vo) {
 		EventDAO.insertEvent(vo);
 	}
+	
+	@Override
+	public int topCheck(EventVO vo) {
+		return EventDAO.topCheck(vo);
+	}
 
 	@Override
 	public void updateEvent(EventVO vo) {
@@ -29,21 +34,21 @@ public class EventServiceImpl implements EventService {
 		String key3 = null;
 		String key4 = null;
 		String key5 = null;
-		if (!vo.getEvent_file1().isEmpty()) {
+		if (vo.getEvent_file1()!=null) {
 			key1 = vo.getEvent_file1();
-		key1 = key1.replace("https://testmanbuc.s3.ap-northeast-2.amazonaws.com/", ""); }
-		if (!vo.getEvent_file2().isEmpty()) {
+		key1 = key1.replace("https://testmanbuc.s3.ap-northeast-2.amazonaws.com", ""); }
+		if (vo.getEvent_file2()!=null) {
 			key2 = vo.getEvent_file2();
-		key2 = key2.replace("https://testmanbuc.s3.ap-northeast-2.amazonaws.com/", ""); }
-		if (!vo.getEvent_file3().isEmpty()) {
+		key2 = key2.replace("https://testmanbuc.s3.ap-northeast-2.amazonaws.com", ""); }
+		if (vo.getEvent_file3()!=null) {
 			key3 = vo.getEvent_file3();
-		key3 = key3.replace("https://testmanbuc.s3.ap-northeast-2.amazonaws.com/", ""); }
-		if (!vo.getEvent_file4().isEmpty()) {
+		key3 = key3.replace("https://testmanbuc.s3.ap-northeast-2.amazonaws.com", ""); }
+		if (vo.getEvent_file4()!=null) {
 			key4 = vo.getEvent_file4();
-		key4 = key4.replace("https://testmanbuc.s3.ap-northeast-2.amazonaws.com/", ""); }
-		if (!vo.getEvent_thumbnail().isEmpty()) {
+		key4 = key4.replace("https://testmanbuc.s3.ap-northeast-2.amazonaws.com", ""); }
+		if (vo.getEvent_thumbnail()!=null) {
 			key5 = vo.getEvent_thumbnail();
-		key5 = key5.replace("https://testmanbuc.s3.ap-northeast-2.amazonaws.com/", ""); }
+		key5 = key5.replace("https://testmanbuc.s3.ap-northeast-2.amazonaws.com", ""); }
 		EventDAO.updateEvent(vo);
 		if(key1!=null) {awsS3.delete(key1);}
 		if(key2!=null) {awsS3.delete(key2);}
@@ -93,21 +98,27 @@ public class EventServiceImpl implements EventService {
 	public void ajaxDel(int del) {
 		AwsS3 awsS3 = AwsS3.getInstance();
 		EventVO vo = EventDAO.selectFile(del);
-		String file1 = vo.getEvent_file1().replace("https://testmanbuc.s3.ap-northeast-2.amazonaws.com/", "");
-		String file2 = vo.getEvent_file2().replace("https://testmanbuc.s3.ap-northeast-2.amazonaws.com/", "");
-		String file3 = vo.getEvent_file3().replace("https://testmanbuc.s3.ap-northeast-2.amazonaws.com/", "");
-		String file4 = vo.getEvent_file4().replace("https://testmanbuc.s3.ap-northeast-2.amazonaws.com/", "");
-		String file5 = vo.getEvent_thumbnail().replace("https://testmanbuc.s3.ap-northeast-2.amazonaws.com/", "");
+		String file1 = null;
+		String file2 = null;
+		String file3 = null;
+		String file4 = null;
+		String file5 = null;
+		if (vo.getEvent_file1()!=null) {
+		file1 = vo.getEvent_file1().replace("https://testmanbuc.s3.ap-northeast-2.amazonaws.com", ""); }
+		if (vo.getEvent_file2()!=null) {
+		file2 = vo.getEvent_file2().replace("https://testmanbuc.s3.ap-northeast-2.amazonaws.com", ""); }
+		if (vo.getEvent_file3()!=null) {
+		file3 = vo.getEvent_file3().replace("https://testmanbuc.s3.ap-northeast-2.amazonaws.com", ""); }
+		if (vo.getEvent_file4()!=null) {
+		file4 = vo.getEvent_file4().replace("https://testmanbuc.s3.ap-northeast-2.amazonaws.com", ""); }
+		if (vo.getEvent_thumbnail()!=null) {
+		file5 = vo.getEvent_thumbnail().replace("https://testmanbuc.s3.ap-northeast-2.amazonaws.com", ""); }
+		System.out.println(file5);
 		EventDAO.ajaxDel(del);
-		if (!file1.isEmpty()) {
-		awsS3.delete(file1); }
-		if (!file2.isEmpty()) {
-		awsS3.delete(file2); }
-		if (!file3.isEmpty()) {
-		awsS3.delete(file3); }
-		if (!file4.isEmpty()) {
-		awsS3.delete(file4); }
-		if (!file5.isEmpty()) {
-		awsS3.delete(file5); }
+		if (file1!=null) {awsS3.delete(file1); }
+		if (file2!=null) {awsS3.delete(file2); }
+		if (file3!=null) {awsS3.delete(file3); }
+		if (file4!=null) {awsS3.delete(file4); }
+		if (file5!=null) {awsS3.delete(file5); }
 	}
 }

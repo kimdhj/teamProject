@@ -19,6 +19,6 @@ public interface chatServiceInter {
 	public int selectnum(chatVO vo);
 
 	public List<chatVO> selectList(chatVO vo);
+	public void author();
 
-	public void insertAPI(API vo1);
 }
