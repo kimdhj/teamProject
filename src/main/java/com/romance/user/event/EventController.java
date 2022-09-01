@@ -47,7 +47,8 @@ public class EventController {
 //        return conditionMap;
 //    }
 	@RequestMapping("moveInsert.mdo")
-	public String moveInsert() {
+	public String moveInsert(EventVO vo, Model model) {
+		model.addAttribute("top_check", eventService.topCheck(vo));
 		return "admin_marketing_EventInsert";
 	}
     
