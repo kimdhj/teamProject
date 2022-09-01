@@ -61,10 +61,10 @@
 				</div>
 				<div class="col-auto ">
 					<div class="input-group p-0 mt-2  col">
-						<button id="add_btn"
+						<button id="search_btn"
 							class="btn bg-blue text-white rounded-pill col">검색</button>
 						&nbsp;&nbsp;
-						<button id="add_btn" class="btn bg-blue text-white rounded-pill col" onclick="location.href='/admin_post_NoticeInsert.jsp'">추가</button>
+						<button id="add_btn" class="btn bg-blue text-white rounded-pill col" onclick="location.href='/admin_post_Insert.mdo'">추가</button>
 					</div>
 
 				</div>
@@ -72,9 +72,7 @@
 					<table class="table" id="table">
 						<thead>
 							<tr>
-								<th><input
-									class="form-check-input border-1 border-dark allche"
-									type="checkbox" value="" id="flexCheckChecked" checked></th>
+								<th><input class="form-check-input border-1 border-dark allche" type="checkbox" id="flexCheckChecked" checked></th>
 								<th>번호</th>
 								<th>제목</th>
 								<th>작성자</th>
@@ -85,9 +83,9 @@
 						<tbody>
 							<c:forEach items="${noticeList }" var="notice">
 							<tr>
-								<td><input class="form-check-input border-1 border-dark delche" type="checkbox" value="" id="flexCheckChecked" checked></td>
+								<td><input class="form-check-input border-1 border-dark delche chkbox" name="chkbox" type="checkbox" id="flexCheckChecked" checked></td>
 								<td>
-									<p>${notice.notice_seq }</p>
+									<p id="seq">${notice.notice_seq }</p>
 								</td>
 								<td>
 									<p class="rowColumn">
@@ -105,13 +103,48 @@
 									</p>
 								</td>
 								<td>
-									<button class="btn btn-danger rounded-pill del" onclick="del(${notice.notice_seq})">삭제</button>
+									<button class="btn btn-danger rounded-pill del" type="button">삭제</button>
 								</td>
 							</tr>
 							</c:forEach>
 						</tbody>
 					</table>
 				</div>
+				
+				<div id="page" class="row justify-content-center d-flex">
+				<div class="col"></div>
+				<nav class="col d-flex justify-content-center" aria-label="...">
+					<ul class="pagination">
+						<c:if test="${allPage ne 1}">
+							<li class="page-item"><a class="page-link">
+									< </a></li>
+						</c:if>
+						<c:forEach var="i" begin="1" end="${allCount/5+1}">
+							<c:if test="${allPage ne i}">
+								<li class="page-item"><a class="page-link" href="#">${i}
+								</a></li>
+							</c:if>
+
+							<c:if test="${allPage eq i}">
+								<li class="page-item active" aria-current="page"><a
+									href="/admin_post_Notice.mdo?page=${i}&title=${allSvo.title}&content=${allSvo.content}&startDate=${allSvo.startDate}&endDate=${allSvo.endDate}&seq=${allSvo.seq}"
+									class="page-link">${i}</a></li>
+							</c:if>
+						</c:forEach>
+						 
+						<c:if test="${allPage lt allCount/5}">
+						<li class="page-item"><a class="page-link" href="#">></a></li>
+						</c:if>
+					</ul>
+				</nav>
+				<div class="col"></div>
+			</div>
+			<input type="hidden" value="${allSvo.title}" id="titleche"/>
+			<input type="hidden" value="${allSvo.content}" id="contentche"/>
+			<input type="hidden" value="${allSvo.startDate}" id="startche"/>
+			<input type="hidden" value="${allSvo.endDate}" id="endche"/>
+			<input type="hidden" value="${allSvo.seq}" id="seqche"/>
+			<input type="hidden" value="${allSvo.page}" id="pageche"/>
 			</div>
 		</div>
 	</div>
