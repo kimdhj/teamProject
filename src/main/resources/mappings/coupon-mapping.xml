@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="coupon">
+	<select parameterType="String" resultType="int" id="doubleche">
+		select coupon_seq from coupon where counpon_code=#{code}
+	</select>
+	<insert parameterType="couponVO" id="macoupon">
+		insert into
+		coupon(coupon_seq,coupon_name,coupon_code,coupon_effect)
+		values(null,#{coupon_name},#{coupon_code},#{coupon_effect})
+	</insert>
+	<select parameterType="couponSearchVO" resultType="couponVO"
+		id="getCouponList">
+		<![CDATA[select * from (select coupon_seq,coupon_code,coupon_date,coupon_name,coupon_effect,@rownum:=@rownum+1 as rnum from coupon  , (SELECT @rownum:=0) TMP ]]>
+		<trim prefix="WHERE" prefixOverrides="AND |OR">
+			<if test="coupon_name != null and coupon_name != ''"><![CDATA[AND coupon_name like CONCAT('%',#{coupon_name},'%')]]></if>
+			<if test="coupon_code != null and coupon_code != ''">AND coupon_code=#{coupon_code}</if>
+		</trim>
+		<![CDATA[order by coupon_seq) B where rnum>(#{page}-1)*5 AND rnum<=#{page}*5 order by coupon_seq ]]>
+	</select>
+	<select parameterType="couponSearchVO" resultType="int"
+		id="getCount">
+		<![CDATA[select count(*) from coupon ]]>
+		<trim prefix="WHERE" prefixOverrides="AND |OR">
+			<if test="coupon_name != null and coupon_name != ''"><![CDATA[AND coupon_name like CONCAT('%',#{coupon_name},'%')]]></if>
+			<if test="coupon_code != null and coupon_code != ''"><![CDATA[AND coupon_code=#{coupon_code}]]></if>
+		</trim>
+
+	</select>
+	<delete id="coupondel"  parameterType="String" >
+		delete from coupon where coupon_code=#{coupon_code}
+	</delete>
+	
+	
+
+
+
+
+</mapper>

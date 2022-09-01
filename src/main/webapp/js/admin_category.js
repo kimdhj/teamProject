@@ -253,11 +253,11 @@ $(document).ready(function() {
 	//화면 구성
 	function makeDisplay(e) {
 
+	console.log($(e.target).text());
 
-
-		if ($(e.target).text() == "<") {
+		if ($(e.target).text().trim() == "<") {
 			$("#all_box #pageche").val(Number($("#all_box #pageche").val()) - 1);
-		} else if ($(e.target).text() == ">") {
+		} else if ($(e.target).text().trim() == ">") {
 			$("#all_box #pageche").val(Number($("#all_box #pageche").val()) + 1);
 		} else {
 			$("#all_box #pageche").val($(e.target).text());

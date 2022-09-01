@@ -8,8 +8,7 @@
 	<!-- 전통적인 데이터베이스 칼럼명 형태인 A_COLUMN을 CamelCase 형태의 자바 프로퍼티명 형태인 aColumn으로 자동으로 매핑하도록 한다. -->
 	<!-- 전통적인 데이터베이스 칼럼명 형태인 A_COLUMN을 CamelCase 형태의 자바 프로퍼티명 형태인 aColumn으로 
 		자동으로 매핑하도록 한다. -->
-	<!-- <settings> <setting name="mapUnderscoreToCamelCase" value="true" /> 
-		</settings>-->
+	
 
 
 
@@ -33,6 +32,8 @@
 			alias="adminUserVO" />
 		<typeAlias type="com.romance.user.event.EventVO" alias="event_event" />
 		<typeAlias type="com.romance.socket.API" alias="API" />
+		<typeAlias type="com.romance.admin.coupon.CouponVO" alias="couponVO" />
+		<typeAlias type="com.romance.admin.coupon.CouponSearchVO" alias="couponsearchVO" />
 	</typeAliases>
 	<mappers>
 		<!-- <mapper resource="mappings/board-mapping.xml" /> -->
@@ -42,5 +43,6 @@
 		<mapper resource="mappings/navcategory-mapping.xml" /> 
 		<mapper resource="mappings/event-mapping.xml" />
 		<mapper resource="mappings/adminuser-mapping.xml" />
+		<mapper resource="mappings/coupon-mapping.xml" />
 	</mappers>
 </configuration>
