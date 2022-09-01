@@ -10,10 +10,6 @@
 		자동으로 매핑하도록 한다. -->
 	
 
-
-
-
-
 	<typeAliases>
 		<!-- <typeAlias alias="myboard" type="tommy.spring.web.board.BoardVO" /> -->
 		<typeAlias type="com.romance.socket.chatVO" alias="chat" />
@@ -34,6 +30,7 @@
 		<typeAlias type="com.romance.socket.API" alias="API" />
 		<typeAlias type="com.romance.admin.coupon.CouponVO" alias="couponVO" />
 		<typeAlias type="com.romance.admin.coupon.CouponSearchVO" alias="couponsearchVO" />
+		<typeAlias type="com.romance.admin.notice.NoticeSearchVO" alias="noticeSearchVO"/>
 	</typeAliases>
 	<mappers>
 		<!-- <mapper resource="mappings/board-mapping.xml" /> -->

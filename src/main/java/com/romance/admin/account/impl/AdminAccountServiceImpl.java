@@ -19,7 +19,4 @@ public class AdminAccountServiceImpl implements AdminAccountService {
 		
 		return adminAccountDAO.getUserList(vo);
 	}
-
-	
-
 }
