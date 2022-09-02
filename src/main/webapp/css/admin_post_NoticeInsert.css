@@ -63,3 +63,16 @@ div.bg-white {
 .note-modal-footer{
 	margin-bottom: 5%;
 }
+
+#main_wrapper *{
+outline: none;
+animation: none;
+}
+
+#main_wrapper{
+	margin-left: 3% !important;
+}
+
+.note-frame{
+	border: 0px !important;
+}

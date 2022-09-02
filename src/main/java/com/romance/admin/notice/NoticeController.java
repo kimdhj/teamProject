@@ -19,7 +19,7 @@ public class NoticeController {
 	@Autowired
 	private NoticeService noticeService;
 	
-	// 공지사항 목록
+	// 공지사항 목록 - 페이징
 	@RequestMapping(value = "/admin_post_Notice.mdo", method=RequestMethod.GET)
 	public String getNoticeList(Model model, NoticeSearchVO svo) {
 		System.out.println("svo : " + svo); // 데이터가 넘어오는지 확인
@@ -37,7 +37,20 @@ public class NoticeController {
 		return "admin_post_Notice";
 	}
 	
-	// 
+	// ajax 에서 사용할 noticelist 와 listcount 만들기 - 페이징 및 검색
+	@GetMapping("/noticeList.mdo")
+	@ResponseBody
+	public List<NoticeVO> noticeList(NoticeSearchVO svo){
+		List<NoticeVO> noticeList = noticeService.getNoticeList(svo);
+		return noticeList;
+	}
+	
+	@GetMapping("/noticeCount.mdo")
+	@ResponseBody
+	public int noticeCount(NoticeSearchVO svo) {
+		int count = noticeService.getCount(svo);
+		return count;
+	}
 	
 	// POST 방식으로 insert 해주는 컨트롤러(파일, VO 가져가서 insert)
 	@RequestMapping(value = "/admin_post_NoticeInsert.mdo", method=RequestMethod.POST)
@@ -101,7 +114,7 @@ public class NoticeController {
 		return "redirect:admin_post_Notice.mdo";
 	}
 
-	// 비밀번호 같으면 1, 없으면 0 -> seq, passwd 둘 다 같을 경우에 처리 / 하나라도 다를 경우 처리 불가의 controller 작성
+	// 비밀번호 같으면 1, 없으면 0 -> seq, passwd 둘 다 같을 경우에 처리 / 하나라도 다를 경우 처리 불가의 controller 작성 -> SearchVO
 	@RequestMapping(value = "/admin_post_NoticeUpdate_checkPW.mdo", method = RequestMethod.POST)
 	@ResponseBody // 리턴 값을 데이터 전송할 때 사용 (페이지 이동 X)
 	public String passwdCheck(NoticeVO vo, Model model) {
@@ -116,7 +129,7 @@ public class NoticeController {
 		}
 	}
 	
-	// 체크 박스 선택한 값 삭제
+	// 체크 박스 선택한 값 삭제 -> SearchVo
 	@RequestMapping(value = "/admin_post_NoticeChkbox.mdo", method = RequestMethod.GET)
 	@ResponseBody
 	public String checkBox(@RequestParam(value = "notice_seq[]")List<String> notice_seq) {

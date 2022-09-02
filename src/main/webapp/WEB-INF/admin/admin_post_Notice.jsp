@@ -81,11 +81,14 @@
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach items="${noticeList }" var="notice">
+							<c:forEach items="${noticeList }" var="notice" begin="0" end="4">
 							<tr>
 								<td><input class="form-check-input border-1 border-dark delche chkbox" name="chkbox" type="checkbox" id="flexCheckChecked" checked></td>
 								<td>
-									<p id="seq">${notice.notice_seq }</p>
+									<p id="seq">
+									${allCount }</p>
+									<c:set var="allCount" value="${allCount - 1}"/>
+									<input type="hidden" value="${notice.notice_seq }" />
 								</td>
 								<td>
 									<p class="rowColumn">
@@ -116,8 +119,9 @@
 				<nav class="col d-flex justify-content-center" aria-label="...">
 					<ul class="pagination">
 						<c:if test="${allPage ne 1}">
-							<li class="page-item"><a class="page-link">
-									< </a></li>
+							<li class="page-item">
+							<a class="page-link"><
+							</a></li>
 						</c:if>
 						<c:forEach var="i" begin="1" end="${allCount/5+1}">
 							<c:if test="${allPage ne i}">
@@ -145,6 +149,7 @@
 			<input type="hidden" value="${allSvo.endDate}" id="endche"/>
 			<input type="hidden" value="${allSvo.seq}" id="seqche"/>
 			<input type="hidden" value="${allSvo.page}" id="pageche"/>
+			<input type="hidden" value="${allSvo.date}" id="dateche"/>
 			</div>
 		</div>
 	</div>
