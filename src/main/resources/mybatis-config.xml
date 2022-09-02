@@ -29,6 +29,7 @@
 		<typeAlias type="com.romance.user.event.EventVO" alias="event_event" />
 		<typeAlias type="com.romance.socket.API" alias="API" />
 		<typeAlias type="com.romance.admin.terms.termsVO" alias="termsVO" />
+
 		<typeAlias type="com.romance.admin.coupon.CouponVO" alias="couponVO" />
 		<typeAlias type="com.romance.admin.coupon.CouponSearchVO" alias="couponsearchVO" />
 
@@ -44,6 +45,7 @@
 		<mapper resource="mappings/navcategory-mapping.xml" /> 
 		<mapper resource="mappings/event-mapping.xml" />
 		<mapper resource="mappings/adminuser-mapping.xml" />
+
 		<mapper resource="mappings/coupon-mapping.xml" />
 	</mappers>
 </configuration>
