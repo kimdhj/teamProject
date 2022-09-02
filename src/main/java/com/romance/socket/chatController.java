@@ -162,36 +162,37 @@ public class chatController {
 //		
 //		return jsonObj;
 //	}
-	@GetMapping("test.do")
-	public String input1(MultipartFile mainUploadFile) throws IOException {
-		return "test";
-	}
-	@PostMapping("test.do")
-	public String input(@RequestParam("mainUploadFile") MultipartFile mainUploadFile) throws IOException {
-		System.out.println(mainUploadFile);
-		//파일 업로드
-		String upoladFolder = "https://testmanbuc.s3.ap-northeast-2.amazonaws.com/";
-		String filename=mainUploadFile.getOriginalFilename();
-		String expand=filename.substring(filename.indexOf("."));
-		String key=UUID.randomUUID().toString()+expand;
-		System.out.println(key+" :key"); // key="/폴더명/"+key; 하면 폴더 안에 들어감
-		InputStream is = mainUploadFile.getInputStream();
-		String contentType = mainUploadFile.getContentType();
-		long contentLength = mainUploadFile.getSize(); 
-		AwsS3 awsS3 = AwsS3.getInstance();
-		awsS3.upload(is, key, contentType, contentLength);
-		System.out.println(key);
-		//파일 삭제
-		key=key.replace(upoladFolder,"");
-		System.out.println(key);
-		
-		System.out.println(key);
-		awsS3.delete(key); //key는 파일명
-		return "redirect:test.do";
-	}
-@GetMapping("author.do")
-public void author() {
-	ser.author();
-}
+//	@GetMapping("test.do")
+//	public String input1(MultipartFile mainUploadFile) throws IOException {
+//		return "test";
+//	}
+//	@PostMapping("test.do")
+//	public String input(@RequestParam("mainUploadFile") MultipartFile mainUploadFile) throws IOException {
+//		System.out.println(mainUploadFile);
+//		//파일 업로드
+//		String upoladFolder = "https://testmanbuc.s3.ap-northeast-2.amazonaws.com/";
+//		String filename=mainUploadFile.getOriginalFilename();
+//		String expand=filename.substring(filename.indexOf("."));
+//		String key=UUID.randomUUID().toString()+expand;
+//		System.out.println(key+" :key"); // key="/폴더명/"+key; 하면 폴더 안에 들어감
+//		InputStream is = mainUploadFile.getInputStream();
+//		String contentType = mainUploadFile.getContentType();
+//		long contentLength = mainUploadFile.getSize(); 
+//		AwsS3 awsS3 = AwsS3.getInstance();
+//		awsS3.upload(is, key, contentType, contentLength);
+//		System.out.println(key);
+//		//파일 삭제
+//		key=key.replace(upoladFolder,"");
+//		System.out.println(key);
+//		
+//		System.out.println(key);
+//		awsS3.delete(key); //key는 파일명
+//		return "redirect:test.do";
+//	}
+//	//작가등록
+//	@GetMapping("author.do")
+//	public void author() {
+//		ser.author();
+//	}
  
 }
