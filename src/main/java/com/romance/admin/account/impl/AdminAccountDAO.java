@@ -18,7 +18,8 @@ public class AdminAccountDAO {
 		System.out.println("Mybatis로 getUserList 기능 처리");
 		return sqlSessionTemplate.selectList("AdminUserDAO.getUserList", vo);
 	}
-	
+
+		
 	
 	
 }

@@ -42,6 +42,9 @@ public class AdminAccountController {
 		}
 			
 		model.addAttribute("adminUserList", adminAccountService.getUserList(vo));
+		
+		
+		
 		return "admin_member_List";
 	}
 	

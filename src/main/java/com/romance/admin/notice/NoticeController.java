@@ -19,33 +19,48 @@ public class NoticeController {
 	@Autowired
 	private NoticeService noticeService;
 	
-	// °øÁö»çÇ× ¸ñ·Ï
+	// ê³µì§€ì‚¬í•­ ëª©ë¡ - í˜ì´ì§•
 	@RequestMapping(value = "/admin_post_Notice.mdo", method=RequestMethod.GET)
 	public String getNoticeList(Model model, NoticeSearchVO svo) {
-		System.out.println("svo : " + svo); // µ¥ÀÌÅÍ°¡ ³Ñ¾î¿À´ÂÁö È®ÀÎ
-		List<NoticeVO> noticeList = noticeService.getNoticeList(svo); // °øÁö»çÇ× ¸ñ·Ï
+//		System.out.println("svo : " + svo); // ë°ì´í„°ê°€ ë„˜ì–´ì˜¤ëŠ”ì§€ í™•ì¸
+		List<NoticeVO> noticeList = noticeService.getNoticeList(svo); // ê³µì§€ì‚¬í•­ ëª©ë¡
 		int count = noticeService.getCount(svo);
-		model.addAttribute("noticeList", noticeList); // ÀüÃ¼ °øÁö»çÇ×
+		model.addAttribute("noticeList", noticeList); // ì „ì²´ ê³µì§€ì‚¬í•­
 		model.addAttribute("count", count - (svo.getPage() - 1)*5);
 		if(count % 5 == 0) {
 			count--;
 		}
-		
-		model.addAttribute("allCount", count); // ÀüÃ¼ °øÁö»çÇ× °³¼ö
-		model.addAttribute("allPage", svo.getPage()); // ÀüÃ¼ ÆäÀÌÁö
-		model.addAttribute("allSvo", svo); // °Ë»öÇÒ ³»¿ë ³Ñ°ÜÁÖ±â
+		System.out.println("count"  + count);
+		model.addAttribute("page", count / 5 + 1);
+		model.addAttribute("allCount", count); // ì „ì²´ ê³µì§€ì‚¬í•­ ê°œìˆ˜
+		model.addAttribute("allPage", svo.getPage()); // ì „ì²´ í˜ì´ì§€
+		model.addAttribute("allSvo", svo); // ê²€ìƒ‰í•  ë‚´ìš© ë„˜ê²¨ì£¼ê¸°
 		return "admin_post_Notice";
 	}
 	
-	// 
+	// ajax ì—ì„œ ì‚¬ìš©í•  noticelist ì™€ listcount ë§Œë“¤ê¸° - í˜ì´ì§• ë° ê²€ìƒ‰
+	@GetMapping("/noticeList.mdo")
+	@ResponseBody
+	public List<NoticeVO> noticeList(NoticeSearchVO svo){
+		List<NoticeVO> noticeList = noticeService.getNoticeList(svo);
+		return noticeList;
+	}
 	
-	// POST ¹æ½ÄÀ¸·Î insert ÇØÁÖ´Â ÄÁÆ®·Ñ·¯(ÆÄÀÏ, VO °¡Á®°¡¼­ insert)
+	@GetMapping("/noticeCount.mdo")
+	@ResponseBody
+	public int noticeCount(NoticeSearchVO svo) {
+		System.out.println("csvo : " + svo);
+		int count = noticeService.getCount(svo);
+		return count;
+	}
+	
+	// POST ë°©ì‹ìœ¼ë¡œ insert í•´ì£¼ëŠ” ì»¨íŠ¸ë¡¤ëŸ¬(íŒŒì¼, VO ê°€ì ¸ê°€ì„œ insert)
 	@RequestMapping(value = "/admin_post_NoticeInsert.mdo", method=RequestMethod.POST)
 	// @RequestParam("notice_file") String notice_file
 	public String insertNotice(@RequestParam("notice_file") MultipartFile notice_file, NoticeVO vo) throws IOException{
-		if(!notice_file.isEmpty()) { // isEmpty() : ¾÷·Îµå ÇÑ ÆÄÀÏ Á¸Àç ¿©ºÎ¸¦ ¸®ÅÏ(¾øÀ¸¸é true ¸®ÅÏ) 
-			String fileName = notice_file.getOriginalFilename(); // getOriginalFilename() : ¾÷·Îµå ÇÑ ÆÄÀÏ¸íÀ» ¹®ÀÚ¿­·Î ¸®ÅÏ
-			notice_file.transferTo(new File("E:/MyProject/" + fileName)); // transferTo(File destFile) : ¾÷·Îµå ÇÑ ÆÄÀÏÀ» destFile ¿¡ ÀúÀå
+		if(!notice_file.isEmpty()) { // isEmpty() : ì—…ë¡œë“œ í•œ íŒŒì¼ ì¡´ì¬ ì—¬ë¶€ë¥¼ ë¦¬í„´(ì—†ìœ¼ë©´ true ë¦¬í„´) 
+			String fileName = notice_file.getOriginalFilename(); // getOriginalFilename() : ì—…ë¡œë“œ í•œ íŒŒì¼ëª…ì„ ë¬¸ìì—´ë¡œ ë¦¬í„´
+			notice_file.transferTo(new File("E:/MyProject/" + fileName)); // transferTo(File destFile) : ì—…ë¡œë“œ í•œ íŒŒì¼ì„ destFile ì— ì €ì¥
 		}
 		System.out.println("vo2: " + vo);
 		noticeService.insertNotice(vo);
@@ -53,35 +68,35 @@ public class NoticeController {
 		return "redirect:admin_post_Notice.mdo";
 	}
 	
-	// NoticeInsert.jsp ·Î ÀÌµ¿ Ã³¸®ÇØÁÖ´Â ÄÁÆ®·Ñ·¯
+	// NoticeInsert.jsp ë¡œ ì´ë™ ì²˜ë¦¬í•´ì£¼ëŠ” ì»¨íŠ¸ë¡¤ëŸ¬
 	@RequestMapping(value = "/admin_post_Insert.mdo")
 	public String insert() {
 		return "admin_post_NoticeInsert";
 	}
 	
-	// get ¹æ½ÄÀ¸·Î notice_seq ¸¦ °¡Áö°í ÀÌµ¿
+	// get ë°©ì‹ìœ¼ë¡œ notice_seq ë¥¼ ê°€ì§€ê³  ì´ë™
 	@GetMapping(value = "/admin_post_NoticeInsert.mdo")
 	public String selectSeq(@RequestParam("notice_seq")int notice_seq, Model model) {
 		model.addAttribute("notice", noticeService.selectSeq(notice_seq));
 		return "admin_post_NoticeInsert";
 	}
 	
-	// °øÁö»çÇ× »èÁ¦
+	// ê³µì§€ì‚¬í•­ ì‚­ì œ
 	@RequestMapping(value = "/admin_post_NoticeDelete.mdo", method=RequestMethod.GET)
 	public String deleteNotice(NoticeVO vo) {
-		System.out.println("»èÁ¦");
+		System.out.println("ì‚­ì œ");
 		noticeService.deleteNotice(vo);
 		return "redirect:admin_post_Notice.mdo";
 	}
 	
-	// °øÁö»çÇ× »ó¼¼º¸±â
+	// ê³µì§€ì‚¬í•­ ìƒì„¸ë³´ê¸°
 	@RequestMapping(value = "/admin_post_NoticeDetail.mdo")
 	public String getNotice(Model model, NoticeVO vo) {
 		model.addAttribute("notice", noticeService.getNotice(vo));
 		return "admin_post_NoticeDetail";
 	}
 	
-	// °øÁö»çÇ× ¼öÁ¤ÀÎµ¥, seq ¸¦ µé°í°¡¼­ ÇØ´ç seq °ªÀÇ ÀüÃ¼ µ¥ÀÌÅÍ¸¦ »Ì¾Æ³»¼­ ¼öÁ¤ÇÏµµ·Ï ÇØÁÖ´Â ÄÁÆ®·Ñ¤©·¯
+	// ê³µì§€ì‚¬í•­ ìˆ˜ì •ì¸ë°, seq ë¥¼ ë“¤ê³ ê°€ì„œ í•´ë‹¹ seq ê°’ì˜ ì „ì²´ ë°ì´í„°ë¥¼ ë½‘ì•„ë‚´ì„œ ìˆ˜ì •í•˜ë„ë¡ í•´ì£¼ëŠ” ì»¨íŠ¸ë¡¤ã„¹ëŸ¬
 	@RequestMapping(value = "/admin_post_NoticeUpdate.mdo", method=RequestMethod.GET)
 	public String updateNotice( String notice_seq, Model model) {
 		System.out.println(notice_seq);
@@ -93,7 +108,7 @@ public class NoticeController {
 		return "admin_post_NoticeUpdate";
 	}
 	
-	// °øÁö»çÇ× ¼öÁ¤
+	// ê³µì§€ì‚¬í•­ ìˆ˜ì •
 	@RequestMapping(value = "/admin_post_NoticeUpdate.mdo", method=RequestMethod.POST)
 	public String updateNotice(NoticeVO vo) {
 		System.out.println("update vo1 : " + vo);
@@ -101,31 +116,31 @@ public class NoticeController {
 		return "redirect:admin_post_Notice.mdo";
 	}
 
-	// ºñ¹Ğ¹øÈ£ °°À¸¸é 1, ¾øÀ¸¸é 0 -> seq, passwd µÑ ´Ù °°À» °æ¿ì¿¡ Ã³¸® / ÇÏ³ª¶óµµ ´Ù¸¦ °æ¿ì Ã³¸® ºÒ°¡ÀÇ controller ÀÛ¼º
+	// ë¹„ë°€ë²ˆí˜¸ ê°™ìœ¼ë©´ 1, ì—†ìœ¼ë©´ 0 -> seq, passwd ë‘˜ ë‹¤ ê°™ì„ ê²½ìš°ì— ì²˜ë¦¬ / í•˜ë‚˜ë¼ë„ ë‹¤ë¥¼ ê²½ìš° ì²˜ë¦¬ ë¶ˆê°€ì˜ controller ì‘ì„± -> SearchVO
 	@RequestMapping(value = "/admin_post_NoticeUpdate_checkPW.mdo", method = RequestMethod.POST)
-	@ResponseBody // ¸®ÅÏ °ªÀ» µ¥ÀÌÅÍ Àü¼ÛÇÒ ¶§ »ç¿ë (ÆäÀÌÁö ÀÌµ¿ X)
+	@ResponseBody // ë¦¬í„´ ê°’ì„ ë°ì´í„° ì „ì†¡í•  ë•Œ ì‚¬ìš© (í˜ì´ì§€ ì´ë™ X)
 	public String passwdCheck(NoticeVO vo, Model model) {
-		// ºñ¹Ğ¹øÈ£ Ã¼Å©
+		// ë¹„ë°€ë²ˆí˜¸ ì²´í¬
 		boolean result = noticeService.checkPW(vo);
 		System.out.println("result : " + result);
 		
-		if(result) { // ºñ¹Ğ¹øÈ£°¡ ¸Â´Ù¸é
+		if(result) { // ë¹„ë°€ë²ˆí˜¸ê°€ ë§ë‹¤ë©´
 			return "1";
 		}else {
 			return "0";
 		}
 	}
 	
-	// Ã¼Å© ¹Ú½º ¼±ÅÃÇÑ °ª »èÁ¦
+	// ì²´í¬ ë°•ìŠ¤ ì„ íƒí•œ ê°’ ì‚­ì œ -> SearchVo
 	@RequestMapping(value = "/admin_post_NoticeChkbox.mdo", method = RequestMethod.GET)
 	@ResponseBody
 	public String checkBox(@RequestParam(value = "notice_seq[]")List<String> notice_seq) {
-		noticeService.checkBox(notice_seq); // Service ¶û ¿¬°á
+		noticeService.checkBox(notice_seq); // Service ë‘ ì—°ê²°
 		System.out.println("Controller : " + notice_seq);
 		return null;
 	}
 	
-	// ÆäÀÌÂ¡ Ã³¸®
+	// í˜ì´ì§• ì²˜ë¦¬
 	@RequestMapping(value="/notice.mdo", method=RequestMethod.GET)
 	public String notice(NoticeSearchVO vo, Model model) {
 		System.out.println("vo : " + vo);
