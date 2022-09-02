@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -163,11 +164,11 @@ public class chatController {
 //	}
 	@GetMapping("test.do")
 	public String input1(MultipartFile mainUploadFile) throws IOException {
-		
 		return "test";
 	}
 	@PostMapping("test.do")
-	public String input(MultipartFile mainUploadFile) throws IOException {
+	public String input(@RequestParam("mainUploadFile") MultipartFile mainUploadFile) throws IOException {
+		System.out.println(mainUploadFile);
 		//파일 업로드
 		String upoladFolder = "https://testmanbuc.s3.ap-northeast-2.amazonaws.com/";
 		String filename=mainUploadFile.getOriginalFilename();
@@ -188,5 +189,9 @@ public class chatController {
 		awsS3.delete(key); //key는 파일명
 		return "redirect:test.do";
 	}
+@GetMapping("author.do")
+public void author() {
+	ser.author();
+}
  
 }

@@ -66,5 +66,20 @@ public class chatDAO implements chatDAOInter {
 		myba.insert("ChatDAO.API",vo);
 	}
 
+	@Override
+	public List<String> author() {
+		// TODO Auto-generated method stub
+		return myba.selectList("ChatDAO.author");
+	}
+
+	@Override
+	public void authorinser(String author) {
+		// TODO Auto-generated method stub
+		myba.insert("ChatDAO.authorinser",author);
+	}
+
+
+	
+
 	
 }

@@ -47,7 +47,8 @@ public class EventController {
 //        return conditionMap;
 //    }
 	@RequestMapping("moveInsert.mdo")
-	public String moveInsert() {
+	public String moveInsert(EventVO vo, Model model) {
+		model.addAttribute("top_check", eventService.topCheck(vo));
 		return "admin_marketing_EventInsert";
 	}
     
@@ -65,7 +66,7 @@ public class EventController {
 		      long contentLength = uploadFile1.getSize(); 
 		      AwsS3 awsS3 = AwsS3.getInstance();
 		      awsS3.upload(is, key, contentType, contentLength);
-		      String uploadFolder = "https://testmanbuc.s3.ap-northeast-2.amazonaws.com/";  
+		      String uploadFolder = "https://doublejo.s3.ap-northeast-2.amazonaws.com/";  
 		      vo.setEvent_file1(uploadFolder+key);
 		}
 		if (!uploadFile2.isEmpty()) {
@@ -78,7 +79,7 @@ public class EventController {
 		      long contentLength = uploadFile2.getSize(); 
 		      AwsS3 awsS3 = AwsS3.getInstance();
 		      awsS3.upload(is, key, contentType, contentLength);
-		      String uploadFolder = "https://testmanbuc.s3.ap-northeast-2.amazonaws.com/";  
+		      String uploadFolder = "https://doublejo.s3.ap-northeast-2.amazonaws.com/";  
 		      vo.setEvent_file2(uploadFolder+key);
 		}
 		if (!uploadFile3.isEmpty()) {
@@ -91,7 +92,7 @@ public class EventController {
 		      long contentLength = uploadFile3.getSize(); 
 		      AwsS3 awsS3 = AwsS3.getInstance();
 		      awsS3.upload(is, key, contentType, contentLength);
-		      String uploadFolder = "https://testmanbuc.s3.ap-northeast-2.amazonaws.com/";  
+		      String uploadFolder = "https://doublejo.s3.ap-northeast-2.amazonaws.com/";  
 		      vo.setEvent_file3(uploadFolder+key);
 		}
 		if (!uploadFile4.isEmpty()) {
@@ -104,7 +105,7 @@ public class EventController {
 		      long contentLength = uploadFile4.getSize(); 
 		      AwsS3 awsS3 = AwsS3.getInstance();
 		      awsS3.upload(is, key, contentType, contentLength);
-		      String uploadFolder = "https://testmanbuc.s3.ap-northeast-2.amazonaws.com/";  
+		      String uploadFolder = "https://doublejo.s3.ap-northeast-2.amazonaws.com/";  
 		      vo.setEvent_file4(uploadFolder+key);
 		}
 		if (!uploadThumbnail.isEmpty()) {
@@ -117,7 +118,7 @@ public class EventController {
 		      long contentLength = uploadThumbnail.getSize(); 
 		      AwsS3 awsS3 = AwsS3.getInstance();
 		      awsS3.upload(is, key, contentType, contentLength);
-		      String uploadFolder = "https://testmanbuc.s3.ap-northeast-2.amazonaws.com/";  
+		      String uploadFolder = "https://doublejo.s3.ap-northeast-2.amazonaws.com/";  
 		      vo.setEvent_thumbnail(uploadFolder+key);
 		}
 		
@@ -138,7 +139,7 @@ public class EventController {
 		      long contentLength = uploadFile1.getSize(); 
 		      AwsS3 awsS3 = AwsS3.getInstance();
 		      awsS3.upload(is, key, contentType, contentLength);
-		      String uploadFolder = "https://testmanbuc.s3.ap-northeast-2.amazonaws.com/";  
+		      String uploadFolder = "https://doublejo.s3.ap-northeast-2.amazonaws.com/";  
 		      vo.setEvent_file1(uploadFolder+key);
 		}
 		if (!uploadFile2.isEmpty()) {
@@ -151,7 +152,7 @@ public class EventController {
 		      long contentLength = uploadFile2.getSize(); 
 		      AwsS3 awsS3 = AwsS3.getInstance();
 		      awsS3.upload(is, key, contentType, contentLength);
-		      String uploadFolder = "https://testmanbuc.s3.ap-northeast-2.amazonaws.com/";  
+		      String uploadFolder = "https://doublejo.s3.ap-northeast-2.amazonaws.com/";  
 		      vo.setEvent_file2(uploadFolder+key);
 		}
 		if (!uploadFile3.isEmpty()) {
@@ -164,7 +165,7 @@ public class EventController {
 		      long contentLength = uploadFile3.getSize(); 
 		      AwsS3 awsS3 = AwsS3.getInstance();
 		      awsS3.upload(is, key, contentType, contentLength);
-		      String uploadFolder = "https://testmanbuc.s3.ap-northeast-2.amazonaws.com/";  
+		      String uploadFolder = "https://doublejo.s3.ap-northeast-2.amazonaws.com/";  
 		      vo.setEvent_file3(uploadFolder+key);
 		}
 		if (!uploadFile4.isEmpty()) {
@@ -177,7 +178,7 @@ public class EventController {
 		      long contentLength = uploadFile4.getSize(); 
 		      AwsS3 awsS3 = AwsS3.getInstance();
 		      awsS3.upload(is, key, contentType, contentLength);
-		      String uploadFolder = "https://testmanbuc.s3.ap-northeast-2.amazonaws.com/";  
+		      String uploadFolder = "https://doublejo.s3.ap-northeast-2.amazonaws.com/";  
 		      vo.setEvent_file4(uploadFolder+key);
 		}
 		if (!uploadThumbnail.isEmpty()) {
@@ -190,7 +191,7 @@ public class EventController {
 		      long contentLength = uploadThumbnail.getSize(); 
 		      AwsS3 awsS3 = AwsS3.getInstance();
 		      awsS3.upload(is, key, contentType, contentLength);
-		      String uploadFolder = "https://testmanbuc.s3.ap-northeast-2.amazonaws.com/";  
+		      String uploadFolder = "https://doublejo.s3.ap-northeast-2.amazonaws.com/";  
 		      vo.setEvent_thumbnail(uploadFolder+key);
 		}
 		eventService.updateEvent(vo);
@@ -206,11 +207,11 @@ public class EventController {
 	}
 
 	@RequestMapping("/getEvent.do")
-	public String getEvent(EventVO vo, Model model, @RequestParam("seq")int seq) {
+	public String getEvent(EventVO vo, Model model, @RequestParam("event_seq")int seq) {
 		System.out.println("글 상세 보기 처리");
 		eventService.countCnt(seq);
 		model.addAttribute("event_event", eventService.getEvent(vo));
-		return "getEvent";
+		return "event_Detail";
 	}
 	
 	@RequestMapping("/getEvent.mdo")
@@ -253,6 +254,17 @@ public class EventController {
 		System.out.println(event_seq);
 		eventService.topEvent(event_seq);
 		return event_seq;
+	}
+	
+	@RequestMapping(value="/ajax_ref1.mdo", method=RequestMethod.POST)
+	@ResponseBody
+	public List<EventVO> ajaxRef1(EventVO vo) {
+		return eventService.getEventListTop(vo);
+	}
+	@RequestMapping(value="/ajax_ref2.mdo", method=RequestMethod.POST)
+	@ResponseBody
+	public List<EventVO> ajaxRef2(EventVO vo) {
+		return eventService.getEventListBottom(vo);
 	}
 	
 	@RequestMapping(value="/ajax_del.mdo", method=RequestMethod.POST)

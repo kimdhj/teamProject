@@ -11,10 +11,6 @@
 	<!-- <settings> <setting name="mapUnderscoreToCamelCase" value="true" /> 
 		</settings>-->
 
-
-
-
-
 	<typeAliases>
 		<!-- <typeAlias alias="myboard" type="tommy.spring.web.board.BoardVO" /> -->
 		<typeAlias type="com.romance.socket.chatVO" alias="chat" />
@@ -33,6 +29,12 @@
 			alias="adminUserVO" />
 		<typeAlias type="com.romance.user.event.EventVO" alias="event_event" />
 		<typeAlias type="com.romance.socket.API" alias="API" />
+
+
+
+
+
+		<typeAlias type="com.romance.admin.notice.NoticeSearchVO" alias="noticeSearchVO"/>
 	</typeAliases>
 	<mappers>
 		<!-- <mapper resource="mappings/board-mapping.xml" /> -->
@@ -42,5 +44,11 @@
 		<mapper resource="mappings/navcategory-mapping.xml" /> 
 		<mapper resource="mappings/event-mapping.xml" />
 		<mapper resource="mappings/adminuser-mapping.xml" />
+
+
+
+
+
+
 	</mappers>
 </configuration>

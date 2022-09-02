@@ -12,6 +12,7 @@
 		</trim>
 		<![CDATA[order by category_num) B where rnum>(#{page}-1)*5 AND rnum<=#{page}*5 order by category_num ]]>
 	</select>
+	
 	<select parameterType="cateSearchVO"  resultType="int"
 		id="getCount">
 		<![CDATA[select count(*) from category ]]>

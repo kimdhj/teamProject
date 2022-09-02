@@ -59,10 +59,18 @@
 		real_chat(real_chat_seq,real_chat_session,real_chat_name,real_chat_content,real_chat_date,real_chat_state)
 		values(null,#{real_chat_session},#{realchatname},#{real_chat_content},CURRENT_TIMESTAMP,false)
 	</insert>
+	
+	
 	<insert parameterType="API" id="API">
 		insert into
 		book(book_seq,book_price,category_num,book_descript,book_imgURL,book_bigimgURL,book_author,book_title,book_points,book_publish,book_publish_date,author_seq,book_isbn)
 		values(null,#{book_price},#{category_num},#{book_descript},#{book_imgURL},#{book_bigimgURL},#{book_author},#{book_title},#{book_points},#{book_publish},#{book_publish_date},#{author_seq},#{book_isbn});
+	</insert>
+	<select resultType="String" id="author">
+	select book_author from (select book_author,count(*) from book group by book_author) B ;
+	</select>
+	<insert parameterType="String" id="authorinser">
+	insert into author value(null,#{author});
 	</insert>
 
 
