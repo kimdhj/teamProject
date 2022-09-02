@@ -111,7 +111,7 @@
 							<li class="page-item "><a class="page-link">
 									< </a></li>
 						</c:if>
-						<c:forEach var="i" begin="1" end="${all_sum/5+1}">
+						<c:forEach var="i" begin="${startpage}" end="${endpage}">
 							<c:if test="${all_page ne i}">
 								<li class="page-item"><a class="page-link"
 									href="#">${i}

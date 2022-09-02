@@ -31,7 +31,9 @@
 	<delete id="coupondel"  parameterType="String" >
 		delete from coupon where coupon_code=#{coupon_code}
 	</delete>
-	
+	<select id="couche" parameterType="String" resultType="int">
+		select count(*) from coupon where coupon_code=#{coupon_code}
+	</select>
 	
 
 

@@ -33,6 +33,8 @@
 		<typeAlias type="com.romance.admin.coupon.CouponSearchVO" alias="couponsearchVO" />
 
 		<typeAlias type="com.romance.admin.notice.NoticeSearchVO" alias="noticeSearchVO"/>
+		<typeAlias type="com.romance.user.book.BookVO" alias="bookVO"/>
+		<typeAlias type="com.romance.user.book.BookSearchVO" alias="booksearchVO"/>
 
 	</typeAliases>
 	<mappers>
@@ -45,5 +47,6 @@
 		<mapper resource="mappings/event-mapping.xml" />
 		<mapper resource="mappings/adminuser-mapping.xml" />
 		<mapper resource="mappings/coupon-mapping.xml" />
+		<mapper resource="mappings/book-mapping.xml" />
 	</mappers>
 </configuration>

@@ -1,14 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <!-- Common head include -->
-<jsp:include page="commonjsp/common_head.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/commonjsp/common_head.jsp"></jsp:include>
+<link href="/css/book_List.css" rel="stylesheet" />
+
 </head>
 <body>
 	<!-- Common header include -->
-	<jsp:include page="commonjsp/common_header.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/commonjsp/common_header.jsp"></jsp:include>
 	<!-- Common header include End -->
 
 	<!-- Page Header Start -->
@@ -105,7 +108,8 @@
 					data-ride="carousel">
 					<div class="carousel-inner">
 						<div class="carousel-item active" style="height: 410px;">
-							<img class="img-fluid" src="img/carousel-1.jpg" alt="Image">
+							<img width="100%" class="img-fluid" src="img/carousel-1.jpg"
+								alt="Image">
 							<div
 								class="carousel-caption d-flex flex-column align-items-center justify-content-center">
 								<div class="p-3" style="max-width: 700px;">
@@ -129,12 +133,12 @@
 					</div>
 					<a class="carousel-control-prev" href="#header-carousel"
 						data-slide="prev">
-						<div class="btn btn-dark" style="width: 45px; height: 45px;">
+						<div class="btn" style="width: 45px; height: 45px;">
 							<span class="carousel-control-prev-icon mb-n2"></span>
 						</div>
 					</a> <a class="carousel-control-next" href="#header-carousel"
 						data-slide="next">
-						<div class="btn btn-dark" style="width: 45px; height: 45px;">
+						<div class="btn " style="width: 45px; height: 45px;">
 							<span class="carousel-control-next-icon mb-n2"></span>
 						</div>
 					</a>
@@ -164,101 +168,194 @@
 				<div class="tab-content" id="nav-tabContent">
 					<div class="tab-pane fade show active" id="nav-home"
 						role="tabpanel" aria-labelledby="nav-home-tab">
-						<div class="row">
-							<div class="col-2">
-								<a><img width="100%" class="img_booklist_kr"
-									src="img/h1.png" /></a>
-							</div>
-							<div class="col-7">
-								<h4>해리포터 1편</h4>
-							</div>
-							<div class="col-3">
-								<div id="purchase01" class="row">
-									<button class="btnSubmit">
-										<a>구매하기</a>
-									</button>
-									<br>
+						<c:forEach var="bo" items="${list}">
+							<div class="row">
+								<div class="col-2">
+									<a><img width="100%" class="img_booklist_kr"
+										src="${bo.book_imgURL} " /></a>
 								</div>
-								<div id="purchase02" class="row">
-									<button class="btnSubmit">
-										<a>리뷰보기</a>
-									</button>
+								<div class="col-7">
+									<div class="row">
+										<h4>${bo.book_title}</h4>
+									</div>
+									<div id="best_price" class="row">
+										<h5>${bo.book_price}원</h5>
+									</div>
+									<div id="best_context" class="row">${bo.book_descript}</div>
+								</div>
+								<div class="col-3">
+									<div id="purchase01" class="row">
+										<button class="btnSubmit">
+											<a>구매하기</a>
+										</button>
+										<br>
+									</div>
+									<div id="purchase02" class="row">
+										<button class="btnSubmit">
+											<a>리뷰보기</a>
+										</button>
+									</div>
 								</div>
 							</div>
-						</div>
+							<hr>
+						</c:forEach>
+						<nav class="col d-flex justify-content-center" aria-label="...">
+							<ul class="pagination">
+								<c:if test="${vo.page ne 1}">
+									<li class="page-item "><a class="page-link"> < </a></li>
+								</c:if>
 
-						<hr>
+								<c:forEach var="i" begin="${startpage}" end="${endpage}">
+									<c:if test="${vo.page ne i}">
+										<li class="page-item"><a class="page-link" href="#">${i}
+										</a></li>
+									</c:if>
 
-						<div class="row">
-							<div class="col-2">
-								<a><img width="100%" class="img_booklist_kr"
-									src="img/h1.png" /></a>
-							</div>
-							<div class="col-7">
-								<div class="row">
-									<h4>해리포터 1편</h4>
-								</div>
-								<div id="best_price" class="row">
-									<h5>10,000원</h5>
-								</div>
-								<div id="best_context" class="row">
-									설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명</div>
-							</div>
-							<div class="col-3">
-								<div id="purchase01" class="row">
-									<button class="btnSubmit">
-										<a>구매하기</a>
-									</button>
-									<br>
-								</div>
-								<div id="purchase02" class="row">
-									<button class="btnSubmit">
-										<a>리뷰보기</a>
-									</button>
-								</div>
-							</div>
-						</div>
+									<c:if test="${vo.page eq i}">
+										<li class="page-item active" aria-current="page"><a
+											href="#" class="page-link">${i}</a></li>
+									</c:if>
+								</c:forEach>
+
+								<c:if test="${vo.page lt maxpage}">
+									<li class="page-item"><a class="page-link" href="#">></a></li>
+								</c:if>
+							</ul>
+						</nav>
+						<input type="hidden" value="${vo.title}" id="booktitle" /> <input
+							value="${vo.page}" type="hidden"
+							id="bookpage" />
 					</div>
-					<div class="tab-pane fade" id="nav-profile" role="tabpanel"
-						aria-labelledby="nav-profile-tab">...</div>
-					<div class="tab-pane fade" id="nav-contact" role="tabpanel"
-						aria-labelledby="nav-contact-tab">...</div>
+					<div class="tab-pane fade best" id="nav-profile" role="tabpanel"
+						aria-labelledby="nav-profile-tab">
+						<c:forEach var="bo" items="${bestlist}">
+							<div class="row">
+								<div class="col-2">
+									<a><img width="100%" class="img_booklist_kr"
+										src="${bo.book_imgURL} " /></a>
+								</div>
+								<div class="col-7">
+									<div class="row">
+										<h4>${bo.book_title}</h4>
+									</div>
+									<div id="best_price" class="row">
+										<h5>${bo.book_price}원</h5>
+									</div>
+									<div id="best_context" class="row">${bo.book_descript}</div>
+								</div>
+								<div class="col-3">
+									<div id="purchase01" class="row">
+										<button class="btnSubmit">
+											<a>구매하기</a>
+										</button>
+										<br>
+									</div>
+									<div id="purchase02" class="row">
+										<button class="btnSubmit">
+											<a>리뷰보기</a>
+										</button>
+									</div>
+								</div>
+							</div>
+							<hr>
+						</c:forEach>
+						<nav class="col d-flex justify-content-center" aria-label="...">
+							<ul class="pagination">
+								<c:if test="${vo.page ne 1}">
+									<li class="page-item "><a class="page-link"> < </a></li>
+								</c:if>
+
+								<c:forEach var="i" begin="${beststartpage}" end="${bestendpage}">
+									<c:if test="${vo.page ne i}">
+										<li class="page-item"><a class="page-link" href="#">${i}
+										</a></li>
+									</c:if>
+
+									<c:if test="${vo.page eq i}">
+										<li class="page-item active" aria-current="page"><a
+											href="#" class="page-link">${i}</a></li>
+									</c:if>
+								</c:forEach>
+
+								<c:if test="${vo.page lt bestmaxpage}">
+									<li class="page-item"><a class="page-link" href="#">></a></li>
+								</c:if>
+							</ul>
+						</nav>
+						<input type="hidden" value="${vo.title}" id=" besttitle" /> <input
+							value="${vo.page}" type="hidden"
+							id="bestpage" />
+
+					</div>
+					<div class="tab-pane fade new" id="nav-contact" role="tabpanel"
+						aria-labelledby="nav-contact-tab">
+						<c:forEach var="bo" items="${newlist}">
+							<div class="row">
+								<div class="col-2">
+									<a><img width="100%" class="img_booklist_kr"
+										src="${bo.book_imgURL} " /></a>
+								</div>
+								<div class="col-7">
+									<div class="row">
+										<h4>${bo.book_title}</h4>
+									</div>
+									<div id="best_price" class="row">
+										<h5>${bo.book_price}원</h5>
+									</div>
+									<div id="best_context" class="row">${bo.book_descript}</div>
+								</div>
+								<div class="col-3">
+									<div id="purchase01" class="row">
+										<button class="btnSubmit">
+											<a>구매하기</a>
+										</button>
+										<br>
+									</div>
+									<div id="purchase02" class="row">
+										<button class="btnSubmit">
+											<a>리뷰보기</a>
+										</button>
+									</div>
+								</div>
+							</div>
+							<hr>
+						</c:forEach>
+						<nav class="col d-flex justify-content-center" aria-label="...">
+							<ul class="pagination">
+								<c:if test="${vo.page ne 1}">
+									<li class="page-item "><a class="page-link"> < </a></li>
+								</c:if>
+
+								<c:forEach var="i" begin="${newstartpage}" end="${newendpage}">
+									<c:if test="${vo.page ne i}">
+										<li class="page-item"><a class="page-link" href="#">${i}
+										</a></li>
+									</c:if>
+
+									<c:if test="${vo.page eq i}">
+										<li class="page-item active" aria-current="page"><a
+											href="#" class="page-link">${i}</a></li>
+									</c:if>
+								</c:forEach>
+
+								<c:if test="${vo.page lt newmaxpage}">
+									<li class="page-item"><a class="page-link" href="#">></a></li>
+								</c:if>
+							</ul>
+						</nav>
+						<input type="hidden" value="${vo.title}" id="newtitle" /> <input
+							value="${vo.page}" type="hidden"
+							id="newpage" />
+
+
+					</div>
 				</div>
-
-				<!--
-                <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
-                    <a href="" class="text-decoration-none d-block d-lg-none">
-                        <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">E</span>Shopper</h1>
-                    </a>
-                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div id="menu_bar" class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                        <div class="navbar-nav mr-auto py-0">
-                            <a href="index.html" class="nav-item nav-link active">베스트</a>
-                            <a href="shop.html" class="nav-item nav-link">신간</a>
-                        </div>
-                    </div>
-                </nav>
-                 -->
-
 
 				<hr>
 
 				<!--  상단 베스트/신간 이동 바 -->
 
-				<div>
-					<nav aria-label="Page navigation example">
-						<ul class="pagination justify-content-center">
-							<li class="page-item disabled"><a class="page-link">Previous</a>
-							</li>
-							<li class="page-item"><a class="page-link" href="#">1</a></li>
-							<li class="page-item"><a class="page-link" href="#">2</a></li>
-							<li class="page-item"><a class="page-link" href="#">3</a></li>
-							<li class="page-item"><a class="page-link" href="#">Next</a></li>
-						</ul>
-					</nav>
-				</div>
+				<div></div>
 
 			</div>
 
@@ -270,26 +367,26 @@
 	<!-- Back to Top -->
 	<!-- footer 포함. -->
 
+	<!-- Footer End -->
 
-	<!-- JavaScript Libraries -->
+
+	<!-- Common Footer include -->
+	<jsp:include page="/WEB-INF/commonjsp/common_footer.jsp"></jsp:include>
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 	<script src="lib/easing/easing.min.js"></script>
 	<script src="lib/owlcarousel/owl.carousel.min.js"></script>
 
-	<!-- Contact Javascript File -->
-	<script src="mail/jqBootstrapValidation.min.js"></script>
-	<script src="mail/contact.js"></script>
+	<!-- JavaScript Libraries -->
+
+
+
+
 
 	<!-- Template Javascript -->
-	<script src="js/main.js"></script>
 
-	<!-- Footer Start -->
-	<!-- Common Footer include -->
-	<jsp:include page="commonjsp/common_footer.jsp"></jsp:include>
-
-	<!-- Footer End -->
+	<script src="/js/book_List.js"></script>
 
 </body>
 </html>
