@@ -91,3 +91,8 @@ div.bg-white {
 	font-weight: bolder;
 	font-size: larger;
 }
+
+.pagination *{
+   cursor:pointer;
+}
+

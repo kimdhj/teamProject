@@ -11,14 +11,15 @@
 		<if test="content != null and content != ''"><![CDATA[AND notice_content LIKE CONCAT('%', #{content}, '%')]]></if>
 		<if test="startDate != null"><![CDATA[AND notice_date LIKE CONCAT('%', #{startDate}, '%')]]></if>
 		<if test="endDate != null"><![CDATA[AND notice_date LIKE CONCAT('%', #{endDate}, '%')]]></if>
+		<if test="date != null"><![CDATA[AND notice_date LIKE CONCAT('%', #{date}, '%')]]></if>
 		<if test="seq != 0">AND notice_seq = #{seq}</if>
 	</trim>
-	<![CDATA[ORDER BY notice_seq) B WHERE]]>
+	<![CDATA[ORDER BY notice_date DESC) B WHERE]]>
 		<if test="seq != 0">
 	 		<![CDATA[	rnum = #{seq}]]> 
 	 	</if>
 	 	<if test="seq == 0">
-	 		<![CDATA[	rnum > (#{page} - 1) *5 AND rnum <= #{page} * 5 ORDER BY notice_seq]]>
+	 		<![CDATA[	rnum > (#{page} - 1) *5 AND rnum <= #{page} * 5 ORDER BY notice_date DESC]]>
 	 	</if>
 	</select>
 	
