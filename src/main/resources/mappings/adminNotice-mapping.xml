@@ -9,10 +9,8 @@
 	<trim prefix="WHERE" prefixOverrides="AND | OR">
 		<if test="title != null and title != ''"><![CDATA[AND notice_title LIKE CONCAT('%', #{title}, '%')]]></if>
 		<if test="content != null and content != ''"><![CDATA[AND notice_content LIKE CONCAT('%', #{content}, '%')]]></if>
-		<if test="startDate != null"><![CDATA[AND notice_date LIKE CONCAT('%', #{startDate}, '%')]]></if>
-		<if test="endDate != null"><![CDATA[AND notice_date LIKE CONCAT('%', #{endDate}, '%')]]></if>
+		<if test="startDate != null and endDate != null"><![CDATA[AND notice_date >= #{startDate} AND notice_date <= #{endDate} ]]></if>
 		<if test="date != null"><![CDATA[AND notice_date LIKE CONCAT('%', #{date}, '%')]]></if>
-		<if test="seq != 0">AND notice_seq = #{seq}</if>
 	</trim>
 	<![CDATA[ORDER BY notice_date DESC) B WHERE]]>
 		<if test="seq != 0">
@@ -25,14 +23,20 @@
 	
 	<!-- 전체 글 개수 가져오는거 -->
 	<select id="getCount" parameterType="noticeSearchVO" resultType="int">
-		<![CDATA[SELECT COUNT(*) FROM notice]]>
+		<![CDATA[SELECT COUNT(*) FROM(SELECT notice_seq, notice_title, notice_writer, notice_content, notice_date, @rownum:=@rownum + 1 as rnum FROM notice, (SELECT @rownum:=0) TMP]]>
+	<trim prefix="WHERE" prefixOverrides="AND | OR">
+		<if test="title != null and title != ''"><![CDATA[AND notice_title LIKE CONCAT('%', #{title}, '%')]]></if>
+		<if test="content != null and content != ''"><![CDATA[AND notice_content LIKE CONCAT('%', #{content}, '%')]]></if>
+		<if test="startDate != null and endDate != null"><![CDATA[AND notice_date >= #{startDate} AND notice_date <= #{endDate} ]]></if>
+	</trim>
+	<![CDATA[ORDER BY notice_date DESC) B]]>
 		<trim prefix="WHERE" prefixOverrides="AND | OR">
-			<if test="title != null and title != ''"><![CDATA[AND notice_title LIKE CONCAT('%', ${title}, '%')]]></if>
-			<if test="content != null and content != ''"><![CDATA[AND notice_content LIKE CONCAT('%', ${content}, '%')]]></if>
-			<if test="startDate != null"><![CDATA[AND notice_date LIKE CONCAT('%', ${startDate}, '%')]]></if>
-			<if test="endDate != null"><![CDATA[AND notice_date LIKE CONCAT('%', ${endDate}, '%')]]></if>
-			<if test="seq != 0">AND notice_seq = #{seq}</if>
-		</trim>
+		<if test="seq != 0">
+	 		<![CDATA[	rnum = #{seq}]]> 
+	 	</if>
+	</trim>
+		
+		
 	</select>
 	
 	<insert id="insertNotice" parameterType="notice">

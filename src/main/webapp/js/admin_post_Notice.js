@@ -56,7 +56,7 @@ $(document)
 					});
 					// 상단 모든 카테고리 코드
 					// 클릭해서 삭제
-					$(".del").click(function(e) {
+					$(document).on("click", ".del", function(e) {
 				        Swal.fire({
 				            text: "해당 공지사항을 삭제하시겠습니까?",
 				            icon: 'warning',
@@ -69,7 +69,9 @@ $(document)
 				            if (result.isConfirmed) {
 				                Swal.fire({
 				                	text: "삭제되었습니다.",
-				                	icon: "success"
+				                	icon: "success",
+				                	showConfirmButton: false,
+				                	timer: 1500,
 				                }).then(function(){
 				 //               	console.log(e.target);
 				 //              	console.log($(e.target).parents('tr').children("td:eq(1)").text().trim());
@@ -110,39 +112,39 @@ $(document)
 //						
 //					})
 				
-						$(".seldel").click(function(){
-							var chk_arr = [];
-//							var seq = $(e.target).parents('tr').children("td:eq(1)").text().trim();
-//							console.log(seq);
-//							console.log($("input[name='chkbox']:checked"));
-							
-							$("input[name='chkbox']:checked").map((ine,el)=>{
-								console.log($(el).parents("tr").children("td:eq(1)").text().trim());
-								var seq = $(el).parents("tr").children("td:eq(1)").text().trim();
-								chk_arr.push(seq);
-								console.log(chk_arr);
-							})
-							
-//							var allSeq = {"notice_seq" : chk_arr}
-							
-							$.ajax({
-								url: "/admin_post_NoticeChkbox.mdo", // 데이터를 가지고 갈 주소
-								type: "GET",
-								data: {notice_seq : chk_arr, },
-								success: function(data){
-									$('.delche:checked').parents('tr').remove(); // 선택된 행 전체 삭제
-				                	$('.allche').removeAttr('checked'); // checked 된 속성 값 제거
-//									location.href="/admin.post.NoticeDelete.mdo?notice_seq=" + notice_seq;
-								},
-								error: function(){
-									Swal.fire({
-										text: "Error",
-										icon: "error"
-									})
-								}
-							})
-				})
-					
+//					$(".seldel").click(function(){
+//						var chk_arr = [];
+//						var seq = $(e.target).parents('tr').children("td:eq(1)").text().trim();
+//						console.log(seq);
+//						console.log($("input[name='chkbox']:checked"));
+//						
+//						$("input[name='chkbox']:checked").map((ine,el)=>{
+//							console.log($(el).parents("tr").children("td:eq(1)").text().trim());
+//							var seq = $(el).parents("tr").children("td:eq(1)").text().trim();
+//							chk_arr.push(seq);
+//							console.log(chk_arr);
+//						})
+//						
+//						var allSeq = {"notice_seq" : chk_arr}
+//						
+//						$.ajax({
+//							url: "/admin_post_NoticeChkbox.mdo", // 데이터를 가지고 갈 주소
+//							type: "GET",
+//							data: {notice_seq : chk_arr, },
+//							success: function(data){
+//								$('.delche:checked').parents('tr').remove(); // 선택된 행 전체 삭제
+//			                	$('.allche').removeAttr('checked'); // checked 된 속성 값 제거
+//								location.href="/admin.post.NoticeDelete.mdo?notice_seq=" + notice_seq;
+//							},
+//							error: function(){
+//								Swal.fire({
+//									text: "Error",
+//									icon: "error"
+//								})
+//							}
+//						})
+//			})
+//				
 				// 선택 된 요소 삭제
 				$(".chkbox").click(function(e){
 				});
@@ -160,8 +162,8 @@ $(document)
 			        	if (result.isConfirmed) {
 			        		$("input[name='chkbox']:checked").map((ine,el)=>{
 			        			// .text() -> .children("input").val();
-								console.log($(el).parents("tr").children("td:eq(1)").text().trim());
-								var seq = $(el).parents("tr").children("td:eq(1)").text().trim();
+								console.log($(el).parents("tr").children("td:eq(1)").children("input").val());
+								var seq =$(el).parents("tr").children("td:eq(1)").children("input").val();
 								chk_arr.push(seq);
 								console.log(chk_arr);
 							})
@@ -184,16 +186,17 @@ $(document)
 									})
 								}
 							})
-							
 			        		Swal.fire({
 			                	text: "삭제되었습니다.",
-			                	icon: "success"
+			                	icon: "success",
+			                	showConfirmButton: false,
+			                	timer: 1500,
 			                }).then(function(){
 			                	// $('.delche:checked') : 선택된 값
 			                	// #('.allche') : 전체 선택
 			                	$('.delche:checked').parents('tr').remove(); // 선택된 행 전체 삭제
 			                	$('.allche').removeAttr('checked'); // checked 된 속성 값 제거
-			        //        	location.href="/"
+			                	location.href="/admin_post_Notice.mdo";
 			                })
 			            }else if(result.isDismissed){
 			            	return false;
@@ -361,6 +364,11 @@ function datePickerSet(sDate, eDate, flag) {
     });
 });*/
 
+$("#start_date").val(null); // 시작날짜 null 값 띄우기
+$("#end_date").val(null); // 마지막 날짜 null 값 띄우기
+console.log($("#start_date").val());
+console.log($("#end_date").val());
+
 //페이지 네이션 화면 이동
 $(document).on('click', '#all_box #page a', makeDisplay);
 //검색
@@ -369,11 +377,43 @@ $("#all_box #search_btn").click(function(e) {
 	$("#all_box #contentche").val(null);
 	$("#all_box #seqche").val(0);
 	$("#all_box #pageche").val(1);
-	$("#all_box #startche").val();
-	$("#all_box #endche").val();
-	$("#all_box #dateche").val();
+	$("#all_box #startche").val(null);
+	$("#all_box #endche").val(null);
+//	$("#all_box #dateche").val();
+	
+	$("#all_box #startche").val($("#all_box #start_date").val());
+	$("#all_box #endche").val($("#all_box #end_date").val());
+	console.log($("#all_box #startche").val());
+	console.log($("#all_box #endche").val());
+	
+	// 정규표현식
+	let check = /^[0-9]+$/;
+//	$("#all_box #seqche").val($("#search").val());
+	
+//	if(!check.test($("#all_box #seqche").val())){ 
+//		console.log("숫자만 입력해");
+//	}
+	
+	console.log($("#level").val());
+	if($("#level").val() == "번호"){
+		$("#all_box #seqche").val($("#search").val());
+	}else if($("#level").val() == "제목"){
+		console.log($("#all_box #titleche"));
+		$("#all_box #titleche").val($("#search").val());
+		
+	}else if($("#level").val() == "내용"){
+		$("#all_box #contentche").val($("#search").val());
+		console.log($("#all_box #contentche"));
+	}
+	
+	if($("#all_box #start_date").val() != null){
+		$("#all_box #startche").val($("#all_box #start_date").val());
+	}if($("#all_box #end_date").val() != null){
+		$("#all_box #endche").val($("#all_box #end_date").val());
+	}
+	
 	// Date 에 값을 안넣어줄 경우, if 문에 null 값일 때 값 안넘어가도록 진행
-	let count = 0;
+//	$("#all_box #titleche").val($("#all_box #title").val());
 //	$("#all_box #nameche").val($("#all_box #name").val());
 	// Number($("#all_box #category_btn").val()) != 0 : 해당 id 값을 숫자로 바꿔서 0 이 아닐 경우 -> 진행
 //	if (Number($("#all_box #category_btn").val()) != 0 && Number($("#all_box #level").val()) != 0) {
@@ -412,6 +452,7 @@ function make() {
 			page: Number($("#all_box #pageche").val())
 		},
 		success: function(re) {
+			console.log("re", re); // data 를 가져와서 사용하는데, 그 값을 찍어주는 거 (여기서는 Count)
 			count = re;
 			// count = count - (Number($("#all_box #pageche").val()) -1) * 5;
 			count = count - ($("#all_box #pageche").val() - 1) * 5;
@@ -460,6 +501,7 @@ function make() {
 			page: Number($("#all_box #pageche").val())
 		},
 		success: function(re) {
+			console.log("re", re); // data 를 가져와서 사용하는데, 그 값을 찍어주는 거 (여기서는 데이터List)
 			let con = "";
 			re.map((notice) => {
 				con += `<tr>
