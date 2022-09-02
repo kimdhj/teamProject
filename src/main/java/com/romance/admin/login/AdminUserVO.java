@@ -29,5 +29,4 @@ public class AdminUserVO {
 	private String user_coupon_cnt;
 	private String searchCondition;
 	private String searchKeyword;
-	
 }
