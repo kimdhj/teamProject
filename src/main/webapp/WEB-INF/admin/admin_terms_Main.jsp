@@ -21,7 +21,9 @@
 						<div class="col-md-6">
 							<button type="button"
 								class="btn btn-light btn-outline-dark btn-sm"
-								style="float: right;">조항 추가</button>
+								style="float: right;"
+								onclick="location.href='admin_terms_Write.mdo' "
+								>조항 추가</button>
 						</div>
 					</div>
 				</div>
@@ -41,7 +43,7 @@
 								<tr>
 									<td scope="row">1번</td>
 									<td>제 1조</td>
-									<td><a href="admin_terms_Read.jsp">목적</a></td>
+									<td><a href="/admin_terms_Read.mdo">목적</a></td>
 									<td>2090-11-23</td>
 									<td>Y</td>
 								</tr>
