@@ -22,7 +22,7 @@ public class NoticeController {
 	// 공지사항 목록 - 페이징
 	@RequestMapping(value = "/admin_post_Notice.mdo", method=RequestMethod.GET)
 	public String getNoticeList(Model model, NoticeSearchVO svo) {
-		System.out.println("svo : " + svo); // 데이터가 넘어오는지 확인
+//		System.out.println("svo : " + svo); // 데이터가 넘어오는지 확인
 		List<NoticeVO> noticeList = noticeService.getNoticeList(svo); // 공지사항 목록
 		int count = noticeService.getCount(svo);
 		model.addAttribute("noticeList", noticeList); // 전체 공지사항
@@ -30,7 +30,8 @@ public class NoticeController {
 		if(count % 5 == 0) {
 			count--;
 		}
-		
+		System.out.println("count"  + count);
+		model.addAttribute("page", count / 5 + 1);
 		model.addAttribute("allCount", count); // 전체 공지사항 개수
 		model.addAttribute("allPage", svo.getPage()); // 전체 페이지
 		model.addAttribute("allSvo", svo); // 검색할 내용 넘겨주기
@@ -48,6 +49,7 @@ public class NoticeController {
 	@GetMapping("/noticeCount.mdo")
 	@ResponseBody
 	public int noticeCount(NoticeSearchVO svo) {
+		System.out.println("csvo : " + svo);
 		int count = noticeService.getCount(svo);
 		return count;
 	}

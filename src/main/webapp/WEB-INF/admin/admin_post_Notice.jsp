@@ -48,15 +48,15 @@
 						<select class="row form-select w-100 fs-5" id="level" name="level"
 							id="level" aria-label="Default select example"
 							style="margin-left: 3%;">
-							<option class="fs-5" value="1">번호</option>
-							<option class="fs-5" value="2">제목</option>
-							<option class="fs-5" value="3">내용</option>
+							<option class="fs-5" value="번호">번호</option>
+							<option class="fs-5" value="제목">제목</option>
+							<option class="fs-5" value="내용">내용</option>
 						</select>
 					</div>
 				</div>
 				<div class="col-3  me-2 mt-3">
 					<div class="input-group mb-3 ">
-						<input class="fs-5 w-100" type="text" placeholder="검색할 내용 입력">
+						<input class="fs-5 w-100" type="text" id="search" placeholder="검색할 내용 입력">
 					</div>
 				</div>
 				<div class="col-auto ">
@@ -91,7 +91,7 @@
 									<input type="hidden" value="${notice.notice_seq }" />
 								</td>
 								<td>
-									<p class="rowColumn">
+									<p class="rowColumn" id="title">
 									<a href="/admin_post_NoticeDetail.mdo?notice_seq=${notice.notice_seq}">
 									${notice.notice_title }
 									</a>
@@ -123,7 +123,7 @@
 							<a class="page-link"><
 							</a></li>
 						</c:if>
-						<c:forEach var="i" begin="1" end="${allCount/5+1}">
+						<c:forEach var="i" begin="1" end="${page}">
 							<c:if test="${allPage ne i}">
 								<li class="page-item"><a class="page-link" href="#">${i}
 								</a></li>

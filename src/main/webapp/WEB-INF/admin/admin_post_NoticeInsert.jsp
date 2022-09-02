@@ -64,7 +64,6 @@
 			<div class="col-5"></div>
 			<div class="row col-5">
 				<button class="col-auto bg-white border-1 noticeadd" id="noticeInsert">등록</button>
-				<button type="button" class="col-auto bg-white border-1 noticedel">삭제</button>
 				<button class="col-auto bg-white border-1 noticelist">목록</button>
 			</div>
 			<div class="col-2"></div>
