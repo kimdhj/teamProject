@@ -1,13 +1,12 @@
 package com.romance.admin.notice.impl;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.romance.admin.notice.NoticeSearchVO;
 import com.romance.admin.notice.NoticeVO;
 
 @Repository
@@ -15,9 +14,12 @@ public class NoticeDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	public List<NoticeVO> getNoticeList(){
-		List<NoticeVO> noticeList = sqlSession.selectList("NoticeDAO.getNoticeList");
-		return noticeList;
+	public List<NoticeVO> getNoticeList(NoticeSearchVO svo){
+		return sqlSession.selectList("NoticeDAO.getNoticeList", svo);
+	}
+	
+	public int getCount(NoticeSearchVO svo) {
+		return sqlSession.selectOne("NoticeDAO.getCount", svo);
 	}
 	
 	public NoticeVO getNotice(NoticeVO vo) {
@@ -58,5 +60,11 @@ public class NoticeDAO {
 		System.out.println(count);
 		if(count == 1) result = true;
 		return result;
+	}
+	
+	// 체크박스 선택 삭제
+	public void checkBox(int notice_seq) {
+		System.out.println("DAO : " + notice_seq);
+		sqlSession.delete("NoticeDAO.checkBox", notice_seq);
 	}
 }

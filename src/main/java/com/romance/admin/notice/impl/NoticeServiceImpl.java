@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.romance.admin.notice.NoticeSearchVO;
 import com.romance.admin.notice.NoticeService;
 import com.romance.admin.notice.NoticeVO;
 
@@ -14,8 +15,29 @@ public class NoticeServiceImpl implements NoticeService{
 	private NoticeDAO noticeDao;
 	
 	@Override
-	public List<NoticeVO> getNoticeList() {
-		return noticeDao.getNoticeList();
+	public List<NoticeVO> getNoticeList(NoticeSearchVO svo) {
+		if(svo.getPage() == 0) {
+			svo.setPage(1);
+		}
+		if(svo.getTitle() != null) {
+			svo.setTitle(svo.getTitle().trim());
+		}
+		if(svo.getContent() != null) {
+			svo.setContent(svo.getContent().trim());
+		}
+		
+		return noticeDao.getNoticeList(svo);
+	}
+	
+	@Override
+	public int getCount(NoticeSearchVO svo) {
+		if(svo.getTitle() != null) {
+			svo.setTitle(svo.getTitle().trim());
+		}
+		if(svo.getContent() != null) {
+			svo.setContent(svo.getContent().trim());
+		}
+		return noticeDao.getCount(svo);
 	}
 	
 	@Override
@@ -49,4 +71,15 @@ public class NoticeServiceImpl implements NoticeService{
 		return noticeDao.checkPW(vo);
 	}
 	
+	// 체크박스 선택삭제
+	@Override
+	public void checkBox(List<String> notice_seq) {
+		for(String nSeq : notice_seq) {
+			int seq = Integer.parseInt(nSeq);
+			System.out.println("Service : " + seq);
+			noticeDao.checkBox(seq);
+		}
+	}
+	
+	// 
 }

@@ -17,6 +17,10 @@ public class EventDAO {
 		System.out.println("---> MyBatis로 insertEvent() 기능 처리");
 		sqlSessionTemplate.insert("EventDAO.insertEvent", vo);
 	}
+	
+	public int topCheck(EventVO vo) {
+		return sqlSessionTemplate.selectOne("EventDAO.topCheck", vo);
+	}
 
 	public void updateEvent(EventVO vo) {
 		System.out.println("---> MyBatis로 updateEvent() 기능 처리");

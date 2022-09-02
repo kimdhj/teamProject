@@ -24,4 +24,7 @@ public interface chatDAOInter {
 	public chatVO selectcontent(chatVO vo);
 
 	public void insertAPI(API vo);
+	public List<String> author();
+	public void authorinser(String author);
+	
 }

@@ -45,7 +45,7 @@
                 id="imgsize"
                 data-wow-delay="0.1s"
               >
-                <a href="">
+                <a href="/getEvent.do?event_seq=${top.event_seq }">
                   <img class="img-fluid" width="100" height="100" src="${top.event_thumbnail }" alt="" />
                 </a>
                 <div class="bg-light p-4">
@@ -79,7 +79,7 @@
             <c:forEach var="bottom" items="${bottom_eventList }" >
             <li>
               <div style="float: left">
-                <a href="#">
+                <a href="/getEvent.do?event_seq=${bottom.event_seq }">
                   <img id="southImg" src="${bottom.event_thumbnail }" />
                 </a>
               </div>
