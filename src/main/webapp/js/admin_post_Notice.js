@@ -71,10 +71,12 @@ $(document)
 				                	text: "삭제되었습니다.",
 				                	icon: "success"
 				                }).then(function(){
-				                	console.log(e.target);
-				                	$(e.target).parents('tr').remove();
+				 //               	console.log(e.target);
+				 //              	console.log($(e.target).parents('tr').children("td:eq(1)").text().trim());
+				           //     	$(e.target).parents('tr').remove();
 					                
-				                	 var seq = $(e.target).parents('tr').children("td:eq(1)").text().trim();
+				                	console.log($(e.target).parents('tr').html());
+				                	 var seq = $(e.target).parents('tr').children("td:eq(1)").children("input").val();
 						             console.log(seq);
 						             location.href="/admin_post_NoticeDelete.mdo?notice_seq=" + seq;
 						            	 
@@ -121,12 +123,12 @@ $(document)
 								console.log(chk_arr);
 							})
 							
-							var allSeq = {"notice_seq" : chk_arr}
+//							var allSeq = {"notice_seq" : chk_arr}
 							
 							$.ajax({
 								url: "/admin_post_NoticeChkbox.mdo", // 데이터를 가지고 갈 주소
 								type: "GET",
-								data: allSeq,
+								data: {notice_seq : chk_arr, },
 								success: function(data){
 									$('.delche:checked').parents('tr').remove(); // 선택된 행 전체 삭제
 				                	$('.allche').removeAttr('checked'); // checked 된 속성 값 제거
@@ -191,6 +193,7 @@ $(document)
 			                	// #('.allche') : 전체 선택
 			                	$('.delche:checked').parents('tr').remove(); // 선택된 행 전체 삭제
 			                	$('.allche').removeAttr('checked'); // checked 된 속성 값 제거
+			        //        	location.href="/"
 			                })
 			            }else if(result.isDismissed){
 			            	return false;
@@ -368,6 +371,7 @@ $("#all_box #search_btn").click(function(e) {
 	$("#all_box #pageche").val(1);
 	$("#all_box #startche").val();
 	$("#all_box #endche").val();
+	$("#all_box #dateche").val();
 	// Date 에 값을 안넣어줄 경우, if 문에 null 값일 때 값 안넘어가도록 진행
 	let count = 0;
 //	$("#all_box #nameche").val($("#all_box #name").val());
@@ -380,7 +384,7 @@ $("#all_box #search_btn").click(function(e) {
 
 //화면 구성
 function makeDisplay(e) {
-	if ($(e.target).text() == "<") {
+	if ($(e.target).text().trim() == "<") {
 		$("#all_box #pageche").val(Number($("#all_box #pageche").val()) - 1);
 	} else if ($(e.target).text() == ">") {
 		$("#all_box #pageche").val(Number($("#all_box #pageche").val()) + 1);
@@ -392,23 +396,30 @@ function makeDisplay(e) {
 
 //내용변경
 function make() {
+	let count = 0;
 	$.ajax({
-		url: "/categoryCount.mdo",
+		url: "/noticeCount.mdo",
 		method: "get",
 		dataType: 'json',
 		async: false,
 		data: {
-			num: Number($("#all_box #numche").val()),
-			name: $("#all_box #nameche").val(),
+			seq: Number($("#all_box #seqche").val()),
+			title: $("#all_box #titleche").val(),
+			content: $("#all_box #contentche").val(),
+			startDate: $("#all_box #startche").val(),
+			endDate: $("#all_box #endche").val(),
+			date: $("#all_box #dateche").val(),
 			page: Number($("#all_box #pageche").val())
 		},
 		success: function(re) {
 			count = re;
+			// count = count - (Number($("#all_box #pageche").val()) -1) * 5;
 			count = count - ($("#all_box #pageche").val() - 1) * 5;
+			console.log(count);
 			let pa = '';
 			if (Number($("#all_box #pageche").val()) > 1) {
 				pa += `<li class="page-item "><a class="page-link">
-								< </a></li>`;
+								<</a></li>`;
 			}
 			if (re % 5 == 0) {
 				re--;
@@ -426,66 +437,61 @@ function make() {
 								href="#"
 								class="page-link">${i}</a></li>`;
 				}
-
-
-
-
 			}
 			if (Number($("#all_box #pageche").val()) < re / 5) {
 				pa += `<li class="page-item"><a class="page-link" href="#">></a></li>`;
 			}
 			$("#all_box .pagination").html(pa);
+//			console.log("번호 : " + $("#all_box .pagination").html());
 		}
 	});
 	$.ajax({
-		url: "/categoryList.mdo",
-		method: "get",
+		url: "/noticeList.mdo",
+		method: "GET",
 		dataType: 'json',
 		async: false,
 		data: {
-			num: Number($("#all_box #numche").val()),
-			name: $("#all_box #nameche").val(),
+			seq: Number($("#all_box #seqche").val()),
+			title: $("#all_box #titleche").val(),
+			content: $("#all_box #contentche").val(),
+			startDate: $("#all_box #startche").val(),
+			endDate: $("#all_box #endche").val(),
+			date: $("#all_box #dateche").val(),
 			page: Number($("#all_box #pageche").val())
 		},
 		success: function(re) {
-
 			let con = "";
-			re.map((se) => {
-
+			re.map((notice) => {
 				con += `<tr>
-							<td><input
-								class="form-check-input border-1 border-dark delche"
-								type="checkbox" value="" id="flexCheckChecked" >
-							</td>
-							<td>
-								<p contenteditable="false" data-default="${count}">${count}</p>
-								
-							</td>
-							<td>
-								<p class="rowColumn" id="category_name"  contenteditable="true"
-									data-default="${se.category_name}">${se.category_name}</p>
-							</td>
-							<td>
-								<p class="rowColumn" id="category_num"  contenteditable="true"
-									data-default="${se.category_num}">${se.category_num}</p>
-							</td>
-							<td class="hide">
-								<p class="rowColumn" id="category_num" contenteditable="false"
-									data-default="${se.category_seq}">${se.category_seq}</p>
-							</td>
-							<td>
-								<button class="btn btn-danger rounded-pill del">삭제</button>
-							</td>
-						</tr>`;
+								<td><input class="form-check-input border-1 border-dark delche chkbox" name="chkbox" type="checkbox" id="flexCheckChecked"></td>
+								<td>
+									<p id="seq">${count}</p>
+									<input type="hidden" value="${notice.notice_seq }" />
+								</td>
+								<td>
+									<p class="rowColumn">
+									<a href="/admin_post_NoticeDetail.mdo?notice_seq=${notice.notice_seq}">
+									${notice.notice_title }
+									</a>
+									</p>
+								</td>
+								<td>
+									<p class="selectColumn">${notice.notice_writer }</p>
+								</td>
+								<td>
+									<p class="rowColumn">${notice.notice_date }
+									</p>
+								</td>
+								<td>
+									<button class="btn btn-danger rounded-pill del" type="button">삭제</button>
+								</td>
+							</tr>
+						`;
 				count--;
-
-
 			});
 			$("#all_box tbody").html(con);
-
+//			console.log("con: " + con);
+//			console.log("공지사항 목록 : " + $("#all_box tbody").html());
 		}
-
-
 	});
-	table();
 }

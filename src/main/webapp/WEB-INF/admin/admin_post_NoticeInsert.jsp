@@ -12,7 +12,7 @@
 <body>
 	<jsp:include page="/WEB-INF/admin_commonjsp/admin_common_header.jsp"></jsp:include>
 	<!-- 여기서부터 화면 작성 시작 -->
-	<div id="main_wrapper" class="m-2  w-100 row">
+	<div id="main_wrapper" class="m-2  w-90 row">
 		<div class="mb-0 p-0">
 			<button onclick="location.reload();" id="all" class="select p-2">공지사항 작성</button>
 		</div>
@@ -21,7 +21,7 @@
 		<div id="all_box" class="bg-white w-100">
 			<div class="row d-flex align-items-center" id="input_line_top">
 				<div class="col-1 mt-2 mb-2 notice_font" style="text-align: center;">제목</div>
-				<div class="col-3" style="padding-left: 0px;">
+				<div class="col-3 " style="padding-left: 0px;">
 					<input type="text" name="notice_title" value="${notice.notice_title }"
 						style="width: 90%; margin-top: 2%; margin-bottom: 2%;">
 				</div>
@@ -53,7 +53,7 @@
 		</div>
 		<div id="all_box" class="bg-white w-100">
 			<div class="row d-flex align-items-center" id="input_line_top">
-				<div class="col-1" style="text-align: center;">비밀번호</div>
+				<div class="col-1 notice_font" style="text-align: center;">비밀번호</div>
 				<div class="col">
 					<input type="password" name="notice_passwd">
 				</div>
