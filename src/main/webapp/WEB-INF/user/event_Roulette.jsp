@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.romance.user.event.EventVO" %>
+<%@ page import="java.util.List"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,7 +46,7 @@
             class="col d-flex align-items-center fs-3 border-2 border-top border-dark"
             id="content"
           >
-            매일매일 출석 돌림판
+            ${event_event.event_title }
           </div>
         </div>
         <div class="row" id="table">
@@ -55,7 +60,7 @@
             class="col d-flex align-items-center border-2 border-top border-gray border-bottom"
             id="content"
           >
-            5,231,543
+            ${event_event.event_cnt }
             <div>명</div>
           </div>
           <div
@@ -68,7 +73,7 @@
             class="col d-flex align-items-center border-2 border-top border-gray border-bottom"
             id="content"
           >
-            2022-08-02 ~ 2022-09-30
+            <fmt:formatDate value="${event_event.event_start_date }" pattern="yyyy-MM-dd"/> ~ <fmt:formatDate value="${event_event.event_end_date }" pattern="yyyy-MM-dd"/>
           </div>
         </div>
         <div class="row" id="Content">
@@ -106,22 +111,19 @@
             </div>
           </div>
         </div>
-        <div class="row d-flex justify-content-end bg-gray" id="endPoint">
+        <div class="row d-flex justify-content-end bg-gray back-to-top" id="endPoint">
           맨위로<i class="bi bi-caret-up-fill col-auto"></i>
         </div>
         <div class="row d-flex justify-content-between mt-2 mb-2" id="buttons">
+        <a href="/getEventList.do">
           <button class="col-auto bg-white border-1">목록</button>
-          <button class="col-auto bg-white border-1">
-            <i class="bi bi-caret-right-fill"></i>
-          </button>
+          </a>
         </div>
       </div>
       <div class="col-2"></div>
     </div>
 	   
-	
-	    
-    
+
     <!-- Footer Start -->
     	<!-- Common Footer include -->
         <jsp:include page="/WEB-INF/commonjsp/common_footer.jsp"></jsp:include>

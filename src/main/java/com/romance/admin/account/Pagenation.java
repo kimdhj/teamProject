@@ -2,12 +2,12 @@ package com.romance.admin.account;
 
 public class Pagenation {
 	private Criteria criteria;
-	private int totalCount;
-	private int startPage;
-	private int endPage;
-	private boolean prev;
-	private boolean next;
-	private int displayPageNum = 5;
+	private int totalCount; //총 게시글 수
+	private int startPage; //화면에 보여질 첫번째 페이지 번호 ,시작 페이지 번호
+	private int endPage; //화면에 보여질 마지막 페이지 번호, 끝 페이지 번호
+	private boolean prev; //다음 버튼 생성 여부
+	private boolean next; //이전 버튼 생성 여부
+	private int displayPageNum = 5; //화면 하단에 보여지는 페이지 버튼의 수 [1][2][3][4][5]
 
 	public Criteria getCriteria() {
 		return this.criteria;

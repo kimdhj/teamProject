@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    	<%@ page import="com.romance.user.event.EventVO" %>
+<%@ page import="com.romance.user.event.EventVO" %>
 <%@ page import="java.util.List"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
@@ -41,7 +41,7 @@
             class="col d-flex align-items-center fs-3 border-2 border-top border-dark"
             id="content"
           >
-            ${event_title }
+            ${event_event.event_title }
           </div>
         </div>
         <div class="row" id="table">
@@ -55,7 +55,7 @@
             class="col d-flex align-items-center border-2 border-top border-gray border-bottom"
             id="content"
           >
-            ${event_cnt }
+            ${event_event.event_cnt }
             <div>명</div>
           </div>
           <div
@@ -68,23 +68,22 @@
             class="col d-flex align-items-center border-2 border-top border-gray border-bottom"
             id="content"
           >
-            <fmt:formatDate value="${event_start_date }" pattern="yyyy-MM-dd"/> ~ <fmt:formatDate value="${event_end_date }" pattern="yyyy-MM-dd"/>
+            <fmt:formatDate value="${event_event.event_start_date }" pattern="yyyy-MM-dd"/> ~ <fmt:formatDate value="${event_event.event_end_date }" pattern="yyyy-MM-dd"/>
           </div>
         </div>
         <div class="row d-flex" id="Content">
-        	${event_file1 }
-        	${event_file2 }
-        	${event_file3 }
-        	${event_file4 }
+        	<img src="${event_event.event_file1 }">
+        	<img src="${event_event.event_file2 }">
+        	<img src="${event_event.event_file3 }">
+        	<img src="${event_event.event_file4 }">
         </div>
-        <div class="row d-flex justify-content-end bg-gray" id="endPoint">
+        <div class="row d-flex justify-content-end bg-gray back-to-top" id="endPoint">
           맨위로<i class="bi bi-caret-up-fill col-auto"></i>
         </div>
         <div class="row d-flex justify-content-between mt-2 mb-2" id="buttons">
+           <a href="/getEventList.do">
           <button class="col-auto bg-white border-1">목록</button>
-          <button class="col-auto bg-white border-1">
-            <i class="bi bi-caret-right-fill"></i>
-          </button>
+          </a>
         </div>
       </div>
       <div class="col-2"></div>

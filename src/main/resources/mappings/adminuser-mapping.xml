@@ -32,7 +32,7 @@
 		SELECT user_id, user_password, user_name, user_role FROM user WHERE user_id = #{user_id} AND user_password = #{user_password} 
 	</select>
 	
-	<select id="getUserList" parameterType="criteria" resultType="adminUserVO">
+	<select id="getUserListWithPaging" parameterType="criteria" resultMap="adminUserResult">
 		SELECT a.*, b.user_coupon_cnt FROM user a LEFT JOIN (SELECT user_id, count(user_id) AS user_coupon_cnt FROM user_coupon GROUP BY user_id) b ON a.user_id = b.user_id
 		WHERE 1=1
 		<if test="searchCondition=='USER_NAME'">
@@ -41,8 +41,11 @@
 		<if test="searchCondition=='USER_ID'">
 			AND a.user_id like CONCAT('%', #{searchKeyword}, '%')
 		</if>
-		ORDER BY a.user_id ASC LIMIT 0, 4
+		ORDER BY a.user_id ASC LIMIT #{pageNum}, #{perPageNum}
 	</select>
 	
-	
+	<select id="totalCount" resultType="int">
+		SELECT count(*) FROM user;
+	</select>
+
 </mapper>
