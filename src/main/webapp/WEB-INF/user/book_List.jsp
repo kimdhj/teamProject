@@ -101,28 +101,23 @@
 				<div id="header-carousel" class="carousel slide"
 					data-ride="carousel">
 					<div class="carousel-inner">
-						<div class="carousel-item active" style="height: 410px;">
-							<img width="100%" class="img-fluid" src="img/carousel-1.jpg"
-								alt="Image">
-							<div
-								class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-								<div class="p-3" style="max-width: 700px;">
-									<h4 class="text-light text-uppercase font-weight-medium mb-3">책</h4>
-									<h3 class="display-4 text-white font-weight-semi-bold mb-4">저렴</h3>
-									<a href="" class="btn btn-light py-2 px-3">구매</a>
+						<div class="carousel-item active w-100" style="height: 410px;">
+							<a href="" class="btn btn-light py-2 px-3 w-100"> <img width="100%"
+								class="img-fluid" src="img/carousel-1.jpg" alt="Image">
+								<div
+									class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+									<div class="p-3" style="max-width: 700px;"></div>
 								</div>
-							</div>
+							</a>
 						</div>
 						<div class="carousel-item" style="height: 410px;">
-							<img class="img-fluid" src="img/carousel-2.jpg" alt="Image">
-							<div
-								class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-								<div class="p-3" style="max-width: 700px;">
-									<h4 class="text-light text-uppercase font-weight-medium mb-3">책</h4>
-									<h3 class="display-4 text-white font-weight-semi-bold mb-4">저렴</h3>
-									<a href="" class="btn btn-light py-2 px-3">구매</a>
+							<a href="" class="btn btn-light py-2 px-3 w-100"> <img
+								class="img-fluid" width="100%" src="img/carousel-2.jpg"
+								alt="Image">
+								<div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+									<div class="p-3" style="max-width: 700px;"></div>
 								</div>
-							</div>
+							</a>
 						</div>
 					</div>
 					<a class="carousel-control-prev" href="#header-carousel"

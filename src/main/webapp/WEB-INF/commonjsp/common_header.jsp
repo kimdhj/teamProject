@@ -89,11 +89,11 @@
                 </div>
             </div>
         </nav>
-        <form id="main_search" class="row g-3 hide">
+        <form id="main_search" action="booklist.do" method="get" class="row g-3 hide">
             <div class="col"></div>
             <div class="col-auto">
-                <label for="inputPassword2" class="visually-hidden">Password</label>
-                <input type="password" class="form-control" id="inputPassword2" placeholder="Password">
+                <label for="inputPassword2" class="visually-hidden">제목</label>
+                <input type="text" name="title" class="form-control" id="inputPassword2" placeholder="Password">
             </div>
             <div class="col-auto">
                 <button type="submit" class="btn btn-primary mb-3">검색</button>

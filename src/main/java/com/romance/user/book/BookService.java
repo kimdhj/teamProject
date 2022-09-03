@@ -15,4 +15,6 @@ public interface BookService {
 	public List<CategoryVO> categoryko();
 	public List<CategoryVO> categoryen();
 	public List<NavCategoryVO> navlist();
+	public List<BookVO> mainbest(BookSearchVO vo);
+	public List<BookVO> mainnew(BookSearchVO vo);
 }	

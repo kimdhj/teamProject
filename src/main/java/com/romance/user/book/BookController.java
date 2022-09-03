@@ -6,6 +6,7 @@ import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -13,10 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class BookController {
 	@Autowired
 	BookService ser;
-	@RequestMapping("/romance.do")
-	public String index() {
-		return"index";
-	}
 	@RequestMapping("/booklist.do")
 	public String booklist(BookSearchVO vo,Model model) {
 		System.out.println(vo);
@@ -191,7 +188,32 @@ public class BookController {
 		json.put("vo",vo);
 		return json;
 	}
+	@GetMapping("index.do")
+	public String main(BookSearchVO vo,Model model) {
+		if(vo.getPage()==0) {
+			vo.setPage(1);
+		}
+		System.out.println(ser.mainnew(vo));
+		model.addAttribute("bestlist",ser.mainbest(vo));
+		model.addAttribute("newlist",ser.mainnew(vo));
+		return "index";
+	}
+	@GetMapping("mainnew.do")
+	@ResponseBody
+	public List<BookVO> mainnew(BookSearchVO vo) {
+		vo.setPage(2);
+		
 
+	
+		return ser.mainnew(vo);
+	}
+	@GetMapping("mainbest.do")
+	@ResponseBody
+	public List<BookVO> mainbest(BookSearchVO vo) {
+		vo.setPage(2);
+		return ser.mainbest(vo);
+	}
+	
 
 
 }
