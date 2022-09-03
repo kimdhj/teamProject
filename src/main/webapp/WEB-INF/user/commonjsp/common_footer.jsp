@@ -59,10 +59,10 @@
         </div>
     </div>
     <!-- Footer End -->
-    <div class="fix">
+    <div class="fix col-auto">
 
         <!-- 실시간 -->
-        <div class="col-4" id="real_chatSum">
+        <div class="col-12" id="real_chatSum">
             <div id="real_chat" class="col-12 hide">
                 <div class="row" id="real_nav">
                     <div class="col-2" id="nav_ico"><i class="bi bi-person-fill"></i></div>
@@ -120,7 +120,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row" id="button_box">
+            <div class="col-auto" id="button_box">
 
                 <button class="btn btn-info" id="chat_button"> 실시간 채팅</button>
             </div>

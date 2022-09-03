@@ -2,7 +2,7 @@
      console.log("HI");
             $("#chat_button").click(function () {
 
-                $("#real_chat").toggleClass("hide");
+               location.href="/chat.do"
             });
             $("#book_addbtnmain").click(function () {
                 var yellow_circle = `<div class="row g-4">
@@ -418,7 +418,7 @@
 
                 $("#main_search").toggleClass("hide");
             });
-            search_btn
+         
         });
 
 
