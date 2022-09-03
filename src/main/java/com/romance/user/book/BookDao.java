@@ -6,6 +6,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.romance.admin.sample.category.CategoryVO;
+import com.romance.admin.sample.navcategory.NavCategoryVO;
+
 @Repository
 public class BookDao {
 	@Autowired
@@ -32,6 +35,15 @@ public class BookDao {
 		System.out.println("new");
 		return sql.selectOne("book.newcount",vo);
 		
+	}
+	public List<CategoryVO> categoryko(){
+		return sql.selectList("Category.categoryko");
+	}
+	public List<CategoryVO> categoryen(){
+		return sql.selectList("Category.categoryen");
+	}
+	public List<NavCategoryVO> navlist(){
+		return sql.selectList("navCategory.getList");
 	}
 	
 

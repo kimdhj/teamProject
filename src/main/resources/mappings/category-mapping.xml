@@ -38,6 +38,12 @@
 	<update parameterType="categoryVO" id="categoryMod">
 		update category set category_num=#{category_num},category_name=#{category_name} where category_seq=#{category_seq}
 	</update>
+	<select resultType="categoryVO" id="categoryko">
+	select * from category where category_num>100
+	</select>
+	<select resultType="categoryVO" id="categoryen">
+	select * from category where category_num>200
+	</select>
 
 
 
