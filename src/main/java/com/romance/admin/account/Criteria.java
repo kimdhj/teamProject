@@ -13,7 +13,7 @@ public class Criteria {
 	
 	public Criteria() {
 		this.pageNum = 1;
-		this.perPageNum = 5;
+		this.perPageNum = 2;
 	}
 	
 	public int getPageNum() {
