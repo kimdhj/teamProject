@@ -41,7 +41,7 @@
 		<if test="searchCondition=='USER_ID'">
 			AND a.user_id like CONCAT('%', #{searchKeyword}, '%')
 		</if>
-		ORDER BY a.user_id ASC LIMIT #{pageNum}, #{perPageNum}
+		ORDER BY a.user_id ASC LIMIT #{pageStart}, #{perPageNum}
 	</select>
 	
 	<select id="totalCount" resultType="int">
