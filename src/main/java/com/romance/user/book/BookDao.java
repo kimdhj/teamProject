@@ -45,6 +45,14 @@ public class BookDao {
 	public List<NavCategoryVO> navlist(){
 		return sql.selectList("navCategory.getList");
 	}
+	public List<BookVO> mainbest(BookSearchVO vo){
+		System.out.println("new");
+		return sql.selectList("book.mainbest",vo);
+	}
+	public List<BookVO> mainnew(BookSearchVO vo){
+		System.out.println("new");
+		return sql.selectList("book.mainnew",vo);
+	}
 	
 
 }
