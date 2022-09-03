@@ -543,3 +543,6 @@
 div.bg-white {
   background-color: rgb(239, 207, 138) !important;
 }
+.product-item {
+	height:60% !important;
+}

@@ -56,6 +56,16 @@ public class BookServiceImpl implements BookService {
 		// TODO Auto-generated method stub
 		return dao.navlist();
 	}
+	@Override
+	public List<BookVO> mainbest(BookSearchVO vo) {
+		// TODO Auto-generated method stub
+		return dao.mainbest(vo);
+	}
+	@Override
+	public List<BookVO> mainnew(BookSearchVO vo) {
+		// TODO Auto-generated method stub
+		return dao.mainnew(vo);
+	}
 	
 	
 	
