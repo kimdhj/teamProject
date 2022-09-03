@@ -29,6 +29,16 @@ public class CategoryController {
 		if(count%5==0) {
 			count--;
 		}
+		if(vos.getPage()<3) {
+			model.addAttribute("startpage", 1);
+		}else {
+			model.addAttribute("startpage", vos.getPage()-2);
+		}
+		if(vos.getPage()+2>count/5+1) {
+			model.addAttribute("endpage", count/5+1);
+		}else {
+			model.addAttribute("endpage", vos.getPage()+2);
+		}
 		model.addAttribute("all_sum",count);
 		model.addAttribute("all_page",vos.getPage());
 		model.addAttribute("all_vos",vos);

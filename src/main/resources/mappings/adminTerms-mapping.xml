@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Terms">
+	<resultMap type="termsVO" id="termsResult">
+		<id property="seq" column="SEQ" />
+		<result property="terms_seq" column="TERMS_SEQ" />
+		<result property="terms_article_number"
+			column="TERMS_ARTICLE_NUMBER" />
+		<result property="terms_title" column="TERMS_TITLE" />
+		<result property="terms_content" column="TERMS_CONTENT" />
+		<result property="terms_date" column="TERMS_DATE" />
+		<result property="terms_state" column="TERMS_STATE" />
+	</resultMap>
+
+	<insert id="insertTerms" parameterType="termsVO">
+		INSERT INTO terms
+		(terms_seq, terms_article_number, terms_title, terms_content,
+		terms_state) VALUES(#{terms_seq}, #{terms_article_number},
+		#{terms_title}, #{terms_content}, #{terms_state})
+	</insert>
+
+	<select id="getTermsList" resultMap="termsResult">
+		SELECT * FROM terms WHERE
+		1=1
+	</select>
+
+</mapper>

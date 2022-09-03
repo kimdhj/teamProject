@@ -2,12 +2,12 @@ package com.romance.admin.account;
 
 public class Pagenation {
 	private Criteria criteria;
-	private int totalCount;
-	private int startPage;
-	private int endPage;
-	private boolean prev;
-	private boolean next;
-	private int displayPageNum = 5;
+	private int totalCount; //총 게시글 수
+	private int startPage; //화면에 보여질 첫번째 페이지 번호 ,시작 페이지 번호
+	private int endPage; //화면에 보여질 마지막 페이지 번호, 끝 페이지 번호
+	private boolean prev; //다음 버튼 생성 여부
+	private boolean next; //이전 버튼 생성 여부
+	private int displayPageNum = 5; //화면 하단에 보여지는 페이지 버튼의 수 [1][2][3][4][5]
 
 	public Criteria getCriteria() {
 		return this.criteria;
@@ -28,7 +28,8 @@ public class Pagenation {
 
 	private void calcData() {
 		// 끝 페이지 번호 = (현재 페이지 번호 / 화면에 보여질 페이지번호 갯수) * 화면에 보여질 페이지번호 갯수
-		endPage = (int) (Math.ceil(criteria.getPage() / (double) displayPageNum) * displayPageNum);
+		// Math.ceil (올림), Math.floor (내림), Math.rount(반올림)
+		endPage = (int) (Math.ceil(criteria.getPageNum() / (double) displayPageNum) * displayPageNum);
 
 		// 시작 페이지 번호
 		startPage = (endPage - displayPageNum) + 1;
@@ -37,7 +38,7 @@ public class Pagenation {
 		}
 
 		// 마지막 페이지 번호 = 총 게시글 수 / 한 페이지당 보여줄 게시글의 수
-		int tempEndPage = (int) (Math.ceil(totalCount) / (double) criteria.getPage());
+		int tempEndPage = (int) (Math.ceil(totalCount) / (double) criteria.getPageNum());
 		if (endPage > tempEndPage) {
 			endPage = tempEndPage;
 		}
@@ -76,4 +77,12 @@ public class Pagenation {
 	public void setDisplayPageNum(int displayPageNum) {
 		this.displayPageNum = displayPageNum;
 	}
+
+	@Override
+	public String toString() {
+		return "Pagenation [criteria=" + criteria + ", totalCount=" + totalCount + ", startPage=" + startPage
+				+ ", endPage=" + endPage + ", prev=" + prev + ", next=" + next + ", displayPageNum=" + displayPageNum
+				+ "]";
+	}
+	
 }

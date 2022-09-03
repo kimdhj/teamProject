@@ -47,6 +47,7 @@ function init() {
 
 			}
 			$("#contents").html(str);
+			$("html, body").animate({ scrollTop: $(document).height() }, 500);
 		},
 		error: function(e) {
 			console.log(e);

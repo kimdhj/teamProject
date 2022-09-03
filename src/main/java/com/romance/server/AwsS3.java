@@ -90,7 +90,7 @@ public class AwsS3 {
 	}
 
 	//파일 업로드
-//	String upoladFolder = "https://testmanbuc.s3.ap-northeast-2.amazonaws.com/";
+//	String upoladFolder = "https://doublejo.s3.ap-northeast-2.amazonaws.com/";
 //	String filename=mainUploadFile.getOriginalFilename();
 //	String expand=filename.substring(filename.indexOf("."));
 //	String key=UUID.randomUUID().toString()+expand;
