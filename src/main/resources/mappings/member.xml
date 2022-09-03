@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.member">
+<!-- 리절트 맵 정의 -->	
+	<resultMap id="memberResult" type="MemberVO">
+		<result property="u_id" column="u_id" />
+		<result property="pwd" column="pwd" />
+		<result property="u_name" column="u_name" />
+		<result property="gender" column="gender" />
+		
+		<result property="birth_yy" column="birth_yy" />
+		<result property="birth_mm" column="birth_mm" />
+		<result property="birth_dd" column="birth_dd" />
+		
+		<result property="member_birth_gn" column="member_birth_gn" />
+		<result property="tel1" column="tel1" />
+		<result property="tel2" column="tel2" />
+		<result property="tel3" column="tel3" />
+		
+		<result property="email_id" column="email_id" />
+		<result property="email_sel" column="email_sel" />
+
+		<result property="addr1" column="addr1" />
+		<result property="addr2" column="addr2" />
+		<result property="addr3" column="addr3" />
+
+		<result property="joinDate" column="joinDate" />
+	</resultMap>	
+
+	<select id="login" resultType="memberVO"  parameterType="java.util.Map"  >
+	    <![CDATA[
+			select * from t_shopping_member 
+			 where u_id=#{u_id}
+			 and pwd=#{pwd}			
+			 
+		]]>
+	</select>
+	
+	<select id="selectOverlappedID" parameterType="String" resultType="String">
+	   select decode(count(*),1, 'true', 0, 'false')
+	   from t_shopping_member
+	   where u_id = #{id}
+	</select>
+	
+  <insert id="insertNewMember"  parameterType="memberVO">
+  <![CDATA[
+    	insert into t_shopping_member(u_id,
+				 					  pwd,
+                                     u_name,
+                                     gender,
+                                     bir_yy,
+                                     bir_mm,
+                                     bir_dd,
+                                     tel1,
+                                     tel2,
+                                     tel3,
+                                     email_id,
+                                     email_sel,
+                                     addr1,
+                                     addr2,
+                                     addr3)
+							 values(#{u_id},
+									#{pwd},
+									#{u_name},
+                                 	#{gender},
+                                   	#{bir_yy},
+                                   	#{bir_mm},
+                                    #{bir_dd},
+                                    #{tel1},
+                                    #{tel2},
+                                    #{tel3},
+                                    #{email_id},
+                                    #{email_sel},
+                                    #{addr1},
+                                    #{addr2},
+                                    #{addr3})
+                                  
+                                      
+   ]]>      
+  </insert>
+</mapper>
