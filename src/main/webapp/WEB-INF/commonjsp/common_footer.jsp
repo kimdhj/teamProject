@@ -59,69 +59,11 @@
         </div>
     </div>
     <!-- Footer End -->
-    <div class="fix">
-
+    <div class="fix col-auto">
         <!-- 실시간 -->
-        <div class="col-4" id="real_chatSum">
-            <div id="real_chat" class="col-12 hide">
-                <div class="row" id="real_nav">
-                    <div class="col-2" id="nav_ico"><i class="bi bi-person-fill"></i></div>
-                    <div class="col" id="nav_text">
-                        <div id="text_title">독립서점</div>
-                        <div id="text_subtitle">응답하는중</div>
-                    </div>
-                </div>
-                <div id="real_chatItems">
-                    <div class="row" id="chat_left">
-                        <div class="row">
-
-                            <div id="item_ico" class="col-2 justify-content-end"><i class="bi bi-person-circle"></i>
-                            </div>
-                            <div class="col-10"></div>
-                        </div>
-
-                        <div class="row">
-
-                            <div class="col-9" id="content_box">
-
-                                <div id="item_content">
-                                    dfsfdddddddddfsfdddddddddfsfdddddddddfsfdddddddddfsfdddddddd
-                                </div>
-                            </div>
-                            <div class="col-3"></div>
-                        </div>
-
-                    </div>
-                    <div class="row" id="chat_right">
-                        <div class="row">
-                            <div class="col-10"></div>
-                            <div id="item_ico" class="col-2"><i class="bi bi-person-circle"></i></div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-3"></div>
-                            <div class="col-9" id="content_box">
-
-                                <div id="item_content">
-                                    dfsfdddddddddfsfdddddddddfsfdddddddddfsfdddddddddfsfdddddddd
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-
-                </div>
-                <div class="row" id="real_input">
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Recipient's username"
-                            aria-label="Recipient's username" aria-describedby="button-addon2">
-                        <button class="btn btn-secondary" type="button" id="button-addon2">Button</button>
-                    </div>
-                </div>
-            </div>
-            <div class="row" id="button_box">
-
+        <div class="col-auto" id="real_chatSum">
+            
+            <div class="col-auto" id="button_box">
                 <button class="btn btn-info" id="chat_button"> 실시간 채팅</button>
             </div>
 
@@ -135,10 +77,9 @@
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/lib/wow/wow.js"></script>
+    <script src="/lib/wow/wow.min.js"></script>
     <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
-	<script src="/lib/owlcarousel/owl.carousel.min.js"></script>
     <!-- Template Javascript -->
     <script src="/js/main.js"></script>
     <script src="/js/index.js"></script>    
