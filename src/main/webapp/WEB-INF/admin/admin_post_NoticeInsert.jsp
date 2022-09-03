@@ -17,6 +17,7 @@
 			<button onclick="location.reload();" id="all" class="select p-2">공지사항 작성</button>
 		</div>
 		
+		<%-- onsubmit="return i()" --%>
 		<form class="p-0" action="/admin_post_NoticeInsert.mdo" method="post" onsubmit="return i()" enctype="multipart/form-data">
 		<div id="all_box" class="bg-white w-100">
 			<div class="row d-flex align-items-center" id="input_line_top">
@@ -44,7 +45,7 @@
 				<div class="col mb-2" style="padding-left: 0px;" >${notice.notice_date }</div>
 			</div>
 		</div>
-		<div id="all_box" class="bg-white w-100">
+		<div id="all_box" class="bg-white w-100 2all_box">
 			<div class="row d-flex align-items-center" id="input_line_top">
 				<div class="row"></div>
 				<div name="notice_content" class="summernote">${notice.notice_content }</div>
@@ -63,7 +64,7 @@
 		<div class="row d-flex justify-content-between mt-2 mb-2" id="buttons">
 			<div class="col-5"></div>
 			<div class="row col-5">
-				<button class="col-auto bg-white border-1 noticeadd" id="noticeInsert">등록</button>
+				<button class="col-auto bg-white border-1 noticeadd" type="button" id="noticeInsert">등록</button>
 				<button class="col-auto bg-white border-1 noticelist">목록</button>
 			</div>
 			<div class="col-2"></div>

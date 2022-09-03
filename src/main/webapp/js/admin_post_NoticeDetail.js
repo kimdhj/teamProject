@@ -14,6 +14,8 @@ $().ready(function () {
                 Swal.fire({
                 	text: "공지사항 목록으로 되돌아갑니다.",
                 	icon: "success",
+                	showConfirmButton: false,
+                	timer: 1500,
                 }).then(function(){ // 예를 눌러야지 admin_post_Notice.mdo 로 이동
                 	location.href="/admin_post_Notice.mdo";
                 })
@@ -21,3 +23,7 @@ $().ready(function () {
         })
     });
 });
+
+// summernote 를 이용해 미리보기 / 수정 없이 내용만 볼 수 있게 뿌릴 때 
+// $("#content").html(data.replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g,'"').replace(/&#40;/g,'(').replace(/&#41;/g,')').replace(/&#35;/g,'#'));
+

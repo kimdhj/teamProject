@@ -47,7 +47,7 @@
 		<div id="all_box" class="bg-white w-100">
 			<div class="row d-flex align-items-center" id="input_line_top">
 				<div class="row"></div>
-				<div class="row" id="Content">${notice.notice_content }</div>
+				<div class="row" id="content">${notice.notice_content }</div>
 			</div>
 		</div>
 		
