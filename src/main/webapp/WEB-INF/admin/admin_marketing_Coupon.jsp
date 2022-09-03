@@ -107,7 +107,8 @@
 							<li class="page-item "><a class="page-link">
 									< </a></li>
 						</c:if>
-						<c:forEach var="i" begin="1" end="${maxpage}">
+
+						<c:forEach var="i" begin="${startpage}" end="${endpage}">
 							<c:if test="${vo.page ne i}">
 								<li class="page-item"><a class="page-link"
 									href="#">${i}

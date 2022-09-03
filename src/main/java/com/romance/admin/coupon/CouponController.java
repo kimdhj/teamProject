@@ -24,6 +24,7 @@ public class CouponController {
 		List<CouponVO> list=ser.getCouponList(vo);
 		System.out.println(vo);
 		System.out.println(list);
+		
 		return list;
 	}
 	@GetMapping("/coupondel.mdo")
@@ -59,6 +60,18 @@ public class CouponController {
 		
 		if(count%5==0) {
 			count-=1;
+		}
+		if(vo.getPage()<3) {
+			model.addAttribute("startpage", 1);
+		}else {
+			model.addAttribute("startpage", vo.getPage()-2);
+		}
+		if(vo.getPage()+2>(count/5)+1) {
+			System.out.println(count);
+			model.addAttribute("endpage", count/5+1);
+		}else {
+			System.out.println("el"+count);
+			model.addAttribute("endpage", vo.getPage()+2);
 		}
 		model.addAttribute("count",count-((vo.getPage()-1)*5));
 		model.addAttribute("maxpage",(int)count/5+1);

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="book">
+
+	<select id="booklist" parameterType="booksearchVO"
+		resultType="bookVO">
+	<![CDATA[select * from(select *, @rownum:=@rownum+1 as rnum from book  , (SELECT @rownum:=0) TMP ]]>
+		<trim prefix="WHERE" prefixOverrides="AND |OR">
+			<if test="title != null"><![CDATA[AND book_title like CONCAT('%',#{name},'%')]]></if>
+
+		</trim>
+		<![CDATA[) B where rnum>(#{page}-1)*5 AND rnum<=#{page}*5 order by book_seq ]]>
+
+	</select>
+	<select resultType="int" parameterType="booksearchVO"
+		id="bookcount">
+<![CDATA[select count(*) from book ]]>
+		<trim prefix="WHERE" prefixOverrides="AND |OR">
+			<if test="title != null"><![CDATA[AND book_title like CONCAT('%',#{name},'%')]]></if>
+
+		</trim>
+		
+	</select>
+	<select resultType="bookVO" parameterType="booksearchVO"
+		id="bestbook">
+		<![CDATA[select * from (select * from (select
+		b.book_imgURL,b.book_price,b.book_title,b.book_descript,b.book_seq,sum(order_bookList_count)
+		as sum, @rownum:=@rownum+1 as rnum from book as b join order_bookList
+		as bl on b.book_seq=bl.book_seq group by b.book_seq) D , (SELECT
+		@rownum:=0) TMP where sum>10 ) ag where rnum>(#{page}-1)*5 AND
+		rnum<=#{page}*5 order by sum desc,book_seq   ]]>
+	</select>
+	<select parameterType="booksearchVO" resultType="int" id="bestcount">
+		<![CDATA[select count(*) from (select
+		b.book_imgURL,b.book_title,b.book_descript,b.book_seq,sum(order_bookList_count)
+		as sum, @rownum:=@rownum+1 as rnum from book as b join order_bookList
+		as bl on b.book_seq=bl.book_seq group by b.book_seq) D , (SELECT
+		@rownum:=0) TMP where sum>10]]>
+	</select>
+	<select resultType="bookVO" parameterType="booksearchVO"
+		id="newbook">
+		<![CDATA[select * from (select *,@rownum:=@rownum+1 as rnum from book , (SELECT
+		@rownum:=0) TMP where book_publish_date> (current_date()- INTERVAL 1
+		YEAR)) E where rnum>(#{page}-1)*5 AND rnum<=#{page}*5 order by
+		book_seq]]>
+	</select>
+	<select resultType="int" id="newcount">
+		<![CDATA[select count(*) from book where book_publish_date >(current_date()-INTERVAL 1 YEAR)]]>
+	</select>
+</mapper>
+

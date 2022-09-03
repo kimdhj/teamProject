@@ -87,7 +87,7 @@ public class chatController {
 		System.out.println("chat");
 
 		model.addAttribute("userid", user);
-		return "admin_realchat_user";
+		return "realchat_user";
 	}
 
 	@GetMapping("/chatAdmin.mdo")

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class termsController {
 	
-	@Autowired
+	
 	termsService service;
 	@RequestMapping("/admin_terms_Write.mdo")
 	public String termsWrite() {
