@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="IconDAO">
+	<resultMap type="icon" id="iconResult">
+		<id property="icon_seq" column="ICON_SEQ" />
+		<result property="icon_name" column="ICON_NAME" />
+		<result property="icon_file" column="ICON_FILE" />
+	</resultMap>
+	<select id="getIcon" parameterType="icon" resultMap="iconResult">
+		SELECT * FROM icon
+	</select>
+
+</mapper>
