@@ -93,7 +93,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="adminAccount" items="${adminUserList }">
+					<c:forEach var="adminAccount" items="${adminUserListWithPaging }">
 						<tr>
 							<td scope="row">112344</td>
 							<td>${adminAccount.user_name }</td>
