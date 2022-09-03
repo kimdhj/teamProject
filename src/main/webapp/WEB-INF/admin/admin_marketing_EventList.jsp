@@ -34,7 +34,7 @@
           </thead>
           <tbody>
 			<c:forEach var="top" items="${top_eventList }" >
-            <tr>
+            <tr class="toptop">
                 <td>
                   <div class="rowColumn" contenteditable="false" data-default="${top.event_title }">${top.event_title }</div>
                 </td>
@@ -60,7 +60,7 @@
               </tr>
             </c:forEach>
 			<c:forEach var="bottom" items="${bottom_eventList }" >
-            <tr>
+            <tr class="botbot">
                 <td>
                   <div class="rowColumn" contenteditable="false" data-default="${bottom.event_title }">${bottom.event_title }</div>
                 </td>
@@ -110,7 +110,6 @@
 </div>
 </div>
 </div>
-
 
 	<jsp:include page="/WEB-INF/admin_commonjsp/admin_common_footer.jsp"></jsp:include>
 	<!-- 여기서부터 JS 추가 -->

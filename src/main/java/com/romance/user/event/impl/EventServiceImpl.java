@@ -36,19 +36,19 @@ public class EventServiceImpl implements EventService {
 		String key5 = null;
 		if (vo.getEvent_file1()!=null) {
 			key1 = vo.getEvent_file1();
-		key1 = key1.replace("https://testmanbuc.s3.ap-northeast-2.amazonaws.com", ""); }
+		key1 = key1.replace("https://doublejo.s3.ap-northeast-2.amazonaws.com/", ""); }
 		if (vo.getEvent_file2()!=null) {
 			key2 = vo.getEvent_file2();
-		key2 = key2.replace("https://testmanbuc.s3.ap-northeast-2.amazonaws.com", ""); }
+		key2 = key2.replace("https://doublejo.s3.ap-northeast-2.amazonaws.com/", ""); }
 		if (vo.getEvent_file3()!=null) {
 			key3 = vo.getEvent_file3();
-		key3 = key3.replace("https://testmanbuc.s3.ap-northeast-2.amazonaws.com", ""); }
+		key3 = key3.replace("https://doublejo.s3.ap-northeast-2.amazonaws.com/", ""); }
 		if (vo.getEvent_file4()!=null) {
 			key4 = vo.getEvent_file4();
-		key4 = key4.replace("https://testmanbuc.s3.ap-northeast-2.amazonaws.com", ""); }
+		key4 = key4.replace("https://doublejo.s3.ap-northeast-2.amazonaws.com/", ""); }
 		if (vo.getEvent_thumbnail()!=null) {
 			key5 = vo.getEvent_thumbnail();
-		key5 = key5.replace("https://testmanbuc.s3.ap-northeast-2.amazonaws.com", ""); }
+		key5 = key5.replace("https://doublejo.s3.ap-northeast-2.amazonaws.com/", ""); }
 		EventDAO.updateEvent(vo);
 		if(key1!=null) {awsS3.delete(key1);}
 		if(key2!=null) {awsS3.delete(key2);}
@@ -104,15 +104,15 @@ public class EventServiceImpl implements EventService {
 		String file4 = null;
 		String file5 = null;
 		if (vo.getEvent_file1()!=null) {
-		file1 = vo.getEvent_file1().replace("https://testmanbuc.s3.ap-northeast-2.amazonaws.com", ""); }
+		file1 = vo.getEvent_file1().replace("https://doublejo.s3.ap-northeast-2.amazonaws.com/", ""); }
 		if (vo.getEvent_file2()!=null) {
-		file2 = vo.getEvent_file2().replace("https://testmanbuc.s3.ap-northeast-2.amazonaws.com", ""); }
+		file2 = vo.getEvent_file2().replace("https://doublejo.s3.ap-northeast-2.amazonaws.com/", ""); }
 		if (vo.getEvent_file3()!=null) {
-		file3 = vo.getEvent_file3().replace("https://testmanbuc.s3.ap-northeast-2.amazonaws.com", ""); }
+		file3 = vo.getEvent_file3().replace("https://doublejo.s3.ap-northeast-2.amazonaws.com/", ""); }
 		if (vo.getEvent_file4()!=null) {
-		file4 = vo.getEvent_file4().replace("https://testmanbuc.s3.ap-northeast-2.amazonaws.com", ""); }
+		file4 = vo.getEvent_file4().replace("https://doublejo.s3.ap-northeast-2.amazonaws.com/", ""); }
 		if (vo.getEvent_thumbnail()!=null) {
-		file5 = vo.getEvent_thumbnail().replace("https://testmanbuc.s3.ap-northeast-2.amazonaws.com", ""); }
+		file5 = vo.getEvent_thumbnail().replace("https://doublejo.s3.ap-northeast-2.amazonaws.com/", ""); }
 		System.out.println(file5);
 		EventDAO.ajaxDel(del);
 		if (file1!=null) {awsS3.delete(file1); }

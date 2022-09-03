@@ -19,8 +19,6 @@ $(document).ready(function() {
 	});
 	// 상단 모든 카테고리 코드
 
-
-
 	// 해제시 전체 클릭 비활성화+모두 클릭되면 전체 클릭 활성화
 	$(".delche:checked").click(function() {
 		// 해제시 전체 클릭 비활성화
@@ -50,16 +48,11 @@ $(document).ready(function() {
 			.children("td:eq(2)")
 			.children()
 			.attr("data-default", "0");
-		(this)
-			.parents("tr")
-			.children("td:eq(2)")
-			.children()
-			.text("0");
+		this.parents("tr").children("td:eq(2)").children().text("0");
 	});
 	// 코드 변화 감지에 따른 행동
 	observer = new MutationObserver(function(mutations) {
 		mutations.forEach(function(mutation) {
-
 			$(mutation.target)
 				.parents("tr")
 				.children("td:eq(1)")
@@ -93,7 +86,6 @@ $(document).ready(function() {
 		$(this)
 			.children("select")
 			.change(function(e) {
-
 				text = e.target.value;
 				if (text == "100") {
 					text = "국내";
@@ -117,18 +109,18 @@ $(document).ready(function() {
 				Array.from(contents).forEach(function(defaultVal) {
 					// @details 빈값( null )이 존재하는지 체크한다.
 					/* if(
-							 defaultVal.textContent == ""
-						  || defaultVal.textContent == null
-						  || defaultVal.textContent == undefined
-						  || (defaultVal.textContent != null
-						  && typeof defaultVal.textContent == "object"
-						  && !Object.keys(defaultVal.textContent).length == ""))
-					  {
-			 
-						  // @details 내용이 존재하지 않다면 data 태그의 기본값으로 되돌린다.
-						  defaultVal.textContent = defaultVal.dataset.default;
-					  }
-					   */
+									   defaultVal.textContent == ""
+									|| defaultVal.textContent == null
+									|| defaultVal.textContent == undefined
+									|| (defaultVal.textContent != null
+									&& typeof defaultVal.textContent == "object"
+									&& !Object.keys(defaultVal.textContent).length == ""))
+								{
+					   
+									// @details 내용이 존재하지 않다면 data 태그의 기본값으로 되돌린다.
+									defaultVal.textContent = defaultVal.dataset.default;
+								}
+								 */
 
 					// @details 저장하지 않은 내용이라고 판단하여 data 태그의 기본값으로 되돌린다.
 					defaultVal.textContent = defaultVal.dataset.default;
@@ -180,7 +172,7 @@ $(document).ready(function() {
 		});
 	}
 	//페이지 네이션 화면 이동
-	$(document).on('click', '#all_box #page a', makeDisplay);
+	$(document).on("click", "#all_box #page a", makeDisplay);
 	//검색
 	$("#all_box #search_btn").click(function(e) {
 		$("#all_box #nameche").val(null);
@@ -188,73 +180,71 @@ $(document).ready(function() {
 		$("#all_box #pageche").val(1);
 		let count = 0;
 		$("#all_box #nameche").val($("#all_box #name").val());
-		if (Number($("#all_box #category_btn").val()) != 0 && Number($("#all_box #level").val()) != 0) {
-			$("#all_box #numche").val(Number($("#all_box #category_btn").val()) + Number($("#all_box #level").val()));
+		if (
+			Number($("#all_box #category_btn").val()) != 0 &&
+			Number($("#all_box #level").val()) != 0
+		) {
+			$("#all_box #numche").val(
+				Number($("#all_box #category_btn").val()) +
+				Number($("#all_box #level").val())
+			);
 		}
 		make();
-
-
-
 	});
 	//추가버튼
 	$("#all_box #add_btn").click(function(e) {
-
-		let num = Number($("#all_box #category_btn").val()) + Number($("#all_box #level").val());
+		let num =
+			Number($("#all_box #category_btn").val()) +
+			Number($("#all_box #level").val());
 		let name = $("#all_box #name").val();
 
-		if (Number($("#all_box #category_btn").val()) != 0 && Number($("#all_box #level").val()) != 0 && name != null) {
-
+		if (
+			Number($("#all_box #category_btn").val()) != 0 &&
+			Number($("#all_box #level").val()) != 0 &&
+			name != null
+		) {
 			$.ajax({
 				url: "/categoryInsert.mdo",
 				method: "get",
-				dataType: 'json',
+				dataType: "json",
 				async: false,
 				data: {
 					num,
-					name
-
+					name,
 				},
 				success: function(re) {
 					if (re != null) {
-
 						make();
-
 					}
 				},
 				error: function(e) {
 					if (e.responseText != null && e.responseText != "") {
 						alert(e.responseText);
-
 					} else {
 						make();
 						$("#all_box #name").val(null);
 						$("#all_box #level option:eq(0)").prop("selected", true);
 						$("#all_box #category_btn").val("");
 					}
-
-				}
+				},
 			});
 		}
 	});
 
-
-
-
-
-
 	//코드 두글자 제한
 	$("#all_box #category_btn").change(function() {
 		if ($("#all_box #category_btn").val().length > 2) {
-
-			$("#all_box #category_btn").val($("#all_box #category_btn").val().substr(0, 2));
-		};
+			$("#all_box #category_btn").val(
+				$("#all_box #category_btn").val().substr(0, 2)
+			);
+		}
 	});
 
 	//화면 구성
 	function makeDisplay(e) {
-		if ($(e.target).text() == "<") {
+		if ($(e.target).text().trim() == "<") {
 			$("#all_box #pageche").val(Number($("#all_box #pageche").val()) - 1);
-		} else if ($(e.target).text() == ">") {
+		} else if ($(e.target).text().trim() == ">") {
 			$("#all_box #pageche").val(Number($("#all_box #pageche").val()) + 1);
 		} else {
 			$("#all_box #pageche").val($(e.target).text());
@@ -262,69 +252,83 @@ $(document).ready(function() {
 
 		make();
 	}
-	
+
 	//내용변경
 	function make() {
 		$.ajax({
 			url: "/categoryCount.mdo",
 			method: "get",
-			dataType: 'json',
+			dataType: "json",
 			async: false,
 			data: {
 				num: Number($("#all_box #numche").val()),
 				name: $("#all_box #nameche").val(),
-				page: Number($("#all_box #pageche").val())
+				page: Number($("#all_box #pageche").val()),
 			},
 			success: function(re) {
+			
+			if (re % 5 == 0) {
+					re--;
+				}
+				console.log(re);
+			console.log(Number($("#all_box #pageche").val()),re / 5 + 1)
+				if (Number($("#all_box #pageche").val()) >re / 5 + 1) {
+					$("#all_box #pageche").val(Number($("#all_box #pageche").val())-1);
+				}
+				let page = Number($("#all_box #pageche").val());
 				count = re;
+				console.log(re);
 				count = count - ($("#all_box #pageche").val() - 1) * 5;
-				let pa = '';
+				let pa = "";
 				if (Number($("#all_box #pageche").val()) > 1) {
 					pa += `<li class="page-item "><a class="page-link">
 									< </a></li>`;
 				}
-				if (re % 5 == 0) {
-					re--;
-				}
-				for (let i = 1; i <= re / 5 + 1; i++) {
-					if (Number($("#all_box #pageche").val()) != i) {
+				
 
+				let startpage = 0;
+				let endpage = 0;
+				if (page < 3) {
+					startpage = 1;
+				} else {
+					startpage = page - 2;
+				}
+				if (page + 2 > re / 5 + 1) {
+					endpage = re / 5 + 1;
+				} else {
+					endpage = page + 2;
+				}
+				for (let i = startpage; i <= endpage; i++) {
+					if (Number($("#all_box #pageche").val()) != i) {
 						pa += `<li class="page-item"><a class="page-link"
 									href="#">${i}
 								</a></li>`;
 					}
 					if (Number($("#all_box #pageche").val()) == i) {
-
 						pa += `<li class="page-item active" aria-current="page"><a
 									href="#"
 									class="page-link">${i}</a></li>`;
 					}
-
-
-
-
 				}
 				if (Number($("#all_box #pageche").val()) < re / 5) {
 					pa += `<li class="page-item"><a class="page-link" href="#">></a></li>`;
 				}
 				$("#all_box .pagination").html(pa);
-			}
+			},
 		});
 		$.ajax({
 			url: "/categoryList.mdo",
 			method: "get",
-			dataType: 'json',
+			dataType: "json",
 			async: false,
 			data: {
 				num: Number($("#all_box #numche").val()),
 				name: $("#all_box #nameche").val(),
-				page: Number($("#all_box #pageche").val())
+				page: Number($("#all_box #pageche").val()),
 			},
 			success: function(re) {
-
 				let con = "";
 				re.map((se) => {
-
 					con += `<tr>
 								<td><input
 									class="form-check-input border-1 border-dark delche"
@@ -351,80 +355,64 @@ $(document).ready(function() {
 								</td>
 							</tr>`;
 					count--;
-
-
 				});
 				$("#all_box tbody").html(con);
-
-			}
-
-
+			},
 		});
 		table();
 	}
 	// 클릭해서 삭제
-	$(document).on('click', ".del", function(e) {
-		let num = $(this).parents("tr").children('td:eq(3)').text();
+	$(document).on("click", ".del", function(e) {
+		let num = $(this).parents("tr").children("td:eq(3)").text();
 		$.ajax({
 			url: "/categorydel.mdo",
 			method: "get",
-			dataType: 'json',
+			dataType: "json",
 			async: false,
 			data: {
-				num
+				num,
 			},
 			success: function(e) {
-
 				make();
 			},
-			error: function() {
-
-			}
+			error: function() { },
 		});
 	});
 	//클린된것들 수정
-	$(document).on('click', '#selmod', function() {
-
+	$(document).on("click", "#selmod", function() {
 		let num = [];
 		let name = [];
 		let seq = [];
 		$(".delche").map((che, el) => {
+			if ($(el).is(":checked")) {
+				name.push($(el).parents("tr").children("td:eq(2)").text().trim());
+				num.push($(el).parents("tr").children("td:eq(3)").text().trim());
 
-			if ($(el).is(':checked')) {
-				name.push($(el).parents("tr").children('td:eq(2)').text().trim());
-				num.push($(el).parents("tr").children('td:eq(3)').text().trim());
-
-				seq.push($(el).parents("tr").children('td:eq(4)').text().trim());
+				seq.push($(el).parents("tr").children("td:eq(4)").text().trim());
 			}
 		});
 		if (num.length > 0) {
 			$.ajax({
 				url: "/categoryMod.mdo",
 				method: "get",
-				dataType: 'json',
+				dataType: "json",
 				async: false,
 				data: {
 					num: num,
 					name: name,
-					seq: seq
-
+					seq: seq,
 				},
 				success: function(e) {
 					if (e.length > 0) {
 						alert(e, "를 수정에 실패했습니다.");
 					}
 					make();
-
 				},
-				error: function(e) {
-
-				}
+				error: function(e) { },
 			});
-		};
-
+		}
 	});
-	$(document).on('click', '#cate_box #navmod', function() {
-
+	$(document).on("click", "#cate_box #navmod", function() {
 		let num = [];
 		let order = [];
 		$(".num").map((index, el) => {
@@ -434,35 +422,32 @@ $(document).ready(function() {
 			order.push($(el).text());
 		});
 
-
 		$.ajax({
 			url: "/navcateupdate.mdo",
 			method: "get",
-			dataType: 'json',
+			dataType: "json",
 			async: false,
 			data: {
 				num,
-				order
+				order,
 			},
 			success: function(re) {
-
 				manav();
 			},
 			error: function() {
 				alert("일부 수정 실패");
 				manav();
-			}
+			},
 		});
-
 	});
 	function manav() {
 		$.ajax({
 			url: "/navList.mdo",
 			method: "get",
-			dataType: 'json',
+			dataType: "json",
 			async: false,
 			success: function(re) {
-				let con = '';
+				let con = "";
 				for (let i = 0; i < re.length; i++) {
 					con += `<tr>
 						<td>
@@ -479,15 +464,10 @@ $(document).ready(function() {
 							<button class="btn btn-danger rounded-pill reset">초기화</button>
 						</td>
 					</tr>`;
-				};
+				}
 
 				$("#cate_box tbody").html(con);
-
-
-
-			}
+			},
 		});
-
-	};
-
-})
+	}
+});

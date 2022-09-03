@@ -103,11 +103,10 @@
                         accept="image/*,.txt"
                         name="uploadThumbnail"
                         id="uploadThumbnail"
-                        onchange="aaa"
                       />
                     </td>
                     <td>
-                      <input type="button" class="bg-light" value="삭제" />
+                      <input type="button" class="bg-light" id="delFile5" value="삭제" />
                     </td>
                   </tr>
                   <tr>
@@ -118,11 +117,10 @@
                         accept="image/*,.txt"
                         name="uploadFile1"
                         id="uploadFile1"
-                        onchange="aaa"
                       />
                     </td>
                     <td>
-                      <input type="button" class="bg-light" value="삭제" />
+                      <input type="button" class="bg-light" id="delFile1" value="삭제" />
                     </td>
                   </tr>
                   <tr>
@@ -133,11 +131,10 @@
                         accept="image/*,.txt"
                         name="uploadFile2"
                         id="uploadFile2"
-                        onchange="aaa"
                       />
                     </td>
                     <td>
-                      <input type="button" class="bg-light" value="삭제" />
+                      <input type="button" class="bg-light" id="delFile2" value="삭제" />
                     </td>
                   </tr>
                   <tr>
@@ -148,11 +145,10 @@
                         accept="image/*,.txt"
                         name="uploadFile3"
                         id="uploadFile3"
-                        onchange="aaa"
                       />
                     </td>
                     <td>
-                      <input type="button" class="bg-light" value="삭제" />
+                      <input type="button" class="bg-light" id="delFile3" value="삭제" />
                     </td>
                   </tr>
                   <tr>
@@ -163,16 +159,24 @@
                         accept="image/*,.txt"
                        name="uploadFile4"
                        id="uploadFile4"
-                        onchange="aaa"
                       />
                     </td>
                     <td>
-                      <input type="button" class="bg-light" value="삭제" />
+                      <input type="button" class="bg-light" id="delFile4" value="삭제" />
                     </td>
                   </tr>
                   <tr>
 					<td>상단노출</td>
-					<td><input type="checkbox" name="event_top_event"  id="event_top_event"/></td>
+					<td>
+					<c:choose>
+					<c:when test="${event_event.event_top_event eq true }">
+					<input type="checkbox" name="event_top_event"  id="event_top_event"/>
+					</c:when>
+					<c:when test="${event_event.event_top_event eq false }">
+					<input type="checkbox" name="event_top_event"  id="event_top_event" disabled="disabled" />
+					</c:when>
+					</c:choose>
+					</td>
 				</tr>
 				<tr>
 					<td>항시적용</td>
@@ -185,12 +189,14 @@
               <div class="container row d-flex">
                   <div class="col-8"></div>
                   <div class="col-2">
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-primary" onclick="event_writeCheck();">
                       이벤트 수정
                     </button>
                   </div>
                   <div class="col-2">
-                    <button type="button" class="btn btn-light">취소</button>
+                  	<a href="/getEventList.mdo">
+                    	<button type="button" class="btn btn-light">취소</button>
+                    </a>
                   </div>
               </div>
               <input type="hidden" id="event_seq" name="event_seq" value="${event_event.event_seq }" />
