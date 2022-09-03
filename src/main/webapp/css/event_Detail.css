@@ -10,12 +10,7 @@
 .border-gray {
   border-color: rgb(212, 212, 212) !important;
 }
-#Content {
-  height: 150vh;
-  background-image: url("../img/subscribe_String2.png");
-  background-repeat: no-repeat;
-  background-size: 100%;
-}
+
 #subscribe_String {
   width: 100%;
 }

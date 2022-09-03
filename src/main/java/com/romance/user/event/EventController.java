@@ -275,4 +275,18 @@ public class EventController {
 		return del;
 	}
 	
+	@RequestMapping("/event_Roulette.do")
+	public String goRoulette(EventVO vo, Model model){
+		eventService.countCnt(vo.getEvent_seq());
+		model.addAttribute("event_event", eventService.getEvent(vo));
+	return "event_Roulette";
+	}
+	
+	@RequestMapping("/event_Subscribe.do")
+	public String goSub(EventVO vo, Model model){
+		eventService.countCnt(vo.getEvent_seq());
+		model.addAttribute("event_event", eventService.getEvent(vo));
+		return "event_Subscribe";
+	}
+	
 }
