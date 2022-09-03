@@ -7,7 +7,7 @@ public class Pagenation {
 	private int endPage; //화면에 보여질 마지막 페이지 번호, 끝 페이지 번호
 	private boolean prev; //다음 버튼 생성 여부
 	private boolean next; //이전 버튼 생성 여부
-	private int displayPageNum = 5; //화면 하단에 보여지는 페이지 버튼의 수 [1][2][3][4][5]
+	private int displayPageNum = 2; //화면 하단에 보여지는 페이지 버튼의 수 [1][2][3][4][5]
 
 	public Criteria getCriteria() {
 		return this.criteria;
