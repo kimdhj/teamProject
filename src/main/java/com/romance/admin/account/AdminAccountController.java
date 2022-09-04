@@ -43,14 +43,14 @@ public class AdminAccountController {
 			criteria.setSearchKeyword("");
 		}
 		
-		Pagenation pagenation = new Pagenation();
-		pagenation.setCriteria(criteria);
-		pagenation.setTotalCount(adminAccountService.totalCount());
-//		System.out.println("totalCount : " + pagenation.getTotalCount());
-//		System.out.println("startPage : " + pagenation.getStartPage());
-//		System.out.println("endPage : " + pagenation.getEndPage());
-		System.out.println(pagenation);
-		model.addAttribute("pagenation", pagenation);
+		pagination pagination = new pagination();
+		pagination.setCriteria(criteria);
+		pagination.setTotalCount(adminAccountService.totalCount(criteria));
+//		System.out.println("totalCount : " + pagination.getTotalCount());
+//		System.out.println("startPage : " + pagination.getStartPage());
+//		System.out.println("endPage : " + pagination.getEndPage());
+		System.out.println(pagination);
+		model.addAttribute("pagination", pagination);
 		model.addAttribute("adminUserListWithPaging", adminAccountService.getUserListWithPaging(criteria));
 		
 		

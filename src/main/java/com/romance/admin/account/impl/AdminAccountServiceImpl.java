@@ -28,9 +28,9 @@ public class AdminAccountServiceImpl implements AdminAccountService {
 	}
 
 	@Override
-	public int totalCount() throws Exception {
+	public int totalCount(Criteria criteria) throws Exception {
 	
-		return adminAccountDAO.totalCount();
+		return adminAccountDAO.totalCount(criteria);
 	}
 	
 	

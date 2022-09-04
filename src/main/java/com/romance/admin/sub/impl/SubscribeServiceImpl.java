@@ -17,4 +17,9 @@ public class SubscribeServiceImpl implements SubscribeService {
 		return subscribeDAO.getSub(vo);
 	}
 	
+	@Override
+	public void updateSub(SubscribeVO vo) {
+		subscribeDAO.updateSub(vo);
+	}
+	
 }

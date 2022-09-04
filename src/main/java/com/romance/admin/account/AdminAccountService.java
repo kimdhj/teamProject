@@ -11,5 +11,5 @@ public interface AdminAccountService {
 	public List<AdminUserVO> getUserListWithPaging(Criteria criteria) throws Exception;
 		
 	//Total 개수 얻기
-	public int totalCount() throws Exception;
+	public int totalCount(Criteria criteria) throws Exception;
 }
