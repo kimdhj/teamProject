@@ -1,4 +1,4 @@
-package com.romance.admin.icons;
+package com.romance.admin.icon;
 
 public interface IconService {
 
