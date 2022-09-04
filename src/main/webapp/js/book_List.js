@@ -369,6 +369,7 @@ $(document).ready(function(e) {
 	$(document).on('click','#purchase01 .btnSubmit',function(e){
 		console.log($(e.target).parents("div#item").next().val(),1);
 	});
+	//장바구니 버튼
 	$(document).on('click','#purchase02 .btnSubmit',function(e){
 		console.log($(e.target).parents("div#item").next().val(),2);
 	});

@@ -177,9 +177,9 @@
 								</div>
 								<div class="col-3 d-flex flex-column justify-content-around">
 									<div id="purchase01" class="row">
-										<button class="btnSubmit">
-											<a>구매하기</a>
-										</button>
+										<a class="w-100 p-0" href="/bookdetail.do?seq=${bo.book_seq}"><button class="btnSubmit w-100">
+											구매하기
+										</button></a>
 										<br>
 									</div>
 									<div id="purchase02" class="row">
@@ -239,9 +239,9 @@
 								</div>
 								<div class="col-3 d-flex flex-column justify-content-around">
 									<div id="purchase01" class="row">
-										<button class="btnSubmit">
-											<a>구매하기</a>
-										</button>
+										<a class="w-100 p-0" href="/bookdetail.do?seq=${bo.book_seq}"><button class="btnSubmit w-100">
+											구매하기
+										</button></a>
 										<br>
 									</div>
 									<div id="purchase02" class="row">
@@ -283,7 +283,7 @@
 					<div class="tab-pane fade new" id="nav-contact" role="tabpanel"
 						aria-labelledby="nav-contact-tab">
 						<c:forEach var="bo" items="${newlist}">
-							<div id="item" class="row">
+							<div id="item" class="row ">
 								<div class="col-2">
 									<a><img width="100%" class="img_booklist_kr"
 										src="${bo.book_imgURL} " /></a>
@@ -302,9 +302,9 @@
 								</div>
 								<div class="col-3 d-flex flex-column justify-content-around">
 									<div id="purchase01" class="row">
-										<button class="btnSubmit">
-											<a>구매하기</a>
-										</button>
+										<a class="w-100 p-0" href="/bookdetail.do?seq=${bo.book_seq}"><button class="btnSubmit w-100">
+											구매하기
+										</button></a>
 										<br>
 									</div>
 									<div id="purchase02" class="row">
