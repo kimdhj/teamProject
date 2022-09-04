@@ -4,6 +4,9 @@ import java.util.List;
 
 import com.romance.admin.sample.category.CategoryVO;
 import com.romance.admin.sample.navcategory.NavCategoryVO;
+import com.romance.user.reply.FineVO;
+import com.romance.user.reply.ReplyVO;
+import com.romance.user.reply.ReplysearchVO;
 
 public interface BookService {
 	public List<BookVO> booklist(BookSearchVO vo);
@@ -17,4 +20,12 @@ public interface BookService {
 	public List<NavCategoryVO> navlist();
 	public List<BookVO> mainbest(BookSearchVO vo);
 	public List<BookVO> mainnew(BookSearchVO vo);
-}	
+	public BookVO onesearch(int book_seq);
+	public double avgsearch(int book_seq);
+	public List<ReplyVO> replylist(ReplysearchVO vo);
+	public int fineche(FineVO vo);
+	public int countsum(FineVO vo);
+	public int replycount(ReplysearchVO vo);
+	public int detailbookcount();
+	public List<BookVO> detailbooklist();
+}
