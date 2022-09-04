@@ -16,7 +16,6 @@
 				<table class="table">
 					<thead>
 						<tr>
-							<th>회원번호</th>
 							<th>이름</th>
 							<th>아이디</th>
 							<th>구분</th>
@@ -31,13 +30,10 @@
 
 						<tr>
 							<td>
-								<p class="" contenteditable="false" data-default="31421">31421</p>
+								<p class="rowColumn" contenteditable="false" data-default="도원경">${getUserDetail.user_name}</p>
 							</td>
 							<td>
-								<p class="rowColumn" contenteditable="false" data-default="도원경">도원경</p>
-							</td>
-							<td>
-								<p class="" contenteditable="false" data-default="sosohan">sosohan</p>
+								<p class="" contenteditable="false" data-default="sosohan">${getUserDetail.user_id}</p>
 							</td>
 							<td><select class="form-select form-select-sm"
 								aria-label=".form-select-sm example">
@@ -47,23 +43,23 @@
 							</select></td>
 							<td>
 								<p class="rowColumn" contenteditable="false"
-									data-default="2020-01-21">2020-01-21</p>
+									data-default="2020-01-21">${getUserDetail.user_birth}</p>
 							</td>
 							<td>
 								<p class="rowColumn" contenteditable="false"
-									data-default="010-3212-1345">010-3212-1345</p>
+									data-default="010-3212-1345">${getUserDetail.user_phone}</p>
 							</td>
 							<td>
 								<p class="rowColumn" contenteditable="false"
-									data-default="tommy@hanmail.net">tommy@hanmail.net</p>
+									data-default="tommy@hanmail.net">${getUserDetail.user_email}</p>
 							</td>
 							<td>
 								<p class="rowColumn" contenteditable="false"
-									data-default="123,414,223p">123,414,223p</p>
+									data-default="123,414,223p">${getUserDetail.user_point}p</p>
 							</td>
 							<td>
 								<div class="d-flex justify-content-center">
-									<p class="rowColumn" contenteditable="false" data-default="22">22</p>
+									<p class="rowColumn" contenteditable="false" data-default="22">${getUserDetail.user_coupon_cnt}</p>
 									<p>장</p>
 								</div>
 							</td>

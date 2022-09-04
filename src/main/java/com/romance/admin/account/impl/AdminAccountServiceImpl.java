@@ -16,9 +16,9 @@ public class AdminAccountServiceImpl implements AdminAccountService {
 	private AdminAccountDAO adminAccountDAO;
 	
 	@Override
-	public List<AdminUserVO> getUserList(AdminUserVO vo) {
+	public AdminUserVO getUserDetail(AdminUserVO vo) {
 		
-		return adminAccountDAO.getUserList(vo);
+		return adminAccountDAO.getUserDetail(vo);
 	}
 
 	@Override
@@ -32,6 +32,20 @@ public class AdminAccountServiceImpl implements AdminAccountService {
 	
 		return adminAccountDAO.totalCount(criteria);
 	}
+
+	@Override
+	public int adminTotalCount(Criteria criteria) throws Exception {
+		
+		return adminAccountDAO.adminTotalCount(criteria);
+	}
+
+	@Override
+	public List<AdminUserVO> getAdminListWithPaging(Criteria criteria) throws Exception {
+		return adminAccountDAO.getAdminListWithPaging(criteria);
+	}
+	
+	
+	
 	
 	
 	

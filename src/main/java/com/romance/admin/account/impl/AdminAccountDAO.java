@@ -15,22 +15,28 @@ public class AdminAccountDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 	
-	public List<AdminUserVO> getUserList(AdminUserVO vo) {
+	public AdminUserVO getUserDetail(AdminUserVO vo) {
 		System.out.println("Mybatis로 getUserList 기능 처리");
-		return sqlSessionTemplate.selectList("AdminUserDAO.getUserList", vo);
+		return sqlSessionTemplate.selectOne("AdminUserDAO.getUserDetail", vo);
 	}
 
 	public List<AdminUserVO> getUserListWithPaging(Criteria criteria) {
 		System.out.println("Mybatis로 getUserListWithPaging 기능 처리");
 		return sqlSessionTemplate.selectList("AdminUserDAO.getUserListWithPaging", criteria);
 	}
+	
+	public List<AdminUserVO> getAdminListWithPaging(Criteria criteria) {
+		System.out.println("Mybatis로 getAdminListWithPaging 기능 처리");
+		return sqlSessionTemplate.selectList("AdminUserDAO.getAdminListWithPaging", criteria);
+	}
 
 	public int totalCount(Criteria criteria) {
-		
 		return sqlSessionTemplate.selectOne("AdminUserDAO.totalCount", criteria);
 	}
 
-		
+	public int adminTotalCount(Criteria criteria) {
+		return sqlSessionTemplate.selectOne("AdminUserDAO.adminTotalCount", criteria);
+	}
 	
 	
 }

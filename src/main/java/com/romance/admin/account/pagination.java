@@ -1,6 +1,6 @@
 package com.romance.admin.account;
 
-public class pagination {
+public class Pagination {
 	private Criteria criteria;
 	private int totalCount; //총 게시글 수
 	private int startPage; //화면에 보여질 첫번째 페이지 번호 ,시작 페이지 번호
