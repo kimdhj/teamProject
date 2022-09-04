@@ -7,8 +7,12 @@
 		<result property="icon_name" column="ICON_NAME" />
 		<result property="icon_file" column="ICON_FILE" />
 	</resultMap>
+	<update id="updateIcon" parameterType="icon">
+		UPDATE icon
+		SET icon_name=#{icon_name}, icon_file=#{icon_file} WHERE icon_seq = 1
+	</update>
 	<select id="getIcon" parameterType="icon" resultMap="iconResult">
-		SELECT * FROM icon
+		SELECT * FROM icon WHERE icon_seq = 1
 	</select>
 
 </mapper>

@@ -18,4 +18,8 @@ public class SubscribeDAO {
 		return (SubscribeVO) sqlSessionTemplate.selectOne("SubscribeDAO.getSub", vo);
 	}
 	
+	public void updateSub(SubscribeVO vo) {
+		sqlSessionTemplate.update("SubscribeDAO.updateSub",vo);
+	}
+	
 }

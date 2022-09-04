@@ -1,8 +1,8 @@
-#icon_name {
+#icon_name_frame {
   font-size: 3vw;
 }
 #icon_size,
-#icon_file {
+#icon_file_frame {
   display: flex;
   justify-content: center;
   align-items: center;

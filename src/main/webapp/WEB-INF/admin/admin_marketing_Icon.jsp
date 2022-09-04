@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="com.romance.admin.icon.IconVO" %>
+<%@ page import="com.romance.admin.icon.BannerVO" %>
+<%@ page import="java.util.List"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,11 +17,13 @@
 	<!-- 여기서부터 화면 작성 시작 -->
 	<div class="row d-flex w-100" id="main_wrapper">
       <div class="col" id="icon_content">
+      <form action="updateIcon.mdo" method="POST" id="uploadIcon" name="uploadIcon"  enctype="multipart/form-data">
         <div class="row d-flex">
           <div class="col-1"></div>
           <div class="col">
             <!-- 이 안에 내용 -->
-            <div id="icon_name">아이콘</div>
+            <div id="icon_name_frame">아이콘</div>
+            <div id="icon_name">${Icon.icon_name }</div>
             <div class="border-2 border-top border-dark"><br /></div>
             <div class="row d-flex">
               <div class="col-3" id="icon_thumbnail">
@@ -27,10 +35,10 @@
                 />
               </div>
               <div class="col-2" id="icon_size">139x56</div>
-              <div class="col" id="icon_file">
+              <div class="col" id="icon_file_frame">
                 <input
                   type="file"
-                  id="icon_image"
+                  id="icon_file"
                   accept="/image/*"
                   onchange="setThumbnail(event);"
                 />
@@ -41,7 +49,7 @@
             <div id="banner_thumbnail_one">
               <img width="" />
             </div>
-            <div id="icon_name">배너</div>
+            <div id="icon_name_frame">배너</div>
             <div class="border-2 border-top border-dark"><br /></div>
             <!-- 배너 -->
             <div id="banner_thumbnail1">
@@ -126,7 +134,9 @@
               <button type="submit" class="btn btn-primary">수정</button>
             </div>
             <div class="col-2">
+            <a href="#">
               <button type="button" class="btn btn-light">취소</button>
+            </a>
             </div>
           </div>
         </div>
@@ -134,6 +144,7 @@
           </div>
           <div class="col-1"></div>
         </div>
+        </form>
       </div>
     </div>
 
