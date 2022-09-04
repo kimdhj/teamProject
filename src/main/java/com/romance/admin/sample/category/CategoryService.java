@@ -11,4 +11,6 @@ public interface CategoryService {
 	public int categorydel(CateSearchVO vos);
 	public int categoryMod(CategoryVO vo);
 	public List<NavCategoryVO> getNavCategoryList();
+	public int numche(int category_name);
+	public int nameche(String  category_num);
 }

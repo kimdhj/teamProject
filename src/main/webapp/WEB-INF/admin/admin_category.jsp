@@ -86,10 +86,12 @@
 								<td>
 									<p class="rowColumn" id="category_name" contenteditable="true"
 										data-default="${category.category_name}">${category.category_name}</p>
+										<p id="small"></p>
 								</td>
 								<td>
 									<p class="rowColumn" id="category_num" contenteditable="true"
 										data-default="${category.category_num}">${category.category_num}</p>
+										<p id="small"></p>
 								</td>
 								<td class="hide">
 									<p class="rowColumn" id="category_num" contenteditable="false"

@@ -107,7 +107,25 @@ public class CategoryController {
 
 		
 	}
+	@GetMapping("catnameche.mdo")
+	@ResponseBody
+	public int catnameche(String category_name) {
+		return service.nameche(category_name);
+		
+	}
+	@GetMapping("catnumche.mdo")
+	@ResponseBody
+	public int catnumche(int category_num) {
+		System.out.println(category_num);
+		int re=service.numche(category_num);
+		System.out.println("re"+re);
+		return re;
+		
+	}
+
+
 	
+
 
 
 

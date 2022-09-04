@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.romance.user.reply.FineVO;
+import com.romance.user.reply.ReplyVO;
+import com.romance.user.reply.ReplysearchVO;
+
 @Controller
 public class BookController {
 	@Autowired
@@ -94,7 +98,44 @@ public class BookController {
 		return"book_List";
 	}
 	@RequestMapping("/bookdetail.do")
-	public String bookdetail() {
+	public String bookdetail(ReplysearchVO vo,Model model) {
+	System.out.println("seq:"+vo.getBook_seq());
+		if(vo.getPage()<1) {
+			vo.setPage(1);
+		}
+		List<ReplyVO> relist=ser.replylist(vo);
+		int recount=ser.replycount(vo);
+		if(recount%5==0) {
+			recount--;
+		}
+		if(vo.getPage()<3) {
+			model.addAttribute("restartpage", 1);
+		}else {
+			model.addAttribute("restartpage", vo.getPage()-2);
+		}
+		if(vo.getPage()+2>(recount/5)+1) {
+			
+			model.addAttribute("reendpage", recount/5+1);
+		}else {
+			System.out.println("recountel"+recount);
+			model.addAttribute("reendpage", vo.getPage()+2);
+		}
+		
+		System.out.println("relist :"+relist);
+		model.addAttribute("relist", relist);
+		model.addAttribute("vo", vo);
+		model.addAttribute("maxpage", recount/5+1);
+		model.addAttribute("recount", recount);
+		model.addAttribute("book", ser.onesearch(vo.getBook_seq()));
+		double point=ser.avgsearch(vo.getBook_seq());
+		System.out.println("poinr"+point);
+		if(point!=0) {
+		model.addAttribute("point", String.format("%.1f", point));
+		}else {
+			model.addAttribute("point", 0);
+		}
+		model.addAttribute("chbook",ser.detailbooklist());
+		System.out.println("컨트롤러끝");
 		return"book_Detail";
 	}
 	@RequestMapping("updatebook.do")
@@ -212,6 +253,22 @@ public class BookController {
 	public List<BookVO> mainbest(BookSearchVO vo) {
 		vo.setPage(2);
 		return ser.mainbest(vo);
+	}
+	@GetMapping("replylist.do")
+	@ResponseBody
+	public List<ReplyVO> replylist(ReplysearchVO vo) {
+		
+		return ser.replylist(vo);
+	}
+	@GetMapping("replycount.do")
+	@ResponseBody
+	public int replycount(ReplysearchVO vo) {
+		int count=ser.replycount(vo);
+		
+		if(count%5==0) {
+			count-=1;
+		}
+		return count;
 	}
 	
 

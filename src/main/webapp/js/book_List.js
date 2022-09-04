@@ -119,9 +119,9 @@ $(document).ready(function(e) {
 								</div>
 								<div class="col-3 d-flex flex-column justify-content-around">
 									<div id="purchase01" class="row">
-										<button class="btnSubmit">
-											<a>구매하기</a>
-										</button>
+										<a class="w-100 p-0" href="/bookdetail.do?book_seq=${bo.book_seq}"><button class="btnSubmit w-100">
+											구매하기
+										</button></a>
 										<br>
 									</div>
 									<div id="purchase02" class="row">
@@ -214,9 +214,9 @@ $(document).ready(function(e) {
 								</div>
 								<div class="col-3 d-flex flex-column justify-content-around">
 									<div id="purchase01" class="row">
-										<button class="btnSubmit">
-											<a>구매하기</a>
-										</button>
+										<a class="w-100 p-0" href="/bookdetail.do?book_seq=${bo.book_seq}"><button class="btnSubmit w-100">
+											구매하기
+										</button></a>
 										<br>
 									</div>
 									<div id="purchase02" class="row">
@@ -310,9 +310,9 @@ $(document).ready(function(e) {
 								</div>
 								<div class="col-3 d-flex flex-column justify-content-around">
 									<div id="purchase01" class="row">
-										<button class="btnSubmit">
-											<a>구매하기</a>
-										</button>
+										<a class="w-100 p-0" href="/bookdetail.do?book_seq=${bo.book_seq}"><button class="btnSubmit w-100">
+											구매하기
+										</button></a>
 										<br>
 									</div>
 									<div id="purchase02" class="row">
@@ -369,6 +369,7 @@ $(document).ready(function(e) {
 	$(document).on('click','#purchase01 .btnSubmit',function(e){
 		console.log($(e.target).parents("div#item").next().val(),1);
 	});
+	//장바구니 버튼
 	$(document).on('click','#purchase02 .btnSubmit',function(e){
 		console.log($(e.target).parents("div#item").next().val(),2);
 	});

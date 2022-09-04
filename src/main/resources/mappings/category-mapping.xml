@@ -44,6 +44,12 @@
 	<select resultType="categoryVO" id="categoryen">
 	select * from category where category_num>200
 	</select>
+	<select parameterType="String" resultType="int" id="nameche">
+		select count(*) from category where category_name=#{category_name}
+	</select>
+	<select id="numche" parameterType="int" resultType="int" >
+	select count(*) from category where category_num=#{category_num}
+	</select>
 
 
 

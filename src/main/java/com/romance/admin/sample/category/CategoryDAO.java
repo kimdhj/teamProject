@@ -39,4 +39,14 @@ public class CategoryDAO {
 	public List<NavCategoryVO> getNavCategoryList(){
 		return sqlsession.selectList("navCategory.getList");
 	}
+	public int numche(int category_num) {
+		return sqlsession.selectOne("Category.numche",category_num);
+	}
+	public int nameche(String category_name) {
+		
+		return sqlsession.selectOne("Category.nameche",category_name);
+	}
+	
+	
+	
 }
