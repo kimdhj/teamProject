@@ -38,8 +38,8 @@
 						</span>
 					</a>
 						<ul class="cat-sub-menu">
-							<li><a href="/posts.html">회원관리</a></li>
-							<li><a href="/getAdmin_member_List.mdo">관리자계정 관리</a></li>
+							<li><a href="/getAdmin_member_List.mdo">회원관리</a></li>
+							<li><a href="/getAdmin_admin_List.mdo">관리자계정 관리</a></li>
 							<li><a href="/new-post.html">약관관리</a></li>
 						</ul></li>
 					<li><a class="show-cat-btn" href="/ab"> <span
