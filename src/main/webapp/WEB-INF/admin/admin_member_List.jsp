@@ -49,11 +49,6 @@
 					<%-- <input type="hidden" name="pageNum" value="${pagination.criteria.getPageNum() }">
 					<input type="hidden" name="perPageNum" value="${pagination.criteria.getPerPageNum() }"> --%>
 				</form>
-				<!-- <select class="form-select form-select mb-3"
-					aria-label=".form-select-lg example">
-					<option selected>이름</option>
-					<option value="1">아이디</option>
-				</select> -->
 				<%-- <select class="form-select form-select mb-3"
 					aria-label=".form-select-lg example" name="searchCondition">
 					<c:forEach items="${conditionMap }" var="option">
@@ -82,7 +77,6 @@
 			<table class="table text-center">
 				<thead class="table-dark">
 					<tr>
-						<th scope="col">회원번호</th>
 						<th scope="col">이름</th>
 						<th scope="col">아이디</th>
 						<th scope="col">구분</th>
@@ -96,19 +90,21 @@
 				</thead>
 				<tbody>
 					<c:forEach var="adminAccount" items="${adminUserListWithPaging }">
-						<tr>
-							<td scope="row">112344</td>
-							<td>${adminAccount.user_name }</td>
-							<td>${adminAccount.user_id }</td>
-							<td>${adminAccount.user_sub }</td>
-							<td>${adminAccount.user_birth }</td>
-							<td>${adminAccount.user_phone }</td>
-							<td>${adminAccount.user_email }</td>
-							<td>${adminAccount.user_point }</td>
-							<td>${adminAccount.user_coupon_cnt }</td>
-							<td><button type="button"
-									class="btn btn-light btn-outline-dark">조회</button></td>
-						</tr>
+							<tr>
+								<td>${adminAccount.user_name }</td>
+								<td>${adminAccount.user_id }</td>
+								<td>${adminAccount.user_sub }</td>
+								<td>${adminAccount.user_birth }</td>
+								<td>${adminAccount.user_phone }</td>
+								<td>${adminAccount.user_email }</td>
+								<td>${adminAccount.user_point }</td>
+								<td>${adminAccount.user_coupon_cnt }</td>
+								<td>
+									<button type="submit" class="btn btn-light btn-outline-dark">
+										<a href="getAdmin_member_Detail.mdo?user_id=${adminAccount.user_id}">조회</a>
+									</button>
+								</td>
+							</tr>
 					</c:forEach>
 				</tbody>
 			</table>
@@ -121,13 +117,17 @@
 							aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 						</a></li> -->
 						<c:if test="${pagination.prev}">
-							<li class="page-item"><a class="page-link" href="<c:url value="/getAdmin_member_List.mdo?searchCondition=${pagination.criteria.getSearchCondition() }&searchKeyword=${pagination.criteria.getSearchKeyword() }&pageNum=${pagination.startPage - 1 }" />">이전</a></li>
+							<li class="page-item"><a class="page-link"
+								href="<c:url value="/getAdmin_member_List.mdo?searchCondition=${pagination.criteria.getSearchCondition() }&searchKeyword=${pagination.criteria.getSearchKeyword() }&pageNum=${pagination.startPage - 1 }" />">이전</a></li>
 						</c:if>
-						<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}" var="pageNum">
-							<li class="page-item"><a class="page-link" href="<c:url value="/getAdmin_member_List.mdo?searchCondition=${pagination.criteria.getSearchCondition() }&searchKeyword=${pagination.criteria.getSearchKeyword() }&pageNum=${pageNum}" />">${pageNum}</a></li>
+						<c:forEach begin="${pagination.startPage}"
+							end="${pagination.endPage}" var="pageNum">
+							<li class="page-item"><a class="page-link"
+								href="<c:url value="/getAdmin_member_List.mdo?searchCondition=${pagination.criteria.getSearchCondition() }&searchKeyword=${pagination.criteria.getSearchKeyword() }&pageNum=${pageNum}" />">${pageNum}</a></li>
 						</c:forEach>
 						<c:if test="${pagination.next && pagination.endPage > 0}">
-							<li class="page-item"><a class="page-link" href="<c:url value="getAdmin_member_List.mdo?searchCondition=${pagination.criteria.getSearchCondition() }&searchKeyword=${pagination.criteria.getSearchKeyword() }&pageNum=${pagination.endPage + 1 }" />">다음</a></li>
+							<li class="page-item"><a class="page-link"
+								href="<c:url value="/getAdmin_member_List.mdo?searchCondition=${pagination.criteria.getSearchCondition() }&searchKeyword=${pagination.criteria.getSearchKeyword() }&pageNum=${pagination.endPage + 1 }" />">다음</a></li>
 						</c:if>
 						<!-- <a class="page-link" href="#" aria-label="Next"> <span
 							aria-hidden="true">&raquo;</span>
