@@ -41,11 +41,17 @@
 		<if test="searchCondition=='USER_ID'">
 			AND a.user_id like CONCAT('%', #{searchKeyword}, '%')
 		</if>
-		ORDER BY a.user_id ASC LIMIT #{pageNum}, #{perPageNum}
+		ORDER BY a.user_id ASC LIMIT #{pageStart}, #{perPageNum}
 	</select>
 	
-	<select id="totalCount" resultType="int">
-		SELECT count(*) FROM user;
+	<select id="totalCount" parameterType="criteria" resultType="int">
+		SELECT count(*) FROM user WHERE 1=1
+		<if test="searchCondition=='USER_NAME' ">
+			AND user_name like CONCAT('%', #{searchKeyword}, '%')
+		</if>
+		<if test="searchCondition=='USER_ID'">
+			AND user_id like CONCAT('%', #{searchKeyword}, '%')
+		</if>
 	</select>
 
 </mapper>

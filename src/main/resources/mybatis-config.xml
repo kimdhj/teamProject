@@ -33,6 +33,10 @@
 
 		<typeAlias type="com.romance.admin.icon.IconVO" alias="icon" />
 		<typeAlias type="com.romance.admin.icon.BannerVO" alias="banner" />
+		<!-- <typeAlias type="com.romance.admin.sub.SubscribeVO" alias="subscribe" />
+ -->
+
+
 		<typeAlias type="com.romance.admin.terms.termsVO" alias="termsVO" />
 
 		<typeAlias type="com.romance.admin.coupon.CouponVO" alias="couponVO" />
@@ -55,6 +59,8 @@
 		<mapper resource="mappings/sub-mapping.xml" />
 		<mapper resource="mappings/icon-mapping.xml" />		
 		<mapper resource="mappings/banner-mapping.xml" />		
+		<!-- <mapper resource="mappings/sub-mapping.xml" /> -->
+
 		<mapper resource="mappings/coupon-mapping.xml" />
 		<mapper resource="mappings/book-mapping.xml" />
 	</mappers>

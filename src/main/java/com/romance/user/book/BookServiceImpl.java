@@ -4,6 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.romance.admin.sample.category.CategoryVO;
+import com.romance.admin.sample.navcategory.NavCategoryVO;
 @Service
 public class BookServiceImpl implements BookService {
 	@Autowired
@@ -38,6 +41,32 @@ public class BookServiceImpl implements BookService {
 		// TODO Auto-generated method stub
 		return dao.newcount(vo);
 	}
+	@Override
+	public List<CategoryVO> categoryko() {
+		// TODO Auto-generated method stub
+		return dao.categoryko();
+	}
+	@Override
+	public List<CategoryVO> categoryen() {
+		// TODO Auto-generated method stub
+		return dao.categoryen();
+	}
+	@Override
+	public List<NavCategoryVO> navlist() {
+		// TODO Auto-generated method stub
+		return dao.navlist();
+	}
+	@Override
+	public List<BookVO> mainbest(BookSearchVO vo) {
+		// TODO Auto-generated method stub
+		return dao.mainbest(vo);
+	}
+	@Override
+	public List<BookVO> mainnew(BookSearchVO vo) {
+		// TODO Auto-generated method stub
+		return dao.mainnew(vo);
+	}
+	
 	
 	
 

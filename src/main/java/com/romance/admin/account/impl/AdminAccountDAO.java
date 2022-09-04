@@ -25,9 +25,9 @@ public class AdminAccountDAO {
 		return sqlSessionTemplate.selectList("AdminUserDAO.getUserListWithPaging", criteria);
 	}
 
-	public int totalCount() {
+	public int totalCount(Criteria criteria) {
 		
-		return sqlSessionTemplate.selectOne("AdminUserDAO.totalCount");
+		return sqlSessionTemplate.selectOne("AdminUserDAO.totalCount", criteria);
 	}
 
 		

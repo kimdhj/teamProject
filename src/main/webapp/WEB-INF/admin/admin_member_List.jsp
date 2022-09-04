@@ -28,7 +28,7 @@
 	<div class="container">
 		<div class="d-flex flex-row">
 			<div class="col-md-7">
-				<form >
+				<form>
 					<div class="d-flex flex-row">
 						<div class="col-md-4">
 							<select class="form-select form-select mb-3"
@@ -46,6 +46,8 @@
 							<button type="submit" class="btn btn-light btn-outline-dark">검색</button>
 						</div>
 					</div>
+					<%-- <input type="hidden" name="pageNum" value="${pagination.criteria.getPageNum() }">
+					<input type="hidden" name="perPageNum" value="${pagination.criteria.getPerPageNum() }"> --%>
 				</form>
 				<!-- <select class="form-select form-select mb-3"
 					aria-label=".form-select-lg example">
@@ -115,18 +117,21 @@
 			<div class="col-md-12">
 				<nav aria-label="Page navigation example">
 					<ul class="pagination justify-content-center pagination-sm">
-						<li class="page-item"><a class="page-link" href="#"
+						<!-- <li class="page-item"><a class="page-link" href="#"
 							aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-						</a></li>
-						<li class="page-item disabled"><a class="page-link" href="#"
-							tabindex="-1" aria-disabled="true">이전</a></li>
-						<li class="page-item"><a class="page-link" href="#">1</a></li>
-						<li class="page-item"><a class="page-link" href="#">2</a></li>
-						<li class="page-item"><a class="page-link" href="#">3</a></li>
-						<li class="page-item"><a class="page-link" href="#">다음</a></li>
-						<a class="page-link" href="#" aria-label="Next"> <span
+						</a></li> -->
+						<c:if test="${pagination.prev}">
+							<li class="page-item"><a class="page-link" href="<c:url value="/getAdmin_member_List.mdo?searchCondition=${pagination.criteria.getSearchCondition() }&searchKeyword=${pagination.criteria.getSearchKeyword() }&pageNum=${pagination.startPage - 1 }" />">이전</a></li>
+						</c:if>
+						<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}" var="pageNum">
+							<li class="page-item"><a class="page-link" href="<c:url value="/getAdmin_member_List.mdo?searchCondition=${pagination.criteria.getSearchCondition() }&searchKeyword=${pagination.criteria.getSearchKeyword() }&pageNum=${pageNum}" />">${pageNum}</a></li>
+						</c:forEach>
+						<c:if test="${pagination.next && pagination.endPage > 0}">
+							<li class="page-item"><a class="page-link" href="<c:url value="getAdmin_member_List.mdo?searchCondition=${pagination.criteria.getSearchCondition() }&searchKeyword=${pagination.criteria.getSearchKeyword() }&pageNum=${pagination.endPage + 1 }" />">다음</a></li>
+						</c:if>
+						<!-- <a class="page-link" href="#" aria-label="Next"> <span
 							aria-hidden="true">&raquo;</span>
-						</a>
+						</a> -->
 					</ul>
 				</nav>
 			</div>
