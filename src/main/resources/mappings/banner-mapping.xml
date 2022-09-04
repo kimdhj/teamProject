@@ -7,8 +7,12 @@
 		<result property="banner_name" column="BANNER_NAME" />
 		<result property="banner_file" column="BANNER_FILE" />
 	</resultMap>
+	<update id="updateBanner" parameterType="banner">
+		UPDATE banner
+		SET banner_name=#{banner_name}, banner_file=#{banner_file} WHERE banner_seq = 1
+	</update>
 	<select id="getBanner" parameterType="banner" resultMap="bannerResult">
-		SELECT * FROM banner
+		SELECT * FROM banner WHERE banner_seq = 1
 	</select>
 
 </mapper>

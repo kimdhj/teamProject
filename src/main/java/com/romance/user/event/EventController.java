@@ -1,6 +1,5 @@
 package com.romance.user.event;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
@@ -17,9 +16,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.romance.server.AwsS3;
-
-
-
 
 
 @Controller

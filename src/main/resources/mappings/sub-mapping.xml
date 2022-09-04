@@ -8,8 +8,12 @@
 		<result property="sub_info_post_string" column="SUB_INFO_POST_STRING" />
 		<result property="sub_info_pre_string" column="SUB_INFO_PRE_STRING" />
 	</resultMap>
+	<update id="updateSub" parameterType="subscribe">
+		UPDATE sub_info
+		SET sub_info_price=#{sub_info_price}, sub_info_post_string=#{sub_info_post_string}, sub_info_pre_string=#{sub_info_pre_string} WHERE sub_info_seq = 1
+	</update>
 	<select id="getSub" parameterType="subscribe" resultMap="subResult">
-		SELECT * FROM sub_info
+		SELECT * FROM sub_info where sub_info_seq = 1
 	</select>
 
 </mapper>
