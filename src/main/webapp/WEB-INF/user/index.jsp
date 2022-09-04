@@ -89,19 +89,19 @@
                         <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                             <div class="product-item h-80">
                                 <div class="position-relative bg-light h-100 overflow-hidden">
-                                    <img height="100%"  class="w-100" src="${neb.book_imgURL}" alt="">
+                                    <img height="100%"  class="w-100" src="${neb.book_bigimgURL}" alt="">
                                     <div
                                         class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
                                         new</div>
                                 </div>
                                 <div class="text-center p-4">
-                                    <a class="d-block h5 mb-2" href="">${neb.book_title}</a>
+                                    <a class="d-block h5 mb-2" >${neb.book_title}</a>
                                     <span class="text-primary me-1">${neb.book_price}</span>
                                    
                                 </div>
                                 <div class="d-flex border-top">
                                     <small class="w-50 text-center border-end py-2">
-                                        <a class="text-body" href=""><i class="fa fa-eye text-primary me-2"></i>상세보기</a>
+                                        <a class="text-body" href="bookdetail.do?book_seq=${neb.book_seq}"><i class="fa fa-eye text-primary me-2"></i>상세보기</a>
                                     </small>
                                     <small class="w-50 text-center py-2">
                                         <a class="text-body" href=""><i
@@ -143,19 +143,19 @@
                         <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                             <div class="product-item h-80">
                                 <div class="position-relative bg-light h-100 overflow-hidden">
-                                    <img height="100%"  class="w-100" src="${neb.book_imgURL}" alt="">
+                                    <img height="100%"  class="w-100" src="${neb.book_bigimgURL}" alt="">
                                     <div
                                         class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-                                        new</div>
+                                        best</div>
                                 </div>
                                 <div class="text-center p-4">
-                                    <a class="d-block h5 mb-2" href="">${neb.book_title}</a>
+                                    <a class="d-block h5 mb-2" >${neb.book_title}</a>
                                     <span class="text-primary me-1">${neb.book_price}</span>
                                    
                                 </div>
                                 <div class="d-flex border-top">
                                     <small class="w-50 text-center border-end py-2">
-                                        <a class="text-body" href=""><i class="fa fa-eye text-primary me-2"></i>상세보기</a>
+                                        <a class="text-body" href="bookdetail.do?book_seq=${neb.book_seq}"><i class="fa fa-eye text-primary me-2"></i>상세보기</a>
                                     </small>
                                     <small class="w-50 text-center py-2">
                                         <a class="text-body" href=""><i

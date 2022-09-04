@@ -177,7 +177,7 @@
 								</div>
 								<div class="col-3 d-flex flex-column justify-content-around">
 									<div id="purchase01" class="row">
-										<a class="w-100 p-0" href="/bookdetail.do?seq=${bo.book_seq}"><button class="btnSubmit w-100">
+										<a class="w-100 p-0" href="/bookdetail.do?book_seq=${bo.book_seq}"><button class="btnSubmit w-100">
 											구매하기
 										</button></a>
 										<br>
@@ -239,7 +239,7 @@
 								</div>
 								<div class="col-3 d-flex flex-column justify-content-around">
 									<div id="purchase01" class="row">
-										<a class="w-100 p-0" href="/bookdetail.do?seq=${bo.book_seq}"><button class="btnSubmit w-100">
+										<a class="w-100 p-0" href="/bookdetail.do?book_seq=${bo.book_seq}"><button class="btnSubmit w-100">
 											구매하기
 										</button></a>
 										<br>
@@ -302,7 +302,7 @@
 								</div>
 								<div class="col-3 d-flex flex-column justify-content-around">
 									<div id="purchase01" class="row">
-										<a class="w-100 p-0" href="/bookdetail.do?seq=${bo.book_seq}"><button class="btnSubmit w-100">
+										<a class="w-100 p-0" href="/bookdetail.do?book_seq=${bo.book_seq}"><button class="btnSubmit w-100">
 											구매하기
 										</button></a>
 										<br>

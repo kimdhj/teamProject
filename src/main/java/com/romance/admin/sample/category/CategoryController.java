@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -104,6 +105,21 @@ public class CategoryController {
 		
 		return fail;
 
+		
+	}
+	@GetMapping("catnameche.mdo")
+	@ResponseBody
+	public int catnameche(String category_name) {
+		return service.nameche(category_name);
+		
+	}
+	@GetMapping("catnumche.mdo")
+	@ResponseBody
+	public int catnumche(int category_num) {
+		System.out.println(category_num);
+		int re=service.numche(category_num);
+		System.out.println("re"+re);
+		return re;
 		
 	}
 
