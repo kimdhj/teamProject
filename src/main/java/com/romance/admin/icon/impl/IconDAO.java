@@ -1,4 +1,4 @@
-package com.romance.admin.icons.impl;
+package com.romance.admin.icon.impl;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
