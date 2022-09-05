@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ProductDAO">
+<!-- 리절트 맵 정의 -->	
+	<resultMap id="productsResult" type="ProductVO">
+		<result property="product_Id" column="product_Id" />
+		<result property="product_Name" column="prodict_Name" />
+		<result property="product_Price" column="product_Price" />
+		<result property="product_Publisher" column="product_Publisher" />
+		<result property="product_PubId" column="product_PudId" />
+		<result property="product_Com" column="product_Com" />
+		<result property="product_Img" column="product_Img" />
+		<result property="product_Desc" column="product_Desc" />
+		<result property="product_PubDate" column="product_PubDate" />
+		<result property="product_Num" column="product_Num" />
+		<result property="product_Isbn" column="product_isbn" />
+		
+	</resultMap>
+	
+</mapper>
