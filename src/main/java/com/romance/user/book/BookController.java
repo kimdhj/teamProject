@@ -268,6 +268,16 @@ public class BookController {
 		}
 		return count;
 	}
+	@GetMapping("bookfinish.do")
+	public String bookfinish() {
+	
+		return "book_Finish";
+	}
+	@GetMapping("bookpay.do")
+	public String bookpay() {
+	
+		return "book_Pay";
+	}
 	
 
 

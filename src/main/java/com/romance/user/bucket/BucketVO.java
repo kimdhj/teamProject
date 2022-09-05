@@ -1,6 +1,9 @@
 package com.romance.user.bucket;
 
-public class bucketVO {
+import lombok.Data;
+
+@Data
+public class BucketVO {
 	private int bucket_seq;
 	private int book_seq;
 	private int bucket__book_count;

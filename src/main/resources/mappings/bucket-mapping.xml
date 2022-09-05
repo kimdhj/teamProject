@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bucket">
+	<insert parameterType="bucketVO" id="insertone">
+		insert into bucket(book_seq,user_id) values(#{book_seq},#{user_id})
+	</insert>
+	<select parameterType="bucketsearchVO" resultType="bucketVO" id="bucgetlist">
+	<![CDATA[select * from bucket order by bucket_seq]]>
+	</select>
+	<select resultType="int" parameterType="bucketVO" id="chedouble">
+		<![CDATA[select count(*) from  bucket where book_seq=#{book_seq} and user_id=#{user_id}]]>
+	</select>
+	<delete parameterType="bucketVO"  id="delbuc">
+		delete from bucket where user_id=#{user_id} and book_seq=#{book_seq}
+	</delete>
+</mapper>
+
