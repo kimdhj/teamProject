@@ -34,6 +34,10 @@
 		<typeAlias type="com.romance.socket.API" alias="API" />
 		<typeAlias type="com.romance.admin.sub.SubscribeVO"
 			alias="subscribe" />
+			<typeAlias type="com.romance.user.bucket.BucketVO"
+			alias="bucketVO" />
+			<typeAlias type="com.romance.user.bucket.BucketSearchVO"
+			alias="bucketsearchVO" />
 
 		<!-- <typeAlias type="com.romance.admin.icon.IconVO" alias="icon" /> <typeAlias 
 			type="com.romance.admin.icon.BannerVO" alias="banner" /> -->
@@ -81,5 +85,6 @@
 		<mapper resource="mappings/fine-mapping.xml" />
 		<mapper resource="mappings/coupon-mapping.xml" />
 		<mapper resource="mappings/book-mapping.xml" />
+		<mapper resource="mappings/bucket-mapping.xml" />
 	</mappers>
 </configuration>
