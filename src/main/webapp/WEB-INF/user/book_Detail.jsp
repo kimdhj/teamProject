@@ -57,7 +57,7 @@
 						</div>
 						<div id="unit">원</div>
 					</div>
-					<div class="row" id="main_info">${book.book_author}|${book.book_publish}|${book.book_publish_date}</div>
+					<div class="row" id="main_info">${book.book_author}|${book.book_publish}|<fmt:formatDate value="${book.book_publish_date}" pattern="yyyy-MM-dd"/></div>
 					<div class="row" id="cash_btn">
 					<input type="hidden" id="bookseq" value="${book.book_seq}"/>
 						<div class="col-3 " id="cash_button">
@@ -209,8 +209,8 @@
                                   
                                 </div>
                                 <div class="text-center p-4">
-                                    <a class="d-block h5 mb-2" href="">${neb.book_title}</a>
-                                    <span class="text-primary me-1">${neb.book_price}</span>
+                                    <a class="d-block h5 mb-2" href="bookdetail.do?book_seq=${neb.book_seq}">${neb.book_title}</a>
+                                    <span class="text-primary me-1"><fmt:formatNumber value="${neb.book_price}" pattern="#,###" />원</span>
                                    
                                 </div>
                                 <div class="d-flex border-top">

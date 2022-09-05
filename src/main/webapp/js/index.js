@@ -12,6 +12,7 @@ $(document).ready(function() {
 			success: function(el) {
 				let str = '';
 				el.map((neb) => {
+				neb.book_price=Number(neb.book_price);
 					str += `
                         <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                             <div class="product-item h-80">
@@ -22,8 +23,8 @@ $(document).ready(function() {
                                         new</div>
                                 </div>
                                 <div class="text-center p-4">
-                                    <a class="d-block h5 mb-2" href="">${neb.book_title}</a>
-                                    <span class="text-primary me-1">${neb.book_price}</span>
+                                    <a class="d-block h5 mb-2" href="bookdetail.do?book_seq=${neb.book_seq}">${neb.book_title}</a>
+                                    <span class="text-primary me-1">${neb.book_price.toLocaleString('ko-KR')}원</span>
                                    
                                 </div>
                                 <div class="d-flex border-top">
@@ -57,6 +58,9 @@ $(document).ready(function() {
 			success: function(el) {
 				let str = '';
 				el.map((neb) => {
+				console.log(neb.book_price);
+				neb.book_price=Number(neb.book_price);
+				console.log(neb.book_price);
 					str += `
                         <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                             <div class="product-item h-80">
@@ -67,8 +71,8 @@ $(document).ready(function() {
                                         new</div>
                                 </div>
                                 <div class="text-center p-4">
-                                    <a class="d-block h5 mb-2" href="">${neb.book_title}</a>
-                                    <span class="text-primary me-1">${neb.book_price}</span>
+                                    <a class="d-block h5 mb-2" href="bookdetail.do?book_seq=${neb.book_seq}">${neb.book_title}</a>
+                                    <span class="text-primary me-1">${neb.book_price.toLocaleString('ko-KR')}원</span>
                                    
                                 </div>
                                 <div class="d-flex border-top">
