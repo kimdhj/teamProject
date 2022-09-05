@@ -1,6 +1,6 @@
 #main_wrapper * {
-  font-size: 1.3vw;
-  word-break: keep-all;
+	 font-size: 1.3vw;
+	 word-break: keep-all;
 }
 body {
   background-color: rgb(239, 241, 250);
@@ -39,7 +39,6 @@ div.bg-white {
 	font-weight: bolder;
 }
 
-
 .note-color-all button.active +.note-dropdown-menu>div:nth-child(2) {
 
    display:none !important;
@@ -67,5 +66,13 @@ div.bg-white {
 #content {
   height: 50vh;
   overflow: auto;
-  margin-left: 1%;
+  margin-top: 1%;
+}
+
+#main_wrapper{
+	margin-left: 2% !important;
+}
+
+.note-frame{
+	border: 0px !important;
 }

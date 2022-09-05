@@ -9,7 +9,7 @@
 	<trim prefix="WHERE" prefixOverrides="AND | OR">
 		<if test="title != null and title != ''"><![CDATA[AND notice_title LIKE CONCAT('%', #{title}, '%')]]></if>
 		<if test="content != null and content != ''"><![CDATA[AND notice_content LIKE CONCAT('%', #{content}, '%')]]></if>
-		<if test="startDate != null and endDate != null"><![CDATA[AND notice_date >= #{startDate} AND notice_date <= #{endDate} ]]></if>
+		<if test="startDate != null and endDate != null"><![CDATA[AND notice_date >= #{startDate} AND notice_date <= (#{endDate} + INTERVAL 1 DAY) ]]></if>
 		<if test="date != null"><![CDATA[AND notice_date LIKE CONCAT('%', #{date}, '%')]]></if>
 	</trim>
 	<![CDATA[ORDER BY notice_date DESC) B WHERE]]>
@@ -27,7 +27,7 @@
 	<trim prefix="WHERE" prefixOverrides="AND | OR">
 		<if test="title != null and title != ''"><![CDATA[AND notice_title LIKE CONCAT('%', #{title}, '%')]]></if>
 		<if test="content != null and content != ''"><![CDATA[AND notice_content LIKE CONCAT('%', #{content}, '%')]]></if>
-		<if test="startDate != null and endDate != null"><![CDATA[AND notice_date >= #{startDate} AND notice_date <= #{endDate} ]]></if>
+		<if test="startDate != null and endDate != null"><![CDATA[AND notice_date >= #{startDate} AND notice_date <= (#{endDate} + INTERVAL 1 DAY)  ]]></if>
 	</trim>
 	<![CDATA[ORDER BY notice_date DESC) B]]>
 		<trim prefix="WHERE" prefixOverrides="AND | OR">
@@ -35,7 +35,6 @@
 	 		<![CDATA[	rnum = #{seq}]]> 
 	 	</if>
 	</trim>
-		
 		
 	</select>
 	
