@@ -76,7 +76,7 @@ public class BookServiceImpl implements BookService {
 		return dao.onesearch(book_seq);
 	}
 	@Override
-	public double avgsearch(int book_seq) {
+	public String avgsearch(int book_seq) {
 		// TODO Auto-generated method stub
 		double re=0;
 		Object se=dao.avgsearch(book_seq);
@@ -85,7 +85,7 @@ public class BookServiceImpl implements BookService {
 		}else {
 			re= ((Number) se).doubleValue();
 		}
-		return re;
+		return String.format("%.1f",re);
 	}
 	@Override
 	public List<ReplyVO> replylist(ReplysearchVO vo) {

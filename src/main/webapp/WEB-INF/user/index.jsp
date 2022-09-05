@@ -95,8 +95,8 @@
                                         new</div>
                                 </div>
                                 <div class="text-center p-4">
-                                    <a class="d-block h5 mb-2" >${neb.book_title}</a>
-                                    <span class="text-primary me-1">${neb.book_price}</span>
+                                    <a class="d-block h5 mb-2" href="bookdetail.do?book_seq=${neb.book_seq}" >${neb.book_title}</a>
+                                    <span class="text-primary me-1"><fmt:formatNumber value="${neb.book_price}" pattern="#,###" />원</span>
                                    
                                 </div>
                                 <div class="d-flex border-top">
@@ -149,8 +149,8 @@
                                         best</div>
                                 </div>
                                 <div class="text-center p-4">
-                                    <a class="d-block h5 mb-2" >${neb.book_title}</a>
-                                    <span class="text-primary me-1">${neb.book_price}</span>
+                                    <a class="d-block h5 mb-2" href="bookdetail.do?book_seq=${neb.book_seq}" >${neb.book_title}</a>
+                                    <span class="text-primary me-1"><fmt:formatNumber value="${neb.book_price}" pattern="#,###" />원</span>
                                    
                                 </div>
                                 <div class="d-flex border-top">

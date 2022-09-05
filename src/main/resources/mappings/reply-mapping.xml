@@ -6,7 +6,7 @@
 		select avg(reply_point) from reply where book_seq=#{book_seq}
 	</select>
 	<select parameterType="replysearchVO" resultType="replyVO" id="replylist">
-		 <![CDATA[select * from (select *,@rownum:=@rownum+1 as rnum from reply , (SELECT @rownum:=0) TMP where book_seq=#{book_seq} and user_blank=0) B where rnum>(#{page}-1)*5 AND rnum<=#{page}*5 ]]>
+		 <![CDATA[select * from (select *,@rownum:=@rownum+1 as rnum from reply , (SELECT @rownum:=0) TMP where book_seq=#{book_seq} and user_blank=0 order by reply_date,reply_point) B where rnum>(#{page}-1)*5 AND rnum<=#{page}*5 ]]>
 	</select>
 	<select resultType="int" parameterType="replysearchVO" id="replycount">
 		select count(*) from reply where book_seq=#{book_seq}

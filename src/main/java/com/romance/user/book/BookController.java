@@ -127,13 +127,11 @@ public class BookController {
 		model.addAttribute("maxpage", recount/5+1);
 		model.addAttribute("recount", recount);
 		model.addAttribute("book", ser.onesearch(vo.getBook_seq()));
-		double point=ser.avgsearch(vo.getBook_seq());
-		System.out.println("poinr"+point);
-		if(point!=0) {
-		model.addAttribute("point", String.format("%.1f", point));
-		}else {
-			model.addAttribute("point", 0);
-		}
+
+		
+		
+		model.addAttribute("point", ser.avgsearch(vo.getBook_seq()));
+		
 		model.addAttribute("chbook",ser.detailbooklist());
 		System.out.println("컨트롤러끝");
 		return"book_Detail";
