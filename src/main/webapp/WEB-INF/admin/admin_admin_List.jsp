@@ -137,11 +137,11 @@
 								<tr>
 									<th>이름</th>
 									<td colspan=2><input class="form-control" type="text"
-										id="" style="float: left;" placeholder="이름을 입력하세요" /></td>
+										id="" name="user_name" style="float: left;" placeholder="이름을 입력하세요" /></td>
 								</tr>
 								<tr>
 									<th>아이디</th>
-									<td><input class="form-control" type="text" id=""
+									<td><input class="form-control" type="text" id="" name="user_id"
 										style="float: left;" placeholder="아이디를 입력하세요" /></td>
 									<td>
 										<button type="button" class="btn btn-light btn-outline-dark"
@@ -150,7 +150,7 @@
 								</tr>
 								<tr>
 									<th>비밀번호</th>
-									<td colspan=2><input class="form-control" type="password"
+									<td colspan=2><input class="form-control" type="password" name="user_password"
 										onkeyup="passwordCheckFunction();" id="adminPassword1"
 										style="float: left;" placeholder="비밀번호를 입력하세요" /></td>
 								</tr>
@@ -163,13 +163,13 @@
 								<tr>
 									<th>연락처</th>
 									<td colspan=2><input class="form-control" type="text"
-										id="" maxlength="11" style="float: left;"
+										id="" name="user_phone" maxlength="11" style="float: left;"
 										placeholder="전화번호를 입력하세요" /></td>
 								</tr>
 								<tr>
 									<th>이메일</th>
 									<td colspan=2><input class="form-control" type="email"
-										id="" style="float: left;" placeholder="이메일을 입력하세요" /></td>
+										id="" name="user_email" style="float: left;" placeholder="이메일을 입력하세요" /></td>
 								</tr>
 								<tr>
 									<td colspan=2><h6 style="color: red;"
