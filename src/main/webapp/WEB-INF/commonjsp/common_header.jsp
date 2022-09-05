@@ -27,7 +27,7 @@
         </div>
 
         <nav class="navbar navbar-expand-lg navbar-light py-lg-0 px-lg-5 wow fadeIn" data-wow-delay="0.1s">
-            <a href="index.html" id="logo" class="navbar-brand ms-4 ms-lg-0">
+            <a href="index.do" id="logo" class="navbar-brand ms-4 ms-lg-0">
                 <img src="./서점로고.ico" alt="">
                 <h1 class="fw-bold text-primary m-0">낭<span class="text-secondary">만</span>서점</h1>
             </a>
@@ -41,7 +41,7 @@
 
                 <a href="info_Info.jsp" class="nav-item nav-link">소개</a>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">국내 도서</a>
+                        <a href="/booklist.do?country=2" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">국내 도서</a>
                         <div class="dropdown-menu m-0">
                             <a href="blog.html" class="dropdown-item">아동 서적</a>
                             <a href="feature.html" class="dropdown-item">무협 서적</a>
@@ -52,7 +52,7 @@
                         </div>
                     </div>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">외국도서</a>
+                        <a href="/booklist.do?country=1" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">외국도서</a>
                         <div class="dropdown-menu m-0">
                             <a href="blog.html" class="dropdown-item">아동 서적</a>
                             <a href="feature.html" class="dropdown-item">무협 서적</a>
@@ -83,7 +83,7 @@
                     <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
                         <small class="fa fa-user text-body"></small>
                     </a>
-                    <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
+                    <a class="btn-sm-square bg-white rounded-circle ms-3" href="/cart.do">
                         <small class="fa fa-shopping-bag text-body"></small>
                     </a>
                 </div>

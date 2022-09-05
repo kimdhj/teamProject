@@ -7,6 +7,7 @@ public class BookSearchVO {
 	public String title;
 	public int category;
 	public int page;
+	public int country;
 
 	
 

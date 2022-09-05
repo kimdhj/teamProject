@@ -359,6 +359,7 @@
 			<!--  cols 9 여분 바 -->
 		</div>
 		<input type="hidden" value="${vo.category}" id="category" />
+		<input type="hidden" value="${vo.country}" id="country" />
 	</div>
 	<!--End -->
 

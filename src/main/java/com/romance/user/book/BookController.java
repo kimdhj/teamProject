@@ -92,7 +92,9 @@ public class BookController {
 		model.addAttribute("konav",ser.categoryko());
 		model.addAttribute("ennav",ser.categoryen());
 		model.addAttribute("renav",ser.navlist());
-		System.out.println(ser.categoryko());
+		
+		System.out.println(bestlist);
+		System.out.println(list);
 		
 		
 		return"book_List";

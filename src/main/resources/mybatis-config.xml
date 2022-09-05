@@ -34,15 +34,16 @@
 		<typeAlias type="com.romance.socket.API" alias="API" />
 		<typeAlias type="com.romance.admin.sub.SubscribeVO"
 			alias="subscribe" />
-			<typeAlias type="com.romance.user.bucket.BucketVO"
+		<typeAlias type="com.romance.user.bucket.BucketVO"
 			alias="bucketVO" />
-			<typeAlias type="com.romance.user.bucket.BucketSearchVO"
+		<typeAlias type="com.romance.user.bucket.BucketSearchVO"
 			alias="bucketsearchVO" />
 
-		<!-- <typeAlias type="com.romance.admin.icon.IconVO" alias="icon" /> <typeAlias 
-			type="com.romance.admin.icon.BannerVO" alias="banner" /> -->
-		<!-- <typeAlias type="com.romance.admin.sub.SubscribeVO" alias="subscribe" 
-			/> -->
+		<typeAlias type="com.romance.admin.icon.IconVO" alias="icon" />
+		<typeAlias type="com.romance.admin.icon.BannerVO"
+			alias="banner" />
+		<typeAlias type="com.romance.admin.sub.SubscribeVO"
+			alias="subscribe" />
 
 
 		<typeAlias type="com.romance.admin.terms.termsVO"
@@ -61,11 +62,11 @@
 			alias="booksearchVO" />
 		<typeAlias type="com.romance.user.reply.ReplyVO"
 			alias="replyVO" />
-			<typeAlias type="com.romance.user.reply.ReplysearchVO"
+		<typeAlias type="com.romance.user.reply.ReplysearchVO"
 			alias="replysearchVO" />
-			<typeAlias type="com.romance.user.reply.FineVO"
+		<typeAlias type="com.romance.user.reply.FineVO"
 			alias="fineVO" />
-			
+
 
 	</typeAliases>
 	<mappers>
@@ -78,9 +79,9 @@
 		<mapper resource="mappings/event-mapping.xml" />
 		<mapper resource="mappings/adminuser-mapping.xml" />
 		<mapper resource="mappings/sub-mapping.xml" />
-		<!-- <mapper resource="mappings/icon-mapping.xml" /> <mapper resource="mappings/banner-mapping.xml" 
-			/> -->
-		<!-- <mapper resource="mappings/sub-mapping.xml" /> -->
+		<mapper resource="mappings/icon-mapping.xml" />
+		<mapper resource="mappings/banner-mapping.xml" />
+		<mapper resource="mappings/sub-mapping.xml" />
 		<mapper resource="mappings/reply-mapping.xml" />
 		<mapper resource="mappings/fine-mapping.xml" />
 		<mapper resource="mappings/coupon-mapping.xml" />
