@@ -46,7 +46,7 @@
     <!-- 아래 텍스트는 수정가능 My page, Home, Pages, Contact Us 는 각 페이지마다 다를 수 있으므로-->
     <div class="container-fluid page-header wow fadeIn" data-wow-delay="0.1s">
         <div class="container">
-            <h1 class="display-3 mb-3 animated slideInDown">상품 관리 페이지</h1>
+            <h1 class="display-3 mb-3 animated slideInDown">상품 추가 페이지</h1>
 
         </div>
     </div>
@@ -55,46 +55,73 @@
     <!-- 여기서부터 바디 작업 하면됨 -->
 
     <!-- 수정가능 테이블 -->
-      <div id="product_list">
-          <h2>상품목록</h2>
-              <button type="button" id="btnAdd" onclick="location.href='product_add.html'">상품 등록</button><br>
-          <table border="1px" id="dynamicTable" class="table">
-              <tr>
-                  <th>상품ID</th>
-                  <th>상품이미지</th>
-                  <th>상품명</th>
-                  <th>가격</th>
-                  <th>작가</th>
-                  <th>재고</th>
-                  <th>수정/삭제</th>
-              </tr>
-              <tr>
+      <div id="product_add">
+        <form id="form1" name="form1" enctype="multipart/form-data" method="post">
+            <table border="1">
+                <tr>
+                    <td>상품ID</td>
+                    <td><input type="text" name="product_Id" id="product_Id"></td>
+                </tr>
+                <tr>
+                    <td>장르</td>
+                    <td><select>
+                        <option>시/에세이</option>
+                        <option>국내 소설</option>
+                        <option>해외 소설</option>
+                        <option>무협</option>
+                    </td>
+                </tr>
+                <tr>
+                    <td>상품명</td>
+                    <td><input type="text" name="product_Name" id="product_Name"></td>
+                </tr>
+                <tr>
+                    <td>가격</td>
+                    <td><input type="number" name="product_Price" id="product_Price"></td>
+                </tr>
+                <tr>
+                      <td>작가</td>
+                      <td><input type="text" name="product_Publisher" id="product_Publisher"></td>
+                </tr>
+                <tr>
+                    <td>작가ID</td>
+                    <td><input type="text" name="product_PubId" id="product_PubId"></td>
+                </tr>
+                <tr>
+                      <td>출판사</td>
+                      <td><input type="text" name="product_Com" id="product_Com"></td>
+                </tr>
+                <tr>
+                    <td>상품이미지</td>
+                    <td><input type="file" name="product_Img" id="product_Img"></td>
+                </tr>
+                <tr>
+                    <td>상품설명</td>
+                    <td><textarea rows="5" cols="60" name="product_Desc" id="product_Desc"></textarea></td>
+                </tr>
+                <tr>
+                    <td>출판일자</td>
+                    <td><input type="date" name="product_PubDate" id="product_PubDate"></td>
+                </tr>
+                <tr>
+                  <td>재고</td>
                   <td>
-                      상품 번호
-                  </td>
-                  <td>
-                      <a href="상품명 하이퍼링크">
-                          <img src="이미지url링크" width="120ox" height="110px">
-                      </a>
-                  </td>
-                  <td align="center">
-                      상품명
-                  </td>
-                  <td>
-                      상품 가격
-                  </td>
-                  <td>
-                    작가
-                  </td>
-                  <td>
-                    재고
-                  </td>
-                  <td>
-                    <button type="button" class="btnUpdate" value="수정" onclick="location.href='product_edit.html'">수정</button>
-                    <button type="button" class="btnDelete" value="삭제" onclick="deleteRow(this);">삭제</button>
+                    <button type ="button" onclick="fnCalCount('m',this);">-</button>
+                    <input type="number" name="product_Num" value="0" readonly="readonly" style="text-align:center;"/>
+                    <button type="button" onclick="fnCalCount('p', this);">+</button>
                 </td>
-              </tr>
-          </table>
+                </tr>
+                <tr>
+                    <td>ISBN</td>
+                       <td><input name="product_Isbn" type="text" size="40" /></td></td>
+                <tr>
+                    <td colspan="2" align="center">
+                        <input type="button" value="등록" id="addBtn">
+                        <input type="button" value="목록" id="listBtn" onclick="location.href='product_list.html'">
+                    </td>
+                </tr>
+            </table>
+        </form>
     </div>
     <!-- 수정가능 테이블 끝 -->
 
@@ -108,7 +135,7 @@
     <script src="lib/wow/wow.min.js"></script>
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-
+    <script src="js/product_add.js"></script>
     <!-- 동적테이블 js -->
     <script>
         function tableCreate() {
