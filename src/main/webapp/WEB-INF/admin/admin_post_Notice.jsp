@@ -14,7 +14,7 @@
 <body>
 	<jsp:include page="/WEB-INF/admin_commonjsp/admin_common_header.jsp"></jsp:include>
 	<!-- 여기서부터 화면 작성 시작 -->
-	<div id="main_wrapper" class="m-2  w-100 row">
+	<div id="main_wrapper" class="m-2  w-100 row" style="width: 80% !important;">
 		<div class="mb-0 p-0">
 			<button onclick="location.reload();" id="all" class="select p-2">전체 공지사항</button>
 		</div>
@@ -87,15 +87,15 @@
 								<td>
 									<p id="seq">
 									${allCount }</p>
-									<c:set var="allCount" value="${allCount - 1}"/>
 									<input type="hidden" value="${notice.notice_seq }" />
 								</td>
 								<td>
 									<p class="rowColumn" id="title">
-									<a href="/admin_post_NoticeDetail.mdo?notice_seq=${notice.notice_seq}">
+									<a href="/admin_post_NoticeDetail.mdo?notice_seq=${notice.notice_seq}&seq=${allCount}">
 									${notice.notice_title }
 									</a>
 									</p>
+									<c:set var="allCount" value="${allCount - 1}"/>
 								</td>
 								<td>
 									<p class="selectColumn">${notice.notice_writer }</p>
@@ -123,7 +123,7 @@
 							<a class="page-link"><
 							</a></li>
 						</c:if>
-						<c:forEach var="i" begin="1" end="${page}">
+						<c:forEach var="i" begin="${startpage }" end="${endpage}">
 							<c:if test="${allPage ne i}">
 								<li class="page-item"><a class="page-link" href="#">${i}
 								</a></li>

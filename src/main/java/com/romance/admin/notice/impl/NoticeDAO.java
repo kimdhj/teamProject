@@ -42,18 +42,18 @@ public class NoticeDAO {
 	public void updateNotice(NoticeVO vo) {
 		sqlSession.update("NoticeDAO.updateNotice", vo);
 	}
-	
-	// °øÁö»çÇ× ¼öÁ¤, »èÁ¦¸¦ À§ÇÑ ºñ¹Ğ¹øÈ£ Ã¼Å©
+	 
+	// ë¹„ë°€ë²ˆí˜¸ í™•ì¸í•´ì„œ ìˆ˜ì •, ì‚­ì œ í•  ìˆ˜ ìˆë„ë¡
 	public boolean checkPW(NoticeVO vo) {
 		boolean result = false;
 		/*
 		Map<String, String> map = new HashMap<String, String>();
-		String notice_seq = Integer.toString(vo.getNotice_seq()); // seq Integer ¿¡¼­ String À¸·Î º¯°æ
+		String notice_seq = Integer.toString(vo.getNotice_seq()); // seq Integer ï¿½ï¿½ï¿½ï¿½ String ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 		map.put("notice_seq", notice_seq); 
 		map.put("notice_passwd", vo.getNotice_passwd());
 		*/
-		// notice_seq ¸¦ ºñ±³ÇÒ ¶§ String -> Integer ·Î ´Ù½Ã º¯°æÇØÁà¾ßÇÑ´Ù.
+		// notice_seq ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ String -> Integer ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 		
 		int count = sqlSession.selectOne("NoticeDAO.checkPW", vo); 
 		
@@ -62,7 +62,7 @@ public class NoticeDAO {
 		return result;
 	}
 	
-	// Ã¼Å©¹Ú½º ¼±ÅÃ »èÁ¦
+	// ì²´í¬ ë°•ìŠ¤ ê°’ ì„ íƒí•˜ëŠ” ê±°
 	public void checkBox(int notice_seq) {
 		System.out.println("DAO : " + notice_seq);
 		sqlSession.delete("NoticeDAO.checkBox", notice_seq);

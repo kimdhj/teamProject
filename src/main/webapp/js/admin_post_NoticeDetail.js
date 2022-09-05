@@ -14,10 +14,17 @@ $().ready(function () {
                 Swal.fire({
                 	text: "공지사항 목록으로 되돌아갑니다.",
                 	icon: "success",
-                }).then(function(){ // 예를 눌러야지 admin_post_Notice.mdo 로 이동
-                	location.href="/admin_post_Notice.mdo";
+                	showConfirmButton: false,
+                	timer: 1500,
                 })
+                	location.href="/admin_post_Notice.mdo";
+            }else if(result.isDismissed){
+            	return false;
             }
         })
     });
 });
+
+
+
+
