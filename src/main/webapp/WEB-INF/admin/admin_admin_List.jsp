@@ -118,10 +118,6 @@
 			</div>
 		</div>
 
-
-		관리자 계정 추가 넣어야함 (마스터만 추가할 수 있도록)
-
-
 		<div class="d-flex flex-row">
 			<div class="col-md-6">
 				<div class="col-md-12">
