@@ -43,6 +43,11 @@ public class AdminAccountServiceImpl implements AdminAccountService {
 	public List<AdminUserVO> getAdminListWithPaging(Criteria criteria) throws Exception {
 		return adminAccountDAO.getAdminListWithPaging(criteria);
 	}
+
+	@Override
+	public void insertAdminAccount(AdminUserVO vo) throws Exception {
+		adminAccountDAO.insertAdminAccount(vo);		
+	}
 	
 	
 	

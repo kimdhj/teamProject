@@ -54,6 +54,11 @@ public class NoticeServiceImpl implements NoticeService{
 	public void deleteNotice(NoticeVO vo) {
 		noticeDao.deleteNotice(vo);
 	}
+	
+	@Override
+	public void delete(NoticeVO vo) {
+		noticeDao.deleteNotice(vo);
+	}
 
 	@Override
 	public NoticeVO selectSeq(int notice_seq) {

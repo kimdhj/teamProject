@@ -62,15 +62,21 @@ $().ready(function () {
         		$.ajax({
         			type: "post", // 전송방식
         			url: "/admin_post_NoticeUpdate_checkPW.mdo", // 컨트롤러 사용할 때, 내가 보낼 데이터의 주소
-        			data: {"notice_passwd" : noticeUpdateForm.notice_passwd.value, "notice_seq" : noticeUpdateForm.notice_seq.value},
         			dataType: "text", // 데이터 타입
+        			data:{
+        				// 여기서는 컨트롤러에 존재하고 있는 변수명(KEY), (VALUE)
+        				notice_passwd : $("#all_box #passwd").val(),
+        				notice_seq: Number($("#all_box #notice_seq").val())
+        			},
         			async: false,
         			success: function(data){ // 정상적으로 응답 받은 경우 호출
         				console.log(data);
         				if(data == "1"){ // ajax 실행 성공
         					Swal.fire({
         	                	text: "수정 성공!",
-        	                	icon: "success"
+        	                	icon: "success",
+        	                	showConfirmButton: false,
+                               	timer: 1500
         	                }).then(function(){ // 예를 눌러야지 admin_post_Notice.mdo 로 이동
         	                	var seq = $("#seq").text();
         	                	i();
@@ -83,7 +89,9 @@ $().ready(function () {
         				}else{ // ajax 실행 실패
         					 Swal.fire({
         		                	text: "비밀번호를 다시 입력해주세요.",
-        		                	icon: "error"
+        		                	icon: "error",
+        		                	showConfirmButton: false,
+        	                       	timer: 1500
         		                })
         				}
         			},
@@ -113,18 +121,45 @@ $().ready(function () {
             cancelButtonText: '아니오'
         }).then((result) => {
         	if (result.isConfirmed) { // 모달창에서 confirm 버튼 누른 경우
-                Swal.fire({
-                	text: "삭제하였습니다.",
-                	icon: "success"
-                }).then(function(){
-                	var seq = $("#seq").text();
-                	
-                	location.href="/admin_post_NoticeDelete.mdo?notice_seq=" + seq;
-                })
+        		console.log("noticeUpdateForm.notice_passwd : " + noticeUpdateForm.notice_passwd.value, "noticeUpdateForm.notice_seq : " + noticeUpdateForm.notice_seq.value );
+        		$.ajax({
+        			url: "/admin_post_NoticeUpdate_checkPW.mdo",
+        			type: "POST",
+        			data: {
+        				notice_passwd: $("#all_box #passwd").val(),
+        				notice_seq: Number($("#all_box #notice_seq").val())
+        			},
+        			dataType: "JSON",
+        			async: false,
+        			success: function(data){
+        				console.log(data);
+        				if(data == "1"){
+        					Swal.fire({
+        						text: "삭제하셨습니다.",
+        						icon: "success",
+        						showConfirmButton: false,
+        						timer: 1500
+        					}).then(function(){
+        						var seq = $("#notice_seq").val();
+        						location.href="/noticeDelete.mdo?notice_seq=" + seq;
+        					})
+        				}else{
+        					Swal.fire({
+        						text: "비밀번호를 다시 입력해주세요.",
+        						icon: "error",
+        						showConfirmButton: false,
+        						timer: 1500
+        					})
+        				}
+        			}
+        		})
+            }else if(result.isDismissed){
+            	return false;
             }
         })
     });
 });
+
 $().ready(function () {
     $(".noticelist").click(function () {
         Swal.fire({
@@ -140,18 +175,35 @@ $().ready(function () {
             if (result.isConfirmed) { // 모달창에서 confirm 버튼 누른 경우
                 Swal.fire({
                 	text: "공지사항 목록으로 되돌아갑니다.",
-                	icon: "success"
+                	icon: "success",
+                	showConfirmButton: false,
+                	timer: 1500,
                 }).then(function(){ // 예를 눌러야지 admin_post_Notice.mdo 로 이동
                 	location.href="/admin_post_Notice.mdo";
                 })
+            }else if(result.isDismissed){
+            	return false;
             }
         })
     });
 });
+
+init();
+
+function init(){ // html 로 인식하던 "" 을 value 로 인식시켜서 " 나 ' 를 사용 가능하도록 만들어줌
+	console.log("hi");
+	console.log($(".note-editable").text());
+	$("#notice_content").val($(".note-editable").text());
+	console.log($("#notice_content").val());
+}
 
 $(document).on("click", "#noticeUpdate", function(){
 	console.log("hi");
 	console.log($(".note-editable").text());
 	$("#notice_content").val($(".note-editable").text());
 	console.log($("#notice_content").val());
+})
+
+$(document).on("DOMSubtreeModified", ".note-editable", function(){
+	$("#content").val($(".note-editable").html());
 })

@@ -39,7 +39,6 @@ div.bg-white {
 	font-weight: bolder;
 }
 
-
 .note-color-all button.active +.note-dropdown-menu>div:nth-child(2) {
 
    display:none !important;
@@ -70,7 +69,7 @@ animation: none;
 }
 
 #main_wrapper{
-	margin-left: 3% !important;
+	margin-left: 2% !important;
 }
 
 .note-frame{

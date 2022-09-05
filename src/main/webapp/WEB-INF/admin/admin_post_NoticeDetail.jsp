@@ -12,11 +12,10 @@
 <body>
 	<jsp:include page="/WEB-INF/admin_commonjsp/admin_common_header.jsp"></jsp:include>
 	<!-- 여기서부터 화면 작성 시작 -->
-	<div id="main_wrapper" class="m-2  w-100 row">
+	<div id="main_wrapper" class="m-2  w-100 row" style="width: 80% !important;">
 		<div class="mb-0 p-0">
 			<button onclick="location.reload();" id="all" class="select p-2">공지사항 상세보기</button>
 		</div>
-		
 		<div id="all_box" class="bg-white w-100">
 			<div class="row d-flex align-items-center" id="input_line_top">
 				<div class="col-1 mt-2 mb-2 notice_font" style="text-align: center;">제목</div>
@@ -33,7 +32,10 @@
 				</div>
 				<div class="row"></div>
 				<div class="col-1 mb-2 notice_font" style="text-align: center;">번호</div>
-				<div class="col-3 mb-2" style="padding-left: 0px;" id="test">${notice.notice_seq }</div>
+				<div class="col-3 mb-2" style="padding-left: 0px;" id="seq">
+					${svo.seq }
+					<input type="hidden" value="${notice.notice_seq }">
+				</div>
 				<div class="col-1 mb-2 notice_font" style="text-align: center;">지점</div>
 				<div class="col-3 mb-2" style="padding-left: 0px;">
 					${notice.notice_location }
@@ -47,19 +49,18 @@
 		<div id="all_box" class="bg-white w-100">
 			<div class="row d-flex align-items-center" id="input_line_top">
 				<div class="row"></div>
-				<div class="row" id="Content">${notice.notice_content }</div>
+				<div class="row" id="content">${notice.notice_content }</div>
 			</div>
 		</div>
 		
 		<div class="row d-flex justify-content-between mt-2 mb-2" id="buttons">
 			<div class="col-5"></div>
 			<div class="row col-5">
-				<button class="col-auto bg-white border-1" onclick="location.href='/admin_post_NoticeUpdate.mdo?notice_seq=${notice.notice_seq}'">수정</button>
+				<button class="col-auto bg-white border-1" onclick="location.href='/admin_post_NoticeUpdate.mdo?notice_seq=${notice.notice_seq}&seq=${svo.seq }'">수정</button>
 				<button class="col-auto bg-white border-1 noticelist" id="list">목록</button>
 			</div>
 			<div class="col-2"></div>
 		</div>
-		
 	</div>
 
 <jsp:include page="/WEB-INF/admin_commonjsp/admin_common_footer.jsp"></jsp:include>
