@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -27,8 +28,7 @@ public class AdminAccountController {
 		return conditionMap;
 	}
 	
-	
-	@RequestMapping("getAdmin_member_List.mdo")
+	@GetMapping("getAdmin_member_List.mdo")
 	public String getUserList(Criteria criteria, Model model) throws Exception {
 		System.out.println("관리자에서 회원목록 처리");
 		System.out.println("검색 조건 : " + criteria.getSearchCondition());
@@ -37,27 +37,49 @@ public class AdminAccountController {
 		System.out.println("한페이지당 글 갯수 : " + criteria.getPerPageNum());;
 		
 		if(criteria.getSearchCondition() == null) {
-			criteria.setSearchCondition("USER_NAME");
+			criteria.setSearchCondition("USER_ID");
 		}
 		if(criteria.getSearchKeyword() == null) {
 			criteria.setSearchKeyword("");
 		}
 		
-		Pagenation pagenation = new Pagenation();
-		pagenation.setCriteria(criteria);
-		pagenation.setTotalCount(adminAccountService.totalCount());
-//		System.out.println("totalCount : " + pagenation.getTotalCount());
-//		System.out.println("startPage : " + pagenation.getStartPage());
-//		System.out.println("endPage : " + pagenation.getEndPage());
-		System.out.println(pagenation);
-		model.addAttribute("pagenation", pagenation);
+		Pagination pagination = new Pagination();
+		pagination.setCriteria(criteria);
+		pagination.setTotalCount(adminAccountService.totalCount(criteria));
+//		System.out.println("totalCount : " + pagination.getTotalCount());
+//		System.out.println("startPage : " + pagination.getStartPage());
+//		System.out.println("endPage : " + pagination.getEndPage());
+		System.out.println(pagination);
+		model.addAttribute("pagination", pagination);
 		model.addAttribute("adminUserListWithPaging", adminAccountService.getUserListWithPaging(criteria));
-		
-		
 		
 		return "admin_member_List";
 	}
 	
+	@GetMapping("getAdmin_member_Detail.mdo")
+	public String getUserDetail(AdminUserVO vo, Model model) {
+		model.addAttribute("getUserDetail", adminAccountService.getUserDetail(vo));
+		return "admin_member_Detail";
+	}
 	
+	@GetMapping("getAdmin_admin_List.mdo")
+	public String getAdminList(Criteria criteria, Model model) throws Exception {
+		System.out.println("Mybatis로 adminList 기능 처리");
+		
+		if(criteria.getSearchCondition() == null) {
+			criteria.setSearchCondition("USER_ID");
+		}
+		if(criteria.getSearchKeyword() == null) {
+			criteria.setSearchKeyword("");
+		}
+		
+		Pagination pagination = new Pagination();
+		pagination.setCriteria(criteria);
+		pagination.setTotalCount(adminAccountService.adminTotalCount(criteria));
+		model.addAttribute("pagination", pagination);
+		model.addAttribute("adminListWithPaging", adminAccountService.getAdminListWithPaging(criteria));
+		
+		return "admin_admin_List";
+	}
 		 
 }

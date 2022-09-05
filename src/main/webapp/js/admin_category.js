@@ -193,10 +193,48 @@ $(document).ready(function() {
 	});
 	//추가버튼
 	$("#all_box #add_btn").click(function(e) {
+	let ale=false;
 		let num =
 			Number($("#all_box #category_btn").val()) +
 			Number($("#all_box #level").val());
 		let name = $("#all_box #name").val();
+			$.ajax({
+				url: "/catnameche.mdo",
+				method: "get",
+				dataType: "json",
+				data: {
+					category_name:name
+				},
+				success:function(re){
+					if(re>0&&!ale){
+						ale=true;
+					alert("이름 중복 추가 실패");
+				
+					return false;
+					
+					}
+				}
+				});
+				$.ajax({
+				url: "/catnumche.mdo",
+				method: "get",
+				dataType: "json",
+				data: {
+					category_num:num
+				},
+				success:function(re){
+					if(re>0&&!ale){
+					ale=true;
+					alert("번호 중복 추가 실패");
+					
+					return false;
+					}
+				}
+				});
+	
+	
+	
+	
 
 		if (
 			Number($("#all_box #category_btn").val()) != 0 &&
@@ -218,7 +256,8 @@ $(document).ready(function() {
 					}
 				},
 				error: function(e) {
-					if (e.responseText != null && e.responseText != "") {
+					if (e.responseText != null && e.responseText != ""&&!ale) {
+						ale=true;
 						alert(e.responseText);
 					} else {
 						make();
@@ -266,14 +305,14 @@ $(document).ready(function() {
 				page: Number($("#all_box #pageche").val()),
 			},
 			success: function(re) {
-			
-			if (re % 5 == 0) {
+
+				if (re % 5 == 0) {
 					re--;
 				}
 				console.log(re);
-			console.log(Number($("#all_box #pageche").val()),re / 5 + 1)
-				if (Number($("#all_box #pageche").val()) >re / 5 + 1) {
-					$("#all_box #pageche").val(Number($("#all_box #pageche").val())-1);
+				console.log(Number($("#all_box #pageche").val()), re / 5 + 1)
+				if (Number($("#all_box #pageche").val()) > re / 5 + 1) {
+					$("#all_box #pageche").val(Number($("#all_box #pageche").val()) - 1);
 				}
 				let page = Number($("#all_box #pageche").val());
 				count = re;
@@ -284,7 +323,7 @@ $(document).ready(function() {
 					pa += `<li class="page-item "><a class="page-link">
 									< </a></li>`;
 				}
-				
+
 
 				let startpage = 0;
 				let endpage = 0;
@@ -469,5 +508,63 @@ $(document).ready(function() {
 				$("#cate_box tbody").html(con);
 			},
 		});
-	}
+	};
+	$(document).on("keyup", "#category_num", function(e) {
+	
+		if (/\d/.test($(e.target).text()) && $(e.target).text().length == 3) {
+			$.ajax({
+				url: "/catnumche.mdo",
+				method: "get",
+				dataType: "json",
+				data: {
+					category_num: Number($(e.target).text())
+				},
+				async: false,
+				success: function(re) {
+				console.log(re);
+					if (re == 0) {
+						$(e.target).parents("tr").children("td:eq(0)").children("input").removeAttr("disabled");
+						$(e.target).next().text("수정 가능 합니다.");
+						$(e.target).next().css("color","green");
+					} else {
+						$(e.target).next().text("수정 불가 합니다.");
+						$(e.target).parents("tr").children("td:eq(0)").children("input").attr("disabled", "true");
+			$(e.target).parents("tr").children("td:eq(0)").children("input").prop("checked",false);
+						$(e.target).next().css("color","red");
+
+					}
+				}
+			});
+		} else {
+			$(e.target).next().text("수정 불가 합니다.");
+			$(e.target).parents("tr").children("td:eq(0)").children("input").attr("disabled", "true");
+			$(e.target).parents("tr").children("td:eq(0)").children("input").prop("checked",false);
+			$(e.target).next().css("color","red");
+		}
+	});
+	$(document).on("keyup", "#category_name", function(e) {
+				$.ajax({
+				url: "/catnameche.mdo",
+				method: "get",
+				dataType: "json",
+				data: {
+					category_name: $(e.target).text().trim()
+				},
+				async: false,
+				success: function(re) {
+				console.log(re);
+					if (re == 0) {
+						$(e.target).parents("tr").children("td:eq(0)").children("input").removeAttr("disabled");
+						$(e.target).next().text("수정 가능 합니다.");
+						$(e.target).next().css("color","green");
+					} else {
+						$(e.target).next().text("수정 불가 합니다.");
+						$(e.target).parents("tr").children("td:eq(0)").children("input").attr("disabled", "true");
+			$(e.target).parents("tr").children("td:eq(0)").children("input").prop("checked",false);
+						$(e.target).next().css("color","red");
+
+					}
+				}
+			});
+	})
 });

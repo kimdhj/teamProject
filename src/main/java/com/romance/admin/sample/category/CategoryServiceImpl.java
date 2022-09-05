@@ -65,4 +65,17 @@ public class CategoryServiceImpl implements CategoryService {
 		return dao.getNavCategoryList();
 	}
 
+	@Override
+	public int numche(int category_name) {
+		// TODO Auto-generated method stub
+		return dao.numche(category_name);
+	}
+
+	@Override
+	public int nameche(String category_num) {
+		// TODO Auto-generated method stub
+		return dao.nameche(category_num);
+	}
+	
+
 }

@@ -1,0 +1,121 @@
+#product_list{
+  color: rgb(53, 53, 203);
+  font-size: 18px;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
+
+.preserve-3d {
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    overflow-x: none;
+    background-color: #ffffff;
+    font-family: Roboto Condensed, sans-serif;
+    font-size: 12px;
+    font-smooth: always;
+    -webkit-font-smoothing: antialiased;
+}
+
+.back {
+    width: 33%;
+    height: 200px;
+    float: left;
+    background-color: #eeeeee;
+    border: 10px;
+    border-color: #ffffff;
+    border-style: solid;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    counter-increment: bc;
+    padding: 0px 5px 5px 5px;
+}
+
+.back:before {
+    content: counter(bc) "_";
+    position: absolute;
+    padding: 10px;
+}
+
+@media screen and (max-width: 1260px) {
+    .back {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 840px) {
+    .back {
+        width: 100%;
+    }
+}
+
+#btnAdd {
+    margin: 0;
+    border: 0;
+    font-size: 18px;
+    position: relative;
+    top: 70%;
+    left: 90%;
+    margin-top: -25px;
+    margin-left: -100px;
+    width: 200px;
+    height: 50px;
+    text-align: center;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    cursor: default;
+    color: #000000;
+    border: #000000 solid 1px;
+    padding: 10px;
+    background-color: #ffffff;
+}
+
+#btnAdd:hover {
+    cursor: pointer;
+    color: #ffffff;
+    background-color: #000000;
+}
+
+table {
+  text-align: center;
+  border: 1px solid rgb(212, 155, 155);
+  border-spacing: 1px;
+  font-family: "Cairo", sans-serif;
+  margin: auto;
+}
+table * {
+  vertical-align: middle;
+}
+table td {
+  vertical-align: middle;
+}
+caption {
+  font-weight: bold;
+}
+
+table td {
+  padding: 10px;
+  background-color: rgb(239, 208, 135);
+}
+
+table th,
+table thead tr:first-child {
+  background-color: #333;
+
+  color: rgb(236, 172, 172);
+  padding: 10px;
+}
+table thead tr:first-child th:first-child {
+  border-radius: 10px 0px 0px 0px;
+}
+table thead tr:first-child th:last-child {
+  border-radius: 0px 10px 0px 0px;
+}
+

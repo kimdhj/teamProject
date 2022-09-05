@@ -19,13 +19,7 @@
 	padding-top:2%;
 }
 
-#purchase01{
-	padding-top:30%;
-}
 
-#purchase02{
-	padding-top:10%;
-}
 
 .btnSubmit{
 	margin:auto;
@@ -47,4 +41,7 @@
 
 #list_book{
 	padding-top:2%;
+}
+.pagination *{
+	cursor:pointer;
 }
