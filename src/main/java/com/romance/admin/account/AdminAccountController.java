@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.romance.admin.login.AdminUserVO;
@@ -80,6 +81,14 @@ public class AdminAccountController {
 		model.addAttribute("adminListWithPaging", adminAccountService.getAdminListWithPaging(criteria));
 		
 		return "admin_admin_List";
+	}
+	
+	@PostMapping("insertAdminAccount.mdo")
+	public String insertAdminAccount(AdminUserVO vo) throws Exception {
+		System.out.println("관리자 계정 생성");
+		adminAccountService.insertAdminAccount(vo);
+		
+		return "redirect:getAdmin_admin_List.mdo";
 	}
 		 
 }
