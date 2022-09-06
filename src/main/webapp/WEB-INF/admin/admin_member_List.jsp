@@ -63,15 +63,17 @@
 			<div class="col-md-1">
 				<button type="submit" class="btn btn-light btn-outline-dark">검색</button>
 			</div> -->
-			<div class="col-md-5">
-				<div class="btn-group" role="group"
-					aria-label="Basic mixed styles example">
-					<button type="button" class="btn btn-danger">구독</button>
-					<button type="button" class="btn btn-warning">일반</button>
-					<button type="button" class="btn btn-dark">블랙</button>
-					<button type="button" class="btn btn-success">전체</button>
+			<form>
+				<div class="col-md-12">
+					<div class="btn-group" role="group"
+						aria-label="Basic mixed styles example">
+						<button type="submit" class="btn btn-danger" name="selectCondition" value="user_sub">구독</button>
+						<button type="submit" class="btn btn-warning" name="selectCondition" value="user_normal">일반</button>
+						<button type="submit" class="btn btn-dark" name="selectCondition" value="user_black">블랙</button>
+						<button type="submit" class="btn btn-success" name="selectCondition" value="user_all">전체</button>
+					</div>
 				</div>
-			</div>
+			</form>
 		</div>
 		<div class="d-flex flex-row">
 			<table class="table text-center">
@@ -101,7 +103,7 @@
 								<td>${adminAccount.user_coupon_cnt }</td>
 								<td>
 									<button type="submit" class="btn btn-light btn-outline-dark">
-										<a href="getAdmin_member_Detail.mdo?user_id=${adminAccount.user_id}">조회</a>
+										<a href="getAdmin_member_Detail.mdo?user_id=${adminAccount.user_id}&pageNum=${criteria.pageNum}&searchCondition=${criteria.searchCondition}&searchKeyword=${criteria.searchKeyword}">조회</a>
 									</button>
 								</td>
 							</tr>
@@ -118,16 +120,16 @@
 						</a></li> -->
 						<c:if test="${pagination.prev}">
 							<li class="page-item"><a class="page-link"
-								href="<c:url value="/getAdmin_member_List.mdo?searchCondition=${pagination.criteria.getSearchCondition() }&searchKeyword=${pagination.criteria.getSearchKeyword() }&pageNum=${pagination.startPage - 1 }" />">이전</a></li>
+								href="<c:url value="/getAdmin_member_List.mdo?searchCondition=${pagination.criteria.getSearchCondition() }&searchKeyword=${pagination.criteria.getSearchKeyword() }&pageNum=${pagination.startPage - 1 }&selectCondition=${pagination.criteria.getSelectCondition()}" />">이전</a></li>
 						</c:if>
 						<c:forEach begin="${pagination.startPage}"
 							end="${pagination.endPage}" var="pageNum">
 							<li class="page-item"><a class="page-link"
-								href="<c:url value="/getAdmin_member_List.mdo?searchCondition=${pagination.criteria.getSearchCondition() }&searchKeyword=${pagination.criteria.getSearchKeyword() }&pageNum=${pageNum}" />">${pageNum}</a></li>
+								href="<c:url value="/getAdmin_member_List.mdo?searchCondition=${pagination.criteria.getSearchCondition() }&searchKeyword=${pagination.criteria.getSearchKeyword() }&pageNum=${pageNum}&selectCondition=${pagination.criteria.getSelectCondition()}" />">${pageNum}</a></li>
 						</c:forEach>
 						<c:if test="${pagination.next && pagination.endPage > 0}">
 							<li class="page-item"><a class="page-link"
-								href="<c:url value="/getAdmin_member_List.mdo?searchCondition=${pagination.criteria.getSearchCondition() }&searchKeyword=${pagination.criteria.getSearchKeyword() }&pageNum=${pagination.endPage + 1 }" />">다음</a></li>
+								href="<c:url value="/getAdmin_member_List.mdo?searchCondition=${pagination.criteria.getSearchCondition() }&searchKeyword=${pagination.criteria.getSearchKeyword() }&pageNum=${pagination.endPage + 1 }&selectCondition=${pagination.criteria.getSelectCondition()}" />">다음</a></li>
 						</c:if>
 						<!-- <a class="page-link" href="#" aria-label="Next"> <span
 							aria-hidden="true">&raquo;</span>
