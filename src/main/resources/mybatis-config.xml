@@ -38,22 +38,17 @@
 			alias="bucketVO" />
 		<typeAlias type="com.romance.user.bucket.BucketSearchVO"
 			alias="bucketsearchVO" />
-
 		<typeAlias type="com.romance.admin.icon.IconVO" alias="icon" />
 		<typeAlias type="com.romance.admin.icon.BannerVO"
 			alias="banner" />
 		<typeAlias type="com.romance.admin.sub.SubscribeVO"
 			alias="subscribe" />
-
-
 		<typeAlias type="com.romance.admin.terms.termsVO"
 			alias="termsVO" />
-
 		<typeAlias type="com.romance.admin.coupon.CouponVO"
 			alias="couponVO" />
 		<typeAlias type="com.romance.admin.coupon.CouponSearchVO"
 			alias="couponsearchVO" />
-
 		<typeAlias type="com.romance.admin.notice.NoticeSearchVO"
 			alias="noticeSearchVO" />
 		<typeAlias type="com.romance.user.book.BookVO"
