@@ -110,5 +110,6 @@
 		@rownum:=0) TMP where sum>10 or book_publish_date> (current_date()- INTERVAL 1
 		YEAR) ) ag]]>
 	</select>
+
 </mapper>
 
