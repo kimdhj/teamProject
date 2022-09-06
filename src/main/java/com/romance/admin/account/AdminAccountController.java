@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.romance.admin.login.AdminUserVO;
 
@@ -90,5 +92,15 @@ public class AdminAccountController {
 		
 		return "redirect:getAdmin_admin_List.mdo";
 	}
+	
+	@PostMapping("idCheck.mdo")
+	@ResponseBody
+	public int idCheck(@RequestParam("user_id") String user_id) throws Exception {
+		int cnt = adminAccountService.idCheck(user_id);
+		System.out.println(user_id);
+		System.out.println("아이디체크 cnt = " + cnt);
+		return cnt;
+	}
+	
 		 
 }
