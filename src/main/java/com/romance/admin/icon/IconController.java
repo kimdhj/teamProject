@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
-@SessionAttributes("Icon")
+@SessionAttributes("icon")
 public class IconController {
 
 	@Autowired
@@ -17,7 +17,7 @@ public class IconController {
 	@RequestMapping("/getIcon.mdo")
 	 public String getIcon(IconVO vo1, BannerVO vo2, Model model) {
 		 model.addAttribute("icon", iconService.getIcon(vo1));
-		 model.addAttribute("icon", iconService.getBanner(vo2));
+		 model.addAttribute("bannerList", iconService.getBanner(vo2));
 		 return "admin_marketing_Icon";
 	 }
 	 
