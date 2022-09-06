@@ -35,10 +35,9 @@
 		<typeAlias type="com.romance.admin.sub.SubscribeVO"
 			alias="subscribe" />
 
-		<!-- <typeAlias type="com.romance.admin.icon.IconVO" alias="icon" /> <typeAlias 
-			type="com.romance.admin.icon.BannerVO" alias="banner" /> -->
-		<!-- <typeAlias type="com.romance.admin.sub.SubscribeVO" alias="subscribe" 
-			/> -->
+		<typeAlias type="com.romance.admin.icon.IconVO" alias="icon" />
+		<typeAlias type="com.romance.admin.icon.BannerVO" alias="banner" />
+		<typeAlias type="com.romance.admin.sub.SubscribeVO" alias="subscribe" />
 
 
 		<typeAlias type="com.romance.admin.terms.termsVO"
@@ -74,9 +73,9 @@
 		<mapper resource="mappings/event-mapping.xml" />
 		<mapper resource="mappings/adminuser-mapping.xml" />
 		<mapper resource="mappings/sub-mapping.xml" />
-		<!-- <mapper resource="mappings/icon-mapping.xml" /> <mapper resource="mappings/banner-mapping.xml" 
-			/> -->
-		<!-- <mapper resource="mappings/sub-mapping.xml" /> -->
+		<mapper resource="mappings/icon-mapping.xml" /> 
+		<mapper resource="mappings/banner-mapping.xml" />
+		<mapper resource="mappings/sub-mapping.xml" />
 		<mapper resource="mappings/reply-mapping.xml" />
 		<mapper resource="mappings/fine-mapping.xml" />
 		<mapper resource="mappings/coupon-mapping.xml" />
