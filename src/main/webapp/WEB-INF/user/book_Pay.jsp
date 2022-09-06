@@ -323,9 +323,14 @@
 	<!-- Common Footer include -->
 	<jsp:include page="/WEB-INF/commonjsp/common_footer.jsp"></jsp:include>
 	<!-- 여기에 js관련  -->
+	<!-- iamport.payment.js -->
+	<script type="text/javascript"
+		src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
+	<!--다음 주소  -->
 	<script
 		src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script src="/js/jquery.number.min.js"></script>
+	<script src="/js/import_cache.js"></script>
 	<script src="/js/book_Pay.js"></script>
 	<!-- Footer End -->
 </body>
