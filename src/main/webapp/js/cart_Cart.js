@@ -80,7 +80,7 @@ $(document).ready(function() {
 		);
 	}
 	// 클릭하면 숫자증가
-	$(".plus").on("click", function() {
+	$(".plus").on("mousedown", function() {
 		$(this)
 			.parents()
 			.children("#text_box")
@@ -88,7 +88,7 @@ $(document).ready(function() {
 		init();
 	});
 	// 클릭하면 1보다클때 숫자 감소
-	$(".minus").click(function() {
+	$(".minus").mousedown(function() {
 		if (Number($(this).parents().children("#text_box").text().trim()) > 1) {
 			$(this)
 				.parents()
@@ -136,4 +136,10 @@ $(document).ready(function() {
 			}
 		});
 	});
+});
+$(".plus").mouseup(function(e){
+$(e.target).parents("#main_item").children("#bocount").val($(e.target).parents("#plus_box").prev().text().trim());
+});
+$(".minus").mouseup(function(e){
+$(e.target).parents("#main_item").children("#bocount").val($(e.target).parents("#minus_box").next("#text_box").text().trim());
 });

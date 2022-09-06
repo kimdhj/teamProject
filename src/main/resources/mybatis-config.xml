@@ -61,6 +61,10 @@
 			alias="replysearchVO" />
 		<typeAlias type="com.romance.user.reply.FineVO"
 			alias="fineVO" />
+		<typeAlias type="com.romance.user.login.UserVO"
+			alias="userVO" />
+			<typeAlias type="com.romance.user.orders.OrderBookListVO"
+			alias="orderbooklistVO" />
 
 
 	</typeAliases>
@@ -82,5 +86,7 @@
 		<mapper resource="mappings/coupon-mapping.xml" />
 		<mapper resource="mappings/book-mapping.xml" />
 		<mapper resource="mappings/bucket-mapping.xml" />
+		<mapper resource="mappings/login-mapping.xml" />
+		<mapper resource="mappings/order-mapping.xml" />
 	</mappers>
 </configuration>
