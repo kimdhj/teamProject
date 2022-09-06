@@ -1,15 +1,16 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="ko">
-
+<html>
 <head>
 	<title> Email 로그인 | 낭만서점 </title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<link rel="stylesheet" href="resources/css/common.css">
-	<script src="resources/js/jquery-1.11.3.min.js"></script>
-	<script src="resources/js/common.js"></script>
-	<script src="resources/js/jquery.smooth-scroll.min.js"></script>
+	<link rel="stylesheet" href="/css/common.css">
+	<script src="/js/jquery-1.11.3.min.js"></script>
+	<script src="/js/common.js"></script>
+	<script src="/js/jquery.smooth-scroll.min.js"></script>
 	<!-- jQuery -->
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 	<!-- iamport.payment.js -->

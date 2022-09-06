@@ -80,7 +80,7 @@ $(document)
 				                	console.log($(e.target).parents('tr').html());
 				                	 var seq = $(e.target).parents('tr').children("td:eq(1)").children("input").val();
 						             console.log(seq);
-						             location.href="/admin_post_NoticeDelete.mdo?notice_seq=" + seq;
+						             location.href="/noticeDelete.mdo?notice_seq=" + seq;
 						            	 
 //				                	$(this).parents('tr').remove();
 //				                	var seq = $("#seq").text();
@@ -452,12 +452,14 @@ function make() {
 			page: Number($("#all_box #pageche").val())
 		},
 		success: function(re) {
-			console.log("re", re); // data 를 가져와서 사용하는데, 그 값을 찍어주는 거 (여기서는 Count)
+			console.log("re1", re); // data 를 가져와서 사용하는데, 그 값을 찍어주는 거 (여기서는 Count)
 			count = re;
 			// count = count - (Number($("#all_box #pageche").val()) -1) * 5;
 			count = count - ($("#all_box #pageche").val() - 1) * 5;
 			console.log(count);
-			let pa = '';
+			
+			// 한 페이지당 몇 개의 게시글을 나오게 할 것인지 출력 (<)
+			let pa = "";
 			if (Number($("#all_box #pageche").val()) > 1) {
 				pa += `<li class="page-item "><a class="page-link">
 								<</a></li>`;
@@ -465,18 +467,39 @@ function make() {
 			if (re % 5 == 0) {
 				re--;
 			}
-			for (let i = 1; i <= re / 5 + 1; i++) {
+			console.log("re2", re); // data 를 가져와서 사용하는데, 그 값을 찍어주는 거 (여기서는 Count)
+			console.log(Number($("#all_box #pageche").val()),re / 5 + 1)
+			
+			if (Number($("#all_box #pageche").val()) > re / 5 + 1) {
+				$("#all_box #pageche").val(Number($("#all_box #pageche").val())-1);
+			}
+			
+			// 총 페이지 수 구하고, 한 화면에 몇 개의 쪽수를 나오게 할지
+			let page = Number($("#all_box #pageche").val());
+			let startpage = 0;
+			let endpage = 0;
+			
+			if(page < 3){
+				startpage = 1;
+			}else{
+				startpage = page - 2;
+			}
+			
+			// page : 2 / re : 30	// page : 7 / re : 30
+			// 4 > 7				// 9 > 7
+			// endpage = 4;			// endpage = 8
+			if (page + 2 > re / 5 + 1) {
+				endpage = re / 5 + 1;
+			} else {
+				endpage = page + 2;
+			}
+			
+			for (let i = startpage; i <= endpage; i++) {
 				if (Number($("#all_box #pageche").val()) != i) {
-
-					pa += `<li class="page-item"><a class="page-link"
-								href="#">${i}
-							</a></li>`;
+					pa += `<li class="page-item"><a class="page-link" href="#">${i} </a></li>`;
 				}
 				if (Number($("#all_box #pageche").val()) == i) {
-
-					pa += `<li class="page-item active" aria-current="page"><a
-								href="#"
-								class="page-link">${i}</a></li>`;
+					pa += `<li class="page-item active" aria-current="page"><a href="#" class="page-link">${i}</a></li>`;
 				}
 			}
 			if (Number($("#all_box #pageche").val()) < re / 5) {
@@ -512,7 +535,7 @@ function make() {
 								</td>
 								<td>
 									<p class="rowColumn">
-									<a href="/admin_post_NoticeDetail.mdo?notice_seq=${notice.notice_seq}">
+									<a href="/admin_post_NoticeDetail.mdo?notice_seq=${notice.notice_seq}&seq=${count}">
 									${notice.notice_title }
 									</a>
 									</p>

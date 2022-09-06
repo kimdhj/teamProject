@@ -1,13 +1,15 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
-  <head>
+<html>
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>아이디 중복검색</title>
   </head>
   <body>
-    <form name="search_id_form" action="result_id.html" method="get" onsubmit="return check_id()">
+    <form name="search_id_form" action="join_result_Id.jsp" method="get" onsubmit="return check_id()">
       <fieldset>
         <legend>아이디 입력</legend>
         <p>

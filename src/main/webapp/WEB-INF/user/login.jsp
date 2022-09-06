@@ -1,15 +1,17 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
 <title> 로그인 | 낭만서점 </title>
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<link rel="stylesheet" href="resources/css/common.css">
-<link rel="stylesheet" href="resources/css/login.css">
-<script src="resources/js/jquery-1.11.3.min.js"></script>
-<script src="resources/js/common.js"></script>  
-<script src="resources/js/jquery.smooth-scroll.min.js"></script> 
+<link rel="stylesheet" href="css/common.css">
+<link rel="stylesheet" href="css/login.css">
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/common.js"></script>  
+<script src="js/jquery.smooth-scroll.min.js"></script> 
 <!--[if lte IE 9]>
     <script src="js/html5shiv.js"></script>
 	<script src="js/placeholders.min.js"></script>
@@ -38,12 +40,12 @@ $(document).ready(function(){
 		<div class="bodytext_area box_inner">
 			<!-- login-wrap -->
 			<div class="login_wrap">
-				<h1 class="loginTit"><a href="#"><img src="resources/img/mainslide_mob01.jpg" alt="NangmanBooks" /></a></h1>
+				<h1 class="loginTit"><a href="#"><img src="img/mainslide_mob01.jpg" alt="NangmanBooks" /></a></h1>
 				<ul class="login_list">
 					<li class="kakao"><a href="javascript:;"><strong>카카오톡</strong> 로그인</a></li>
 					<li class="naver"><a href="javascript:;"><strong>네이버</strong> 로그인</a></li>
 					<li class="facebook"><a href="javascript:;"><strong>페이스북</strong> 로그인</a></li>
-					<li class="cellphone"><a href="email_login.html"><strong>이메일 주소</strong> 로그인</a></li>
+					<li class="cellphone"><a href="email_login.jsp"><strong>이메일 주소</strong> 로그인</a></li>
 					<li class="none"><a href="#"><strong>비회원</strong> 로그인</a></li>
 				</ul>
 				<div class="btnonoff_line">

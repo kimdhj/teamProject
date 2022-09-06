@@ -285,5 +285,36 @@ for (let i = 0; i < Number($("#reviews").children().length) - 1; i++) {
 			document.querySelector(`${id} .overlay`).style.width = maskSize + 'px'; //오버레이 마스크 크기 변경해서 별점 마킹
 			document.querySelector(`${id} input[name=ratevalue]`).value = Math.floor((maskMax - maskSize) / (starSize + gutter)) + parseFloat(((maskMax - maskSize) % (starSize + gutter) / starSize).toFixed(1));
 		})
+	$(document).on("click","#cart",function(e){
+	console.log($(e.target).parents(".fadeInUp").children().children("#seq").val());
+	})
+	$(document).on("click", "#cart", function(e) {
+		console.log($(e.target).parents(".fadeInUp").children().children("#seq").val());
+		$.ajax({
+			url: "/cartadd.do",
+			method: "get",
+			data: {
+				book_seq: Number($(e.target).parents(".fadeInUp").children().children("#seq").val())
+			},
+			dataType: "json",
+			success: function(re) {
+				console.log(re);
+				alert("장바구니에 담았습니다.");
+			},
+			error: function(re) {
+				console.log(re);
+				if (re.responseText != "실패") {
+					if (re.responseText != "중복") {
+						alert("장바구니에 담았습니다.");
+					} else {
+						alert("장바구니에 이미 존재 합니다.");
+					}
+
+				} else {
+					alert("로그인하고 장바구니 이용 해주세요");
+				}
+			}
+		})
+	})
 	
 }

@@ -1,5 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
 <title> Email 로그인 | 낭만서점 </title>
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
@@ -130,9 +132,6 @@
             <p class="addr">서울특별시 종로구 종로 1 <span class="gubun">/</span>        
 				<span class="br_line">대표전화 <span class="space0">02-1234-5678</span> <span class="gubun">/</span>        
 					<span class="br_line">E-mail : <span class="space0">nangmanbooks@gmail.com</span></span>
-				</span>
-			</p>
-			<p class="copy box_inner">Copyright(c) NangmanBooks all right reserved</p>
 			<ul class="snslink clear">
 				<li><a href="javascript:;">blog</a></li>
 				<li><a href="javascript:;">facebook</a></li>

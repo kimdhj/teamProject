@@ -21,7 +21,7 @@ public interface BookService {
 	public List<BookVO> mainbest(BookSearchVO vo);
 	public List<BookVO> mainnew(BookSearchVO vo);
 	public BookVO onesearch(int book_seq);
-	public double avgsearch(int book_seq);
+	public String avgsearch(int book_seq);
 	public List<ReplyVO> replylist(ReplysearchVO vo);
 	public int fineche(FineVO vo);
 	public int countsum(FineVO vo);

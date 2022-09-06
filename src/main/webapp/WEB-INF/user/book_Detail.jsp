@@ -57,7 +57,7 @@
 						</div>
 						<div id="unit">원</div>
 					</div>
-					<div class="row" id="main_info">${book.book_author}|${book.book_publish}|${book.book_publish_date}</div>
+					<div class="row" id="main_info">${book.book_author}|${book.book_publish}|<fmt:formatDate value="${book.book_publish_date}" pattern="yyyy-MM-dd"/></div>
 					<div class="row" id="cash_btn">
 					<input type="hidden" id="bookseq" value="${book.book_seq}"/>
 						<div class="col-3 " id="cash_button">
@@ -204,13 +204,14 @@
 								<div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
 								
                             <div class="product-item h-80">
+                                 <input type="hidden" id="seq" value="${neb.book_seq}"/>
                                 <div class="position-relative bg-light h-100 overflow-hidden">
                                     <img height="100%"  class="w-100" src="${neb.book_bigimgURL}" alt="">
                                   
                                 </div>
                                 <div class="text-center p-4">
-                                    <a class="d-block h5 mb-2" href="">${neb.book_title}</a>
-                                    <span class="text-primary me-1">${neb.book_price}</span>
+                                    <a class="d-block h5 mb-2" href="bookdetail.do?book_seq=${neb.book_seq}">${neb.book_title}</a>
+                                    <span class="text-primary me-1"><fmt:formatNumber value="${neb.book_price}" pattern="#,###" />원</span>
                                    
                                 </div>
                                 <div class="d-flex border-top">
@@ -218,7 +219,7 @@
                                         <a class="text-body" href="bookdetail.do?book_seq=${neb.book_seq}"><i class="fa fa-eye text-primary me-2"></i>상세보기</a>
                                     </small>
                                     <small class="w-50 text-center py-2">
-                                        <a class="text-body" href=""><i
+                                        <a class="text-body" id="cart"><i
                                                 class="fa fa-shopping-bag text-primary me-2"></i>Add to cart</a>
                                     </small>
                                 </div>

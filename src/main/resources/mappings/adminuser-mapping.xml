@@ -79,5 +79,11 @@
 			AND user_id like CONCAT('%', #{searchKeyword}, '%')
 		</if>
 	</select>
+	
+	<insert id="insertAdminAccount" parameterType="adminUserVO">
+		INSERT INTO user(user_password, user_name, user_phone, user_email, user_point, user_zipcode, user_address, user_sub, user_role, user_id, user_remain_address,
+		user_logintype, user_birth, user_state)
+		VALUES(#{user_password}, #{user_name}, #{user_phone}, #{user_email}, '0', '0', '0', '0', 'admin', #{user_id}, '0', 'A', '0', 1)
+	</insert>
 
 </mapper>

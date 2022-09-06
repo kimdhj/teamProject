@@ -13,6 +13,8 @@ public class BookVO {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
 	public Date book_publish_date;
+
+	@JsonFormat(pattern = "##,###")
 	public int book_price;
 	public int category_num;
 	public int book_remain;

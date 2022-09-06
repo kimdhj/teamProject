@@ -55,12 +55,18 @@ $(document).ready(function() {
 				.text()
 				.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, "$1,")
 		);
+		if (Number($("#count").text().replace(/[^\d]+/g, "")) > 50000) {
+			$("#delivery_count").text("0")
+		} else {
+			$("#delivery_count").text("2,500")
+		}
 		$("#sum_count").text(
+
 			Number(
 				$("#count")
 					.text()
 					.replace(/[^\d]+/g, "")
-			) -
+			) +
 			Number(
 				$("#delivery_count")
 					.text()
@@ -92,5 +98,42 @@ $(document).ready(function() {
 				);
 		}
 		init();
+	});
+	$("#seldel").click(function() {
+		let num = [];
+		console.log($(".form-check-input").parents("#main_item").children("#boseq"));
+		$(".form-check-input").map((el, it) => {
+			if ($(it).is(":checked")) {
+				console.log($(it).parents("#main_item").children("#boseq").val());
+				num.push(Number($(it).parents("#main_item").children("#boseq").val()));
+			};
+
+		});
+		$.ajax({
+			url: "/cartdel.do",
+			method: "get",
+			dataType: "json",
+			data: {
+				book_seq: num
+			},
+			success: function(re) {
+				console.log(re);
+				
+				
+				},
+			error: function(ee) {
+				console.log(ee);
+			$(".form-check-input").map((el, it) => {
+			if ($(it).is(":checked")) {
+				console.log($(it).parents("#main_item").prev("#line"));
+				$(it).parents("#main_item").prev("#line").remove();
+				$(it).parents("#main_item").remove();
+				init();
+				
+			};
+
+		});
+			}
+		});
 	});
 });
