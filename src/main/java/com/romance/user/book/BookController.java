@@ -1,6 +1,9 @@
 package com.romance.user.book;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,9 +11,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.romance.user.reply.FineVO;
+import com.romance.security.JwtUtils;
+import com.romance.user.login.UserVO;
 import com.romance.user.reply.ReplyVO;
 import com.romance.user.reply.ReplysearchVO;
 
@@ -275,11 +280,7 @@ public class BookController {
 	
 		return "book_Finish";
 	}
-	@GetMapping("bookpay.do")
-	public String bookpay() {
 	
-		return "book_Pay";
-	}
 	
 
 
