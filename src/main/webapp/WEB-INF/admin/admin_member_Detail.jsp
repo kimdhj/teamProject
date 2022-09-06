@@ -105,11 +105,12 @@
 		</div>
 	</div>
 	
-	<form name="detailForm" method="post">
+	<%-- <form name="detailForm" method="post">
 		<input type="hidden" id="pageNum" name="pageNum" value="${criteria.pageNum}" />
 		<input type="hidden" id="searchCondition" name="searchCondition" value="${criteria.searchCondition}" />
 		<input type="hidden" id="searchKeyword" name="searchKeyword" value="${criteria.searchKeyword}" />
-	</form>
+		<input type="hidden" id="selectCondition" name="selectCondition" value="${criteria.selectCondition}" />
+	</form> --%>
 
 
 	<jsp:include page="/WEB-INF/admin_commonjsp/admin_common_footer.jsp"></jsp:include>
@@ -119,7 +120,7 @@
 	<script>
 	<!-- List 페이지로 돌아갈때 페이지 유지 -->
 	$("#returnListBtn").click(function(){
-		let url = "getAdmin_member_List.mdo?pageNum=${criteria.pageNum}&searchCondition=${criteria.searchCondition}&searchKeyword=${criteria.searchKeyword}";
+		let url = "getAdmin_member_List.mdo?pageNum=${criteria.pageNum}&searchCondition=${criteria.searchCondition}&searchKeyword=${criteria.searchKeyword}&selectCondition=${criteria.selectCondition}";
 		/* let url = "getAdmin_member_List.mdo"; */
 		location.href = url;
 	});
