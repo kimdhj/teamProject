@@ -85,5 +85,9 @@
 		user_logintype, user_birth, user_state)
 		VALUES(#{user_password}, #{user_name}, #{user_phone}, #{user_email}, '0', '0', '0', '0', 'admin', #{user_id}, '0', 'A', '0', 1)
 	</insert>
+	
+	<select id="idCheck" parameterType="String" resultType="int">
+		SELECT COUNT(user_id) FROM user WHERE user_id = #{user_id}
+	</select>
 
 </mapper>

@@ -121,7 +121,7 @@
 		<div class="d-flex flex-row">
 			<div class="col-md-6">
 				<div class="col-md-12">
-					<form onsubmit="return adminAccountCheck()">
+					<form action="insertAdminAccount.mdo" method="post" id="accountCheckForm" onsubmit="return adminAccountCheck()">
 					<!-- <form action="/insertAdminAccount.mdo" method="post" name="adminAccountInsertForm"> -->
 						<table class="table text-center">
 							<thead class="table-dark">
@@ -141,8 +141,13 @@
 										style="float: left;" placeholder="아이디를 입력하세요" /></td>
 									<td>
 										<button type="button" class="btn btn-light btn-outline-dark"
-											style="float: right;" onclick="">중복확인</button>
+										id="btnCheck" style="float: right;" onclick="checkId()">중복확인</button>
 									</td>
+								</tr>
+								<tr>
+									<td colspan='2'><h6 style="color: red;"
+											id="id_check"></h6></td>
+									<td></td>
 								</tr>
 								<tr>
 									<th>비밀번호</th>

@@ -60,7 +60,7 @@ function adminAccountCheck() { //유효성 검사
 		return false;
 	}
 	if(!reg_id.test(user_id.value)){
-		alert("4~20글자 영문자로 시작, 특수문자 사용불가 (언더바 하이픈 사용가능)");
+		alert("아이디는 4~20글자 영문자로 시작, 특수문자 사용불가 (언더바 하이픈 사용가능)");
 		user_id.focus();
 		return false();
 	}
@@ -71,7 +71,7 @@ function adminAccountCheck() { //유효성 검사
 		return false;
 	}
 	if(!reg_password.test(user_password.value)){
-		alert("문자 + 특수문자 조합의 8~24자리 입력")
+		alert("비밀번호는 문자 + 특수문자 조합의 8~24자리 입력")
 		user_password.focus();
 		return false;
 	}
@@ -101,8 +101,60 @@ function adminAccountCheck() { //유효성 검사
 		alert("이메일을 다시 입력해주세요");
 		user_email.focus();
 		return false;
-	}
+	}	
 	
+}//유효성검사 끝
+
+//아이디 중복검사
+function checkId(){
+	//아이디 정규식
+	const reg_id = /^[A-Za-z]{1}[A-Za-z0-9_-]{3,19}$/; //반드시 영문시작 숫자_언더바/하이픈 허용 4~20자리
 	
+	let user_id = $("#user_id").val();
+	console.log(user_id);
+	$.ajax({
+		url:"idCheck.mdo", //Controller에서 받는 주소
+		type:"post",
+		data:{user_id:user_id},
+		success:function(cnt){//Controller에서 받은 cnt값
+			if(cnt == 0) {
+				alert("사용 가능한 아이디 입니다.");
+			} else {
+				alert("이미 사용중인 아이디 입니다.");
+				$("#user_id").val("");
+			}		
+		},
+		error:function(){
+			alert("에러다이말이야");
+		}
+	});
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
