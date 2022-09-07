@@ -95,6 +95,7 @@ $(document).ready(function(e) {
 			async: false,
 			data: {
 				page: Number($("#bookpage").val()),
+				country:Number($("#country").val()),
 				category: Number($("#category").val()),
 
 			},
@@ -131,7 +132,7 @@ $(document).ready(function(e) {
 									</div>
 								</div>
 							</div>
-							
+							<input type="hidden" value="${bo.book_seq}">
 							<hr>`
 				});
 				str+=`<input type="hidden" value="${re.vo.title}" id=" booktitle" /> <input
@@ -190,6 +191,7 @@ $(document).ready(function(e) {
 			async: false,
 			data: {
 				page: Number($("#newpage").val()),
+				country:Number($("#country").val()),
 				category: Number($("#category").val()),
 
 			},
@@ -226,7 +228,7 @@ $(document).ready(function(e) {
 									</div>
 								</div>
 							</div>
-							
+							<input type="hidden" value="${bo.book_seq}">
 							<hr>`
 				});
 				str+=`<input type="hidden" value="${re.vo.title}" id=" newtitle" /> <input
@@ -287,6 +289,7 @@ $(document).ready(function(e) {
 			data: {
 				page: Number($("#bestpage").val()),
 				category: Number($("#category").val()),
+				country:Number($("#country").val())
 
 			},
 			success: function(re) {
@@ -322,7 +325,7 @@ $(document).ready(function(e) {
 									</div>
 								</div>
 							</div>
-							
+							<input type="hidden" value="${bo.book_seq}">
 							<hr>`
 				});
 				str+=`<input type="hidden" value="${re.vo.title}" id="besttitle" /> <input
