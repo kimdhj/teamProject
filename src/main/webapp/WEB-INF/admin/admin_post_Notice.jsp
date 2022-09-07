@@ -16,7 +16,7 @@
 	<!-- 여기서부터 화면 작성 시작 -->
 	<div id="main_wrapper" class="m-2  w-100 row" style="width: 80% !important;">
 		<div class="mb-0 p-0">
-			<button onclick="location.reload();" id="all" class="select p-2">전체 공지사항</button>
+			<button onclick="location.reload();" id="all" class="select p-2">공지사항</button>
 		</div>
 
 		<div id="all_box" class="bg-white w-100">

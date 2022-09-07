@@ -1,11 +1,11 @@
 package com.romance.admin.notice;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.romance.security.JwtUtils;
 import com.romance.server.AwsS3;
+import com.romance.user.login.UserVO;
 
 @Controller
 public class NoticeController {
@@ -74,8 +76,10 @@ public class NoticeController {
 	// POST 방식으로 insert 해주는 컨트롤러(파일, VO 가져가서 insert)
 	@RequestMapping(value = "/admin_post_NoticeInsert.mdo", method=RequestMethod.POST)
 	// @RequestParam("notice_file") String notice_file
-	public String insertNotice(@RequestParam("notice_file") MultipartFile notice_file, NoticeVO vo) throws IOException{
+	public String insertNotice(@RequestParam("notice_file") MultipartFile notice_file, NoticeVO vo,HttpSession session, JwtUtils util) throws IOException{
 		System.out.println("insertController: "+ vo);
+		UserVO userVo = util.getuser(session);
+		
 		if(!notice_file.isEmpty()) { // isEmpty() : 업로드 한 파일 존재 여부를 리턴(없으면 true 리턴) 
 			String uploadFolder = "https://doublejo.s3.ap-northeast-2.amazonaws.com/";
 			String fileName = notice_file.getOriginalFilename(); // getOriginalFilename() : 업로드 한 파일명을 문자열로 리턴
@@ -153,8 +157,25 @@ public class NoticeController {
 	
 	// 공지사항 수정
 	@RequestMapping(value = "/admin_post_NoticeUpdate.mdo", method=RequestMethod.POST)
-	public String updateNotice( NoticeVO vo, Model model) {
+	public String updateNotice(@RequestParam("notice_file")MultipartFile notice_file, NoticeVO vo, Model model) throws IOException {
 		System.out.println("update vo : " + vo);
+		if(!notice_file.isEmpty()) { // isEmpty() : 업로드 한 파일 존재 여부를 리턴(없으면 true 리턴) 
+			String uploadFolder = "https://doublejo.s3.ap-northeast-2.amazonaws.com/";
+			String fileName = notice_file.getOriginalFilename(); // getOriginalFilename() : 업로드 한 파일명을 문자열로 리턴
+			String key = fileName.substring(uploadFolder.indexOf("")); // 확장자 
+			System.out.println("key : " + key);
+			AwsS3 awsS3 = AwsS3.getInstance();
+			awsS3.delete(key);
+			
+			String expand = fileName.substring(fileName.indexOf(".")); // 확장자 
+			key = UUID.randomUUID().toString() + expand; // 파일 이름 랜덤으로 정해주기
+			System.out.println("key : " + key);
+			InputStream is = notice_file.getInputStream();
+			String contentType = notice_file.getContentType();
+			Long contentLength = notice_file.getSize();
+			awsS3.upload(is, key, contentType, contentLength); // 파일 업로드
+		}
+		
 		noticeService.updateNotice(vo);
 		return "redirect:admin_post_Notice.mdo";
 	}
