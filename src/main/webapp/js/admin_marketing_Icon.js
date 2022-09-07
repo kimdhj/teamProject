@@ -5,7 +5,7 @@ function plus_banner(){
 	html += '<div id="can_del">';
 	html += '<div id="banner_thumbnail"><img width="100%" height="20%" id="banner_show1"/></div>';
 	html += '<div class="row d-flex">';
-	html += '<div class="col" id="banner_file"><input type="file" id="banner_image1" name="banner_file" accept="/image/*" onchange="setBannerThumbnail(event);"/></div>';
+	html += '<div class="col"><input type="file" id="banner_image1" id="banner_file" name="banner_file" accept="/image/*" onchange="setBannerThumbnail(event);"/></div>';
 	html += '<div class="col" id="banner_name_wrap"><div>배너 이름 : </div><input type="text" id="banner_name" name="banner_name" value=""></div>';
 	html += '<div class="col-2"><button type="button" class="btn btn-light" onclick="minus_banner(this);">배너 삭제</button></div>';
 	html += '</div>';
@@ -22,7 +22,7 @@ function minus_banner(obj){
 	div.remove();
 }
 
-
+//아이콘 섬네일
 function setThumbnail(event) {
   var reader = new FileReader();
 
@@ -41,7 +41,10 @@ function setThumbnail(event) {
   }
   reader.readAsDataURL(event.target.files[0]);
 }
-function setBannerThumbnail(event) {
+
+//배너 섬네일
+function setBannerThumbnail(ev) {
+
   var reader = new FileReader();
 
   reader.onload = function (event) {
@@ -49,85 +52,10 @@ function setBannerThumbnail(event) {
     img.setAttribute("src", event.target.result);
     img.setAttribute("width", "100%");
     img.setAttribute("height", "10%");
-    removeAllchild(document.querySelector("div#banner_thumbnail"));
-    document.querySelector("div#banner_thumbnail").appendChild(img);
+ 
+    $(ev.target).parents("#can_del").children("div#banner_thumbnail").html(img);
+   
   };
-  function removeAllchild(div) {
-    while (div.hasChildNodes()) {
-      div.removeChild(div.firstChild);
-    }
-  }
   reader.readAsDataURL(event.target.files[0]);
 }
-function setBannerThumbnail1(event) {
-  var reader = new FileReader();
 
-  reader.onload = function (event) {
-    var img = document.createElement("img");
-    img.setAttribute("src", event.target.result);
-    img.setAttribute("width", "100%");
-    img.setAttribute("height", "10%");
-    removeAllchild(document.querySelector("div#banner_thumbnail1"));
-    document.querySelector("div#banner_thumbnail1").appendChild(img);
-  };
-  function removeAllchild(div) {
-    while (div.hasChildNodes()) {
-      div.removeChild(div.firstChild);
-    }
-  }
-  reader.readAsDataURL(event.target.files[0]);
-}
-function setBannerThumbnail2(event) {
-  var reader = new FileReader();
-
-  reader.onload = function (event) {
-    var img = document.createElement("img");
-    img.setAttribute("src", event.target.result);
-    img.setAttribute("width", "100%");
-    img.setAttribute("height", "10%");
-    removeAllchild(document.querySelector("div#banner_thumbnail2"));
-    document.querySelector("div#banner_thumbnail2").appendChild(img);
-  };
-  function removeAllchild(div) {
-    while (div.hasChildNodes()) {
-      div.removeChild(div.firstChild);
-    }
-  }
-  reader.readAsDataURL(event.target.files[0]);
-}
-function setBannerThumbnail3(event) {
-  var reader = new FileReader();
-
-  reader.onload = function (event) {
-    var img = document.createElement("img");
-    img.setAttribute("src", event.target.result);
-    img.setAttribute("width", "100%");
-    img.setAttribute("height", "10%");
-    removeAllchild(document.querySelector("div#banner_thumbnail3"));
-    document.querySelector("div#banner_thumbnail3").appendChild(img);
-  };
-  function removeAllchild(div) {
-    while (div.hasChildNodes()) {
-      div.removeChild(div.firstChild);
-    }
-  }
-  reader.readAsDataURL(event.target.files[0]);
-}
-function setBannerThumbnail4(event) {
-  var reader = new FileReader();
-
-  reader.onload = function (event) {
-    var img = document.createElement("img");
-    img.setAttribute("src", event.target.result);
-    img.setAttribute("width", "100%");
-    img.setAttribute("height", "10%");
-    removeAllchild(document.querySelector("div#banner_thumbnail4"));
-    document.querySelector("div#banner_thumbnail4").appendChild(img);
-  };
-  function removeAllchild(div) {
-    while (div.hasChildNodes()) {
-      div.removeChild(div.firstChild);
-    }
-  }
-  reader.readAsDataURL(event.target.files[0]);
-}

@@ -12,7 +12,7 @@
 		SET banner_name=#{banner_name}, banner_file=#{banner_file} WHERE banner_seq = 1
 	</update>
 	<select id="getBanner" parameterType="banner" resultMap="bannerResult">
-		SELECT * FROM banner WHERE banner_seq = 1
+		SELECT * FROM banner
 	</select>
 
 </mapper>
