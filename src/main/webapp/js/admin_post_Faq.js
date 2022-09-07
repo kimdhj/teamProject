@@ -53,7 +53,7 @@ $(document).ready(function() {
 	});
 	// 상단 모든 카테고리 코드
 	// 클릭해서 삭제
-	$(document).on("click", "del", function(e){
+	$(document).on("click", ".del", function(e){
 		Swal.fire({
 			text: "해당 FAQ 를 삭제하시겠습니까?",
 			icon: 'warning',
@@ -70,7 +70,11 @@ $(document).ready(function() {
 	            	showConfirmButton: false,
 	            	timer: 1500,
 				}).then(function(){
-					console.log($(e.target).parents('tr').html());
+					console.log($(e.target).parents('tr').children("td:eq(1)").html());
+					var seq = $(e.target).parents('tr').children("td:eq(1)").children('input').val();
+					seq = parseInt(seq);
+					console.log(seq);
+					location.href="/faqDelete.mdo?FAQ_seq=" + seq;
 				})
 			}else if(result.isDismissed){
 				return false;
@@ -85,12 +89,59 @@ $(document).ready(function() {
 	
 	
 	// 선택 된 요소 삭제
-	$(".seldel").click(function(e) {
-
-		console.log($('.delche:checked'))
-		$('.delche:checked').parents('tr').remove();
-		$('.allche').removeAttr('checked');
+	$(".chkbox").click(function(e){
 	});
+	$(".seldel").click(function() {
+		var chk_arr = [];
+		Swal.fire({
+			text: "선택한 FAQ 를 삭제하시겠습니까?",
+			icon: 'warning',
+			showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '예',
+            cancelButtonText: '아니오'
+		}).then((result)=>{
+			if(result.isConfirmed){
+				$("input[name='chkbox']:checked").map((ine,el)=>{
+	    			// .text() -> .children("input").val();
+					console.log($(el).parents("tr").children("td:eq(1)").children("input").val());
+					var seq =$(el).parents("tr").children("td:eq(1)").children("input").val();
+					chk_arr.push(seq);
+					console.log(chk_arr);
+				})
+				
+				$.ajax({
+					url: "/faqChkbox.mdo",
+					type: "GET",
+					data: {"FAQ_seq" : chk_arr},
+					success: function(data){
+						$('.delche:checked').parents('tr').remove();
+						$('.allche').removeAttr('checked');
+					}
+				})
+				Swal.fire({
+					text: "삭제되었습니다.",
+                	icon: "success",
+                	showConfirmButton: false,
+                	timer: 1500,
+				}).then(function(){
+					$('.delche:checked').parents('tr').remove();
+					$('.allche').removeAttr('checked');
+					location.href="/admin_post_Faq.mdo";
+				})
+			}else if(result.isDismissed){
+				return false;
+			}
+		})
+
+//		console.log($('.delche:checked'))
+//		$('.delche:checked').parents('tr').remove();
+//		$('.allche').removeAttr('checked');
+	});
+	
+	
+	
 	// 해제시 전체 클릭 비활성화+모두 클릭되면 전체 클릭 활성화
 	$('.delche:checked').click(function() {
 		// 해제시 전체 클릭 비활성화
@@ -129,7 +180,6 @@ $(document).ready(function() {
 		observer.observe(document.getElementsByClassName('num')[i], { childList: true });
 	}
 })
-
 // 페이지 네이션 화면 이동
 $(document).on('click', '#all_box #page a', makeDisplay);
 
@@ -314,20 +364,20 @@ function make(){
 			console.log("listRE", re);
 			let con="";
 			re.map((faq) => {
-//				console.log(faq.faq_ask);
+				console.log(faq.faq_seq);
 				con += 
 					`
 						<tr>
-							<td><input class="form-check-input border-1 border-dark delche" type="checkbox" id="flexCheckChecked" checked> </td>
+							<td><input class="form-check-input border-1 border-dark delche" type="checkbox" name="chkbox" id="flexCheckChecked"> </td>
 							
 							<td>
 								<p id="seq"> ${count} </p>
-								<input type="hidden" value="${faq.FAQ_seq }"/>
+								<input type="hidden" value="${faq.faq_seq }"/>
 							</td>
 							
 							<td>
 								<p class="rowColumn" id="ask">
-									<a href="/admin_post_FaqDetail.mdo?notice_seq=${faq.FAQ_seq}&seq=${count}">
+									<a href="/admin_post_FaqDetail.mdo?FAQ_seq=${faq.faq_seq}&seq=${count}">
 										${faq.faq_ask}
 									</a>
 								</p>

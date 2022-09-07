@@ -33,5 +33,31 @@
 				</if>
 			</trim>
 	</select>
+	
+	<delete id="delete" parameterType="faq">
+		DELETE FROM FAQ WHERE FAQ_seq = #{FAQ_seq}
+	</delete>
+	
+	<delete id="chkboxDelete" parameterType="int">
+		DELETE FROM FAQ WHERE FAQ_seq = #{FAQ_seq}	
+	</delete>
+	
+	<select id="getFaq" parameterType="faq" resultType="faq">
+		SELECT * FROM FAQ WHERE FAQ_seq = #{FAQ_seq}
+	</select>
+
+<!-- 
+	<select id="selectDetail" parameterType="faq">
+		<![CDATA[SELECT * FROM FAQ]]>
+		<trim prefix="WHERE" prefixOverrides="AND | OR">
+			<if test="FAQ_bigsort != null">
+				<![CDATA[AND FAQ_bigsort = #{bigsort}]]>
+			</if>
+			<if test="FAQ_smallsort != null">
+				<![CDATA[AND FAQ_smallsort = #{smallsort}]]>
+			</if>
+		</trim>
+	</select>
+ -->	
 
 </mapper>

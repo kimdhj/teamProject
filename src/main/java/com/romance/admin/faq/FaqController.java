@@ -6,8 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -50,7 +53,7 @@ public class FaqController {
 	@GetMapping("/faqList.mdo")
 	@ResponseBody
 	public List<FaqVO> faqList(FaqSearchVO svo){
-		System.out.println(svo);
+//		System.out.println(svo);
 		List<FaqVO> faqList = service.getFaqList(svo);
 		return faqList;
 	}
@@ -60,6 +63,29 @@ public class FaqController {
 	public int faqCount(FaqSearchVO svo) {
 		int count = service.getCount(svo);
 		return count;
+	}
+	
+	// DELETE
+	@GetMapping(value = "/faqDelete.mdo")
+	public String delete(FaqVO vo) {
+		System.out.println(vo);
+		service.delete(vo);
+		return "redirect:admin_post_Faq.mdo";
+	}
+	
+	@GetMapping(value = "/faqChkbox.mdo")
+	@ResponseBody
+	public String chkboxDelete(@RequestParam(value = "FAQ_seq[]") List<String> FAQ_seq) {
+		service.chkboxDelete(FAQ_seq);
+		return null;
+	}
+	
+	// Detail
+	@GetMapping(value = "/admin_post_FaqDetail.mdo")
+	public String getFaq(Model model, FaqVO vo, FaqSearchVO svo) {
+		model.addAttribute("svo", svo);
+		model.addAttribute("faq", service.getFaq(vo));
+		return "admin_post_FaqDetail";
 	}
 	
 }
