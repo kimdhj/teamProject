@@ -61,20 +61,43 @@
 					<div class="row" id="cash_btn">
 					<input type="hidden" id="bookseq" value="${book.book_seq}"/>
 						<div class="col-3 " id="cash_button">
-							<button type="button"
+						<c:if test="${bche!=null}">
+						<form action="bookpay.do" method="get">
+						<input type="hidden" name="book_seq" id="bookseq" value="${book.book_seq}"/>
+						<input type="hidden" name="book_count" id="bookseq" value="1"/>
+							<button 
 								class="btn btn-info font-weight-bold rounded-pill">결&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp제</button>
+						</form>
+						</c:if>
+						<c:if test="${bche==null}">
+						<button  type="button" id="fin"
+								class="btn btn-info font-weight-bold rounded-pill">결&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp제</button>
+						</c:if>
 						</div>
 						<div class="col"></div>
-						<div class="col-7" id="add_cart">
-							<button type="button" class="btn btn-info rounded-pill">장바구니
+						<c:if test="${bche!=null}">
+						<c:if test="${bche<=0}">
+						<div class="col-7" >
+							<button id="add_cartCheck" type="button"  class="btn btn-info rounded-pill">장바구니
 								추가</button>
 						</div>
-						<div class="col-7 hide" id="add_cartCheck">
-							<button type="button"
-								class="btn btn-info border-0 bg-gray rounded-pill">장바구니
-								삭제</button>
+						</c:if>
+						<c:if test="${bche>0}">
+						<div class="col-7" >
+							<button id="add_cartCheck" disabled type="button"
+								class="btn btn-info  rounded-pill bg-gray border-0">장바구니
+								추가</button>
 						</div>
-
+						
+						</c:if>
+						</c:if>
+						<c:if test="${bche==null}">
+							<div class="col-7" >
+						<button type="button" id="add_cartCheck"  class="btn btn-info rounded-pill">장바구니
+								추가</button>
+								</div>
+						</c:if>
+						
 					</div>
 				</div>
 			</div>
