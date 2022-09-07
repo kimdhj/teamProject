@@ -1,5 +1,5 @@
 #main_wrapper * {
-  font-size: 1.3vw;
+  font-size: 1vw;
   word-break: keep-all;
 }
 body {
@@ -29,7 +29,7 @@ div.bg-white {
 .bg-blue {
   background-color: #0d6efd !important;
 }
-#level {
+#level1, #level2, #level3, #level4, #level5 {
   background-color: #eff0f6 !important;
 }
 #cate_box {
@@ -38,4 +38,16 @@ div.bg-white {
 
 .hide{
 	display: none !important;
+}
+
+.pagination *{
+   cursor:pointer;
+}
+
+#main_wrapper{
+	margin-left: 2% !important;
+}
+
+.note-frame{
+	border: 0px !important;
 }
