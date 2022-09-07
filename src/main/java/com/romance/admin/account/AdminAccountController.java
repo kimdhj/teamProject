@@ -45,7 +45,7 @@ public class AdminAccountController {
 		if(criteria.getSearchKeyword() == null) {
 			criteria.setSearchKeyword("");
 		}
-		
+		System.out.println("셀렉트컨디션 : " + criteria.getSelectCondition());				
 		Pagination pagination = new Pagination();
 		pagination.setCriteria(criteria);
 		pagination.setTotalCount(adminAccountService.totalCount(criteria));
@@ -60,7 +60,9 @@ public class AdminAccountController {
 	}
 	
 	@GetMapping("getAdmin_member_Detail.mdo")
-	public String getUserDetail(AdminUserVO vo, Model model) {
+	public String getUserDetail(AdminUserVO vo,@ModelAttribute("criteria") Criteria criteria, Model model) {
+		
+		model.addAttribute("criteria", criteria);
 		model.addAttribute("getUserDetail", adminAccountService.getUserDetail(vo));
 		return "admin_member_Detail";
 	}
