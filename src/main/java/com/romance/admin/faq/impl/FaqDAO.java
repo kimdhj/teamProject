@@ -21,4 +21,16 @@ public class FaqDAO {
 	public int getCount(FaqSearchVO svo) {
 		return sqlSession.selectOne("FaqDAO.getCount", svo);
 	}
+	
+	public void delete(FaqVO vo) {
+		sqlSession.delete("FaqDAO.delete", vo);
+	}
+	
+	public void chkboxDelete(int FAQ_seq) {
+		sqlSession.delete("FaqDAO.chkboxDelete", FAQ_seq);
+	}
+	
+	public FaqVO getFaq(FaqVO vo) {
+		return sqlSession.selectOne("FaqDAO.getFaq", vo);
+	}
 }

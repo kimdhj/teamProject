@@ -111,17 +111,7 @@ public class NoticeController {
 	
 	// 공지사항 삭제
 	@RequestMapping(value = "/admin_post_NoticeDelete.mdo")
-	public String deleteNotice(@RequestParam("notice_file")MultipartFile notice_file, NoticeVO vo) {
-		if(!notice_file.isEmpty()) { // isEmpty() : 업로드 한 파일 존재 여부를 리턴(없으면 true 리턴) 
-			String uploadFolder = "https://doublejo.s3.ap-northeast-2.amazonaws.com/";
-			String fileName = notice_file.getOriginalFilename(); // getOriginalFilename() : 업로드 한 파일명을 문자열로 리턴
-			String key = fileName.substring(uploadFolder.indexOf("")); // 확장자 
-			System.out.println("key : " + key);
-			AwsS3 awsS3 = AwsS3.getInstance();
-			awsS3.delete(key);
-		}
-		
-		System.out.println("삭제");
+	public String deleteNotice(NoticeVO vo) {
 		noticeService.deleteNotice(vo);
 		return "redirect:admin_post_Notice.mdo";
 	}

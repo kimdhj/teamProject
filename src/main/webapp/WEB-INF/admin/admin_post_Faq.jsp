@@ -100,7 +100,7 @@
 				<table class="table " id="table">
 					<thead>
 						<tr>
-							<th><input class="form-check-input border-1 border-dark allche" type="checkbox" value="" id="flexCheckChecked" checked></th>
+							<th><input class="form-check-input border-1 border-dark allche" type="checkbox" id="flexCheckChecked" checked></th>
 							<th>번호</th>
 							<th>내용</th>
 							<th><button class="btn btn-warning rounded-pill seldel">선택 삭제</button></th>
@@ -111,7 +111,7 @@
 					<tbody>
 						<c:forEach items="${faqList }" var="faq" begin="0" end="4">
 						<tr>
-							<td><input class="form-check-input border-1 border-dark delche" type="checkbox" id="flexCheckChecked" checked>
+							<td><input class="form-check-input border-1 border-dark delche" type="checkbox" name="chkbox" id="flexCheckChecked" checked>
 							</td>
 							
 							<td>
@@ -128,11 +128,10 @@
 										${faq.FAQ_ask }
 									</a>
 								</p>
-								
 							</td>
 							
 							<td>
-								<button class="btn btn-danger rounded-pill del">삭제</button>
+								<button class="btn btn-danger rounded-pill del" type="button">삭제</button>
 							</td>
 						</tr>
 						</c:forEach>
@@ -174,6 +173,7 @@
 		</div>
 	</div>
 <jsp:include page="/WEB-INF/admin_commonjsp/admin_common_footer.jsp"></jsp:include>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="/js/admin_post_Faq.js"></script>
 </body>
 </html>

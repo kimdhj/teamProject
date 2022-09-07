@@ -45,4 +45,23 @@ public class FaqServiceImpl implements FaqService{
 		}
 		return faq.getCount(svo);
 	}
+	
+	@Override
+	public void delete(FaqVO vo) {
+		faq.delete(vo);
+	}
+	
+	@Override
+	public void chkboxDelete(List<String> FAQ_seq) {
+		for(String nSeq : FAQ_seq) {
+			int seq = Integer.parseInt(nSeq);
+			faq.chkboxDelete(seq);
+		}
+	}
+	
+	@Override
+	public FaqVO getFaq(FaqVO vo) {
+		return faq.getFaq(vo);
+	}
+	
 }
