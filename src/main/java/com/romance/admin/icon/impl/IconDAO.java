@@ -15,20 +15,20 @@ public class IconDAO {
 	
 	public IconVO getIcon(IconVO vo) {
 		System.out.println("---> MyBatis로 getEvent() 기능 처리");
-		return (IconVO) sqlSessionTemplate.selectOne("IconDAO.getIcon", vo);
+		return (IconVO) sqlSessionTemplate.selectOne("iconDAO.getIcon");
 	}
 
 	public BannerVO getBanner(BannerVO vo) {
 		System.out.println("---> MyBatis로 getEvent() 기능 처리");
-		return (BannerVO) sqlSessionTemplate.selectOne("IconDAO.getBanner", vo);
+		return (BannerVO) sqlSessionTemplate.selectOne("BannerDAO.getBanner", vo);
 	}
 	
 	public void updateIcon(IconVO vo) {
-		sqlSessionTemplate.update("IconDAO.updateIcon",vo);
+		sqlSessionTemplate.update("iconDAO.updateIcon",vo);
 	}
 
 	public void updateBanner(BannerVO vo) {
-		sqlSessionTemplate.update("IconDAO.updateBanner",vo);
+		sqlSessionTemplate.update("BannerDAO.updateBanner",vo);
 	}
 	
 }

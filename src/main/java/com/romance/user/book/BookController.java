@@ -1,6 +1,9 @@
 package com.romance.user.book;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,9 +11,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.romance.user.reply.FineVO;
+import com.romance.security.JwtUtils;
+import com.romance.user.bucket.BucketSearchVO;
+import com.romance.user.bucket.BucketService;
+import com.romance.user.bucket.BucketVO;
+import com.romance.user.login.UserVO;
 import com.romance.user.reply.ReplyVO;
 import com.romance.user.reply.ReplysearchVO;
 
@@ -18,6 +26,8 @@ import com.romance.user.reply.ReplysearchVO;
 public class BookController {
 	@Autowired
 	BookService ser;
+	@Autowired
+	BucketService serc;
 	@RequestMapping("/booklist.do")
 	public String booklist(BookSearchVO vo,Model model) {
 		System.out.println(vo);
@@ -92,13 +102,15 @@ public class BookController {
 		model.addAttribute("konav",ser.categoryko());
 		model.addAttribute("ennav",ser.categoryen());
 		model.addAttribute("renav",ser.navlist());
-		System.out.println(ser.categoryko());
+		
+		System.out.println(bestlist);
+		System.out.println(list);
 		
 		
 		return"book_List";
 	}
 	@RequestMapping("/bookdetail.do")
-	public String bookdetail(ReplysearchVO vo,Model model) {
+	public String bookdetail(ReplysearchVO vo,HttpSession session,JwtUtils util,Model model) {
 	System.out.println("seq:"+vo.getBook_seq());
 		if(vo.getPage()<1) {
 			vo.setPage(1);
@@ -122,6 +134,14 @@ public class BookController {
 		}
 		
 		System.out.println("relist :"+relist);
+		UserVO voi=util.getuser(session);
+		if(voi!=null) {
+			BucketVO vob= new BucketVO();
+			vob.setBook_seq(vo.getBook_seq());
+			vob.setUser_id(voi.getUser_id());
+			model.addAttribute("bche",serc.chedouble(vob));
+		}
+		
 		model.addAttribute("relist", relist);
 		model.addAttribute("vo", vo);
 		model.addAttribute("maxpage", recount/5+1);
@@ -268,6 +288,12 @@ public class BookController {
 		}
 		return count;
 	}
+	@GetMapping("bookfinish.do")
+	public String bookfinish() {
+	
+		return "book_Finish";
+	}
+	
 	
 
 

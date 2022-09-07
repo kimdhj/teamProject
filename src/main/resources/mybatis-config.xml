@@ -32,21 +32,21 @@
 		<typeAlias type="com.romance.socket.API" alias="API" />
 		<typeAlias type="com.romance.admin.sub.SubscribeVO"
 			alias="subscribe" />
-
-		<!-- <typeAlias type="com.romance.admin.icon.IconVO" alias="icon" /> <typeAlias 
-			type="com.romance.admin.icon.BannerVO" alias="banner" /> -->
-		<!-- <typeAlias type="com.romance.admin.sub.SubscribeVO" alias="subscribe" 
-			/> -->
-
-
+		<typeAlias type="com.romance.user.bucket.BucketVO"
+			alias="bucketVO" />
+		<typeAlias type="com.romance.user.bucket.BucketSearchVO"
+			alias="bucketsearchVO" />
+		<typeAlias type="com.romance.admin.icon.IconVO" alias="icon" />
+		<typeAlias type="com.romance.admin.icon.BannerVO"
+			alias="banner" />
+		<typeAlias type="com.romance.admin.sub.SubscribeVO"
+			alias="subscribe" />
 		<typeAlias type="com.romance.admin.terms.termsVO"
 			alias="termsVO" />
-
 		<typeAlias type="com.romance.admin.coupon.CouponVO"
 			alias="couponVO" />
 		<typeAlias type="com.romance.admin.coupon.CouponSearchVO"
 			alias="couponsearchVO" />
-
 		<typeAlias type="com.romance.admin.notice.NoticeSearchVO"
 			alias="noticeSearchVO" />
 		<typeAlias type="com.romance.user.book.BookVO"
@@ -55,12 +55,20 @@
 			alias="booksearchVO" />
 		<typeAlias type="com.romance.user.reply.ReplyVO"
 			alias="replyVO" />
-			<typeAlias type="com.romance.user.reply.ReplysearchVO"
+		<typeAlias type="com.romance.user.reply.ReplysearchVO"
 			alias="replysearchVO" />
-			<typeAlias type="com.romance.user.reply.FineVO"
+		<typeAlias type="com.romance.user.reply.FineVO"
 			alias="fineVO" />
 		<typeAlias type="com.romance.admin.faq.FaqVO" alias="faq"/>
 		<typeAlias type="com.romance.admin.faq.FaqSearchVO" alias="faqSearch"/>
+		<typeAlias type="com.romance.user.login.UserVO"
+			alias="userVO" />
+			<typeAlias type="com.romance.user.orders.OrderBookListVO"
+			alias="orderbooklistVO" />
+			<typeAlias type="com.romance.user.orders.OrdersVO"
+			alias="ordersVO" />
+
+
 
 	</typeAliases>
 	<mappers>
@@ -73,13 +81,17 @@
 		<mapper resource="mappings/event-mapping.xml" />
 		<mapper resource="mappings/adminuser-mapping.xml" />
 		<mapper resource="mappings/sub-mapping.xml" />
-		<!-- <mapper resource="mappings/icon-mapping.xml" /> <mapper resource="mappings/banner-mapping.xml" 
-			/> -->
-		<!-- <mapper resource="mappings/sub-mapping.xml" /> -->
+		<mapper resource="mappings/icon-mapping.xml" />
+		<mapper resource="mappings/banner-mapping.xml" />
+		<mapper resource="mappings/sub-mapping.xml" />
 		<mapper resource="mappings/reply-mapping.xml" />
 		<mapper resource="mappings/fine-mapping.xml" />
 		<mapper resource="mappings/coupon-mapping.xml" />
 		<mapper resource="mappings/book-mapping.xml" />
 		<mapper resource="mappings/adminFaq-mapping.xml"/>
+		<mapper resource="mappings/bucket-mapping.xml" />
+		<mapper resource="mappings/login-mapping.xml" />
+		<mapper resource="mappings/order-mapping.xml" />
+
 	</mappers>
 </configuration>

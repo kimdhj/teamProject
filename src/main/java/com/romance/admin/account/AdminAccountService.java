@@ -18,4 +18,10 @@ public interface AdminAccountService {
 	
 	//Admin Total 얻기
 	public int adminTotalCount(Criteria criteria) throws Exception;
+	
+	//관리자계정 생성
+	public void insertAdminAccount(AdminUserVO vo) throws Exception;
+	
+	//아이디 중복체크
+	public int idCheck(String user_id) throws Exception;
 }
