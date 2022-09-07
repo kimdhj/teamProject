@@ -26,6 +26,9 @@ public class BucketController {
 		vob.setUser_id(vo.getUser_id());
 		List<BucketVO> blist=ser.bucgetlist(vob);
 		List<BookVO> list=ser.makelist(blist);
+		if(list.size()<1) {
+			return "redirect:index.do";
+		}
 		model.addAttribute("list",list);
 		model.addAttribute("user",vo);
 		}else {

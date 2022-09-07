@@ -65,6 +65,8 @@
 			alias="userVO" />
 			<typeAlias type="com.romance.user.orders.OrderBookListVO"
 			alias="orderbooklistVO" />
+			<typeAlias type="com.romance.user.orders.OrdersVO"
+			alias="ordersVO" />
 
 
 	</typeAliases>

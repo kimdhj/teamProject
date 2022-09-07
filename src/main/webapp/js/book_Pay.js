@@ -19,10 +19,40 @@ $("#usePoint").on(
 	"propertychange change paste input keyUp keyDown",
 	function() {
 		$("#usePoint").val(
-			$("#usePoint")
+			Number($("#usePoint")
+				.val()
+				.replace(/[^0-9]/gi, ""))
+		);
+	}
+);
+$("#phone").on(
+	"propertychange change paste input keyUp keyDown",
+	function() {
+		$("#phone").val(
+			$("#phone")
 				.val()
 				.replace(/[^0-9]/gi, "")
 		);
+		var regPhone = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
+      if (regPhone.test($("#phone").val()) === true) {
+         $("#phalert").text('사용 가능');
+      }else{
+        $("#phalert").text('사용 불가');
+      }
+		
+	}
+);
+$("#refund_num").on(
+	"propertychange change paste input keyUp keyDown",
+	function() {
+		$("#refund_num").val(
+			$("#refund_num")
+				.val()
+				.replace(/[^0-9]/gi, "")
+		);
+	
+     
+		
 	}
 );
 //포인트 숫자만 입력하게 합시다 끝
@@ -121,11 +151,20 @@ function init2() {
 	count.map((ind, el) => {
 		booksum += Number($(price[ind]).text().trim().replaceAll(",", "")) * $(el).val();
 	});
-booksum += Number($("#deliveryPrice2").text().trim().replaceAll(",", ""));
+	if(booksum>=50000){
+	$("#deliveryPrice2").number(0);
+	}else{
+	$("#deliveryPrice2").number(100);
+	}
+booksum -= booksum*Number($("#coupon_result").text().trim().replaceAll(",", ""))/100;
 	booksum -= Number($("#usePointResult").text().trim().replaceAll(",", ""));
-	booksum -= booksum*Number($("#coupon_result").text().trim().replaceAll(",", ""))/100;
+	
 	
 	$("#sumsumsum").number(Number(booksum));
 
 	$("#addPoint").number(Number(booksum/100*1));
+	
+	$("#orders_add_point").val(Number($("#addPoint").text().replaceAll(",","")));
+		console.log($("#orders_add_point").val());
+	$("#delivery").text($("#deliveryPrice2").text().trim());
 }

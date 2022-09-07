@@ -70,3 +70,11 @@ h1 {
 #book_count{
 	background-color:transparent;
 }
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+#book_count{
+	pointer-events:none;
+}
