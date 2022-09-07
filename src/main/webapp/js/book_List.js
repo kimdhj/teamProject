@@ -95,6 +95,7 @@ $(document).ready(function(e) {
 			async: false,
 			data: {
 				page: Number($("#bookpage").val()),
+				country:Number($("#country").val()),
 				category: Number($("#category").val()),
 
 			},
@@ -131,7 +132,7 @@ $(document).ready(function(e) {
 									</div>
 								</div>
 							</div>
-							
+							<input type="hidden" value="${bo.book_seq}">
 							<hr>`
 				});
 				str+=`<input type="hidden" value="${re.vo.title}" id=" booktitle" /> <input
@@ -190,6 +191,7 @@ $(document).ready(function(e) {
 			async: false,
 			data: {
 				page: Number($("#newpage").val()),
+				country:Number($("#country").val()),
 				category: Number($("#category").val()),
 
 			},
@@ -226,7 +228,7 @@ $(document).ready(function(e) {
 									</div>
 								</div>
 							</div>
-							
+							<input type="hidden" value="${bo.book_seq}">
 							<hr>`
 				});
 				str+=`<input type="hidden" value="${re.vo.title}" id=" newtitle" /> <input
@@ -287,6 +289,7 @@ $(document).ready(function(e) {
 			data: {
 				page: Number($("#bestpage").val()),
 				category: Number($("#category").val()),
+				country:Number($("#country").val())
 
 			},
 			success: function(re) {
@@ -322,7 +325,7 @@ $(document).ready(function(e) {
 									</div>
 								</div>
 							</div>
-							
+							<input type="hidden" value="${bo.book_seq}">
 							<hr>`
 				});
 				str+=`<input type="hidden" value="${re.vo.title}" id="besttitle" /> <input
@@ -371,7 +374,32 @@ $(document).ready(function(e) {
 	});
 	//장바구니 버튼
 	$(document).on('click','#purchase02 .btnSubmit',function(e){
-		console.log($(e.target).parents("div#item").next().val(),2);
+		
+		$.ajax({
+			url: "/cartadd.do",
+			method: "get",
+			data: {
+				book_seq: Number($(e.target).parents("div#item").next().val())
+			},
+			dataType: "json",
+			success: function(re) {
+				console.log(re);
+				alert("장바구니에 담았습니다.");
+			},
+			error: function(re) {
+				console.log(re);
+				if (re.responseText != "실패") {
+					if (re.responseText != "중복") {
+						alert("장바구니에 담았습니다.");
+					} else {
+						alert("장바구니에 이미 존재 합니다.");
+					}
+
+				} else {
+					alert("로그인하고 장바구니 이용 해주세요");
+				}
+			}
+		})
 	});
 	
 

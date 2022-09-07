@@ -4,6 +4,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,13 +14,11 @@ import com.romance.security.JwtUtils;
 @Controller
 @SessionAttributes("id")
 public class LoginController {
+	@Autowired
+	UserService ser;
 	@GetMapping("login.do")
 	public String login(UserVO vo,Model model,JwtUtils util) {
-		vo.setUser_id("admin");
-		vo.setUser_name("고은지 대빵님");
-		vo.setUser_phone("010-3573-9617");
-		vo.setUser_role("Role_Admin");
-		vo.setUser_address("dfsdf");
+		vo=ser.onesearch("admin");
 		String token=util.createToken("유저",vo);
 		System.out.println("token"+token);
 		 Map<String, Object> con=util.parseJwtToken(token);

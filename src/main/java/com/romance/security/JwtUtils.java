@@ -63,10 +63,14 @@ public class JwtUtils {
 //	System.out.println("con"+vo);
 	public UserVO getuser(HttpSession session) {
 		String token = (String) session.getAttribute("id");
+		if(token!=null) {
 		Map<String, Object> con = parseJwtToken(token);
 		ObjectMapper mapper = new ObjectMapper();
 		UserVO vo = mapper.convertValue(con.get("user"), UserVO.class);
 		System.out.println("세션 등록 유저 정보" + vo);
 		return vo;
+		}else {
+			return null;
+		}
 	}
 }

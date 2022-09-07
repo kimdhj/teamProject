@@ -71,8 +71,13 @@
 		</div>
 		<div class="d-flex flex-row">
 			<div class="col-md-12">
+				<%-- <button type="button" class="btn btn-light btn-outline-dark btn-sm"
+					style="float: right;" onclick="location.href='getAdmin_member_List.mdo?pageNum=${criteria.pageNum}&searchCondition=${criteria.searchCondition}&searchKeyword=${criteria.searchKeyword}';">목록</button> --%>
+				<button type="button" class="btn btn-light btn-outline-dark btn-sm"	style="float: right;" id="returnListBtn">목록</button>
+				&nbsp;&nbsp;&nbsp;
 				<button type="button" class="btn btn-light btn-outline-dark btn-sm"
 					style="float: right;">수정</button>
+					
 			</div>
 		</div>
 		<div class="d-flex flex-row">
@@ -99,97 +104,28 @@
 			</div>
 		</div>
 	</div>
+	
+	<%-- <form name="detailForm" method="post">
+		<input type="hidden" id="pageNum" name="pageNum" value="${criteria.pageNum}" />
+		<input type="hidden" id="searchCondition" name="searchCondition" value="${criteria.searchCondition}" />
+		<input type="hidden" id="searchKeyword" name="searchKeyword" value="${criteria.searchKeyword}" />
+		<input type="hidden" id="selectCondition" name="selectCondition" value="${criteria.selectCondition}" />
+	</form> --%>
 
 
 	<jsp:include page="/WEB-INF/admin_commonjsp/admin_common_footer.jsp"></jsp:include>
 	<!-- 여기서부터 JS 추가 -->
 	<!-- 테이블 내부 값 수정 input타입 -->
+	<script src="/js/admin_member_Detail.js"></script>
 	<script>
-        // @breif contenteditable 속성을 가진경우
-        contents = document.getElementsByClassName("rowColumn");
-        document.addEventListener("DOMContentLoaded", function () {
+	<!-- List 페이지로 돌아갈때 페이지 유지 -->
+	$("#returnListBtn").click(function(){
+		let url = "getAdmin_member_List.mdo?pageNum=${criteria.pageNum}&searchCondition=${criteria.searchCondition}&searchKeyword=${criteria.searchKeyword}&selectCondition=${criteria.selectCondition}";
+		/* let url = "getAdmin_member_List.mdo"; */
+		location.href = url;
+	});
 
-            // @breif rowColumn 클래스의 갯수 만큼 반복문을 실행한다.
-            Array.from(contents).forEach(function (content) {
-
-                // @breif 마우스로 해당영역을 더블클릭 한경우
-                content.addEventListener("dblclick", function (event) {
-
-                    // @breif 전체 테이블 컬럼( td > p )에서 현재 사용중인 값의 존재여부를 확인한다.
-                    Array.from(contents).forEach(function (defaultVal) {
-
-                        // @details 빈값( null )이 존재하는지 체크한다.
-                        /* if(
-                               defaultVal.textContent == ""
-                            || defaultVal.textContent == null
-                            || defaultVal.textContent == undefined
-                            || (defaultVal.textContent != null
-                            && typeof defaultVal.textContent == "object"
-                            && !Object.keys(defaultVal.textContent).length == ""))
-                        {
-    
-                            // @details 내용이 존재하지 않다면 data 태그의 기본값으로 되돌린다.
-                            defaultVal.textContent = defaultVal.dataset.default;
-                        }
-                         */
-
-                        // @details 저장하지 않은 내용이라고 판단하여 data 태그의 기본값으로 되돌린다.
-                        defaultVal.textContent = defaultVal.dataset.default;
-
-                        // @breif 수정 불가 상태로 되돌린다.
-                        defaultVal.contentEditable = false;
-                        defaultVal.style.border = "0px";
-                    });
-
-                    if (content.isContentEditable == false) {
-
-                        // @details 편집 가능 상태로 변경
-                        content.contentEditable = true;
-
-                        // @details 텍스트 문구 변경
-                        // content.textContent = "";
-
-                        // @details CSS 효과 추가
-                        content.style.border = "1px solid #FFB6C1";
-
-                        // @details 포커스 지정
-                        content.focus();
-
-                    }
-
-                });
-
-
-
-                // @breif 키보드 입력이 방생한 경우 실행
-                content.addEventListener("keypress", function (event) {
-
-                    // @breif Enter키 입력시 실행
-                    if (event.key === "Enter") {
-
-                        // @details 입력된 값이 빈값( null )인지 체크한다.
-                        if (content.textContent == "" || content.textContent == null || content.textContent == undefined || (content.textContent != null && typeof content.textContent == "object" && !Object.keys(content.textContent).length == "")) {
-
-                            // @details 내용이 존재하지 않다면 data 태그의 기본값으로 되돌린다.
-                            content.textContent = content.dataset.default;
-
-                        } else {
-                            // @details 내용의 수정이 완료되었다면 data 태그의 기본값도 바꿔준다.
-                            content.dataset.default = content.textContent;
-
-                        }
-                        // @breif 수정 불가 상태로 되돌린다.
-                        content.contentEditable = false;
-                        content.style.border = "0px";
-                    }
-
-                });
-
-            });
-
-        });
-
-    </script>
+	</script>
 
 </body>
 </html>

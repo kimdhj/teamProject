@@ -23,3 +23,6 @@
 #myform input[type=radio]:checked ~ label{
     text-shadow: 0 0 0 #a00; /* 마우스 클릭 체크 */
 }
+#cart{
+	pointer:cursor;
+}

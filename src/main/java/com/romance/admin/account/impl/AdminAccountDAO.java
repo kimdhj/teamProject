@@ -38,5 +38,14 @@ public class AdminAccountDAO {
 		return sqlSessionTemplate.selectOne("AdminUserDAO.adminTotalCount", criteria);
 	}
 	
+	public void insertAdminAccount(AdminUserVO vo) {
+		System.out.println("Mybatis로 insertAdminAccount 기능 처리");
+		sqlSessionTemplate.insert("AdminUserDAO.insertAdminAccount", vo);
+	}
+	
+	public int idCheck(String user_id) {
+		System.out.println("Mybatis로 idCheck 기능 처리");
+		return sqlSessionTemplate.selectOne("AdminUserDAO.idCheck", user_id);
+	}
 	
 }
