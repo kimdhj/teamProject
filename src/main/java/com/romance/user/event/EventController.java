@@ -1,6 +1,5 @@
 package com.romance.user.event;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
@@ -17,9 +16,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.romance.server.AwsS3;
-
-
-
 
 
 @Controller
@@ -273,6 +269,20 @@ public class EventController {
 		System.out.println(del);
 		eventService.ajaxDel(del);
 		return del;
+	}
+	
+	@RequestMapping("/event_Roulette.do")
+	public String goRoulette(EventVO vo, Model model){
+		eventService.countCnt(vo.getEvent_seq());
+		model.addAttribute("event_event", eventService.getEvent(vo));
+	return "event_Roulette";
+	}
+	
+	@RequestMapping("/event_Subscribe.do")
+	public String goSub(EventVO vo, Model model){
+		eventService.countCnt(vo.getEvent_seq());
+		model.addAttribute("event_event", eventService.getEvent(vo));
+		return "event_Subscribe";
 	}
 	
 }

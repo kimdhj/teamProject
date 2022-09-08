@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.romance.admin.account.AdminAccountService;
+import com.romance.admin.account.Criteria;
 import com.romance.admin.login.AdminUserVO;
 
 @Service
@@ -15,8 +16,47 @@ public class AdminAccountServiceImpl implements AdminAccountService {
 	private AdminAccountDAO adminAccountDAO;
 	
 	@Override
-	public List<AdminUserVO> getUserList(AdminUserVO vo) {
+	public AdminUserVO getUserDetail(AdminUserVO vo) {
 		
-		return adminAccountDAO.getUserList(vo);
+		return adminAccountDAO.getUserDetail(vo);
 	}
+
+	@Override
+	public List<AdminUserVO> getUserListWithPaging(Criteria criteria) throws Exception {
+		
+		return adminAccountDAO.getUserListWithPaging(criteria);
+	}
+
+	@Override
+	public int totalCount(Criteria criteria) throws Exception {
+	
+		return adminAccountDAO.totalCount(criteria);
+	}
+
+	@Override
+	public int adminTotalCount(Criteria criteria) throws Exception {
+		
+		return adminAccountDAO.adminTotalCount(criteria);
+	}
+
+	@Override
+	public List<AdminUserVO> getAdminListWithPaging(Criteria criteria) throws Exception {
+		return adminAccountDAO.getAdminListWithPaging(criteria);
+	}
+
+	@Override
+	public void insertAdminAccount(AdminUserVO vo) throws Exception {
+		adminAccountDAO.insertAdminAccount(vo);		
+	}
+
+	@Override
+	public int idCheck(String user_id) throws Exception {
+		return adminAccountDAO.idCheck(user_id);
+	}
+	
+	
+	
+	
+	
+	
 }

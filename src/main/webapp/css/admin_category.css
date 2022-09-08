@@ -46,3 +46,10 @@ input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+.pagination *{
+	cursor:pointer;
+}
+#small{
+	font-size:10px;
+	color:red;
+}

@@ -8,6 +8,7 @@ public interface NoticeService {
 	public NoticeVO getNotice(NoticeVO vo);
 	public void insertNotice(NoticeVO vo);
 	public void deleteNotice(NoticeVO vo);
+	public void delete(NoticeVO vo);
 	public void updateNotice(NoticeVO vo);
 	public NoticeVO selectSeq(int notice_seq);
 	public boolean checkPW(NoticeVO vo);

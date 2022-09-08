@@ -12,50 +12,56 @@
 <body>
 	<jsp:include page="/WEB-INF/admin_commonjsp/admin_common_header.jsp"></jsp:include>
 	<!-- 여기서부터 화면 작성 시작 -->
-	<div id="main_wrapper" class="m-2  w-90 row">
+	<div id="main_wrapper" class="m-2  w-90 row" style="width: 80%; !important">
 		<div class="mb-0 p-0">
 			<button onclick="location.reload();" id="all" class="select p-2">공지사항 작성</button>
 		</div>
 		
-		<form class="p-0" action="/admin_post_NoticeInsert.mdo" method="post" onsubmit="return i()" enctype="multipart/form-data">
+		<%-- onsubmit="return i()" --%>
+		<form class="p-0" action="/admin_post_NoticeInsert.mdo" name="insertForm" method="post" id="form" enctype="multipart/form-data">
 		<div id="all_box" class="bg-white w-100">
 			<div class="row d-flex align-items-center" id="input_line_top">
 				<div class="col-1 mt-2 mb-2 notice_font" style="text-align: center;">제목</div>
 				<div class="col-3 " style="padding-left: 0px;">
-					<input type="text" name="notice_title" value="${notice.notice_title }"
+					<input type="text" name="notice_title" id="title" value="${notice.notice_title }"
 						style="width: 90%; margin-top: 2%; margin-bottom: 2%;">
 				</div>
 				<div class="col-1 notice_font" style="padding-right: 0px; text-align: center;" >파일첨부</div>
 				<div class="col-3 " style="padding-left: 0px;">
-					<input type="file" name="notice_file" style="margin-top: 2%; margin-bottom: 2%;">${notice.notice_fileName }
+					<input type="file" name="notice_file" style="margin-top: 2%; margin-bottom: 2%;" id="file">${notice.notice_fileName }
 				</div>
 				<div class="col-1 notice_font" style="padding-right: 0px; text-align: center;" >작성자</div>
 				<div class="col-3 " style="padding-left: 0px;">
-					<input type="text" name="notice_writer" value="admin" style="margin-top: 2%; margin-bottom: 2%;">
+					<input type="text" id="writer" name="notice_writer" value="admin" style="margin-top: 2%; margin-bottom: 2%;">
 				</div>
 				<div class="row"></div>
+				
+				<!-- 여기 부분 -->
 				<div class="col-1 mb-2 notice_font" style="text-align: center;">번호</div>
-				<div class="col-3 mb-2" style="padding-left: 0px;" id="test">${notice.notice_seq }</div>
+					<div class="col-3 mb-2" style="padding-left: 0px;" id="seq">
+						${notice.notice_seq}
+					</div>
+					
 				<div class="col-1 mb-2 notice_font" style="text-align: center;">지점</div>
 				<div class="col-3 mb-2" style="padding-left: 0px;">
-					<input type="text" value="${notice.notice_location }" name="notice_location" style="width: 90%; margin-top: 2%; margin-bottom: 2%;"/>
+					<input type="text" value="${notice.notice_location }" id="location" name="notice_location" style="width: 90%; margin-top: 2%; margin-bottom: 2%;"/>
 				</div>
 				<div class="col-1 mb-2 notice_font" style="padding-right: 0px; text-align: center;">등록일자</div>
 				<div class="col mb-2" style="padding-left: 0px;" >${notice.notice_date }</div>
 			</div>
 		</div>
-		<div id="all_box" class="bg-white w-100">
+		<div id="all_box" class="bg-white w-100 2all_box">
 			<div class="row d-flex align-items-center" id="input_line_top">
 				<div class="row"></div>
-				<div name="notice_content" class="summernote">${notice.notice_content }</div>
-				<input type="hidden" name="notice_content" id="notice_content"/>
+				<div class="summernote" >${notice.notice_content }</div>
+				<input type="hidden" id="content" name="notice_content"/>
 			</div>
 		</div>
 		<div id="all_box" class="bg-white w-100">
 			<div class="row d-flex align-items-center" id="input_line_top">
 				<div class="col-1 notice_font" style="text-align: center;">비밀번호</div>
 				<div class="col">
-					<input type="password" name="notice_passwd">
+					<input type="password" id="passwd" name="notice_passwd">
 				</div>
 			</div>
 		</div>
@@ -63,15 +69,14 @@
 		<div class="row d-flex justify-content-between mt-2 mb-2" id="buttons">
 			<div class="col-5"></div>
 			<div class="row col-5">
-				<button class="col-auto bg-white border-1 noticeadd" id="noticeInsert">등록</button>
-				<button type="button" class="col-auto bg-white border-1 noticedel">삭제</button>
-				<button class="col-auto bg-white border-1 noticelist">목록</button>
+				<button class="col-auto bg-white border-1 noticeadd" type="button" onclick="i();" id="noticeInsert">등록</button>
+				<button class="col-auto bg-white border-1 noticelist" type="button">목록</button>
 			</div>
 			<div class="col-2"></div>
 		</div>
 		</form>
-		
 	</div>
+
 
 <jsp:include page="/WEB-INF/admin_commonjsp/admin_common_footer.jsp"></jsp:include>
 <!-- 여기서부터 JS 추가 -->

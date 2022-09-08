@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -28,6 +29,16 @@ public class CategoryController {
 		model.addAttribute("all_count",count-(vos.getPage()-1)*5);
 		if(count%5==0) {
 			count--;
+		}
+		if(vos.getPage()<3) {
+			model.addAttribute("startpage", 1);
+		}else {
+			model.addAttribute("startpage", vos.getPage()-2);
+		}
+		if(vos.getPage()+2>count/5+1) {
+			model.addAttribute("endpage", count/5+1);
+		}else {
+			model.addAttribute("endpage", vos.getPage()+2);
 		}
 		model.addAttribute("all_sum",count);
 		model.addAttribute("all_page",vos.getPage());
@@ -96,6 +107,24 @@ public class CategoryController {
 
 		
 	}
+	@GetMapping("catnameche.mdo")
+	@ResponseBody
+	public int catnameche(String category_name) {
+		return service.nameche(category_name);
+		
+	}
+	@GetMapping("catnumche.mdo")
+	@ResponseBody
+	public int catnumche(int category_num) {
+		System.out.println(category_num);
+		int re=service.numche(category_num);
+		System.out.println("re"+re);
+		return re;
+		
+	}
+
+
+	
 
 
 

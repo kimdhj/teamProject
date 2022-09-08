@@ -55,12 +55,18 @@ $(document).ready(function() {
 				.text()
 				.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, "$1,")
 		);
+		if (Number($("#count").text().replace(/[^\d]+/g, "")) > 50000) {
+			$("#delivery_count").text("0")
+		} else {
+			$("#delivery_count").text("2,500")
+		}
 		$("#sum_count").text(
+
 			Number(
 				$("#count")
 					.text()
 					.replace(/[^\d]+/g, "")
-			) -
+			) +
 			Number(
 				$("#delivery_count")
 					.text()
@@ -74,7 +80,7 @@ $(document).ready(function() {
 		);
 	}
 	// 클릭하면 숫자증가
-	$(".plus").on("click", function() {
+	$(".plus").on("mousedown", function() {
 		$(this)
 			.parents()
 			.children("#text_box")
@@ -82,7 +88,7 @@ $(document).ready(function() {
 		init();
 	});
 	// 클릭하면 1보다클때 숫자 감소
-	$(".minus").click(function() {
+	$(".minus").mousedown(function() {
 		if (Number($(this).parents().children("#text_box").text().trim()) > 1) {
 			$(this)
 				.parents()
@@ -93,4 +99,50 @@ $(document).ready(function() {
 		}
 		init();
 	});
+	$("#seldel").click(function() {
+		let num = [];
+		console.log($(".form-check-input").parents("#main_item").children("#boseq"));
+		$(".form-check-input").map((el, it) => {
+			if ($(it).is(":checked")) {
+				console.log($(it).parents("#main_item").children("#boseq").val());
+				num.push(Number($(it).parents("#main_item").children("#boseq").val()));
+			};
+
+		});
+		$.ajax({
+			url: "/cartdel.do",
+			method: "get",
+			dataType: "json",
+			data: {
+				book_seq: num
+			},
+			success: function(re) {
+				console.log(re);
+				
+				
+				},
+			error: function(ee) {
+				console.log(ee);
+			$(".form-check-input").map((el, it) => {
+			if ($(it).is(":checked")) {
+				console.log($(it).parents("#main_item").prev("#line"));
+				$(it).parents("#main_item").prev("#line").remove();
+				$(it).parents("#main_item").remove();
+				init();
+				
+			};
+
+		});
+		if($(".main_item").length<=0){
+			location.href="/index.do";
+		}
+			}
+		});
+	});
+});
+$(".plus").mouseup(function(e){
+$(e.target).parents("#main_item").children("#bocount").val($(e.target).parents("#plus_box").prev().text().trim());
+});
+$(".minus").mouseup(function(e){
+$(e.target).parents("#main_item").children("#bocount").val($(e.target).parents("#minus_box").next("#text_box").text().trim());
 });

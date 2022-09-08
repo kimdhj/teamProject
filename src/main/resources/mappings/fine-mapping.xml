@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fine">
+	<select resultType="int" parameterType="fineVO" id="fineche">
+		select
+		count(*) from review_fine where user_id=#{user_id} and
+		reply_seq=#{reply_seq}
+	</select>
+	<select resultType="int" parameterType="fineVO" id="countsum">
+		select count(*) from review_fine where reply_seq=#{reply_seq}
+
+	</select>
+
+
+
+</mapper>
+

@@ -38,3 +38,15 @@
 #typing{
 	resize: none;
 }
+#chat_header{
+	margin-top:10% !important;
+}
+#footer{
+	display:none !important;
+}
+#chat_button{
+	display:none !important;
+}
+#contents{
+	margin-bottom:10%
+}

@@ -28,11 +28,16 @@
 	</resultMap>
 	
 	
-	<select id="getUser" resultType="adminUserVO">
+	<select id="getUser" parameterType="adminUserVO" resultType="adminUserVO">
 		SELECT user_id, user_password, user_name, user_role FROM user WHERE user_id = #{user_id} AND user_password = #{user_password} 
 	</select>
 	
-	<select id="getUserList" resultMap="adminUserResult">
+	<select id="getUserDetail" parameterType="adminUserVO" resultMap="adminUserResult">
+		SELECT a.*, b.user_coupon_cnt FROM user a LEFT JOIN (SELECT user_id, COUNT(user_id) AS user_coupon_cnt FROM user_coupon) b ON a.user_id = b.user_id
+		WHERE a.user_id = #{user_id}
+	</select>
+	
+	<select id="getUserListWithPaging" parameterType="criteria" resultMap="adminUserResult">
 		SELECT a.*, b.user_coupon_cnt FROM user a LEFT JOIN (SELECT user_id, count(user_id) AS user_coupon_cnt FROM user_coupon GROUP BY user_id) b ON a.user_id = b.user_id
 		WHERE 1=1
 		<if test="searchCondition=='USER_NAME'">
@@ -41,6 +46,70 @@
 		<if test="searchCondition=='USER_ID'">
 			AND a.user_id like CONCAT('%', #{searchKeyword}, '%')
 		</if>
+		<if test="selectCondition=='user_sub'">
+			AND a.user_sub = '1'
+		</if>
+		<if test="selectCondition=='user_normal'">
+			AND a.user_sub = '0' AND a.user_role = 'user'
+		</if>
+		<if test="selectCondition=='user_black'">
+			AND a.user_sub = 'black'
+		</if>
+		<if test="selectCondition=='user_all'">
+		</if>
+		ORDER BY a.user_id ASC LIMIT #{pageStart}, #{perPageNum}
+	</select>
+	
+	<select id="getAdminListWithPaging" parameterType="criteria" resultMap="adminUserResult">
+		SELECT * FROM user WHERE user_role='admin'
+		<if test="searchCondition=='USER_NAME'">
+			AND user_name like CONCAT('%', #{searchKeyword}, '%')
+		</if>
+		<if test="searchCondition=='USER_ID'">
+			AND user_id like CONCAT('%', #{searchKeyword}, '%')
+		</if>
+		ORDER BY user_id ASC LIMIT #{pageStart}, #{perPageNum}
+	</select>
+	
+	<select id="totalCount" parameterType="criteria" resultType="int">
+		SELECT count(*) FROM user WHERE 1=1
+		<if test="searchCondition=='USER_NAME' ">
+			AND user_name like CONCAT('%', #{searchKeyword}, '%')
+		</if>
+		<if test="searchCondition=='USER_ID'">
+			AND user_id like CONCAT('%', #{searchKeyword}, '%')
+		</if>
+		<if test="selectCondition=='user_sub'">
+			AND user_sub = '1'
+		</if>
+		<if test="selectCondition=='user_normal'">
+			AND user_sub = '0' AND user_role = 'user'
+		</if>
+		<if test="selectCondition=='user_black'">
+			AND user_sub = 'black'
+		</if>
+		<if test="selectCondition=='user_all'">
+		</if>		
+	</select>
+	
+	<select id="adminTotalCount" parameterType="criteria" resultType="int">
+		SELECT count(*) FROM user WHERE user_role='admin'
+		<if test="searchCondition=='USER_NAME' ">
+			AND user_name like CONCAT('%', #{searchKeyword}, '%')
+		</if>
+		<if test="searchCondition=='USER_ID'">
+			AND user_id like CONCAT('%', #{searchKeyword}, '%')
+		</if>
+	</select>
+	
+	<insert id="insertAdminAccount" parameterType="adminUserVO">
+		INSERT INTO user(user_password, user_name, user_phone, user_email, user_point, user_zipcode, user_address, user_sub, user_role, user_id, user_remain_address,
+		user_logintype, user_birth, user_state)
+		VALUES(#{user_password}, #{user_name}, #{user_phone}, #{user_email}, '0', '0', '0', '0', 'admin', #{user_id}, '0', 'A', '0', 1)
+	</insert>
+	
+	<select id="idCheck" parameterType="String" resultType="int">
+		SELECT COUNT(user_id) FROM user WHERE user_id = #{user_id}
 	</select>
 
 </mapper>

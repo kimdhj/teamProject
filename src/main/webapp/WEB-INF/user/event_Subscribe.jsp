@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.romance.user.event.EventVO" %>
+<%@ page import="java.util.List"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,7 +41,7 @@
             class="col d-flex align-items-center fs-3 border-2 border-top border-dark"
             id="content"
           >
-            어쩌고 저쩌고
+            ${event_event.event_title }
           </div>
         </div>
         <div class="row" id="table">
@@ -50,7 +55,7 @@
             class="col d-flex align-items-center border-2 border-top border-gray border-bottom"
             id="content"
           >
-            5,231,543
+            ${event_event.event_cnt }
             <div>명</div>
           </div>
           <div
@@ -63,7 +68,7 @@
             class="col d-flex align-items-center border-2 border-top border-gray border-bottom"
             id="content"
           >
-            2022-08-02 ~ 2022-09-30
+            <fmt:formatDate value="${event_event.event_start_date }" pattern="yyyy-MM-dd"/> ~ <fmt:formatDate value="${event_event.event_end_date }" pattern="yyyy-MM-dd"/>
           </div>
         </div>
         <div class="row" id="Content">
@@ -71,22 +76,7 @@
           <div class="col-8 text-center">
             <div id="brbrbrbr"><br /></div>
             <div id="br_under_content">
-              <ul>
-                <li>8월 17일까지는 화면 대부분 완성 되어 있어야한다고</li>
-                <li>
-                  17~ 빅데이터 시험문제 4문제정도 낼 정도만 ~24일 2문제 낼거야
-                </li>
-                <li>25일부터 실제적 프로젝트 시작이지 30일 발표가 목적인데</li>
-                <li>
-                  프로젝트는 결국 실력을 올리기 위한거기 떄문에 책도 많이
-                  찾아보고 해봐야지
-                </li>
-                <li>
-                  자기가 작업한거를 다시 해보라 그러면 할수 있어야지 25일까진
-                  완성해야한다.
-                </li>
-                <li>26일부턴 ppt만들고 수료식날 취업특강해도 되잖아</li>
-              </ul>
+              ${event_event.event_content }
             </div>
             <div class="d-flex justify-content-center">
               <input
@@ -143,14 +133,13 @@
           <div class="col-2"></div>
           <div></div>
         </div>
-        <div class="row d-flex justify-content-end bg-gray" id="endPoint">
+        <div class="row d-flex justify-content-end bg-gray back-to-top" id="endPoint">
           맨위로<i class="bi bi-caret-up-fill col-auto"></i>
         </div>
         <div class="row d-flex justify-content-between mt-2 mb-2" id="buttons">
+		<a href="/getEventList.do">
           <button class="col-auto bg-white border-1">목록</button>
-          <button class="col-auto bg-white border-1">
-            <i class="bi bi-caret-right-fill"></i>
-          </button>
+		</a>
         </div>
       </div>
       <div class="col-2"></div>

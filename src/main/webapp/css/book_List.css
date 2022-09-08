@@ -1,0 +1,47 @@
+@charset "UTF-8";
+#left_bar{
+	background-color: #e2e2bd !important;
+}
+
+.booklist{
+	border: 1px solid black;
+}
+
+.img_booklist_kr{
+	height: 100%;
+}
+
+.tag_booklist_kr{
+	margin : 20 30 20 20;
+}
+
+#menu_bar{
+	padding-top:2%;
+}
+
+
+
+.btnSubmit{
+	margin:auto;
+    display:block;
+}
+
+#best_price{
+	padding-top:10%;
+}
+
+
+#best_context{
+	padding-top:10%;
+}
+
+#nav-home{
+	padding-top:2%;
+}
+
+#list_book{
+	padding-top:2%;
+}
+.pagination *{
+	cursor:pointer;
+}

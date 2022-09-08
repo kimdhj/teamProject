@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="order">
+	<select resultType="orderbooklistVO" parameterType="int"
+		id="ordersearch">
+		select * from
+		book where book_seq=#{book_seq}
+	</select>
+	<insert parameterType="ordersVO" id="ordersIn">
+	<![CDATA[	insert into
+		orders(orders_cache_sum,orders_phone,orders_name,orders_zipcode,orders_address,orders_cache_tool,orders_status,orders_email,orders_title,orders_coupon_effect,orders_point,orders_add_point,orders_recommend,orders_vbank_name,orders_vbank_num,orders_cache_uid,orders_refund_num,orders_refund_bank,user_id,orders_remainaddress,orders_vbank_Date)
+		values(#{orders_cache_sum},#{orders_phone},#{orders_name},#{orders_zipcode},#{orders_address},#{orders_cache_tool},#{orders_status},#{orders_email},#{orders_title},#{orders_coupon_effect},#{orders_point},#{orders_add_point},#{orders_recommend},#{orders_vbank_name},#{orders_vbank_num},#{orders_cache_uid},#{orders_refund_num},#{orders_refund_bank},#{user_id},#{orders_remainaddress},#{orders_vbank_Date})]]>
+	</insert>
+	<insert parameterType="orderbooklistVO" id="booklistin">
+		insert into
+		order_bookList(order_bookList_count,book_seq,orders_seq)
+		values(#{order_bookList_count},#{book_seq},#{orders_seq})
+	</insert>
+	<select parameterType="String" resultType="ordersVO"  id="getorder">
+		select * from orders where orders_cache_uid=#{orders_cache_uid}
+	</select>
+
+</mapper>

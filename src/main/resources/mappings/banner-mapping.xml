@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BannerDAO">
+	<resultMap type="banner" id="bannerResult">
+		<id property="banner_seq" column="BANNER_SEQ" />
+		<result property="banner_name" column="BANNER_NAME" />
+		<result property="banner_file" column="BANNER_FILE" />
+	</resultMap>
+	<update id="updateBanner" parameterType="banner">
+		UPDATE banner
+		SET banner_name=#{banner_name}, banner_file=#{banner_file} WHERE banner_seq = 1
+	</update>
+	<select id="getBanner" parameterType="banner" resultMap="bannerResult">
+		SELECT * FROM banner
+	</select>
+
+</mapper>

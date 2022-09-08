@@ -45,14 +45,15 @@
                 id="imgsize"
                 data-wow-delay="0.1s"
               >
-                <a href="/getEvent.do?event_seq=${top.event_seq }">
+                <a onclick="ifRoulSub(this);">
                   <img class="img-fluid" width="100" height="100" src="${top.event_thumbnail }" alt="" />
+                  <input type="hidden" id="seqCheck" value="${top.event_seq }">
                 </a>
                 <div class="bg-light p-4">
                   <div class="text-muted border-top pt-4">
                     <small class="me-3"
-                      ><i class="fa fa-map-marker-alt text-primary me-2"></i
-                      >${top.event_title }</small
+                      ><i class="fa fa-map-marker-alt text-primary me-2"></i>
+                      ${top.event_title }</small
                     ><br />
                     <small class="me-3"
                       ><i class="fa fa-calendar text-primary me-2"></i><fmt:formatDate value="${top.event_start_date }" pattern="yyyy-MM-dd"/>~<fmt:formatDate value="${top.event_end_date }" pattern="yyyy-MM-dd"/></small
@@ -79,16 +80,17 @@
             <c:forEach var="bottom" items="${bottom_eventList }" >
             <li>
               <div style="float: left">
-                <a href="/getEvent.do?event_seq=${bottom.event_seq }">
+                <a onclick="ifRoulSub2(this);">
                   <img id="southImg" src="${bottom.event_thumbnail }" />
+                  <input type="hidden" id="seqCheck" value="${bottom.event_seq }">
                 </a>
               </div>
-              <div style="float: left; width: 440px">
+              <div style="float: left; width: 440px" id="findT">
                 <div style="line-height: 19px">
                   <div></div>
                   &nbsp;
                   <strong
-                    ><a href="#">${bottom.event_title }</a></strong
+                    >${bottom.event_title }</strong
                   ><br />
                 </div>
                 <div style="height: 40px; margin: 3px 0 0 10px" id="southFont">
@@ -118,7 +120,7 @@
     	<!-- Common Footer include -->
         <jsp:include page="/WEB-INF/commonjsp/common_footer.jsp"></jsp:include>
            <!-- 여기에 js관련  -->
-        
+        <script src="/js/event_List.js"></script>
 	<!-- Footer End -->
 </body>
 </html>

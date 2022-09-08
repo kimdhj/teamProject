@@ -28,7 +28,7 @@
 	<div class="container">
 		<div class="d-flex flex-row">
 			<div class="col-md-7">
-				<form >
+				<form>
 					<div class="d-flex flex-row">
 						<div class="col-md-4">
 							<select class="form-select form-select mb-3"
@@ -46,12 +46,9 @@
 							<button type="submit" class="btn btn-light btn-outline-dark">검색</button>
 						</div>
 					</div>
+					<%-- <input type="hidden" name="pageNum" value="${pagination.criteria.getPageNum() }">
+					<input type="hidden" name="perPageNum" value="${pagination.criteria.getPerPageNum() }"> --%>
 				</form>
-				<!-- <select class="form-select form-select mb-3"
-					aria-label=".form-select-lg example">
-					<option selected>이름</option>
-					<option value="1">아이디</option>
-				</select> -->
 				<%-- <select class="form-select form-select mb-3"
 					aria-label=".form-select-lg example" name="searchCondition">
 					<c:forEach items="${conditionMap }" var="option">
@@ -66,21 +63,22 @@
 			<div class="col-md-1">
 				<button type="submit" class="btn btn-light btn-outline-dark">검색</button>
 			</div> -->
-			<div class="col-md-5">
-				<div class="btn-group" role="group"
-					aria-label="Basic mixed styles example">
-					<button type="button" class="btn btn-danger">구독</button>
-					<button type="button" class="btn btn-warning">일반</button>
-					<button type="button" class="btn btn-dark">블랙</button>
-					<button type="button" class="btn btn-success">전체</button>
+			<form>
+				<div class="col-md-12">
+					<div class="btn-group" role="group"
+						aria-label="Basic mixed styles example">
+						<button type="submit" class="btn btn-danger" name="selectCondition" value="user_sub">구독</button>
+						<button type="submit" class="btn btn-warning" name="selectCondition" value="user_normal">일반</button>
+						<button type="submit" class="btn btn-dark" name="selectCondition" value="user_black">블랙</button>
+						<button type="submit" class="btn btn-success" name="selectCondition" value="user_all">전체</button>
+					</div>
 				</div>
-			</div>
+			</form>
 		</div>
 		<div class="d-flex flex-row">
 			<table class="table text-center">
 				<thead class="table-dark">
 					<tr>
-						<th scope="col">회원번호</th>
 						<th scope="col">이름</th>
 						<th scope="col">아이디</th>
 						<th scope="col">구분</th>
@@ -93,20 +91,22 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="adminAccount" items="${adminUserList }">
-						<tr>
-							<td scope="row">112344</td>
-							<td>${adminAccount.user_name }</td>
-							<td>${adminAccount.user_id }</td>
-							<td>${adminAccount.user_sub }</td>
-							<td>${adminAccount.user_birth }</td>
-							<td>${adminAccount.user_phone }</td>
-							<td>${adminAccount.user_email }</td>
-							<td>${adminAccount.user_point }</td>
-							<td>${adminAccount.user_coupon_cnt }</td>
-							<td><button type="button"
-									class="btn btn-light btn-outline-dark">조회</button></td>
-						</tr>
+					<c:forEach var="adminAccount" items="${adminUserListWithPaging }">
+							<tr>
+								<td>${adminAccount.user_name }</td>
+								<td>${adminAccount.user_id }</td>
+								<td>${adminAccount.user_sub }</td>
+								<td>${adminAccount.user_birth }</td>
+								<td>${adminAccount.user_phone }</td>
+								<td>${adminAccount.user_email }</td>
+								<td>${adminAccount.user_point }</td>
+								<td>${adminAccount.user_coupon_cnt }</td>
+								<td>
+									<button type="submit" class="btn btn-light btn-outline-dark">
+										<a href="getAdmin_member_Detail.mdo?user_id=${adminAccount.user_id}&pageNum=${criteria.pageNum}&searchCondition=${criteria.searchCondition}&searchKeyword=${criteria.searchKeyword}&selectCondition=${criteria.selectCondition}">조회</a>
+									</button>
+								</td>
+							</tr>
 					</c:forEach>
 				</tbody>
 			</table>
@@ -115,18 +115,25 @@
 			<div class="col-md-12">
 				<nav aria-label="Page navigation example">
 					<ul class="pagination justify-content-center pagination-sm">
-						<li class="page-item"><a class="page-link" href="#"
+						<!-- <li class="page-item"><a class="page-link" href="#"
 							aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-						</a></li>
-						<li class="page-item disabled"><a class="page-link" href="#"
-							tabindex="-1" aria-disabled="true">이전</a></li>
-						<li class="page-item"><a class="page-link" href="#">1</a></li>
-						<li class="page-item"><a class="page-link" href="#">2</a></li>
-						<li class="page-item"><a class="page-link" href="#">3</a></li>
-						<li class="page-item"><a class="page-link" href="#">다음</a></li>
-						<a class="page-link" href="#" aria-label="Next"> <span
+						</a></li> -->
+						<c:if test="${pagination.prev}">
+							<li class="page-item"><a class="page-link"
+								href="<c:url value="/getAdmin_member_List.mdo?searchCondition=${pagination.criteria.getSearchCondition() }&searchKeyword=${pagination.criteria.getSearchKeyword() }&pageNum=${pagination.startPage - 1 }&selectCondition=${pagination.criteria.getSelectCondition()}" />">이전</a></li>
+						</c:if>
+						<c:forEach begin="${pagination.startPage}"
+							end="${pagination.endPage}" var="pageNum">
+							<li class="page-item"><a class="page-link"
+								href="<c:url value="/getAdmin_member_List.mdo?searchCondition=${pagination.criteria.getSearchCondition() }&searchKeyword=${pagination.criteria.getSearchKeyword() }&pageNum=${pageNum}&selectCondition=${pagination.criteria.getSelectCondition()}" />">${pageNum}</a></li>
+						</c:forEach>
+						<c:if test="${pagination.next && pagination.endPage > 0}">
+							<li class="page-item"><a class="page-link"
+								href="<c:url value="/getAdmin_member_List.mdo?searchCondition=${pagination.criteria.getSearchCondition() }&searchKeyword=${pagination.criteria.getSearchKeyword() }&pageNum=${pagination.endPage + 1 }&selectCondition=${pagination.criteria.getSelectCondition()}" />">다음</a></li>
+						</c:if>
+						<!-- <a class="page-link" href="#" aria-label="Next"> <span
 							aria-hidden="true">&raquo;</span>
-						</a>
+						</a> -->
 					</ul>
 				</nav>
 			</div>

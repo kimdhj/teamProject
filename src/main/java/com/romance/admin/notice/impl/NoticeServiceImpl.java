@@ -54,6 +54,11 @@ public class NoticeServiceImpl implements NoticeService{
 	public void deleteNotice(NoticeVO vo) {
 		noticeDao.deleteNotice(vo);
 	}
+	
+	@Override
+	public void delete(NoticeVO vo) {
+		noticeDao.deleteNotice(vo);
+	}
 
 	@Override
 	public NoticeVO selectSeq(int notice_seq) {
@@ -65,13 +70,11 @@ public class NoticeServiceImpl implements NoticeService{
 		noticeDao.updateNotice(vo);
 	}
 	
-	// 비밀번호 확인
 	@Override
 	public boolean checkPW(NoticeVO vo) {
 		return noticeDao.checkPW(vo);
 	}
 	
-	// 체크박스 선택삭제
 	@Override
 	public void checkBox(List<String> notice_seq) {
 		for(String nSeq : notice_seq) {

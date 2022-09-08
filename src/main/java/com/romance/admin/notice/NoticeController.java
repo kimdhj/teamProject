@@ -1,8 +1,11 @@
 package com.romance.admin.notice;
 
-import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
+import java.util.UUID;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +17,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.romance.security.JwtUtils;
+import com.romance.server.AwsS3;
+import com.romance.user.login.UserVO;
+
 @Controller
 public class NoticeController {
 	@Autowired
@@ -22,7 +29,7 @@ public class NoticeController {
 	// 공지사항 목록 - 페이징
 	@RequestMapping(value = "/admin_post_Notice.mdo", method=RequestMethod.GET)
 	public String getNoticeList(Model model, NoticeSearchVO svo) {
-		System.out.println("svo : " + svo); // 데이터가 넘어오는지 확인
+//		System.out.println("svo : " + svo); // 데이터가 넘어오는지 확인
 		List<NoticeVO> noticeList = noticeService.getNoticeList(svo); // 공지사항 목록
 		int count = noticeService.getCount(svo);
 		model.addAttribute("noticeList", noticeList); // 전체 공지사항
@@ -31,6 +38,19 @@ public class NoticeController {
 			count--;
 		}
 		
+		if(svo.getPage()<3) {
+			model.addAttribute("startpage", 1);
+		}else {
+			model.addAttribute("startpage", svo.getPage()-2);
+		}
+		if(svo.getPage()+2>count/5+1) {
+			model.addAttribute("endpage", count/5+1);
+		}else {
+			model.addAttribute("endpage", svo.getPage()+2);
+		}
+		
+		System.out.println("count"  + count);
+		model.addAttribute("page", count / 5 + 1);
 		model.addAttribute("allCount", count); // 전체 공지사항 개수
 		model.addAttribute("allPage", svo.getPage()); // 전체 페이지
 		model.addAttribute("allSvo", svo); // 검색할 내용 넘겨주기
@@ -48,6 +68,7 @@ public class NoticeController {
 	@GetMapping("/noticeCount.mdo")
 	@ResponseBody
 	public int noticeCount(NoticeSearchVO svo) {
+		System.out.println("csvo : " + svo);
 		int count = noticeService.getCount(svo);
 		return count;
 	}
@@ -55,14 +76,23 @@ public class NoticeController {
 	// POST 방식으로 insert 해주는 컨트롤러(파일, VO 가져가서 insert)
 	@RequestMapping(value = "/admin_post_NoticeInsert.mdo", method=RequestMethod.POST)
 	// @RequestParam("notice_file") String notice_file
-	public String insertNotice(@RequestParam("notice_file") MultipartFile notice_file, NoticeVO vo) throws IOException{
+	public String insertNotice(@RequestParam("notice_file") MultipartFile notice_file, NoticeVO vo,HttpSession session, JwtUtils util) throws IOException{
+		System.out.println("insertController: "+ vo);
+		UserVO userVo = util.getuser(session);
+		
 		if(!notice_file.isEmpty()) { // isEmpty() : 업로드 한 파일 존재 여부를 리턴(없으면 true 리턴) 
+			String uploadFolder = "https://doublejo.s3.ap-northeast-2.amazonaws.com/";
 			String fileName = notice_file.getOriginalFilename(); // getOriginalFilename() : 업로드 한 파일명을 문자열로 리턴
-			notice_file.transferTo(new File("E:/MyProject/" + fileName)); // transferTo(File destFile) : 업로드 한 파일을 destFile 에 저장
+			String expand = fileName.substring(fileName.indexOf(".")); // 확장자 
+			String key = UUID.randomUUID().toString() + expand; // 파일 이름 랜덤으로 정해주기
+			System.out.println("key : " + key);
+			InputStream is = notice_file.getInputStream();
+			String contentType = notice_file.getContentType();
+			Long contentLength = notice_file.getSize();
+			AwsS3 awsS3 = AwsS3.getInstance();
+			awsS3.upload(is, key, contentType, contentLength); // 파일 업로드
 		}
-		System.out.println("vo2: " + vo);
 		noticeService.insertNotice(vo);
-	
 		return "redirect:admin_post_Notice.mdo";
 	}
 	
@@ -80,36 +110,62 @@ public class NoticeController {
 	}
 	
 	// 공지사항 삭제
-	@RequestMapping(value = "/admin_post_NoticeDelete.mdo", method=RequestMethod.GET)
+	@RequestMapping(value = "/admin_post_NoticeDelete.mdo")
 	public String deleteNotice(NoticeVO vo) {
-		System.out.println("삭제");
+		noticeService.deleteNotice(vo);
+		return "redirect:admin_post_Notice.mdo";
+	}
+	
+	@RequestMapping(value = "/noticeDelete.mdo", method=RequestMethod.GET)
+	public String delete(NoticeVO vo) {
 		noticeService.deleteNotice(vo);
 		return "redirect:admin_post_Notice.mdo";
 	}
 	
 	// 공지사항 상세보기
 	@RequestMapping(value = "/admin_post_NoticeDetail.mdo")
-	public String getNotice(Model model, NoticeVO vo) {
+	public String getNotice(Model model, NoticeVO vo, NoticeSearchVO svo) {
+//		System.out.println("컨트롤러 " + svo);
+//		System.out.println("컨트롤러 " + vo);
+		model.addAttribute("svo", svo);
 		model.addAttribute("notice", noticeService.getNotice(vo));
 		return "admin_post_NoticeDetail";
 	}
 	
 	// 공지사항 수정인데, seq 를 들고가서 해당 seq 값의 전체 데이터를 뽑아내서 수정하도록 해주는 컨트롤ㄹ러
 	@RequestMapping(value = "/admin_post_NoticeUpdate.mdo", method=RequestMethod.GET)
-	public String updateNotice( String notice_seq, Model model) {
-		System.out.println(notice_seq);
+	public String updateNotice(String notice_seq, Model model, NoticeSearchVO svo) {
+//		System.out.println(notice_seq);
 		
 		NoticeVO vo = new NoticeVO();
 		vo.setNotice_seq(Integer.parseInt(notice_seq));
-		System.out.println(vo);
+//		System.out.println(vo);
 		model.addAttribute("notice", noticeService.selectSeq(vo.getNotice_seq()));
+		model.addAttribute("svo", svo);
 		return "admin_post_NoticeUpdate";
 	}
 	
 	// 공지사항 수정
 	@RequestMapping(value = "/admin_post_NoticeUpdate.mdo", method=RequestMethod.POST)
-	public String updateNotice(NoticeVO vo) {
-		System.out.println("update vo1 : " + vo);
+	public String updateNotice(@RequestParam("notice_file")MultipartFile notice_file, NoticeVO vo, Model model) throws IOException {
+		System.out.println("update vo : " + vo);
+		if(!notice_file.isEmpty()) { // isEmpty() : 업로드 한 파일 존재 여부를 리턴(없으면 true 리턴) 
+			String uploadFolder = "https://doublejo.s3.ap-northeast-2.amazonaws.com/";
+			String fileName = notice_file.getOriginalFilename(); // getOriginalFilename() : 업로드 한 파일명을 문자열로 리턴
+			String key = fileName.substring(uploadFolder.indexOf("")); // 확장자 
+			System.out.println("key : " + key);
+			AwsS3 awsS3 = AwsS3.getInstance();
+			awsS3.delete(key);
+			
+			String expand = fileName.substring(fileName.indexOf(".")); // 확장자 
+			key = UUID.randomUUID().toString() + expand; // 파일 이름 랜덤으로 정해주기
+			System.out.println("key : " + key);
+			InputStream is = notice_file.getInputStream();
+			String contentType = notice_file.getContentType();
+			Long contentLength = notice_file.getSize();
+			awsS3.upload(is, key, contentType, contentLength); // 파일 업로드
+		}
+		
 		noticeService.updateNotice(vo);
 		return "redirect:admin_post_Notice.mdo";
 	}
@@ -118,6 +174,7 @@ public class NoticeController {
 	@RequestMapping(value = "/admin_post_NoticeUpdate_checkPW.mdo", method = RequestMethod.POST)
 	@ResponseBody // 리턴 값을 데이터 전송할 때 사용 (페이지 이동 X)
 	public String passwdCheck(NoticeVO vo, Model model) {
+		System.out.println("비밀번호 확인: " + vo);
 		// 비밀번호 체크
 		boolean result = noticeService.checkPW(vo);
 		System.out.println("result : " + result);

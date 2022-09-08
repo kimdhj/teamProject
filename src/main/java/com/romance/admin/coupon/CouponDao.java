@@ -29,4 +29,7 @@ public class CouponDao {
 	public int coupondel(String coupon_code) {
 		return sql.delete("coupon.coupondel",coupon_code);
 	}
+	public int couche(String coupon_code) {
+		return sql.selectOne("coupon.couche",coupon_code);
+	}
 }

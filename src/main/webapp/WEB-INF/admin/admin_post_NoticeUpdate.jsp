@@ -13,7 +13,7 @@
 <body>
 	<jsp:include page="/WEB-INF/admin_commonjsp/admin_common_header.jsp"></jsp:include>
 	<!-- 여기서부터 화면 작성 시작 -->
-	<div id="main_wrapper" class="m-2  w-100 row">
+	<div id="main_wrapper" class="m-2  w-90 row" style="width: 80% !important;">
 		<div class="mb-0 p-0">
 			<button onclick="location.reload();" id="all" class="select p-2">공지사항 수정</button>
 		</div>
@@ -24,23 +24,26 @@
 			<div class="row d-flex align-items-center" id="input_line_top">
 				<div class="col-1 mt-2 mb-2 notice_font" style="text-align: center;">제목</div>
 				<div class="col-3" style="padding-left: 0px;">
-					<input type="text" name="notice_title" value="${notice.notice_title }"
+					<input type="text" name="notice_title" id="title"  value="${notice.notice_title }"
 						style="width: 90%; margin-top: 2%; margin-bottom: 2%;">
 				</div>
 				<div class="col-1 notice_font" style="padding-right: 0px; text-align: center;" >파일첨부</div>
 				<div class="col-3 " style="padding-left: 0px;">
-					<input type="file" name="notice_file" style="margin-top: 2%; margin-bottom: 2%;">${notice.notice_fileName }
+					<input type="file" name="notice_file" id="file" style="margin-top: 2%; margin-bottom: 2%;">${notice.notice_fileName }
 				</div>
 				<div class="col-1 notice_font" style="padding-right: 0px; text-align: center;" >작성자</div>
 				<div class="col-3 " style="padding-left: 0px;">
-					<input type="text" name="notice_writer" value="admin" style="margin-top: 2%; margin-bottom: 2%;">
+					<input type="text" name="notice_writer" id="writer" value="admin" style="margin-top: 2%; margin-bottom: 2%;">
 				</div>
 				<div class="row"></div>
 				<div class="col-1 mb-2 notice_font" style="text-align: center;">번호</div>
-				<div class="col-3 mb-2" style="padding-left: 0px;" id="seq">${notice.notice_seq }</div>
+				<div class="col-3 mb-2" style="padding-left: 0px;" id="seq">
+					${svo.seq}
+					<input type="hidden" value="${notice.notice_seq }" id="notice_seq"/>
+				</div>
 				<div class="col-1 mb-2 notice_font" style="text-align: center;">지점</div>
 				<div class="col-3 mb-2" style="padding-left: 0px;">
-					<input type="text" value="${notice.notice_location }" name="notice_location" style="width: 90%; margin-top: 2%; margin-bottom: 2%;"/>
+					<input type="text" value="${notice.notice_location }" id="location"  name="notice_location" style="width: 90%; margin-top: 2%; margin-bottom: 2%;"/>
 				</div>
 				<div class="col-1 mb-2 notice_font" style="padding-right: 0px; text-align: center;">등록일자</div>
 				<div class="col mb-2" style="padding-left: 0px;" >
@@ -51,15 +54,15 @@
 		<div id="all_box" class="bg-white w-100">
 			<div class="row d-flex align-items-center" id="input_line_top">
 				<div class="row"></div>
-				<div name="notice_content1" class="summernote">${notice.notice_content }</div>
-				<input type="hidden" name="notice_content2" id="notice_content"/>
+				<div id="sumContent" class="summernote">${notice.notice_content }</div>
+				<input type="hidden" name="notice_content" id="content"/>
 			</div>
 		</div>
 		<div id="all_box" class="bg-white w-100">
 			<div class="row d-flex align-items-center" id="input_line_top">
 				<div class="col-1" style="text-align: center;">비밀번호</div>
 				<div class="col">
-					<input type="password" name="notice_passwd">
+					<input type="password" name="notice_passwd" id="passwd">
 				</div>
 			</div>
 		</div>
@@ -73,8 +76,10 @@
 			</div>
 			<div class="col-2"></div>
 		</div>
+
+		<input type="hidden" value="${svo.seq }" id="seqche"/>
+
 		</form>
-		
 	</div>
 
 <jsp:include page="/WEB-INF/admin_commonjsp/admin_common_footer.jsp"></jsp:include>

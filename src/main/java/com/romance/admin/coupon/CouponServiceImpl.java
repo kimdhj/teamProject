@@ -15,8 +15,12 @@ public class CouponServiceImpl implements CouponService {
 	public String macoupon(CouponVO vo, int count) {
 		String code = "";
 		for (int i = 0; i < count; i++) {
-		
+			int che=1;
+			while(che==1) {
 			code = UUID.randomUUID().toString();
+			che=dao.couche(code);
+			System.out.println("che:"+che);
+			}
 			
 			vo.setCoupon_code(code);
 			dao.macoupon(vo);

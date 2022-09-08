@@ -98,8 +98,8 @@ $(document).ready(function() {
 			}
 
 		});
-			console.log(codelist);
-			$.ajax({
+		console.log(codelist);
+		$.ajax({
 			url: "/dellist.mdo",
 			method: "get",
 			dataType: 'json',
@@ -108,11 +108,11 @@ $(document).ready(function() {
 				codelist
 			},
 			success: function(e) {
-			
+
 				make();
 			},
 			error: function(e) {
-	
+
 
 			}
 		});
@@ -172,18 +172,39 @@ $(document).ready(function() {
 				page: Number($("#all_box #pageche").val())
 			},
 			success: function(re) {
+			
+			if (re % 5 == 0) {
+					re--;
+				}
+				console.log(re);
+			console.log(Number($("#all_box #pageche").val()),re / 5 + 1)
+				if (Number($("#all_box #pageche").val()) >re / 5 + 1) {
+					$("#all_box #pageche").val(Number($("#all_box #pageche").val())-1);
+				}
+				console.log("chd",$("#all_box #pageche").val());
 				count = re;
 				count = count - (Number($("#all_box #pageche").val()) - 1) * 5;
-				
+				page = Number($("#all_box #pageche").val());
 				let pa = '';
 				if (Number($("#all_box #pageche").val()) > 1) {
 					pa += `<li class="page-item "><a class="page-link">
 									< </a></li>`;
 				}
-				if (re % 5 == 0) {
-					re--;
+				
+
+				let startpage = 0;
+				let endpage = 0;
+				if (page < 3) {
+					startpage = 1;
+				} else {
+					startpage = page - 2;
 				}
-				for (let i = 1; i <= re / 5 + 1; i++) {
+				if (page + 2 > re / 5 + 1) {
+					endpage = re / 5 + 1;
+				} else {
+					endpage = page + 2;
+				}
+				for (let i = startpage; i <= endpage; i++) {
 					if (Number($("#all_box #pageche").val()) != i) {
 
 						pa += `<li class="page-item"><a class="page-link"
