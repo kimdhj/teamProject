@@ -358,6 +358,7 @@
 			<input type="hidden" name="orders_status" id="orders_status" /> 
 			<input type="number" value="0" class="hide" name="orders_add_point" id="orders_add_point" /> 
 				<input type="hidden" value="${user.user_id}" name="user_id" id="orders_status" />   
+				<input type="number" class="hide" value="${iscart}" name="iscart" id="orders_status" />   
 			
 		<!-- 구독가격, 쿠폰가격 하이딩 -->
 		<div class="col-2" id="right_blank">
