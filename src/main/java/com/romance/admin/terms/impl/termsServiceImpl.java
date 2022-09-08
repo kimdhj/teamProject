@@ -23,6 +23,22 @@ public class termsServiceImpl implements termsService {
 	public List<termsVO> getTermsList(termsVO vo) {
 		return dao.getTermsList(vo);
 	}
+
+	@Override
+	public void countCnt(int seq) {
+		dao.countCnt(seq);
+	}
+
+	@Override
+	public termsVO getTerms(termsVO vo) {
+		return dao.getTerms(vo);
+	}
+
+	@Override
+	public void alterTerms(termsVO vo) {
+		dao.alterTerms(vo);
+		
+	}
 	
 
 }
