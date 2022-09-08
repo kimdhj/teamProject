@@ -31,7 +31,7 @@ public class AdminLoginController {
 		AdminUserVO user = adminUserService.getUser(vo);
 		if(user != null && user.getUser_role().equals("admin")) {
 			session.setAttribute("userName", user.getUser_name());
-			return "admin_main";
+			return "redirect:/adminMain.mdo";
 		} else {
 			return "admin_login";
 		}

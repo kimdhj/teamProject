@@ -9,7 +9,7 @@ import com.romance.admin.account.AdminAccountService;
 import com.romance.admin.account.Criteria;
 import com.romance.admin.login.AdminUserVO;
 
-@Service
+@Service("adminAccountService")
 public class AdminAccountServiceImpl implements AdminAccountService {
 	
 	@Autowired
