@@ -13,12 +13,13 @@
 	<div class="container">
 		<div class="d-flex flex-row">
 			<div class="col-md-12">
-				<form method="post" action="admin_terms_insert.mdo"
+				<form method="post" action="admin_terms_Alter.mdo"
 					onsubmit="return writeSave()">
+					<input type="hidden" name="terms_seq" value="${terms.terms_seq}"/>
 					<div class="card border-light">
 						<div class="card-header">
 							<div class="d-flex flex-row">
-								<div class="col-md-6">조항 추가</div>
+								<div class="col-md-6">조항 수정</div>
 								<div class="col-md-6">
 									<button type="button"
 										class="btn btn-light btn-outline-dark btn-sm"
@@ -32,23 +33,22 @@
 								<table class="table">
 									<tr>
 										<td>번호</td>
-										<td><input class="form-control" type="text" name="terms_seq"></td>
+										<td>${terms.terms_seq}</td>
 									</tr>
 									<tr>
 										<td>조항</td>
-										<td><input class="form-control" type="text" name="terms_article_number"></td>
+										<td>제 ${terms.terms_article_number}조</td>
 									</tr>
 									<tr>
 										<td>약관제목</td>
 										<td align="left"><input class="form-control" type="text"
-											width="200" name="terms_title" placeholder="제목을 적어주세요."></td>
+											width="200" name="terms_title" value="${terms.terms_title}"></td>
 									</tr>
 								</table>
 							</div>
 
 							<div class="mb-3">
-								<textarea class="form-control" name="terms_content" rows="10"
-									placeholder="내용을 적어주세요."></textarea>
+								<textarea class="form-control" name="terms_content" rows="10">${terms.terms_content}</textarea>
 							</div>
 							
 							<div align="right">

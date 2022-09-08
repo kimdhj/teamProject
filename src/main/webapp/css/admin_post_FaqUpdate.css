@@ -1,5 +1,5 @@
 #main_wrapper * {
-  font-size: 1vw;
+  font-size: 1.3vw;
   word-break: keep-all;
 }
 body {
@@ -29,7 +29,7 @@ div.bg-white {
 .bg-blue {
   background-color: #0d6efd !important;
 }
-#level1, #level2, #level3, #level4, #level5 {
+#level {
   background-color: #eff0f6 !important;
 }
 #cate_box {
@@ -39,15 +39,26 @@ div.bg-white {
 .hide{
 	display: none !important;
 }
+.note-color-all button.active +.note-dropdown-menu>div:nth-child(2) {
 
-.pagination *{
-   cursor:pointer;
+   display:none !important;
+}
+.note-color-all button.active +.note-dropdown-menu {
+
+   min-width:0px !important;
+}
+.note-current-fontsize + .note-icon-caret:before,.note-current-fontname + .note-icon-caret:before, .note-icon-table + .note-icon-caret:before, .note-icon-align-left + .note-icon-caret:before, .note-icon-text-height + .note-icon-caret:before{
+	content: "" !important;
 }
 
-#main_wrapper{
-	margin-left: 2% !important;
+.note-current-color-button + .dropdown-toggle:after{
+	content:none !important;
 }
 
-.note-frame{
-	border: 0px !important;
+#input_line_top *{
+	font-size: 0.8vw;
+}
+
+.note-modal-footer{
+	margin-bottom: 5%;
 }

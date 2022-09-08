@@ -15,6 +15,11 @@ div.bg-white {
   background-color: inherit;
   border-radius: 5px 5px 0px 0px;
 }
+
+#level1, #level2{
+	pointer-events: none;
+}
+
 #cate_box,
 #all_box {
   border: 1px solid black !important;
@@ -29,7 +34,7 @@ div.bg-white {
 .bg-blue {
   background-color: #0d6efd !important;
 }
-#level1, #level2, #level3, #level4, #level5 {
+#level {
   background-color: #eff0f6 !important;
 }
 #cate_box {
@@ -39,9 +44,34 @@ div.bg-white {
 .hide{
 	display: none !important;
 }
+.note-color-all button.active +.note-dropdown-menu>div:nth-child(2) {
 
-.pagination *{
-   cursor:pointer;
+   display:none !important;
+}
+.note-color-all button.active +.note-dropdown-menu {
+
+   min-width:0px !important;
+}
+.note-current-fontsize + .note-icon-caret:before,.note-current-fontname + .note-icon-caret:before, .note-icon-table + .note-icon-caret:before, .note-icon-align-left + .note-icon-caret:before, .note-icon-text-height + .note-icon-caret:before{
+	content: "" !important;
+}
+
+.note-current-color-button + .dropdown-toggle:after{
+	content:none !important;
+}
+
+#input_line_top *{
+	font-size: 1vw;
+}
+
+.note-modal-footer{
+	margin-bottom: 5%;
+}
+
+#content {
+  height: 50vh;
+  overflow: auto;
+  margin-top: 1%;
 }
 
 #main_wrapper{

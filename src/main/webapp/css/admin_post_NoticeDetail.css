@@ -64,7 +64,7 @@ div.bg-white {
 }
 
 #content {
-  height: 50vh;
+  height: 100vh;
   overflow: auto;
   margin-top: 1%;
 }
@@ -75,4 +75,9 @@ div.bg-white {
 
 .note-frame{
 	border: 0px !important;
+}
+
+#img{
+	width: 30%;
+	height: 50%;
 }

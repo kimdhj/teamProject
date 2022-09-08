@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.romance.security.JwtUtils;
+import com.romance.user.bucket.BucketSearchVO;
+import com.romance.user.bucket.BucketService;
+import com.romance.user.bucket.BucketVO;
 import com.romance.user.login.UserVO;
 import com.romance.user.reply.ReplyVO;
 import com.romance.user.reply.ReplysearchVO;
@@ -23,6 +26,8 @@ import com.romance.user.reply.ReplysearchVO;
 public class BookController {
 	@Autowired
 	BookService ser;
+	@Autowired
+	BucketService serc;
 	@RequestMapping("/booklist.do")
 	public String booklist(BookSearchVO vo,Model model) {
 		System.out.println(vo);
@@ -105,7 +110,7 @@ public class BookController {
 		return"book_List";
 	}
 	@RequestMapping("/bookdetail.do")
-	public String bookdetail(ReplysearchVO vo,Model model) {
+	public String bookdetail(ReplysearchVO vo,HttpSession session,JwtUtils util,Model model) {
 	System.out.println("seq:"+vo.getBook_seq());
 		if(vo.getPage()<1) {
 			vo.setPage(1);
@@ -129,6 +134,14 @@ public class BookController {
 		}
 		
 		System.out.println("relist :"+relist);
+		UserVO voi=util.getuser(session);
+		if(voi!=null) {
+			BucketVO vob= new BucketVO();
+			vob.setBook_seq(vo.getBook_seq());
+			vob.setUser_id(voi.getUser_id());
+			model.addAttribute("bche",serc.chedouble(vob));
+		}
+		
 		model.addAttribute("relist", relist);
 		model.addAttribute("vo", vo);
 		model.addAttribute("maxpage", recount/5+1);

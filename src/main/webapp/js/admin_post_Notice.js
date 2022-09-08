@@ -393,6 +393,7 @@ $("#all_box #search_btn").click(function(e) {
 //	if(!check.test($("#all_box #seqche").val())){ 
 //		console.log("숫자만 입력해");
 //	}
+	console.log($("#all_box #seqche").val($("#search").val()));
 	
 	console.log($("#level").val());
 	if($("#level").val() == "번호"){
@@ -524,7 +525,7 @@ function make() {
 			page: Number($("#all_box #pageche").val())
 		},
 		success: function(re) {
-			console.log("re", re); // data 를 가져와서 사용하는데, 그 값을 찍어주는 거 (여기서는 데이터List)
+			console.log("ListRe", re); // data 를 가져와서 사용하는데, 그 값을 찍어주는 거 (여기서는 데이터List)
 			let con = "";
 			re.map((notice) => {
 				con += `<tr>
@@ -554,6 +555,9 @@ function make() {
 						`;
 				count--;
 			});
+//			console.log($("#all_box tbody").html());
+//			console.log(con);
+			
 			$("#all_box tbody").html(con);
 //			console.log("con: " + con);
 //			console.log("공지사항 목록 : " + $("#all_box tbody").html());

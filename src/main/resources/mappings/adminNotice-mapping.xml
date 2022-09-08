@@ -2,6 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="NoticeDAO">
+		<resultMap id="noticeResult" type="notice">
+		<result property="notice_seq" column="notice_seq" />
+		<result property="notice_title" column="notice_title" />
+		<result property="notice_writer" column="notice_writer" />
+		<result property="notice_date" column="notice_date" />
+		<result property="notice_content" column="notice_content" />
+		<result property="notice_fileName" column="notice_file" />
+		<result property="notice_location" column="notice_location" />
+		<result property="notice_passwd" column="notice_passwd" />
+		<result property="notice_cnt" column="notice_cnt" />
+	</resultMap>
 
 	<!-- 데이터 목록을 가져오는거 -->
 	<select id="getNoticeList" resultType="notice" parameterType="noticeSearchVO">
@@ -43,11 +54,11 @@
 		VALUES (null, #{notice_title}, #{notice_writer}, default, #{notice_content}, #{notice_fileName}, #{notice_location}, #{notice_passwd}, #{notice_cnt})
 	</insert>
 	
-	<select id="selectSeq" resultType="notice" parameterType="int">
+	<select id="selectSeq" resultMap="noticeResult" parameterType="int">
 		SELECT * FROM notice WHERE notice_seq = #{notice_seq}
 	</select>
 	
-	<select id="getNotice" resultType="notice" parameterType="notice">
+	<select id="getNotice" resultMap="noticeResult" parameterType="notice">
 		SELECT * FROM notice WHERE notice_seq = #{notice_seq}
 	</select>
 	

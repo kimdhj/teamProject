@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="FaqDAO">
+
+	<select id="getFaqList" resultType="faq" parameterType="faqSearch">
+		<![CDATA[SELECT * FROM(SELECT FAQ_seq, FAQ_bigsort, FAQ_smallsort, FAQ_ask, @rownum:=@rownum + 1 as rnum FROM FAQ, (SELECT @rownum:=0) TMP]]>
+			<trim prefix="WHERE" prefixOverrides="AND | OR">
+				<if test="bigsort != null and bigsort != ''"><![CDATA[AND FAQ_bigsort = #{bigsort}]]></if>
+				<if test="smallsort != null and smallsort != ''"><![CDATA[AND FAQ_smallsort = #{smallsort}]]></if>
+				<if test="ask != null and ask != ''"><![CDATA[AND FAQ_ask LIKE CONCAT('%', #{ask}, '%')]]></if>
+			</trim>
+		<![CDATA[ORDER BY FAQ_seq DESC) B WHERE]]>
+		<if test="seq != 0">
+			<![CDATA[rnum = #{seq}]]>
+		</if>
+		<if test="seq == 0">
+			<![CDATA[ rnum > (#{page} - 1) * 5 AND rnum <= #{page} * 5 ORDER BY FAQ_seq DESC]]>
+		</if>
+	</select>
+	
+	<select id="getCount" parameterType="faqSearch" resultType="int">
+		<![CDATA[SELECT COUNT(*) FROM(SELECT FAQ_seq, FAQ_bigsort, FAQ_smallsort, FAQ_ask, @rownum:=@rownum + 1 as rnum FROM FAQ, (SELECT @rownum:=0) TMP]]>
+			<trim prefix="WHERE" prefixOverrides="AND | OR">
+				<if test="bigsort != null and bigsort != ''"><![CDATA[AND FAQ_bigsort = #{bigsort}]]></if>
+				<if test="smallsort != null and smallsort != ''"><![CDATA[AND FAQ_smallsort = #{smallsort}]]></if>
+				<if test="ask != null and ask != ''"><![CDATA[AND FAQ_ask LIKE CONCAT('%', #{ask}, '%')]]></if>
+			</trim>
+		<![CDATA[ORDER BY FAQ_seq DESC) B]]>
+			<trim prefix="WHERE" prefixOverrides="AND | OR">
+				<if test="seq != 0">
+					<![CDATA[rnum = #{seq}]]>
+				</if>
+			</trim>
+	</select>
+	
+	<delete id="delete" parameterType="faq">
+		DELETE FROM FAQ WHERE FAQ_seq = #{FAQ_seq}
+	</delete>
+	
+	<delete id="chkboxDelete" parameterType="int">
+		DELETE FROM FAQ WHERE FAQ_seq = #{FAQ_seq}	
+	</delete>
+	
+	<select id="getFaq" parameterType="faq" resultType="faq">
+		SELECT * FROM FAQ WHERE FAQ_seq = #{FAQ_seq}
+	</select>
+
+<!-- 
+	<select id="selectDetail" parameterType="faq">
+		<![CDATA[SELECT * FROM FAQ]]>
+		<trim prefix="WHERE" prefixOverrides="AND | OR">
+			<if test="FAQ_bigsort != null">
+				<![CDATA[AND FAQ_bigsort = #{bigsort}]]>
+			</if>
+			<if test="FAQ_smallsort != null">
+				<![CDATA[AND FAQ_smallsort = #{smallsort}]]>
+			</if>
+		</trim>
+	</select>
+ -->	
+
+</mapper>

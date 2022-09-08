@@ -1,6 +1,9 @@
 package com.romance.user.orders;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 @Data
 public class OrderBookListVO {

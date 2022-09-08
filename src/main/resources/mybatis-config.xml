@@ -7,8 +7,6 @@
 	<!-- Mybatis에서 테이블의 언더바(_) 컬럼을 카멜형식으로 변환설정 -->
 	<!-- 전통적인 데이터베이스 칼럼명 형태인 A_COLUMN을 CamelCase 형태의 자바 프로퍼티명 형태인 aColumn으로 
 		자동으로 매핑하도록 한다. -->
-	<!-- 전통적인 데이터베이스 칼럼명 형태인 A_COLUMN을 CamelCase 형태의 자바 프로퍼티명 형태인 aColumn으로 
-		자동으로 매핑하도록 한다. -->
 
 
 	<typeAliases>
@@ -61,11 +59,16 @@
 			alias="replysearchVO" />
 		<typeAlias type="com.romance.user.reply.FineVO"
 			alias="fineVO" />
+		<typeAlias type="com.romance.admin.faq.FaqVO" alias="faq"/>
+		<typeAlias type="com.romance.admin.faq.FaqSearchVO" alias="faqSearch"/>
 		<typeAlias type="com.romance.user.login.UserVO"
 			alias="userVO" />
 			<typeAlias type="com.romance.user.orders.OrderBookListVO"
 			alias="orderbooklistVO" />
 		<typeAlias type="com.romance.admin.dashboard.DashVO" alias="dashVO" />
+
+			<typeAlias type="com.romance.user.orders.OrdersVO"
+			alias="ordersVO" />
 
 
 	</typeAliases>
@@ -86,6 +89,7 @@
 		<mapper resource="mappings/fine-mapping.xml" />
 		<mapper resource="mappings/coupon-mapping.xml" />
 		<mapper resource="mappings/book-mapping.xml" />
+		<mapper resource="mappings/adminFaq-mapping.xml"/>
 		<mapper resource="mappings/bucket-mapping.xml" />
 		<mapper resource="mappings/login-mapping.xml" />
 		<mapper resource="mappings/order-mapping.xml" />
