@@ -75,30 +75,41 @@ public class NoticeController {
 	
 	// POST 방식으로 insert 해주는 컨트롤러(파일, VO 가져가서 insert)
 	@RequestMapping(value = "/admin_post_NoticeInsert.mdo", method=RequestMethod.POST)
-	// @RequestParam("notice_file") String notice_file
-	public String insertNotice(@RequestParam("notice_file") MultipartFile notice_file, NoticeVO vo,HttpSession session, JwtUtils util) throws IOException{
+	// @RequestParam("notice_file") MultipartFile notice_file : 서버에 있는 파일 / String notice_fileName : DB 에 있는 파일
+	public String insertNotice(NoticeVO vo) throws IOException{
 		System.out.println("insertController: "+ vo);
-		UserVO userVo = util.getuser(session);
 		
+		MultipartFile notice_file = vo.getNotice_file();
 		if(!notice_file.isEmpty()) { // isEmpty() : 업로드 한 파일 존재 여부를 리턴(없으면 true 리턴) 
 			String uploadFolder = "https://doublejo.s3.ap-northeast-2.amazonaws.com/";
 			String fileName = notice_file.getOriginalFilename(); // getOriginalFilename() : 업로드 한 파일명을 문자열로 리턴
 			String expand = fileName.substring(fileName.indexOf(".")); // 확장자 
-			String key = UUID.randomUUID().toString() + expand; // 파일 이름 랜덤으로 정해주기
+			String name = fileName.replaceAll(expand, "");
+			System.out.println(name);
+			String key = name + UUID.randomUUID().toString() + expand; // 파일 이름 랜덤으로 정해주기
 			System.out.println("key : " + key);
 			InputStream is = notice_file.getInputStream();
 			String contentType = notice_file.getContentType();
 			Long contentLength = notice_file.getSize();
 			AwsS3 awsS3 = AwsS3.getInstance();
 			awsS3.upload(is, key, contentType, contentLength); // 파일 업로드
+			
+			vo.setNotice_fileName(uploadFolder + key);
 		}
+		
 		noticeService.insertNotice(vo);
+		System.out.println(vo.getNotice_fileName());
 		return "redirect:admin_post_Notice.mdo";
 	}
 	
 	// NoticeInsert.jsp 로 이동 처리해주는 컨트롤러
 	@RequestMapping(value = "/admin_post_Insert.mdo")
-	public String insert() {
+	public String insert(HttpSession session, JwtUtils util, Model model) {
+		UserVO userVo = util.getuser(session);
+		
+		model.addAttribute("user", userVo.getUser_id());
+		System.out.println(userVo.getUser_id());
+//		model.addAttribute("user", userVo.getUser_name());
 		return "admin_post_NoticeInsert";
 	}
 	
@@ -110,14 +121,20 @@ public class NoticeController {
 	}
 	
 	// 공지사항 삭제
-	@RequestMapping(value = "/admin_post_NoticeDelete.mdo")
-	public String deleteNotice(NoticeVO vo) {
-		noticeService.deleteNotice(vo);
-		return "redirect:admin_post_Notice.mdo";
-	}
-	
 	@RequestMapping(value = "/noticeDelete.mdo", method=RequestMethod.GET)
 	public String delete(NoticeVO vo) {
+		vo = noticeService.selectSeq(vo.getNotice_seq());
+		System.out.println("delete : " + vo);
+		if(vo.getNotice_fileName() != null) { // isEmpty() : 업로드 한 파일 존재 여부를 리턴(없으면 true 리턴) 
+			String key = vo.getNotice_fileName();
+			String uploadFolder = "https://doublejo.s3.ap-northeast-2.amazonaws.com/";
+			String fileName = key.replaceAll(uploadFolder, ""); // 확장자 
+			System.out.println("key : " + fileName);
+			AwsS3 awsS3 = AwsS3.getInstance();
+			awsS3.delete(fileName);
+			System.out.println(fileName);
+		}
+		
 		noticeService.deleteNotice(vo);
 		return "redirect:admin_post_Notice.mdo";
 	}
@@ -126,9 +143,18 @@ public class NoticeController {
 	@RequestMapping(value = "/admin_post_NoticeDetail.mdo")
 	public String getNotice(Model model, NoticeVO vo, NoticeSearchVO svo) {
 //		System.out.println("컨트롤러 " + svo);
-//		System.out.println("컨트롤러 " + vo);
+		System.out.println("컨트롤러 " + vo);
+		vo = noticeService.getNotice(vo);
+		String uploadFolder = "https://doublejo.s3.ap-northeast-2.amazonaws.com/";
+		if(vo.getNotice_fileName() != null) {
+			String one = vo.getNotice_fileName().replaceAll(uploadFolder, "");
+			int dot = one.indexOf(".");
+			one = one.substring(0, dot);
+			System.out.println(one);
+			model.addAttribute("one", one);
+		}
 		model.addAttribute("svo", svo);
-		model.addAttribute("notice", noticeService.getNotice(vo));
+		model.addAttribute("notice", vo);
 		return "admin_post_NoticeDetail";
 	}
 	
@@ -140,6 +166,7 @@ public class NoticeController {
 		NoticeVO vo = new NoticeVO();
 		vo.setNotice_seq(Integer.parseInt(notice_seq));
 //		System.out.println(vo);
+		System.out.println("update : " + noticeService.selectSeq(vo.getNotice_seq()));
 		model.addAttribute("notice", noticeService.selectSeq(vo.getNotice_seq()));
 		model.addAttribute("svo", svo);
 		return "admin_post_NoticeUpdate";
@@ -147,25 +174,37 @@ public class NoticeController {
 	
 	// 공지사항 수정
 	@RequestMapping(value = "/admin_post_NoticeUpdate.mdo", method=RequestMethod.POST)
-	public String updateNotice(@RequestParam("notice_file")MultipartFile notice_file, NoticeVO vo, Model model) throws IOException {
+	public String updateNotice(NoticeVO vo, Model model) throws IOException {
 		System.out.println("update vo : " + vo);
-		if(!notice_file.isEmpty()) { // isEmpty() : 업로드 한 파일 존재 여부를 리턴(없으면 true 리턴) 
-			String uploadFolder = "https://doublejo.s3.ap-northeast-2.amazonaws.com/";
-			String fileName = notice_file.getOriginalFilename(); // getOriginalFilename() : 업로드 한 파일명을 문자열로 리턴
-			String key = fileName.substring(uploadFolder.indexOf("")); // 확장자 
-			System.out.println("key : " + key);
+		String uploadFolder = "https://doublejo.s3.ap-northeast-2.amazonaws.com/";
+		
+		if(vo.getNotice_fileName() != null) { // isEmpty() : 업로드 한 파일 존재 여부를 리턴(없으면 true 리턴) 
+			String key = vo.getNotice_fileName();
+			String fileName = key.replaceAll(uploadFolder, ""); // 확장자 
+			System.out.println("key : " + fileName);
 			AwsS3 awsS3 = AwsS3.getInstance();
-			awsS3.delete(key);
+			awsS3.delete(fileName);
+			System.out.println(fileName);
 			
+		}
+		
+		MultipartFile notice_file = vo.getNotice_file();
+		if(!notice_file.isEmpty()) { // isEmpty() : 업로드 한 파일 존재 여부를 리턴(없으면 true 리턴) 
+			String fileName = notice_file.getOriginalFilename(); // getOriginalFilename() : 업로드 한 파일명을 문자열로 리턴
 			String expand = fileName.substring(fileName.indexOf(".")); // 확장자 
-			key = UUID.randomUUID().toString() + expand; // 파일 이름 랜덤으로 정해주기
+			String name = fileName.replaceAll(expand, "");
+			System.out.println(name);
+			String key = name + UUID.randomUUID().toString() + expand; // 파일 이름 랜덤으로 정해주기
 			System.out.println("key : " + key);
 			InputStream is = notice_file.getInputStream();
 			String contentType = notice_file.getContentType();
 			Long contentLength = notice_file.getSize();
+			AwsS3 awsS3 = AwsS3.getInstance();
 			awsS3.upload(is, key, contentType, contentLength); // 파일 업로드
+			
+			vo.setNotice_fileName(uploadFolder + key);
 		}
-		
+
 		noticeService.updateNotice(vo);
 		return "redirect:admin_post_Notice.mdo";
 	}

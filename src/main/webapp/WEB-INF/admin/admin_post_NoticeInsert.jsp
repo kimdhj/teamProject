@@ -32,7 +32,7 @@
 				</div>
 				<div class="col-1 notice_font" style="padding-right: 0px; text-align: center;" >작성자</div>
 				<div class="col-3 " style="padding-left: 0px;">
-					<input type="text" id="writer" name="notice_writer" value="admin" style="margin-top: 2%; margin-bottom: 2%;">
+					<input type="text" id="writer" name="notice_writer" readonly value="${user }" style="margin-top: 2%; margin-bottom: 2%;">
 				</div>
 				<div class="row"></div>
 				

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.romance.admin.notice.NoticeSearchVO;
 import com.romance.admin.notice.NoticeService;
 import com.romance.admin.notice.NoticeVO;
+import com.romance.server.AwsS3;
 
 @Service("noticeService")
 public class NoticeServiceImpl implements NoticeService{
@@ -79,10 +80,26 @@ public class NoticeServiceImpl implements NoticeService{
 	public void checkBox(List<String> notice_seq) {
 		for(String nSeq : notice_seq) {
 			int seq = Integer.parseInt(nSeq);
+			
+			NoticeVO vo = new NoticeVO();
+			vo.setNotice_seq(seq);
+			vo = selectSeq(vo.getNotice_seq());
+			
+			System.out.println("delete : " + vo);
+			
+			if(vo.getNotice_fileName() != null) { // isEmpty() : 업로드 한 파일 존재 여부를 리턴(없으면 true 리턴) 
+				String key = vo.getNotice_fileName();
+				String uploadFolder = "https://doublejo.s3.ap-northeast-2.amazonaws.com/";
+				String fileName = key.replaceAll(uploadFolder, ""); // 확장자 
+				System.out.println("key : " + fileName);
+				AwsS3 awsS3 = AwsS3.getInstance();
+				awsS3.delete(fileName);
+				System.out.println(fileName);
+			}
+			
+			deleteNotice(vo);
 			System.out.println("Service : " + seq);
-			noticeDao.checkBox(seq);
 		}
 	}
 	
-	// 
 }

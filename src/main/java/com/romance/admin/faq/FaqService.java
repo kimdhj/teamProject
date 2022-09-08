@@ -8,4 +8,5 @@ public interface FaqService {
 	void delete(FaqVO vo);
 	void chkboxDelete(List<String> FAQ_seq);
 	FaqVO getFaq(FaqVO vo);
+	
 }
