@@ -34,13 +34,12 @@
                 />
               </div>
               <div class="col-2" id="icon_size">139x56&nbsp;&nbsp;</div>
-	          <div class="col-2"><input type="text" id="icon_name" name="icon_name" value="${icon.icon_name }"></div>
+	          <div class="col-2 d-flex"><input type="text" class="text-center" id="icon_name" name="icon_name" value="${icon.icon_name }"></div>
               <div class="col" id="icon_file_frame">
                 <input
                   type="file"
-                  id="icon_file"
-                  name="icon_file"
-                  value="${icon.icon_file}"
+                  id="iconFile"
+                  name="iconFile"
                   accept="/image/*"
                   onchange="setThumbnail(event);"
                 />
@@ -59,13 +58,14 @@
             		<div id="can_del">
             			<div id="banner_thumbnail"><img width="100%" height="20%" id="banner_show1" src="${ban.banner_file }"/></div>
             			<div class="row d-flex">
-            				<div class="col"><input type="file" id="banner_image1" value="${ban.banner_file }" id="banner_file" name="banner_file" accept="/image/*" onchange="setBannerThumbnail(event);"/></div>
-            				<div class="col" id="banner_name_wrap"><div>배너 이름 : </div><input type="text" id="banner_name" name="banner_name" value="${ban.banner.name }"></div> 
+            				<div class="col"><input type="file" id="bannerFile" name="bannerFile" accept="/image/*" onchange="setBannerThumbnail(event);"/></div>
+            				<div class="col align-self-center" id="banner_name_wrap"><div class="d-flex justify-content-end">배너 이름 : </div></div>
+            				<div class="col align-self-center"><input type="text" id="banner_name" name="banner_name" value="${ban.banner_name }"></div>
 							<div class="col-2"><button type="button" class="btn btn-light" onclick="minus_banner(this);">배너 삭제</button></div>           
             			</div>
             			<div><br /></div>
             		</div>
-	            </c:forEach>
+            		</c:forEach>
             </div>
             <!-- 배너 -->
             <div class="container">

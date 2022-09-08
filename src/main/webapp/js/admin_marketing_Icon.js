@@ -5,7 +5,7 @@ function plus_banner(){
 	html += '<div id="can_del">';
 	html += '<div id="banner_thumbnail"><img width="100%" height="20%" id="banner_show1"/></div>';
 	html += '<div class="row d-flex">';
-	html += '<div class="col"><input type="file" id="banner_image1" id="banner_file" name="banner_file" accept="/image/*" onchange="setBannerThumbnail(event);"/></div>';
+	html += '<div class="col"><input type="file" id="bannerFile" name="bannerFile" accept="/image/*" onchange="setBannerThumbnail(event);"/></div>';
 	html += '<div class="col" id="banner_name_wrap"><div>배너 이름 : </div><input type="text" id="banner_name" name="banner_name" value=""></div>';
 	html += '<div class="col-2"><button type="button" class="btn btn-light" onclick="minus_banner(this);">배너 삭제</button></div>';
 	html += '</div>';
