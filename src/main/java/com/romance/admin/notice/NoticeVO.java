@@ -18,8 +18,8 @@ public class NoticeVO {
 	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
 	private Date notice_date;
 	private String notice_content;
-	private MultipartFile notice_file;
-	private String notice_fileName;
+	private MultipartFile notice_file; // Server 
+	private String notice_fileName; // DB
 	private String notice_location;
 	private String notice_passwd;
 	private int notice_cnt;

@@ -21,8 +21,16 @@
 	</insert>
 
 	<select id="getTermsList" resultMap="termsResult">
-		SELECT * FROM terms WHERE
-		1=1
+		SELECT * FROM terms
 	</select>
+	
+	<select id="getTerms" parameterType="termsVO" resultType="termsVO">
+		SELECT * FROM terms WHERE terms_seq=#{terms_seq}
+	</select>
+	
+	<update id="alterTerms" parameterType="termsVO">
+		UPDATE terms
+		SET terms_title=#{terms_title}, terms_content=#{terms_content} terms_state=#{terms_state} WHERE terms_seq = #{terms_seq}
+	</update>
 
 </mapper>

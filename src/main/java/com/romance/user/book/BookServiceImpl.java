@@ -125,7 +125,9 @@ public class BookServiceImpl implements BookService {
 	public List<BookVO> detailbooklist() {
 		int count=detailbookcount()-8;
 		Random rand = new Random();
+		if(count>0) {
 		count=rand.nextInt(count);
+		}
 		return dao.detailbooklist(count);
 	}
 	

@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="com.romance.admin.terms.impl.termsDAO"%>
+<%@ page import="com.romance.admin.terms.termsVO"%>
+<%@ page import="java.util.List"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,11 +19,12 @@
 	<div class="container">
 		<div class="d-flex flex-row">
 			<div class="col-md-12">
-				<form>
+			<input id="seq" type="hidden" value="${terms.terms_seq}"/>
+				<!--<form action="admin_terms_Update.mdo" method="post">  -->
 					<div class="card border-light">
 						<div class="card-header">
 							<div class="d-flex flex-row">
-								<div class="col-md-6">제 1조 목적</div>
+								<div class="col-md-6">제 ${terms.terms_article_number}조 ${terms.terms_title}</div>
 								<div class="col-md-6">
 									<button type="button"
 										class="btn btn-light btn-outline-dark btn-sm"
@@ -30,27 +37,32 @@
 								<table class="table">
 									<tr>
 										<td>번호</td>
-										<td>1번</td>
+										<td>${terms.terms_seq}</td>
 									</tr>
 									<tr>
 										<td>조항</td>
-										<td>제 1조</td>
+										<td>제 ${terms.terms_article_number}조</td>
 									</tr>
 									<tr>
 										<td>약관제목</td>
-										<td>수직</td>
+										<td>${terms.terms_title}</td>
 									</tr>
 									<tr>
 										<td>등록일</td>
-										<td>수직</td>
+										<td><fmt:formatDate value="${terms.terms_date }" pattern="yyyy-MM-dd"/></td>
 									</tr>
-
+									<tr>
+										<td>등록 상태</td>
+										<td><c:choose>
+										<c:when test="${terms.terms_state == true }">공개</c:when>
+										<c:otherwise>비공개</c:otherwise>
+										</c:choose></td>
+									</tr>
 								</table>
 							</div>
 
 							<div class="mb-3">
-								<textarea class="form-control" id="" rows="10">본 약관은 낭만서점 사이트(이하 "당 사이트")가 제공하는 모든 서비스(이하 "서비스")의 이용조건 및 절차, 이용자와 당 사이트의 권리, 의무, 책임사항과 기타 필요한 사항을 규정함을 목적으로 합니다.
-								</textarea>
+								<p>${terms.terms_content}</p>
 							</div>
 						</div>
 						<div class="card-footer">
@@ -63,7 +75,7 @@
 								onclick="location.href='admin_terms_Main.mdo' ">목록</button>
 							<button type="button"
 								class="btn btn-light btn-outline-dark btn-sm"
-								style="float: right;">수정</button>
+								style="float: right;" onclick="location.href='/admin_terms_Update.mdo?seq=${terms.terms_seq}'">수정</button>
 						</div>
 					</div>
 				</form>

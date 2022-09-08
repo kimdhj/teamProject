@@ -133,6 +133,9 @@ $(document).ready(function() {
 			};
 
 		});
+		if($(".main_item").length<=0){
+			location.href="/index.do";
+		}
 			}
 		});
 	});
