@@ -162,6 +162,7 @@
 
 				</div>
 			</div>
+			<input type="number" class="hide" name="iscart" value="1"/> 
 			</form>
 		</div>
 		

@@ -65,6 +65,7 @@
 						<form action="bookpay.do" method="get">
 						<input type="hidden" name="book_seq" id="bookseq" value="${book.book_seq}"/>
 						<input type="hidden" name="book_count" id="bookseq" value="1"/>
+						<input type="number" class="hide" name="iscart" id="iscart" value="2"/>
 							<button 
 								class="btn btn-info font-weight-bold rounded-pill">결&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp제</button>
 						</form>
