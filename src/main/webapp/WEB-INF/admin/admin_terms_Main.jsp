@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="java.util.List"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,8 +26,7 @@
 							<button type="button"
 								class="btn btn-light btn-outline-dark btn-sm"
 								style="float: right;"
-								onclick="location.href='admin_terms_Write.mdo' "
-								>조항 추가</button>
+								onclick="location.href='admin_terms_Write.mdo' ">조항 추가</button>
 						</div>
 					</div>
 				</div>
@@ -40,13 +43,22 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td scope="row">1번</td>
-									<td>제 1조</td>
-									<td><a href="/admin_terms_Read.mdo">목적</a></td>
-									<td>2090-11-23</td>
-									<td>Y</td>
-								</tr>
+								<c:forEach var="terms" items="${termsList}">
+									<tr>
+										<td scope="row">${terms.terms_seq}</td>
+										<td>제 ${terms.terms_article_number}조</td>
+										<td><a
+											href="/admin_terms_Read.mdo?seq=${terms.terms_seq}">${terms.terms_title}</a></td>
+										<td><fmt:formatDate value="${terms.terms_date }"
+												pattern="yyyy-MM-dd" /></td>
+										<td>
+										<c:choose>
+										<c:when test="${terms.terms_state == true }">공개</c:when>
+										<c:otherwise>비공개</c:otherwise>
+										</c:choose>
+										</td>
+									</tr>
+								</c:forEach>
 							</tbody>
 						</table>
 					</div>

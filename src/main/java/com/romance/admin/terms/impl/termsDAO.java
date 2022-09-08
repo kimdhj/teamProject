@@ -22,4 +22,19 @@ public class termsDAO {
 		System.out.println("daocate"+vo);
 		return sqlsession.selectList("Terms.getTermsList",vo);
 	}
+	
+	public void countCnt(int seq) {
+		sqlsession.update("Terms.countCnt", seq);
+	}
+	
+	public termsVO getTerms(termsVO vo) {
+		System.out.println("---> MyBatis로 getTerms() 기능 처리");
+		System.out.println((termsVO)sqlsession.selectOne("Terms.getTerms", vo));
+		return (termsVO)sqlsession.selectOne("Terms.getTerms", vo);
+	}
+	
+	public void alterTerms(termsVO vo) {
+		System.out.println("---> MyBatis로 alterTerms() 기능 처리");
+		sqlsession.insert("Terms.alterTerms", vo);
+	}
 }
