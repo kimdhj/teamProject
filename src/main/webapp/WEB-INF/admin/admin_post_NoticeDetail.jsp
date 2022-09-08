@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
 <jsp:include page="/WEB-INF/admin_commonjsp/admin_common_head.jsp"></jsp:include>
@@ -24,7 +26,9 @@
 				</div>
 				<div class="col-1 notice_font" style="padding-right: 0px; text-align: center;" >파일첨부</div>
 				<div class="col-3 " style="padding-left: 0px;">
-					${notice.notice_fileName }
+				<c:set var = "length" value = "${fn:length(one) - 36}"/>
+				<c:set var = "noticeName" value = "${fn:substring(one, 0, length)}" />
+					${noticeName }
 				</div>
 				<div class="col-1 notice_font" style="padding-right: 0px; text-align: center;" >작성자</div>
 				<div class="col-3 " style="padding-left: 0px;">
@@ -49,7 +53,11 @@
 		<div id="all_box" class="bg-white w-100">
 			<div class="row d-flex align-items-center" id="input_line_top">
 				<div class="row"></div>
-				<div class="row" id="content">${notice.notice_content }</div>
+				<div class="row" id="content">
+				<c:if test="${not empty notice.notice_fileName}">
+					<img src="${notice.notice_fileName }" id="img"/>
+				</c:if>
+				${notice.notice_content }</div>
 			</div>
 		</div>
 		

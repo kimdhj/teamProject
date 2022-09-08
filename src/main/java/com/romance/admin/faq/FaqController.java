@@ -88,4 +88,10 @@ public class FaqController {
 		return "admin_post_FaqDetail";
 	}
 	
+	// Insert
+	@PostMapping(value = "/admin_post_FaqInsert.mdo")
+	public String insertFaq() {
+		return null;
+	}
+	
 }

@@ -40,7 +40,7 @@
 				<div class="row"></div>
 					<div class="col-1" style="font-weight: bolder; font-size: 1.2vw; margin-left: 8%; margin-bottom: 1%; padding-left: 0; padding-right: 0;">FAQ 제목</div>
 					<div class="col-6" style="padding-left: 0;  margin-bottom: 1%; font-size: 1.2vw; font-weight: light;">
-						<input id="input" class="col-6" type="text" style="text-align: center; width: 100%;" value="${faq.FAQ_ask }" disabled/>
+						<input id="input" class="col-6" type="text" style="text-align: center; width: 100%;" value="${faq.FAQ_ask }" readonly/>
 					</div>
 			</div>
 		</div>

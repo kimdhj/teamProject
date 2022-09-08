@@ -29,7 +29,8 @@
 				</div>
 				<div class="col-1 notice_font" style="padding-right: 0px; text-align: center;" >파일첨부</div>
 				<div class="col-3 " style="padding-left: 0px;">
-					<input type="file" name="notice_file" id="file" style="margin-top: 2%; margin-bottom: 2%;">${notice.notice_fileName }
+					<input type="file" name="notice_file" id="file" style="margin-top: 2%; margin-bottom: 2%;">
+					<input type="hidden" name="notice_fileName" value="${notice.notice_fileName }"/>
 				</div>
 				<div class="col-1 notice_font" style="padding-right: 0px; text-align: center;" >작성자</div>
 				<div class="col-3 " style="padding-left: 0px;">
