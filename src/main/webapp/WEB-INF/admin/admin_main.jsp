@@ -133,11 +133,11 @@
 			</div>
 			<div class="col-md-6">
 				<div class="card border-light">
-					<div class="card-header">Header</div>
+					<div class="card-header">일반회원 ${getSubRatio.normal_cnt}명</div>
 					<div class="card-body">
 						
 					</div>
-					<div class="card-footer"></div>
+					<div class="card-footer">구독자 ${getSubRatio.sub_cnt}명</div>
 				</div>
 			</div>
 		</div>

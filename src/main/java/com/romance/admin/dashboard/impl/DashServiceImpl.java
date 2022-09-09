@@ -13,7 +13,13 @@ public class DashServiceImpl implements DashService {
 	
 	@Autowired
 	private DashDAO dashDAO;
-	
+
+	@Override
+	public DashVO getSubRatio(DashVO dashVO) {
+		
+		return dashDAO.getSubRatio(dashVO);
+	}
+	 
 	
 	
 }
