@@ -32,7 +32,7 @@ public class AdminAccountController {
 	}
 	
 	@GetMapping("getAdmin_member_List.mdo")
-	public String getUserList(Criteria criteria, Model model) throws Exception {
+	public String getUserListWithPaging(Criteria criteria, Model model) throws Exception {
 		System.out.println("관리자에서 회원목록 처리");
 		System.out.println("검색 조건 : " + criteria.getSearchCondition());
 		System.out.println("검색 단어 : " + criteria.getSearchKeyword());
@@ -54,6 +54,7 @@ public class AdminAccountController {
 //		System.out.println("startPage : " + pagination.getStartPage());
 //		System.out.println("endPage : " + pagination.getEndPage());
 		System.out.println(pagination);
+		System.out.println("현재페이지" + criteria.getPageNum());
 		model.addAttribute("pagination", pagination);
 		model.addAttribute("adminUserListWithPaging", adminAccountService.getUserListWithPaging(criteria));
 		
@@ -69,7 +70,7 @@ public class AdminAccountController {
 	}
 	
 	@GetMapping("getAdmin_admin_List.mdo")
-	public String getAdminList(Criteria criteria, Model model) throws Exception {
+	public String getAdminListWithPaging(Criteria criteria, Model model) throws Exception {
 		System.out.println("Mybatis로 adminList 기능 처리");
 		
 		if(criteria.getSearchCondition() == null) {
