@@ -50,7 +50,7 @@
 			AND a.user_sub = '1'
 		</if>
 		<if test="selectCondition=='user_normal'">
-			AND a.user_sub = '0' AND a.user_role = 'ROLE_MEMBER'
+			AND a.user_sub = '0' AND a.user_role='ROLE_MEMBER'
 		</if>
 		<if test="selectCondition=='user_black'">
 			AND a.user_state = 1
@@ -61,7 +61,7 @@
 	</select>
 	
 	<select id="getAdminListWithPaging" parameterType="criteria" resultMap="adminUserResult">
-		SELECT * FROM user WHERE user_role='admin'
+		SELECT * FROM user WHERE user_role='ROLE_ADMIN'
 		<if test="searchCondition=='USER_NAME'">
 			AND user_name like CONCAT('%', #{searchKeyword}, '%')
 		</if>
@@ -93,7 +93,7 @@
 	</select>
 	
 	<select id="adminTotalCount" parameterType="criteria" resultType="int">
-		SELECT count(*) FROM user WHERE user_role='admin'
+		SELECT count(*) FROM user WHERE user_role='ROLE_ADMIN'
 		<if test="searchCondition=='USER_NAME' ">
 			AND user_name like CONCAT('%', #{searchKeyword}, '%')
 		</if>
