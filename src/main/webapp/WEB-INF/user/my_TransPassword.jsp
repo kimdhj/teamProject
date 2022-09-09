@@ -14,59 +14,7 @@
 	<!-- Common header include -->
 	<jsp:include page="/WEB-INF/commonjsp/common_header.jsp"></jsp:include>
 	<!-- Common header include End -->
-
-	<!-- 여기서부터 원래헤더 대신 삽입 common_mypage_header.jsp 이거 한줄 대신 넣는거 -->
-	<jsp:include page="/WEB-INF/commonjsp/common_mypage_newheader.jsp"></jsp:include>
-	<!-- 요기서부터 동적 헤더 -->
-	<!-- 메인페이지 헤더 내용 -->
-	<div class="container">
-		<div class="row">
-			<div class="col-3"></div>
-			<div class="row col-9">
-				<div class="col-4">
-					<div class="container">
-						<div class="row justify-content-center">
-							<div class="col-md-auto align-self-center">
-								<a class="fs-4 text-dark">이승재 님 </a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-4">
-					<div class="container">
-						<div class="row justify-content-center">
-							<div class="col-md-auto align-self-center">
-								<a class="fs-6 text-dark">할인쿠폰</a>&nbsp;&nbsp;<a href=""
-									class="">22</a>장
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-4">
-					<div class="container">
-						<div class="row justify-content-center">
-							<div class="col-md-auto align-self-center">
-								<a class="fs-6 text-dark">마일리지</a>&nbsp;&nbsp;<a href=""
-									class="">223,421,123</a>P
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- 메인페이지 헤더 내용 끝 -->
-	<!-- 요기까지 동적헤더 -->
-	<jsp:include page="/WEB-INF/commonjsp/common_mypage_sidebar.jsp"></jsp:include>
-	<!-- 우측하단 시작 -->
-	<div class="col-lg-9 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
-		<br>
-		<p class="mb-4 fs-5 fw-bold">
-			<img src="img/mypage_mainbtn.png" class="rounded float-start"
-				alt="...">&nbsp;마이 페이지
-			<button type="button" class="btn btn-secondary btn-sm float-end">구독취소</button>
-		</p>
-		<!-- 여기까지 원래헤더대신 삽입 끝 -->
+	<jsp:include page="/WEB-INF/commonjsp/common_mypage_header.jsp"></jsp:include>
 
 		<!-- 여기 삽입 -->
 		<div class="row" id="main_wrapper">
