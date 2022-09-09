@@ -15,7 +15,7 @@
 	<jsp:include page="/WEB-INF/commonjsp/common_header.jsp"></jsp:include>
 	<!-- Common header include End -->
 
-	<!-- 여기서부터 원래헤더 대신 삽입 <jsp:include page="/WEB-INF/commonjsp/common_mypage_header.jsp"></jsp:include> 이거 한줄 대신 넣는거 -->
+	<!-- 여기서부터 원래헤더 대신 삽입 common_mypage_header.jsp 이거 한줄 대신 넣는거 -->
 	<jsp:include page="/WEB-INF/commonjsp/common_mypage_newheader.jsp"></jsp:include>
 	<!-- 요기서부터 동적 헤더 -->
 	<!-- 메인페이지 헤더 내용 -->
