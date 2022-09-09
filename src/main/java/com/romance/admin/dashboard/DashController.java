@@ -14,9 +14,11 @@ public class DashController {
 	
 	@GetMapping("adminMain.mdo")
 	public String myMain(DashVO dashVO, Model model) {
-		
-		
-		
+		System.out.println("Mybatis로 차트데이터 테스트용 처리");
+		model.addAttribute("dashVO", dashVO);
+		model.addAttribute("getSubRatio", dashService.getSubRatio(dashVO));
+		System.out.println(dashVO);
+
 		return "admin_main";
 	}
 	

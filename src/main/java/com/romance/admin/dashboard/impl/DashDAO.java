@@ -14,6 +14,10 @@ public class DashDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 	
+	public DashVO getSubRatio(DashVO dashVO) {
+		System.out.println("Mybatis로 차트데이터 테스트용");
+		return sqlSessionTemplate.selectOne("DashDAO.getSubRatio", dashVO);
+	}
 	
 
 }

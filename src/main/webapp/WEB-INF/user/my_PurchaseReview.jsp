@@ -22,7 +22,7 @@
 			</ol>
 		</nav>
 	</div>
-</div>S
+</div>
 <!-- Page Header End -->
 
 <!-- Contact Start -->
