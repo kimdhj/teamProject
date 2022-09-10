@@ -1,4 +1,4 @@
-package com.romance.user.my;
+package com.romance.user.my.main;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

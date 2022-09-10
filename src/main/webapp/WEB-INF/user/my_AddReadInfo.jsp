@@ -72,6 +72,7 @@
 				</a>
 		</p>
 		<!-- 여기까지 원래헤더대신 삽입 끝 -->
+	<jsp:include page="/WEB-INF/commonjsp/common_mypage_header.jsp"></jsp:include>
 
 		<!-- 여기 삽입 -->
 		<div id="main_wrapper" class="row">
