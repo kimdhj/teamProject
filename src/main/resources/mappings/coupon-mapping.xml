@@ -34,8 +34,10 @@
 	<select id="couche" parameterType="String" resultType="int">
 		select count(*) from coupon where coupon_code=#{coupon_code}
 	</select>
-	
-
+	<!-- 혜성 보유 쿠폰 세오기 -->
+	<select id="owncoupon" parameterType="String" resultType="int">
+		SELECT count(*) FROM user_coupon WHERE user_id=#{user_id}
+	</select>
 
 
 

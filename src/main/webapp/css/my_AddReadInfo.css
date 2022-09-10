@@ -16,6 +16,8 @@
 #item_title {
   margin: auto;
   padding: 0%;
+  font-size: 3vw;
+  color: #f65005;
 }
 #modify_btn .btn,
 #cancel_btn .btn {

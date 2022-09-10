@@ -6,6 +6,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.romance.user.login.UserVO;
+
 @Repository
 public class CouponDao {
 	@Autowired
@@ -31,5 +33,9 @@ public class CouponDao {
 	}
 	public int couche(String coupon_code) {
 		return sql.selectOne("coupon.couche",coupon_code);
+	}
+	//혜성 쿠폰 갯수 세기
+	public int owncoupon(UserVO vo) {
+		return sql.selectOne("coupon.owncoupon", vo);
 	}
 }
