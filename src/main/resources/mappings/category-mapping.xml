@@ -50,6 +50,10 @@
 	<select id="numche" parameterType="int" resultType="int" >
 	select count(*) from category where category_num=#{category_num}
 	</select>
+	<select id="logincate" resultType="categoryVO" >
+	select * from category order by category_num
+	</select>
+	
 
 
 

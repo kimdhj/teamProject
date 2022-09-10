@@ -2,8 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="user">
-<select resultType="userVO" parameterType="String" id="onesearch">
-	select * from user where user_id=#{user_id}
-</select>
-
+	<select resultType="userVO" parameterType="String"
+		id="onesearch">
+		select * from user where user_id=#{user_id}
+	</select>
+	<select resultType="int" parameterType="String" id="cheid">
+		select
+		count(*) from user where user_id=#{user_id}
+	</select>
+	<insert parameterType="userVO" id="join">
+		<![CDATA[insert into
+		user(user_password,user_email,user_id,user_name,user_address,user_zipcode,user_birth,user_phone]]>
+		<if test="user_remain_address!=null">,user_remain_address</if>
+		<if test="user_logintype!=null">,user_logintype</if>
+		<![CDATA[)
+		values(#{user_password},#{user_email},#{user_id},#{user_name},#{user_address},#{user_zipcode},#{user_birth},#{user_phone}]]>
+		<if test="user_remain_address!=null"> ,#{user_remain_address}</if>
+		<if test="user_logintype!=null">,#{user_logintype}</if>
+		)
+	</insert>
+	<update parameterType="String" id="loginday">
+		update user set user_login_day=CURRENT_TIMESTAMP where user_id=#{user_id}
+	</update>
 </mapper>
