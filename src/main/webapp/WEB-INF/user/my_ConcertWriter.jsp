@@ -13,8 +13,7 @@
         <!-- Common header include -->
         <jsp:include page="/WEB-INF/commonjsp/common_header.jsp"></jsp:include>
         <!-- Common header include End -->
-
-        <jsp:include page="/WEB-INF/commonjsp/common_mypage_header.jsp"></jsp:include>
+		<jsp:include page="/WEB-INF/commonjsp/common_mypage_header.jsp"></jsp:include>
 
         <!-- 여기 삽입 -->
 
