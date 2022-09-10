@@ -27,7 +27,7 @@
 					<div class="container">
 						<div class="row justify-content-center">
 							<div class="col-md-auto align-self-center">
-								<a class="fs-4 text-dark">이승재 님 </a>
+								<a class="fs-4 text-dark">${user_name }&nbsp;님 </a>
 							</div>
 						</div>
 					</div>
@@ -37,7 +37,7 @@
 						<div class="row justify-content-center">
 							<div class="col-md-auto align-self-center">
 								<a class="fs-6 text-dark">할인쿠폰</a>&nbsp;&nbsp;<a href=""
-									class="">22</a>장
+									class="">${cou}</a>장
 							</div>
 						</div>
 					</div>
@@ -47,7 +47,7 @@
 						<div class="row justify-content-center">
 							<div class="col-md-auto align-self-center">
 								<a class="fs-6 text-dark">마일리지</a>&nbsp;&nbsp;<a href=""
-									class="">223,421,123</a>P
+									class="">${user_point }</a>P
 							</div>
 						</div>
 					</div>
@@ -64,7 +64,6 @@
 		<p class="mb-4 fs-5 fw-bold">
 			<img src="img/mypage_mainbtn.png" class="rounded float-start"
 				alt="...">&nbsp;마이 페이지
-			<button type="button" class="btn btn-secondary btn-sm float-end">구독취소</button>
 		</p>
 		<!-- 여기까지 원래헤더대신 삽입 끝 -->
 
@@ -79,25 +78,25 @@
 					</div>
 					<div class="col" id="text">
 						<div class="row" id="title">
-							<div id="item_title" class="col-4 ">구독상품 이름</div>
+							<div id="item_title" class="col-4 ">구독</div>
 
 						</div>
-						<div class="row" id="subtitle">월 결제 금액:20000원</div>
+						<div class="row" id="subtitle">월 결제 금액:${sub.sub_info_price }원</div>
 						<div class="row" id="itemtText">
-							상품소개상품소개상품소개상품소개상품소개상품소개상품소개상품소개상품소개상품소개상품소개상품소개상품소개상품소개상품소개상품소개상품소개상품소개상품소개상품소개상품소개상품소개상품소개상품소개상품소개
+							${sub.sub_info_pre_string }
 						</div>
 					</div>
 					<div class="col-2"></div>
 				</div>
 				<div id="personal_info" class="row">
 					<div class="align-items-center" id="months">
-						<div id="months_name">이승재님</div>
-						<div id="months_count">10</div>
+						<div id="months_name">${user_name }&nbsp;님</div>
+						<div id="months_count">${user_sub_count }</div>
 						<div id="months_etc">개월 째 이용 중 입니다.</div>
 					</div>
 					<div class="align-items-center" id="money">
 						<div id="money_title">지금 까지 결제 금액:</div>
-						<div id="money_count">20000 원</div>
+						<div id="money_count">${user_sub_pay_before}&nbsp;원</div>
 
 					</div>
 					<div class="align-items-center" id="nowBook">
@@ -111,7 +110,7 @@
 					</div>
 				</div>
 				<div id="cancel_box" class="row gy-4">
-					<div id="cancelText" class="row">이승재 님 정말 구독 취소 하시겠습니까?</div>
+					<div id="cancelText" class="row">${user_name }&nbsp;님 정말 구독 취소 하시겠습니까?</div>
 					<div id="canceInput">
 						<div id="inputText">비밀 번호:</div>
 						<div id="inputBox">

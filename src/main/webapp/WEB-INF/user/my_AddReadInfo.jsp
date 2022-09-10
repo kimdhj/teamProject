@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,7 +30,7 @@
 					<div class="container">
 						<div class="row justify-content-center">
 							<div class="col-md-auto align-self-center">
-								<a class="fs-4 text-dark">이승재 님 </a>
+								<a class="fs-4 text-dark">${user_name }&nbsp;님 </a>
 							</div>
 						</div>
 					</div>
@@ -37,7 +40,7 @@
 						<div class="row justify-content-center">
 							<div class="col-md-auto align-self-center">
 								<a class="fs-6 text-dark">할인쿠폰</a>&nbsp;&nbsp;<a href=""
-									class="">22</a>장
+									class="">${cou}</a>장
 							</div>
 						</div>
 					</div>
@@ -47,7 +50,7 @@
 						<div class="row justify-content-center">
 							<div class="col-md-auto align-self-center">
 								<a class="fs-6 text-dark">마일리지</a>&nbsp;&nbsp;<a href=""
-									class="">223,421,123</a>P
+									class="">${user_point }</a>P
 							</div>
 						</div>
 					</div>
@@ -64,7 +67,9 @@
 		<p class="mb-4 fs-5 fw-bold">
 			<img src="img/mypage_mainbtn.png" class="rounded float-start"
 				alt="...">&nbsp;마이 페이지
-			<button type="button" class="btn btn-secondary btn-sm float-end">구독취소</button>
+				<a href="my_cancelSub.do">
+			<button type="button" class="btn btn-secondary btn-sm float-end" >구독취소</button>
+				</a>
 		</p>
 		<!-- 여기까지 원래헤더대신 삽입 끝 -->
 
@@ -73,37 +78,39 @@
 			<div class="col">
 				<div id="top_info" class="row">
 					<div id="img_box" class="col-2">
-						<img src="/서점로고.ico" width="100%" height="100%" alt=""
+						<img src="${icon.icon_file }" width="100%" height="100%" alt=""
 							id="item_img" />
 					</div>
 					<div class="col" id="text">
 						<div class="row" id="title">
-							<div id="item_title" class="col-5 row  ">구독상품 이름</div>
+							<div id="item_title" class="col-5 row  ">구독</div>
 							<div id="btn_box" class="col-7 row gy-1">
 								<div class="col-lg col-sm-12" id="cancel_btn">
-									<button type="button" class="btn btn-danger">구독 취소</button>
+									<button type="button" class="btn btn-primary">구독 안내</button>
 								</div>
 								<div class="col-lg col-sm-12" id="modify_btn">
+									<a href="my_modifySub.do">
 									<button type="button" class="btn btn-info">구독 정보 변경</button>
+									</a>
 								</div>
 							</div>
 						</div>
-						<div class="row" id="subtitle">월 결제 금액:20000원</div>
+						<div class="row" id="subtitle">월 결제 금액:${sub.sub_info_price }원</div>
 						<div class="row" id="itemtText">
-							상품소개상품소개상품소개상품소개상품소개상품소개상품소개상품소개상품소개상품소개상품소개상품소개상품소개상품소개상품소개상품소개상품소개상품소개상품소개상품소개상품소개상품소개상품소개상품소개상품소개
+							${sub.sub_info_pre_string }
 						</div>
 					</div>
 					<div class="col-2"></div>
 				</div>
 				<div id="personal_info" class="row">
 					<div id="months">
-						<div id="months_name">이승재님</div>
-						<div id="months_count">10</div>
+						<div id="months_name">${user_name }&nbsp;님</div>
+						<div id="months_count">${user_sub_count }</div>
 						<div id="months_etc">개월 째 이용 중 입니다.</div>
 					</div>
 					<div id="money">
 						<div id="money_title">지금 까지 결제 금액:</div>
-						<div id="money_count">20000 원</div>
+						<div id="money_count">${sub.sub_info_price }&nbsp;원</div>
 
 					</div>
 					<div id="nowBook">
