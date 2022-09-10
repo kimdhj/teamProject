@@ -51,17 +51,18 @@
 										aria-label="Username" aria-describedby="addon-wrapping"
 										value="${adminUserVO.user_password }" />
 								</div>
+								<p style="color:red">${warning}</p>
 								<button type="submit" style="margin: 8px"
 									class="btn btn-outline-info" name="button">로그인</button>
 							</div>
 						</form>
 					</div>
 
-
 					<div class="col-2"></div>
 				</div>
 				<!-- END OF ROW -->
 			</div>
+			
 
 
 
