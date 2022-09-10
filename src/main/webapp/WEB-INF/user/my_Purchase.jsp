@@ -307,8 +307,8 @@
 <!-- Contact End -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <!-- alert 창 예쁘게 -->
-<script src="./datepicker/js/datepicker.js"></script>
-<script src="./datepicker/js/datepicker.ko.js"></script>
+<script src="/datepicker/js/datepicker.js"></script>
+<script src="/datepicker/js/datepicker.ko.js"></script>
 <script src="/js/my_Purchase.js"></script>
 </body>
 </html>
