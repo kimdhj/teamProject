@@ -60,7 +60,16 @@ public class MySubController {
 	
 	//마이페이지 구독정보변경
 	@RequestMapping("my_modifySub.do")
-	public String my_modifySub() {
+	public String my_modifySub(HttpSession session, JwtUtils util, Model model, SubscribeVO svo) {
+		UserVO userVO = util.getuser(session);
+		
+		model.addAttribute("user_name", userVO.getUser_name());
+		model.addAttribute("user_point", userVO.getUser_point());
+		model.addAttribute("user_sub_count", userVO.getUser_sub_count());
+		model.addAttribute("user_sub_pay_before", userVO.getUser_sub_pay_before());
+		model.addAttribute("icon", iconService.getIcon());
+		model.addAttribute("sub", subscribeService.getSub(svo));
+		model.addAttribute("cou", couponService.owncoupon(userVO));
 		
 		return "my_AddReadModify";
 	}
