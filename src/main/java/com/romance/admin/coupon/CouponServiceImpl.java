@@ -6,6 +6,8 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.romance.user.login.UserVO;
+
 @Service
 public class CouponServiceImpl implements CouponService {
 	@Autowired
@@ -57,8 +59,12 @@ public class CouponServiceImpl implements CouponService {
 		}
 		
 	}
-
-	
+	//혜성 쿠폰 개수
+	@Override
+	public int owncoupon(UserVO vo) {
+		System.out.println("쿠폰 임플 : "+vo);
+		return dao.owncoupon(vo);
+	}
 	
 	
 	
