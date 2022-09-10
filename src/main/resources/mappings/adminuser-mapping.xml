@@ -29,7 +29,7 @@
 	
 	
 	<select id="getUser" parameterType="adminUserVO" resultType="adminUserVO">
-		SELECT user_id, user_password, user_name, user_role FROM user WHERE user_id = #{user_id} AND user_password = #{user_password} 
+		SELECT user_id, user_password, user_name, user_role FROM user WHERE user_id = #{user_id} 
 	</select>
 	
 	<select id="getUserDetail" parameterType="adminUserVO" resultMap="adminUserResult">

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +22,8 @@ public class AdminAccountController {
 	
 	@Autowired
 	private AdminAccountService adminAccountService;
+	@Autowired
+	BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	@ModelAttribute("conditionMap")
 	public Map<String, String> searchConditionMap() {
@@ -91,6 +94,8 @@ public class AdminAccountController {
 	@PostMapping("insertAdminAccount.mdo")
 	public String insertAdminAccount(AdminUserVO vo) throws Exception {
 		System.out.println("관리자 계정 생성");
+		System.out.println(vo);
+		vo.setUser_password(bCryptPasswordEncoder.encode(vo.getUser_password()));
 		adminAccountService.insertAdminAccount(vo);
 		
 		return "redirect:getAdmin_admin_List.mdo";
