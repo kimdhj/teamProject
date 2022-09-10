@@ -25,12 +25,12 @@ public class AdminAccountController {
 	@ModelAttribute("conditionMap")
 	public Map<String, String> searchConditionMap() {
 		Map<String, String> conditionMap = new HashMap<>();
-		conditionMap.put("이름", "USER_NAME");
 		conditionMap.put("아이디", "USER_ID");
-		
+		conditionMap.put("이름", "USER_NAME");
+
 		return conditionMap;
 	}
-	
+		
 	@GetMapping("getAdmin_member_List.mdo")
 	public String getUserListWithPaging(Criteria criteria, Model model) throws Exception {
 		System.out.println("관리자에서 회원목록 처리");
@@ -94,6 +94,14 @@ public class AdminAccountController {
 		adminAccountService.insertAdminAccount(vo);
 		
 		return "redirect:getAdmin_admin_List.mdo";
+	}
+	
+	@PostMapping("updateUserAccount.mdo")
+	public String updateUserAccount(AdminUserVO vo) throws Exception {
+		System.out.println("계정정보 수정");
+		System.out.println("뭐가뭐가들어갔나" + vo);
+		adminAccountService.updateUserAccount(vo);
+		return "redirect:getAdmin_member_List.mdo";
 	}
 	
 	@PostMapping("idCheck.mdo")

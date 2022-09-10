@@ -17,25 +17,21 @@ public class AdminAccountServiceImpl implements AdminAccountService {
 	
 	@Override
 	public AdminUserVO getUserDetail(AdminUserVO vo) {
-		
 		return adminAccountDAO.getUserDetail(vo);
 	}
 
 	@Override
 	public List<AdminUserVO> getUserListWithPaging(Criteria criteria) throws Exception {
-		
 		return adminAccountDAO.getUserListWithPaging(criteria);
 	}
 
 	@Override
 	public int totalCount(Criteria criteria) throws Exception {
-	
 		return adminAccountDAO.totalCount(criteria);
 	}
 
 	@Override
 	public int adminTotalCount(Criteria criteria) throws Exception {
-		
 		return adminAccountDAO.adminTotalCount(criteria);
 	}
 
@@ -52,6 +48,11 @@ public class AdminAccountServiceImpl implements AdminAccountService {
 	@Override
 	public int idCheck(String user_id) throws Exception {
 		return adminAccountDAO.idCheck(user_id);
+	}
+
+	@Override
+	public void updateUserAccount(AdminUserVO vo) throws Exception {
+		adminAccountDAO.updateUserAccount(vo);		
 	}
 	
 	
