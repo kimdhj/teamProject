@@ -16,11 +16,14 @@
 	</properties>
 	<dependencies>
 		<!-- 메일 보내기 -->
+
 		<dependency>
-			<groupId>javax.mail</groupId>
-			<artifactId>mail</artifactId>
-			<version>1.4.7</version>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-email</artifactId>
+			<version>1.5</version>
 		</dependency>
+
+
 		<!-- 쿨sms -->
 		<dependency>
 			<groupId>net.nurigo</groupId>

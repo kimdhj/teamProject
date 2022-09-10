@@ -39,21 +39,6 @@
 	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
-	<!--메일 설정  -->
-	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<property name="host" value="smtp.gmail.com"/>
-		<property name="port" value="587"/>
-		<property name="defaultEncoding" value="utf-8"/>
-		<property name="username" value="새로만든 구글계정 아이디"/>
-		<property name="password" value="앱키 비밀번호"/>
-		<property name="javaMailProperties">
-			<props>
-				<prop key="mail.transport.protocol">smtp</prop>
-				<prop key="mail.smtp.auth">true</prop> <!-- 2단계본인인증을 했으니 보안적으로 true라고 준다 -->
-				<prop key="mail.smtp.starttls.enable">true</prop>
-				<prop key="mail.debug">true</prop>
-			</props>
-		</property>
-	</bean>
+	
 
 </beans>

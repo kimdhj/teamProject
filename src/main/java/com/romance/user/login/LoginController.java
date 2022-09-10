@@ -1,8 +1,12 @@
 package com.romance.user.login;
 
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -17,6 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.romance.security.JwtUtils;
 import com.romance.security.KakaoLogin;
+import com.romance.security.MailService;
 import com.romance.security.Sms;
 
 @Controller
@@ -154,6 +159,14 @@ public class LoginController {
 
 		}
 
+	}
+	//메일테스트
+	@GetMapping("mail.do")
+	@ResponseBody
+	public String mail() throws Exception {
+		MailService ma=new MailService();
+		ma.sendEmail("ko02222@naver.com","낭만서점 본인확인 메일입니다.","노출에 조심하세요 낭만서점 이메일 인증 번호는 입니다.");
+		return"성공";
 	}
 
 }
