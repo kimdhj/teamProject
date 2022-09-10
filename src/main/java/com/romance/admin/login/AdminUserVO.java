@@ -27,4 +27,5 @@ public class AdminUserVO {
 	private int user_sub_pay_before;
 	private int user_enabled;
 	private int user_coupon_cnt;
+	private String user_sub_update;
 }

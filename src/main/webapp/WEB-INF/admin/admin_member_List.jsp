@@ -102,7 +102,7 @@
 								<td>${adminAccount.user_point }</td>
 								<td>${adminAccount.user_coupon_cnt }</td>
 								<td>
-									<button type="submit" class="btn btn-light btn-outline-dark">
+									<button type="submit" class="btn btn-light btn-outline-dark" id="searchDetailBtn">
 										<a href="getAdmin_member_Detail.mdo?user_id=${adminAccount.user_id}&pageNum=${criteria.pageNum}&searchCondition=${criteria.searchCondition}&searchKeyword=${criteria.searchKeyword}&selectCondition=${criteria.selectCondition}">조회</a>
 									</button>
 								</td>
