@@ -18,11 +18,12 @@ public class MyController {
 	@GetMapping("myMain.do")
 	public String myMain(HttpSession session, JwtUtils util) {
 		
-		if(CheckToken.isToken(session, util) == 1) {
+		if(CheckToken.isTokenUser(session, util) == 1) {
 			System.out.println("안녕하십니까?");
+			return "my_Main";
+		} else {
+			return "redirect:login.do";
 		}
-		
-		return "my_Main";
 	}
 	
 	@GetMapping("myPassword.do")
