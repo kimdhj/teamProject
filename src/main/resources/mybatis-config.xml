@@ -66,6 +66,7 @@
 			<typeAlias type="com.romance.user.orders.OrderBookListVO"
 			alias="orderbooklistVO" />
 		<typeAlias type="com.romance.admin.dashboard.DashVO" alias="dashVO" />
+		<typeAlias type="com.romance.admin.product.ProductVO" alias="pro" />
 
 			<typeAlias type="com.romance.user.orders.OrdersVO"
 			alias="ordersVO" />
@@ -96,5 +97,6 @@
 		<mapper resource="mappings/order-mapping.xml" />
 		<mapper resource="mappings/admin-dashboard.xml" />
 		<mapper resource="mappings/usercategory-mapping.xml" />
+		<mapper resource="mappings/product-mapping.xml" />
 	</mappers>
 </configuration>
