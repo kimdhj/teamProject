@@ -78,7 +78,9 @@ public class JwtUtils {
 	// ADMIN START
 	// jwt 토큰 생성 AdminUserVO 이용
 	// ==토큰 생성 메소드==//
+	@SuppressWarnings("deprecation")
 	public String createToken(String subject, AdminUserVO vo) {
+		System.out.println("===관리자용 토큰 생성 처리===");
 		Date now = new Date();
 		Date expiration = new Date(now.getTime() + Duration.ofDays(1).toMillis()); // 만료기간 1일
 		Map<String, Object> payloads = new HashMap<>();
@@ -99,7 +101,7 @@ public class JwtUtils {
 			Map<String, Object> con = parseJwtToken(token);
 			ObjectMapper mapper = new ObjectMapper();
 			AdminUserVO vo = mapper.convertValue(con.get("user"), AdminUserVO.class);
-			System.out.println("세션 등록 유저 정보" + vo);
+			System.out.println(">>>>어드민 세션 등록 유저 정보 = " + vo);
 			return vo;
 		} else {
 			return null;
