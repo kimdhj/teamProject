@@ -21,5 +21,10 @@ public class AdminUserServiceImpl implements AdminUserService {
 		
 		return adminUserDAO.getUser(vo);
 	}
+
+	@Override
+	public void loginDay(String user_id) {
+		adminUserDAO.loginDay(user_id);		
+	}
 	
 }

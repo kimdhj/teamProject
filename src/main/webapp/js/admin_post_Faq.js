@@ -128,7 +128,7 @@ $(document).ready(function() {
 				}).then(function(){
 					$('.delche:checked').parents('tr').remove();
 					$('.allche').removeAttr('checked');
-					location.href="/admin_post_Faq.mdo";
+					location.href="/FaqList.mdo";
 				})
 			}else if(result.isDismissed){
 				return false;
@@ -377,7 +377,7 @@ function make(){
 							
 							<td>
 								<p class="rowColumn" id="ask">
-									<a href="/admin_post_FaqDetail.mdo?FAQ_seq=${faq.faq_seq}&seq=${count}">
+									<a href="/FaqDetail.mdo?FAQ_seq=${faq.faq_seq}&seq=${count}">
 										${faq.faq_ask}
 									</a>
 								</p>

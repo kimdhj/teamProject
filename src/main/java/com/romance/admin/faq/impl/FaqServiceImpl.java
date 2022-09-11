@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.romance.admin.faq.FaqSearchVO;
 import com.romance.admin.faq.FaqService;
 import com.romance.admin.faq.FaqVO;
+import com.romance.server.AwsS3;
 
 @Service("faqService")
 public class FaqServiceImpl implements FaqService{
@@ -55,7 +56,28 @@ public class FaqServiceImpl implements FaqService{
 	public void chkboxDelete(List<String> FAQ_seq) {
 		for(String nSeq : FAQ_seq) {
 			int seq = Integer.parseInt(nSeq);
-			faq.chkboxDelete(seq);
+			
+			FaqVO vo = new FaqVO();
+			vo.setFAQ_seq(seq); // seq 가져가기
+			vo = getFaq(vo);
+			
+			System.out.println("seq: " + vo.getFAQ_seq());
+			System.out.println("seq: " + vo.getFAQ_fileName());
+			System.out.println("seq: " + vo.getFAQ_file());
+			System.out.println("getFaq: " + getFaq(vo));
+			
+			if(vo.getFAQ_fileName() != null) { // isEmpty() : 업로드 한 파일 존재 여부를 리턴(없으면 true 리턴) 
+				String key = vo.getFAQ_fileName();
+				String uploadFolder = "https://doublejo.s3.ap-northeast-2.amazonaws.com/";
+				String fileName = key.replaceAll(uploadFolder, ""); // 확장자 
+				System.out.println("삭제된 key : " + fileName);
+				AwsS3 awsS3 = AwsS3.getInstance();
+				awsS3.delete(fileName);
+				System.out.println(fileName);
+			}
+			
+			delete(vo); // seq 가져온 vo 값 삭제해주기
+			System.out.println("serviceDelete: " + seq);
 		}
 	}
 	
@@ -64,4 +86,18 @@ public class FaqServiceImpl implements FaqService{
 		return faq.getFaq(vo);
 	}
 	
+	@Override
+	public void insert(FaqVO vo) {
+		faq.insert(vo);
+	}
+	
+	@Override
+	public void update(FaqVO vo) {
+		faq.update(vo);
+	}
+	
+	@Override
+	public boolean checkPW(FaqVO vo) {
+		return faq.checkPW(vo);
+	}
 }
