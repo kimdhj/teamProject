@@ -1,7 +1,5 @@
 package com.romance.admin.login;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -9,11 +7,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.romance.security.JwtUtils;
 
 @Controller
+@SessionAttributes("id")
 @RequestMapping("/")
 public class AdminLoginController {
 	
@@ -32,7 +32,7 @@ public class AdminLoginController {
 	}
 	
 	@PostMapping("admin_login.mdo")
-	public String login(AdminUserVO vo, Model model, JwtUtils util, RedirectAttributes redirectAttributes, HttpSession session) {
+	public String login(AdminUserVO vo, Model model, JwtUtils util, RedirectAttributes redirectAttributes) {
 		System.out.println("로그인 인증 처리");
 
 		AdminUserVO user = adminUserService.getUser(vo);
@@ -43,6 +43,8 @@ public class AdminLoginController {
 			System.out.println("DB상의 pw : " + user.getUser_password());
 			String inputPassword = vo.getUser_password();
 			String dbPassword = user.getUser_password();
+			adminUserService.loginDay(vo.getUser_id());
+			String token = util.createToken("관리자", vo);
 			if(bCryptPasswordEncoder.matches(inputPassword, dbPassword)) {// 입력받은 패스워드, 디비상의 패스워드
 				System.out.println("로그인 성공");
 				return "redirect:adminMain.mdo";
