@@ -5,6 +5,7 @@ import java.util.List;
 import com.romance.admin.login.AdminUserVO;
 
 public interface AdminAccountService {
+	
 	public AdminUserVO getUserDetail(AdminUserVO vo);
 	
 	//총 회원 목록 조회
@@ -27,4 +28,5 @@ public interface AdminAccountService {
 	
 	//계정정보 수정
 	public void updateUserAccount(AdminUserVO vo) throws Exception;
+	
 }

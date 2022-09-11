@@ -71,11 +71,11 @@
 									<td></td>
 								</tr>
 								<tr>
-									<th>비밀번호</th>
+									<th>새 비밀번호</th>
 									<td colspan=2><input class="form-control" type="password"
 										name="user_password" onkeyup="passwordCheckFunction()"
 										id="user_password" style="float: left;"
-										placeholder="비밀번호를 입력하세요" value="${getUserDetail.user_password}" /></td>
+										placeholder="비밀번호를 입력하세요" value="" /></td>
 								</tr>
 								<tr>
 									<th>비밀번호확인</th>

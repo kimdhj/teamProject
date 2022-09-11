@@ -69,7 +69,7 @@ public class AdminAccountController {
 			
 			return "admin_member_List";
 		} else {
-			return "admin_login.mdo";
+			return "redirect:admin_login.mdo";
 		}
 		
 	}
@@ -118,6 +118,7 @@ public class AdminAccountController {
 	public String updateUserAccount(AdminUserVO vo) throws Exception {
 		System.out.println("계정정보 수정");
 		System.out.println("뭐가뭐가들어갔나" + vo);
+		vo.setUser_password(bCryptPasswordEncoder.encode(vo.getUser_password()));
 		adminAccountService.updateUserAccount(vo);
 		return "redirect:getAdmin_member_List.mdo";
 	}
