@@ -33,7 +33,7 @@
 		as sum, @rownum:=@rownum+1 as rnum from book as b join order_bookList
 		as bl on b.book_seq=bl.book_seq]]>
 		<trim prefix="WHERE" prefixOverrides="AND |OR">
-		
+
 			<if test="category != 0"><![CDATA[AND category_num =#{category}]]></if>
 			<if test="country == 1"><![CDATA[AND category_num >200]]></if>
 			<if test="country == 2"><![CDATA[AND category_num <200]]></if>
@@ -64,20 +64,21 @@
 		<if test="country != 1"><![CDATA[AND category_num <200]]></if><![CDATA[) E where rnum>(#{page}-1)*5 AND rnum<=#{page}*5 order by
 		book_seq]]>
 	</select>
-	<select parameterType="booksearchVO" resultType="int" id="newcount">
+	<select parameterType="booksearchVO" resultType="int"
+		id="newcount">
 		<![CDATA[select count(*) from book where book_publish_date >(current_date()-INTERVAL 1 YEAR)]]>
 		<if test="category != 0"><![CDATA[AND category_num =#{category}]]></if>
-			<if test="country != 2"><![CDATA[AND category_num >200]]></if>
-			<if test="country != 1"><![CDATA[AND category_num <200]]></if>
+		<if test="country != 2"><![CDATA[AND category_num >200]]></if>
+		<if test="country != 1"><![CDATA[AND category_num <200]]></if>
 	</select>
 	<select resultType="bookVO" parameterType="booksearchVO"
 		id="mainbest">
-		<![CDATA[select * from (select * from (select
-		b.book_imgURL,b.book_price,b.category_num,b.book_bigimgURL,b.book_title,b.book_descript,b.book_seq,sum(order_bookList_count)
-		as sum, @rownum:=@rownum+1 as rnum from book as b join order_bookList
+		<![CDATA[select * from (select *,@rownum:=@rownum+1 as rnum from (select
+		b.book_imgURL,b.book_price,b.category_num,b.book_bigimgURL,b.book_title,b.book_descript,b.book_seq,b.book_publish_date,sum(order_bookList_count)
+		as sum from book as b left join order_bookList
 		as bl on b.book_seq=bl.book_seq
 		 group by b.book_seq) D , (SELECT
-		@rownum:=0) TMP where sum>10 ) ag where rnum>(#{page}-1)*8 AND
+		@rownum:=0) TMP where sum>10) ag where rnum>(#{page}-1)*8 AND
 		rnum<=#{page}*8 order by sum desc,book_seq   ]]>
 	</select>
 	<select resultType="bookVO" parameterType="booksearchVO"

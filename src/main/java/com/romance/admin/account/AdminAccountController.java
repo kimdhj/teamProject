@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,18 +22,20 @@ public class AdminAccountController {
 	
 	@Autowired
 	private AdminAccountService adminAccountService;
+	@Autowired
+	BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	@ModelAttribute("conditionMap")
 	public Map<String, String> searchConditionMap() {
 		Map<String, String> conditionMap = new HashMap<>();
-		conditionMap.put("이름", "USER_NAME");
 		conditionMap.put("아이디", "USER_ID");
-		
+		conditionMap.put("이름", "USER_NAME");
+
 		return conditionMap;
 	}
-	
+		
 	@GetMapping("getAdmin_member_List.mdo")
-	public String getUserList(Criteria criteria, Model model) throws Exception {
+	public String getUserListWithPaging(Criteria criteria, Model model) throws Exception {
 		System.out.println("관리자에서 회원목록 처리");
 		System.out.println("검색 조건 : " + criteria.getSearchCondition());
 		System.out.println("검색 단어 : " + criteria.getSearchKeyword());
@@ -49,10 +52,12 @@ public class AdminAccountController {
 		Pagination pagination = new Pagination();
 		pagination.setCriteria(criteria);
 		pagination.setTotalCount(adminAccountService.totalCount(criteria));
+		System.out.println("페이지네이션 토탈카운트" + pagination.getTotalCount());
 //		System.out.println("totalCount : " + pagination.getTotalCount());
 //		System.out.println("startPage : " + pagination.getStartPage());
 //		System.out.println("endPage : " + pagination.getEndPage());
 		System.out.println(pagination);
+		System.out.println("현재페이지" + criteria.getPageNum());
 		model.addAttribute("pagination", pagination);
 		model.addAttribute("adminUserListWithPaging", adminAccountService.getUserListWithPaging(criteria));
 		
@@ -68,7 +73,7 @@ public class AdminAccountController {
 	}
 	
 	@GetMapping("getAdmin_admin_List.mdo")
-	public String getAdminList(Criteria criteria, Model model) throws Exception {
+	public String getAdminListWithPaging(Criteria criteria, Model model) throws Exception {
 		System.out.println("Mybatis로 adminList 기능 처리");
 		
 		if(criteria.getSearchCondition() == null) {
@@ -83,16 +88,25 @@ public class AdminAccountController {
 		pagination.setTotalCount(adminAccountService.adminTotalCount(criteria));
 		model.addAttribute("pagination", pagination);
 		model.addAttribute("adminListWithPaging", adminAccountService.getAdminListWithPaging(criteria));
-		
 		return "admin_admin_List";
 	}
 	
 	@PostMapping("insertAdminAccount.mdo")
 	public String insertAdminAccount(AdminUserVO vo) throws Exception {
 		System.out.println("관리자 계정 생성");
+		System.out.println(vo);
+		vo.setUser_password(bCryptPasswordEncoder.encode(vo.getUser_password()));
 		adminAccountService.insertAdminAccount(vo);
 		
 		return "redirect:getAdmin_admin_List.mdo";
+	}
+	
+	@PostMapping("updateUserAccount.mdo")
+	public String updateUserAccount(AdminUserVO vo) throws Exception {
+		System.out.println("계정정보 수정");
+		System.out.println("뭐가뭐가들어갔나" + vo);
+		adminAccountService.updateUserAccount(vo);
+		return "redirect:getAdmin_member_List.mdo";
 	}
 	
 	@PostMapping("idCheck.mdo")

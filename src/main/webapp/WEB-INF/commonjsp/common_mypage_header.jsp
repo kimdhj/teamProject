@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+ <!-- 요기서부터 마이페이지 새 헤더 -->
  <!-- Page Header Start -->
     <div class="container-fluid page-header wow fadeIn" data-wow-delay="0.1s">
         <div class="container">
@@ -23,11 +27,13 @@
                 <h1 class="display-5 mb-3">My Page</h1>
                 <p>Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed rebum vero dolor duo.</p>
             </div>
+            
             <!-- 마이페이지 메인 헤더 -->
             <div class="row g-5 justify-content-center">
                 <div class="col-lg-12 col-md-12 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="bg-light text-black d-flex flex-column justify-content-center h-100 p-3">
-
+			<!-- 요기까지 마이페이지 새 헤더 -->
+						<!-- 요기서부터 동적 헤더 -->
                         <!-- 메인페이지 헤더 내용 -->
                         <div class="container">
                             <div class="row">
@@ -39,19 +45,24 @@
                                         <div class="container">
                                             <div class="row justify-content-center">
                                                 <div class="col-md-auto align-self-center">
-                                                    <a class="fs-4 text-dark">이승재 님
+                                                    <a class="fs-4 text-dark">${user_name }&nbsp;님
 
                                                     </a>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- 	컨트롤러에 HttpSession session, JwtUtils util 매개변수 받아 쓰시면 됩니다!
+                                    		UserVO userVO = util.getuser(session);
+											model.addAttribute("user_name", userVO.getUser_name());
+											model.addAttribute("user_point", userVO.getUser_point());
+											model.addAttribute("cou", couponService.owncoupon(userVO)); -->
                                     <div class="col-4">
                                         <div class="container">
                                             <div class="row justify-content-center">
                                                 <div class="col-md-auto align-self-center">
                                                     <a class="fs-6 text-dark">할인쿠폰</a>&nbsp;&nbsp;<a href=""
-                                                        class="">22</a>장
+                                                        class="">${cou}</a>장
                                                 </div>
                                             </div>
                                         </div>
@@ -61,7 +72,7 @@
                                             <div class="row justify-content-center">
                                                 <div class="col-md-auto align-self-center">
                                                     <a class="fs-6 text-dark">마일리지</a>&nbsp;&nbsp;<a href=""
-                                                        class="">223,421,123</a>P
+                                                        class=""><fmt:formatNumber value="${user_point }" type="number" /></a>P
                                                 </div>
                                             </div>
                                         </div>
@@ -70,6 +81,8 @@
                             </div>
                         </div>
                         <!-- 메인페이지 헤더 내용 끝 -->
+                        <!-- 요기까지 동적헤더 -->
+           	<!-- 요기서부터 사이드바 -->
                     </div>
                 </div>
             </div>
@@ -155,10 +168,13 @@
                         <!-- 슬립 드롭다운 끝 -->
                     </div>
                 </div>
+                <!-- 요기까지 사이드바 -->
                 <!-- 우측하단 시작 -->
                 <div class="col-lg-9 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
                     <br>
                     <p class="mb-4 fs-5 fw-bold"><img src="img/mypage_mainbtn.png" class="rounded float-start"
                             alt="...">&nbsp;마이 페이지
+                            <a href="my_cancelSub.do">
                         <button type="button" class="btn btn-secondary btn-sm float-end">구독취소</button>
+                            </a>
                     </p>

@@ -28,7 +28,7 @@
 			<!-- 집모양 여기부터 -->
 			<div class="sidebar-body">
 				<ul class="sidebar-body-menu">
-					<li><a class="active" href="/"><span class="icon home"
+					<li><a class="active" href="/adminMain.mdo"><span class="icon home"
 							aria-hidden="true"></span>Dashboard</a></li>
 					<li><a class="show-cat-btn" href="##"> <span
 							class="icon user-3" aria-hidden="true"></span>회원관리 <span

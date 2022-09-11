@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -132,11 +133,11 @@
 			</div>
 			<div class="col-md-6">
 				<div class="card border-light">
-					<div class="card-header">Header</div>
+					<div class="card-header">일반회원 ${getSubRatio.normal_cnt}명</div>
 					<div class="card-body">
 						
 					</div>
-					<div class="card-footer">footer</div>
+					<div class="card-footer">구독자 ${getSubRatio.sub_cnt}명</div>
 				</div>
 			</div>
 		</div>

@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.romance.admin.sub.SubscribeService;
+import com.romance.admin.sub.SubscribeVO;
 import com.romance.server.AwsS3;
 
 
@@ -23,7 +25,11 @@ import com.romance.server.AwsS3;
 public class EventController {
     @Autowired
     private EventService eventService;
+    @Autowired
+    private SubscribeService subscribeService;
 
+    
+//검색이었던 부분    
 //    @RequestMapping("/dataTransform.do")
 //    @ResponseBody
 //    public BoardListVO dataTransform(BoardVO vo) {
@@ -42,12 +48,15 @@ public class EventController {
 //        conditionMap.put("내용", "CONTENT");
 //        return conditionMap;
 //    }
+    
+    
 	@RequestMapping("moveInsert.mdo")
 	public String moveInsert(EventVO vo, Model model) {
 		model.addAttribute("top_check", eventService.topCheck(vo));
 		return "admin_marketing_EventInsert";
 	}
     
+	//insert페이지에서 insert 수행
 	@RequestMapping(value = "insertEvent.mdo", method = RequestMethod.POST)
 	public String insertEvent(@RequestParam(name="uploadFile1") MultipartFile uploadFile1, @RequestParam(name="uploadFile2") MultipartFile uploadFile2, @RequestParam(name="uploadFile3") MultipartFile uploadFile3, @RequestParam(name="uploadFile4") MultipartFile uploadFile4, @RequestParam(name="uploadThumbnail") MultipartFile uploadThumbnail, EventVO vo) throws IOException {
 		System.out.println("글 등록 처리");
@@ -122,6 +131,7 @@ public class EventController {
 		return "redirect:getEventList.mdo";
 	}
 
+	
 	@RequestMapping(value="/updateEvent.mdo", method = RequestMethod.POST)
 	public String updateEvent(@RequestParam(name="uploadFile1") MultipartFile uploadFile1, @RequestParam(name="uploadFile2") MultipartFile uploadFile2, @RequestParam(name="uploadFile3") MultipartFile uploadFile3, @RequestParam(name="uploadFile4") MultipartFile uploadFile4, @RequestParam(name="uploadThumbnail") MultipartFile uploadThumbnail, EventVO vo) throws IllegalStateException, IOException {
 		System.out.println("글 수정 기능 처리");
@@ -195,6 +205,8 @@ public class EventController {
 		return "redirect:getEventList.mdo";
 	}
 
+	
+	//삭제!
 	@RequestMapping("/deleteEvent.mdo")
 	public String deleteEvent(EventVO vo) {
 		System.out.println("글 삭제 처리");
@@ -202,6 +214,7 @@ public class EventController {
 		return "redirect:getEventList.do";
 	}
 
+	//유저가 이벤트 상세보기
 	@RequestMapping("/getEvent.do")
 	public String getEvent(EventVO vo, Model model, @RequestParam("event_seq")int seq) {
 		System.out.println("글 상세 보기 처리");
@@ -210,6 +223,7 @@ public class EventController {
 		return "event_Detail";
 	}
 	
+	//관리자가 이벤트 상세보기
 	@RequestMapping("/getEvent.mdo")
 	public String getAdminEvent(EventVO vo, Model model, @RequestParam("event_seq")int seq) {
 		System.out.println("글 상세 보기 처리");
@@ -217,6 +231,7 @@ public class EventController {
 		return "admin_marketing_EventUpdate";
 	}
 
+	//유저 이벤트 리스트 보기
 	@RequestMapping("/getEventList.do")
 	public String getEventList(EventVO vo, Model model) {
 		System.out.println("글 목록 검색 처리");
@@ -230,6 +245,8 @@ public class EventController {
 
 		return "event_List";
 	}
+	
+	//관리자 이벤트 리스트 보기
 	@RequestMapping("/getEventList.mdo")
 	public String getAdminEventList(EventVO vo, Model model) {
 		System.out.println("글 목록 검색 처리");
@@ -244,6 +261,7 @@ public class EventController {
 		return "admin_marketing_EventList";
 	}
 
+	//
 	@RequestMapping(value="/ajax_list.mdo", method=RequestMethod.POST)
 	@ResponseBody
 	public List<String> ajaxList(@RequestParam(value="event_seq[]", required=false)List<String> event_seq) {
@@ -278,9 +296,10 @@ public class EventController {
 	return "event_Roulette";
 	}
 	
-	@RequestMapping("/event_Subscribe.do")
-	public String goSub(EventVO vo, Model model){
+	@RequestMapping("/event_Sub.do")
+	public String goSub(EventVO vo, Model model, SubscribeVO svo){
 		eventService.countCnt(vo.getEvent_seq());
+		model.addAttribute("sub", subscribeService.getSub(svo));
 		model.addAttribute("event_event", eventService.getEvent(vo));
 		return "event_Subscribe";
 	}

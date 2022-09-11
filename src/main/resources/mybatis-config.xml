@@ -65,11 +65,13 @@
 			alias="userVO" />
 			<typeAlias type="com.romance.user.orders.OrderBookListVO"
 			alias="orderbooklistVO" />
+		<typeAlias type="com.romance.admin.dashboard.DashVO" alias="dashVO" />
+
 			<typeAlias type="com.romance.user.orders.OrdersVO"
 			alias="ordersVO" />
 
-
-
+<typeAlias type="com.romance.user.usecategory.UserCategoryVO"
+			alias="usercategoryVO" />
 	</typeAliases>
 	<mappers>
 		<!-- <mapper resource="mappings/board-mapping.xml" /> -->
@@ -92,6 +94,7 @@
 		<mapper resource="mappings/bucket-mapping.xml" />
 		<mapper resource="mappings/login-mapping.xml" />
 		<mapper resource="mappings/order-mapping.xml" />
-
+		<mapper resource="mappings/admin-dashboard.xml" />
+		<mapper resource="mappings/usercategory-mapping.xml" />
 	</mappers>
 </configuration>

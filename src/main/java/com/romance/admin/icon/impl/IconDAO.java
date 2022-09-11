@@ -1,5 +1,7 @@
 package com.romance.admin.icon.impl;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -13,22 +15,34 @@ public class IconDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 	
-	public IconVO getIcon(IconVO vo) {
+	public IconVO getIcon() {
 		System.out.println("---> MyBatis로 getEvent() 기능 처리");
-		return (IconVO) sqlSessionTemplate.selectOne("iconDAO.getIcon");
+		return sqlSessionTemplate.selectOne("iconDAO.getIcon");
 	}
 
-	public BannerVO getBanner(BannerVO vo) {
+	public List<BannerVO> getBanner() {
 		System.out.println("---> MyBatis로 getEvent() 기능 처리");
-		return (BannerVO) sqlSessionTemplate.selectOne("BannerDAO.getBanner", vo);
+		return sqlSessionTemplate.selectList("BannerDAO.getBanner");
 	}
 	
-	public void updateIcon(IconVO vo) {
-		sqlSessionTemplate.update("iconDAO.updateIcon",vo);
+	public void deleteIcon() {
+		sqlSessionTemplate.delete("iconDAO.deleteIcon");
+	}
+	
+	public void insertIcon(IconVO vo) {
+		sqlSessionTemplate.insert("iconDAO.insertIcon",vo);
 	}
 
-	public void updateBanner(BannerVO vo) {
-		sqlSessionTemplate.update("BannerDAO.updateBanner",vo);
+	public void deleteBanner() {
+		sqlSessionTemplate.delete("BannerDAO.deleteBanner");
+	}
+	
+	public List<String> getFileAddress() {
+		return sqlSessionTemplate.selectList("BannerDAO.getFileAddress");
+	}
+	
+	public void insertBanner(BannerVO vo) {
+		sqlSessionTemplate.insert("BannerDAO.insertBanner",vo);
 	}
 	
 }
