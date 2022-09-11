@@ -1,3 +1,7 @@
+.note-resizebar{
+	display: none;
+}
+
 #main_wrapper * {
 	 font-size: 1.3vw;
 	 word-break: keep-all;
