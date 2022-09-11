@@ -22,6 +22,23 @@
 		)
 	</insert>
 	<update parameterType="String" id="loginday">
-		update user set user_login_day=CURRENT_TIMESTAMP where user_id=#{user_id}
+		update user set
+		user_login_day=CURRENT_TIMESTAMP where user_id=#{user_id}
+	</update>
+	<select parameterType="userVO" resultType="userVO" id="findid">
+		select * from user where user_name=#{user_name}
+		<if test="user_phone!=null and user_phone!=''"> AND user_phone=#{user_phone}</if>
+		<if test="user_email!=null and user_email!=''"> AND user_email=#{user_email}</if>
+	</select>
+	<select parameterType="userVO" resultType="int"
+		id="findpassword">
+		select count(*) from user where user_name=#{user_name} AND
+		user_id=#{user_id}
+		<if test="user_phone!=null"> AND user_phone=#{user_phone}</if>
+		<if test="user_email!=null"> AND user_email=#{user_email}</if>
+	</select>
+	<update parameterType="userVO" id="passwordin">
+		update user set user_password=#{user_password} where user_id=#{user_id}
+
 	</update>
 </mapper>
