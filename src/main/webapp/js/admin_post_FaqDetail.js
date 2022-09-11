@@ -21,7 +21,7 @@ $().ready(function () {
                 	showConfirmButton: false,
                 	timer: 1500,
                 })
-                location.href="/admin_post_Faq.mdo";
+                location.href="/FaqList.mdo";
             }else if(result.isDismissed){
             	return false;
             }

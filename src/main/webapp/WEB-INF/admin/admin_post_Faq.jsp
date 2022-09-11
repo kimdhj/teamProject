@@ -92,7 +92,7 @@
 							class="btn bg-blue text-white rounded-pill col">검색</button>
 						&nbsp;&nbsp;
 						<button id="add_btn"
-							class="btn bg-blue text-white rounded-pill col">추가</button>
+							class="btn bg-blue text-white rounded-pill col" onclick="location.href='/FaqInsert.mdo'">추가</button>
 					</div>
 				</div>
 			</div>
@@ -124,7 +124,7 @@
 							
 							<td>
 								<p class="rowColumn" id="ask">
-									<a href="/admin_post_FaqDetail.mdo?FAQ_seq=${faq.FAQ_seq}&seq=${allCount}">
+									<a href="/FaqDetail.mdo?FAQ_seq=${faq.FAQ_seq}&seq=${allCount}">
 										${faq.FAQ_ask }
 									</a>
 								</p>
@@ -152,7 +152,7 @@
 							</c:if>
 
 							<c:if test="${allPage eq i}">
-								<li class="page-item active" aria-current="page"><a href="/admin_post_Faq.mdo?page=${i}&ask=${allSvo.ask}&seq=${allSvo.seq}" class="page-link">${i}</a></li>
+								<li class="page-item active" aria-current="page"><a href="/FaqList.mdo?page=${i}&ask=${allSvo.ask}&seq=${allSvo.seq}" class="page-link">${i}</a></li>
 							</c:if>
 						</c:forEach>
 						 

@@ -23,13 +23,14 @@
 			<div class="row d-flex align-items-center" id="input_line_top">
 				<div class="col-1 mt-2 mb-2 notice_font" style="text-align: center;">제목</div>
 				<div class="col-3 " style="padding-left: 0px;">
-					<input type="text" name="notice_title" id="title" value="${notice.notice_title }"
-						style="width: 90%; margin-top: 2%; margin-bottom: 2%;">
+					<input type="text" name="notice_title" id="title" style="width: 90%; margin-top: 2%; margin-bottom: 2%;">
 				</div>
+				
 				<div class="col-1 notice_font" style="padding-right: 0px; text-align: center;" >파일첨부</div>
 				<div class="col-3 " style="padding-left: 0px;">
-					<input type="file" name="notice_file" style="margin-top: 2%; margin-bottom: 2%;" id="file">${notice.notice_fileName }
+					<input type="file" name="notice_file" style="margin-top: 2%; margin-bottom: 2%;" id="file">
 				</div>
+				
 				<div class="col-1 notice_font" style="padding-right: 0px; text-align: center;" >작성자</div>
 				<div class="col-3 " style="padding-left: 0px;">
 					<input type="text" id="writer" name="notice_writer" readonly value="${user }" style="margin-top: 2%; margin-bottom: 2%;">
@@ -39,21 +40,20 @@
 				<!-- 여기 부분 -->
 				<div class="col-1 mb-2 notice_font" style="text-align: center;">번호</div>
 					<div class="col-3 mb-2" style="padding-left: 0px;" id="seq">
-						${notice.notice_seq}
 					</div>
 					
 				<div class="col-1 mb-2 notice_font" style="text-align: center;">지점</div>
 				<div class="col-3 mb-2" style="padding-left: 0px;">
-					<input type="text" value="${notice.notice_location }" id="location" name="notice_location" style="width: 90%; margin-top: 2%; margin-bottom: 2%;"/>
+					<input type="text" id="location" name="notice_location" style="width: 90%; margin-top: 2%; margin-bottom: 2%;"/>
 				</div>
 				<div class="col-1 mb-2 notice_font" style="padding-right: 0px; text-align: center;">등록일자</div>
-				<div class="col mb-2" style="padding-left: 0px;" >${notice.notice_date }</div>
+				<div class="col mb-2" style="padding-left: 0px;" ></div>
 			</div>
 		</div>
 		<div id="all_box" class="bg-white w-100 2all_box">
 			<div class="row d-flex align-items-center" id="input_line_top">
 				<div class="row"></div>
-				<div class="summernote" >${notice.notice_content }</div>
+				<div class="summernote" ></div>
 				<input type="hidden" id="content" name="notice_content"/>
 			</div>
 		</div>
