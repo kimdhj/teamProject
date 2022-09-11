@@ -22,15 +22,34 @@ public class FaqDAO {
 		return sqlSession.selectOne("FaqDAO.getCount", svo);
 	}
 	
-	public void delete(FaqVO vo) {
-		sqlSession.delete("FaqDAO.delete", vo);
-	}
-	
 	public void chkboxDelete(int FAQ_seq) {
 		sqlSession.delete("FaqDAO.chkboxDelete", FAQ_seq);
 	}
 	
 	public FaqVO getFaq(FaqVO vo) {
 		return sqlSession.selectOne("FaqDAO.getFaq", vo);
+	}
+	
+	public void delete(FaqVO vo) {
+		sqlSession.delete("FaqDAO.delete", vo);
+	}
+	
+	public void insert(FaqVO vo) {
+		sqlSession.insert("FaqDAO.insert", vo);
+	}
+	
+	public void update(FaqVO vo) {
+		sqlSession.update("FaqDAO.update", vo);
+	}
+	
+	public boolean checkPW(FaqVO vo) {
+		boolean result = false;
+		
+		int count = sqlSession.selectOne("FaqDAO.checkPW", vo);
+		
+		if(count == 1)
+			result = true;
+		
+		return result;
 	}
 }

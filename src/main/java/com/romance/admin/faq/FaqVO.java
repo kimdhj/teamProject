@@ -11,6 +11,7 @@ public class FaqVO {
 	private String FAQ_smallsort;
 	private String FAQ_ask;
 	private String FAQ_answer;
-	private MultipartFile FAQ_file;
+	private MultipartFile FAQ_file; // Server 파일
+	private String FAQ_fileName; // DB 파일
 	private String FAQ_passwd;
 }

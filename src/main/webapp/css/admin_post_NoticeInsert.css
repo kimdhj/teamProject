@@ -75,3 +75,7 @@ animation: none;
 .note-frame{
 	border: 0px !important;
 }
+
+.note-resizebar{
+	display: none;
+}
