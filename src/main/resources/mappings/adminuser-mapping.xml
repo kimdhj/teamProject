@@ -32,6 +32,10 @@
 		SELECT user_id, user_password, user_name, user_role FROM user WHERE user_id = #{user_id} 
 	</select>
 	
+	<update id="loginDay" parameterType="String">
+		UPDATE user SET user_login_day = CURRENT_TIMESTAMP where user_id=#{user_id};
+	</update>
+	
 	<select id="getUserDetail" parameterType="adminUserVO" resultMap="adminUserResult">
 		SELECT a.*, b.user_coupon_cnt FROM user a LEFT JOIN (SELECT user_id, COUNT(user_id) AS user_coupon_cnt FROM user_coupon) b ON a.user_id = b.user_id
 		WHERE a.user_id = #{user_id}
