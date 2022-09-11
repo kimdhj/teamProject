@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,16 +22,18 @@ public class AdminAccountController {
 	
 	@Autowired
 	private AdminAccountService adminAccountService;
+	@Autowired
+	BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	@ModelAttribute("conditionMap")
 	public Map<String, String> searchConditionMap() {
 		Map<String, String> conditionMap = new HashMap<>();
-		conditionMap.put("이름", "USER_NAME");
 		conditionMap.put("아이디", "USER_ID");
-		
+		conditionMap.put("이름", "USER_NAME");
+
 		return conditionMap;
 	}
-	
+		
 	@GetMapping("getAdmin_member_List.mdo")
 	public String getUserListWithPaging(Criteria criteria, Model model) throws Exception {
 		System.out.println("관리자에서 회원목록 처리");
@@ -91,9 +94,19 @@ public class AdminAccountController {
 	@PostMapping("insertAdminAccount.mdo")
 	public String insertAdminAccount(AdminUserVO vo) throws Exception {
 		System.out.println("관리자 계정 생성");
+		System.out.println(vo);
+		vo.setUser_password(bCryptPasswordEncoder.encode(vo.getUser_password()));
 		adminAccountService.insertAdminAccount(vo);
 		
 		return "redirect:getAdmin_admin_List.mdo";
+	}
+	
+	@PostMapping("updateUserAccount.mdo")
+	public String updateUserAccount(AdminUserVO vo) throws Exception {
+		System.out.println("계정정보 수정");
+		System.out.println("뭐가뭐가들어갔나" + vo);
+		adminAccountService.updateUserAccount(vo);
+		return "redirect:getAdmin_member_List.mdo";
 	}
 	
 	@PostMapping("idCheck.mdo")

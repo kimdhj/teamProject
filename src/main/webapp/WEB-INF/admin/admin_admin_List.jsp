@@ -164,7 +164,7 @@
 								<tr>
 									<th>연락처</th>
 									<td colspan=2><input class="form-control" type="text"
-										id="user_phone" name="user_phone" maxlength="13" style="float: left;"
+										id="user_phone" name="user_phone" maxlength="11" style="float: left;"
 										placeholder="전화번호를 입력하세요" /></td>
 								</tr>
 								<tr>

@@ -48,4 +48,9 @@ public class AdminAccountDAO {
 		return sqlSessionTemplate.selectOne("AdminUserDAO.idCheck", user_id);
 	}
 	
+	public void updateUserAccount(AdminUserVO vo) {
+		System.out.println("Mybatis로 updateUserAccount 기능 처리");
+		sqlSessionTemplate.update("AdminUserDAO.updateUserAccount", vo);
+	}
+	
 }

@@ -24,4 +24,7 @@ public interface AdminAccountService {
 	
 	//아이디 중복체크
 	public int idCheck(String user_id) throws Exception;
+	
+	//계정정보 수정
+	public void updateUserAccount(AdminUserVO vo) throws Exception;
 }

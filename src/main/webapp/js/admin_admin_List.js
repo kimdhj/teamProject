@@ -37,8 +37,8 @@ function adminAccountCheck() { //유효성 검사
 	const reg_email = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
 	
 	//전화번호
-	const reg_mobile = /^\d{3}-\d{3,4}-\d{4}$/; //휴대전화
-	const reg_tel = /^\d{2,3}-\d{3,4}-\d{4}$/; //일반전화
+	const reg_mobile = /^\d{3}\d{3,4}\d{4}$/; //휴대전화
+	const reg_tel = /^\d{2,3}\d{3,4}\d{4}$/; //일반전화
 	
 	//주민번호
 	const reg_registrationNum = /([0-9]{2}(0[1-9]|1[0-2])(0[1-9]|[1,2][0-9]|3[0,1]))/; //주민번호
@@ -87,7 +87,7 @@ function adminAccountCheck() { //유효성 검사
 		return false;
 	}
 	if(!reg_mobile.test(user_phone.value) && !reg_tel.test(user_phone.value)){
-		alert("전화번호 형식에 맞게 다시 입력하세요 (ex : 010-1234-1234)");
+		alert("전화번호 형식에 맞게 다시 입력하세요 (ex : 01012341234)");
 		user_phone.focus();
 		return false;
 	}
@@ -102,6 +102,12 @@ function adminAccountCheck() { //유효성 검사
 		user_email.focus();
 		return false;
 	}	
+	
+	if(confirm("정말 등록하시겠습니까?") == true) {
+		alert("등록이 완료되었습니다.")
+	} else {
+		return false;
+	}
 	
 }//유효성검사 끝
 
