@@ -18,6 +18,7 @@ public class CheckToken {
 		}
 	}
 	
+	
 	public static int isTokenAdmin(HttpSession session, JwtUtils util) {
 		AdminUserVO vo = util.getAdmin(session);
 		if(vo != null) {
