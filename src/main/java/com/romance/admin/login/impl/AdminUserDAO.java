@@ -17,4 +17,9 @@ public class AdminUserDAO {
 		return sqlSessionTemplate.selectOne("AdminUserDAO.getUser", vo);
 	}
 	
+	public void loginDay(String user_id) {
+		System.out.println("Mybatis로 loginDay() 기능 처리");
+		sqlSessionTemplate.update("AdminUserDAO.loginDay", user_id);
+	}
+	
 }

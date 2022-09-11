@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <html>
 <head>
 <jsp:include page="/WEB-INF/admin_commonjsp/admin_common_head.jsp"></jsp:include>
@@ -16,7 +18,7 @@
 		<div class="mb-0 p-0">
 			<button onclick="location.reload();" id="all" class="select p-2">FAQ 상세보기</button>
 		</div>
-
+		
 		<div id="all_box" class="bg-white w-100">
 			<div class="row d-flex align-items-center" id="input_line_top">
 				<div class="col-1"></div>
@@ -39,25 +41,42 @@
 				
 				<div class="row"></div>
 					<div class="col-1" style="font-weight: bolder; font-size: 1.2vw; margin-left: 8%; margin-bottom: 1%; padding-left: 0; padding-right: 0;">FAQ 제목</div>
-					<div class="col-6" style="padding-left: 0;  margin-bottom: 1%; font-size: 1.2vw; font-weight: light;">
-						<input id="input" class="col-6" type="text" style="text-align: center; width: 100%;" value="${faq.FAQ_ask }" readonly/>
+					<div class="col-4" style="padding-left: 0;  margin-bottom: 1%; font-size: 1.2vw; font-weight: light;">
+						<input id="input" class="col-6" name="FAQ_ask" type="text" style="text-align: center; font-size:1.3vw; width: 100%;" value="${faq.FAQ_ask }" readonly/>
+					</div>
+					
+					<div class="col-1" style="font-weight: bolder; font-size: 1.3vw; padding-right: 0px; text-align: center; margin-right: 1%; " >파일첨부</div>
+					<div class="col-2 " style="padding-left: 0px;">
+						<c:set var = "length" value = "${fn:length(one) - 36}"/>
+						<c:set var = "faqName" value = "${fn:substring(one, 0, length)}" />
+							${faqName }
 					</div>
 			</div>
 		</div>
 		<div id="all_box" class="bg-white w-100">
 			<div class="row d-flex align-items-center" id="input_line_top">
-				<div class="row" id="content">${faq.FAQ_answer }</div>
+				<div class="row" id="content" style="margin-left: 1%;">
+					<c:if test="${not empty faq.FAQ_fileName}">
+						<img src="${faq.FAQ_fileName }" id="img"/>
+					</c:if>
+					${faq.FAQ_answer }
+				</div>
 			</div>
 		</div>
 
 		<div class="row d-flex justify-content-between mt-2 mb-2" id="buttons">
 			<div class="col-5"></div>
 			<div class="row col-5">
-				<button class="col-auto bg-white border-1" onclick="location.href='/admin_post_FaqUpdate.mdo?Faq_seq=${faq.FAQ_seq}&seq=${svo.seq }'">수정</button>
+				<button class="col-auto bg-white border-1" onclick="location.href='/FaqUpdate.mdo?FAQ_seq=${faq.FAQ_seq}&seq=${svo.seq }'">수정</button>
 				<button class="col-auto bg-white border-1 faqlist">목록</button>
 			</div>
 			<div class="col-2"></div>
 		</div>
+		
+		<input type="hidden" value="${faq.FAQ_seq }" name="FAQ_seq" id="FAQ_seq">
+		<input type="hidden" value="${faq.FAQ_bigsort }" name="FAQ_bigsort" id="bigsort">
+		<input type="hidden" value="${faq.FAQ_smallsort }" name="FAQ_smallsort" id="smallsort">
+		
 		
 	</div>
 

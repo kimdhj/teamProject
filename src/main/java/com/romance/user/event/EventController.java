@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.romance.admin.sub.SubscribeService;
+import com.romance.admin.sub.SubscribeVO;
 import com.romance.server.AwsS3;
 
 
@@ -23,6 +25,8 @@ import com.romance.server.AwsS3;
 public class EventController {
     @Autowired
     private EventService eventService;
+    @Autowired
+    private SubscribeService subscribeService;
 
     
 //검색이었던 부분    
@@ -292,9 +296,10 @@ public class EventController {
 	return "event_Roulette";
 	}
 	
-	@RequestMapping("/event_Subscribe.do")
-	public String goSub(EventVO vo, Model model){
+	@RequestMapping("/event_Sub.do")
+	public String goSub(EventVO vo, Model model, SubscribeVO svo){
 		eventService.countCnt(vo.getEvent_seq());
+		model.addAttribute("sub", subscribeService.getSub(svo));
 		model.addAttribute("event_event", eventService.getEvent(vo));
 		return "event_Subscribe";
 	}

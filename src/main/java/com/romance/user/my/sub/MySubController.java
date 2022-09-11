@@ -74,4 +74,12 @@ public class MySubController {
 		return "my_AddReadModify";
 	}
 	
+	//마이페이지 상품관리
+	@RequestMapping("my_product.mdo")
+	public String my_product() {
+		
+		return "admin_product";
+	}
+	
+	
 }

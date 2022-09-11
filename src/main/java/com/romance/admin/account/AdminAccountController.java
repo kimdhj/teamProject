@@ -3,7 +3,10 @@ package com.romance.admin.account;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.romance.admin.login.AdminUserVO;
+import com.romance.admin.login.CheckToken;
+import com.romance.security.JwtUtils;
 
 @Controller
 @RequestMapping("/")
@@ -21,6 +26,8 @@ public class AdminAccountController {
 	
 	@Autowired
 	private AdminAccountService adminAccountService;
+	@Autowired
+	BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	@ModelAttribute("conditionMap")
 	public Map<String, String> searchConditionMap() {
@@ -32,41 +39,50 @@ public class AdminAccountController {
 	}
 		
 	@GetMapping("getAdmin_member_List.mdo")
-	public String getUserListWithPaging(Criteria criteria, Model model) throws Exception {
-		System.out.println("관리자에서 회원목록 처리");
-		System.out.println("검색 조건 : " + criteria.getSearchCondition());
-		System.out.println("검색 단어 : " + criteria.getSearchKeyword());
-		System.out.println("현재 페이지 : " + criteria.getPageNum());
-		System.out.println("한페이지당 글 갯수 : " + criteria.getPerPageNum());;
+	public String getUserListWithPaging(Criteria criteria, Model model, HttpSession session, JwtUtils utils) throws Exception {
 		
-		if(criteria.getSearchCondition() == null) {
-			criteria.setSearchCondition("USER_ID");
+		if(CheckToken.isTokenAdmin(session, utils) == 1) { //토큰 반환값 1이면 토큰존재
+			System.out.println("관리자에서 회원목록 처리");
+			System.out.println("검색 조건 : " + criteria.getSearchCondition());
+			System.out.println("검색 단어 : " + criteria.getSearchKeyword());
+			System.out.println("현재 페이지 : " + criteria.getPageNum());
+			System.out.println("한페이지당 글 갯수 : " + criteria.getPerPageNum());;
+			
+			if(criteria.getSearchCondition() == null) {
+				criteria.setSearchCondition("USER_ID");
+			}
+			if(criteria.getSearchKeyword() == null) {
+				criteria.setSearchKeyword("");
+			}
+			System.out.println("셀렉트컨디션 : " + criteria.getSelectCondition());				
+			Pagination pagination = new Pagination();
+			pagination.setCriteria(criteria);
+			pagination.setTotalCount(adminAccountService.totalCount(criteria));
+			System.out.println("페이지네이션 토탈카운트" + pagination.getTotalCount());
+//			System.out.println("totalCount : " + pagination.getTotalCount());
+//			System.out.println("startPage : " + pagination.getStartPage());
+//			System.out.println("endPage : " + pagination.getEndPage());
+			System.out.println(pagination);
+			System.out.println("현재페이지" + criteria.getPageNum());
+			model.addAttribute("pagination", pagination);
+			model.addAttribute("adminUserListWithPaging", adminAccountService.getUserListWithPaging(criteria));
+			
+			return "admin_member_List";
+		} else {
+			return "admin_login.mdo";
 		}
-		if(criteria.getSearchKeyword() == null) {
-			criteria.setSearchKeyword("");
-		}
-		System.out.println("셀렉트컨디션 : " + criteria.getSelectCondition());				
-		Pagination pagination = new Pagination();
-		pagination.setCriteria(criteria);
-		pagination.setTotalCount(adminAccountService.totalCount(criteria));
-		System.out.println("페이지네이션 토탈카운트" + pagination.getTotalCount());
-//		System.out.println("totalCount : " + pagination.getTotalCount());
-//		System.out.println("startPage : " + pagination.getStartPage());
-//		System.out.println("endPage : " + pagination.getEndPage());
-		System.out.println(pagination);
-		System.out.println("현재페이지" + criteria.getPageNum());
-		model.addAttribute("pagination", pagination);
-		model.addAttribute("adminUserListWithPaging", adminAccountService.getUserListWithPaging(criteria));
 		
-		return "admin_member_List";
 	}
 	
 	@GetMapping("getAdmin_member_Detail.mdo")
-	public String getUserDetail(AdminUserVO vo,@ModelAttribute("criteria") Criteria criteria, Model model) {
-		
-		model.addAttribute("criteria", criteria);
-		model.addAttribute("getUserDetail", adminAccountService.getUserDetail(vo));
-		return "admin_member_Detail";
+	public String getUserDetail(AdminUserVO vo,@ModelAttribute("criteria") Criteria criteria, Model model, HttpSession session, JwtUtils utils) {
+		if(CheckToken.isTokenAdmin(session, utils) == 1) {
+			model.addAttribute("criteria", criteria);
+			model.addAttribute("getUserDetail", adminAccountService.getUserDetail(vo));
+			return "admin_member_Detail";
+		} else {
+			return "redirect:login.mdo";
+		}
 	}
 	
 	@GetMapping("getAdmin_admin_List.mdo")
@@ -91,6 +107,8 @@ public class AdminAccountController {
 	@PostMapping("insertAdminAccount.mdo")
 	public String insertAdminAccount(AdminUserVO vo) throws Exception {
 		System.out.println("관리자 계정 생성");
+		System.out.println(vo);
+		vo.setUser_password(bCryptPasswordEncoder.encode(vo.getUser_password()));
 		adminAccountService.insertAdminAccount(vo);
 		
 		return "redirect:getAdmin_admin_List.mdo";

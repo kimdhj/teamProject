@@ -3,6 +3,16 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="FaqDAO">
 
+	<resultMap id="faqResult" type="faq">
+		<result property="FAQ_seq" column="FAQ_seq" />
+		<result property="FAQ_bigsort" column="FAQ_bigsort" />
+		<result property="FAQ_smallsort" column="FAQ_smallsort" />
+		<result property="FAQ_ask" column="FAQ_ask" />
+		<result property="FAQ_answer" column="FAQ_answer" />
+		<result property="FAQ_fileName" column="FAQ_file" />
+		<result property="FAQ_passwd" column="FAQ_passwd" />
+	</resultMap>
+
 	<select id="getFaqList" resultType="faq" parameterType="faqSearch">
 		<![CDATA[SELECT * FROM(SELECT FAQ_seq, FAQ_bigsort, FAQ_smallsort, FAQ_ask, @rownum:=@rownum + 1 as rnum FROM FAQ, (SELECT @rownum:=0) TMP]]>
 			<trim prefix="WHERE" prefixOverrides="AND | OR">
@@ -42,22 +52,21 @@
 		DELETE FROM FAQ WHERE FAQ_seq = #{FAQ_seq}	
 	</delete>
 	
-	<select id="getFaq" parameterType="faq" resultType="faq">
+	<select id="getFaq" parameterType="faq" resultMap="faqResult">
 		SELECT * FROM FAQ WHERE FAQ_seq = #{FAQ_seq}
 	</select>
-
-<!-- 
-	<select id="selectDetail" parameterType="faq">
-		<![CDATA[SELECT * FROM FAQ]]>
-		<trim prefix="WHERE" prefixOverrides="AND | OR">
-			<if test="FAQ_bigsort != null">
-				<![CDATA[AND FAQ_bigsort = #{bigsort}]]>
-			</if>
-			<if test="FAQ_smallsort != null">
-				<![CDATA[AND FAQ_smallsort = #{smallsort}]]>
-			</if>
-		</trim>
+	
+	<insert id="insert" parameterType="faq">
+		INSERT INTO FAQ(FAQ_seq, FAQ_bigsort, FAQ_smallsort, FAQ_ask, FAQ_answer, FAQ_file, FAQ_passwd)
+		VALUES (null, #{FAQ_bigsort}, #{FAQ_smallsort}, #{FAQ_ask}, #{FAQ_answer}, #{FAQ_fileName}, #{FAQ_passwd})
+	</insert>
+	
+	<update id="update" parameterType="faq">
+		UPDATE FAQ SET FAQ_bigsort=#{FAQ_bigsort}, FAQ_smallsort=#{FAQ_smallsort}, FAQ_ask=#{FAQ_ask}, FAQ_file=#{FAQ_fileName}, FAQ_answer=#{FAQ_answer} WHERE FAQ_seq = #{FAQ_seq}
+	</update>
+	
+	<select id="checkPW" parameterType="faq" resultType="int">
+		SELECT COUNT(*) FROM FAQ WHERE FAQ_seq = #{FAQ_seq} AND FAQ_passwd = #{FAQ_passwd}
 	</select>
- -->	
 
 </mapper>

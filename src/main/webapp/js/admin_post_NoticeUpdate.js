@@ -36,15 +36,6 @@ function i(){
 	console.log($("#notice_content").val());
 };
 
-function goUpdate(frm){
-	var passwd = frm.notice_passwd.value;
-	if(notice_passwd() == ''){
-		alert("비밀번호를 입력해주세요!");
-		return false;
-	}
-	frm.submit();
-}
-
 $().ready(function () {
     $(".noticeupdate").click(function () {
     	Swal.fire({
@@ -191,7 +182,6 @@ $().ready(function () {
 init();
 
 function init(){ // html 로 인식하던 "" 을 value 로 인식시켜서 " 나 ' 를 사용 가능하도록 만들어줌
-	console.log("hi");
 	console.log($(".note-editable").text());
 	$("#notice_content").val($(".note-editable").text());
 	console.log($("#notice_content").val());

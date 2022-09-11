@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="NoticeDAO">
-		<resultMap id="noticeResult" type="notice">
+	<resultMap id="noticeResult" type="notice">
 		<result property="notice_seq" column="notice_seq" />
 		<result property="notice_title" column="notice_title" />
 		<result property="notice_writer" column="notice_writer" />
