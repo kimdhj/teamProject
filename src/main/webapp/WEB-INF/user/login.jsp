@@ -53,7 +53,7 @@
 
 		<div class="add-info row flex-column">
 
-			<a href="none.html">아이디/비밀번호 찾기</a> <a href="join.do">회원가입</a>
+			<a href="findaccount.do">아이디/비밀번호 찾기</a> <a href="join.do">회원가입</a>
 
 		</div>
 
