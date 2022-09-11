@@ -52,6 +52,7 @@
                 <td>
                   <button onclick="tableDelete(this)" id="remove">삭제</button>
                   <input type="hidden" class="listNum" value="${top.event_seq }" />
+                  <input type="hidden" value="${top.event_title }" />
                 </td>
                 <td>
                   <button type="button" onclick="moveUp(this)">위로</button>
@@ -78,6 +79,7 @@
                 <td>
                   <button onclick="tableDelete(this)" id="remove">삭제</button>
                   <input type="hidden" class="listNum" value="${bottom.event_seq }" />
+                  <input type="hidden" value="${bottom.event_title }" />
                 </td>
                 <td>
                   <button type="button" onclick="moveUp(this)">위로</button>
@@ -92,14 +94,19 @@
       
       <div class="container">
         <div class="row d-flex">
-          <div class="col-8">※ 3번째 항목까지는 상단에 크게 위치하구 4번째 항목부터는 하단에 간략하게 출력됩니다.</div>
-          <div class="col-2">
+          <div class="col-9">※ 3번째 항목까지는 상단에 크게 위치하구 4번째 항목부터는 하단에 간략하게 출력됩니다.</div>
+          <div class="col-1">
             <a href="/moveInsert.mdo">
-            <button type="button" class="btn btn-light">추가</button>
+            <button type="button" class="btn btn-success">추가</button>
             </a>
           </div>
-          <div class="col-2">
+          <div class="col-1">
             <button type="submit" class="btn btn-primary" id="listChange">수정</button>
+          </div>
+          <div class="col-1">
+          <a href="getEventList.mdo">
+            <button type="button" class="btn btn-info">초기화</button>
+          </a>
           </div>
         </div>
       </div>

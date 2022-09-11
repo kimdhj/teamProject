@@ -3,7 +3,6 @@
 // ajax 수정버튼
 $(document).on("click","#listChange, #remove",function(){
 	var i = $(".listNum");
-	console.log($(numnum).val());
 	let liist = [];
 	
 	for(var r=0; r<i.length; r++ ){
@@ -11,10 +10,8 @@ $(document).on("click","#listChange, #remove",function(){
 		
 		
 		if(r<3){
-		console.log($(numnum).val());
 		liist.push($(numnum).val());
 		}
-		console.log(liist);
 	}
 
 $.ajax({
@@ -25,7 +22,7 @@ $.ajax({
        event_seq : liist
     },
 	success: function(data) {
-		console.log(data);
+	
 			$.ajax({
     				url : "/ajax_ref1.mdo",
     				type : 'POST',
@@ -33,7 +30,6 @@ $.ajax({
 					success: function(data) {
 						let str="";
 						data.map((top,ind)=>{
-						console.log(Date(top.event_end_date));
 						str+=`<tr class="toptop">
                 <td>
                   <div class="rowColumn" contenteditable="false" data-default="${top.event_title }">${top.event_title }</div>
@@ -52,6 +48,7 @@ $.ajax({
                 <td>
                   <button onclick="tableDelete(this)" id="remove">삭제</button>
                   <input type="hidden" class="listNum" value="${top.event_seq }" />
+                  <input type="hidden" value="${top.event_title }" />
                 </td>
                 <td>
                   <button type="button" onclick="moveUp(this)">위로</button>
@@ -59,7 +56,6 @@ $.ajax({
                 </td>
               </tr>`;
 						});
-						console.log(str);
 						$("tbody").html("");
 						$("tbody").append(str);
 					},
@@ -92,6 +88,7 @@ $.ajax({
                 <td>
                   <button onclick="tableDelete(this)" id="remove">삭제</button>
                   <input type="hidden" class="listNum" value="${bottom.event_seq }" />
+                  <input type="hidden" value="${bottom.event_title }" />
                 </td>
                 <td>
                   <button type="button" onclick="moveUp(this)">위로</button>
@@ -99,7 +96,6 @@ $.ajax({
                 </td>
               </tr>`;
 						});
-						console.log(str);
 						$("tbody").append(str);
 					},
 					error: function(jqXHR, textStatus, errorThrown) {
@@ -145,11 +141,7 @@ function tableCreate() {
   $("#inBirth").val("");
 }
 
-function tableDelete(obj) {
-  var tr = $(obj).parent().parent();
 
-  tr.remove();
-}
 //<!-- 동적테이블 js 끝 -->
 
 
@@ -181,24 +173,30 @@ $(".main_event").on("click", function () {
 
 //TR 삭제
 function tableDelete(obj) {
- 	var del = $(obj).next().val();
- 	console.log(del);
+	var tr = $(obj).parent().parent();
+	var del = $(obj).next().val();
+	var rs = $(obj).next().next().val();
 
-$.ajax({
-    url : "/ajax_del.mdo",
-    type : 'POST',
-    data : {
-       del : del
-    },
-	success: function(data) {
-		console.log(data);
-	},
-	error: function(jqXHR, textStatus, errorThrown) {
-		console.log('error while post');
-		}
-	});
- 	
- 	
-  	var tr = $(obj).parent().parent();
-  	tr.remove();
+	var rrs = rs.indexOf('룰렛');
+	var srs = rs.indexOf('구독');
+	var con = confirm("룰렛, 구독이벤트는 삭제하지 않는것이 좋습니다. 정말 삭제하시겠습니까?");
+
+
+	if(con == true){
+
+		$.ajax({
+			url: "/ajax_del.mdo",
+			type: 'POST',
+			data: {
+				del: del
+			},
+			success: function(data) {
+				console.log(data);
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+				console.log('error while post');
+			}
+		});
+		tr.remove();
+					}
 }
