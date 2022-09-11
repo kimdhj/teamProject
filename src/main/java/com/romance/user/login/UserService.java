@@ -11,5 +11,8 @@ public interface UserService {
 	public List<CategoryVO> logincate();
 	public void joininsert(List<Integer> category_num,UserVO vo);
 	public void loginday(String user_id);
+	public List<UserVO> findid(UserVO vo);
+	public int findpassword(UserVO vo) ;
+	public void passwordin(UserVO vo);
 
 }

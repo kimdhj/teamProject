@@ -157,12 +157,14 @@ $("#phone").on("propertychange change paste input keyUp keyDown", function(e) {
 
 		$("#fin").removeAttr("disabled");
 		$("#phche").removeAttr("disabled");
+		$("#phchestart").removeAttr("disabled");
 		$("#phword").text("");
 	} else {
 		$(e.target).val($(e.target).val().substr(0, 11));
 		if ($(e.target).val().length < 11) {
 			$("#fin").attr("disabled", "true");
 			$("#phche").attr("disabled", "true");
+			$("#phchestart").attr("disabled", "true");
 			$("#phword").text("핸드폰번호 -없이 숫자만 11글자를 입력하세요");
 		}
 	}

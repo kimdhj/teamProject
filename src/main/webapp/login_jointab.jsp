@@ -116,7 +116,7 @@
 						<input required type="text" name="user_phone" id="phone"
 							class="form-control me-5 col-auto" />
 
-						<button type="button" disabled id="phchestart" class="col-auto">인증</button>
+						<button type="button" id="phchestart" class="col-auto">인증</button>
 
 					</div>
 					<span class="war" id="phword"></span>
