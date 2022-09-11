@@ -13,7 +13,7 @@ public class AdminUserVO {
 	private int user_sub_pay_before;
 	private int user_enabled;
 	private int user_coupon_cnt;
-	private boolean user_state;
+	private int user_state;
 	private String user_id;
 	private String user_password;
 	private String user_name;

@@ -24,6 +24,7 @@
 					<span class="sr-only">Toggle menu</span> <span
 						class="icon menu-toggle" aria-hidden="true"></span>
 				</button>
+				<a href="/adminLogout.mdo" style="color:yellow;">로그아웃</a>
 			</div>
 			<!-- 집모양 여기부터 -->
 			<div class="sidebar-body">

@@ -75,11 +75,14 @@ public class AdminAccountController {
 	}
 	
 	@GetMapping("getAdmin_member_Detail.mdo")
-	public String getUserDetail(AdminUserVO vo,@ModelAttribute("criteria") Criteria criteria, Model model) {
-		
-		model.addAttribute("criteria", criteria);
-		model.addAttribute("getUserDetail", adminAccountService.getUserDetail(vo));
-		return "admin_member_Detail";
+	public String getUserDetail(AdminUserVO vo,@ModelAttribute("criteria") Criteria criteria, Model model, HttpSession session, JwtUtils utils) {
+		if(CheckToken.isTokenAdmin(session, utils) == 1) {
+			model.addAttribute("criteria", criteria);
+			model.addAttribute("getUserDetail", adminAccountService.getUserDetail(vo));
+			return "admin_member_Detail";
+		} else {
+			return "redirect:login.mdo";
+		}
 	}
 	
 	@GetMapping("getAdmin_admin_List.mdo")
