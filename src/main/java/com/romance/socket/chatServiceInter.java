@@ -20,5 +20,5 @@ public interface chatServiceInter {
 
 	public List<chatVO> selectList(chatSearchVO vo);
 	public void author();
-
+	public void delall();
 }

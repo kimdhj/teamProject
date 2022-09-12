@@ -26,5 +26,7 @@ public interface chatDAOInter {
 	public void insertAPI(API vo);
 	public List<String> author();
 	public void authorinser(String author);
+	public List<String> dellist();
+	public void delall(String realchatname);
 	
 }

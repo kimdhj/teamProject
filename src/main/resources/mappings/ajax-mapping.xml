@@ -16,7 +16,7 @@
 	</select>
 	<update id="updatestate" parameterType="chatVO">
 		<![CDATA[update real_chat set
-		real_chat_state=true where real_chat_name=#{realchatname}]]>
+		real_chat_state=1 where real_chat_name=#{realchatname}]]>
 	</update>
 	<delete parameterType="chatVO" id="delname">
 	<![CDATA[delete from real_chat ]]>
@@ -61,8 +61,8 @@
 	</select>
 	<insert parameterType="chatVO" id="insertchat">
 		insert into
-		real_chat(real_chat_seq,real_chat_session,real_chat_name,real_chat_content,real_chat_date,real_chat_state)
-		values(null,#{real_chat_session},#{realchatname},#{real_chat_content},CURRENT_TIMESTAMP,false)
+		real_chat(real_chat_session,real_chat_name,real_chat_content,real_chat_date)
+		values(#{real_chat_session},#{realchatname},#{real_chat_content},CURRENT_TIMESTAMP)
 	</insert>
 	
 	
@@ -77,6 +77,18 @@
 	<insert parameterType="String" id="authorinser">
 	insert into author value(null,#{author});
 	</insert>
+	<select id="dellist" resultType="String">
+	select real_chat_name from (select distinct
+		real_chat_name,real_chat_session,max(real_chat_date) as
+		real_chat_date,count(case when real_chat_state=false then
+		1
+		end ) as num,@rownum:=@rownum+1 as rnum
+		from real_chat where real_chat_name not like CONCAT('%','admin','%') group by real_chat_name order by num
+		desc,real_chat_date desc) B,(SELECT @rownum:=0) TMP where num=0;
+	</select>
+	<delete parameterType="String" id="delall">
+	delete from real_chat where real_chat_name=#{realchatname} or real_chat_name=CONCAT(#{realchatname},'admin') 
+	</delete>
 
 
 

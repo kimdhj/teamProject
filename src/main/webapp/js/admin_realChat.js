@@ -1,7 +1,19 @@
 var userid = $("#userid").val();
+var userlist = [];
+$("tbody tr").map((ind, el) => {
+
+
+	userlist.push($(el).children("td:eq(2)").children("a").text());
+
+
+
+
+
+
+})
 $(document).ready(function() {
-	
-	init();
+
+
 })
 $("#search").on("mouseup", function() {
 	console.log('hi');
@@ -9,10 +21,11 @@ $("#search").on("mouseup", function() {
 	$("#nameche").val($("#name_search").val());
 
 	$("#startdate").val($("#time_real").val());
-	
+
 	init();
 });
 function init() {
+	userlist = [];
 	$
 		.ajax({
 			url: "/selectList.do",
@@ -32,7 +45,8 @@ function init() {
 				let nums = 0;
 				for (let i = 0; i < data.length; i++) {
 
-
+					userlist.push(data[i].realchatname);
+					console.log(userlist);
 
 					nums++;
 					str += ` <tr>
@@ -67,7 +81,7 @@ function init() {
                                 <button onclick="del(this)" class="btn btn-danger rounded-pill del">삭제</button>
                             </td>
                         </tr>`
-					console.log(str);
+
 
 
 
@@ -123,42 +137,37 @@ $(document).on("click", "#findel", function() {
 	$("tbody tr").map((ind, el) => {
 		if ($(el).children("td:eq(5)").text().trim() == 0) {
 			let name = $(el).children("td:eq(2)").text().trim();
+			for (let i = 0; i < userlist.length; i++) {
+				if (userlist[i] === name.trim()) {
+					userlist.splice(i, 1);
+					i--;
+				}
+			}
 			$.ajax({
-				url: "/delete.do",
-				data: {
-					realchatname: name.trim(),
-
-				},
-				async: true,
+				url: "/deletall.do",
 				method: "GET",
 				dataType: "json",
 				success: function(data) {
 					init();
 
-				}
-			});
-			let admin = name + "admin";
-			$.ajax({
-				url: "/delete.do",
-				data: {
-					realchatname: admin.trim()
-
 				},
-				async: true,
-				method: "GET",
-				dataType: "json",
-				success: function(data) {
-					init();
-
+				error:function(){
+				init();
 				}
 			});
-
+			
 		}
 	})
 })
 function del(e) {
 	console.log($(e).parents("tr").children("td:eq(2)").text());
 	let name = $(e).parents("tr").children("td:eq(2)").text();
+	for (let i = 0; i < userlist.length; i++) {
+		if (userlist[i] === name.trim()) {
+			userlist.splice(i, 1);
+			i--;
+		}
+	}
 	$.ajax({
 		url: "/delete.do",
 		data: {
@@ -169,7 +178,7 @@ function del(e) {
 		method: "GET",
 		dataType: "json",
 		success: function(data) {
-			init();
+			$(e).parents("tr").remove();
 
 		}
 	});
@@ -232,27 +241,58 @@ function onMessage(msg) {
 	if (sessionId.indexOf("admin") < 0) {
 
 		//사용자 전체 리스트 업데이트(db)
-		init();
+		//init();
 		//사용자가 처음 멩세제 보냈을때
 
 	}
 
 	//다른관리자가 확인했을때
 	if (arr[1] && arr[1].indexOf("admin") > 0) {
+		console.log(arr[1].replace("admin", "").trim())
+		$("tbody tr").map((ind, el) => {
+			if ($(el).children("td:eq(2)").text().trim() == arr[1].replace("admin", "").trim()) {
+				console.log($(el).children("td:eq(5)").children("a"));
+				$(el).children("td:eq(5)").children("a").text(Number(0));
+				$(el).children("td:eq(3)").children("a").text(arr[2]);
+				const date = new Date();
+
+				const year = date.getFullYear();
+				const month = date.getMonth() + 1;
+				const day = date.getDate();
+				$(el).children("td:eq(4)").children("a").text(year + "-" + month + "-" + day);
+				console.log(year + "-" + month + "-" + day);
+			}
+		})
 		//사용자 확인 안한 갯수 확인해서 숫자 변경(db)
-		init();
+		//init();
 		console.log("숫자초기화");
+	} else {
+		console.log(arr[1].trim());
+		console.log(userlist);
+		if (!userlist.includes(arr[1].trim())) {
+			let name = arr[1].trim();
+			userlist.push(name);
+			init();
+			
+		}
+		$("tbody tr").map((ind, el) => {
+
+			if ($(el).children("td:eq(2)").text().trim() == arr[1].trim()) {
+				console.log($(el).children("td:eq(5)").children("a"));
+				$(el).children("td:eq(5)").children("a").text(Number($(el).children("td:eq(5)").children("a").text()) + 1);
+				$(el).children("td:eq(3)").children("a").text(arr[2]);
+				const date = new Date();
+
+				const year = date.getFullYear();
+				const month = date.getMonth() + 1;
+				const day = date.getDate();
+				$(el).children("td:eq(4)").children("a").text(year + "-" + month + "-" + day);
+				
+			}
+		})
 	}
-	/* 	else{
-	
-	 var str = "<div class='col-6'>";
-	 str += "<div class='alert alert-warning'>";
-	 str += "<b>" + sessionId + " : " + message + "</b>";
-	 str += "</div></div>";
-	
-	 $("#msgArea").append(str);
-	 }
-	 */
+
+
 }
 // 해제시 전체 클릭 비활성화+모두 클릭되면 전체 클릭 활성화
 $(document).on('click', ".delche:checked", function() {
