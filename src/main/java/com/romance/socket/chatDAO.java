@@ -52,7 +52,7 @@ public class chatDAO implements chatDAOInter {
 	}
 
 	@Override
-	public List<chatVO> selectmain(chatVO vo) {
+	public List<chatVO> selectmain(chatSearchVO vo) {
 		// TODO Auto-generated method stub
 		return myba.selectList("ChatDAO.selectmain",vo);
 	}
