@@ -18,7 +18,7 @@ public interface chatServiceInter {
 
 	public int selectnum(chatVO vo);
 
-	public List<chatVO> selectList(chatVO vo);
+	public List<chatVO> selectList(chatSearchVO vo);
 	public void author();
 
 }

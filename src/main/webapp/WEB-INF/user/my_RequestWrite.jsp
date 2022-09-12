@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,16 +47,16 @@
 					</tr>
 					<tr>
 						<th class="bg-light">이름</th>
-						<td>이승재</td>
+						<td>${voToken.user_name}</td>
 						<th class="bg-light">이메일</th>
-						<td>tommy@hanmail.com</td>
+						<td>${voToken.user_email}</td>
 					</tr>
 					<tr>
 						<th class="bg-light align-middle">내용</th>
 						<td colspan="3">
 							<div class="form-floating">
 								<textarea class="form-control"
-									placeholder="Leave a comment here" id="floatingTextarea2"
+									placeholder="Leave a comment here" id="ask_content" name="ask_content"
 									style="height: 100px"></textarea>
 								<label for="floatingTextarea2">내용을 입력하세요</label>
 							</div>

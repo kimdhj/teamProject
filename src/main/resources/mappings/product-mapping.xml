@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ProductDAO">
+	<resultMap id="productResult" type="pro">
+		<result property="book_price" column="book_price" />
+		<result property="book_remain" column="book_remain" />
+		<result property="book_descript" column="book_descript" />
+		<result property="book_imgURL" column="book_imgURL" />
+		<result property="book_bigimgURL" column="book_bigimgURL" />
+		<result property="book_title" column="book_title" />
+		<result property="book_points" column="book_points" />
+		<result property="book_publish" column="book_publish" />
+		<result property="book_publish_date" column="book_publish_date" />
+		<result property="book_author" column="book_author" />
+		<result property="book_seq" column="book_seq" />
+		<result property="book_sellCount" column="book_sellCount" />
+		<result property="book_isbn" column="book_isbn" />
+		<result property="category_num" column="category_num" />
+		<result property="author_seq" column="author_seq" />
+	</resultMap>
+
+	<select id="getProductList" resultMap="productResult">
+		SELECT book_seq, book_title, book_author, book_publish, book_remain, book_price, category_num, book_publish_date, book_sellCount FROM book ORDER BY book_seq
+	</select>
+
+
+	
+</mapper>

@@ -41,7 +41,7 @@
 
                 <a href="info_Info.jsp" class="nav-item nav-link">소개</a>
                     <div class="nav-item dropdown">
-                        <a href="/booklist.do?country=2" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">국내 도서</a>
+                        <a href="/booklist.do?country=2" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">국내</a>
                         <div class="dropdown-menu m-0">
                             <a href="blog.html" class="dropdown-item">아동 서적</a>
                             <a href="feature.html" class="dropdown-item">무협 서적</a>
@@ -52,7 +52,7 @@
                         </div>
                     </div>
                     <div class="nav-item dropdown">
-                        <a href="/booklist.do?country=1" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">외국도서</a>
+                        <a href="/booklist.do?country=1" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">외국</a>
                         <div class="dropdown-menu m-0">
                             <a href="blog.html" class="dropdown-item">아동 서적</a>
                             <a href="feature.html" class="dropdown-item">무협 서적</a>
@@ -80,11 +80,14 @@
                     <p id="search_btn" class="btn-sm-square bg-white rounded-circle ms-3" href="">
                         <small class="fa fa-search text-body"></small>
                     </p>
-                    <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
+                    <a class="btn-sm-square bg-white rounded-circle ms-3" href="/login.do">
                         <small class="fa fa-user text-body"></small>
                     </a>
                     <a class="btn-sm-square bg-white rounded-circle ms-3" href="/cart.do">
                         <small class="fa fa-shopping-bag text-body"></small>
+                    </a>
+                    <a id="mypage" class="btn-sm-square bg-white rounded-circle ms-3" href="/mypage.do">
+                        <i class="bi bi-house-door-fill"></i>
                     </a>
                 </div>
             </div>

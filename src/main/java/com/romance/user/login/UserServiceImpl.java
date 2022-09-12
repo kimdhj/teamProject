@@ -53,4 +53,22 @@ public class UserServiceImpl implements UserService {
 		dao.loginday(user_id);
 	}
 
+	@Override
+	public List<UserVO> findid(UserVO vo) {
+		// TODO Auto-generated method stub
+		return dao.findid(vo);
+	}
+
+	@Override
+	public int findpassword(UserVO vo) {
+		// TODO Auto-generated method stub
+		return dao.findpassword(vo);
+	}
+
+	@Override
+	public void passwordin(UserVO vo) {
+		// TODO Auto-generated method stub
+		dao.passwordin(vo);
+	}
+
 }

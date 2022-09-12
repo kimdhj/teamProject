@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -33,9 +34,18 @@ public class LoginController {
 	BCryptPasswordEncoder benco;
 
 	@GetMapping("login.do")
-	public String login(String warning,Model model) {
-		model.addAttribute("warning",warning);
+	public String login(String warning,HttpSession session ,Model model) {
+		String key=(String) session.getAttribute("id");
+		if(key!=null) {
+			return "redirect:logout.do";
+		}
+		model.addAttribute("warning", warning);
 		return "login";
+	}
+	@GetMapping("logout.do")
+	public String logout(HttpSession session) {
+		session.removeAttribute("id");
+		return "redirect:index.do";
 	}
 
 	// 카카오로그인
@@ -118,11 +128,8 @@ public class LoginController {
 		vo = ser.onesearch(kakaoid);
 		ser.loginday(kakaoid);
 		String token = util.createToken("유저", vo);
-		System.out.println("token" + token);
-		Map<String, Object> con = util.parseJwtToken(token);
-		System.out.println("con" + con);
-
-		model.addAttribute("id", token);
+	
+		
 		return "redirect:index.do";
 	}
 
@@ -130,13 +137,13 @@ public class LoginController {
 	@PostMapping("loginend.do")
 	public String login(UserVO vo, Model model, JwtUtils util, RedirectAttributes redirectAttributes) {
 		UserVO vo2 = new UserVO();
-		System.out.println("로그인처리"+vo);
-		
+		System.out.println("로그인처리" + vo);
+
 		String warning = null;
 		vo2 = ser.onesearch(vo.getUser_id());
-		System.out.println("로그인데이터"+vo2);
+		System.out.println("로그인데이터" + vo2);
 		if (vo2 != null) {
-			if (benco.matches(vo.getUser_password(),vo2.getUser_password())) {
+			if (benco.matches(vo.getUser_password(), vo2.getUser_password())) {
 				vo.setUser_password(null);
 				ser.loginday(vo.getUser_id());
 				String token = util.createToken("유저", vo);
@@ -160,13 +167,68 @@ public class LoginController {
 		}
 
 	}
-	//메일테스트
+
+	// 메일테스트
 	@GetMapping("mail.do")
 	@ResponseBody
-	public String mail() throws Exception {
-		MailService ma=new MailService();
-		ma.sendEmail("ko02222@naver.com","낭만서점 본인확인 메일입니다.","노출에 조심하세요 낭만서점 이메일 인증 번호는 입니다.");
-		return"성공";
+	public String mail(String mail, String name) throws Exception {
+		String chenum = "";
+		int num = 0;
+		for (int i = 0; i < 6; i++) {
+			num = (int) (Math.random() * 9);
+			chenum += String.valueOf(num);
+		}
+		System.out.println(chenum);
+		String result = "노출에 조심하세요 낭만서점 이메일 인증 번호는[" + chenum + "] 입니다.";
+		System.out.println(result);
+		MailService ma = new MailService();
+		ma.sendEmail(mail.trim(), "낭만서점 본인확인 메일입니다.", result, name.trim());
+		return chenum;
+	}
+
+	@PostMapping("findid.do")
+	public String findid(UserVO vo, Model model) {
+		System.out.println("findidvo"+vo);
+		List<UserVO> vol = ser.findid(vo);
+		System.out.println("findidvol"+vol);
+		System.out.println("phche"+vo.getUser_phone()==" ");
+		if (vol.size()>0) {
+			model.addAttribute("vol", vol);
+		
+			return "login_findid";
+		} else {
+			return "redirect:login_nopassword.do";
+		}
+	}
+
+	@PostMapping("findpassword.do")
+	public String findpassword(UserVO vo, Model model) {
+		int re = ser.findpassword(vo);
+		if (re > 0) {
+			model.addAttribute("id", vo.getUser_id());
+			return "login_changepassword";
+		} else {
+			return "redirect:login_nopassword.do";
+		}
+
+	}
+	@PostMapping("/login_change_password.do")
+	public String login_change_password(UserVO vo) {
+		
+		vo.setUser_password(benco.encode(vo.getUser_password()));
+		ser.passwordin(vo);
+			return "redirect:index.do";
+		
+
+	}
+	
+	@GetMapping("findaccount.do")
+	public String findaccount() {
+		return "login_find";
+	}
+	@GetMapping("login_nopassword.do")
+	public String login_nopassword() {
+		return "login_nopassword";
 	}
 
 }

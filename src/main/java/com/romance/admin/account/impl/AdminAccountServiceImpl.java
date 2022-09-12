@@ -54,10 +54,7 @@ public class AdminAccountServiceImpl implements AdminAccountService {
 	public void updateUserAccount(AdminUserVO vo) throws Exception {
 		adminAccountDAO.updateUserAccount(vo);		
 	}
-	
-	
-	
-	
-	
+
+
 	
 }
