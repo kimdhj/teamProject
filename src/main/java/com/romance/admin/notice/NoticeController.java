@@ -29,7 +29,7 @@ public class NoticeController {
 	// 공지사항 목록 - 페이징
 	@RequestMapping(value = "/admin_post_Notice.mdo", method=RequestMethod.GET)
 	public String getNoticeList(Model model, NoticeSearchVO svo) {
-//		System.out.println("svo : " + svo); // 데이터가 넘어오는지 확인
+		System.out.println("svo : " + svo); // 데이터가 넘어오는지 확인
 		List<NoticeVO> noticeList = noticeService.getNoticeList(svo); // 공지사항 목록
 		int count = noticeService.getCount(svo);
 		model.addAttribute("noticeList", noticeList); // 전체 공지사항

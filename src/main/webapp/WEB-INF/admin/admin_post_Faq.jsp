@@ -111,13 +111,12 @@
 					<tbody>
 						<c:forEach items="${faqList }" var="faq" begin="0" end="4">
 						<tr>
-							<td><input class="form-check-input border-1 border-dark delche" type="checkbox" name="chkbox" id="flexCheckChecked" checked>
+							<td><input class="form-check-input border-1 border-dark delche chkbox" type="checkbox" name="chkbox" id="flexCheckChecked" checked>
 							</td>
 							
 							<td>
 								<p id="seq">
 									${allCount}
-									<c:set var="allCount" value="${allCount + 1 }"/>
 								</p>
 								<input type="hidden" value="${faq.FAQ_seq }"/>
 							</td>
@@ -128,6 +127,7 @@
 										${faq.FAQ_ask }
 									</a>
 								</p>
+								<c:set var="allCount" value="${allCount + 1 }"/>
 							</td>
 							
 							<td>
