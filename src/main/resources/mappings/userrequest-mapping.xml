@@ -45,5 +45,36 @@
 	<select id="getRequestList" parameterType="String" resultMap="myRequestResult">
 		SELECT * FROM ask WHERE user_id=#{session_user_id}
 	</select>
+	
+	<select id="myRequestTotalCount" parameterType="criteria" resultType="int">
+		SELECT COUNT(*) FROM ask WHERE user_id = #{session_user_id}
+		<if test="searchCondition=='ASK_TITLE'">
+			AND ask_title like CONCAT('%', #{searchKeyword}, '%')
+		</if>
+		<if test="selectCondition=='replyWait'">
+			AND ask_status = '답변 대기'
+		</if>
+		<if test="selectCondition=='replyFinish'">
+			AND ask_status = '답변 완료'
+		</if>
+		<if test="selectCondition=='wholeList'">
+		</if>
+	</select>
+	
+	<select id="getMyRequestList" parameterType="criteria" resultMap="myRequestResult">
+		SELECT * FROM ask WHERE user_id = #{session_user_id} 
+		<if test="searchCondition=='ASK_TITLE'">
+			AND ask_title like CONCAT('%', #{searchKeyword}, '%')
+		</if>
+		<if test="selectCondition=='replyWait'">
+			AND ask_status = '답변 대기'
+		</if>
+		<if test="selectCondition=='replyFinish'">
+			AND ask_status = '답변 완료'
+		</if>
+		<if test="selectCondition=='wholeList'">
+		</if>
+		LIMIT #{pageStart}, #{perPageNum}
+	</select>
 
 </mapper>

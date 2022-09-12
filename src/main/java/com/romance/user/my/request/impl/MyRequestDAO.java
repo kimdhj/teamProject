@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.romance.user.login.UserVO;
+import com.romance.user.my.request.Criteria;
 import com.romance.user.my.request.MyRequestVO;
 
 @Repository
@@ -22,5 +23,14 @@ public class MyRequestDAO {
 	
 	public List<MyRequestVO> getRequestList(String session_user_id) {
 		return sqlSessionTemplate.selectList("userRequest.getRequestList", session_user_id);
+	}
+	
+	public List<MyRequestVO> getMyRequestList(Criteria criteria) {
+		return sqlSessionTemplate.selectList("userRequest.getMyRequestList", criteria);
+	}
+	
+	//나의문의 개수
+	public int myRequestTotalCount(Criteria criteria) {
+		return sqlSessionTemplate.selectOne("myRequestTotalCount", criteria);
 	}
 }

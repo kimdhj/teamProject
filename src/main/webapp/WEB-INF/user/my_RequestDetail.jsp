@@ -75,12 +75,17 @@
 				</div>
 				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 					<button class="btn btn-primary me-md-2" type="button">등록하기</button>
-					<button class="btn btn-primary" type="button">목록으로</button>
+					<button class="btn btn-primary" type="button" id="returnListBtn">목록으로</button>
 				</div>
 				<!-- 답글작성 끝 -->
 			</div>
 		</form>
-
+		<form name="detailForm" method="post">
+			<input type="hidden" id="pageNum" name="pageNum" value="${criteria.pageNum}" /> 
+			<input type="hidden" id="searchCondition" name="searchCondition" value="${criteria.searchCondition}" /> 
+			<input type="hidden" id="searchKeyword" name="searchKeyword" value="${criteria.searchKeyword}" /> 
+			<input type="hidden" id="selectCondition" name="selectCondition" value="${criteria.selectCondition}" /> 
+		</form>
 
 		<!-- 공통 마이페이지 바텀 -->
 		<jsp:include page="/WEB-INF/commonjsp/common_mypage_bottom.jsp"></jsp:include>
@@ -94,6 +99,13 @@
 		<jsp:include page="/WEB-INF/commonjsp/common_footer.jsp"></jsp:include>
 
 		<!-- Footer End -->
+		<script>
+			$("#returnListBtn")
+				.click(function(){
+					let url = "myRequestList.do?pageNum=${criteria.pageNum}&searchCondition=${criteria.searchCondition}&searchKeyword=${criteria.searchKeyword}&selectCondition=${criteria.selectCondition}";
+					location.href = url;
+				});
+		</script>
 </body>
 
 </html>
