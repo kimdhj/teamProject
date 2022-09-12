@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="AskDAO">
+
+	<!-- 데이터 목록을 가져오는거 -->
+	<select id="getAskList" resultType="ask" parameterType="askSearch">
+		<![CDATA[SELECT * FROM(SELECT ask_seq, ask_title, ask_content, ask_status, ask_date, user_id, @rownum:=@rownum + 1 as rnum FROM ask, (SELECT @rownum:=0) TMP]]>
+			<trim prefix="WHERE" prefixOverrides="AND | OR">
+				<if test="title != null and title != ''"><![CDATA[AND ask_title LIKE CONCAT('%', #{title}, '%')]]></if>
+				<if test="user != null and user != ''"><![CDATA[AND user_id LIKE CONCAT('%', #{user}, '%')]]></if>
+				<if test="status != null and status != ''"><![CDATA[AND ask_status LIKE CONCAT('%', #{status}, '%')]]></if>
+				<if test="status == null and status == ''"><![CDATA[AND ask_status LIKE CONCAT('%', '대기', '%')]]></if>
+				<if test="startDate != null and endDate != null"><![CDATA[AND ask_date >= #{startDate} AND ask_date <= (#{endDate} + INTERVAL 1 DAY) ]]></if>
+				<if test="date != null"><![CDATA[AND ask_date LIKE CONCAT('%', #{date}, '%')]]></if>
+			</trim>
+		<![CDATA[ORDER BY ask_date DESC) B WHERE]]>
+		<if test="seq != 0">
+			<![CDATA[rnum = #{seq}]]>
+		</if>
+		<if test="seq == 0">
+			<![CDATA[ rnum > (#{page} - 1) * 5 AND rnum <= #{page} * 5 ORDER BY ask_date DESC]]>
+		</if>
+	</select>
+	
+	<!-- 전체 글 개수 가져오는거 -->
+	<select id="getCount" parameterType="askSearch" resultType="int">
+		<![CDATA[SELECT COUNT(*) FROM(SELECT  ask_seq, ask_title, ask_content, ask_status, ask_date, user_id, @rownum:=@rownum + 1 as rnum FROM ask, (SELECT @rownum:=0) TMP]]>
+	<trim prefix="WHERE" prefixOverrides="AND | OR">
+		<if test="title != null and title != ''"><![CDATA[AND ask_title LIKE CONCAT('%', #{title}, '%')]]></if>
+		<if test="user != null and user != ''"><![CDATA[AND user_id LIKE CONCAT('%', #{user}, '%')]]></if>
+		<if test="status != null and status != ''"><![CDATA[AND ask_status LIKE CONCAT('%', #{status}, '%')]]></if>
+		<if test="status == null and status == ''"><![CDATA[AND ask_status LIKE CONCAT('%', '대기', '%')]]></if>
+		<if test="startDate != null and endDate != null"><![CDATA[AND ask_date >= #{startDate} AND ask_date <= (#{endDate} + INTERVAL 1 DAY) ]]></if>
+	</trim>
+	<![CDATA[ORDER BY ask_date DESC) B]]>
+		<trim prefix="WHERE" prefixOverrides="AND | OR">
+		<if test="seq != 0">
+	 		<![CDATA[	rnum = #{seq}]]> 
+	 	</if>
+	</trim>
+	</select>
+	
+	<!-- 개별 삭제 -->
+	<delete id="delete" parameterType="ask">
+		DELETE FROM ask WHERE ask_seq = #{ask_seq}
+	</delete>
+
+</mapper>

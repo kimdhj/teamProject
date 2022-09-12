@@ -444,7 +444,6 @@ function make() {
 		dataType: 'json',
 		async: false,
 		data: {
-			seq: Number($("#all_box #seqche").val()),
 			title: $("#all_box #titleche").val(),
 			content: $("#all_box #contentche").val(),
 			startDate: $("#all_box #startche").val(),
@@ -516,7 +515,6 @@ function make() {
 		dataType: 'json',
 		async: false,
 		data: {
-			seq: Number($("#all_box #seqche").val()),
 			title: $("#all_box #titleche").val(),
 			content: $("#all_box #contentche").val(),
 			startDate: $("#all_box #startche").val(),
