@@ -74,7 +74,11 @@
 
 <typeAlias type="com.romance.user.usecategory.UserCategoryVO"
 			alias="usercategoryVO" />
+		<typeAlias type="com.romance.user.my.request.MyRequestVO" alias="myRequestVO" />
 	</typeAliases>
+	
+	
+	
 	<mappers>
 		<!-- <mapper resource="mappings/board-mapping.xml" /> -->
 		<mapper resource="mappings/adminTerms-mapping.xml" />
@@ -99,5 +103,6 @@
 		<mapper resource="mappings/admin-dashboard.xml" />
 		<mapper resource="mappings/usercategory-mapping.xml" />
 		<mapper resource="mappings/product-mapping.xml" />
+		<mapper resource="mappings/userrequest-mapping.xml" />
 	</mappers>
 </configuration>

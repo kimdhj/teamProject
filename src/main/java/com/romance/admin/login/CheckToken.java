@@ -7,8 +7,8 @@ import com.romance.user.login.UserVO;
 
 public class CheckToken {
 	
-	public static int isTokenUser(HttpSession session, JwtUtils util) {
-		UserVO vo = util.getuser(session);
+	public static int isTokenUser(HttpSession session, JwtUtils utils) {
+		UserVO vo = utils.getuser(session);
 		if(vo != null) {
 			System.out.println("토큰있어 어서와");
 			return 1;
@@ -18,8 +18,9 @@ public class CheckToken {
 		}
 	}
 	
-	public static int isTokenAdmin(HttpSession session, JwtUtils util) {
-		AdminUserVO vo = util.getAdmin(session);
+	
+	public static int isTokenAdmin(HttpSession session, JwtUtils utils) {
+		AdminUserVO vo = utils.getAdmin(session);
 		if(vo != null) {
 			System.out.println("토큰있어 어서왕");
 			return 1;

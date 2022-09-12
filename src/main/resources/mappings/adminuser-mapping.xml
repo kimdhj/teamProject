@@ -119,5 +119,9 @@
 	<update id="updateUserAccount" parameterType="adminUserVO">
 		UPDATE user SET user_sub=#{user_sub}, user_state=#{user_state},user_password=#{user_password}, user_phone=#{user_phone}, user_email=#{user_email}, user_point=#{user_point} WHERE user_id=#{user_id}	
 	</update>
+	
+	<select id="passwordCheck" parameterType="String" resultType="String">
+		SELECT user_password FROM user WHERE user_id=#{user_id}
+	</select>
 
 </mapper>
