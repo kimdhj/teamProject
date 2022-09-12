@@ -47,6 +47,12 @@ public class chatController {
 		ser.deletename(vo);
 		return vo;
 	}
+	@RequestMapping("/deletall.do")
+	@ResponseBody
+	public String deletall() {
+		ser.delall();
+		return "success";
+	}
 
 	@RequestMapping("/insertchat.do")
 	@ResponseBody
