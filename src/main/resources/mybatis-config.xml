@@ -74,7 +74,11 @@
 
 <typeAlias type="com.romance.user.usecategory.UserCategoryVO"
 			alias="usercategoryVO" />
+			<typeAlias type="com.romance.admin.qna.AskVO" alias="ask"/>
+			<typeAlias type="com.romance.admin.qna.AskReplyVO" alias="askReply"/>
+			<typeAlias type="com.romance.admin.qna.AskSearchVO" alias="askSearch"/>
 		<typeAlias type="com.romance.user.my.request.MyRequestVO" alias="myRequestVO" />
+
 	</typeAliases>
 	
 	
@@ -102,7 +106,9 @@
 		<mapper resource="mappings/order-mapping.xml" />
 		<mapper resource="mappings/admin-dashboard.xml" />
 		<mapper resource="mappings/usercategory-mapping.xml" />
+		<mapper resource="mappings/adminQna-mapping.xml" />
 		<mapper resource="mappings/product-mapping.xml" />
 		<mapper resource="mappings/userrequest-mapping.xml" />
+
 	</mappers>
 </configuration>

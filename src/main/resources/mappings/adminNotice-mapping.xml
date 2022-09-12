@@ -46,7 +46,6 @@
 	 		<![CDATA[	rnum = #{seq}]]> 
 	 	</if>
 	</trim>
-		
 	</select>
 	
 	<insert id="insertNotice" parameterType="notice">
