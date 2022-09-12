@@ -167,7 +167,7 @@ $(".main_event").on("click", function () {
   if (chks.length >= 4) {
     $(".main_event:not(:checked)").prop("disabled", true);
   } else {
-    $(".main_event:not(:checked)").prop("disabled", false);
+    $(".main_event:not(:checkedsearch_btn)").prop("disabled", false);
   }
 });
 
