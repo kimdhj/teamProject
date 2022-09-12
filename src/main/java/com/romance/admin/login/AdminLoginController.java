@@ -1,5 +1,7 @@
 package com.romance.admin.login;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -31,6 +33,7 @@ public class AdminLoginController {
 		return "admin_login";
 	}
 	
+	//관리자 로그인
 	@PostMapping("admin_login.mdo")
 	public String login(AdminUserVO vo, Model model, JwtUtils util, RedirectAttributes redirectAttributes) {
 		System.out.println("로그인 인증 처리");
@@ -41,12 +44,20 @@ public class AdminLoginController {
 		if(user != null && user.getUser_role().equals("ROLE_ADMIN")) {
 			System.out.println("입력받은 pw : " + vo.getUser_password());
 			System.out.println("DB상의 pw : " + user.getUser_password());
-			String inputPassword = vo.getUser_password();
-			String dbPassword = user.getUser_password();
-			adminUserService.loginDay(vo.getUser_id());
-			String token = util.createToken("관리자", vo);
-			if(bCryptPasswordEncoder.matches(inputPassword, dbPassword)) {// 입력받은 패스워드, 디비상의 패스워드
+			String inputPassword = vo.getUser_password();//입력받은 비밀번호
+			String dbPassword = user.getUser_password();//데이터베이스에 저장된 비밀번호
+			
+			if(bCryptPasswordEncoder.matches(inputPassword, dbPassword)) {// 입력받은 패스워드, 디비상의 패스워드(암호화된)
+				vo.setUser_password(null);//로그인 성공 이후 null값 설정하여 토큰에 Password값 null로 받음
+				adminUserService.loginDay(vo.getUser_id());//로그인 날짜 업데이트
+				String token = util.createToken("유저", vo);//토큰생성
+				System.out.println("생성된 토큰 : " + token);
+				Map<String, Object> con = util.parseJwtToken(token);//토큰 유효성 체크 메서드
+				System.out.println("유효성체크 con : " + con);
 				System.out.println("로그인 성공");
+				
+				model.addAttribute("id", token);//id 라는이름에 token값을 담아서 @SessionAttributes로 사용
+				
 				return "redirect:adminMain.mdo";
 			} else {
 				System.out.println("로그인 실패라구!");
