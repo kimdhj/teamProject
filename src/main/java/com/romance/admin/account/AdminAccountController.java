@@ -40,8 +40,8 @@ public class AdminAccountController {
 		
 	@GetMapping("getAdmin_member_List.mdo")
 	public String getUserListWithPaging(Criteria criteria, Model model, HttpSession session, JwtUtils utils) throws Exception {
-		
-		if(CheckToken.isTokenAdmin(session, utils) == 1) { //토큰 반환값 1이면 토큰존재
+		AdminUserVO voToken = utils.getAdmin(session);
+		if(voToken != null) { //토큰값이 null이 아닌경우
 			System.out.println("관리자에서 회원목록 처리");
 			System.out.println("검색 조건 : " + criteria.getSearchCondition());
 			System.out.println("검색 단어 : " + criteria.getSearchKeyword());
@@ -76,7 +76,8 @@ public class AdminAccountController {
 	
 	@GetMapping("getAdmin_member_Detail.mdo")
 	public String getUserDetail(AdminUserVO vo,@ModelAttribute("criteria") Criteria criteria, Model model, HttpSession session, JwtUtils utils) {
-		if(CheckToken.isTokenAdmin(session, utils) == 1) {
+		AdminUserVO voToken = utils.getAdmin(session);
+		if(voToken != null) {
 			model.addAttribute("criteria", criteria);
 			model.addAttribute("getUserDetail", adminAccountService.getUserDetail(vo));
 			return "admin_member_Detail";
