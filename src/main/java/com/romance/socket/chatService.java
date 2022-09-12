@@ -44,7 +44,7 @@ public class chatService implements chatServiceInter {
 	}
 
 	@Override
-	public List<chatVO> selectList(chatVO vo) {
+	public List<chatVO> selectList(chatSearchVO vo) {
 		// TODO Auto-generated method stub
 		chatVO tra = null;
 		List<chatVO> chatlist = dao.selectmain(vo);

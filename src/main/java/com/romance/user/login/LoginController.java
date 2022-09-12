@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -33,9 +34,18 @@ public class LoginController {
 	BCryptPasswordEncoder benco;
 
 	@GetMapping("login.do")
-	public String login(String warning, Model model) {
+	public String login(String warning,HttpSession session ,Model model) {
+		String key=(String) session.getAttribute("id");
+		if(key!=null) {
+			return "redirect:logout.do";
+		}
 		model.addAttribute("warning", warning);
 		return "login";
+	}
+	@GetMapping("logout.do")
+	public String logout(HttpSession session) {
+		session.removeAttribute("id");
+		return "redirect:index.do";
 	}
 
 	// 카카오로그인
@@ -118,11 +128,8 @@ public class LoginController {
 		vo = ser.onesearch(kakaoid);
 		ser.loginday(kakaoid);
 		String token = util.createToken("유저", vo);
-		System.out.println("token" + token);
-		Map<String, Object> con = util.parseJwtToken(token);
-		System.out.println("con" + con);
-
-		model.addAttribute("id", token);
+	
+		
 		return "redirect:index.do";
 	}
 

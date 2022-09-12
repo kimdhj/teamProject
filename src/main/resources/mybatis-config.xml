@@ -11,7 +11,8 @@
 
 	<typeAliases>
 		<!-- <typeAlias alias="myboard" type="tommy.spring.web.board.BoardVO" /> -->
-		<typeAlias type="com.romance.socket.chatVO" alias="chat" />
+		<typeAlias type="com.romance.socket.chatVO" alias="chatVO" />
+		<typeAlias type="com.romance.socket.chatSearchVO" alias="chatsearchVO" />
 		<typeAlias type="com.romance.admin.notice.NoticeVO"
 			alias="notice" />
 		<typeAlias
