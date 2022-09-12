@@ -21,9 +21,25 @@
 	</resultMap>
 
 	<select id="getProductList" resultMap="productResult">
-		SELECT book_seq, book_title, book_author, book_publish, book_remain, book_price, category_num, book_publish_date, book_sellCount FROM book ORDER BY book_seq
+		<![CDATA[SELECT * FROM (SELECT @rownum:=@rownum+1 AS rnum, book.* FROM book,(SELECT @rownum:=0) TMP ) tnum where rnum>0 and rnum<21]]>
 	</select>
-
+	<select id="ajax_search" parameterType="pro" resultType="pro">
+		<![CDATA[SELECT * FROM (SELECT @rownum:=@rownum+1 AS rnum, book.* FROM book,(SELECT @rownum:=0) TMP ) tnum where rnum>0 and rnum<21]]>
+			<trim>
+			<if test="sort == '전체'" ></if>
+			<if test="sort == '제목'" > and book_title LIKE CONCAT('%', '${thing}', '%')</if>
+			<if test="sort == '작가'" > and book_author LIKE CONCAT('%', '${thing}', '%')</if>
+			<if test="sort == '카테고리'" > and category_num LIKE CONCAT('%', '${thing}', '%')</if>
+			</trim>
+	</select>
+	<select id="all_count" parameterType="pro" resultType="int">
+		<![CDATA[SELECT count(*) FROM (SELECT @rownum:=@rownum+1 AS rnum, book.* FROM book,(SELECT @rownum:=0) TMP ) tnum]]>
+			<trim prefix="WHERE" prefixOverrides="AND |OR">
+			<if test="sort == '제목'" > AND book_title LIKE CONCAT('%', '${thing}', '%')</if>
+			<if test="sort == '작가'" > AND book_author LIKE CONCAT('%', '${thing}', '%')</if>
+			<if test="sort == '카테고리'" > AND category_num LIKE CONCAT('%', '${thing}', '%')</if>
+			</trim>
+	</select>
 
 	
 </mapper>

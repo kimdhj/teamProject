@@ -25,7 +25,8 @@
 					<!-- 이 안에 내용 -->
 				<div class="row d-flex">
 					<div class="col-1"></div>
-					<select class="col-2">
+					<select class="col-2" id="sort">
+						<option value="전체">전체</option>
 						<option value="제목">제목</option>
 						<option value="작가">작가</option>
 						<option value="카테고리">카테고리</option>
@@ -97,8 +98,8 @@
 						<nav aria-label="Page navigation example">
 							<ul class="pagination justify-content-center">
 								<li class="page-item"><a class="page-link" href="#" tabindex="-1" aria-disabled="true"><span aria-hidden="true">&laquo;</span></a></li>
-								<li class="page-item"><a class="page-link" href="#">1</a></li>
-								<li class="page-item active"><a class="page-link" href="#">2</a></li>
+								<li class="page-item active"><a class="page-link" href="#">1</a></li>
+								<li class="page-item"><a class="page-link" href="#">2</a></li>
 								<li class="page-item"><a class="page-link" href="#">3</a></li>
 								<li class="page-item"><a class="page-link" href="#">4</a></li>
 								<li class="page-item"><a class="page-link" href="#">5</a></li>
