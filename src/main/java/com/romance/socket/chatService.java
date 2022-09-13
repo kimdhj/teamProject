@@ -44,7 +44,7 @@ public class chatService implements chatServiceInter {
 	}
 
 	@Override
-	public List<chatVO> selectList(chatVO vo) {
+	public List<chatVO> selectList(chatSearchVO vo) {
 		// TODO Auto-generated method stub
 		chatVO tra = null;
 		List<chatVO> chatlist = dao.selectmain(vo);
@@ -74,6 +74,15 @@ public class chatService implements chatServiceInter {
 			System.out.println(au.get(i));
 			dao.authorinser(au.get(i));
 		}
+	}
+
+	@Override
+	public void delall() {
+		List<String> dellist=dao.dellist();
+		for(String name:dellist) {
+			dao.delall(name);
+		}
+		
 	}
 
 

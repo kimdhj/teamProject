@@ -20,11 +20,13 @@ public interface chatDAOInter {
 
 
 
-	public List<chatVO> selectmain(chatVO vo);
+	public List<chatVO> selectmain(chatSearchVO vo);
 	public chatVO selectcontent(chatVO vo);
 
 	public void insertAPI(API vo);
 	public List<String> author();
 	public void authorinser(String author);
+	public List<String> dellist();
+	public void delall(String realchatname);
 	
 }

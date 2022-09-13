@@ -48,7 +48,6 @@
 						<select class="row form-select w-100 fs-5" id="level" name="level"
 							id="level" aria-label="Default select example"
 							style="margin-left: 3%;">
-							<option class="fs-5" value="번호">번호</option>
 							<option class="fs-5" value="제목">제목</option>
 							<option class="fs-5" value="내용">내용</option>
 						</select>
@@ -147,7 +146,6 @@
 			<input type="hidden" value="${allSvo.content}" id="contentche"/>
 			<input type="hidden" value="${allSvo.startDate}" id="startche"/>
 			<input type="hidden" value="${allSvo.endDate}" id="endche"/>
-			<input type="hidden" value="${allSvo.seq}" id="seqche"/>
 			<input type="hidden" value="${allSvo.page}" id="pageche"/>
 			<input type="hidden" value="${allSvo.date}" id="dateche"/>
 			</div>

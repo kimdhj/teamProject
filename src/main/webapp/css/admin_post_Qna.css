@@ -1,5 +1,5 @@
 #main_wrapper * {
-  font-size: 1.3vw;
+  font-size: 1vw;
   word-break: keep-all;
 }
 body {
@@ -95,3 +95,16 @@ div.bg-white {
 	font-weight: bolder;
 	font-size: larger;
 }
+
+.pagination *{
+   cursor:pointer;
+}
+
+#main_wrapper{
+	margin-left: 2% !important;
+}
+
+.note-frame{
+	border: 0px !important;
+}
+

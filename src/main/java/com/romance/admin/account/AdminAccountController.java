@@ -100,6 +100,8 @@ public class AdminAccountController {
 		Pagination pagination = new Pagination();
 		pagination.setCriteria(criteria);
 		pagination.setTotalCount(adminAccountService.adminTotalCount(criteria));
+		System.out.println(">>>>페이지네이션 토탈카운트!" + pagination.getTotalCount());
+		System.out.println(">>>>Criteria pageNum! " + criteria.getPageNum());
 		model.addAttribute("pagination", pagination);
 		model.addAttribute("adminListWithPaging", adminAccountService.getAdminListWithPaging(criteria));
 		return "admin_admin_List";

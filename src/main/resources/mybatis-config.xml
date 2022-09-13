@@ -11,7 +11,8 @@
 
 	<typeAliases>
 		<!-- <typeAlias alias="myboard" type="tommy.spring.web.board.BoardVO" /> -->
-		<typeAlias type="com.romance.socket.chatVO" alias="chat" />
+		<typeAlias type="com.romance.socket.chatVO" alias="chatVO" />
+		<typeAlias type="com.romance.socket.chatSearchVO" alias="chatsearchVO" />
 		<typeAlias type="com.romance.admin.notice.NoticeVO"
 			alias="notice" />
 		<typeAlias
@@ -74,7 +75,11 @@
 
 <typeAlias type="com.romance.user.usecategory.UserCategoryVO"
 			alias="usercategoryVO" />
+			<typeAlias type="com.romance.admin.qna.AskVO" alias="ask"/>
+			<typeAlias type="com.romance.admin.qna.AskReplyVO" alias="askReply"/>
+			<typeAlias type="com.romance.admin.qna.AskSearchVO" alias="askSearch"/>
 		<typeAlias type="com.romance.user.my.request.MyRequestVO" alias="myRequestVO" />
+
 	</typeAliases>
 	
 	
@@ -102,7 +107,9 @@
 		<mapper resource="mappings/order-mapping.xml" />
 		<mapper resource="mappings/admin-dashboard.xml" />
 		<mapper resource="mappings/usercategory-mapping.xml" />
+		<mapper resource="mappings/adminQna-mapping.xml" />
 		<mapper resource="mappings/product-mapping.xml" />
 		<mapper resource="mappings/userrequest-mapping.xml" />
+
 	</mappers>
 </configuration>

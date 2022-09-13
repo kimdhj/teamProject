@@ -47,6 +47,12 @@ public class chatController {
 		ser.deletename(vo);
 		return vo;
 	}
+	@RequestMapping("/deletall.do")
+	@ResponseBody
+	public String deletall() {
+		ser.delall();
+		return "success";
+	}
 
 	@RequestMapping("/insertchat.do")
 	@ResponseBody
@@ -64,9 +70,11 @@ public class chatController {
 
 	@RequestMapping("/selectList.do")
 	@ResponseBody
-	public List<chatVO> selectList(chatVO vo) {
-
-		return ser.selectList(vo);
+	public List<chatVO> selectList(chatVO vo,chatSearchVO vos) {
+		if(vos.getPage()==0) {
+			vos.setPage(1);
+		}
+		return ser.selectList(vos);
 	}
 
 	@RequestMapping("/eunxi.do")
@@ -98,8 +106,35 @@ public class chatController {
 	}
 
 	@GetMapping("/chatList.mdo")
-	public String chatList() {
+	public String chatList(chatVO vo,chatSearchVO vos,Model model) {
+		
+		
+		
+		if(vos.getPage()==0) {
+			vos.setPage(1);
+		}
 
+		List<chatVO> vol=ser.selectList(vos);
+		
+		int count=vol.size();
+
+		if(count%5==0) {
+			count--;
+		}
+		if(vos.getPage()<3) {
+			model.addAttribute("startpage", 1);
+		}else {
+			model.addAttribute("startpage", vos.getPage()-2);
+		}
+		if(vos.getPage()+2>count/5+1) {
+			model.addAttribute("endpage", count/5+1);
+		}else {
+			model.addAttribute("endpage", vos.getPage()+2);
+		}
+		model.addAttribute("all_sum",count);
+		model.addAttribute("all_page",vos.getPage());
+		model.addAttribute("all_vos",vos);
+		model.addAttribute("chatli",vol);
 		return "admin_realChat";
 	}
 //책에 데이터 넣기

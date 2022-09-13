@@ -1,4 +1,4 @@
-var userid = $("#userid").val();
+let userid = $("#userid").val();
 init();
 console.log(userid);
 var arr
@@ -76,6 +76,7 @@ function sendMessage() {
 	//메세지 알림을 지워줌
 	//메세지 상태 변경(db)
 	let adn = userid + "admin";
+	console.log("업데이트"+adn)
 	$.ajax({
 		url: "/updatestate.do",
 		data: {
