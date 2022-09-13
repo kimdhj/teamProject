@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.romance.admin.qna.AskReplyVO;
 import com.romance.admin.qna.AskSearchVO;
 import com.romance.admin.qna.AskVO;
 
@@ -22,11 +23,37 @@ public class AskDAO {
 		return sqlSession.selectOne("AskDAO.getCount", svo);
 	}
 	
-	public void delete(AskVO vo) {
-		sqlSession.delete("AskDAO.delete", vo);
+	public AskVO getAsk(AskVO vo) {
+		return sqlSession.selectOne("AskDAO.getAsk", vo);
 	}
 	
-	public void chkboxDelete(int ask_seq) {
-		sqlSession.delete("AskDAO.chkboxDelete", ask_seq);
+	public AskReplyVO getAskReply(AskReplyVO arvo) {
+		return sqlSession.selectOne("AskDAO.getAskReply", arvo);
+	}
+	
+	public void delete(AskVO vo) {
+		sqlSession.delete("AskDAO.delete1", vo);
+	}
+	
+	public void delete(AskReplyVO arvo) {
+	  sqlSession.delete("AskDAO.delete2", arvo);
+	}
+	
+	public void chkboxDelete1(int ask_seq) {
+		sqlSession.delete("AskDAO.chkboxDelete1", ask_seq);
+	}
+	
+	public void chkboxDelete2(int ask_seq) {
+	  sqlSession.delete("AskDAO.chkboxDelete2", ask_seq);
+	}
+	
+	public boolean checkPW(AskReplyVO arvo) {
+	  boolean result = false;
+	  
+	  int count = sqlSession.selectOne("AskDAO.checkPW", arvo);
+	  
+	  if(count == 1)
+	    result = true;
+	  return result;
 	}
 }
