@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.romance.user.login.UserVO;
 import com.romance.user.my.request.Criteria;
+import com.romance.user.my.request.MyRequestReplyVO;
 import com.romance.user.my.request.MyRequestService;
 import com.romance.user.my.request.MyRequestVO;
 
@@ -35,9 +36,16 @@ public class MyRequestServiceImpl implements MyRequestService {
 	public List<MyRequestVO> getMyRequestList(Criteria criteria) {
 		return myRequestDAO.getMyRequestList(criteria);
 	}
-	
-	
-	
+
+	@Override
+	public MyRequestVO getMyRequestDetail(MyRequestVO myRequestVO) {
+		return myRequestDAO.getMyRequestDetail(myRequestVO);
+	}
+
+	@Override
+	public MyRequestReplyVO getMyRequestReply(MyRequestReplyVO myRequestReplyVO) {
+		return myRequestDAO.getMyRequestReply(myRequestReplyVO);
+	}
 	
 	
 }
