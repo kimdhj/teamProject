@@ -68,6 +68,7 @@
 			alias="orderbooklistVO" />
 		<typeAlias type="com.romance.admin.dashboard.DashVO" alias="dashVO" />
 		<typeAlias type="com.romance.admin.product.ProductVO" alias="pro" />
+		<typeAlias type="com.romance.admin.product.ProductSearchVO" alias="pros" />
 
 			<typeAlias type="com.romance.user.orders.OrdersVO"
 			alias="ordersVO" />

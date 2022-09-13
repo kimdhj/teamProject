@@ -36,9 +36,9 @@ public class ProductController {
 			if(svo.getPage()==0) {
 				svo.setPage(1);
 			}
-			System.out.println(svo);
-			System.out.println(svo.getPage());
-			System.out.println(productService.all_count(svo));
+			System.out.println("현재페이지 : "+svo.getPage());
+			System.out.println("총갯수 : "+productService.all_count(svo));
+			int count = productService.all_count(svo);
 			
 			
 			return productService.ajax_search(svo);
