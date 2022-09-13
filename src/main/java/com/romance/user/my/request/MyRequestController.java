@@ -77,11 +77,18 @@ public class MyRequestController {
 //	}
 	
 	@GetMapping("myRequestDetail.do")
-	public String myRequestDetail(Criteria criteria, Model model, HttpSession session, JwtUtils utils) {
+	public String myRequestDetail(MyRequestVO myRequestVO, MyRequestReplyVO myRequestReplyVO, Criteria criteria, Model model, HttpSession session, JwtUtils utils) {
 		UserVO voToken = utils.getuser(session);
 		if(voToken != null) {
-			model.addAttribute("criteria", criteria);
+			System.out.println(voToken);
+//			System.out.println(myRequestVO);
+			System.out.println("123123 : " + myRequestVO.getAsk_seq());
+			myRequestReplyVO.setAsk_seq(myRequestVO.getAsk_seq());
 			
+			model.addAttribute("myRequestReplyVO", myRequestService.getMyRequestReply(myRequestReplyVO));
+			model.addAttribute("sessionUserInfo", myRequestService.getUser(voToken.getUser_id()));
+			model.addAttribute("criteria", criteria);
+			model.addAttribute("myRequestVO", myRequestService.getMyRequestDetail(myRequestVO));
 			return "my_RequestDetail";
 		} else {
 			return "redirect:login.do";

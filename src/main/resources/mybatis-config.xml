@@ -79,7 +79,7 @@
 			<typeAlias type="com.romance.admin.qna.AskReplyVO" alias="askReply"/>
 			<typeAlias type="com.romance.admin.qna.AskSearchVO" alias="askSearch"/>
 		<typeAlias type="com.romance.user.my.request.MyRequestVO" alias="myRequestVO" />
-
+		<typeAlias type="com.romance.user.my.request.MyRequestReplyVO" alias="myRequestReplyVO" />
 	</typeAliases>
 	
 	

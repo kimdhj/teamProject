@@ -9,7 +9,6 @@
 <!-- Common head include -->
 <jsp:include page="/WEB-INF/commonjsp/common_head.jsp"></jsp:include>
 
-
 </head>
 
 <body>
@@ -17,7 +16,7 @@
 	<jsp:include page="/WEB-INF/commonjsp/common_header.jsp"></jsp:include>
 	<!-- Common header include End -->
 	<jsp:include page="/WEB-INF/commonjsp/common_mypage_header.jsp"></jsp:include>
-
+	
 
 	<!-- 여기 삽입 -->
 	<!-- <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -57,7 +56,7 @@
 						<button type="submit" class="btn btn-secondary" name="selectCondition" value="replyFinish">답변완료</button>
 						<button type="submit" class="btn btn-success" name="selectCondition" value="wholeList">전체</button>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<button type="submit" class="btn btn-warning" name="selectCondition" value="user_normal">고객문의</button>
+						<button type="button" class="btn btn-warning" name="selectCondition" value="user_normal" id="requestWriteBtn">문의하기</button>
 					</div>
 				</div>
 			</form>
@@ -69,10 +68,13 @@
 				<thead>
 					<c:forEach var="myRequest" items="${myRequestList}">
 						<tr>
-							<th style="width:15%">QnA</th>
-							<th style="width:35%"><a href="/myRequestDetail.do?ask_seq=${myRequest.ask_seq}&pageNum=${criteria.pageNum}&searchCondition=${criteria.searchCondition}&searchKeyword=${criteria.searchKeyword}&selectCondition=${criteria.selectCondition}">${myRequest.ask_title}</a></th>
-							<th style="width:20%">${myRequest.ask_status}</th>
-							<th style="width:25%"><fmt:formatDate value="${myRequest.ask_date}" pattern="yyyy-MM-dd HH:ss" /></th>
+							<th style="width:5%;">${myRequest.ask_seq}</th>
+							<th style="width:10%;">QnA</th>
+							<th style="width:35%;">
+								<a href="/myRequestDetail.do?ask_seq=${myRequest.ask_seq}&pageNum=${criteria.pageNum}&searchCondition=${criteria.searchCondition}&searchKeyword=${criteria.searchKeyword}&selectCondition=${criteria.selectCondition}">${myRequest.ask_title}</a>
+							</th>
+							<th style="width:20%;">${myRequest.ask_status}</th>
+							<th style="width:25%;"><fmt:formatDate value="${myRequest.ask_date}" pattern="yyyy-MM-dd HH:ss" /></th>
 						</tr>
 					</c:forEach>
 				</thead>
@@ -109,7 +111,14 @@
 				</nav>
 			</div>
 		</div>
-
+		<form name="detailForm" method="post">
+			<%-- <input type="hidden" id="pageNum" name="pageNum" value="${criteria.pageNum}" /> 
+			<input type="hidden" id="searchCondition" name="searchCondition" value="${criteria.searchCondition}" /> 
+			<input type="hidden" id="searchKeyword" name="searchKeyword" value="${criteria.searchKeyword}" /> 
+			<input type="hidden" id="selectCondition" name="selectCondition" value="${criteria.selectCondition}" /> --%> 
+		</form>
+		
+		
 	<!-- 공통 마이페이지 바텀 -->
 	<jsp:include page="/WEB-INF/commonjsp/common_mypage_bottom.jsp"></jsp:include>
 	<!-- 공통 마이페이지 바텀 끝 -->
@@ -120,8 +129,13 @@
 	<!-- Footer Start -->
 	<!-- Common Footer include -->
 	<jsp:include page="/WEB-INF/commonjsp/common_footer.jsp"></jsp:include>
-
 	<!-- Footer End -->
+	<script>
+		$("#requestWriteBtn").click(function(){
+			let url = "myRequestWrite.do";
+			location.href = url;
+		});
+	</script>
 </body>
 
 </html>
