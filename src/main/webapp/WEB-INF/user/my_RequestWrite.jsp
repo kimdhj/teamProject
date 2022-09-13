@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 <!-- Common head include -->
 <jsp:include page="/WEB-INF/commonjsp/common_head.jsp"></jsp:include>
-
 
 </head>
 
@@ -46,16 +46,16 @@
 					</tr>
 					<tr>
 						<th class="bg-light">이름</th>
-						<td>이승재</td>
+						<td>${voToken.user_name}</td>
 						<th class="bg-light">이메일</th>
-						<td>tommy@hanmail.com</td>
+						<td>${voToken.user_email}</td>
 					</tr>
 					<tr>
 						<th class="bg-light align-middle">내용</th>
 						<td colspan="3">
 							<div class="form-floating">
 								<textarea class="form-control"
-									placeholder="Leave a comment here" id="floatingTextarea2"
+									placeholder="Leave a comment here" id="ask_content" name="ask_content"
 									style="height: 100px"></textarea>
 								<label for="floatingTextarea2">내용을 입력하세요</label>
 							</div>
@@ -71,14 +71,13 @@
 				</tbody>
 			</table>
 			<!-- 문의글 끝 -->
-
 			<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 				<button class="btn btn-primary me-md-2" type="button">문의접수</button>
 				<button class="btn btn-primary" type="button">문의목록</button>
 			</div>
 
 		</form>
-
+		
 
 		<!-- 공통 마이페이지 바텀 -->
 		<jsp:include page="/WEB-INF/commonjsp/common_mypage_bottom.jsp"></jsp:include>
@@ -90,8 +89,8 @@
 		<!-- Footer Start -->
 		<!-- Common Footer include -->
 		<jsp:include page="/WEB-INF/commonjsp/common_footer.jsp"></jsp:include>
-
 		<!-- Footer End -->
+		
 </body>
 
 </html>

@@ -26,7 +26,7 @@ public class chatDAO implements chatDAOInter {
 	@Override
 	public void updatestate(chatVO vo) {
 		// TODO Auto-generated method stub
-
+		System.out.println("실시간 업데이트"+vo);
 		myba.update("ChatDAO.updatestate",vo);
 	}
 
@@ -52,7 +52,7 @@ public class chatDAO implements chatDAOInter {
 	}
 
 	@Override
-	public List<chatVO> selectmain(chatVO vo) {
+	public List<chatVO> selectmain(chatSearchVO vo) {
 		// TODO Auto-generated method stub
 		return myba.selectList("ChatDAO.selectmain",vo);
 	}
@@ -76,6 +76,19 @@ public class chatDAO implements chatDAOInter {
 	public void authorinser(String author) {
 		// TODO Auto-generated method stub
 		myba.insert("ChatDAO.authorinser",author);
+	}
+
+	@Override
+	public List<String> dellist() {
+		// TODO Auto-generated method stub
+		return myba.selectList("ChatDAO.dellist");
+	}
+
+	@Override
+	public void delall(String realchatname) {
+		// TODO Auto-generated method stub
+		myba.delete("ChatDAO.delall", realchatname);
+		
 	}
 
 

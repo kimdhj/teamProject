@@ -41,6 +41,7 @@ public class EchoHandler extends TextWebSocketHandler {
         String[] arr=message.getPayload().split(":");
         vo.setRealchatname(arr[0]);
         vo.setReal_chat_content(arr[1]);
+        System.out.println("실시간채팅 저장"+vo);
         ser.insertchat(vo);
         //모든 유저에게 메세지 출력
         for(WebSocketSession sess : sessionList){

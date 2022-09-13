@@ -33,4 +33,13 @@ public class UserDAO {
 	public void loginday(String user_id) {
 		sql.insert("user.loginday", user_id);
 	}
+	public List<UserVO> findid(UserVO vo) {
+		return sql.selectList("user.findid", vo);
+	}
+	public int findpassword(UserVO vo) {
+		return sql.selectOne("user.findpassword", vo);
+	}
+	public void passwordin(UserVO vo) {
+		sql.update("user.passwordin",vo);
+	}
 }
