@@ -133,8 +133,10 @@ public class AdminAccountController {
 		AdminUserVO voToken = utils.getAdmin(session);
 		if(voToken != null) {
 			System.out.println("계정정보 수정");
-			System.out.println("뭐가뭐가들어갔나" + vo);
-			vo.setUser_password(bCryptPasswordEncoder.encode(vo.getUser_password()));
+			if(vo.getUser_password() != null && !vo.getUser_password().equals("")) { // 입력비밀번호 null값, ''빈문자열 아닐경우에만 암호화 진행
+				vo.setUser_password(bCryptPasswordEncoder.encode(vo.getUser_password()));
+			}
+			System.out.println(">>>>>뭐가뭐가들어갔나" + vo);
 			adminAccountService.updateUserAccount(vo);
 			return "redirect:getAdmin_member_List.mdo";
 		} else {
