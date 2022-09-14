@@ -19,18 +19,21 @@ function init(){ // html 로 인식하던 "" 을 value 로 인식시켜서 " 나
 
 //문의 답변 등록 answer
 $(document).ready(function () {
-	init();
+	init(); // 등록
 	console.log($("#ask_reply_writer").val());
-	var queryString = $("#form").serialize();
+	var queryString = $("#form").serialize(); // serialize() : form 대상으로 form 객체 한번에 받기 가능
 	
     $(".answerinsert").click(function () {
     	console.log($("#ask_seq").val()+"1");
     	console.log($("#ask_reply_writer").val()+"2");
-    	console.log($(".note-editable").html()+"3");
+    	console.log($(".note-editable").html()+"3"); // content 에 들어가는 내용 전부 출력
     	console.log($("#password").val()+"4");
-    	console.log($("#ask_reply_file")[0].files[0]+"5");
-    	var formData = new FormData();
+    	console.log($("#ask_reply_file")[0].files[0]+"5"); // 파일 불러오는데 [] 를 붙여서 배열 타입으로 받아주기
+    	
+    	// FormData : js 에서 form 전송 동작이 필요한 경우 이용
+    	var formData = new FormData(); // FormData : 자바스크립트 단에서 폼 데이터를 다루는 객체로, HTML 에서의 Submit 제출 동작은 Ajax 를 통해 서버에 제출
 		
+    	// formData.append([key], [value]) : 데이터 추가하는 방법
 		formData.append('ask_reply_uploadFile', $("#ask_reply_file")[0].files[0]);
 		formData.append('ask_seq', Number($("#ask_seq").val()));
 		formData.append('ask_reply_writer', $("#ask_reply_writer").val());
@@ -64,11 +67,11 @@ $(document).ready(function () {
 					success: function(data){
 						$.ajax({
 							type:"post",
-							enctype: 'multipart/form-data',
+							enctype: 'multipart/form-data', // 파일 보낼 때 써야되는 것
 							url: "/askReplyInsert.mdo",
 							dataType: "JSON",
-							 processData: false,
-					        contentType: false,
+							processData: false, // processData : false로 선언 시 formData를 string으로 변환하지 않음
+					        contentType: false, // contentType : false 로 선언 시 content-type 헤더가 multipart/form-data로 전송되게 함
 					        cache: false,
 					        timeout: 600000,
 							data: formData,
@@ -82,8 +85,7 @@ $(document).ready(function () {
 									}).then(function(){
 		        						var seq = Number($("#ask_reply_seq").val());
 		        						console.log(seq);
-		        						Number($("#ask_reply_seq").val());
-		        //						location.href="/askReplyInsert.mdo";
+		        						location.href="/qnaDetail.mdo?ask_seq" + seq;
 		        					})
 								}else{
 		        					Swal.fire({

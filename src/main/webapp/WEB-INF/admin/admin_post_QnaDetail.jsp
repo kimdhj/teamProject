@@ -167,7 +167,7 @@
             <div class="row d-flex align-items-center" id="input_line_top">
               <div class="row"></div>
               <div class="summernote"></div>
-              <input type="text" id="content1" name="ask_reply_content"/>
+              <input type="hidden" id="content1" name="ask_reply_content"/>
             </div>
           </div>
       
