@@ -38,7 +38,7 @@
 						<tbody>
 							<tr>
 								<th scope="row" colspan="3">
-									<textarea rows="10" style="width:100%;">${myRequestVO.ask_seq}</textarea>
+									<textarea rows="10" style="width:100%;">${myRequestVO.ask_content}</textarea>
 								</th>
 							</tr>
 						</tbody>
