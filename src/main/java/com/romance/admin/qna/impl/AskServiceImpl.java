@@ -138,4 +138,9 @@ public class AskServiceImpl implements AskService{
 	  return ask.checkPW(arvo);
 	}
 	
+	@Override
+	public void answerInsert(AskReplyVO arvo) {
+	  ask.answerInsert(arvo);
+	}
+	
 }
