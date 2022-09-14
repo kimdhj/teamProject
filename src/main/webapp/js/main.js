@@ -57,6 +57,8 @@ $(document).ready(function() {
 				dataType: "json",
 				success: function(re) {
 					console.log(re);
+					let navfore=``;
+					let navko=``;
 					re.map((el)=>{});
 					$("#navfore").append()
 					$("#navko").append();
