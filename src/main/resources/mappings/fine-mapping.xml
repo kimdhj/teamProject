@@ -8,9 +8,16 @@
 		reply_seq=#{reply_seq}
 	</select>
 	<select resultType="int" parameterType="fineVO" id="countsum">
-		select count(*) from review_fine where reply_seq=#{reply_seq}
+		select
+		count(*) from review_fine where reply_seq=#{reply_seq}
 
 	</select>
+	<insert parameterType="fineVO" id="finein">
+		insert into review_fine(reply_seq,user_id) values(#{reply_seq},#{user_id})
+	</insert>
+	<delete parameterType="fineVO" id="finedel">
+	delete from review_fine where reply_seq=#{reply_seq} and user_id=#{user_id}
+	</delete>
 
 
 

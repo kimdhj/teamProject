@@ -1,5 +1,7 @@
 package com.romance.user.my.main;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -16,7 +18,7 @@ public class MyController {
 	
 	
 	@GetMapping("myMain.do")
-	public String myMain(HttpSession session, JwtUtils util) {
+	public String myMain(HttpSession session, JwtUtils util) throws IOException {
 		
 		if(CheckToken.isTokenUser(session, util) == 1) {
 			System.out.println("안녕하십니까?");

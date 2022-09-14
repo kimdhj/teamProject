@@ -1,5 +1,6 @@
 package com.romance.user.orders;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -26,7 +27,7 @@ public class OrderController {
 	@Autowired
 	OrderService ser;
 	@GetMapping("bookpay.do")
-	public String bookpay(@RequestParam(value = "book_seq")List<Integer> book_seq,@RequestParam(value = "book_count")List<Integer> book_count,int iscart,Model model,HttpSession session,JwtUtils util) {
+	public String bookpay(@RequestParam(value = "book_seq")List<Integer> book_seq,@RequestParam(value = "book_count")List<Integer> book_count,int iscart,Model model,HttpSession session,JwtUtils util) throws IOException {
 		System.out.println(book_seq);
 		System.out.println(book_count);
 		UserVO vo=util.getuser(session);

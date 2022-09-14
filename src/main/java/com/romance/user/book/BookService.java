@@ -2,6 +2,8 @@ package com.romance.user.book;
 
 import java.util.List;
 
+import com.romance.admin.icon.BannerVO;
+import com.romance.admin.icon.IconVO;
 import com.romance.admin.sample.category.CategoryVO;
 import com.romance.admin.sample.navcategory.NavCategoryVO;
 import com.romance.user.reply.FineVO;
@@ -22,10 +24,12 @@ public interface BookService {
 	public List<BookVO> mainnew(BookSearchVO vo);
 	public BookVO onesearch(int book_seq);
 	public String avgsearch(int book_seq);
-	public List<ReplyVO> replylist(ReplysearchVO vo);
+	public List<ReplyVO> replylist(ReplysearchVO vo,String user_id);
 	public int fineche(FineVO vo);
 	public int countsum(FineVO vo);
 	public int replycount(ReplysearchVO vo);
 	public int detailbookcount();
 	public List<BookVO> detailbooklist();
+	 public IconVO getIcon() ;
+	 public List<BannerVO> getBanner();
 }

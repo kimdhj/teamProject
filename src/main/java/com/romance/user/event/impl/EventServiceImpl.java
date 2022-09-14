@@ -1,5 +1,7 @@
 package com.romance.user.event.impl;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,7 +29,7 @@ public class EventServiceImpl implements EventService {
 	}
 
 	@Override
-	public void updateEvent(EventVO vo) {
+	public void updateEvent(EventVO vo) throws FileNotFoundException, IOException {
 		AwsS3 awsS3 = AwsS3.getInstance();
 		String key1 = null;
 		String key2 = null;
@@ -95,7 +97,7 @@ public class EventServiceImpl implements EventService {
 	}
 	
 	@Override
-	public void ajaxDel(int del) {
+	public void ajaxDel(int del) throws FileNotFoundException, IOException {
 		AwsS3 awsS3 = AwsS3.getInstance();
 		EventVO vo = EventDAO.selectFile(del);
 		String file1 = null;

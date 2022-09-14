@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="concern">
+	<insert parameterType="concernVO" id="concernin">
+	 insert into concern_writer(author_seq,user_id) values(#{author_seq},#{user_id})
+	</insert>
+	<select parameterType="concernVO" resultType="int" id="checoncern">
+		select count(*) from concern_writer where author_seq=#{author_seq} and user_id=#{user_id}
+	</select>
+</mapper>

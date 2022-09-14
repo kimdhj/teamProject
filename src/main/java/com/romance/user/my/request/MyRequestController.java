@@ -1,7 +1,12 @@
 package com.romance.user.my.request;
 
+<<<<<<< HEAD
+import java.io.IOException;
+import java.util.List;
+=======
 import java.util.HashMap;
 import java.util.Map;
+>>>>>>> main
 
 import javax.servlet.http.HttpSession;
 
@@ -31,7 +36,8 @@ public class MyRequestController {
 	}
 	
 	@GetMapping("myRequestList.do")
-	public String myRequestList(Criteria criteria, Model model, HttpSession session, JwtUtils utils) {
+	public String myRequestList(Criteria criteria, Model model, HttpSession session, JwtUtils utils) throws IOException  {
+
 		UserVO voToken = utils.getuser(session);
 		if(voToken != null) {
 			criteria.setSession_user_id(voToken.getUser_id());
@@ -77,7 +83,11 @@ public class MyRequestController {
 //	}
 	
 	@GetMapping("myRequestDetail.do")
+<<<<<<< HEAD
+	public String myRequestDetail(Model model, HttpSession session, JwtUtils utils) throws IOException {
+=======
 	public String myRequestDetail(MyRequestVO myRequestVO, MyRequestReplyVO myRequestReplyVO, Criteria criteria, Model model, HttpSession session, JwtUtils utils) {
+>>>>>>> main
 		UserVO voToken = utils.getuser(session);
 		if(voToken != null) {
 			System.out.println(voToken);
@@ -96,7 +106,7 @@ public class MyRequestController {
 	}
 	
 	@GetMapping("myRequestWrite.do")
-	public String myRequestWrite(Model model, HttpSession session, JwtUtils utils) {
+	public String myRequestWrite(Model model, HttpSession session, JwtUtils utils) throws IOException {
 		UserVO voToken = utils.getuser(session);
 		if(voToken != null) {
 			System.out.println(voToken);

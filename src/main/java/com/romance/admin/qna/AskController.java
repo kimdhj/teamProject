@@ -1,5 +1,7 @@
 package com.romance.admin.qna;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import com.romance.server.AwsS3;
 
 @Controller
 public class AskController {
+
   @Autowired
   private AskService service;
   
@@ -205,4 +208,5 @@ public class AskController {
     }
     
   }
+
 }

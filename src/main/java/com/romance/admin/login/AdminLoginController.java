@@ -1,5 +1,6 @@
 package com.romance.admin.login;
 
+import java.io.IOException;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,7 @@ public class AdminLoginController {
 	
 	//관리자 로그인
 	@PostMapping("admin_login.mdo")
-	public String login(AdminUserVO vo, Model model, JwtUtils util, RedirectAttributes redirectAttributes) {
+	public String login(AdminUserVO vo, Model model, JwtUtils util, RedirectAttributes redirectAttributes) throws IOException {
 		System.out.println("로그인 인증 처리");
 
 		AdminUserVO user = adminUserService.getUser(vo);

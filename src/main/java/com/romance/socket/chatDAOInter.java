@@ -28,5 +28,6 @@ public interface chatDAOInter {
 	public void authorinser(String author);
 	public List<String> dellist();
 	public void delall(String realchatname);
+	public int countlist(chatSearchVO vo);
 	
 }
