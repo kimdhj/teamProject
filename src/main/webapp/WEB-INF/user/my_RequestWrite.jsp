@@ -28,7 +28,7 @@
 		</div>
 
 		<!-- 문의글 시작 -->
-		<form>
+		<form action="myRequestWrite.do" method="post" enctype="multipart/form-data" onsubmit="return checkWriteForm()">
 			<table class="table">
 				<thead>
 

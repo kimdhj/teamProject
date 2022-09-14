@@ -85,5 +85,10 @@
 	<select id="getMyRequestReply" parameterType="myRequestReplyVO" resultType="myRequestReplyVO">
 		SELECT * FROM ask_reply WHERE ask_seq = #{ask_seq}
 	</select>
+	
+	<insert id="insertMyRequest" parameterType="myRequestVO">
+		INSERT INTO ask (ask_title, ask_content, ask_status, ask_file, ask_password, user_id)
+		VALUES(#{ask_title}, #{ask_content}, '답변 대기', #{ask_file}, #{ask_password}, #{user_id})
+	</insert>
 
 </mapper>
