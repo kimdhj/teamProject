@@ -17,6 +17,7 @@ public interface AskService {
 	
 //	void insert(AskReplyVO arvo); // 등록
 //	void update(AskReplyVO arvo); // 수정
+	void answerInsert(AskReplyVO arvo); // 답변 등록
 	
 	boolean checkPW(AskReplyVO arvo); // 비밀번호 체크
 	

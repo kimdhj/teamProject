@@ -1,7 +1,107 @@
+// 답변하기
 $(function (){
 $(".answer").click(function (){
 		$(".form1").removeClass("hide");
 	});
+});
+
+function init(){ // html 로 인식하던 "" 을 value 로 인식시켜서 " 나 ' 를 사용 가능하도록 만들어줌
+	console.log($(".note-editable").text());
+	$("#content").val($(".note-editable").text());
+	console.log($("#content").val());
+}
+
+function init(){ // html 로 인식하던 "" 을 value 로 인식시켜서 " 나 ' 를 사용 가능하도록 만들어줌
+	console.log($(".note-editable").text());
+	$("#content1").val($(".note-editable").text());
+	console.log($("#content").val());
+}
+
+//문의 답변 등록 answer
+$(document).ready(function () {
+	init();
+	console.log($("#ask_reply_writer").val());
+	var queryString = $("#form").serialize();
+	
+    $(".answerinsert").click(function () {
+    	console.log($("#ask_seq").val()+"1");
+    	console.log($("#ask_reply_writer").val()+"2");
+    	console.log($(".note-editable").html()+"3");
+    	console.log($("#password").val()+"4");
+    	console.log($("#ask_reply_file")[0].files[0]+"5");
+    	var formData = new FormData();
+		
+		formData.append('ask_reply_uploadFile', $("#ask_reply_file")[0].files[0]);
+		formData.append('ask_seq', Number($("#ask_seq").val()));
+		formData.append('ask_reply_writer', $("#ask_reply_writer").val());
+		formData.append('ask_reply_content', $(".note-editable").html());
+		formData.append('ask_reply_password', $("#password").val());
+    	
+        Swal.fire({
+           	text: '문의 답변을 등록하시겠습니까?',
+            icon: 'success',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '예',
+            cancelButtonText: '아니오'
+        }).then((result) => {
+        	var form = $('#form')[0];
+        	console.log("form" , form);
+    		// Create an FormData object 
+        	console.log("queryString" , queryString);
+        	if(result.isConfirmed){
+				$.ajax({
+					type:"post",
+					url: "/QnaCheckPW.mdo",
+					dataType: "JSON",
+					data:{
+						askReply_seq : Number($("#ask_reply_seq").val()),
+						ask_reply_password : $("#password").val(),
+						ask_seq : Number($("#ask_seq").val())
+					},
+					async: false,
+					success: function(data){
+						$.ajax({
+							type:"post",
+							enctype: 'multipart/form-data',
+							url: "/askReplyInsert.mdo",
+							dataType: "JSON",
+							 processData: false,
+					        contentType: false,
+					        cache: false,
+					        timeout: 600000,
+							data: formData,
+							success: function(){
+								if(data == "1"){
+									Swal.fire({
+										text: "등록되었습니다.",
+		        						icon: "success",
+		        						showConfirmButton: false,
+		        						timer: 1500
+									}).then(function(){
+		        						var seq = Number($("#ask_reply_seq").val());
+		        						console.log(seq);
+		        						Number($("#ask_reply_seq").val());
+		        //						location.href="/askReplyInsert.mdo";
+		        					})
+								}else{
+		        					Swal.fire({
+		        						text: "비밀번호를 다시 입력해주세요.",
+		        						icon: "error",
+		        						showConfirmButton: false,
+		        						timer: 1500
+		        					})
+		        				}
+							}
+						})
+							}
+						})
+			}else if(result.isDismissed){
+				return false;
+			}
+        })
+    });
 });
 
 // userdel - 문의 삭제
@@ -92,10 +192,10 @@ $().ready(function(){
 })
 
 // answerdel - 답변 삭제
-
-
 $().ready(function () {
-    $(".answer_del").click(function () {
+	console.log("ask_reply_seq" , $("#ask_reply_seq").val());
+	console.log("password" , $("#password").val());
+    $(".answerdel").click(function () {
         Swal.fire({
            	text: '해당 답변을 삭제하시겠습니까?',
             icon: 'warning',
@@ -105,12 +205,42 @@ $().ready(function () {
             confirmButtonText: '예',
             cancelButtonText: '아니오'
         }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire(
-                    ' ',
-                    '문의 답변이 삭제되었습니다. / 혹은 비밀번호가 일치하지 않습니다.'
-                )
-            }
+        	if(result.isConfirmed){
+				$.ajax({
+					type:"post",
+					url: "/QnaCheckPW.mdo",
+					dataType: "JSON",
+					data:{
+						askReply_seq : Number($("#ask_reply_seq").val()),
+						ask_reply_password : $("#password").val(),
+						ask_seq : Number($(".contentBox").children("div:eq(6)").children('input').val())
+					},
+					async: false,
+					success: function(data){
+						if(data == "1"){
+							Swal.fire({
+								text: "삭제하셨습니다.",
+        						icon: "success",
+        						showConfirmButton: false,
+        						timer: 1500
+							}).then(function(){
+        						var seq = Number($("#ask_reply_seq").val());
+        						console.log(seq);
+        						location.href="/AskReplyDelete.mdo?ask_seq=" + seq;
+        					})
+						}else{
+        					Swal.fire({
+        						text: "비밀번호를 다시 입력해주세요.",
+        						icon: "error",
+        						showConfirmButton: false,
+        						timer: 1500
+        					})
+        				}
+					}
+				})
+			}else if(result.isDismissed){
+				return false;
+			}
         })
     });
 });
@@ -127,39 +257,23 @@ $().ready(function () {
             confirmButtonText: '예',
             cancelButtonText: '아니오'
         }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire(
-                    ' ',
-                    '문의 목록으로 되돌아갑니다.'
-                )
-            }
-        })
-    });
-});
- 
- $().ready(function () {
-    $(".answer_add").click(function () {
-        Swal.fire({
-           	text: '답변을 등록하시겠습니까?',
-            icon: 'success',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: '예',
-            cancelButtonText: '아니오'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire(
-                    ' ',
-                    '답변 등록이 완료되었습니다.'
-                )
+        	if (result.isConfirmed) { // 모달창에서 confirm 버튼 누른 경우
+                Swal.fire({
+                	text: "문의 목록으로 되돌아갑니다.",
+                	icon: "success",
+                	showConfirmButton: false,
+                	timer: 1500,
+                }).then(function(){ // 예를 눌러야지 admin_post_Notice.mdo 로 이동
+                	location.href="/QnaList.mdo";
+                })
+            }else if(result.isDismissed){
+            	return false;
             }
         })
     });
 });
 
 
- 	
 // 메인화면 페이지 로드 함수
 $(document).ready(function () {
      $('.summernote').summernote({
@@ -182,3 +296,78 @@ $(document).ready(function () {
 		fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72']
      });
 });
+
+
+
+
+
+//수정 jquery + checkPW 
+$().ready(function () {
+    $(".faqupdate").click(function () {
+    	Swal.fire({
+            text: "FAQ을 수정하시겠습니까?",
+            icon: 'success',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '예',
+            cancelButtonText: '아니오'
+        }).then((result) => {
+        	if (result.isConfirmed) { // 모달창에서 confirm(예) 버튼 누른 경우
+        		console.log("faqUpdateForm.FAQ_passwd : " + faqUpdateForm.FAQ_passwd.value, "faqUpdateForm.FAQ_seq : " + faqUpdateForm.FAQ_seq.value );
+        		// ajax 로 사용해서 비밀번호 비교
+        		$.ajax({
+        			type: "post", // 전송방식
+        			url: "/FaqCheckPW.mdo", // 컨트롤러 사용할 때, 내가 보낼 데이터의 주소
+        			dataType: "JSON", // 데이터 타입
+        			data:{
+        				FAQ_passwd : $("#FAQ_passwd").val(),
+        				FAQ_seq: Number($("#FAQ_seq").val())
+        			},
+        			async: false,
+        			success: function(data){ // 정상적으로 응답 받은 경우 호출
+        				console.log(data);
+        				if(data == "1"){ // ajax 실행 성공
+        					Swal.fire({
+        	                	text: "수정 성공!",
+        	                	icon: "success",
+        	                	showConfirmButton: false,
+                               	timer: 1500
+        	                }).then(function(){ // 예를 눌러야지 admin_post_Notice.mdo 로 이동
+        	                	var seq = $("#seq").text();
+        	                	console.log(seq);
+        	                	i();
+        	                	let form = $("#update");
+        	                	form.action = "/FaqUpdate.mdo";
+        	                	form.method = "POST";
+        	                	form.submit();
+//        	                	return true; // 수정하기 -> submit 
+        	                })
+        				}else{ // ajax 실행 실패
+        					 Swal.fire({
+        		                	text: "비밀번호를 다시 입력해주세요.",
+        		                	icon: "error",
+        		                	showConfirmButton: false,
+        	                       	timer: 1500
+        		                })
+        				}
+        			},
+        			error: function(){ // 
+        				Swal.fire({
+                        	text: "수정 실패!",
+                        	icon: "error"
+                        })
+        			}
+        		})
+            }else if(result.isDismissed){ // 아니오 버튼 클릭시 
+            	return false;
+            }
+        })
+    });
+});
+
+
+function i(){
+	$("#content").val($(".note-editable").text());
+	console.log($("#content").val());
+};

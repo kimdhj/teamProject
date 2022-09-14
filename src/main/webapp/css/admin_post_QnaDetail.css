@@ -46,7 +46,7 @@ div.bg-white {
 	display: none !important;
 }
 
-#content {
+#content, #content1 {
   height: 70vh;
   overflow: auto;
   margin-top: 1%;
