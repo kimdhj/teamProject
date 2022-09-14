@@ -45,33 +45,75 @@
 })(jQuery);
 
 $(document).ready(function() {
+	let iconstate = false;
 	$.ajax({
 		url: "/navicon.do",
 		method: "get",
 		dataType: "json",
 		success: function(el) {
-			console.log(el);
-			$.ajax({
-				url: "/navList.mdo",
-				method: "get",
-				dataType: "json",
-				success: function(re) {
-					console.log(re);
-					let navfore=``;
-					let navko=``;
-					re.map((el)=>{});
-					$("#navfore").append()
-					$("#navko").append();
-					$("nav #logo img").attr("src", el.icon_file);
-					console.log($(".sidebar-head .logo-wrapper .logo"));
-					$(".sidebar-head .logo-wrapper .logo").css("background-image", `url(${el.icon_file})`);
-					$(".sidebar-head .logo-wrapper .logo").css("background-size", `cover`);
-					console.log($("nav #logo").html());
-					$("body").css("display", "block");
-				}
-			})
-
+		
+			if($("nav #logo img")!=null){
+			$("nav #logo img").attr("src", el.icon_file);
+			
+			$(".sidebar-head .logo-wrapper .logo").css("background-image", `url(${el.icon_file})`);
+			$(".sidebar-head .logo-wrapper .logo").css("background-size", `cover`);
+			}
+			iconstate = true;
+			if(navstate&&mypagestate&&iconstate){
+		
+			$("body").css("display", "block");
+			}
 
 		}
 	})
+	let navstate = false;
+	$.ajax({
+		url: "/navList.mdo",
+		method: "get",
+		dataType: "json",
+		success: function(re) {
+		
+			let navfore = ``;
+			let navko = ``;
+			re.map((el) => {
+				navfore += `<a href="/booklist.do?category=${el.category_num}" class="dropdown-item">${el.nav_category_name}</a>`;
+				navko += `<a href="/booklist.do?category=${el.category_num}" class="dropdown-item">${el.nav_category_name}</a>`;
+			});
+			if($("#navfore")!=null){
+			$("#navfore").append(navfore)
+			$("#navko").append(navko);
+			}
+			navstate = true;
+			if(navstate&&mypagestate&&iconstate){
+		
+			$("body").css("display", "block");
+			}
+		}
+	})
+	let mypagestate = false;
+	$.ajax({
+		url: "/getmyuser.do",
+		method: "get",
+		dataType: "json",
+		success: function(el) {
+		
+			$("#mypage_name_header").text(el.user_name);
+			$("#mypage_coupon_header").text(el.user_enabled);
+			$("#mypage_point_header").text(el.user_point.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+		mypagestate=true;
+		if(navstate&&mypagestate&&iconstate){
+		
+			$("body").css("display", "block");
+			}
+
+		},
+		error: function(el) {
+			mypagestate=true;
+			if(navstate&&mypagestate&&iconstate){
+		
+			$("body").css("display", "block");
+			}
+		}
+	})
+
 })
