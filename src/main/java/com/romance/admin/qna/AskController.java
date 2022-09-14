@@ -1,5 +1,7 @@
 package com.romance.admin.qna;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,7 +68,7 @@ public class AskController {
 	
 	// Delete (List)
 	@GetMapping(value = "/QnaDelete.mdo")
-	public String delete(AskVO vo) {
+	public String delete(AskVO vo) throws FileNotFoundException, IOException {
 		
 		if(vo.getAsk_file() != null) { // isEmpty() : 업로드 한 파일 존재 여부를 리턴(없으면 true 리턴) 
 			String key = vo.getAsk_file();

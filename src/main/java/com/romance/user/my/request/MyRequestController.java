@@ -1,5 +1,6 @@
 package com.romance.user.my.request;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -21,7 +22,7 @@ public class MyRequestController {
 	private MyRequestService myRequestService;
 	
 	@GetMapping("myRequestList.do")
-	public String myRequestList(Model model, HttpSession session, JwtUtils utils) {
+	public String myRequestList(Model model, HttpSession session, JwtUtils utils) throws IOException {
 		UserVO voToken = utils.getuser(session);
 		if(voToken != null) {
 			String session_user_id = voToken.getUser_id();
@@ -36,7 +37,7 @@ public class MyRequestController {
 	}
 	
 	@GetMapping("myRequestDetail.do")
-	public String myRequestDetail(Model model, HttpSession session, JwtUtils utils) {
+	public String myRequestDetail(Model model, HttpSession session, JwtUtils utils) throws IOException {
 		UserVO voToken = utils.getuser(session);
 		if(voToken != null) {
 			return "my_RequestDetail";
@@ -46,7 +47,7 @@ public class MyRequestController {
 	}
 	
 	@GetMapping("myRequestWrite.do")
-	public String myRequestWrite(Model model, HttpSession session, JwtUtils utils) {
+	public String myRequestWrite(Model model, HttpSession session, JwtUtils utils) throws IOException {
 		UserVO voToken = utils.getuser(session);
 		if(voToken != null) {
 			System.out.println(voToken);

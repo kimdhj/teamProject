@@ -1,5 +1,6 @@
 package com.romance.admin.account;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -75,7 +76,7 @@ public class AdminAccountController {
 	}
 	
 	@GetMapping("getAdmin_member_Detail.mdo")
-	public String getUserDetail(AdminUserVO vo,@ModelAttribute("criteria") Criteria criteria, Model model, HttpSession session, JwtUtils utils) {
+	public String getUserDetail(AdminUserVO vo,@ModelAttribute("criteria") Criteria criteria, Model model, HttpSession session, JwtUtils utils) throws IOException {
 		AdminUserVO voToken = utils.getAdmin(session);
 		if(voToken != null) {
 			model.addAttribute("criteria", criteria);

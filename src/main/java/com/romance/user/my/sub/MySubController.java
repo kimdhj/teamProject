@@ -1,5 +1,7 @@
 package com.romance.user.my.sub;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +31,7 @@ public class MySubController {
 	
 	//마이페이지 구독정보
 	@RequestMapping("my_getSub.do")
-	public String my_getSub(HttpSession session, JwtUtils util, Model model, SubscribeVO svo) {
+	public String my_getSub(HttpSession session, JwtUtils util, Model model, SubscribeVO svo) throws IOException {
 		UserVO userVO = util.getuser(session);
 		
 		model.addAttribute("user_name", userVO.getUser_name());
@@ -44,7 +46,7 @@ public class MySubController {
 	
 	//마이페이지 구독취소
 	@RequestMapping("my_cancelSub.do")
-	public String my_cancelSub(HttpSession session, JwtUtils util, Model model, SubscribeVO svo) {
+	public String my_cancelSub(HttpSession session, JwtUtils util, Model model, SubscribeVO svo) throws IOException {
 		UserVO userVO = util.getuser(session);
 		
 		model.addAttribute("user_name", userVO.getUser_name());
@@ -60,7 +62,7 @@ public class MySubController {
 	
 	//마이페이지 구독정보변경
 	@RequestMapping("my_modifySub.do")
-	public String my_modifySub(HttpSession session, JwtUtils util, Model model, SubscribeVO svo) {
+	public String my_modifySub(HttpSession session, JwtUtils util, Model model, SubscribeVO svo) throws IOException {
 		UserVO userVO = util.getuser(session);
 		
 		model.addAttribute("user_name", userVO.getUser_name());

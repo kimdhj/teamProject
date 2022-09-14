@@ -1,12 +1,17 @@
 package com.romance.security;
 
+import java.io.IOException;
+import java.io.Reader;
 import java.time.Duration;
 import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 import javax.servlet.http.HttpSession;
+
+import org.apache.ibatis.io.Resources;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.romance.admin.login.AdminUserVO;
@@ -18,11 +23,16 @@ import io.jsonwebtoken.SignatureAlgorithm;
 
 public class JwtUtils {
 
-	private final String key = "project_doublejo_kgitbankromance_secretkey";
+	private String key;
 
 	// jwt 토큰 생성
 	// ==토큰 생성 메소드==//
-	public String createToken(String subject, UserVO vo) {
+	public String createToken(String subject, UserVO vo) throws IOException {
+	  String resource = "config/token.properties";
+	  Properties properties = new Properties();    
+    Reader reader = Resources.getResourceAsReader(resource);
+    properties.load(reader);
+    key=properties.getProperty("key");
 		Date now = new Date();
 		Date expiration = new Date(now.getTime() + Duration.ofDays(1).toMillis()); // 만료기간 1일
 		Map<String, Object> payloads = new HashMap<>();
@@ -38,7 +48,12 @@ public class JwtUtils {
 	}
 
 	// ==Jwt 토큰의 유효성 체크 메소드==//
-	public Map<String, Object> parseJwtToken(String token) {
+	public Map<String, Object> parseJwtToken(String token) throws IOException {
+	  String resource = "config/token.properties";
+    Properties properties = new Properties();    
+    Reader reader = Resources.getResourceAsReader(resource);
+    properties.load(reader);
+    key=properties.getProperty("key");
 		// token = BearerRemove(token); // Bearer 제거
 		return Jwts.parser().setSigningKey(Base64.getEncoder().encodeToString(key.getBytes())).parseClaimsJws(token)
 				.getBody();
@@ -62,7 +77,7 @@ public class JwtUtils {
 //	ObjectMapper mapper = new ObjectMapper();
 //	UserVO vo=mapper.convertValue(con.get("user"),UserVO.class );
 //	System.out.println("con"+vo);
-	public UserVO getuser(HttpSession session) {
+	public UserVO getuser(HttpSession session) throws IOException {
 		String token = (String) session.getAttribute("id");
 		if (token != null) {
 			Map<String, Object> con = parseJwtToken(token);
@@ -95,7 +110,7 @@ public class JwtUtils {
 				.compact();
 	}
 	
-	public AdminUserVO getAdmin(HttpSession session) {
+	public AdminUserVO getAdmin(HttpSession session) throws IOException {
 		String token = (String) session.getAttribute("id");
 		if (token != null) {
 			Map<String, Object> con = parseJwtToken(token);

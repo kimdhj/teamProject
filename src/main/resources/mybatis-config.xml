@@ -78,6 +78,7 @@
 			<typeAlias type="com.romance.admin.qna.AskReplyVO" alias="askReply"/>
 			<typeAlias type="com.romance.admin.qna.AskSearchVO" alias="askSearch"/>
 		<typeAlias type="com.romance.user.my.request.MyRequestVO" alias="myRequestVO" />
+		<typeAlias type="com.romance.user.concernwriter.ConcernWriterVO" alias="concernVO" />
 
 	</typeAliases>
 	
@@ -109,6 +110,7 @@
 		<mapper resource="mappings/adminQna-mapping.xml" />
 		<mapper resource="mappings/product-mapping.xml" />
 		<mapper resource="mappings/userrequest-mapping.xml" />
+		<mapper resource="mappings/concernwriter-mapping.xml" />
 
 	</mappers>
 </configuration>
