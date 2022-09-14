@@ -9,5 +9,9 @@ public class ProductSearchVO {
 	private int seq;
 	private String sort;
 	private String thing;
+	private int Hpage;
+	private int Hseq;
+	private String Hsort;
+	private String Hthing;
 	
 }

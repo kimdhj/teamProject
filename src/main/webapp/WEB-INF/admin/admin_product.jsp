@@ -119,10 +119,10 @@
 				</div>
 				<div class="col-1"></div>
 			</div>
-				<input type="hidden" value="${svo.page }" id="page">
-				<input type="hidden" value="${svo.seq }" id="seq">
-				<input type="hidden" value="${svo.sort }" id="sort">
-				<input type="hidden" value="${svo.thing }" id="thing">
+				<input type="hidden" value="${svo.page }" id="Hpage">
+				<input type="hidden" value="${svo.seq }" id="Hseq">
+				<input type="hidden" value="${svo.sort }" id="Hsort">
+				<input type="hidden" value="${svo.thing }" id="Hthing">
 		</div>
 	</div>
 
