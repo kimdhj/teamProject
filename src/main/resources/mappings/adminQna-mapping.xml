@@ -42,6 +42,22 @@
 	</trim>
 	</select>
 	
+	<!-- 답변 달기 -->
+	<insert id="answerInsert" parameterType="askReply">
+		INSERT INTO ask_reply(ask_reply_seq, ask_seq, ask_reply_writer, ask_reply_date, ask_reply_content, ask_reply_file, ask_reply_password)
+		VALUES (null, #{ask_seq}, #{ask_reply_writer}, default, #{ask_reply_content}, #{ask_reply_file}, #{ask_reply_password})
+	</insert>
+	
+	<!-- 목록에서 답변 완료 -->
+	<update id="answerStatus" parameterType="ask">
+		UPDATE ask SET ask_status = '답변 완료' WHERE ask_status = '답변 대기';
+	</update>
+	
+	<!-- 답변 수정 -->
+	<update id="update" parameterType="askReply">
+		UPDATE ask_reply SET ask_reply_content = #{ask_reply_content} WHERE ask_seq = #{ask_seq} AND ask_reply_password = #{ask_reply_password}
+	</update>
+	
 	<!-- 개별 삭제 -->
 	<delete id="delete1" parameterType="ask">
 		DELETE FROM ask WHERE ask_seq = #{ask_seq}
