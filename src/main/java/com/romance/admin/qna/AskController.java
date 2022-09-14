@@ -70,7 +70,7 @@ public class AskController {
   
   // Delete (List)
   @GetMapping(value = "/AskDelete.mdo") // 질문 삭제(질문 + 답변)
-  public String delete(AskVO vo) {
+  public String delete(AskVO vo) throws FileNotFoundException, IOException {
     AskReplyVO arvo = new AskReplyVO();
     System.out.println("AskDelete : " + vo);
     
@@ -106,7 +106,7 @@ public class AskController {
   }
   
   @GetMapping(value = "/AskReplyDelete.mdo") // 답변 삭제
-  public String delete(AskReplyVO arvo) { 
+  public String delete(AskReplyVO arvo) throws FileNotFoundException, IOException { 
     
     if(arvo.getAsk_reply_file() != null) { // isEmpty() : 업로드 한 파일 존재 여부를 리턴(없으면 true 리턴) 
       String key = arvo.getAsk_reply_file();
@@ -126,7 +126,7 @@ public class AskController {
   
   @GetMapping(value = "/qnaChkbox.mdo")
   @ResponseBody
-  public String chkboxDelete(@RequestParam(value = "ask_seq[]") List<String> ask_seq, AskReplyVO arvo) {
+  public String chkboxDelete(@RequestParam(value = "ask_seq[]") List<String> ask_seq, AskReplyVO arvo) throws FileNotFoundException, IOException {
     System.out.println("checkDelete : " + ask_seq);
     System.out.println("arvo(체크박스 삭제) : " + arvo);
     service.chkboxDelete1(ask_seq);
