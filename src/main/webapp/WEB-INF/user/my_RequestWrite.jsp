@@ -28,7 +28,7 @@
 		</div>
 
 		<!-- 문의글 시작 -->
-		<form>
+		<form action="myRequestWrite.do" method="post" enctype="multipart/form-data" onsubmit="return checkWriteForm()">
 			<table class="table">
 				<thead>
 
@@ -38,7 +38,7 @@
 						<th scope="row" class="bg-light align-middle">제목</th>
 						<td colspan="3">
 							<div class="form-floating mb-3">
-								<input type="text" class="form-control" id="floatingInput"
+								<input type="text" class="form-control" id="ask_title" name="ask_title"
 									placeholder="제목을 입력하세요"> <label for="floatingInput">제목을
 									입력하세요</label>
 							</div>
@@ -64,18 +64,24 @@
 					<tr>
 						<th class="bg-light">첨부파일</th>
 						<td colspan="2"><input type="file" accept="image/*,.txt"
-							multiple required capture='user' onchange='aaa' /></td>
-						<td><input type="button" class="bg-light" value="삭제">
+							multiple capture='user' onchange='aaa' id="uploadFile" name="uploadFile" /></td>
+						<td><input type="button" class="bg-light" id="delFile" value="삭제">
+						</td>
+					</tr>
+					<tr>
+						<th class="bg-light">비밀번호</th>
+						<td colspan="2"><input type="password" id="ask_password" name="ask_password" /></td>
+						<td>
 						</td>
 					</tr>
 				</tbody>
 			</table>
 			<!-- 문의글 끝 -->
 			<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-				<button class="btn btn-primary me-md-2" type="button">문의접수</button>
-				<button class="btn btn-primary" type="button">문의목록</button>
+				<button class="btn btn-primary" type="button" id="returnListBtn">문의목록</button>
+				<button class="btn btn-primary me-md-2" type="submit">문의접수</button>
 			</div>
-
+			<input type="hidden" id="user_id" name="user_id" value="${voToken.user_id}"/>
 		</form>
 		
 
@@ -90,7 +96,7 @@
 		<!-- Common Footer include -->
 		<jsp:include page="/WEB-INF/commonjsp/common_footer.jsp"></jsp:include>
 		<!-- Footer End -->
-		
+		<script src="/js/my_requestwrite.js"></script>
 </body>
 
 </html>

@@ -2,10 +2,14 @@ package com.romance.user.my.request;
 
 
 import java.io.IOException;
+
 import java.util.List;
 
+
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 
 import javax.servlet.http.HttpSession;
@@ -15,9 +19,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.romance.security.JwtUtils;
+import com.romance.server.AwsS3;
 import com.romance.user.login.UserVO;
 
 @Controller
@@ -84,6 +92,7 @@ public class MyRequestController {
 	
 	@GetMapping("myRequestDetail.do")
 	public String myRequestDetail(MyRequestVO myRequestVO, MyRequestReplyVO myRequestReplyVO, Criteria criteria, Model model, HttpSession session, JwtUtils utils) throws IOException {
+
 		UserVO voToken = utils.getuser(session);
 		if(voToken != null) {
 			System.out.println(voToken);
@@ -114,7 +123,30 @@ public class MyRequestController {
 			return "my_RequestWrite";
 		} else {
 			return "redirect:login.do";
+		}	
+	}
+	
+	@PostMapping("myRequestWrite.do")
+	public String insertMyRequest(MyRequestVO myRequestVO, @RequestParam(name="uploadFile") MultipartFile uploadFile, HttpSession session, JwtUtils utils) throws IOException {
+		UserVO voToken = utils.getuser(session);
+		if(voToken != null) {
+			if(!uploadFile.isEmpty()) {
+				String filename = uploadFile.getOriginalFilename();
+				String expand = filename.substring(filename.indexOf("."));
+				String key = UUID.randomUUID().toString() + expand;
+				System.out.println("key : " + key);
+				InputStream is = uploadFile.getInputStream();
+				String contentType = uploadFile.getContentType();
+				long contentLength = uploadFile.getSize();
+				AwsS3 awsS3 = AwsS3.getInstance();
+				awsS3.upload(is, key, contentType, contentLength);
+				String uploadFolder = "https://doublejo.s3.ap-northeast-2.amazonaws.com/";
+				myRequestVO.setAsk_file(uploadFolder + key);
+			}
+			myRequestService.insertMyRequest(myRequestVO);
+			return "redirect:myRequestList.do";
+		} else {
+			return "redirect:login.do";
 		}
-		
 	}
 }
