@@ -26,11 +26,11 @@
 	<select id="ajax_search" parameterType="pros" resultType="pro">
 		<![CDATA[SELECT * FROM (SELECT @rownum:=@rownum+1 AS rnum, book.* FROM book,(SELECT @rownum:=0) TMP]]>
 			<trim prefix="WHERE" prefixOverrides="AND | OR">
-			<if test="sort == '제목'" > AND book_title LIKE CONCAT('%', #{thing}, '%')</if>
-			<if test="sort == '작가'" > AND book_author LIKE CONCAT('%', #{thing}, '%')</if>
-			<if test="sort == '카테고리'" > AND category_num LIKE CONCAT('%', #{thing}, '%')</if>
+				<if test="sort == '제목'" > AND book_title LIKE CONCAT('%', #{thing}, '%')</if>
+				<if test="sort == '작가'" > AND book_author LIKE CONCAT('%', #{thing}, '%')</if>
+				<if test="sort == '카테고리'" > AND category_num LIKE CONCAT('%', #{thing}, '%')</if>
 			</trim>
-			<![CDATA[) tnum where rnum>0 and rnum<21]]>
+			<![CDATA[) tnum where rnum>=(#{page}*20-19) and rnum<=(#{page}*20)]]>
 	</select>
 	<select id="all_count" parameterType="pros" resultType="int">
 		<![CDATA[SELECT count(*) FROM (SELECT @rownum:=@rownum+1 AS rnum, book.* FROM book,(SELECT @rownum:=0) TMP ) tnum]]>
