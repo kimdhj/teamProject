@@ -135,7 +135,7 @@ public class LoginController {
     vo = ser.onesearch(kakaoid);
     ser.loginday(kakaoid);
     String token = util.createToken("유저", vo);
-    
+    model.addAttribute("id",token);
     return "redirect:index.do";
   }
   

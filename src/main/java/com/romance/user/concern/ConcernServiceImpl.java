@@ -1,4 +1,4 @@
-package com.romance.user.concernwriter;
+package com.romance.user.concern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

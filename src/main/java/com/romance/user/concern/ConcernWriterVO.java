@@ -1,4 +1,4 @@
-package com.romance.user.concernwriter;
+package com.romance.user.concern;
 
 import lombok.Data;
 
