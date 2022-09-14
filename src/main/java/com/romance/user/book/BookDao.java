@@ -6,6 +6,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.romance.admin.icon.BannerVO;
+import com.romance.admin.icon.IconVO;
 import com.romance.admin.sample.category.CategoryVO;
 import com.romance.admin.sample.navcategory.NavCategoryVO;
 import com.romance.user.reply.FineVO;
@@ -84,5 +86,14 @@ public class BookDao {
 		return sql.selectList("book.detailbooklist",page);
 		
 	}
+	 public IconVO getIcon() {
+	    return sql.selectOne("iconDAO.getIcon");
+	    
+	  }
+	 public List<BannerVO> getBanner() {
+     return sql.selectList("BannerDAO.getBanner");
+     
+   }
+
 
 }

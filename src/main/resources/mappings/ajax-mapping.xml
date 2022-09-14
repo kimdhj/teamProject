@@ -84,12 +84,25 @@
 		1
 		end ) as num,@rownum:=@rownum+1 as rnum
 		from real_chat where real_chat_name not like CONCAT('%','admin','%') group by real_chat_name order by num
-		desc,real_chat_date desc) B,(SELECT @rownum:=0) TMP where num=0;
+		desc,real_chat_date desc) B,(SELECT @rownum:=0) TMP where num=0
 	</select>
 	<delete parameterType="String" id="delall">
 	delete from real_chat where real_chat_name=#{realchatname} or real_chat_name=CONCAT(#{realchatname},'admin') 
 	</delete>
-
+<select id="countlist" parameterType="chatsearchVO" resultType="int">
+	<![CDATA[select count(*) from (select distinct
+		real_chat_name,real_chat_session,max(real_chat_date) as
+		real_chat_date,count(case when real_chat_state=false then
+		1
+		end ) as num,@rownum:=@rownum+1 as rnum
+		from real_chat where real_chat_name not like CONCAT('%','admin','%')]]>
+		
+			<if test="name != null and name != ''"><![CDATA[AND real_chat_name like CONCAT('%',#{name},'%')]]></if>
+			<if test="startdate != null and startdate !=''"><![CDATA[AND real_chat_date>=#{startdate}]]></if>
+		
+		 <![CDATA[group by real_chat_name order by num
+		desc,real_chat_date desc) B,(SELECT @rownum:=0) TMP ]]>
+	</select>
 
 
 </mapper>

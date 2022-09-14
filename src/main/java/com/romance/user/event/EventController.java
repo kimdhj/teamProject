@@ -1,5 +1,6 @@
 package com.romance.user.event;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
@@ -283,7 +284,7 @@ public class EventController {
 	
 	@RequestMapping(value="/ajax_del.mdo", method=RequestMethod.POST)
 	@ResponseBody
-	public int ajaxDel(@RequestParam(value="del", required=false)int del) {
+	public int ajaxDel(@RequestParam(value="del", required=false)int del) throws FileNotFoundException, IOException {
 		System.out.println(del);
 		eventService.ajaxDel(del);
 		return del;

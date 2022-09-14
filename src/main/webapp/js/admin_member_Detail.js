@@ -65,23 +65,39 @@ function adminAccountCheck() { //유효성 검사
 //		user_id.focus();
 //		return false();
 //	}
+
+
+//	if(user_password.value == ""){
+//		alert("비밀번호를 입력하세요");
+//		user_password.focus();
+//		return false;
+//	}
+//	if(!reg_password.test(user_password.value)){
+//		alert("비밀번호는 문자 + 특수문자 조합의 8~24자리 입력")
+//		user_password.focus();
+//		return false;
+//	}
+//	if(user_password.value != user_passwordCheck.value) {
+//		alert("비밀번호가 일치하지 않습니다 다시 입력해주세요");
+//		user_passwordCheck.focus();
+//		return false;
+//	}
 	
-	if(user_password.value == ""){
-		alert("비밀번호를 입력하세요");
-		user_password.focus();
-		return false;
+// 비밀번호가 빈값일 경우에는 체크하지않음 (유저정보 업데이트 할때 비밀번호가 null, '' 빈값 이면 비밀번호 변경 안되도록 쿼리문 수정
+// 비밀번호 빈값 허용(빈값이 아닐경우에만 정규식 적용)
+	if(user_password.value != ""){
+		if(!reg_password.test(user_password.value)){
+			alert("비밀번호는 문자 + 특수문자 조합의 8~24자리 입력")
+			user_password.focus();
+			return false;
+		}
+		if(user_password.value != user_passwordCheck.value) {
+			alert("비밀번호가 일치하지 않습니다 다시 입력해주세요");
+			user_passwordCheck.focus();
+			return false;
+		}
 	}
-	if(!reg_password.test(user_password.value)){
-		alert("비밀번호는 문자 + 특수문자 조합의 8~24자리 입력")
-		user_password.focus();
-		return false;
-	}
-	if(user_password.value != user_passwordCheck.value) {
-		alert("비밀번호가 일치하지 않습니다 다시 입력해주세요");
-		user_passwordCheck.focus();
-		return false;
-	}
-	
+//여기까지 비밀번호 새로운 로직 끝	
 	if(user_phone.value == ""){
 		alert("전화번호를 입력하세요");
 		user_phone.focus();

@@ -1,5 +1,6 @@
 package com.romance.admin.icon.impl;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -33,7 +34,7 @@ public class IconServiceImpl implements IconService {
 	}
 
 	@Override
-	public void deleteIcon(IconVO vo) {
+	public void deleteIcon(IconVO vo) throws FileNotFoundException, IOException {
 		AwsS3 awsS3 = AwsS3.getInstance();
 		String key = null;
 		if (vo.getIcon_file() != null) {
@@ -65,7 +66,7 @@ public class IconServiceImpl implements IconService {
 	}
 
 	@Override
-	public void deleteBanner() {
+	public void deleteBanner() throws FileNotFoundException, IOException {
 		AwsS3 awsS3 = AwsS3.getInstance();
 		String key = null;
 		List<String> vo = new ArrayList<>();

@@ -1,5 +1,7 @@
 package com.romance.admin.notice.impl;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,7 +79,7 @@ public class NoticeServiceImpl implements NoticeService{
 	}
 	
 	@Override
-	public void checkBox(List<String> notice_seq) {
+	public void checkBox(List<String> notice_seq) throws FileNotFoundException, IOException {
 		for(String nSeq : notice_seq) {
 			int seq = Integer.parseInt(nSeq);
 			

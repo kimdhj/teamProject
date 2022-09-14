@@ -1,5 +1,6 @@
 package com.romance.user.my.request;
 
+import java.io.IOException;
 import java.util.List;
 
 import com.romance.user.login.UserVO;

@@ -1,5 +1,7 @@
 package com.romance.admin.qna.impl;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,7 +72,7 @@ public class AskServiceImpl implements AskService{
 	}
 	
 	@Override
-	public void chkboxDelete1(List<String> ask_seq) {
+	public void chkboxDelete1(List<String> ask_seq) throws FileNotFoundException, IOException {
   	for(String nSeq : ask_seq) {
   		int seq = Integer.parseInt(nSeq);
   		
@@ -99,7 +101,7 @@ public class AskServiceImpl implements AskService{
 	}
 	
 	@Override
-	public void chkboxDelete2(List<String> ask_seq) {
+	public void chkboxDelete2(List<String> ask_seq) throws FileNotFoundException, IOException {
 	  
 	  for(String nSeq : ask_seq) {
       int seq = Integer.parseInt(nSeq);

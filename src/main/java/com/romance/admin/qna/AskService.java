@@ -1,5 +1,7 @@
 package com.romance.admin.qna;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 public interface AskService {
@@ -10,8 +12,8 @@ public interface AskService {
 	
 	void delete1(AskVO vo); // 질문 삭제
 	void delete2(AskReplyVO arvo); // 답변 삭제
-	void chkboxDelete1(List<String> ask_seq); // 선택 삭제 - 질문
-	void chkboxDelete2(List<String> ask_seq); // 선택 삭제 - 답변
+	void chkboxDelete1(List<String> ask_seq) throws FileNotFoundException, IOException ; // 선택 삭제 - 질문
+	void chkboxDelete2(List<String> ask_seq) throws FileNotFoundException, IOException ; // 선택 삭제 - 답변
 	
 //	void insert(AskReplyVO arvo); // 등록
 //	void update(AskReplyVO arvo); // 수정

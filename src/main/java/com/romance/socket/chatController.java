@@ -104,6 +104,15 @@ public class chatController {
 		model.addAttribute("userid", user);
 		return "admin_realchat_admin";
 	}
+	@RequestMapping("/countlist.do")
+  @ResponseBody
+  public int countlist(chatSearchVO vos) {
+    if(vos.getPage()==0) {
+      vos.setPage(1);
+    }
+    
+    return ser.countlist(vos);
+  }
 
 	@GetMapping("/chatList.mdo")
 	public String chatList(chatVO vo,chatSearchVO vos,Model model) {

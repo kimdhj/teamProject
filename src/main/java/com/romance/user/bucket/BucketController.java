@@ -1,5 +1,6 @@
 package com.romance.user.bucket;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -20,7 +21,7 @@ public class BucketController {
 	@Autowired
 	BucketService ser;
 	@GetMapping("cart.do")
-	public String cart(BucketSearchVO vob,Model model,HttpSession session,JwtUtils util) {
+	public String cart(BucketSearchVO vob,Model model,HttpSession session,JwtUtils util) throws IOException {
 		UserVO vo=util.getuser(session);
 		if(vo!=null) {
 		vob.setUser_id(vo.getUser_id());
@@ -40,7 +41,7 @@ public class BucketController {
 	}
 	@GetMapping("cartadd.do")
 	@ResponseBody
-	public String cartadd(BucketVO bvo,HttpSession session,JwtUtils util) {
+	public String cartadd(BucketVO bvo,HttpSession session,JwtUtils util) throws IOException {
 		
 		UserVO vo=util.getuser(session);
 		System.out.println(vo);
@@ -62,7 +63,7 @@ public class BucketController {
 	}
 	@GetMapping("cartdel.do")
 	@ResponseBody
-	public void delbuc(@RequestParam("book_seq[]") int[] book_seq,HttpSession session,JwtUtils util) {
+	public void delbuc(@RequestParam("book_seq[]") int[] book_seq,HttpSession session,JwtUtils util) throws IOException {
 		
 		UserVO vos=util.getuser(session);
 		if(vos!=null) {

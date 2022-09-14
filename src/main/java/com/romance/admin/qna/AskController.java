@@ -1,5 +1,6 @@
 package com.romance.admin.qna;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
@@ -18,6 +19,7 @@ import com.romance.server.AwsS3;
 
 @Controller
 public class AskController {
+
   @Autowired
   private AskService service;
   
@@ -71,7 +73,7 @@ public class AskController {
   
   // Delete (List, 상세보기에서 질문 + 답변 삭제)
   @GetMapping(value = "/AskDelete.mdo") // 질문 삭제(질문 + 답변)
-  public String delete(AskVO vo) {
+  public String delete(AskVO vo) throws FileNotFoundException, IOException {
     AskReplyVO arvo = new AskReplyVO();
     System.out.println("AskDelete : " + vo);
     
@@ -106,10 +108,8 @@ public class AskController {
     return "redirect:QnaList.mdo";
   }
   
-  @GetMapping(value = "/AskReplyDelete.mdo") // 답변만 삭제
-  public String delete(AskReplyVO arvo) {
-    System.out.println("AskReplyDelete : " + arvo);
-    
+  @GetMapping(value = "/AskReplyDelete.mdo") // 답변 삭제
+  public String delete(AskReplyVO arvo) throws FileNotFoundException, IOException { 
     if (arvo.getAsk_reply_file() != null) { // isEmpty() : 업로드 한 파일 존재 여부를 리턴(없으면 true 리턴)
       String key = arvo.getAsk_reply_file();
       String uploadFolder = "https://doublejo.s3.ap-northeast-2.amazonaws.com/";
@@ -128,7 +128,7 @@ public class AskController {
   
   @GetMapping(value = "/qnaChkbox.mdo")
   @ResponseBody
-  public String chkboxDelete(@RequestParam(value = "ask_seq[]") List<String> ask_seq, AskReplyVO arvo) {
+  public String chkboxDelete(@RequestParam(value = "ask_seq[]") List<String> ask_seq, AskReplyVO arvo) throws FileNotFoundException, IOException {
     System.out.println("checkDelete : " + ask_seq);
     System.out.println("arvo(체크박스 삭제) : " + arvo);
     service.chkboxDelete1(ask_seq);
@@ -238,7 +238,6 @@ public class AskController {
     
     return "admin_post_QnaDetail";
   }
-  
   
   
 }

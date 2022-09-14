@@ -311,6 +311,83 @@ $(document).on("click", "#add_cartCheck", function(e) {
 		}
 	})
 })
-$(document).on('click',"#fin",function(){
-alert("로그인 후 진행해주세요");
+$(document).on('click', "#fin", function() {
+	alert("로그인 후 진행해주세요");
+})
+$(document).on("click", ".bi-heart", function(e) {
+	console.log($(e.target).parents(".row").children("#reseq").val());
+	$.ajax({
+		url: "/finein.do",
+		method: "get",
+		data: {
+			reply_seq: Number($(e.target).parents(".row").children("#reseq").val())
+		},
+		dataType: "json",
+		success: function(re) {
+			console.log(re + "suc")
+		},
+		error: function(re) {
+			console.log(re.responseText);
+			let num = Number($(e.target).parents(".col-9").children("#review_starBox").children("#thumb_count").text().replaceAll("좋아요", ""));
+			if (re.responseText.trim() == "fail") {
+				alert("로그인 후 진행해주세요")
+			} else {
+				$(e.target).parents(".col-9").children("#review_starBox").children("#thumb_count").text("좋아요" + (num + 1))
+				$(e.target).removeClass("bi-heart");
+				$(e.target).addClass("bi-heart-fill");
+				$(e.target).css("color", "red");
+
+			}
+		}
+	})
+})
+$(document).on("click", ".bi-heart-fill", function(e) {
+	console.log();
+	let num = Number($(e.target).parents(".col-9").children("#review_starBox").children("#thumb_count").text().replaceAll("좋아요", ""));
+	$.ajax({
+		url: "/finedel.do",
+		method: "get",
+		data: {
+			reply_seq: Number($(e.target).parents(".row").children("#reseq").val())
+		},
+		dataType: "json",
+		success: function(re) {
+			console.log(re + "suc")
+		},
+		error: function(re) {
+			console.log(re.responseText)
+			if (re.responseText.trim() == "fail") {
+				alert("로그인 후 진행해주세요")
+			} else {
+				$(e.target).parents(".col-9").children("#review_starBox").children("#thumb_count").text("좋아요" + (num - 1))
+				$(e.target).removeClass("bi-heart-fill");
+				$(e.target).addClass("bi-heart");
+				$(e.target).css("color", "black");
+			}
+		}
+	})
+})
+$(document).on("click", "#authorname", function() {
+	console.log($("#author_seq").val());
+	$.ajax({
+		url: "/concernin.do",
+		method: "get",
+		data: {
+			author_seq: Number($("#author_seq").val())
+		},
+		dataType: "json",
+		success: function(re) {
+			console.log(re + "suc")
+		},
+		error: function(re) {
+		
+			if (re.responseText.trim() == "fail") {
+				alert("로그인 후 진행해주세요");
+			} else {
+				if (re.responseText.trim() == "no") {
+					alert("이미 추가되었습니다.");
+				}
+			}
+		}
+	})
 })

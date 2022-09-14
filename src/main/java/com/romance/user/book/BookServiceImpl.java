@@ -6,6 +6,8 @@ import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.romance.admin.icon.BannerVO;
+import com.romance.admin.icon.IconVO;
 import com.romance.admin.sample.category.CategoryVO;
 import com.romance.admin.sample.navcategory.NavCategoryVO;
 import com.romance.user.reply.FineVO;
@@ -88,16 +90,19 @@ public class BookServiceImpl implements BookService {
 		return String.format("%.1f",re);
 	}
 	@Override
-	public List<ReplyVO> replylist(ReplysearchVO vo) {
+	public List<ReplyVO> replylist(ReplysearchVO vo,String user_id) {
 		// TODO Auto-generated method stub
 		List<ReplyVO> relist=dao.replylist(vo);
 		FineVO fvo=new FineVO();
-		fvo.setUser_id("user");
+		
+		fvo.setUser_id(user_id);
 		for(ReplyVO re:relist) {
 			fvo.setReply_seq(re.getReply_seq());
 			
 			re.setFinecount(countsum(fvo));
+			if(user_id!=null) {
 			re.setFine(fineche(fvo));
+			}
 		}
 		return relist;
 	}
@@ -130,6 +135,16 @@ public class BookServiceImpl implements BookService {
 		}
 		return dao.detailbooklist(count);
 	}
+  @Override
+  public IconVO getIcon() {
+    // TODO Auto-generated method stub
+    return dao.getIcon();
+  }
+  @Override
+  public List<BannerVO> getBanner() {
+    // TODO Auto-generated method stub
+    return dao.getBanner();
+  }
 	
 	
 	
