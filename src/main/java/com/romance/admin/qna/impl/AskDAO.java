@@ -56,4 +56,8 @@ public class AskDAO {
 	    result = true;
 	  return result;
 	}
+	
+	public void answerInsert(AskReplyVO arvo) {
+	  sqlSession.insert("AskDAO.answerInsert", arvo);
+	}
 }

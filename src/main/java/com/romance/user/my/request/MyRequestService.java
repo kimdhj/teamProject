@@ -1,6 +1,9 @@
 package com.romance.user.my.request;
 
+import java.io.IOException;
 import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import com.romance.user.login.UserVO;
 
@@ -21,4 +24,9 @@ public interface MyRequestService {
 	
 	//관리자 답변글
 	public MyRequestReplyVO getMyRequestReply(MyRequestReplyVO myRequestReplyVO);
+	
+	//문의글 등록
+	public void insertMyRequest(MyRequestVO myRequestVO) throws IOException;
+		
+
 }

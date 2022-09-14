@@ -44,4 +44,10 @@ public class MyRequestDAO {
 	public MyRequestReplyVO getMyRequestReply(MyRequestReplyVO myRequestReplyVO) {
 		return sqlSessionTemplate.selectOne("userRequest.getMyRequestReply", myRequestReplyVO);
 	}
+	
+	//문의글 등록
+	public void insertMyRequest(MyRequestVO myRequestVO) {
+		System.out.println("Mybatis로 insertMyRequest 기능 처리");
+		sqlSessionTemplate.insert("userRequest.insertMyRequest", myRequestVO);
+	}
 }

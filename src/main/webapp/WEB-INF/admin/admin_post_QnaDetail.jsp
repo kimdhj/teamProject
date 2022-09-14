@@ -56,7 +56,7 @@
         <c:if test="${ask.ask_status eq  '답변 대기'}">
 			<div class="row col-4"></div>
 			<div class="row col-4">
-				<button class="col-auto bg-white border-1 answer" >답변하기</button>
+				<button class="col-auto bg-white border-1 answer">답변하기</button>
 				<button class="col-auto bg-white border-1 userdel">문의삭제</button>
 				<button class="col-auto bg-white border-1 qnalist">목록</button>
 			</div>
@@ -134,7 +134,7 @@
         </c:if>
         
         <!-- 답변 대기 일 때 -->
-        <form class="p-0" action="#" name="detail" method="post" id="form" enctype="multipart/form-data">
+        <form class="p-0" action="/qnaDetail.mdo" name="detail" method="post" id="form" enctype="multipart/form-data">
         <c:if test="${ask.ask_status eq  '답변 대기'}">
           <div class="mb-0 mt-5 p-0 form1 hide">
             <button type="button" id="all" class="select p-2 answerbtn" >답변 작성하기</button>
@@ -144,20 +144,21 @@
             <div class="row d-flex align-items-center mt-2" id="input_line_top">
               <div class="col-1 mb-2 qnaDetail_font" style="padding-right: 0px;margin-left: 1%;">번호</div>
               <div class="col-3 mb-2" style="padding-left: 0px;">${askReply.ask_seq }
-                <input type="hidden" id="ask_reply_seq" value="${askReply.ask_seq }" />
+                <input type="hidden" id="ask_reply_seq" name="ask_seq" value="${askReply.ask_seq }" />
               </div>
               <div class="col-1 mb-2 qnaDetail_font" style="padding-right: 0px;">작성자</div>
               <div class="col-3 mb-2" style="padding-left: 0px;">
-                <input type="text" id="writer" name="ask_reply_writer" readonly value="${askReply.ask_reply_writer }" />
+                <input type="text" id="ask_reply_writer" name="ask_reply_writer" value="${askReply.ask_reply_writer }" />
               </div>
               <div class="row"></div>
               <div class="col-1 mb-2 qnaDetail_font" style="padding-right: 0px; margin-left: 1%;">등록일자</div>
               <div class="col-3 mb-2" style="padding-left: 0px;">
                 <fmt:formatDate value="${askReply.ask_reply_date }" pattern="yyyy-MM-dd"/>
+                <input type="hidden" name="ask_reply_date" value="${askReply.ask_reply_date}"/>
               </div>
               <div class="col-1 qnaDetail_font mb-2" style="padding-right: 0px;">파일첨부</div>
               <div class="col-3 mb-2" style="padding-left: 0px;">
-                <input type="file" name="ask_reply_file" id="file">
+                <input type="file" name="ask_reply_uploadFile" id="ask_reply_file">
               </div>
             </div>
           </div>
@@ -166,7 +167,7 @@
             <div class="row d-flex align-items-center" id="input_line_top">
               <div class="row"></div>
               <div class="summernote"></div>
-              <input type="hidden" id="content" name="ask_reply_content"/>
+              <input type="text" id="content1" name="ask_reply_content"/>
             </div>
           </div>
       
@@ -182,7 +183,7 @@
           <div class="row d-flex justify-content-between mt-2 mb-2 hide form1" id="buttons">
             <div class="col-5"></div>
             <div class="row col-4">
-              <button class="col-auto bg-white border-1 answerinsert">등록</button>
+              <button class="col-auto bg-white border-1 answerinsert" type="button">등록</button>
               <button class="col-auto bg-white border-1 answerdel">삭제</button>
               <button class="col-auto bg-white border-1 qnalist">목록</button>
             </div>

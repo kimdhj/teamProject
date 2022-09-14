@@ -1,5 +1,6 @@
 package com.romance.user.my.request.impl;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,10 @@ public class MyRequestServiceImpl implements MyRequestService {
 	public MyRequestReplyVO getMyRequestReply(MyRequestReplyVO myRequestReplyVO) {
 		return myRequestDAO.getMyRequestReply(myRequestReplyVO);
 	}
-	
+
+	@Override
+	public void insertMyRequest(MyRequestVO myRequestVO) throws IOException {
+		myRequestDAO.insertMyRequest(myRequestVO);	
+	}
 	
 }
