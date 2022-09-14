@@ -47,6 +47,10 @@ public class MyRequestServiceImpl implements MyRequestService {
 	public MyRequestReplyVO getMyRequestReply(MyRequestReplyVO myRequestReplyVO) {
 		return myRequestDAO.getMyRequestReply(myRequestReplyVO);
 	}
-	
+
+	@Override
+	public void insertMyRequest(MyRequestVO myRequestVO) throws IOException {
+		myRequestDAO.insertMyRequest(myRequestVO);	
+	}
 	
 }

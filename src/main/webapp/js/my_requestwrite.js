@@ -1,3 +1,8 @@
+$("#returnListBtn").on("click", function(){
+	let url = "/myRequestList.do";
+	location.href = url;
+});
+
 $("#delFile").on("click", function(){
 	console.log("파일삭제");
 	let file = $("#uploadFile").val("");
