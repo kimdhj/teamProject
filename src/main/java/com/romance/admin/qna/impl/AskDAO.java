@@ -60,4 +60,13 @@ public class AskDAO {
 	public void answerInsert(AskReplyVO arvo) {
 	  sqlSession.insert("AskDAO.answerInsert", arvo);
 	}
+	
+	public void answerStatus(AskVO vo) {
+	  sqlSession.update("AskDAO.answerStatus", vo);
+	}
+	
+	public void update(AskReplyVO arvo) {
+	  sqlSession.update("AskDAO.update", arvo);
+	}
+	
 }

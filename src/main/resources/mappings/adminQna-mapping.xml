@@ -55,7 +55,7 @@
 	
 	<!-- 답변 수정 -->
 	<update id="update" parameterType="askReply">
-		UPDATE ask_reply SET ask_reply_content = #{ask_reply_content} WHERE ask_seq = #{ask_seq} AND ask_reply_password = #{ask_reply_password}
+		UPDATE ask_reply SET ask_reply_content = #{ask_reply_content}, ask_reply_file=#{ask_reply_file} WHERE ask_seq = #{ask_seq} AND ask_reply_password = #{ask_reply_password}
 	</update>
 	
 	<!-- 개별 삭제 -->

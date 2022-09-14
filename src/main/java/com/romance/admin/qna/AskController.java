@@ -213,7 +213,9 @@ public class AskController {
   // 문의 답변 작성
   @PostMapping("/askReplyInsert.mdo")
   public String insert(AskReplyVO arvo) throws IOException{
+    AskVO vo = new AskVO();
     System.out.println("askReplyInsert : " + arvo);
+    System.out.println("askReplyInsert2 : " + vo);
     
     MultipartFile file = arvo.getAsk_reply_uploadFile();
     
@@ -235,6 +237,47 @@ public class AskController {
     }
     
     service.answerInsert(arvo);
+    service.answerStatus(vo);
+    
+    System.out.println("답변 여부 : " + vo.getAsk_status());
+    
+    return "admin_post_QnaDetail";
+  }
+  
+  // Update
+  @PostMapping("/QnaUpdate.mdo")
+  public String update(AskReplyVO arvo) throws IOException {
+    
+    MultipartFile file = arvo.getAsk_reply_uploadFile();
+    String uploadFolder = "https://doublejo.s3.ap-northeast-2.amazonaws.com/";
+    
+    if(arvo.getAsk_reply_file() != null) { // isEmpty() : 업로드 한 파일 존재 여부를 리턴(없으면 true 리턴) 
+      String key = arvo.getAsk_reply_file();
+      String fileName = key.replaceAll(uploadFolder, ""); // 확장자 
+      System.out.println("key : " + fileName);
+      AwsS3 awsS3 = AwsS3.getInstance();
+      awsS3.delete(fileName);
+      System.out.println(fileName);
+      
+    }
+    
+    if(!file.isEmpty()) {
+      String fileName = arvo.getAsk_reply_uploadFile().getOriginalFilename();
+      String expand = fileName.substring(fileName.indexOf("."));
+      String name = fileName.replaceAll(expand, "");
+      String key = name + UUID.randomUUID().toString() + expand;
+      System.out.println("key : " + key);
+      
+      InputStream is = file.getInputStream();
+      String contentType = file.getContentType();
+      Long contentLength = file.getSize();
+      AwsS3 awsS3 = AwsS3.getInstance();
+      awsS3.upload(is, key, contentType, contentLength);
+      
+      arvo.setAsk_reply_file(uploadFolder + key);
+    }
+    
+    service.update(arvo);
     
     return "admin_post_QnaDetail";
   }

@@ -145,4 +145,14 @@ public class AskServiceImpl implements AskService{
 	  ask.answerInsert(arvo);
 	}
 	
+	@Override
+	public void answerStatus(AskVO vo) {
+	  ask.answerStatus(vo);
+	}
+	
+	@Override
+	public void update(AskReplyVO arvo) {
+	  ask.update(arvo);
+	}
+	
 }
