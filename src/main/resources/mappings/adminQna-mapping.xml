@@ -43,8 +43,35 @@
 	</select>
 	
 	<!-- 개별 삭제 -->
-	<delete id="delete" parameterType="ask">
+	<delete id="delete1" parameterType="ask">
 		DELETE FROM ask WHERE ask_seq = #{ask_seq}
 	</delete>
+	
+	<delete id="delete2" parameterType="askReply">
+		DELETE FROM ask_reply WHERE ask_seq = #{ask_seq}
+	</delete>
+	
+	<!-- 선택 삭제 : ask  -->
+	<delete id="chkboxDelete1" parameterType="int">
+		DELETE FROM ask WHERE ask_seq = #{ask_seq}
+	</delete>
+	
+	<!-- 선택 삭제 : ask_reply -->
+	<delete id="chkboxDelete2" parameterType="int">
+		DELETE FROM ask_reply WHERE ask_seq = #{ask_seq}
+	</delete>
+	
+	<select id="getAsk" resultType="ask" parameterType="ask">
+		SELECT * FROM ask WHERE ask_seq = #{ask_seq}
+	</select>
+	
+	<select id="getAskReply" resultType="askReply" parameterType="askReply">
+		SELECT * FROM ask_reply WHERE ask_seq = #{ask_seq}
+	</select>
+	
+	<!-- 비번 체크 -->
+	<select id="checkPW" parameterType="askReply" resultType="int">
+		SELECT COUNT(*) FROM ask_reply WHERE ask_seq = #{ask_seq} AND ask_reply_password = #{ask_reply_password}
+	</select>
 
 </mapper>

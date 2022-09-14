@@ -83,46 +83,66 @@ public class AdminAccountController {
 			model.addAttribute("getUserDetail", adminAccountService.getUserDetail(vo));
 			return "admin_member_Detail";
 		} else {
-			return "redirect:login.mdo";
+			return "redirect:admin_login.mdo";
 		}
 	}
 	
 	@GetMapping("getAdmin_admin_List.mdo")
-	public String getAdminListWithPaging(Criteria criteria, Model model) throws Exception {
-		System.out.println("Mybatis로 adminList 기능 처리");
-		
-		if(criteria.getSearchCondition() == null) {
-			criteria.setSearchCondition("USER_ID");
+	public String getAdminListWithPaging(AdminUserVO vo, Criteria criteria, Model model, HttpSession session, JwtUtils utils) throws Exception {
+		AdminUserVO voToken = utils.getAdmin(session);
+		if(voToken != null) {
+			System.out.println("Mybatis로 adminList 기능 처리");
+			
+			if(criteria.getSearchCondition() == null) {
+				criteria.setSearchCondition("USER_ID");
+			}
+			if(criteria.getSearchKeyword() == null) {
+				criteria.setSearchKeyword("");
+			}
+			
+			Pagination pagination = new Pagination();
+			pagination.setCriteria(criteria);
+			pagination.setTotalCount(adminAccountService.adminTotalCount(criteria));
+			System.out.println(">>>>페이지네이션 토탈카운트!" + pagination.getTotalCount());
+			System.out.println(">>>>Criteria pageNum! " + criteria.getPageNum());
+			model.addAttribute("pagination", pagination);
+			model.addAttribute("adminListWithPaging", adminAccountService.getAdminListWithPaging(criteria));
+			return "admin_admin_List";
+		} else {
+			return "redirect:admin_login.mdo";
 		}
-		if(criteria.getSearchKeyword() == null) {
-			criteria.setSearchKeyword("");
-		}
 		
-		Pagination pagination = new Pagination();
-		pagination.setCriteria(criteria);
-		pagination.setTotalCount(adminAccountService.adminTotalCount(criteria));
-		model.addAttribute("pagination", pagination);
-		model.addAttribute("adminListWithPaging", adminAccountService.getAdminListWithPaging(criteria));
-		return "admin_admin_List";
 	}
 	
 	@PostMapping("insertAdminAccount.mdo")
-	public String insertAdminAccount(AdminUserVO vo) throws Exception {
-		System.out.println("관리자 계정 생성");
-		System.out.println(vo);
-		vo.setUser_password(bCryptPasswordEncoder.encode(vo.getUser_password()));
-		adminAccountService.insertAdminAccount(vo);
-		
-		return "redirect:getAdmin_admin_List.mdo";
+	public String insertAdminAccount(AdminUserVO vo, HttpSession session, JwtUtils utils) throws Exception {
+		AdminUserVO voToken = utils.getAdmin(session);
+		if(voToken != null) {
+			System.out.println("관리자 계정 생성");
+			System.out.println(vo);
+			vo.setUser_password(bCryptPasswordEncoder.encode(vo.getUser_password()));
+			adminAccountService.insertAdminAccount(vo);
+			
+			return "redirect:getAdmin_admin_List.mdo";
+		} else {
+			return "redirect:admin_login.mdo";
+		}
 	}
 	
 	@PostMapping("updateUserAccount.mdo")
-	public String updateUserAccount(AdminUserVO vo) throws Exception {
-		System.out.println("계정정보 수정");
-		System.out.println("뭐가뭐가들어갔나" + vo);
-		vo.setUser_password(bCryptPasswordEncoder.encode(vo.getUser_password()));
-		adminAccountService.updateUserAccount(vo);
-		return "redirect:getAdmin_member_List.mdo";
+	public String updateUserAccount(AdminUserVO vo, HttpSession session, JwtUtils utils) throws Exception {
+		AdminUserVO voToken = utils.getAdmin(session);
+		if(voToken != null) {
+			System.out.println("계정정보 수정");
+			if(vo.getUser_password() != null && !vo.getUser_password().equals("")) { // 입력비밀번호 null값, ''빈문자열 아닐경우에만 암호화 진행
+				vo.setUser_password(bCryptPasswordEncoder.encode(vo.getUser_password()));
+			}
+			System.out.println(">>>>>뭐가뭐가들어갔나" + vo);
+			adminAccountService.updateUserAccount(vo);
+			return "redirect:getAdmin_member_List.mdo";
+		} else {
+			return "redirect:admin_login.mdo";
+		}
 	}
 	
 	@PostMapping("idCheck.mdo")

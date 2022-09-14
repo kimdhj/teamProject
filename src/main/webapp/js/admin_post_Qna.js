@@ -79,6 +79,7 @@ $(document)
 								$.ajax({
 									url: "/qnaChkbox.mdo",
 									type: "GET",
+									async: false,
 									data: {"ask_seq" : chk_arr},
 									success: function(data){
 										$('.delche:checked').parents('tr').remove();
@@ -450,11 +451,17 @@ function make() {
 									<input type="hidden" value="${ask.ask_seq }" />
 								</td>
 								<td>
-									<p class="rowColumn" id="title">
-										<a href="/QnaDetail.mdo?ask_seq=${ask.ask_seq }&seq=${count}">
-											${ask.ask_title }
-										</a>
-									</p>
+									<p class="rowColumn" id="title">`
+										if(ask.ask_status == "답변 완료"){
+											con += `<a href="/qnaDetail.mdo?ask_seq=${ask.ask_seq }&seq=${count}">
+								                        ${ask.ask_title }
+								                     </a>`
+										}else{
+											con += `<a href="/QnaDetail.mdo?ask_seq=${ask.ask_seq }&seq=${count}">
+								                        ${ask.ask_title }
+								                      </a>`
+										}
+							con +=	`</p>
 								</td>
 								<td>
 									<p class="selectColumn">${ask.user_id }</p>
@@ -468,7 +475,7 @@ function make() {
 											${ask.ask_status }
 										</button>`
 									}else{
-										con += `<button class="btn btn-success rounded-pill" type="button" onclick="location.href='#'">
+										con += `<button class="btn btn-success rounded-pill" type="button" onclick="location.href='/QnaDetail.mdo?ask_seq=${ask.ask_seq }&seq=${count}'">
 											${ask.ask_status }
 										</button>`
 									}
