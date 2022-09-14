@@ -101,25 +101,29 @@
 				<div id="header-carousel" class="carousel slide"
 					data-ride="carousel">
 					<div class="carousel-inner">
+                      <c:set var="fi" value="0" />
+                       <c:forEach var="it" items="${ban}">
+                       <c:if test="${fi==0}">
 						<div class="carousel-item active w-100" style="height: 410px;">
-							<a href="" class="btn btn-light py-2 px-3 w-100"> <img width="100%"
-								class="img-fluid" src="img/carousel-1.jpg" alt="Image">
-								<div
-									class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-									<div class="p-3" style="max-width: 700px;"></div>
-								</div>
+							<a href="/bookdetail.do?book_seq=${it.banner_name}" style="height: 410px;" class="btn btn-light py-2 px-3 w-100"> <img width="100%"
+								class="img-fluid"  style="height: 410px;" src="${it.banner_file}" alt="Image">
+								
 							</a>
 						</div>
+            <c:set var="fi" value="1" />
+            </c:if>
+            <c:if test="${fi!=0}">
 						<div class="carousel-item" style="height: 410px;">
-							<a href="" class="btn btn-light py-2 px-3 w-100"> <img
-								class="img-fluid" width="100%" src="img/carousel-2.jpg"
+							<a href="/bookdetail.do?book_seq=${it.banner_name}" style="height: 410px;" class="btn btn-light py-2 px-3 w-100"> <img
+								class="img-fluid" width="100%"  style="height: 410px;" src="${it.banner_file}"
 								alt="Image">
-								<div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-									<div class="p-3" style="max-width: 700px;"></div>
-								</div>
+								
 							</a>
 						</div>
-					</div>
+            </c:if>
+            </c:forEach>
+					
+          </div>
 					<a class="carousel-control-prev" href="#header-carousel"
 						data-slide="prev">
 						<div class="btn" style="width: 45px; height: 45px;">

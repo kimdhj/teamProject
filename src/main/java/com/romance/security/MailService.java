@@ -1,23 +1,30 @@
 package com.romance.security;
 
+import java.io.Reader;
+import java.util.Properties;
+
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.Email;
-import org.apache.commons.mail.HtmlEmail;
 import org.apache.commons.mail.SimpleEmail;
+import org.apache.ibatis.io.Resources;
 import org.springframework.stereotype.Service;
 
 @Service
 public class MailService {
 public void sendEmail(String to,String subject,String msg,String name) throws Exception{
-	Email email = new SimpleEmail();
+  String resource = "config/mail.properties";
+  Properties properties = new Properties();    
+  Reader reader = Resources.getResourceAsReader(resource);
+  properties.load(reader);
+  Email email = new SimpleEmail();
 	email.setHostName("smtp.naver.com");
 	email.setSmtpPort(465);
 	email.setCharset("euc-kr"); // 인코딩 설정(utf-8, euc-kr)
-	email.setAuthenticator(new DefaultAuthenticator("doublejo653", "doublejo65#"));
+	email.setAuthenticator(new DefaultAuthenticator(properties.getProperty("id"),properties.getProperty("password")));
 	email.setSSL(true);
-	email.setFrom("doublejo653@naver.com", "낭만서점");
+	email.setFrom(properties.getProperty("from"), properties.getProperty("name"));
 	email.setSubject(subject);
 	email.setMsg(msg);
 	email.addTo(to, name+"님");

@@ -54,7 +54,7 @@
 							</tr>
 						</thead>
 						<tbody>
-						<c:forEach items="${productList }" var="pro" begin="0" end="19">
+						<c:forEach items="${productList }" var="pro" begin="${start }" end="${end }">
 							<tr>
 								<td><input type="checkbox" id=""></td>
 								<td>
@@ -94,21 +94,23 @@
 						</tbody>
 					</table>
 					<!-- 수정가능 테이블 끝 -->
-					<div class="row d-flex justify-content-center">
+					<div class="row d-flex justify-content-center" id="pppp">
 						<nav aria-label="Page navigation example">
-							<ul class="pagination justify-content-center">
-								<li class="page-item"><a class="page-link" href="#" tabindex="-1" aria-disabled="true"><span aria-hidden="true">&laquo;</span></a></li>
-								<li class="page-item active"><a class="page-link" href="#">1</a></li>
-								<li class="page-item"><a class="page-link" href="#">2</a></li>
-								<li class="page-item"><a class="page-link" href="#">3</a></li>
-								<li class="page-item"><a class="page-link" href="#">4</a></li>
-								<li class="page-item"><a class="page-link" href="#">5</a></li>
-								<li class="page-item"><a class="page-link" href="#">6</a></li>
-								<li class="page-item"><a class="page-link" href="#">7</a></li>
-								<li class="page-item"><a class="page-link" href="#">8</a></li>
-								<li class="page-item"><a class="page-link" href="#">9</a></li>
-								<li class="page-item"><a class="page-link" href="#">10</a></li>
-								<li class="page-item"><a class="page-link" href="#"><span aria-hidden="true">&raquo;</span></a></li>
+							<ul class="pagination justify-content-center" id="reload">
+								<c:if test="${startpage ne 1 }">
+									<li class="page-item"><a class="page-link" href="#" tabindex="-1" aria-disabled="true"><span aria-hidden="true">&laquo;</span></a></li>
+								</c:if>
+								<c:forEach var="i" begin="${startpage }" end="${endpage}">
+									<c:if test="${page eq i }">
+										<li class="page-item active"><a class="page-link" href="#" id="now">${i }</a></li>
+									</c:if>
+									<c:if test="${page ne i }">
+										<li class="page-item"><a href="#" class="page-link">${i }</a></li>
+									</c:if>
+								</c:forEach>	
+								<c:if test="${endpage ne fullpage }">
+									<li class="page-item"><a class="page-link" href="#"><span aria-hidden="true">&raquo;</span></a></li>
+								</c:if>
 							</ul>
 						</nav>
 					</div>
@@ -117,6 +119,10 @@
 				</div>
 				<div class="col-1"></div>
 			</div>
+				<input type="hidden" value="${svo.page }" id="page">
+				<input type="hidden" value="${svo.seq }" id="seq">
+				<input type="hidden" value="${svo.sort }" id="sort">
+				<input type="hidden" value="${svo.thing }" id="thing">
 		</div>
 	</div>
 

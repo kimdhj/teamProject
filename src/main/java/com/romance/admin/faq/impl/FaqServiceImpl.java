@@ -1,5 +1,7 @@
 package com.romance.admin.faq.impl;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,7 +55,7 @@ public class FaqServiceImpl implements FaqService{
 	}
 	
 	@Override
-	public void chkboxDelete(List<String> FAQ_seq) {
+	public void chkboxDelete(List<String> FAQ_seq) throws FileNotFoundException, IOException {
 		for(String nSeq : FAQ_seq) {
 			int seq = Integer.parseInt(nSeq);
 			

@@ -1,4 +1,16 @@
 $(document).ready(function() {
+	  $.ajax({
+                
+                url : "import.do",
+                dataType : "json",
+                success:function(re){
+                console.log("suc"+re)},
+                error:function(re){
+                console.log(re.responseText);
+                IMP.init(re.responseText.trim()); 
+                }
+                })
+
 	console.log($("#usePoint").val());
 
 	function getToday() {
@@ -45,7 +57,7 @@ $(document).ready(function() {
 	//핸드폰결제
 
 	function phone(title, amount, email, name, tel, address, postcode) {
-		IMP.init('imp01863204'); //iamport 대신 자신의 "가맹점 식별코드"를 사용
+		 
 		IMP.request_pay({
 			pg: "html5_inicis.INIpayTest",
 			pay_method: "phone", //가상계좌 vbank 카드결제(네이버 및 카카오) card
@@ -80,7 +92,7 @@ $(document).ready(function() {
 	}
 	//카드
 	function card(title, amount, email, name, tel, address, postcode) {
-		IMP.init('imp01863204'); //iamport 대신 자신의 "가맹점 식별코드"를 사용
+
 		IMP.request_pay({
 			pg: "html5_inicis.INIpayTest",
 			pay_method: "card", //가상계좌 vbank 카드결제(네이버 및 카카오) card
@@ -114,7 +126,7 @@ $(document).ready(function() {
 	}
 	//가상계좌
 	function vbank(title, amount, email, name, tel, address, postcode, due) {
-		IMP.init('imp01863204'); //iamport 대신 자신의 "가맹점 식별코드"를 사용
+
 		IMP.request_pay({
 			pg: "html5_inicis.INIpayTest",
 			pay_method: "vbank", //가상계좌 vbank 카드결제(네이버 및 카카오) card
@@ -150,7 +162,7 @@ $(document).ready(function() {
 	}
 	//실시간계좌 이체
 	function trans(title, amount, email, name, tel, address, postcode) {
-		IMP.init('imp01863204'); //iamport 대신 자신의 "가맹점 식별코드"를 사용
+	
 		IMP.request_pay({
 			pg: "html5_inicis.INIpayTest",
 			pay_method: "trans", //가상계좌 vbank 카드결제(네이버 및 카카오) card//trans실시간 계좌이체

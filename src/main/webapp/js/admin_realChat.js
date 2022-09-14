@@ -1,5 +1,6 @@
 var userid = $("#userid").val();
 var userlist = [];
+init();
 $("tbody tr").map((ind, el) => {
 
 
@@ -88,6 +89,22 @@ function init() {
 				}
 				console.log(data);
 				let re = data.length;
+				$.ajax({
+					url: "/countlist.do",
+					method: "GET",
+					data: {
+						page: Number($("#pageche").val()),
+						name: $("#nameche").val().trim(),
+						startdate: $("#startdate").val()
+
+					},
+					dataType: "json",
+					async: true,
+					success: function(listnum) {
+						re = listnum;
+					}
+				})
+				console.log(re);
 				if (re % 5 == 0) {
 					re--;
 				}
@@ -151,11 +168,11 @@ $(document).on("click", "#findel", function() {
 					init();
 
 				},
-				error:function(){
-				init();
+				error: function() {
+					init();
 				}
 			});
-			
+
 		}
 	})
 })
@@ -273,7 +290,7 @@ function onMessage(msg) {
 			let name = arr[1].trim();
 			userlist.push(name);
 			init();
-			
+
 		}
 		$("tbody tr").map((ind, el) => {
 
@@ -287,7 +304,7 @@ function onMessage(msg) {
 				const month = date.getMonth() + 1;
 				const day = date.getDate();
 				$(el).children("td:eq(4)").children("a").text(year + "-" + month + "-" + day);
-				
+
 			}
 		})
 	}

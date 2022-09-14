@@ -91,6 +91,12 @@ public class chatDAO implements chatDAOInter {
 		
 	}
 
+  @Override
+  public int countlist(chatSearchVO vo) {
+    // TODO Auto-generated method stub
+    return myba.delete("ChatDAO.countlist", vo);
+  }
+
 
 	
 

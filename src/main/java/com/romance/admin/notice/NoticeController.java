@@ -1,5 +1,6 @@
 package com.romance.admin.notice;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
@@ -104,7 +105,7 @@ public class NoticeController {
 	
 	// NoticeInsert.jsp 로 이동 처리해주는 컨트롤러
 	@RequestMapping(value = "/admin_post_Insert.mdo")
-	public String insert(HttpSession session, JwtUtils util, Model model) {
+	public String insert(HttpSession session, JwtUtils util, Model model) throws IOException {
 		UserVO userVo = util.getuser(session);
 		
 		model.addAttribute("user", userVo.getUser_id());
@@ -122,7 +123,7 @@ public class NoticeController {
 	
 	// 공지사항 삭제
 	@RequestMapping(value = "/noticeDelete.mdo", method=RequestMethod.GET)
-	public String delete(NoticeVO vo) {
+	public String delete(NoticeVO vo) throws FileNotFoundException, IOException {
 		vo = noticeService.selectSeq(vo.getNotice_seq());
 		System.out.println("delete : " + vo);
 		if(vo.getNotice_fileName() != null) { // isEmpty() : 업로드 한 파일 존재 여부를 리턴(없으면 true 리턴) 
@@ -228,7 +229,7 @@ public class NoticeController {
 	// 체크 박스 선택한 값 삭제 -> SearchVo
 	@RequestMapping(value = "/admin_post_NoticeChkbox.mdo", method = RequestMethod.GET)
 	@ResponseBody
-	public String checkBox(@RequestParam(value = "notice_seq[]")List<String> notice_seq) {
+	public String checkBox(@RequestParam(value = "notice_seq[]")List<String> notice_seq) throws FileNotFoundException, IOException {
 		noticeService.checkBox(notice_seq); // Service 랑 연결
 		System.out.println("Controller : " + notice_seq);
 		return null;

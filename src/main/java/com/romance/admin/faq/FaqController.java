@@ -1,5 +1,6 @@
 package com.romance.admin.faq;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
@@ -76,7 +77,7 @@ public class FaqController {
 	
 	// DELETE
 	@GetMapping(value = "/faqDelete.mdo")
-	public String delete(FaqVO vo) {
+	public String delete(FaqVO vo) throws FileNotFoundException, IOException {
 		
 		if(vo.getFAQ_fileName() != null) { // isEmpty() : 업로드 한 파일 존재 여부를 리턴(없으면 true 리턴) 
 			String key = vo.getFAQ_fileName();
@@ -94,7 +95,7 @@ public class FaqController {
 	
 	@GetMapping(value = "/faqChkbox.mdo")
 	@ResponseBody
-	public String chkboxDelete(@RequestParam(value = "FAQ_seq[]") List<String> FAQ_seq) {
+	public String chkboxDelete(@RequestParam(value = "FAQ_seq[]") List<String> FAQ_seq) throws FileNotFoundException, IOException {
 		System.out.println("checkDelete : " + FAQ_seq);
 		
 		service.chkboxDelete(FAQ_seq);
@@ -154,7 +155,7 @@ public class FaqController {
 	
 	// get 방식 insert 로 페이지 호출 -> 여기서 로그인 세션 넣어주기
 	@GetMapping(value="/FaqInsert.mdo")
-	public String getInsert(FaqVO vo, Model model, HttpSession session, JwtUtils util) {
+	public String getInsert(FaqVO vo, Model model, HttpSession session, JwtUtils util) throws IOException {
 		UserVO userVO = util.getuser(session);
 		model.addAttribute("seq", vo.getFAQ_seq());
 		model.addAttribute("user", userVO.getUser_id());

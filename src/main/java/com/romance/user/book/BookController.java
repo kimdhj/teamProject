@@ -1,20 +1,26 @@
 package com.romance.user.book;
 
+import java.io.IOException;
+import java.io.Reader;
 import java.util.List;
+import java.util.Properties;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.io.Resources;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.romance.admin.icon.IconVO;
 import com.romance.security.JwtUtils;
-import com.romance.user.bucket.BucketSearchVO;
 import com.romance.user.bucket.BucketService;
 import com.romance.user.bucket.BucketVO;
 import com.romance.user.login.UserVO;
@@ -101,7 +107,8 @@ public class BookController {
 		model.addAttribute("konav",ser.categoryko());
 		model.addAttribute("ennav",ser.categoryen());
 		model.addAttribute("renav",ser.navlist());
-		
+		model.addAttribute("ban",ser.getBanner());
+		System.out.println("banner"+ser.getBanner());
 		System.out.println(bestlist);
 		System.out.println(list);
 		
@@ -109,12 +116,13 @@ public class BookController {
 		return"book_List";
 	}
 	@RequestMapping("/bookdetail.do")
-	public String bookdetail(ReplysearchVO vo,HttpSession session,JwtUtils util,Model model) {
-	System.out.println("seq:"+vo.getBook_seq());
+	public String bookdetail(ReplysearchVO vo,HttpSession session,JwtUtils util,Model model) throws IOException {
+	  UserVO voi=util.getuser(session);
+	  System.out.println("seq:"+vo.getBook_seq());
 		if(vo.getPage()<1) {
 			vo.setPage(1);
 		}
-		List<ReplyVO> relist=ser.replylist(vo);
+		
 		int recount=ser.replycount(vo);
 		if(recount%5==0) {
 			recount--;
@@ -132,16 +140,20 @@ public class BookController {
 			model.addAttribute("reendpage", vo.getPage()+2);
 		}
 		
-		System.out.println("relist :"+relist);
-		UserVO voi=util.getuser(session);
+		List<ReplyVO> relist=null;
+	
 		if(voi!=null) {
+		  relist=ser.replylist(vo,voi.getUser_id());
 			BucketVO vob= new BucketVO();
 			vob.setBook_seq(vo.getBook_seq());
 			vob.setUser_id(voi.getUser_id());
 			model.addAttribute("bche",serc.chedouble(vob));
+	
+		}else {
+		  relist=ser.replylist(vo,null);
 		}
 		
-		model.addAttribute("relist", relist);
+	  model.addAttribute("relist", relist);
 		model.addAttribute("vo", vo);
 		model.addAttribute("maxpage", recount/5+1);
 		model.addAttribute("recount", recount);
@@ -254,6 +266,7 @@ public class BookController {
 		System.out.println(ser.mainnew(vo));
 		model.addAttribute("bestlist",ser.mainbest(vo));
 		model.addAttribute("newlist",ser.mainnew(vo));
+		model.addAttribute("ban",ser.getBanner());
 		return "index";
 	}
 	@GetMapping("mainnew.do")
@@ -273,9 +286,13 @@ public class BookController {
 	}
 	@GetMapping("replylist.do")
 	@ResponseBody
-	public List<ReplyVO> replylist(ReplysearchVO vo) {
-		
-		return ser.replylist(vo);
+	public List<ReplyVO> replylist(ReplysearchVO vo,JwtUtils util,HttpSession session) throws IOException {
+		UserVO voi=util.getuser(session);
+	  if(voi!=null) {
+		return ser.replylist(vo,voi.getUser_id());
+	  }else {
+	    return ser.replylist(vo,null);
+	  }
 	}
 	@GetMapping("replycount.do")
 	@ResponseBody
@@ -292,8 +309,29 @@ public class BookController {
 	
 		return "book_Finish";
 	}
+	//정기결제
+	@PostMapping("/subtest.do")
+	public void subtest(@RequestBody JSONObject jsonObject,HttpServletResponse rep) {
+		System.out.println("pay");
+		System.out.println("pay"+jsonObject);
+	}
+	//아이콘 받아오기
+	@GetMapping("/navicon.do")
+	@ResponseBody
+	public IconVO getIcon () {
+	  return ser.getIcon();
+	}
 	
-	
+	@GetMapping("/import.do")
+  @ResponseBody
+  public String imports() throws IOException {
+	  String resource = "config/import.properties";
+    Properties properties = new Properties();    
+    Reader reader = Resources.getResourceAsReader(resource);
+    properties.load(reader);
+
+    return properties.getProperty("code");
+  }
 
 
 }
