@@ -65,7 +65,8 @@ function adminAccountCheck() { //유효성 검사
 //		user_id.focus();
 //		return false();
 //	}
-	
+
+
 //	if(user_password.value == ""){
 //		alert("비밀번호를 입력하세요");
 //		user_password.focus();
