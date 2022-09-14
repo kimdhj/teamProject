@@ -1,5 +1,7 @@
 package com.romance.admin.sample.navcategory;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.romance.admin.sample.category.CategoryVO;
+import com.romance.server.AwsS3;
 @Controller
 public class NavCategoryController {
+ 
 	@Autowired
 	NavCategoryService service;
 	@RequestMapping("navcateupdate.mdo")

@@ -1,5 +1,7 @@
 package com.romance.admin.login;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpSession;
 
 import com.romance.security.JwtUtils;
@@ -7,7 +9,7 @@ import com.romance.user.login.UserVO;
 
 public class CheckToken {
 	
-	public static int isTokenUser(HttpSession session, JwtUtils utils) {
+	public static int isTokenUser(HttpSession session, JwtUtils utils) throws IOException {
 		UserVO vo = utils.getuser(session);
 		if(vo != null) {
 			System.out.println("토큰있어 어서와");
@@ -19,7 +21,7 @@ public class CheckToken {
 	}
 	
 	
-	public static int isTokenAdmin(HttpSession session, JwtUtils utils) {
+	public static int isTokenAdmin(HttpSession session, JwtUtils utils) throws IOException {
 		AdminUserVO vo = utils.getAdmin(session);
 		if(vo != null) {
 			System.out.println("토큰있어 어서왕");

@@ -8,7 +8,7 @@ function init() {
 	cur_session = userid
 	$("#title").text(cur_session);
 	let adminid = cur_session.replaceAll('admin', '');
-	console.log("adminid/",adminid);
+	console.log("adminid/", adminid);
 	$.ajax({
 		url: "/selectmy.do",
 		data: {
@@ -82,17 +82,17 @@ function del() {
 }
 //전송 버튼 누르는 이벤트
 
-	$("#typing").on("keydown", function(e) {
+$("#typing").on("keydown", function(e) {
 
-		if (e.originalEvent.shiftKey == false && e.originalEvent.keyCode == 13) {
-			sendMessage();
-			$('#typing').val('')
-			console.log("hi");
-		};
+	if (e.originalEvent.shiftKey == false && e.originalEvent.keyCode == 13) {
+		sendMessage();
+		$('#typing').val('')
+		console.log("hi");
+	};
 
 
 
-	});
+});
 
 let sessionName;
 var sock = new SockJS('http://localhost:8080/echo');
@@ -108,7 +108,7 @@ function sendMessage() {
 	//메세지 알림을 지워줌
 	//메세지 상태 변경(db)
 	let adn = userid.replaceAll("admin", '');
-	console.log(adn,"adn");
+	console.log(adn, "adn");
 	$.ajax({
 		url: "/updatestate.do",
 		data: {

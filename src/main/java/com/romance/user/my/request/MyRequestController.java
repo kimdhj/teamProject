@@ -1,7 +1,12 @@
 package com.romance.user.my.request;
 
+<<<<<<< HEAD
+import java.io.IOException;
+import java.util.List;
+=======
 import java.util.HashMap;
 import java.util.Map;
+>>>>>>> main
 
 import javax.servlet.http.HttpSession;
 
@@ -31,7 +36,8 @@ public class MyRequestController {
 	}
 	
 	@GetMapping("myRequestList.do")
-	public String myRequestList(Criteria criteria, Model model, HttpSession session, JwtUtils utils) {
+	public String myRequestList(Criteria criteria, Model model, HttpSession session, JwtUtils utils) throws IOException  {
+
 		UserVO voToken = utils.getuser(session);
 		if(voToken != null) {
 			criteria.setSession_user_id(voToken.getUser_id());
@@ -77,11 +83,22 @@ public class MyRequestController {
 //	}
 	
 	@GetMapping("myRequestDetail.do")
-	public String myRequestDetail(Criteria criteria, Model model, HttpSession session, JwtUtils utils) {
+<<<<<<< HEAD
+	public String myRequestDetail(Model model, HttpSession session, JwtUtils utils) throws IOException {
+=======
+	public String myRequestDetail(MyRequestVO myRequestVO, MyRequestReplyVO myRequestReplyVO, Criteria criteria, Model model, HttpSession session, JwtUtils utils) {
+>>>>>>> main
 		UserVO voToken = utils.getuser(session);
 		if(voToken != null) {
-			model.addAttribute("criteria", criteria);
+			System.out.println(voToken);
+//			System.out.println(myRequestVO);
+			System.out.println("123123 : " + myRequestVO.getAsk_seq());
+			myRequestReplyVO.setAsk_seq(myRequestVO.getAsk_seq());
 			
+			model.addAttribute("myRequestReplyVO", myRequestService.getMyRequestReply(myRequestReplyVO));
+			model.addAttribute("sessionUserInfo", myRequestService.getUser(voToken.getUser_id()));
+			model.addAttribute("criteria", criteria);
+			model.addAttribute("myRequestVO", myRequestService.getMyRequestDetail(myRequestVO));
 			return "my_RequestDetail";
 		} else {
 			return "redirect:login.do";
@@ -89,7 +106,7 @@ public class MyRequestController {
 	}
 	
 	@GetMapping("myRequestWrite.do")
-	public String myRequestWrite(Model model, HttpSession session, JwtUtils utils) {
+	public String myRequestWrite(Model model, HttpSession session, JwtUtils utils) throws IOException {
 		UserVO voToken = utils.getuser(session);
 		if(voToken != null) {
 			System.out.println(voToken);

@@ -50,14 +50,15 @@
 						</div>
 
 					</div>
-					<div id="main_title" class="row">제목</div>
+					<div id="main_title" class="row">${book.book_title}</div>
 					<div class="row" id="main_price">
 						<div id="price ">
 							<fmt:formatNumber value="${book.book_price}" pattern="#,###" />
 						</div>
 						<div id="unit">원</div>
 					</div>
-					<div class="row" id="main_info">${book.book_author}|${book.book_publish}|<fmt:formatDate value="${book.book_publish_date}" pattern="yyyy-MM-dd"/></div>
+          <input type="number" class="hide" value="${book.author_seq}" id="author_seq"/>
+					<div class="row d-flex" id="main_info "><span class="col-auto p-0" id="authorname">${book.book_author}</span><span class="col-auto p-0">|${book.book_publish}|<fmt:formatDate value="${book.book_publish_date}" pattern="yyyy-MM-dd"/></span></div>
 					<div class="row" id="cash_btn">
 					<input type="hidden" id="bookseq" value="${book.book_seq}"/>
 						<div class="col-3 " id="cash_button">

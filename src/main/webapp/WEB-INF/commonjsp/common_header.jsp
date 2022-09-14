@@ -42,8 +42,8 @@
                 <a href="info_Info.jsp" class="nav-item nav-link">소개</a>
                     <div class="nav-item dropdown">
                         <a href="/booklist.do?country=2" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">국내</a>
-                        <div class="dropdown-menu m-0">
-                            <a href="blog.html" class="dropdown-item">아동 서적</a>
+                        <div id="navko" class="dropdown-menu m-0">
+                            <a href="/booklist.do?country=2" class="dropdown-item">아동 서적</a>
                             <a href="feature.html" class="dropdown-item">무협 서적</a>
                             <a href="testimonial.html" class="dropdown-item">SF소설</a>
                             <a href="404.html" class="dropdown-item">수필</a>
@@ -53,13 +53,13 @@
                     </div>
                     <div class="nav-item dropdown">
                         <a href="/booklist.do?country=1" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">외국</a>
-                        <div class="dropdown-menu m-0">
-                            <a href="blog.html" class="dropdown-item">아동 서적</a>
-                            <a href="feature.html" class="dropdown-item">무협 서적</a>
-                            <a href="testimonial.html" class="dropdown-item">SF소설</a>
-                            <a href="404.html" class="dropdown-item">수필</a>
-                            <a href="404.html" class="dropdown-item">참고서</a>
-                            <a href="404.html" class="dropdown-item">문제집</a>
+                        <div id="navfore" class="dropdown-menu m-0">
+                            <a href="/booklist.do?country=1" class="dropdown-item">아동 서적</a>
+                            <a href="/booklist.do?country=1" class="dropdown-item">무협 서적</a>
+                            <a href="/booklist.do?country=1l" class="dropdown-item">SF소설</a>
+                            <a href="/booklist.do?country=1" class="dropdown-item">수필</a>
+                            <a href="/booklist.do?country=1" class="dropdown-item">참고서</a>
+                            <a href="/booklist.do?country=1" class="dropdown-item">문제집</a>
                         </div>
                     </div>
                

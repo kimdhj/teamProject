@@ -145,8 +145,8 @@
                             </button>
                             <ul class="dropdown-menu">
                                 <!-- Dropdown menu links -->
-                                <li><button class="dropdown-item" type="button">나의문의</button></li>
-                                <li><button class="dropdown-item" type="button">문의하기</button></li>
+                                <li><a href="/myRequestList.do"><button class="dropdown-item" type="button">나의문의</button></a></li>
+                                <li><a href="/myRequestWrite.do"><button class="dropdown-item" type="button">문의하기</button></a></li>
                             </ul>
                         </div><br><br><br>
                         <div class="btn-group dropend">

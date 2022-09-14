@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.romance.user.login.UserVO;
 import com.romance.user.my.request.Criteria;
+import com.romance.user.my.request.MyRequestReplyVO;
 import com.romance.user.my.request.MyRequestVO;
 
 @Repository
@@ -15,6 +16,7 @@ public class MyRequestDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 	
+	//세션 유저 정보
 	public UserVO getUser(String session_user_id) {
 		System.out.println("Mybatis로 세션에 저장된 user정보 가져오기");
 		System.out.println(">>>DAO session_user_id값 : " + session_user_id);
@@ -31,6 +33,15 @@ public class MyRequestDAO {
 	
 	//나의문의 개수
 	public int myRequestTotalCount(Criteria criteria) {
-		return sqlSessionTemplate.selectOne("myRequestTotalCount", criteria);
+		return sqlSessionTemplate.selectOne("userRequest.myRequestTotalCount", criteria);
+	}
+	
+	//문의글 상세
+	public MyRequestVO getMyRequestDetail(MyRequestVO myRequestVO) {
+		return sqlSessionTemplate.selectOne("userRequest.getMyRequestDetail", myRequestVO);
+	}
+	
+	public MyRequestReplyVO getMyRequestReply(MyRequestReplyVO myRequestReplyVO) {
+		return sqlSessionTemplate.selectOne("userRequest.getMyRequestReply", myRequestReplyVO);
 	}
 }

@@ -85,6 +85,12 @@ public class chatService implements chatServiceInter {
 		
 	}
 
+  @Override
+  public int countlist(chatSearchVO vo) {
+    // TODO Auto-generated method stub
+    return dao.countlist(vo);
+  }
+
 
 	
 }

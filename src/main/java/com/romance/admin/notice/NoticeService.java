@@ -1,5 +1,7 @@
 package com.romance.admin.notice;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 public interface NoticeService {
@@ -12,5 +14,5 @@ public interface NoticeService {
 	public void updateNotice(NoticeVO vo);
 	public NoticeVO selectSeq(int notice_seq);
 	public boolean checkPW(NoticeVO vo);
-	public void checkBox(List<String> notice_seq);
+	public void checkBox(List<String> notice_seq) throws FileNotFoundException, IOException;
 }

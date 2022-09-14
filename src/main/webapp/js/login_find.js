@@ -336,6 +336,9 @@ $("#idfind #phchestart").click(function(e) {
 
 });
 $("#idfind #phche").click(function(e) {
+console.log('idchenum',idchenum);
+console.log('$("#idfind #chenum").val().trim()',$("#idfind #chenum").val().trim());
+
 	if (idchenum == $("#idfind #chenum").val().trim()) {
 		$("#idfind #phchestart").attr("disabled", "true");
 		clearInterval(idtimers);
@@ -343,7 +346,7 @@ $("#idfind #phche").click(function(e) {
 		$("#idfind #time").text("인증 완료 되었습니다.");
 		$("#idfind #time").css("color", "green");
 	} else {
-		$("#idfind #chenum").text("인증 실패 다시 확인해주세요.");
+		$("#idfind #chword").text("인증 실패 다시 확인해주세요.");
 	}
 })
 //이메일
