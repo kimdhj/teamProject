@@ -26,7 +26,6 @@ public class AdminUserVO {
 	private String user_role;
 	private String user_birth;
 	private String user_phone;
-//	private String user_sub_update;
-//	private int user_coupon_cnt;
-	
+	private int user_coupon_cnt;
+//	private String user_sub_update;	//사용안하는 변수 우선 주석처리.
 }
