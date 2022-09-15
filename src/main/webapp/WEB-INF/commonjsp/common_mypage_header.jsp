@@ -162,7 +162,7 @@
                                 <li><button class="dropdown-item" type="button">회원정보 수정</button></li>
                                 <li><button class="dropdown-item" type="button">비밀번호 변경</button></li>
                                 <li><button class="dropdown-item" type="button">나의 주소록</button></li>
-                                <li><button class="dropdown-item" type="button">회원탈퇴</button></li>
+                                <li><a href="/myWithdrawal.do"><button class="dropdown-item" type="button">회원탈퇴</button></a></li>
                             </ul>
                         </div><br>
                         <!-- 슬립 드롭다운 끝 -->
