@@ -64,4 +64,11 @@ public class MyProfileController {
 			return "redirect:login.do";
 		}
 	}
+	
+	@GetMapping("myTransPassword.do")
+	public String myTransPassword(HttpSession session) {
+		session.invalidate();
+		return "my_TransPassword";
+	}
+	
 }

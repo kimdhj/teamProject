@@ -48,14 +48,16 @@
 				<div id="content" class="col  border-bottom border-dark row ">
 					<div class="col-6 p-0 row align-self-center">
 						<div class="form-floating m-2 align-center">
-							<input type="password" class="form-control" id="floatingInput"
-								placeholder="name@example.com"> <label class="fs-5"
+							<input type="password" class="form-control" id="user_password" name="user_password"
+								placeholder="name@example.com" onkeyup="return passwordChanged();"> <label class="fs-5"
 								for="floatingInput">새 비밀번호</label>
 						</div>
 					</div>
 					<div class="col-auto align-self-center" id="label">
-						비밀번호 안전도 <span class="text-danger">낮음</span>
+						비밀번호 안전도 <span class="text-danger" id="strength">낮음</span>
 					</div>
+					<!-- <input name="password" id="password" type="text" size="15" maxlength="100" onkeyup="return passwordChanged();" />
+					<span id="strength">Type Password</span> -->
 				</div>
 			</div>
 			<div class="row" id="new_passCheck">
@@ -81,14 +83,14 @@
 				</div>
 			</div>
 		</div>
-
+		
 		<jsp:include page="/WEB-INF/commonjsp/common_mypage_bottom.jsp"></jsp:include>
 
 		<!-- Footer Start -->
 		<!-- Common Footer include -->
 		<jsp:include page="/WEB-INF/commonjsp/common_footer.jsp"></jsp:include>
-
 		<!-- Footer End -->
+		<script src="/js/my_TransPassword.js"></script>
 </body>
 
 </html>
