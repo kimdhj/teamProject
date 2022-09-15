@@ -11,9 +11,11 @@ public interface AskService {
 	AskReplyVO getAskReply(AskReplyVO arvo); // A
 	
 	void delete1(AskVO vo); // 질문 삭제
-	void delete2(AskReplyVO arvo); // 답변 삭제
-	void chkboxDelete1(List<String> ask_seq) throws FileNotFoundException, IOException ; // 선택 삭제 - 질문
-	void chkboxDelete2(List<String> ask_seq) throws FileNotFoundException, IOException ; // 선택 삭제 - 답변
+
+	void delete2(AskReplyVO arvo) ; // 답변 삭제
+	void chkboxDelete1(List<String> ask_seq) throws FileNotFoundException, IOException; // 선택 삭제 - 질문
+	void chkboxDelete2(List<String> ask_seq) throws FileNotFoundException, IOException; // 선택 삭제 - 답변
+
 	
 	void answerInsert(AskReplyVO arvo); // 답변 등록
 	void answerStatus(AskVO vo);

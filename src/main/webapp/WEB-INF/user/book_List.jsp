@@ -103,6 +103,15 @@
 					<div class="carousel-inner">
                       <c:set var="fi" value="0" />
                        <c:forEach var="it" items="${ban}">
+                       <c:if test="${fi==1}">
+            <div class="carousel-item" style="height: 410px;">
+              <a href="/bookdetail.do?book_seq=${it.banner_name}" style="height: 410px;" class="btn btn-light py-2 px-3 w-100"> <img
+                class="img-fluid" width="100%"  style="height: 410px;" src="${it.banner_file}"
+                alt="Image">
+                
+              </a>
+            </div>
+            </c:if>
                        <c:if test="${fi==0}">
 						<div class="carousel-item active w-100" style="height: 410px;">
 							<a href="/bookdetail.do?book_seq=${it.banner_name}" style="height: 410px;" class="btn btn-light py-2 px-3 w-100"> <img width="100%"
@@ -112,15 +121,7 @@
 						</div>
             <c:set var="fi" value="1" />
             </c:if>
-            <c:if test="${fi!=0}">
-						<div class="carousel-item" style="height: 410px;">
-							<a href="/bookdetail.do?book_seq=${it.banner_name}" style="height: 410px;" class="btn btn-light py-2 px-3 w-100"> <img
-								class="img-fluid" width="100%"  style="height: 410px;" src="${it.banner_file}"
-								alt="Image">
-								
-							</a>
-						</div>
-            </c:if>
+            
             </c:forEach>
 					
           </div>

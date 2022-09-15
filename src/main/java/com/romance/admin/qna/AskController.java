@@ -109,9 +109,10 @@ public class AskController {
   }
   
   @GetMapping(value = "/AskReplyDelete.mdo") // 답변 삭제
+
   public String delete(AskReplyVO arvo, AskVO vo) throws FileNotFoundException, IOException { 
-    
     if (arvo.getAsk_reply_file() != null) { // isEmpty() : 업로드 한 파일 존재 여부를 리턴(없으면 true 리턴)
+
       String key = arvo.getAsk_reply_file();
       String uploadFolder = "https://doublejo.s3.ap-northeast-2.amazonaws.com/";
       String fileName = key.replaceAll(uploadFolder, ""); // 확장자

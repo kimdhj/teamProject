@@ -80,10 +80,11 @@
 			<typeAlias type="com.romance.admin.qna.AskSearchVO" alias="askSearch"/>
 		<typeAlias type="com.romance.user.my.request.MyRequestVO" alias="myRequestVO" />
 
-		<typeAlias type="com.romance.user.concernwriter.ConcernWriterVO" alias="concernVO" />
+		<typeAlias type="com.romance.user.concern.ConcernWriterVO" alias="concernVO" />
+		<typeAlias type="com.romance.user.concern.ConcernSearchVO" alias="concernsearchVO" />
 
 
-		<typeAlias type="com.romance.user.my.request.MyRequestReplyVO" alias="myRequestReplyVO" />
+		<typeAlias type="com.romance.user.my.request.MyRequestReplyVO" alias="myRequestReplyVO" /> 
 
 	</typeAliases>
 	
@@ -116,6 +117,6 @@
 		<mapper resource="mappings/product-mapping.xml" />
 		<mapper resource="mappings/userrequest-mapping.xml" />
 		<mapper resource="mappings/concernwriter-mapping.xml" />
-
+		<mapper resource="mappings/profile-mapping.xml" />
 	</mappers>
 </configuration>

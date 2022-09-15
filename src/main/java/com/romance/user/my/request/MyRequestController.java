@@ -2,10 +2,15 @@ package com.romance.user.my.request;
 
 
 import java.io.IOException;
+
+import java.util.List;
+
+
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+
 
 import javax.servlet.http.HttpSession;
 
@@ -86,8 +91,6 @@ public class MyRequestController {
 //	}
 	
 	@GetMapping("myRequestDetail.do")
-
-
 	public String myRequestDetail(MyRequestVO myRequestVO, MyRequestReplyVO myRequestReplyVO, Criteria criteria, Model model, HttpSession session, JwtUtils utils) throws IOException {
 
 		UserVO voToken = utils.getuser(session);
@@ -124,7 +127,7 @@ public class MyRequestController {
 	}
 	
 	@PostMapping("myRequestWrite.do")
-	public String insertMyRequest(MyRequestVO myRequestVO, @RequestParam(name="uploadFile") MultipartFile uploadFile, HttpSession session, JwtUtils utils) throws IOException {
+	public String insertMyRequest(MyRequestVO myRequestVO, Model model, @RequestParam(name="uploadFile") MultipartFile uploadFile, HttpSession session, JwtUtils utils) throws IOException {
 		UserVO voToken = utils.getuser(session);
 		if(voToken != null) {
 			if(!uploadFile.isEmpty()) {
