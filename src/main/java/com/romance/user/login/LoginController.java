@@ -154,9 +154,9 @@ public class LoginController {
 		String warning = null;
 		vo2 = ser.onesearch(vo.getUser_id());
 		System.out.println("로그인데이터" + vo2);
-		// user_state가 0(정상)이면서 user_role이 ROLE_MEMBER (유저)일경우에만 로그인
-		if (vo2.getUser_state() == 0 && vo2.getUser_role().equals("ROLE_MEMBER")) {
-			if (vo2 != null) {
+		if (vo2 != null) {
+			// user_state가 0(정상)이면서 user_role이 ROLE_MEMBER (유저)일경우에만 로그인
+			if (vo2.getUser_state() == 0 && vo2.getUser_role().equals("ROLE_MEMBER")) {
 				if (benco.matches(vo.getUser_password(), vo2.getUser_password())) {
 					vo.setUser_password(null);
 					ser.loginday(vo.getUser_id());
@@ -172,27 +172,27 @@ public class LoginController {
 					redirectAttributes.addAttribute("warning", warning);
 					return "redirect:login.do";
 				}
-
-			} else {
-				warning = "존재하지 않는 아이디 입니다. 아이디를 확인해주세요";
+			} else if(vo2.getUser_state() == 0 && vo2.getUser_role().equals("ROLE_ADMIN")) {//user_state = 0 (정상)인데 관리자가 user페이지 로그인하려고 할 경우
+				warning = "여기오면 근손실 난다 저리가!!";
 				redirectAttributes.addAttribute("warning", warning);
 				return "redirect:login.do";
-
+			} else {//블랙 또는 탈퇴한유저인 경우 (user_state != 0)
+				if(vo2.getUser_state() == 1) {//블랙유저
+					warning = "이용이 제한된 유저입니다.";
+					redirectAttributes.addAttribute("warning", warning);
+					return "redirect:login.do";
+				} else {//탈퇴한 유저
+					warning = "탈퇴한 유저입니다. 복구를 원하시면 고객센터로 문의하세요";
+					redirectAttributes.addAttribute("warning", warning);
+					return "redirect:login.do";
+				}
 			}
-		} else if(vo2.getUser_state() == 0 && vo2.getUser_role().equals("ROLE_ADMIN")) {//user_state = 0 (정상)인데 관리자가 user페이지 로그인하려고 할 경우
-			warning = "여기오면 근손실 난다 저리가!!";
+
+		} else {
+			warning = "존재하지 않는 아이디 입니다. 아이디를 확인해주세요";
 			redirectAttributes.addAttribute("warning", warning);
 			return "redirect:login.do";
-		} else {//블랙 또는 탈퇴한유저인 경우 (user_state != 0)
-			if(vo2.getUser_state() == 1) {//블랙유저
-				warning = "이용이 제한된 유저입니다.";
-				redirectAttributes.addAttribute("warning", warning);
-				return "redirect:login.do";
-			} else {//탈퇴한 유저
-				warning = "탈퇴한 유저입니다. 복구를 원하시면 고객센터로 문의하세요";
-				redirectAttributes.addAttribute("warning", warning);
-				return "redirect:login.do";
-			}
+
 		}
 
 	}
