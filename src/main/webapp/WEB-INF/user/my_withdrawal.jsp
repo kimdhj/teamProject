@@ -99,7 +99,7 @@
 
 						<div class="col" id="option_input">
 							<div class="input-group mb-3 ">
-								<input type="text" id="user_password" name="user_password"
+								<input type="password" id="user_password" name="user_password"
 									class="form-control" placeholder="password"
 									aria-label="Recipient's username"
 									aria-describedby="basic-addon2">
@@ -114,6 +114,8 @@
 					</div>
 				</div>
 			</div>
+			<input type="hidden" id="session_user_id" name="session_user_id" value="${getSessionUser.user_id}">			
+			<%-- <input type="hidden" id="session_user_id" name="session_user_id" value="${getSessionUser.user_password}"> --%>			
 		</form>
 
 		<jsp:include page="/WEB-INF/commonjsp/common_mypage_bottom.jsp"></jsp:include>
