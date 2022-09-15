@@ -19,18 +19,20 @@
       <c:set var="fi" value="0" />
       <div class="carousel-inner bannerroll">
        <c:forEach var="it" items="${ban}">
+       ${fi}
+       <c:if test="${fi=='1'}">
+          <div class="carousel-item bannerbox">
+            <img onclick="location.href='/bookdetail.do?book_seq=${it.banner_name}'" class="w-100 bannerimg" src="${it.banner_file}" alt="Image">
+          </div>
+        </c:if>
         <c:if test="${fi==0}">
           <div class="carousel-item active bannerbox">
-            <img class="w-100 bannerimg" src="${it.banner_file}" alt="Image">
+            <img onclick="location.href='/bookdetail.do?book_seq=${it.banner_name}'" class="w-100 bannerimg" src="${it.banner_file}" alt="Image">
           </div>
           <c:set var="fi" value="1" />
         </c:if>
         
-        <c:if test="${fi!=0}">
-          <div class="carousel-item bannerbox">
-            <img class="w-100 bannerimg" src="${it.banner_file}" alt="Image">
-          </div>
-        </c:if>
+        
         </c:forEach>
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel" data-bs-slide="prev">

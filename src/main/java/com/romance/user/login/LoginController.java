@@ -69,7 +69,7 @@ public class LoginController {
   
   // 카카오 정보 받아오기
   @GetMapping("kakaoauth.do")
-  public String kakaoauth(@RequestParam(value = "code", required = false) String code, KakaoLogin kakao, RedirectAttributes redirectAttributes, Model model) throws IOException {
+  public String kakaoauth(@RequestParam(value = "code", required = false) String code, KakaoLogin kakao, RedirectAttributes redirectAttributes, Model model,JwtUtils util) throws IOException {
     
     String access_Token = kakao.getAccessToken(code);
     
@@ -80,6 +80,9 @@ public class LoginController {
     
     redirectAttributes.addAttribute("kakaoid", (String) userInfo.get("id"));
     if (che > 0) {
+      UserVO vo = ser.onesearch((String) userInfo.get("id"));
+      String token = util.createToken("유저", vo);
+      model.addAttribute("id", token);
       return "redirect:kakaologinend.do";
     }
     return "redirect:join.do";
@@ -132,10 +135,10 @@ public class LoginController {
   // 카카오로그인 최종
   @GetMapping("kakaologinend.do")
   public String kakaologinend(String kakaoid, UserVO vo, Model model, JwtUtils util) throws IOException {
-    vo = ser.onesearch(kakaoid);
-    ser.loginday(kakaoid);
-    String token = util.createToken("유저", vo);
     
+    ser.loginday(kakaoid);
+
+
     return "redirect:index.do";
   }
   

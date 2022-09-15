@@ -45,7 +45,7 @@
                                         <div class="container">
                                             <div class="row justify-content-center">
                                                 <div class="col-md-auto align-self-center">
-                                                    <a class="fs-4 text-dark">${user_name }&nbsp;님
+                                                    <a id="mypage_name_header" class="fs-4 text-dark">${user_name }&nbsp;님
 
                                                     </a>
                                                 </div>
@@ -62,7 +62,7 @@
                                             <div class="row justify-content-center">
                                                 <div class="col-md-auto align-self-center">
                                                     <a class="fs-6 text-dark">할인쿠폰</a>&nbsp;&nbsp;<a href=""
-                                                        class="">${cou}</a>장
+                                                        class="" id="mypage_coupon_header">${cou}</a>장
                                                 </div>
                                             </div>
                                         </div>
@@ -72,7 +72,7 @@
                                             <div class="row justify-content-center">
                                                 <div class="col-md-auto align-self-center">
                                                     <a class="fs-6 text-dark">마일리지</a>&nbsp;&nbsp;<a href=""
-                                                        class=""><fmt:formatNumber value="${user_point }" type="number" /></a>P
+                                                      id="mypage_point_header"  class=""><fmt:formatNumber value="${user_point }" type="number" /></a>P
                                                 </div>
                                             </div>
                                         </div>
