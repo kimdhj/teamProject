@@ -8,4 +8,5 @@ public class ConcernWriterVO {
   private String concern_writer_date;
   private int author_seq;
   private String user_id;
+  private String author_name;
 }
