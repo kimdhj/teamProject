@@ -180,7 +180,7 @@ public class LoginController {
 
 			}
 		} else if(vo2.getUser_state() == 0 && vo2.getUser_role().equals("ROLE_ADMIN")) {//user_state = 0 (정상)인데 관리자가 user페이지 로그인하려고 할 경우
-			warning = "관리자가 유저페이지 로그인하려는데 뭐라고 표현해야할까?";
+			warning = "여기오면 근손실 난다 저리가!!";
 			redirectAttributes.addAttribute("warning", warning);
 			return "redirect:login.do";
 		} else {//블랙 또는 탈퇴한유저인 경우 (user_state != 0)
