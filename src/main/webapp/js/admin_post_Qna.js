@@ -41,11 +41,11 @@ $(document)
 					            	showConfirmButton: false,
 					            	timer: 1500,
 								}).then(function(){
-									console.log($(e.target).parents('tr').children("td:eq(1)").html());
-									var seq = $(e.target).parents('tr').children("td:eq(1)").children('input').val();
-									seq = parseInt(seq);
-									console.log(seq);
-									location.href="/QnaDelete.mdo?ask_seq=" + seq;
+									console.log("삭제1 ",$(e.target).parents('tr').children("td:eq(1)").children('p').html());
+									var seq = Number($(e.target).parents('tr').children("td:eq(1)").children('input').val());
+									var seq1 = Number($(e.target).parents('tr').children("td:eq(1)").children('p').val());
+									console.log("삭제2", seq);
+									location.href="/AskDelete.mdo?ask_seq=" + seq;
 								})
 							}else if(result.isDismissed){
 								return false;
@@ -321,8 +321,16 @@ $("#all_box #search_btn").click(function(e) {
 		console.log($("#all_box #userche"));
 		
 	}else if($("#level").val() == "답변여부"){
-		$("#all_box #statusche").val($("#search").val());
-		console.log($("#all_box #statusche"));
+		$("#all_box #statusche").val($("#search").val())
+		
+		if($("#search").val() == "답변 완료"){
+			$("#all_box #statusche").val($("#search").val("답변 완료"));
+		}else if($("#search").val() == "답변 대기" || $("#search").val() == ""){
+			$("#all_box #statusche").val($("#search").val("답변 대기"));
+		}
+		
+		console.log($("#search").val());
+		console.log($("#all_box #statusche").val($("#search").val()));
 	}
 	
 	if($("#all_box #start_date").val() != null){
@@ -471,16 +479,19 @@ function make() {
 								</td>
 								<td>`
 									if(ask.ask_status == "답변 완료"){
-										con += `<button class="btn btn-outline-primary rounded-pill">
-											${ask.ask_status }
+										con += `<button class="btn btn-outline-primary rounded-pill" name="ask_status">
+											답변 완료
 										</button>`
 									}else{
-										con += `<button class="btn btn-success rounded-pill" type="button" onclick="location.href='/QnaDetail.mdo?ask_seq=${ask.ask_seq }&seq=${count}'">
-											${ask.ask_status }
-										</button>`
+										con += `<button class="btn btn-success rounded-pill" type="button" name="ask_status" onclick="location.href='/QnaDetail.mdo?ask_seq=${ask.ask_seq }&seq=${count}'">
+											답변 대기
+										</button>
+										`
 									}
 							
-					con += `</td>
+					con += `
+							<input type="hidden" value="${ask.ask_status }"  id="ask_status2" />
+							</td>
 								<td>
 									<button class="btn btn-danger rounded-pill del">삭제</button>
 								</td>
