@@ -55,14 +55,18 @@
 									<th>상태</th>
 									<td colspan=2><select class="form-select form-select-sm"
 									aria-label=".form-select-sm example" name="user_state">
-										<c:if test="${getUserDetail.user_state eq 1}">
-											<c:set var="selectedBlackUser" value="selected" />
-										</c:if>
 										<c:if test="${getUserDetail.user_state eq 0}">
 											<c:set var="selectedNormalUser" value="selected" />
 										</c:if>
-										<option value="1" ${selectedBlackUser}>블랙회원</option>
+										<c:if test="${getUserDetail.user_state eq 1}">
+											<c:set var="selectedBlackUser" value="selected" />
+										</c:if>
+										<c:if test="${getUserDetail.user_state eq 2}">
+											<c:set var="selectedWithdrawalUser" value="selected" />
+										</c:if>
 										<option value="0" ${selectedNormalUser}>정상회원</option>
+										<option value="1" ${selectedBlackUser}>블랙회원</option>
+										<option value="2" ${selectedWithdrawalUser}>탈퇴회원</option>	
 								</select></td>
 								
 								</tr>
