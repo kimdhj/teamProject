@@ -31,7 +31,7 @@
 		<if test="title != null and title != ''"><![CDATA[AND ask_title LIKE CONCAT('%', #{title}, '%')]]></if>
 		<if test="user != null and user != ''"><![CDATA[AND user_id LIKE CONCAT('%', #{user}, '%')]]></if>
 		<if test="status != null and status != ''"><![CDATA[AND ask_status LIKE CONCAT('%', #{status}, '%')]]></if>
-		<if test="status == null and status == ''"><![CDATA[AND ask_status LIKE CONCAT('%', '대기', '%')]]></if>
+		<if test="status == null and status == ''"><![CDATA[AND ask_status = "답변 대기"]]></if>
 		<if test="startDate != null and endDate != null"><![CDATA[AND ask_date >= #{startDate} AND ask_date <= (#{endDate} + INTERVAL 1 DAY) ]]></if>
 	</trim>
 	<![CDATA[ORDER BY ask_date DESC) B]]>
@@ -50,7 +50,11 @@
 	
 	<!-- 목록에서 답변 완료 -->
 	<update id="answerStatus" parameterType="ask">
-		UPDATE ask SET ask_status = '답변 완료' WHERE ask_status = '답변 대기';
+		UPDATE ask SET ask_status = '답변 완료' WHERE ask_status = '답변 대기' AND ask_seq = #{ask_seq}
+	</update>
+	
+	<update id="changeStatus" parameterType="ask">
+		UPDATE ask SET ask_status = '답변 대기' WHERE ask_status = '답변 완료' AND ask_seq = #{ask_seq}
 	</update>
 	
 	<!-- 답변 수정 -->

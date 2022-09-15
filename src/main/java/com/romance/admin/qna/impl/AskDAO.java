@@ -65,6 +65,10 @@ public class AskDAO {
 	  sqlSession.update("AskDAO.answerStatus", vo);
 	}
 	
+	public void changeStatus(AskVO vo) {
+	  sqlSession.update("AskDAO.changeStatus", vo);
+	}
+	
 	public void update(AskReplyVO arvo) {
 	  sqlSession.update("AskDAO.update", arvo);
 	}

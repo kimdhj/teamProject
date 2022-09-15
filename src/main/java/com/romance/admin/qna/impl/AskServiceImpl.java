@@ -134,6 +134,10 @@ public class AskServiceImpl implements AskService{
       }
 	}
 	
+	@Override
+	public void changeStatus(AskVO vo) {
+	  ask.changeStatus(vo);
+	}
 	
 	@Override
 	public boolean checkPW(AskReplyVO arvo) {

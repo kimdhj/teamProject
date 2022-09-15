@@ -15,10 +15,9 @@ public interface AskService {
 	void chkboxDelete1(List<String> ask_seq) throws FileNotFoundException, IOException ; // 선택 삭제 - 질문
 	void chkboxDelete2(List<String> ask_seq) throws FileNotFoundException, IOException ; // 선택 삭제 - 답변
 	
-//	void insert(AskReplyVO arvo); // 등록
-//	void update(AskReplyVO arvo); // 수정
 	void answerInsert(AskReplyVO arvo); // 답변 등록
 	void answerStatus(AskVO vo);
+	void changeStatus(AskVO vo);
 	void update(AskReplyVO arvo);
 	
 	boolean checkPW(AskReplyVO arvo); // 비밀번호 체크

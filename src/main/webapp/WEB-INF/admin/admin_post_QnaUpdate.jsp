@@ -28,12 +28,14 @@
                 
 				<div class="row"></div>
 				<div class="col-1 mb-2 qnaDetail_font" style="padding-right: 0px;">번호</div>
-				<div class="col-3 mb-2" style="padding-left: 0px;">${svo.seq }
+				<div class="col-3 mb-2" style="padding-left: 0px;">${ask.ask_seq }
                   <input type="hidden" value="${ask.ask_seq }" id="ask_seq" />
+                  <input type="hidden" value="${svo.seq }"  id="seq"/>
                 </div>
                 
 				<div class="col-1 mb-2 qnaDetail_font" style="padding-right: 0px;">작성자</div>
 				<div class="col-3 mb-2" style="padding-left: 0px;">${ask.user_id }</div>
+        
 				<div class="col-1 mb-2 qnaDetail_font"
 					style="padding-right: 0px; margin-left: 5%;">등록일자</div>
 				<div class="col mb-2" style="padding-left: 0px;">
@@ -62,9 +64,9 @@
 		</div>
           
 		<!-- 문의 답변 작성란 -->
-        <form class="p-0" action="/qnaDetail.mdo" name="update" method="post" id="form" enctype="multipart/form-data">
-          <div class="mb-0 mt-5 p-0 form1 hide">
-            <button type="button" id="all" class="select p-2 answerbtn" >답변 수정하기</button>
+        <form class="p-0" action="/QnaUpdate.mdo" name="update" method="post" id="form" enctype="multipart/form-data">
+          <div class="mb-0 mt-5 p-0 form1">
+            <button type="button" id="all" class="select p-2" >답변 수정하기</button>
           </div>
       
           <div id="all_box" class="bg-white w-100 form1">
@@ -73,18 +75,20 @@
               <div class="col-3 mb-2" style="padding-left: 0px;">${askReply.ask_seq }
                 <input type="hidden" id="ask_reply_seq" name="ask_seq" value="${askReply.ask_seq }" />
               </div>
+              
               <div class="col-1 mb-2 qnaDetail_font" style="padding-right: 0px;">작성자</div>
               <div class="col-3 mb-2" style="padding-left: 0px;">${askReply.ask_reply_writer }
-                <input type="text" id="ask_reply_writer" name="ask_reply_writer" value="${askReply.ask_reply_writer }" />
+                <input type="hidden" id="ask_reply_writer" name="ask_reply_writer"/>
               </div>
+              
               <div class="row"></div>
               <div class="col-1 mb-2 qnaDetail_font" style="padding-right: 0px; margin-left: 1%;">등록일자</div>
               <div class="col-3 mb-2" style="padding-left: 0px;">
                 <fmt:formatDate value="${askReply.ask_reply_date }" pattern="yyyy-MM-dd"/>
-                <input type="hidden" name="ask_reply_date" value="${askReply.ask_reply_date}"/>
               </div>
+              
               <div class="col-1 qnaDetail_font mb-2" style="padding-right: 0px;">파일첨부</div>
-              <div class="col-3 mb-2" style="padding-left: 0px;">
+              <div class="col-3 mb-2" style="padding-left: 0px;">${askReply.ask_reply_file }
                 <input type="file" name="ask_reply_uploadFile" value="${askReply.ask_reply_file }" id="ask_reply_file">
               </div>
             </div>
@@ -110,8 +114,7 @@
           <div class="row d-flex justify-content-between mt-2 mb-2 form1" id="buttons">
             <div class="col-5"></div>
             <div class="row col-4">
-              <button class="col-auto bg-white border-1 answerupdate" type="button" onclick="location.href='#'">수정</button>
-              <button class="col-auto bg-white border-1 answerdel">삭제</button>
+              <button class="col-auto bg-white border-1 answerupdate" type="button">등록</button>
               <button class="col-auto bg-white border-1 qnalist">목록</button>
             </div>
             <div class="col-3"></div>

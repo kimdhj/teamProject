@@ -29,6 +29,7 @@
 				<div class="row"></div>
 				<div class="col-1 mb-2 qnaDetail_font" style="padding-right: 0px;">번호</div>
 				<div class="col-3 mb-2" style="padding-left: 0px;">${svo.seq }
+                  <input type="hidden" value="${svo.seq }" id="seq"/>
                   <input type="hidden" value="${ask.ask_seq }" id="ask_seq" />
                 </div>
                 
@@ -77,13 +78,13 @@
         <!-- 답변 완료일 때 -->
         <c:if test="${ask.ask_status eq  '답변 완료'}">
 		<div class="mb-0 mt-5 p-0 form1">
-			<button type="button" id="all" class="select p-2 answerbtn" >답변 문의</button>
+			<button type="button" id="all" class="select p-2 answerbtn" >문의 답변</button>
 		</div>
 
 		<div id="all_box" class="bg-white w-100 form1">
 			<div class="row d-flex align-items-center mt-2" id="input_line_top">
 				<div class="col-1 mb-2 qnaDetail_font" style="padding-right: 0px;">번호</div>
-				<div class="col-3 mb-2" style="padding-left: 0px;">${askReply.ask_seq }
+				<div class="col-3 mb-2" style="padding-left: 0px;" id="ask_reply_seq3">${askReply.ask_seq }
                   <input type="hidden" id="ask_reply_seq" value="${askReply.ask_seq }" />
                 </div>
         
@@ -124,7 +125,7 @@
 		<div class="row d-flex justify-content-between mt-2 mb-2 form1" id="buttons">
 			<div class="col-5"></div>
 			<div class="row col-4">
-				<button class="col-auto bg-white border-1 answerupdate" type="button" onclick="location.href='#'">수정</button>
+				<button class="col-auto bg-white border-1 answerupdate" type="button" onclick="location.href='/QnaUpdate.mdo?ask_seq=${askReply.ask_seq}&seq=${svo.seq }'">수정</button>
 				<button class="col-auto bg-white border-1 answerdel">삭제</button>
 				<button class="col-auto bg-white border-1 qnalist">목록</button>
 			</div>
@@ -133,7 +134,7 @@
     
         </c:if>
         
-        <!-- 답변 대기 일 때 -->
+        <!-- 답변 대기 일 때 (답변 작성 구간) -->
         <form class="p-0" action="/qnaDetail.mdo" name="detail" method="post" id="form" enctype="multipart/form-data">
         <c:if test="${ask.ask_status eq  '답변 대기'}">
           <div class="mb-0 mt-5 p-0 form1 hide">
@@ -144,7 +145,7 @@
             <div class="row d-flex align-items-center mt-2" id="input_line_top">
               <div class="col-1 mb-2 qnaDetail_font" style="padding-right: 0px;margin-left: 1%;">번호</div>
               <div class="col-3 mb-2" style="padding-left: 0px;">${askReply.ask_seq }
-                <input type="hidden" id="ask_reply_seq" name="ask_seq" value="${askReply.ask_seq }" />
+                <input type="hidden" id="ask_reply_seq2" name="ask_seq" value="${askReply.ask_seq }" />
               </div>
               <div class="col-1 mb-2 qnaDetail_font" style="padding-right: 0px;">작성자</div>
               <div class="col-3 mb-2" style="padding-left: 0px;">
@@ -184,11 +185,12 @@
             <div class="col-5"></div>
             <div class="row col-4">
               <button class="col-auto bg-white border-1 answerinsert" type="button">등록</button>
-              <button class="col-auto bg-white border-1 answerdel">삭제</button>
               <button class="col-auto bg-white border-1 qnalist">목록</button>
             </div>
             <div class="col-3"></div>
           </div>
+          
+          <input type="hidden" value="${ask.ask_status }" id="status"/>
     
         </c:if>
         </form>
