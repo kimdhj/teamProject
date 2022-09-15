@@ -12,7 +12,7 @@ public class UserVO {
 	private int user_sub_pay_after;
 	private int user_sub_pay_before;
 	private int user_enabled;
-	private boolean user_state;
+	private int user_state;
 	private String user_password;
 	private String user_email;
 	private String user_id;

@@ -36,7 +36,7 @@ function checkWriteForm() {
 	}
 	
 	if(confirm("정말 수정하시겠습니까?") == true) {
-		alert("수정이 완료되었습니다.")
+		alert("수정이 완료되었습니다.");
 	} else {
 		return false;
 	}
