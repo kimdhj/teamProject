@@ -32,7 +32,10 @@
 						<option value="카테고리">카테고리</option>
 					</select>
 					<input type="text" placeholder="검색어 입력" class="col" id="searchThing">					
-					<button id="search_btn" class="btn bg-blue text-white rounded-pill col-1">검색</button>					
+					<button id="search_btn" class="btn bg-blue text-white rounded-pill col-1">검색</button>		
+					<a class="col-1" href="/product_Insert.mdo">
+					<button id="insert_btn" class="btn bg-success text-white rounded-pill">추가</button>				
+					</a>			
 					<div class="col-1"></div>					
 				</div>
 				<div><br></br></div>

@@ -1,5 +1,6 @@
 package com.romance.admin.product;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +9,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @SessionAttributes("pro")
@@ -67,7 +70,8 @@ public class ProductController {
 			model.addAttribute("productList", productService.getProductList(vo));	
 			return "admin_product";
 		}
-	
+		
+		//ajax 검색하기!
 		@RequestMapping(value = "/ajax_search.mdo", method=RequestMethod.POST)
 		@ResponseBody
 		public List<ProductVO> ajax_search(ProductSearchVO svo, Model model) {
@@ -75,15 +79,32 @@ public class ProductController {
 				svo.setPage(1);
 			}
 			
-			
 			return productService.ajax_search(svo);
 		}
 		
+		//ajax 수 세오기!
 		@RequestMapping(value = "/ajax_count.mdo", method=RequestMethod.POST)
 		@ResponseBody
 		public int ajax_count(ProductSearchVO svo) {
 			int count = productService.all_count(svo);
 			return count;
 		}
+		
+		//상품 INSERT 가기!
+		@RequestMapping("/product_Insert.mdo")
+		public String product_Insert() {
+			
+			return "admin_product_Insert";
+		}
+		
+		//상품 INSERT 시키기!
+		@RequestMapping(value="product_Insert_real.mdo", method = RequestMethod.POST)
+		public String product_Insert_real(@RequestParam(name="imgfile0") MultipartFile imgfile0, @RequestParam(name="imgfile1") MultipartFile imgfile1, ProductVO vo) throws IOException {
+			productService.insertProduct(imgfile0, imgfile1, vo);
+			
+			return "redirect:getProductList.mdo";
+		}
+		
+
 		
 }
