@@ -21,9 +21,9 @@ public class MyController {
 	MyService ser;
 	
 	@GetMapping("myMain.do")
-	public String myMain(HttpSession session, JwtUtils util) throws IOException {
+	public String myMain(HttpSession session) throws IOException {
 		
-		if(CheckToken.isTokenUser(session, util) == 1) {
+		if(CheckToken.isToken(session) != null) {
 			System.out.println("안녕하십니까?");
 			return "my_Main";
 		} else {

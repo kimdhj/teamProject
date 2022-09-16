@@ -3,6 +3,8 @@ package com.romance.admin.login;
 import java.io.IOException;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -10,13 +12,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.romance.security.JwtUtils;
 
 @Controller
-@SessionAttributes("id")
 @RequestMapping("/")
 public class AdminLoginController {
 	
@@ -36,7 +36,7 @@ public class AdminLoginController {
 	
 	//관리자 로그인
 	@PostMapping("admin_login.mdo")
-	public String login(AdminUserVO vo, Model model, JwtUtils util, RedirectAttributes redirectAttributes) throws IOException {
+	public String login(AdminUserVO vo, HttpSession session, JwtUtils util, RedirectAttributes redirectAttributes) throws IOException {
 		System.out.println("로그인 인증 처리");
 
 		AdminUserVO user = adminUserService.getUser(vo);
@@ -57,7 +57,7 @@ public class AdminLoginController {
 				System.out.println("유효성체크 con : " + con);
 				System.out.println("로그인 성공");
 				
-				model.addAttribute("id", token);//id 라는이름에 token값을 담아서 @SessionAttributes로 사용
+				session.setAttribute("id", token);//id 라는이름에 token값을 담아서 @SessionAttributes로 사용
 				
 				return "redirect:adminMain.mdo";
 			} else {
