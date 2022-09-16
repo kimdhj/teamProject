@@ -5,6 +5,7 @@ import java.util.Date;
 import lombok.Data;
 @Data
 public class CouponVO {
+	private String user_id;
 	private int coupon_seq;
 	private String coupon_code;
 	private Date coupon_date;

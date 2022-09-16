@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.romance.admin.account.Criteria;
+import com.romance.admin.coupon.CouponVO;
 import com.romance.admin.login.AdminUserVO;
 
 @Repository
@@ -51,6 +52,11 @@ public class AdminAccountDAO {
 	public void updateUserAccount(AdminUserVO vo) {
 		System.out.println("Mybatis로 updateUserAccount 기능 처리");
 		sqlSessionTemplate.update("AdminUserDAO.updateUserAccount", vo);
+	}
+	
+	public List<CouponVO> getUserCouponList(String user_id) {
+		System.out.println("Mybatis로 현재 보고있는 회원의 쿠폰명 리스트로 가져오기");
+		return sqlSessionTemplate.selectList("AdminCoupon.getUserCouponList", user_id);
 	}
 	
 }
