@@ -175,7 +175,7 @@ public class FaqController {
 	}
 	
 	@PostMapping(value="/FaqUpdate.mdo")
-	public String update(FaqVO vo, Model model) throws IOException {
+	public String update(FaqVO vo) throws IOException {
 		System.out.println("update : " + vo);
 		String uploadFolder = "https://doublejo.s3.ap-northeast-2.amazonaws.com/";
 		

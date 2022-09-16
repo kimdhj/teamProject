@@ -127,7 +127,7 @@ public class MyRequestController {
 	}
 	
 	@PostMapping("myRequestWrite.do")
-	public String insertMyRequest(MyRequestVO myRequestVO, @RequestParam(name="uploadFile") MultipartFile uploadFile, HttpSession session, JwtUtils utils) throws IOException {
+	public String insertMyRequest(MyRequestVO myRequestVO, Model model, @RequestParam(name="uploadFile") MultipartFile uploadFile, HttpSession session, JwtUtils utils) throws IOException {
 		UserVO voToken = utils.getuser(session);
 		if(voToken != null) {
 			if(!uploadFile.isEmpty()) {

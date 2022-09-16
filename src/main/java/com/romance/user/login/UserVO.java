@@ -12,7 +12,7 @@ public class UserVO {
 	private int user_sub_pay_after;
 	private int user_sub_pay_before;
 	private int user_enabled;
-	private boolean user_state;
+	private int user_state;
 	private String user_password;
 	private String user_email;
 	private String user_id;
@@ -25,5 +25,6 @@ public class UserVO {
 	private String user_role;
 	private String user_birth;
 	private String user_phone;
+	private int user_coupon_cnt;//AdminUserVO에 user_coupon_cnt값 사용해서 로그인시 에러발생하여 임시로 추가해둠
 	
 }

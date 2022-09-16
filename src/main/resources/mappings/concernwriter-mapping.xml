@@ -3,9 +3,30 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="concern">
 	<insert parameterType="concernVO" id="concernin">
-	 insert into concern_writer(author_seq,user_id) values(#{author_seq},#{user_id})
+		insert into concern_writer(author_seq,user_id)
+		values(#{author_seq},#{user_id})
 	</insert>
-	<select parameterType="concernVO" resultType="int" id="checoncern">
-		select count(*) from concern_writer where author_seq=#{author_seq} and user_id=#{user_id}
+	<select parameterType="concernVO" resultType="int"
+		id="checoncern">
+		select count(*) from concern_writer where author_seq=#{author_seq}
+		and user_id=#{user_id}
+	</select>
+	<select id="concernall" parameterType="concernsearchVO"
+		resultType="concernVO">
+	<![CDATA[select * from(select *,@rownum:=@rownum+1 as rnum from concern_writer  , (SELECT @rownum:=0) TMP where user_id=#{user_id}  ]]>
+		<![CDATA[order by concern_writer_date) B where rnum>(#{page}-1)*5 AND rnum<=#{page}*5 ]]>
+	</select>
+	<select id="concerncount" parameterType="concernsearchVO"
+		resultType="int">
+	<![CDATA[select count(*) from(select *,@rownum:=@rownum+1 as rnum from concern_writer  , (SELECT @rownum:=0) TMP where user_id=#{user_id}  ]]>
+		<![CDATA[order by concern_writer_date) B ]]>
+	</select>
+	<delete id="concerndel" parameterType="concernVO">
+		delete
+		from concern_writer where author_seq=#{author_seq} and
+		user_id=#{user_id}
+	</delete>
+	<select parameterType="int" resultType="String" id="getautor">
+		select author_name from author where author_seq=#{author_seq}
 	</select>
 </mapper>

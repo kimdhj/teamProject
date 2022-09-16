@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.romance.user.points.MyPointsVO;
 @Service
 public class OrderServiceImpl implements OrderService {
 	@Autowired
@@ -16,6 +18,19 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public void ordersIn(OrdersVO vo) {
 		// TODO Auto-generated method stub
+	  MyPointsVO vop=new MyPointsVO();
+	  vop.setPoints_content(vo.getOrders_title());
+	  vop.setUser_id(vo.getUser_id());
+	  vop.setPoints_count(vo.getOrders_add_point());
+	  if(vop.getPoints_count()!=0) {
+	  dao.pointsin(vop);
+	  }
+	  vop.setPoints_count(vo.getOrders_point()*(-1));
+	  if(vop.getPoints_count()!=0) {
+	    dao.pointsin(vop);
+	    }
+	  System.out.println(vop);
+	  System.out.println("포인트 테스트");
 		dao.ordersIn(vo);
 	}
 	@Override

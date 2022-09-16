@@ -8,6 +8,7 @@ public class BookSearchVO {
 	public int category;
 	public int page;
 	public int country;
+	public int author_seq;
 
 	
 

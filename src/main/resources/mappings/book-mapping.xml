@@ -11,6 +11,7 @@
 			<if test="category != 0"><![CDATA[AND category_num =#{category}]]></if>
 			<if test="country == 1"><![CDATA[AND category_num >200]]></if>
 			<if test="country == 2"><![CDATA[AND category_num <200]]></if>
+			<if test="author_seq !=0"><![CDATA[AND author_seq=#{author_seq}]]></if>
 		</trim>
 		<![CDATA[) B where rnum>(#{page}-1)*5 AND rnum<=#{page}*5 order by book_seq ]]>
 
