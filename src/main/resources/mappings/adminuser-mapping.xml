@@ -59,6 +59,9 @@
 		<if test="selectCondition=='user_black'">
 			AND a.user_state = 1
 		</if>
+		<if test="selectCondition=='user_withdrawal'">
+			AND a.user_state = 2
+		</if>
 		<if test="selectCondition=='user_all'">
 		</if>
 		ORDER BY a.user_id ASC LIMIT #{pageStart}, #{perPageNum}
@@ -91,6 +94,9 @@
 		</if>
 		<if test="selectCondition=='user_black'">
 			AND user_state = 1
+		</if>
+		<if test="selectCondition=='user_withdrawal'">
+			AND user_state = 2
 		</if>
 		<if test="selectCondition=='user_all'">
 		</if>		

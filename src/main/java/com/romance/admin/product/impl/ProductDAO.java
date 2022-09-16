@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.romance.admin.product.ProductSearchVO;
 import com.romance.admin.product.ProductVO;
+import com.romance.user.concern.ConcernWriterVO;
 
 @Repository
 public class ProductDAO {
@@ -28,4 +29,13 @@ public class ProductDAO {
 	public int all_count(ProductSearchVO svo) {
 		return sqlSessionTemplate.selectOne("ProductDAO.all_count", svo);
 	}
+	
+	public void insertProduct(ProductVO vo) {
+		sqlSessionTemplate.insert("ProductDAO.insertProduct", vo);
+	}
+	
+	public ConcernWriterVO check_author(ConcernWriterVO vo) {
+		return sqlSessionTemplate.selectOne("ProductDAO.check_author", vo);
+	}
+	
 }

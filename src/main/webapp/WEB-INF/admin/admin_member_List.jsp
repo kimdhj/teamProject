@@ -70,6 +70,7 @@
 						<button type="submit" class="btn btn-danger" name="selectCondition" value="user_sub">구독</button>
 						<button type="submit" class="btn btn-warning" name="selectCondition" value="user_normal">일반</button>
 						<button type="submit" class="btn btn-dark" name="selectCondition" value="user_black">블랙</button>
+						<button type="submit" class="btn btn-secondary" name="selectCondition" value="user_withdrawal">탈퇴</button>
 						<button type="submit" class="btn btn-success" name="selectCondition" value="user_all">전체</button>
 					</div>
 				</div>
