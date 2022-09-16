@@ -40,6 +40,19 @@
 			<if test="Hsort == '카테고리'" > AND category_num LIKE CONCAT('%', #{Hthing}, '%')</if>
 			</trim>
 	</select>
-
+	<insert id="insertProduct" parameterType="pros">
+		INSERT INTO book (book_price, book_remain, book_descript, book_imgURL, book_bigimgURL, book_title, book_points, book_publish, book_publish_date, book_author, book_isbn, category_num, author_seq)
+		VALUES(#{book_price}, #{book_remain}, #{book_descript}, #{book_imgURL}, #{book_bigimgURL}, #{book_title}, #{book_points}, #{book_publish}, #{book_publish_date}, #{book_author}, #{book_isbn}, #{category_num}, #{author_seq})
+	</insert>
+	<select id="check_author" resultType="pro" parameterType="pros">
+		SELECT author_name FROM author WHERE author_seq = #{author_seq}
+	</select>
+	<select id="check_isbn" resultType="int" parameterType="pros">
+		SELECT count(*) from book WHERE book_isbn=#{book_isbn}
+	</select>
+	<select id="check_category" resultType="int" parameterType="pros">
+		SELECT count(*) from book WHERE category_num=#{category_num}
+	</select>
+	
 	
 </mapper>
