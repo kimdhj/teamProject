@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -18,6 +18,9 @@
 						id="accountCheckForm" onsubmit="return adminAccountCheck()">
 						<!-- <form action="/insertAdminAccount.mdo" method="post" name="adminAccountInsertForm"> -->
 						<input type="hidden" name="user_id" value="${getUserDetail.user_id}" />
+						<input type="hidden" id="searchCondition" name="searchCondition" value="${criteria.searchCondition}" /> 
+						<input type="hidden" id="searchKeyword" name="searchKeyword" value="${criteria.searchKeyword}" /> 
+						<input type="hidden" id="selectCondition" name="selectCondition" value="${criteria.selectCondition}" />
 						<table class="table text-center">
 							<thead class="table-dark">
 								<tr>
@@ -131,16 +134,32 @@
 				<div class="col-md-12">
 					<form>
 						<div class="card border-light">
-							<div class="card-header">쪽지</div>
+							<div class="card-header">쿠폰</div>
 							<div class="card-body">
 								<div class="mb-3">
-									<textarea class="form-control" id="" rows="10"></textarea>
+									<textarea class="form-control" id="" rows="5"></textarea>
 								</div>
 							</div>
 							<div class="card-footer">
 								<button type="button"
 									class="btn btn-light btn-outline-dark btn-sm"
-									style="float: right;">전송</button>
+									style="float: right;">수정</button>
+							</div>
+						</div>
+					</form>
+					<hr/>
+					<form>
+						<div class="card border-light">
+							<div class="card-header">마일리지</div>
+							<div class="card-body">
+								<div class="mb-3">
+									<textarea class="form-control" id="" rows="5"></textarea>
+								</div>
+							</div>
+							<div class="card-footer">
+								<button type="button"
+									class="btn btn-light btn-outline-dark btn-sm"
+									style="float: right;">수정</button>
 							</div>
 						</div>
 					</form>

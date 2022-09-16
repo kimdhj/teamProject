@@ -1,6 +1,7 @@
 package com.romance.admin.account;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,9 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.romance.admin.login.AdminUserVO;
-import com.romance.admin.login.CheckToken;
 import com.romance.security.JwtUtils;
-import com.romance.user.login.UserVO;
 
 @Controller
 @RequestMapping("/")
@@ -77,7 +76,7 @@ public class AdminAccountController {
 	}
 	
 	@GetMapping("getAdmin_member_Detail.mdo")
-	public String getUserDetail(AdminUserVO vo,@ModelAttribute("criteria") Criteria criteria, Model model, HttpSession session, JwtUtils utils) throws IOException {
+	public String getUserDetail(AdminUserVO vo, @ModelAttribute("criteria") Criteria criteria, Model model, HttpSession session, JwtUtils utils) throws IOException {
 		AdminUserVO voToken = utils.getAdmin(session);
 		if(voToken != null) {
 			model.addAttribute("criteria", criteria);
@@ -131,16 +130,21 @@ public class AdminAccountController {
 	}
 	
 	@PostMapping("updateUserAccount.mdo")
-	public String updateUserAccount(AdminUserVO vo, HttpSession session, JwtUtils utils) throws Exception {
+	public String updateUserAccount(AdminUserVO vo, HttpSession session, JwtUtils utils, Criteria criteria) throws Exception {
 		AdminUserVO voToken = utils.getAdmin(session);
 		if(voToken != null) {
 			System.out.println("계정정보 수정");
+			System.out.println("키워드 : " + criteria.getSearchKeyword());
 			if(vo.getUser_password() != null && !vo.getUser_password().equals("")) { // 입력비밀번호 null값, ''빈문자열 아닐경우에만 암호화 진행
 				vo.setUser_password(bCryptPasswordEncoder.encode(vo.getUser_password()));
 			}
+			//searchKeyword의 경우 한글인코딩을 해줘서 쿼리스트링으로 보내준다
+			String encodedSearchKeyword = URLEncoder.encode(criteria.getSearchKeyword(), "UTF-8");
+			String queryString = "?user_id=" + vo.getUser_id() + "&pageNum=" + criteria.getPageNum() + "&searchCondition=" + criteria.getSearchCondition() + "&searchKeyword=" + encodedSearchKeyword + "&selectCondition=" + criteria.getSelectCondition();
+			System.out.println("쿼리스트링 : " + queryString);
 			System.out.println(">>>>>뭐가뭐가들어갔나" + vo);
 			adminAccountService.updateUserAccount(vo);
-			return "redirect:getAdmin_member_List.mdo";
+			return "redirect:getAdmin_member_Detail.mdo" + queryString;
 		} else {
 			return "redirect:admin_login.mdo";
 		}
