@@ -1,0 +1,27 @@
+#bigbig_title {
+  font-size: 3vw;
+  font-weight: 700;
+}
+input {
+	min-height: 0px !important;
+}
+/* Hide Calendar Icon In Chrome */
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}
+#book_descript{
+	width:100%;
+}
+input[type=text], input[type=file], input[type=date]{
+	height:40px;
+	font-size:1.2vw;
+}
+textarea{
+	font-size:1.2vw;	
+}
+button{
+	height: 40px;
+	font-size:1.3vw !important;
+}
