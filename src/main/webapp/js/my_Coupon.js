@@ -1,13 +1,13 @@
-$(function () {
-  $("#coupon_add").click(function () {
-    $("#coupon_popUp").removeClass("hide");
-  });
-  $("#popup_close").click(function () {
-    $("#coupon_popUp").addClass("hide");
-  });
-  $("#coupon_insert").click(function () {
-    $("#coupon_popUp").addClass("hide");
-  });
+$(function() {
+	$("#coupon_add").click(function() {
+		$("#coupon_popUp").removeClass("hide");
+	});
+	$("#popup_close").click(function() {
+		$("#coupon_popUp").addClass("hide");
+	});
+	$("#coupon_insert").click(function() {
+		$("#coupon_popUp").addClass("hide");
+	});
 	function make() {
 		let count = 0;
 		$.ajax({
@@ -78,13 +78,13 @@ $(function () {
 			async: false,
 			data: {
 				page: $("#page").val(),
-			
+
 			},
 			success: function(re) {
-	console.log(re);
+				console.log(re);
 				let con = "";
 				re.map((it) => {
-				console.log(it.user_coupon_date);
+					console.log(it.user_coupon_date);
 
 					con += `<div id="table_item" class="row">
                 <div class="col-4">${it.user_coupon_date}</div>
@@ -103,9 +103,9 @@ $(function () {
 	$(document).on('click', '#discount .page-link', makeDisplay);
 	//태그 클릭에 따른 제한
 	function makeDisplay(e) {
-	
+
 		console.log($(e.target).text());
-		
+
 
 		if ($(e.target).text().trim() == "«") {
 			$("#page").val(Number($("#page").val()) - 1);
@@ -114,29 +114,51 @@ $(function () {
 		} else {
 			$("#page").val(Number($(e.target).text()));
 		}
-	console.log("page",$("#page").val());
+		console.log("page", $("#page").val());
 		make();
 	}
 	//포인트 페이징 처리
-	$("#allpoints").on("click",function(){
-	$("#statep").val(Number(0));
+	$("#allpoints").on("click", function() {
+		$("#statep").val(Number(0));
+		makep();
 	})
-	$("#pluspoints").on("click",function(){
-	$("#statep").val(Number(1));
+	$("#pluspoints").on("click", function() {
+		$("#statep").val(Number(1));
+		makep();
 	})
-	$("#usepoints").on("click",function(){
-	$("#statep").val(Number(-1));
+	$("#usepoints").on("click", function() {
+		$("#statep").val(Number(-1));
+		makep();
 	})
-	$(document).on("propertychange change paste input keyUp keyDown","#date",function(){
-		
-		
-		let today=new Date();
-		let date=new Date(today);
-		console.log(date.getMonth);
-		date.setMonth(date.getMonth-Number($("#date").val()));
-		$("#points_datep").val(date);
-		
+	$(document).on("propertychange change paste input keyUp keyDown", "#date", function() {
+
+
+		let today = new Date();
+		let date = new Date(today);
+
+		date.setMonth(date.getMonth() - Number($("#date").val()));
+		$("#points_datep").val(date.toJSON());
+
 		console.log($("#points_datep").val());
+	})
+	$("#coupon_insert").on("click", function() {
+		console.log($("#cou_code").val());
+		$.ajax({
+			url: "/couponadd.do",
+			method: "get",
+			dataType: 'json',
+			data: {coupon_code:$("#cou_code").val()},
+			success: function(da) {
+				if(da==0){
+				alert("쿠폰 번호를 확인해주세요.");
+				}else if(da==1){
+				alert("쿠폰 등록 되었습니다.");
+				make();
+				}else{
+				location.href="/index.do"
+				}
+			 }
+		})
 	})
 	function makep() {
 		let countp = 0;
@@ -146,7 +168,7 @@ $(function () {
 			dataType: 'json',
 			data: {
 				state: $("#statep").val(),
-					points_date: $("#points_datep").val()
+				points_date: $("#points_datep").val()
 			},
 			async: false,
 			success: function(rep) {
@@ -168,7 +190,7 @@ $(function () {
 
 
 				let startpagep = 0;
-				let endpagep= 0;
+				let endpagep = 0;
 				if (pagep < 3) {
 					startpagep = 1;
 				} else {
@@ -213,13 +235,13 @@ $(function () {
 			data: {
 				page: $("#pagep").val(),
 				state: $("#statep").val(),
-					points_date: $("#points_datep").val()
+				points_date: $("#points_datep").val()
 			},
 			success: function(rep) {
-	console.log(rep);
+				console.log(rep);
 				let conp = "";
 				rep.map((itp) => {
-		itp.points_count=itp.points_count.toLocaleString('ko-KR');
+					itp.points_count = itp.points_count.toLocaleString('ko-KR');
 
 					conp += ` <div id="table_item" class="row">
                 <div class="col-4 text-center">
@@ -240,9 +262,9 @@ $(function () {
 	$(document).on('click', '#pointMoney .page-link', makeDisplayp);
 	//태그 클릭에 따른 제한
 	function makeDisplayp(e) {
-	
+
 		console.log($(e.target).text());
-		
+
 
 		if ($(e.target).text().trim() == "«") {
 			$("#pagep").val(Number($("#pagep").val()) - 1);
@@ -251,7 +273,7 @@ $(function () {
 		} else {
 			$("#pagep").val(Number($(e.target).text()));
 		}
-	console.log("page",$("#pagep").val());
+		console.log("page", $("#pagep").val());
 		makep();
 	}
 })

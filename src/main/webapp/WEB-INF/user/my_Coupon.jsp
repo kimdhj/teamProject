@@ -87,7 +87,7 @@
             <div class="col row">
               <div class="col">
                 <div class="input-group mb-3">
-                  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                  <input id="cou_code" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                   </di>
                 </div>
               </div>
@@ -184,10 +184,10 @@
       </div>
     </div>
   </div>
-  <input type="number" id="page" value="${vo.page}"/>
-  <input type="number" id="pagep" value="${vop.page}"/>
-  <input type="number" id="statep" value="${vop.state}"/>
-  <input type="String" id="points_datep" value="${vop.points_date}"/>
+  <input type="number" class="hide" id="page" value="${vo.page}"/>
+  <input type="number" class="hide" id="pagep" value="${vop.page}"/>
+  <input type="number" class="hide" id="statep" value="${vop.state}"/>
+  <input type="text" class="hide" id="points_datep" value="${vop.points_date}"/>
   <jsp:include page="/WEB-INF/commonjsp/common_mypage_bottom.jsp"></jsp:include>
   <!-- Footer Start -->
   <!-- Common Footer include -->
