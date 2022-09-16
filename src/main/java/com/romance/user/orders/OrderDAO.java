@@ -6,6 +6,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.romance.user.points.MyPointsVO;
+
 @Repository
 public class OrderDAO {
 	@Autowired
@@ -25,5 +27,8 @@ public class OrderDAO {
 	public void delfin(String user_id) {
 		sql.delete("bucket.delfin",user_id);
 		
+	}
+	public void pointsin(MyPointsVO vo) {
+	  sql.insert("points.pointsin",vo);
 	}
 }

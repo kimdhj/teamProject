@@ -12,7 +12,8 @@
 	<typeAliases>
 		<!-- <typeAlias alias="myboard" type="tommy.spring.web.board.BoardVO" /> -->
 		<typeAlias type="com.romance.socket.chatVO" alias="chatVO" />
-		<typeAlias type="com.romance.socket.chatSearchVO" alias="chatsearchVO" />
+		<typeAlias type="com.romance.socket.chatSearchVO"
+			alias="chatsearchVO" />
 		<typeAlias type="com.romance.admin.notice.NoticeVO"
 			alias="notice" />
 		<typeAlias
@@ -60,36 +61,62 @@
 			alias="replysearchVO" />
 		<typeAlias type="com.romance.user.reply.FineVO"
 			alias="fineVO" />
-		<typeAlias type="com.romance.admin.faq.FaqVO" alias="faq"/>
-		<typeAlias type="com.romance.admin.faq.FaqSearchVO" alias="faqSearch"/>
+		<typeAlias type="com.romance.admin.faq.FaqVO" alias="faq" />
+		<typeAlias type="com.romance.admin.faq.FaqSearchVO"
+			alias="faqSearch" />
 		<typeAlias type="com.romance.user.login.UserVO"
 			alias="userVO" />
-			<typeAlias type="com.romance.user.orders.OrderBookListVO"
+		<typeAlias type="com.romance.user.orders.OrderBookListVO"
 			alias="orderbooklistVO" />
-		<typeAlias type="com.romance.admin.dashboard.DashVO" alias="dashVO" />
-		<typeAlias type="com.romance.admin.product.ProductVO" alias="pro" />
-		<typeAlias type="com.romance.admin.product.ProductSearchVO" alias="pros" />
+		<typeAlias type="com.romance.admin.dashboard.DashVO"
+			alias="dashVO" />
+		<typeAlias type="com.romance.admin.product.ProductVO"
+			alias="pro" />
+		<typeAlias type="com.romance.admin.product.ProductSearchVO"
+			alias="pros" />
 
-			<typeAlias type="com.romance.user.orders.OrdersVO"
+		<typeAlias type="com.romance.user.orders.OrdersVO"
 			alias="ordersVO" />
 
-<typeAlias type="com.romance.user.usecategory.UserCategoryVO"
+		<typeAlias
+			type="com.romance.user.usecategory.UserCategoryVO"
 			alias="usercategoryVO" />
-			<typeAlias type="com.romance.admin.qna.AskVO" alias="ask"/>
-			<typeAlias type="com.romance.admin.qna.AskReplyVO" alias="askReply"/>
-			<typeAlias type="com.romance.admin.qna.AskSearchVO" alias="askSearch"/>
-		<typeAlias type="com.romance.user.my.request.MyRequestVO" alias="myRequestVO" />
+		<typeAlias type="com.romance.admin.qna.AskVO" alias="ask" />
+		<typeAlias type="com.romance.admin.qna.AskReplyVO"
+			alias="askReply" />
+		<typeAlias type="com.romance.admin.qna.AskSearchVO"
+			alias="askSearch" />
+		<typeAlias type="com.romance.user.my.request.MyRequestVO"
+			alias="myRequestVO" />
 
-		<typeAlias type="com.romance.user.concern.ConcernWriterVO" alias="concernVO" />
-		<typeAlias type="com.romance.user.concern.ConcernSearchVO" alias="concernsearchVO" />
+		<typeAlias type="com.romance.user.concern.ConcernWriterVO"
+			alias="concernVO" />
+		<typeAlias type="com.romance.user.concern.ConcernSearchVO"
+			alias="concernsearchVO" />
 
 
-		<typeAlias type="com.romance.user.my.request.MyRequestReplyVO" alias="myRequestReplyVO" /> 
+		
+			<typeAlias
+			type="com.romance.user.my.request.MyRequestReplyVO"
+			alias="myRequestReplyVO" />
+			<typeAlias
+			type="com.romance.user.coupon.MyCouponVO"
+			alias="mycouponVO" />
+			<typeAlias
+			type="com.romance.user.coupon.MyCouponSearchVO"
+			alias="mycouponsearchVO" />
+				<typeAlias
+			type="com.romance.user.points.MyPointsVO"
+			alias="mypointsVO" />
+				<typeAlias
+			type="com.romance.user.points.MyPointsSearchVO"
+			alias="mypointssearchVO" />
+			
 
 	</typeAliases>
-	
-	
-	
+
+
+
 	<mappers>
 		<!-- <mapper resource="mappings/board-mapping.xml" /> -->
 		<mapper resource="mappings/adminTerms-mapping.xml" />
@@ -107,7 +134,7 @@
 		<mapper resource="mappings/fine-mapping.xml" />
 		<mapper resource="mappings/coupon-mapping.xml" />
 		<mapper resource="mappings/book-mapping.xml" />
-		<mapper resource="mappings/adminFaq-mapping.xml"/>
+		<mapper resource="mappings/adminFaq-mapping.xml" />
 		<mapper resource="mappings/bucket-mapping.xml" />
 		<mapper resource="mappings/login-mapping.xml" />
 		<mapper resource="mappings/order-mapping.xml" />
@@ -117,6 +144,8 @@
 		<mapper resource="mappings/product-mapping.xml" />
 		<mapper resource="mappings/userrequest-mapping.xml" />
 		<mapper resource="mappings/concernwriter-mapping.xml" />
+		<mapper resource="mappings/points-mapping.xml" />
+		<mapper resource="mappings/usercoupon-mapping.xml" />
 		<mapper resource="mappings/profile-mapping.xml" />
 	</mappers>
 </configuration>
