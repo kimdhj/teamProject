@@ -62,20 +62,7 @@ public class LoginController {
     return "redirect:index.do";
   }
   
-  // 카카오로그인
-  @GetMapping("kakaologin.do")
-  @ResponseBody
-  public String kakaologin() throws IOException {
-    String resource = "config/kakao.properties";
-    Properties properties = new Properties();    
-    Reader reader = Resources.getResourceAsReader(resource);
-    properties.load(reader);
-    
-    String reqUrl = "https://kauth.kakao.com/oauth/authorize" + "?client_id="+properties.getProperty("client_id") + "&redirect_uri=" + properties.getProperty("redirect_uri")+ "&response_type=code";
-    System.out.println(reqUrl);
-    return reqUrl;
-    
-  }
+  
   
   // 카카오 정보 받아오기
   @GetMapping("kakaoauth.do")
@@ -116,11 +103,7 @@ public class LoginController {
     return chenum;
   }
   
-  @GetMapping("cheid.do")
-  @ResponseBody
-  public int cheid(String user_id) {
-    return ser.cheid(user_id);
-  }
+
   
   // 회원가입 이동
   @GetMapping("join.do")
@@ -218,51 +201,13 @@ public class LoginController {
 		return chenum;
 	}
 
-	@PostMapping("findid.do")
-	public String findid(UserVO vo, Model model) {
-		System.out.println("findidvo" + vo);
-		List<UserVO> vol = ser.findid(vo);
-		System.out.println("findidvol" + vol);
-		System.out.println("phche" + vo.getUser_phone() == " ");
-		if (vol.size() > 0) {
-			model.addAttribute("vol", vol);
 
-			return "login_findid";
-		} else {
-			return "redirect:login_nopassword.do";
-		}
-	}
 
-	@PostMapping("findpassword.do")
-	public String findpassword(UserVO vo, Model model) {
-		int re = ser.findpassword(vo);
-		if (re > 0) {
-			model.addAttribute("id", vo.getUser_id());
-			return "login_changepassword";
-		} else {
-			return "redirect:login_nopassword.do";
-		}
 
-	}
 
-	@PostMapping("/login_change_password.do")
-	public String login_change_password(UserVO vo) {
 
-		vo.setUser_password(benco.encode(vo.getUser_password()));
-		ser.passwordin(vo);
-		return "redirect:index.do";
 
-	}
 
-	@GetMapping("findaccount.do")
-	public String findaccount() {
-		return "login_find";
-	}
-
-	@GetMapping("login_nopassword.do")
-	public String login_nopassword() {
-		return "login_nopassword";
-	}
   
   // 일반로그인
   @PostMapping("loginend.do")
@@ -299,23 +244,7 @@ public class LoginController {
     
   }
   
-  // 메일테스트
-  @GetMapping("mail.do")
-  @ResponseBody
-  public String mail(String mail, String name) throws Exception {
-    String chenum = "";
-    int num = 0;
-    for (int i = 0; i < 6; i++) {
-      num = (int) (Math.random() * 9);
-      chenum += String.valueOf(num);
-    }
-    System.out.println(chenum);
-    String result = "노출에 조심하세요 낭만서점 이메일 인증 번호는[" + chenum + "] 입니다.";
-    System.out.println(result);
-    MailService ma = new MailService();
-    ma.sendEmail(mail.trim(), "낭만서점 본인확인 메일입니다.", result, name.trim());
-    return chenum;
-  }
+
   
   @PostMapping("findid.do")
   public String findid(UserVO vo, Model model) {
@@ -416,23 +345,7 @@ public class LoginController {
 		return "redirect:join.do";
 	}
 
-	// 인증번호
-	@GetMapping("sendChe.do")
-	@ResponseBody
-	public String sendChe(String phone) throws IOException, CoolsmsException {
-		String chenum = "";
-		int num = 0;
-		for (int i = 0; i < 6; i++) {
-			num = (int) (Math.random() * 9);
-			chenum += String.valueOf(num);
-			System.out.println(chenum);
-		}
-		System.out.println(chenum);
-		String result = "낭만서점 인증번호[" + chenum + "] 입니다.";
-		System.out.println(result);
-		Sms.sendsms(result, phone.trim());
-		return chenum;
-	}
+
 
 	@GetMapping("cheid.do")
 	@ResponseBody
@@ -440,33 +353,7 @@ public class LoginController {
 		return ser.cheid(user_id);
 	}
 
-	// 회원가입 이동
-	@GetMapping("join.do")
-	public String join(String kakaoid, Model model) {
-		System.out.println(ser.logincate());
-		model.addAttribute("kakaoid", kakaoid);
-		model.addAttribute("logincate", ser.logincate());
-		return "login_jointab";
-	}
 
-	@PostMapping("join.do")
-	public String join(UserVO vo, @RequestParam(value = "category_num", required = false) List<Integer> category_num) {
-
-		System.out.println(vo);
-		System.out.println(category_num);
-		vo.setUser_password(benco.encode(vo.getUser_password()));
-		ser.joininsert(category_num, vo);
-
-		return "redirect:login.do";
-	}
-
-	// 카카오로그인 최종
-	@GetMapping("kakaologinend.do")
-	public String kakaologinend(String kakaoid, UserVO vo, Model model, JwtUtils util) throws IOException {
-
-		ser.loginday(kakaoid);
-
-		return "redirect:index.do";
-	}
+	
 
 }
