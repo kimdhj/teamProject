@@ -1,3 +1,12 @@
+let checkPoint = 0; //비밀번호 확인은 했는가? 체크포인트가 1일경우에만 수정되도록
+
+function nowPasswordCheck(){ //비밀번호 확인 한 이후에 기존비밀번호를 변경한다면?
+	//이렇게 할 경우 비밀번호 확인해서 성공하여 checkPoint가 1이된 이후에
+	//추가 변경사항이 발생하면 0으로 다시 바뀐다.
+	checkPoint = 0;
+}
+
+
 function checkNum() { //key code reference table 48(0) ~ 57(9)
 	if (event.keyCode < 48 || event.keyCode > 57) {
 		event.returnValue = false;
@@ -34,6 +43,7 @@ function passwordChanged() {
 }
 
 function passwordChangedForm() {
+	alert("체크포인트 값 1이면 확인한것! : " + checkPoint);//체크포인트 값 확인 (1일경우에만 수정가능 하도록)
 	let user_now_password = document.getElementById("user_now_password");
 	let user_password = document.getElementById("user_password");
 	let user_passwordCheck = document.getElementById("user_passwordCheck");
@@ -41,39 +51,46 @@ function passwordChangedForm() {
 	//비밀번호
 	const reg_password = /(?=.*[a-zA-ZS])(?=.*?[#?!@$%^&*-]).{8,24}/; //문자, 특수문자 조합의 8~24자리
 	
-	if(user_now_password.value.length == 0) {
-		alert("기존 비밀번호를 입력하세요");
-		user_now_password.focus();
+	if(checkPoint == 0) {
+		alert("비밀번호 확인을 눌러주세요");
 		return false;
-	}
-	if(user_password.value.length == 0) {
-		alert("새 비밀번호를 입력하세요");
-		user_password.focus();
-		return false;
-	}
-	if(user_passwordCheck.value.length == 0) {
-		alert("새 비밀번호 확인을 입력하세요");
-		user_passwordCheck.focus();
-		return false;
-	}
-	if(user_password.value != user_passwordCheck.value) {
-		alert("비밀번호가 일치하지 않습니다 다시 입력하세요");
-		user_passwordCheck.value = "";
-		user_passwordCheck.focus();
-		return false;
-	}
-	
-	if(!reg_password.test(user_password.value)){
-		alert("비밀번호는 문자 + 특수문자 조합의 8~24자리 입력")
-		user_password.focus();
-		return false;
-	}
-	
-	if(confirm("정말 변경하시겠습니까?") == true) {
-		alert("변경되었습니다.")
 	} else {
-		return false;
+		if(user_now_password.value.length == 0) {
+			alert("기존 비밀번호를 입력하세요");
+			user_now_password.focus();
+			return false;
+		}
+		if(user_password.value.length == 0) {
+			alert("새 비밀번호를 입력하세요");
+			user_password.focus();
+			return false;
+		}
+		if(user_passwordCheck.value.length == 0) {
+			alert("새 비밀번호 확인을 입력하세요");
+			user_passwordCheck.focus();
+			return false;
+		}
+		if(user_password.value != user_passwordCheck.value) {
+			alert("비밀번호가 일치하지 않습니다 다시 입력하세요");
+			user_passwordCheck.value = "";
+			user_passwordCheck.focus();
+			return false;
+		}
+		
+		if(!reg_password.test(user_password.value)){
+			alert("비밀번호는 문자 + 특수문자 조합의 8~24자리 입력")
+			user_password.focus();
+			return false;
+		}
+		
+		if(confirm("정말 변경하시겠습니까?") == true) {
+			alert("변경되었습니다.")
+		} else {
+			return false;
+		}
 	}
+	
+	
 }
 
 function checkPassword(){
@@ -94,15 +111,22 @@ function checkPassword(){
 //			alert("일단 진입성공");
 			if(checkPassword == 1) {
 				alert("비밀번호 일치함");
+				checkPoint = 1;//비밀번호 확인 눌렀는데 비밀번호 일치하는경우에만 체크포인트 1로!
+				return false;
 			} else if(checkPassword == 2) {
 				alert("비밀번호가 일치하지 않습니다");
+				user_now_password = "";
+				$("#user_now_password").focus();
+				return false;
 			} else {//checkPassword == 0 인 경우 (세션에 토큰없음)
 				alert("다시 로그인 해주세요");
 				location.href = "/login.do";
+				return false;
 			}
 		},
 		error:function(){
 			alert("에러다이자시가");
+			return false;
 		}
 			
 	});
