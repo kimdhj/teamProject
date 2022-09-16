@@ -22,5 +22,11 @@ public class MyProfileServiceImpl implements MyProfileService {
 	public void userWithdrawal(String user_id) throws Exception {
 		myProfileDAO.userWithdrawal(user_id);		
 	}
+
+	@Override
+	public void transPassword(UserVO userVO) throws Exception {
+		myProfileDAO.transPassword(userVO);
+	}
+	
 	
 }
