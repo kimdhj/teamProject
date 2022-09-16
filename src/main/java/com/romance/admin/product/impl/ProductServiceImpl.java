@@ -74,4 +74,10 @@ public class ProductServiceImpl implements ProductService {
 		return ProductDAO.check_author(vo);
 	}
 	
+	@Override
+	public int check_isbn(ProductVO vo) {
+		
+		return ProductDAO.check_isbn(vo);
+	}
+	
 }

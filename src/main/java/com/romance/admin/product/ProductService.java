@@ -15,5 +15,6 @@ public interface ProductService {
 	int all_count(ProductSearchVO svo);
 	void insertProduct(@RequestParam(name="imgfile0") MultipartFile imgfile0, @RequestParam(name="imgfile1") MultipartFile imgfile1, ProductVO vo) throws IOException;
 	ConcernWriterVO check_author(ConcernWriterVO vo);
+	int check_isbn(ProductVO vo);
 	
 }

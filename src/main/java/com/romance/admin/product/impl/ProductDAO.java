@@ -38,4 +38,10 @@ public class ProductDAO {
 		return sqlSessionTemplate.selectOne("ProductDAO.check_author", vo);
 	}
 	
+	public int check_isbn(ProductVO vo) {
+		return sqlSessionTemplate.selectOne("ProductDAO.check_isbn", vo);
+	}
+	
+	
+	
 }
