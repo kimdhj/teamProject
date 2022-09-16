@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.romance.admin.coupon.CouponVO;
 import com.romance.user.points.MyPointsSearchVO;
 import com.romance.user.points.MyPointsVO;
 
@@ -25,5 +26,16 @@ public List<MyPointsVO> seluserpoints(MyPointsSearchVO vo){
 public int selpointscount(MyPointsSearchVO vo){
   return sql.selectOne("points.selpointscount", vo);
   
+}
+public CouponVO couche(CouponVO vo) {
+  return sql.selectOne("coupon.confind", vo.getCoupon_code());
+  
+}
+public void delcou(CouponVO vo) {
+  sql.delete("coupon.delcou", vo.getCoupon_code());
+  
+}
+public void couponin(MyCouponVO vo) {
+ sql.selectOne("usercoupon.couponin",vo);
 }
 }
