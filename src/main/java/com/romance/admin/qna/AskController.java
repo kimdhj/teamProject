@@ -25,7 +25,7 @@ public class AskController {
   
   // List
   @GetMapping(value = "/QnaList.mdo")
-  public String getAskList(AskSearchVO svo, Model model) {
+  public String getAskList(AskSearchVO svo, Model model, AskVO vo) {
     
     List<AskVO> askList = service.getAskList(svo);
     model.addAttribute("askList", askList);
@@ -48,6 +48,7 @@ public class AskController {
     }
     
     System.out.println("count : " + count);
+    System.out.println("vo_status: " + vo.getAsk_status());
     
     model.addAttribute("page", count / 5 + 1);
     model.addAttribute("allCount", count);
@@ -73,8 +74,7 @@ public class AskController {
   
   // Delete (List, 상세보기에서 질문 + 답변 삭제)
   @GetMapping(value = "/AskDelete.mdo") // 질문 삭제(질문 + 답변)
-  public String delete(AskVO vo) throws FileNotFoundException, IOException {
-    AskReplyVO arvo = new AskReplyVO();
+  public String delete(AskVO vo, AskReplyVO arvo) throws FileNotFoundException, IOException {
     System.out.println("AskDelete : " + vo);
     
     if (vo.getAsk_file() != null) { // isEmpty() : 업로드 한 파일 존재 여부를 리턴(없으면 true 리턴)
@@ -109,8 +109,8 @@ public class AskController {
   }
   
   @GetMapping(value = "/AskReplyDelete.mdo") // 답변 삭제
-  public String delete(AskReplyVO arvo) throws FileNotFoundException, IOException { 
 
+  public String delete(AskReplyVO arvo, AskVO vo) throws FileNotFoundException, IOException { 
     if (arvo.getAsk_reply_file() != null) { // isEmpty() : 업로드 한 파일 존재 여부를 리턴(없으면 true 리턴)
 
       String key = arvo.getAsk_reply_file();
@@ -125,6 +125,8 @@ public class AskController {
     }
     
     service.delete2(arvo);
+    service.changeStatus(vo);
+    
     return "redirect:QnaList.mdo";
   }
   
@@ -147,8 +149,9 @@ public class AskController {
   public String getDetail1(Model model, AskVO vo, AskReplyVO arvo, AskSearchVO svo) {
     vo = service.getAsk(vo);
     arvo = service.getAskReply(arvo);
+    System.out.println("답변 없을 때 : " + vo);
     
-    System.out.println("답변 대기 " + arvo);
+    System.out.println("답변 없을 때2 : " + arvo);
     String uploadFolder = "https://doublejo.s3.ap-northeast-2.amazonaws.com/";
     
     if (vo.getAsk_file() != null) {
@@ -166,11 +169,14 @@ public class AskController {
     return "admin_post_QnaDetail";
   }
   
-  // Detail - 답변 완료 (오류나는 이유가 답변 완료인데, 답변이 없기 때문에)
+  // Detail - 답변 완료 (오류나는 이유가 답변 완료인데, 답변이 없기 때문에) -> 답변 있을 때
   @GetMapping(value = "/qnaDetail.mdo")
   public String getDetail2(Model model, AskVO vo, AskReplyVO arvo, AskSearchVO svo) {
     vo = service.getAsk(vo);
     arvo = service.getAskReply(arvo);
+    
+    System.out.println("답변 있을 때1 : " + vo);
+    System.out.println("답변 있을 때2 : " + arvo);
     
     System.out.println("답변 완료 " + arvo);
     String uploadFolder = "https://doublejo.s3.ap-northeast-2.amazonaws.com/";
@@ -204,22 +210,25 @@ public class AskController {
   public String checkPW(AskReplyVO arvo, Model model) {
     System.out.println("checkPW : " + arvo);
     boolean result = service.checkPW(arvo);
-    
+    System.out.println("result : " + result);
     if (result) {
+      System.out.println("result2 : " + result);
       return "1";
     } else {
+      System.out.println("result3 : " + result);
       return "0";
     }
   }
   
   // 문의 답변 작성
   @PostMapping("/askReplyInsert.mdo")
-  public String insert(AskReplyVO arvo) throws IOException{
+  public String insert(AskReplyVO arvo, AskVO vo) throws IOException{
     System.out.println("askReplyInsert : " + arvo);
+    System.out.println("askReplyInsert2 : " + vo);
     
     MultipartFile file = arvo.getAsk_reply_uploadFile();
     
-    if(!file.isEmpty()) {
+    if(file != null) {
       String uploadFolder = "https://doublejo.s3.ap-northeast-2.amazonaws.com/";
       String fileName = arvo.getAsk_reply_uploadFile().getOriginalFilename();
       String expand = fileName.substring(fileName.indexOf("."));
@@ -236,10 +245,82 @@ public class AskController {
       arvo.setAsk_reply_file(uploadFolder + key);
     }
     
-    service.answerInsert(arvo);
+    service.getAsk(vo);
+    System.out.println("답변 여부123: " + vo);
     
-    return "admin_post_QnaDetail";
+    service.answerInsert(arvo);
+    service.answerStatus(vo);
+    
+    System.out.println("답변 여부 : " + vo.getAsk_status());
+    
+    return "redirect:QnaList.mdo";
   }
   
+  // Update
+  @GetMapping("/QnaUpdate.mdo")
+  public String getUpdate(AskReplyVO arvo, AskVO vo, Model model) {
+    System.out.println("GET update AskVO : " + vo);
+    System.out.println("GET update AskReplyVO : " + arvo);
+    
+    vo = service.getAsk(vo);
+    arvo = service.getAskReply(arvo);
+
+    System.out.println("GET12 update AskVO : " + vo);
+    System.out.println("GET12 update AskReplyVO : " + arvo);
+    
+    model.addAttribute("ask", vo);
+    model.addAttribute("askReply", arvo);
+
+    return "admin_post_QnaUpdate";
+  }
+  
+  @PostMapping("/QnaUpdate.mdo")
+  public String update(AskReplyVO arvo, AskVO vo, Model model) throws IOException {
+    System.out.println("POST update AskReplyVO : " + arvo);
+    System.out.println("POST update AskVO : " + vo);
+
+
+//    model.addAttribute("ask", vo);
+//    model.addAttribute("askReply", arvo);
+    
+    
+    MultipartFile file = arvo.getAsk_reply_uploadFile();
+    String uploadFolder = "https://doublejo.s3.ap-northeast-2.amazonaws.com/";
+    
+    if(arvo.getAsk_reply_file() != null) { // isEmpty() : 업로드 한 파일 존재 여부를 리턴(없으면 true 리턴) 
+      String key = arvo.getAsk_reply_file();
+      String fileName = key.replaceAll(uploadFolder, ""); // 확장자 
+      System.out.println("key : " + fileName);
+      AwsS3 awsS3 = AwsS3.getInstance();
+      awsS3.delete(fileName);
+      System.out.println(fileName);
+      
+    }
+    
+    System.out.println(file);
+    
+    // js 에서 
+    if(!file.isEmpty()) {
+  
+      String fileName = file.getOriginalFilename();
+      System.out.println(fileName.indexOf("."));
+      String expand = fileName.substring(fileName.indexOf("."));
+      String name = fileName.replaceAll(expand, "");
+      String key = name + UUID.randomUUID().toString() + expand;
+      System.out.println("key : " + key);
+      
+      InputStream is = file.getInputStream();
+      String contentType = file.getContentType();
+      Long contentLength = file.getSize();
+      AwsS3 awsS3 = AwsS3.getInstance();
+      awsS3.upload(is, key, contentType, contentLength);
+      
+      arvo.setAsk_reply_file(uploadFolder + key);
+    }
+    
+    service.update(arvo);
+    
+    return "redirect:QnaList.mdo";
+  }
   
 }

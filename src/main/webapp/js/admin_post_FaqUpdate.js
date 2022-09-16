@@ -244,7 +244,7 @@ $().ready(function () {
     $(".faqupdate").click(function () {
     	Swal.fire({
             text: "FAQ을 수정하시겠습니까?",
-            icon: 'success',
+            icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',

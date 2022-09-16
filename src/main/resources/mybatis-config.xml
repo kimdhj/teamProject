@@ -146,6 +146,6 @@
 		<mapper resource="mappings/concernwriter-mapping.xml" />
 		<mapper resource="mappings/points-mapping.xml" />
 		<mapper resource="mappings/usercoupon-mapping.xml" />
-
+		<mapper resource="mappings/profile-mapping.xml" />
 	</mappers>
 </configuration>

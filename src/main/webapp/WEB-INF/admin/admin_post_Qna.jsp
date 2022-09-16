@@ -118,15 +118,16 @@
                   </p>
                 </td>
                 <td>
+                <input type="hidden" value="${ask.ask_status }"  id="ask_status" />
                   <c:if test="${ask.ask_status eq  '답변 완료'}">
-                    <button class="btn btn-outline-primary rounded-pill">
-                      ${ask.ask_status }
+                    <button class="btn btn-outline-primary rounded-pill" name="ask_status">
+                      답변 완료
                     </button>
                   </c:if>
                   <!-- 답변 대기일 때, 해당 답변 상세페이지로 이동 -->
                   <c:if test="${ask.ask_status ne  '답변 완료'}">
-                    <button class="btn btn-success rounded-pill" type="button" onclick="location.href='/QnaDetail.mdo?ask_seq=${ask.ask_seq }&seq=${allCount}'">
-                      ${ask.ask_status }
+                    <button class="btn btn-success rounded-pill"  name="ask_status" type="button" onclick="location.href='/QnaDetail.mdo?ask_seq=${ask.ask_seq }&seq=${allCount}'">
+                      답변 대기
                     </button>
                   </c:if>
                 </td>

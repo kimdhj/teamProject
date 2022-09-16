@@ -94,8 +94,13 @@ public class JwtUtils {
 	// jwt 토큰 생성 AdminUserVO 이용
 	// ==토큰 생성 메소드==//
 	@SuppressWarnings("deprecation")
-	public String createToken(String subject, AdminUserVO vo) {
+	public String createToken(String subject, AdminUserVO vo) throws IOException {
 		System.out.println("===관리자용 토큰 생성 처리===");
+		String resource = "config/token.properties";
+		Properties properties = new Properties();    
+	    Reader reader = Resources.getResourceAsReader(resource);
+	    properties.load(reader);
+	    key=properties.getProperty("key");
 		Date now = new Date();
 		Date expiration = new Date(now.getTime() + Duration.ofDays(1).toMillis()); // 만료기간 1일
 		Map<String, Object> payloads = new HashMap<>();
