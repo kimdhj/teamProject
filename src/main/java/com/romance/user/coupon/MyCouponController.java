@@ -95,6 +95,7 @@ public class MyCouponController {
   @GetMapping("mycouponlist.do")
   @ResponseBody
   public List<MyCouponVO> mycouponlist(MyCouponSearchVO vo,JwtUtils util,HttpSession session) throws IOException{
+    
     UserVO vou=util.getuser(session);
     vo.setUser_id(vou.getUser_id());
     return ser.selusercoupon(vo);
@@ -109,6 +110,7 @@ public class MyCouponController {
   @GetMapping("mypointslist.do")
   @ResponseBody
   public List<MyPointsVO> mypointslist(MyPointsSearchVO vo,JwtUtils util,HttpSession session) throws IOException{
+    System.out.println(vo);
     UserVO vou=util.getuser(session);
     vo.setUser_id(vou.getUser_id());
     return ser.seluserpoints(vo);
@@ -119,5 +121,16 @@ public class MyCouponController {
     UserVO vou=util.getuser(session);
     vo.setUser_id(vou.getUser_id());
     return ser.selpointscount(vo);
+  }
+  @GetMapping("couponadd.do")
+  @ResponseBody
+  public int couponadd(CouponVO vo,JwtUtils util,HttpSession session) throws IOException{
+   UserVO vou= util.getuser(session);
+  System.out.println("couponadd"+vo);
+   if(vou!=null) {
+    return ser.couche(vo,vou.getUser_id());
+   }else {
+     return -1;
+   }
   }
 }
