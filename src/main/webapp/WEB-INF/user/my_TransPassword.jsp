@@ -35,7 +35,7 @@
 						<div class="col-6 p-0 row align-self-center">
 							<div class="form-floating m-2 align-center">
 								<input type="password" class="form-control" id="user_now_password" name="user_now_password"
-									placeholder="name@example.com"> <label class="fs-5"
+									placeholder="name@example.com" onkeyup="nowPasswordCheck()"> <label class="fs-5"
 									for="floatingInput">기존 비밀번호</label>
 							</div>
 						</div>
