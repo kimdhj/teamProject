@@ -2,6 +2,7 @@ package com.romance.admin.account;
 
 import java.util.List;
 
+import com.romance.admin.coupon.CouponVO;
 import com.romance.admin.login.AdminUserVO;
 
 public interface AdminAccountService {
@@ -28,5 +29,8 @@ public interface AdminAccountService {
 	
 	//계정정보 수정
 	public void updateUserAccount(AdminUserVO vo) throws Exception;
+	
+	//현재 보고있는 회원의 쿠폰 목록(쿠폰명) 추출
+	public List<CouponVO> getUserCouponList(String user_id) throws Exception;
 	
 }

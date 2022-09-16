@@ -137,14 +137,32 @@
 							<div class="card-header">쿠폰</div>
 							<div class="card-body">
 								<div class="mb-3">
-									<textarea class="form-control" id="" rows="5"></textarea>
+									<table class="table text-center">
+										<!-- <thead></thead> -->
+										<tbody>
+											<tr>
+												<th style="width:25%">지급가능</th>
+												<td></td>
+												<td>
+													<button type="button" class="btn btn-outline-dark btn-sm">지급</button>
+												</td>
+											</tr>
+											<tr>
+												<th>보유쿠폰</th>
+												<td>123</td>
+												<td>
+													<button type="button" class="btn btn-outline-dark btn-sm">삭제</button>
+												</td>
+											</tr>
+										</tbody>
+									</table>
 								</div>
 							</div>
-							<div class="card-footer">
+							<!-- <div class="card-footer">
 								<button type="button"
 									class="btn btn-light btn-outline-dark btn-sm"
 									style="float: right;">수정</button>
-							</div>
+							</div> -->
 						</div>
 					</form>
 					<hr/>
@@ -153,7 +171,13 @@
 							<div class="card-header">마일리지</div>
 							<div class="card-body">
 								<div class="mb-3">
-									<textarea class="form-control" id="" rows="5"></textarea>
+									<table class="table text-center">
+										<!-- <thead></thead> -->
+										<tbody>
+											<tr><td>123</td></tr>
+											<tr><td>123</td></tr>
+										</tbody>
+									</table>
 								</div>
 							</div>
 							<div class="card-footer">
