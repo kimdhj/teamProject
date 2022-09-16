@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.io.Resources;
@@ -29,7 +30,7 @@ import com.romance.security.Sms;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
 
 @Controller
-@SessionAttributes("id")
+
 public class LoginController {
   @Autowired
   UserService ser;
@@ -37,18 +38,26 @@ public class LoginController {
   BCryptPasswordEncoder benco;
   
   @GetMapping("login.do")
-  public String login(String warning, HttpSession session, Model model) {
-    String key = (String) session.getAttribute("id");
-    if (key != null) {
+  public String login(String warning, JwtUtils util,HttpSession session, Model model) throws IOException {
+    UserVO vo=util.getuser(session);
+    System.out.println("로그아웃"+vo);
+    if (vo != null) {
+      System.out.println("로그아웃"+vo);
       return "redirect:logout.do";
-    }
+    }else {
+    System.out.println("로그인처리"+vo);
     model.addAttribute("warning", warning);
     return "login";
+    }
   }
   
   @GetMapping("logout.do")
-  public String logout(HttpSession session) {
+  public String logout(HttpServletRequest request,JwtUtils util,HttpSession session) {
+    
+   // session.setAttribute("id", null);
+    System.out.println(session.getAttribute("id"));
     session.removeAttribute("id");
+    System.out.println("로그인처리");
     return "redirect:index.do";
   }
   
@@ -69,7 +78,7 @@ public class LoginController {
   
   // 카카오 정보 받아오기
   @GetMapping("kakaoauth.do")
-  public String kakaoauth(@RequestParam(value = "code", required = false) String code, KakaoLogin kakao, RedirectAttributes redirectAttributes, Model model,JwtUtils util) throws IOException {
+  public String kakaoauth(@RequestParam(value = "code", required = false) String code,HttpSession session, KakaoLogin kakao, RedirectAttributes redirectAttributes, Model model,JwtUtils util) throws IOException {
     
     String access_Token = kakao.getAccessToken(code);
     
@@ -82,7 +91,7 @@ public class LoginController {
     if (che > 0) {
       UserVO vo = ser.onesearch((String) userInfo.get("id"));
       String token = util.createToken("유저", vo);
-      model.addAttribute("id", token);
+      session.setAttribute("id", token);
       return "redirect:kakaologinend.do";
     }
     return "redirect:join.do";
@@ -144,7 +153,7 @@ public class LoginController {
   
   // 일반로그인
   @PostMapping("loginend.do")
-  public String login(UserVO vo, Model model, JwtUtils util, RedirectAttributes redirectAttributes) throws IOException {
+  public String login(UserVO vo, Model model, JwtUtils util, HttpSession session,RedirectAttributes redirectAttributes) throws IOException {
     UserVO vo2 = new UserVO();
     System.out.println("로그인처리" + vo);
     
@@ -159,8 +168,8 @@ public class LoginController {
         System.out.println("token" + token);
         Map<String, Object> con = util.parseJwtToken(token);
         System.out.println("con" + con);
+        session.setAttribute("id", token);
         
-        model.addAttribute("id", token);
         return "redirect:index.do";
       } else {
         warning = "비밀번호가 일치하지 않습니다.";
