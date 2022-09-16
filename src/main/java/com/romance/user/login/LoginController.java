@@ -26,11 +26,9 @@ import com.romance.security.JwtUtils;
 import com.romance.security.KakaoLogin;
 import com.romance.security.MailService;
 import com.romance.security.Sms;
-
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
 
 @Controller
-
 public class LoginController {
 
   @Autowired
@@ -52,16 +50,13 @@ public class LoginController {
     }
   }
   
+
+  
   @GetMapping("logout.do")
-  public String logout(HttpServletRequest request,JwtUtils util,HttpSession session) {
-    
-   // session.setAttribute("id", null);
-    System.out.println(session.getAttribute("id"));
+  public String logout(HttpSession session) {
     session.removeAttribute("id");
-    System.out.println("로그인처리");
     return "redirect:index.do";
   }
-  
   
   
   // 카카오 정보 받아오기
@@ -209,41 +204,7 @@ public class LoginController {
 
 
   
-  // 일반로그인
-  @PostMapping("loginend.do")
-  public String login(UserVO vo, Model model, JwtUtils util, HttpSession session,RedirectAttributes redirectAttributes) throws IOException {
-    UserVO vo2 = new UserVO();
-    System.out.println("로그인처리" + vo);
-    
-    String warning = null;
-    vo2 = ser.onesearch(vo.getUser_id());
-    System.out.println("로그인데이터" + vo2);
-    if (vo2 != null) {
-      if (benco.matches(vo.getUser_password(), vo2.getUser_password())) {
-        vo.setUser_password(null);
-        ser.loginday(vo.getUser_id());
-        String token = util.createToken("유저", vo2);
-        System.out.println("token" + token);
-        Map<String, Object> con = util.parseJwtToken(token);
-        System.out.println("con" + con);
-        session.setAttribute("id", token);
-        
-        return "redirect:index.do";
-      } else {
-        warning = "비밀번호가 일치하지 않습니다.";
-        redirectAttributes.addAttribute("warning", warning);
-        return "redirect:login.do";
-      }
-      
-    } else {
-      warning = "존재하지 않는 아이디 입니다. 아이디를 확인해주세요";
-      redirectAttributes.addAttribute("warning", warning);
-      return "redirect:login.do";
-      
-    }
-    
-  }
-  
+
 
   
   @PostMapping("findid.do")
@@ -291,21 +252,9 @@ public class LoginController {
   public String login_nopassword() {
     return "login_nopassword";
   }
-  	@GetMapping("login.do")
-	public String login(String warning, HttpSession session, Model model) {
-		String key = (String) session.getAttribute("id");
-		if (key != null) {
-			return "redirect:logout.do";
-		}
-		model.addAttribute("warning", warning);
-		return "login";
-	}
 
-	@GetMapping("logout.do")
-	public String logout(HttpSession session) {
-		session.removeAttribute("id");
-		return "redirect:index.do";
-	}
+
+	
 
 	// 카카오로그인
 	@GetMapping("kakaologin.do")
@@ -323,27 +272,8 @@ public class LoginController {
 
 	}
 
-	// 카카오 정보 받아오기
-	@GetMapping("kakaoauth.do")
-	public String kakaoauth(@RequestParam(value = "code", required = false) String code, KakaoLogin kakao,
-			RedirectAttributes redirectAttributes, Model model, JwtUtils util) throws IOException {
+	
 
-		String access_Token = kakao.getAccessToken(code);
-
-		HashMap<String, Object> userInfo = kakao.getUserInfo(access_Token);
-
-		System.out.println("###userInfo#### : " + userInfo.get("id"));
-		int che = ser.cheid((String) userInfo.get("id"));
-
-		redirectAttributes.addAttribute("kakaoid", (String) userInfo.get("id"));
-		if (che > 0) {
-			UserVO vo = ser.onesearch((String) userInfo.get("id"));
-			String token = util.createToken("유저", vo);
-			model.addAttribute("id", token);
-			return "redirect:kakaologinend.do";
-		}
-		return "redirect:join.do";
-	}
 
 
 
