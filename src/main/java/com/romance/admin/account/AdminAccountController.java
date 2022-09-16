@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.romance.admin.login.AdminUserVO;
 import com.romance.admin.login.CheckToken;
 import com.romance.security.JwtUtils;
+import com.romance.user.login.UserVO;
 
 @Controller
 @RequestMapping("/")
@@ -154,5 +155,4 @@ public class AdminAccountController {
 		return cnt;
 	}
 	
-		 
 }

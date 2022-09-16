@@ -129,6 +129,7 @@ public class LoginController {
 	// 1(블랙) 2(탈퇴)인 경우에 로그인되면 안댐!!!!
 	@PostMapping("loginend.do")
 	public String login(UserVO vo, Model model, JwtUtils util, HttpSession session,RedirectAttributes redirectAttributes)
+
 			throws IOException {
 		UserVO vo2 = new UserVO();
 		System.out.println("로그인처리" + vo);
@@ -145,7 +146,9 @@ public class LoginController {
 					System.out.println("token" + token);
 					Map<String, Object> con = util.parseJwtToken(token);
 					System.out.println("con" + con);
-			     session.setAttribute("id", token);
+
+					session.setAttribute("id", token);
+
 					return "redirect:index.do";
 				} else {
 					warning = "비밀번호가 일치하지 않습니다.";
