@@ -5,6 +5,7 @@ import java.util.List;
 import com.romance.admin.coupon.CouponVO;
 import com.romance.admin.coupon.UserCouponVO;
 import com.romance.admin.login.AdminUserVO;
+import com.romance.user.login.UserVO;
 
 public interface AdminAccountService {
 	
@@ -45,4 +46,13 @@ public interface AdminAccountService {
 	
 	//쿠폰 지급하기
 	public void giveCoupon(UserCouponVO userCouponVO) throws Exception;
+	
+	//현재 유저 보유 포인트 가져오기
+	public int getUserPoint(String user_id) throws Exception;
+	
+	//포인트 지급
+	public void giveUserPoint(UserVO userVO) throws Exception;
+	
+	//포인트 차감
+	public void deleteUserPoint(UserVO userVO) throws Exception;
 }
