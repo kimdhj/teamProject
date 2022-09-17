@@ -81,19 +81,23 @@ public class AdminAccountController {
 		AdminUserVO voToken = utils.getAdmin(session);
 		if(voToken != null) {
 			System.out.println("지금 보고있는 아이디가? : " + vo.getUser_id());
-			
+						
 			//현재 상세페이지 에서 보고있는 회원의 보유쿠폰명 리스트로 받아오기
 			List<CouponVO> myCouponVOList = adminAccountService.getUserCouponList(vo.getUser_id());
-			System.out.println(">>>>>앙 : " + myCouponVOList);
-			System.out.println(">>>>>잉 : " + myCouponVOList.get(0).getCoupon_name());
-						
-			//coupon_seq랑 coupon_name 값을 가져가서 활용하기 위함.
 			Map<Integer, String> myCouponMap = new HashMap<>();
-			for(int i = 0; i < myCouponVOList.size(); i++) {
-				myCouponMap.put(myCouponVOList.get(i).getCoupon_seq(), myCouponVOList.get(i).getCoupon_name());
+			//List에 값이 있는경우에만 작업
+			if(myCouponVOList.size() > 0) {
+				System.out.println(">>>>>앙 : " + myCouponVOList);
+				System.out.println(">>>>>잉 : " + myCouponVOList.get(0).getCoupon_name());
+				//coupon_seq랑 coupon_name 값을 가져가서 활용하기 위함.
+				for(int i = 0; i < myCouponVOList.size(); i++) {
+					myCouponMap.put(myCouponVOList.get(i).getCoupon_seq(), myCouponVOList.get(i).getCoupon_name());
+				}
+			} else {
+				myCouponMap.put(0, "보유쿠폰 없음");
 			}
 			System.out.println("쿠폰이름과 해당시퀀스 맵 : " + myCouponMap);
-			model.addAttribute("myCouponMap", myCouponMap);
+			model.addAttribute("myCouponMap", myCouponMap);	
 			model.addAttribute("criteria", criteria);
 			model.addAttribute("getUserDetail", adminAccountService.getUserDetail(vo));
 			return "admin_member_Detail";
