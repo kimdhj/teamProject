@@ -78,6 +78,7 @@ public class MyInfoModlefyController {
     session.removeAttribute("id");
     ser.infomod(vo);
     vou = seru.onesearch(vou.getUser_id());
+    vou.setUser_password(null);
     String token = util.createToken("유저", vou);
     session.setAttribute("id", token);
     return "redirect:myinfo.do";
