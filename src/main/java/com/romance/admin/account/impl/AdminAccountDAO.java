@@ -59,4 +59,7 @@ public class AdminAccountDAO {
 		return sqlSessionTemplate.selectList("AdminCoupon.getUserCouponList", user_id);
 	}
 	
+	public void deleteUserCoupon(int coupon_seq) {
+		sqlSessionTemplate.delete("AdminCoupon.deleteUserCoupon", coupon_seq);		
+	}
 }

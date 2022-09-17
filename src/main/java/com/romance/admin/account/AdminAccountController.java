@@ -1,7 +1,6 @@
 package com.romance.admin.account;
 
 import java.net.URLEncoder;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -84,10 +83,17 @@ public class AdminAccountController {
 			System.out.println("지금 보고있는 아이디가? : " + vo.getUser_id());
 			
 			//현재 상세페이지 에서 보고있는 회원의 보유쿠폰명 리스트로 받아오기
-			List<String> myCouponList = new ArrayList<>();
 			List<CouponVO> myCouponVOList = adminAccountService.getUserCouponList(vo.getUser_id());
 			System.out.println(">>>>>앙 : " + myCouponVOList);
-			System.out.println();
+			System.out.println(">>>>>잉 : " + myCouponVOList.get(0).getCoupon_name());
+						
+			//coupon_seq랑 coupon_name 값을 가져가서 활용하기 위함.
+			Map<Integer, String> myCouponMap = new HashMap<>();
+			for(int i = 0; i < myCouponVOList.size(); i++) {
+				myCouponMap.put(myCouponVOList.get(i).getCoupon_seq(), myCouponVOList.get(i).getCoupon_name());
+			}
+			System.out.println("쿠폰이름과 해당시퀀스 맵 : " + myCouponMap);
+			model.addAttribute("myCouponMap", myCouponMap);
 			model.addAttribute("criteria", criteria);
 			model.addAttribute("getUserDetail", adminAccountService.getUserDetail(vo));
 			return "admin_member_Detail";
@@ -171,5 +177,18 @@ public class AdminAccountController {
 	}
 	
 	//회원상세 쿠폰관련
+	@PostMapping("deleteUserCoupon.mdo")
+	@ResponseBody
+	public boolean deleteUserCoupon(@RequestParam("coupon_seq") int coupon_seq, HttpSession session, JwtUtils utils) throws Exception {
+		AdminUserVO voToken = utils.getAdmin(session);
+		if(voToken != null) {
+			System.out.println("컨트롤러로 넘어는오냐?");
+			System.out.println("쿠폰시퀀스 : " + coupon_seq);
+			adminAccountService.deleteUserCoupon(coupon_seq);
+			return true;
+		} else {
+			return false;
+		}
+	}
 	//회원상세 포인트관련
 }

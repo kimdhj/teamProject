@@ -142,16 +142,25 @@
 										<tbody>
 											<tr>
 												<th style="width:25%">지급가능</th>
-												<td></td>
+												<td>
+													
+												</td>
 												<td>
 													<button type="button" class="btn btn-outline-dark btn-sm">지급</button>
 												</td>
 											</tr>
 											<tr>
 												<th>보유쿠폰</th>
-												<td>123</td>
 												<td>
-													<button type="button" class="btn btn-outline-dark btn-sm">삭제</button>
+													<select class="form-select form-select mb-3"
+														aria-label=".form-select-lg example" id="myCouponMap" name="myCouponMap">
+														<c:forEach items="${myCouponMap}" var="couponMap">
+															<option value="${couponMap.key}">${couponMap.value}</option>
+														</c:forEach>
+													</select>
+												</td>
+												<td>
+													<button type="button" class="btn btn-outline-dark btn-sm" onclick="couponDelete()">삭제</button>
 												</td>
 											</tr>
 										</tbody>
