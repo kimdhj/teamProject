@@ -29,8 +29,8 @@
 							</thead>
 							<tbody>
 								<tr>
-									<td rowspan="2" id="book_thumbnail0"><img width="90" height="100" id="book_show0" src="${book_imgURL}" /></td>
-									<td rowspan="2" id="book_thumbnail1"><img width="90" height="100" id="book_show1" src="${book_bigimgURL}" /></td>
+									<td rowspan="2" id="book_thumbnail0"><img width="90" height="100" id="book_show0" src="https://doublejo.s3.ap-northeast-2.amazonaws.com/5177a21e-6ab0-4801-a9b4-0fdd9ec1780f.jpg" /></td>
+									<td rowspan="2" id="book_thumbnail1"><img width="90" height="100" id="book_show1" src="https://doublejo.s3.ap-northeast-2.amazonaws.com/5177a21e-6ab0-4801-a9b4-0fdd9ec1780f.jpg" /></td>
 									<td><input type="text" id="book_title" name="book_title" placeholder="책 제목"></td>
 									<td><input type="text" id="book_isbn" name="book_isbn" placeholder="책 고유번호"></td>
 								</tr>

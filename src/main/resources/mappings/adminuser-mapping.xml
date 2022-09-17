@@ -32,7 +32,7 @@
 		SELECT user_id, user_password, user_name, user_role FROM user WHERE user_id = #{user_id} 
 	</select>
 	
-	<update id="loginDay" parameterType="String">
+	<update id="loginDay" parameterType="string">
 		UPDATE user SET user_login_day = CURRENT_TIMESTAMP where user_id=#{user_id};
 	</update>
 	
@@ -118,7 +118,7 @@
 		VALUES(#{user_password}, #{user_name}, #{user_phone}, #{user_email}, '0', '0', '0', '0', 'ROLE_ADMIN', #{user_id}, '0', 'A', '0', 0)
 	</insert>
 	
-	<select id="idCheck" parameterType="String" resultType="int">
+	<select id="idCheck" parameterType="string" resultType="int">
 		SELECT COUNT(user_id) FROM user WHERE user_id = #{user_id}
 	</select>
 	
@@ -128,8 +128,9 @@
 		user_phone=#{user_phone}, user_email=#{user_email}, user_point=#{user_point} WHERE user_id=#{user_id}	
 	</update>
 	
-	<select id="passwordCheck" parameterType="String" resultType="String">
+	<select id="passwordCheck" parameterType="string" resultType="string">
 		SELECT user_password FROM user WHERE user_id=#{user_id}
 	</select>
+	
 	
 </mapper>

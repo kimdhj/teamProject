@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -18,6 +18,9 @@
 						id="accountCheckForm" onsubmit="return adminAccountCheck()">
 						<!-- <form action="/insertAdminAccount.mdo" method="post" name="adminAccountInsertForm"> -->
 						<input type="hidden" name="user_id" value="${getUserDetail.user_id}" />
+						<input type="hidden" id="searchCondition" name="searchCondition" value="${criteria.searchCondition}" /> 
+						<input type="hidden" id="searchKeyword" name="searchKeyword" value="${criteria.searchKeyword}" /> 
+						<input type="hidden" id="selectCondition" name="selectCondition" value="${criteria.selectCondition}" />
 						<table class="table text-center">
 							<thead class="table-dark">
 								<tr>
@@ -131,16 +134,65 @@
 				<div class="col-md-12">
 					<form>
 						<div class="card border-light">
-							<div class="card-header">쪽지</div>
+							<div class="card-header">쿠폰</div>
 							<div class="card-body">
 								<div class="mb-3">
-									<textarea class="form-control" id="" rows="10"></textarea>
+									<table class="table text-center">
+										<!-- <thead></thead> -->
+										<tbody>
+											<tr>
+												<th style="width:25%">지급가능</th>
+												<td>
+													
+												</td>
+												<td>
+													<button type="button" class="btn btn-outline-dark btn-sm">지급</button>
+												</td>
+											</tr>
+											<tr>
+												<th>보유쿠폰</th>
+												<td>
+													<select class="form-select form-select mb-3"
+														aria-label=".form-select-lg example" id="myCouponMap" name="myCouponMap">
+														<c:forEach items="${myCouponMap}" var="couponMap">
+															<option value="${couponMap.key}">${couponMap.value}</option>
+														</c:forEach>
+													</select>
+												</td>
+												<td>
+													<button type="button" class="btn btn-outline-dark btn-sm" onclick="couponDelete()">삭제</button>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<!-- <div class="card-footer">
+								<button type="button"
+									class="btn btn-light btn-outline-dark btn-sm"
+									style="float: right;">수정</button>
+							</div> -->
+						</div>
+					</form>
+					<hr/>
+					<form>
+						<div class="card border-light">
+							<div class="card-header">마일리지</div>
+							<div class="card-body">
+								<div class="mb-3">
+									<table class="table text-center">
+										<!-- <thead></thead> -->
+										<tbody>
+											<tr><td>123</td></tr>
+											<tr><td>123</td></tr>
+										</tbody>
+									</table>
 								</div>
 							</div>
 							<div class="card-footer">
 								<button type="button"
 									class="btn btn-light btn-outline-dark btn-sm"
-									style="float: right;">전송</button>
+									style="float: right;">수정</button>
 							</div>
 						</div>
 					</form>

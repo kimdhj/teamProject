@@ -35,5 +35,9 @@
 		UPDATE user SET user_state = 2 WHERE user_id = #{user_id}
 	</update>
 	
+	<update id="transPassword" parameterType="userVO">
+		UPDATE user SET user_password = #{user_password} WHERE user_id = #{user_id}
+	</update>
+	
 	
 </mapper>

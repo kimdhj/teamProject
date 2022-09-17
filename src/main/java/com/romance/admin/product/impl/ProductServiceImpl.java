@@ -69,9 +69,24 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	@Override
-	public ConcernWriterVO check_author(ConcernWriterVO vo) {
+	public String check_author(@RequestParam(name="author_seq") int author_seq) {
+		return ProductDAO.check_author(author_seq);
+	}
+	
+	@Override
+	public int check_isbn(@RequestParam(name="book_isbn") String book_isbn) {
 		
-		return ProductDAO.check_author(vo);
+		return ProductDAO.check_isbn(book_isbn);
+	}
+	
+	@Override
+	public int check_category(@RequestParam(name="category_num") int category_num) {
+		return ProductDAO.check_category(category_num);
+	}
+	
+	@Override
+	public void del_product(@RequestParam(name="book_seq") int book_seq) {
+		ProductDAO.del_product(book_seq);
 	}
 	
 }

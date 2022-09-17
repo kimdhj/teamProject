@@ -44,7 +44,7 @@
 		INSERT INTO book (book_price, book_remain, book_descript, book_imgURL, book_bigimgURL, book_title, book_points, book_publish, book_publish_date, book_author, book_isbn, category_num, author_seq)
 		VALUES(#{book_price}, #{book_remain}, #{book_descript}, #{book_imgURL}, #{book_bigimgURL}, #{book_title}, #{book_points}, #{book_publish}, #{book_publish_date}, #{book_author}, #{book_isbn}, #{category_num}, #{author_seq})
 	</insert>
-	<select id="check_author" resultType="pro" parameterType="pros">
+	<select id="check_author" resultType="String">
 		SELECT author_name FROM author WHERE author_seq = #{author_seq}
 	</select>
 	<select id="check_isbn" resultType="int" parameterType="pros">
@@ -53,6 +53,8 @@
 	<select id="check_category" resultType="int" parameterType="pros">
 		SELECT count(*) from book WHERE category_num=#{category_num}
 	</select>
-	
+	<delete id="del_product" parameterType="pros">
+		DELETE FROM book WHERE book_seq=#{book_seq}
+	</delete>
 	
 </mapper>

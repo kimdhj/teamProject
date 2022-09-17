@@ -37,7 +37,7 @@ public class MyCouponController {
       }
       int count=ser.selcouponcounts(vo);
       List<MyCouponVO> list=ser.selusercoupon(vo);
-      System.out.println(count);
+      System.out.println(count+"ddd");
       System.out.println(list);
       
       if(count%5==0) {

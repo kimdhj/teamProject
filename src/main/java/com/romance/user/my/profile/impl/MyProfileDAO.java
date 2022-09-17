@@ -19,4 +19,8 @@ public class MyProfileDAO {
 		sqlSessionTemplate.update("userProfile.userWithdrawal", user_id);
 	}
 	
+	public void transPassword(UserVO userVO) {
+		sqlSessionTemplate.update("userProfile.transPassword", userVO);
+	}
+	
 }
