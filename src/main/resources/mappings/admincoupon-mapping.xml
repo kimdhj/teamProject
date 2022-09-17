@@ -3,21 +3,47 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="AdminCoupon">
 	
-	<resultMap type="couponVO" id="adminCouponResult">
+	<resultMap type="userCouponVO" id="adminUserCouponResult">
 		<result property="user_id" column="USER_ID" />
-		<result property="coupon_seq" column="USER_COUPON_SEQ" />
-		<result property="coupon_code" column="USER_COUPON_CODE" />
-		<result property="coupon_date" column="USER_COUPON_DATE" />
-		<result property="coupon_name" column="USER_COUPON_NAME" />
-		<result property="coupon_effect" column="USER_COUPON_EFFECT" />
+		<result property="user_coupon_seq" column="USER_COUPON_SEQ" />
+		<result property="user_coupon_code" column="USER_COUPON_CODE" />
+		<result property="user_coupon_date" column="USER_COUPON_DATE" />
+		<result property="user_coupon_name" column="USER_COUPON_NAME" />
+		<result property="user_coupon_effect" column="USER_COUPON_EFFECT" />
 	</resultMap>
 	
-	<select id="getUserCouponList" parameterType="string" resultMap="adminCouponResult">
+	<resultMap type="CouponVO" id="adminCouponResult">
+		<result property="coupon_seq" column="COUPON_SEQ" />
+		<result property="coupon_code" column="COUPON_CODE" />
+		<result property="coupon_date" column="COUPON_DATE" />
+		<result property="coupon_name" column="COUPON_NAME" />
+		<result property="coupon_effect" column="COUPON_EFFECT" />
+	</resultMap>
+	
+	
+	
+	<select id="getUserCouponList" parameterType="string" resultMap="adminUserCouponResult">
 		SELECT * FROM user_coupon WHERE user_id = #{user_id}
 	</select>	
 	
+	<select id="getCouponList" resultMap="adminCouponResult">
+		SELECT * FROM coupon	
+	</select>
+	
 	<delete id="deleteUserCoupon" parameterType="int">
-		DELETE FROM user_coupon WHERE user_coupon_seq = #{coupon_seq} 			
+		DELETE FROM user_coupon WHERE user_coupon_seq = #{user_coupon_seq} 			
 	</delete>
+	
+	<!-- 지급할 쿠폰 정보 coupon 테이블에서 가져오기 (효과, 이름, 코드) 세가지만 추출한다. -->
+	<select id="getCouponInfo" parameterType="int" resultType="couponVO">
+		SELECT coupon_effect, coupon_name, coupon_code FROM coupon WHERE coupon_seq = #{coupon_seq}
+	</select>
+	
+	<!-- 쿠폰 지급 -->
+	<insert id="giveCoupon" parameterType="userCouponVO">
+		INSERT INTO user_coupon(user_coupon_effect, user_coupon_name, user_coupon_code, user_id)
+		VALUES(#{user_coupon_effect}, #{user_coupon_name}, #{user_coupon_code}, #{user_id})
+	</insert>
+	
 	
 </mapper>

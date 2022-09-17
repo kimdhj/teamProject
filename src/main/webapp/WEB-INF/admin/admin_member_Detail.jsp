@@ -17,7 +17,7 @@
 					<form action="updateUserAccount.mdo" method="post"
 						id="accountCheckForm" onsubmit="return adminAccountCheck()">
 						<!-- <form action="/insertAdminAccount.mdo" method="post" name="adminAccountInsertForm"> -->
-						<input type="hidden" name="user_id" value="${getUserDetail.user_id}" />
+						<input type="hidden" id ="user_id" name="user_id" value="${getUserDetail.user_id}" />
 						<input type="hidden" id="searchCondition" name="searchCondition" value="${criteria.searchCondition}" /> 
 						<input type="hidden" id="searchKeyword" name="searchKeyword" value="${criteria.searchKeyword}" /> 
 						<input type="hidden" id="selectCondition" name="selectCondition" value="${criteria.selectCondition}" />
@@ -143,10 +143,20 @@
 											<tr>
 												<th style="width:25%">지급가능</th>
 												<td>
-													
+													<select class="form-select form-select mb-3"
+														aria-label=".form-select-lg example" id="giveCouponList" name="giveCouponList">
+														<c:if test="${couponVOListSize ne 0}">
+															<c:forEach items="${couponVOList}" var="giveCoupon">
+																<option value="${giveCoupon.coupon_seq}">${giveCoupon.coupon_name}</option>
+															</c:forEach>
+														</c:if>
+														<c:if test="${couponVOListSize <= 0}">
+															<option value="0">지급가능 쿠폰 없음</option>
+														</c:if>
+													</select>
 												</td>
 												<td>
-													<button type="button" class="btn btn-outline-dark btn-sm">지급</button>
+													<button type="button" class="btn btn-outline-dark btn-sm" onclick="giveCoupon()">지급</button>
 												</td>
 											</tr>
 											<tr>

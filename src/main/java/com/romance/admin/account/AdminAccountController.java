@@ -1,5 +1,6 @@
 package com.romance.admin.account;
 
+import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.romance.admin.coupon.CouponVO;
+import com.romance.admin.coupon.UserCouponVO;
 import com.romance.admin.login.AdminUserVO;
 import com.romance.security.JwtUtils;
 
@@ -81,19 +83,34 @@ public class AdminAccountController {
 		AdminUserVO voToken = utils.getAdmin(session);
 		if(voToken != null) {
 			System.out.println("지금 보고있는 아이디가? : " + vo.getUser_id());
-			
-			//현재 상세페이지 에서 보고있는 회원의 보유쿠폰명 리스트로 받아오기
-			List<CouponVO> myCouponVOList = adminAccountService.getUserCouponList(vo.getUser_id());
-			System.out.println(">>>>>앙 : " + myCouponVOList);
-			System.out.println(">>>>>잉 : " + myCouponVOList.get(0).getCoupon_name());
 						
-			//coupon_seq랑 coupon_name 값을 가져가서 활용하기 위함.
+			//현재 상세페이지 에서 보고있는 회원의 보유쿠폰명 리스트로 받아오기
+			List<UserCouponVO> myCouponVOList = adminAccountService.getUserCouponList(vo.getUser_id());
 			Map<Integer, String> myCouponMap = new HashMap<>();
-			for(int i = 0; i < myCouponVOList.size(); i++) {
-				myCouponMap.put(myCouponVOList.get(i).getCoupon_seq(), myCouponVOList.get(i).getCoupon_name());
+			//List에 값이 있는경우에만 작업
+			if(myCouponVOList.size() > 0) {
+				System.out.println(">>>>>앙 : " + myCouponVOList);
+				System.out.println(">>>>>잉 : " + myCouponVOList.get(0).getUser_coupon_name());
+				//coupon_seq랑 coupon_name 값을 가져가서 활용하기 위함.
+				for(int i = 0; i < myCouponVOList.size(); i++) {
+					myCouponMap.put(myCouponVOList.get(i).getUser_coupon_seq(), myCouponVOList.get(i).getUser_coupon_name());
+				}
+			} else {
+				myCouponMap.put(0, "보유쿠폰 없음");
 			}
 			System.out.println("쿠폰이름과 해당시퀀스 맵 : " + myCouponMap);
-			model.addAttribute("myCouponMap", myCouponMap);
+			
+			//현재 지급가능한 쿠폰목록 가져오기
+			List<CouponVO> couponVOList = adminAccountService.getCouponList();
+			System.out.println("지급가능한 쿠폰 리스트 : " + couponVOList);
+			
+			//쿠폰이 있을때만 jsp에서 변수사용하고 아니면 고정값 사용하기위함.
+			model.addAttribute("couponVOListSize", couponVOList.size());
+			//지급가능한 쿠폰목록이 있을경우에만!
+			if(couponVOList.size() > 0) {
+				model.addAttribute("couponVOList", couponVOList);
+			}
+			model.addAttribute("myCouponMap", myCouponMap);	
 			model.addAttribute("criteria", criteria);
 			model.addAttribute("getUserDetail", adminAccountService.getUserDetail(vo));
 			return "admin_member_Detail";
@@ -177,18 +194,49 @@ public class AdminAccountController {
 	}
 	
 	//회원상세 쿠폰관련
+	//보유쿠폰 삭제
 	@PostMapping("deleteUserCoupon.mdo")
 	@ResponseBody
-	public boolean deleteUserCoupon(@RequestParam("coupon_seq") int coupon_seq, HttpSession session, JwtUtils utils) throws Exception {
+	public boolean deleteUserCoupon(@RequestParam("user_coupon_seq") int user_coupon_seq, HttpSession session, JwtUtils utils) throws Exception {
 		AdminUserVO voToken = utils.getAdmin(session);
 		if(voToken != null) {
 			System.out.println("컨트롤러로 넘어는오냐?");
-			System.out.println("쿠폰시퀀스 : " + coupon_seq);
-			adminAccountService.deleteUserCoupon(coupon_seq);
+			System.out.println("쿠폰시퀀스 : " + user_coupon_seq);
+			adminAccountService.deleteUserCoupon(user_coupon_seq);
 			return true;
 		} else {
 			return false;
 		}
 	}
+	//쿠폰 지급
+	@PostMapping("giveCoupon.mdo")
+	@ResponseBody
+	public boolean giveCoupon(@RequestParam("coupon_seq") int coupon_seq, @RequestParam("user_id") String user_id, HttpSession session, JwtUtils utils) throws Exception {
+		AdminUserVO voToken = utils.getAdmin(session);
+		if(voToken != null) {
+			System.out.println("으갸갸갸갸 : " + coupon_seq);
+			//지급할 쿠폰 정보 가져오기
+			CouponVO couponVO = adminAccountService.getCouponInfo(coupon_seq);
+			System.out.println("아니진짜루우우 : " + couponVO);
+			System.out.println("으갸갸갸갸 : " + user_id);
+			//가져온 지급할 쿠폰 정보와 현재 지급할 유저의 아이디를 받아서 객체에 저장
+			UserCouponVO userCouponVO = new UserCouponVO();
+			userCouponVO.setUser_coupon_code(couponVO.getCoupon_code());
+			userCouponVO.setUser_coupon_effect(couponVO.getCoupon_effect());
+			userCouponVO.setUser_coupon_name(couponVO.getCoupon_name());
+			userCouponVO.setUser_id(user_id);
+			System.out.println(">>>>>이자시가 쿠폰 선물이당!! : " + userCouponVO);
+			//세팅이 끝났으면 이 객체를 가져가서 insert해준다.
+			adminAccountService.giveCoupon(userCouponVO);
+			
+
+			return true;
+		} else {
+			return false;
+		}
+		
+	}
+	
+	
 	//회원상세 포인트관련
 }
