@@ -61,7 +61,7 @@ public class MyInfoModlefyController {
 
       return "redirect:index.do";
     }
-    System.out.println("유저정보"+vou);
+    System.out.println("유e저정보"+vou);
     model.addAttribute("user",vou);
     return "my_InfoModify";
   }
