@@ -41,4 +41,8 @@
 		update user set user_password=#{user_password} where user_id=#{user_id}
 
 	</update>
+	<select resultType="String" parameterType="String"
+		id="passwordsearch">
+		select user_password from user where user_id=#{user_id}
+	</select>
 </mapper>

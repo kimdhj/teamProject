@@ -147,5 +147,6 @@
 		<mapper resource="mappings/points-mapping.xml" />
 		<mapper resource="mappings/usercoupon-mapping.xml" />
 		<mapper resource="mappings/profile-mapping.xml" />
+		<mapper resource="mappings/admincoupon-mapping.xml" />
 	</mappers>
 </configuration>

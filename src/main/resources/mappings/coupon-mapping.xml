@@ -38,7 +38,12 @@
 	<select id="owncoupon" parameterType="String" resultType="int">
 		SELECT count(*) FROM user_coupon WHERE user_id=#{user_id}
 	</select>
-
+	<select id="confind" parameterType="String" resultType="couponVO">
+		select * from coupon where coupon_code=#{coupon_code}
+	</select>
+	<delete id="delcou" parameterType="String" >
+		delete from coupon where coupon_code=#{coupon_code}
+	</delete>
 
 
 </mapper>
