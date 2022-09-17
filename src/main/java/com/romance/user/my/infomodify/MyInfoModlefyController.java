@@ -32,7 +32,7 @@ public class MyInfoModlefyController {
       return "redirect:index.do";
     }
     
-    model.addAttribute("user",vou);
+    model.addAttribute("useddr",vou);
     return "my_Password";
   }
   
