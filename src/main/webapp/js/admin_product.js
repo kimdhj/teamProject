@@ -1,30 +1,43 @@
-function tableDelete(obj) {
-	var tr = $(obj).parent().parent();
-	var del = $(obj).next().val();
-	var rs = $(obj).next().next().val();
-
-	var rrs = rs.indexOf('룰렛');
-	var srs = rs.indexOf('구독');
-	var con = confirm("룰렛, 구독이벤트는 삭제하지 않는것이 좋습니다. 정말 삭제하시겠습니까?");
 
 
-	if(con == true){
 
-		$.ajax({
-			url: "/ajax_del.mdo",
+
+
+
+
+
+
+//전체 선택
+function selectAll(selectAll){
+	const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  
+  checkboxes.forEach((checkbox) => {
+    checkbox.checked = selectAll.checked
+  })
+}
+
+// 상품 삭제
+function del_product(obj) {
+
+	console.log($(obj).parents("tr").children("td:eq(1)").children("p").text());
+	let cq = $(obj).parents("tr").children("td:eq(1)").children("p").text();
+
+	$.ajax({
+			url: "/del_product.mdo",
 			type: 'POST',
 			data: {
-				del: del
+				book_seq: Number(cq)
 			},
 			success: function(data) {
-				console.log(data);
+				
+				location.href = "/getProductList.mdo";
+				
 			},
 			error: function(jqXHR, textStatus, errorThrown) {
 				console.log('error while post');
 			}
 		});
-		tr.remove();
-					}
+
 }
 		
 		
@@ -36,6 +49,10 @@ $("#search_btn").click(function(e){
 	 console.log($("#searchThing").val());
 	 
 	 $("#Hpage").val(1);
+	 
+
+	 
+	 
 	 
 	$.ajax({
 			url: "/ajax_search.mdo",
@@ -51,7 +68,7 @@ $("#search_btn").click(function(e){
 				data.map((pro) => {
 				con+=
 				`<tr>
-								<td><input type="checkbox" id=""></td>
+								<td><input type="checkbox" class="del-chk" id=""></td>
 								<td>
 									<p class="rowColumn" contenteditable="false" data-default="${pro.book_seq }">${pro.book_seq }</p>
 								</td>
@@ -102,6 +119,13 @@ $("#search_btn").click(function(e){
 				
 				$("#Hpage").val($("#now").text());
 				
+				//검색했는데 유지되어있는 전체 선택 체크박스 해제
+				console.log($("#all_pick").is(":checked"));
+					if ($("#all_pick").is(":checked")) {
+						$("#all_pick").prop("checked",false);
+					}
+				
+				
 			},
 			error: function(jqXHR, textStatus, errorThrown) {
 				console.log('error while post');
@@ -151,7 +175,7 @@ function viewview(v){
 				data.map((pro) => {
 				con+=
 				`<tr>
-								<td><input type="checkbox" id=""></td>
+								<td><input type="checkbox" class="del-chk" id=""></td>
 								<td>
 									<p class="rowColumn" contenteditable="false" data-default="${pro.book_seq }">${pro.book_seq }</p>
 								</td>
@@ -189,6 +213,12 @@ function viewview(v){
 
 				});
 				$("tbody").html(con);
+				
+				//검색했는데 유지되어있는 전체 선택 체크박스 해제
+				console.log($("#all_pick").is(":checked"));
+					if ($("#all_pick").is(":checked")) {
+						$("#all_pick").prop("checked",false);
+					}
 				
 			},
 			error: function(jqXHR, textStatus, errorThrown) {
