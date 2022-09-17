@@ -143,7 +143,13 @@
 											<tr>
 												<th style="width:25%">지급가능</th>
 												<td>
-													
+													<select class="form-select form-select mb-3"
+														aria-label=".form-select-lg example" id="giveCoupon" name="giveCoupon">
+														<%-- <c:forEach items="${}" var="giveCoupon">
+															<option value="${}">${}</option>
+														</c:forEach> --%>
+														<option value="">123123</option>
+													</select>
 												</td>
 												<td>
 													<button type="button" class="btn btn-outline-dark btn-sm">지급</button>

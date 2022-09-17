@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.romance.admin.coupon.CouponVO;
+import com.romance.admin.coupon.UserCouponVO;
 import com.romance.admin.login.AdminUserVO;
 import com.romance.security.JwtUtils;
 
@@ -83,16 +84,19 @@ public class AdminAccountController {
 			System.out.println("지금 보고있는 아이디가? : " + vo.getUser_id());
 			
 			//현재 상세페이지 에서 보고있는 회원의 보유쿠폰명 리스트로 받아오기
-			List<CouponVO> myCouponVOList = adminAccountService.getUserCouponList(vo.getUser_id());
+			List<UserCouponVO> myCouponVOList = adminAccountService.getUserCouponList(vo.getUser_id());
 			System.out.println(">>>>>앙 : " + myCouponVOList);
-			System.out.println(">>>>>잉 : " + myCouponVOList.get(0).getCoupon_name());
+			System.out.println(">>>>>잉 : " + myCouponVOList.get(0).getUser_coupon_name());
 						
 			//coupon_seq랑 coupon_name 값을 가져가서 활용하기 위함.
 			Map<Integer, String> myCouponMap = new HashMap<>();
 			for(int i = 0; i < myCouponVOList.size(); i++) {
-				myCouponMap.put(myCouponVOList.get(i).getCoupon_seq(), myCouponVOList.get(i).getCoupon_name());
+				myCouponMap.put(myCouponVOList.get(i).getUser_coupon_seq(), myCouponVOList.get(i).getUser_coupon_name());
 			}
 			System.out.println("쿠폰이름과 해당시퀀스 맵 : " + myCouponMap);
+			
+			//현재 지급가능한 쿠폰목록 보여주기
+			
 			model.addAttribute("myCouponMap", myCouponMap);
 			model.addAttribute("criteria", criteria);
 			model.addAttribute("getUserDetail", adminAccountService.getUserDetail(vo));
