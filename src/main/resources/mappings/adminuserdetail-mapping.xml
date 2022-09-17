@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="AdminCoupon">
+<mapper namespace="AdminUserDetail">
 	
 	<resultMap type="userCouponVO" id="adminUserCouponResult">
 		<result property="user_id" column="USER_ID" />
@@ -44,6 +44,21 @@
 		INSERT INTO user_coupon(user_coupon_effect, user_coupon_name, user_coupon_code, user_id)
 		VALUES(#{user_coupon_effect}, #{user_coupon_name}, #{user_coupon_code}, #{user_id})
 	</insert>
+	
+	<!-- 현재 유저 포인트 가져오기 -->
+	<select id="getUserPoint" parameterType="string" resultType="int">
+		SELECT user_point FROM user WHERE user_id = #{user_id}
+	</select>
+	
+	<!-- 포인트 지급 -->
+	<update id="giveUserPoint" parameterType="userVO">
+		UPDATE user SET user_point = #{user_point} WHERE user_id = #{user_id}
+	</update>
+	
+	<!-- 포인트 차감 -->
+	<update id="deleteUserPoint" parameterType="userVO">
+		UPDATE user SET user_point = #{user_point} WHERE user_id = #{user_id}
+	</update>
 	
 	
 </mapper>
