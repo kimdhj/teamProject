@@ -60,6 +60,13 @@ public class AdminAccountServiceImpl implements AdminAccountService {
 	public List<CouponVO> getUserCouponList(String user_id) throws Exception {
 		return adminAccountDAO.getUserCouponList(user_id);
 	}
+
+	@Override
+	public void deleteUserCoupon(int coupon_seq) throws Exception {
+		adminAccountDAO.deleteUserCoupon(coupon_seq);		
+	}
+
+	
 	
 	
 

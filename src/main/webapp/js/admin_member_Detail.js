@@ -134,6 +134,23 @@ function adminAccountCheck() { //유효성 검사
 	
 }//유효성검사 끝
 
+function couponDelete() {
+	let couponSeq = $("#myCouponMap").val();
+	alert(couponSeq);
+	
+	$.ajax({
+		url:"deleteUserCoupon.mdo",//Controller에서 받는 주소
+		type:"post",
+		data:{coupon_seq:couponSeq},
+		success:function(){//성공했을때
+			alert("일단데이터는넘어가는데 ajax로 새로고침없이 해보자궁!");
+		},
+		error:function(){
+			alert("에러다이자시가");
+		}
+	});
+	
+}
 
 
 

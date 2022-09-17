@@ -16,5 +16,8 @@
 		SELECT * FROM user_coupon WHERE user_id = #{user_id}
 	</select>	
 	
+	<delete id="deleteUserCoupon" parameterType="int">
+		DELETE FROM user_coupon WHERE user_coupon_seq = #{coupon_seq} 			
+	</delete>
 	
 </mapper>
