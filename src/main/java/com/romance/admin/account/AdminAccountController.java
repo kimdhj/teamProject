@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.romance.admin.coupon.CouponVO;
+import com.romance.admin.coupon.UserCouponVO;
 import com.romance.admin.login.AdminUserVO;
 import com.romance.security.JwtUtils;
 

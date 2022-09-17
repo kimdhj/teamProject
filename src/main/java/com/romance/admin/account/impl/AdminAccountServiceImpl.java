@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.romance.admin.account.AdminAccountService;
 import com.romance.admin.account.Criteria;
-import com.romance.admin.coupon.CouponVO;
+import com.romance.admin.coupon.UserCouponVO;
 import com.romance.admin.login.AdminUserVO;
 
 @Service("adminAccountService")
@@ -57,7 +57,7 @@ public class AdminAccountServiceImpl implements AdminAccountService {
 	}
 
 	@Override
-	public List<CouponVO> getUserCouponList(String user_id) throws Exception {
+	public List<UserCouponVO> getUserCouponList(String user_id) throws Exception {
 		return adminAccountDAO.getUserCouponList(user_id);
 	}
 
