@@ -140,7 +140,7 @@ public class LoginController {
 			// user_state가 0(정상)이면서 user_role이 ROLE_MEMBER (유저)일경우에만 로그인
 			if (vo2.getUser_state() == 0 && vo2.getUser_role().equals("ROLE_MEMBER")) {
 				if (benco.matches(vo.getUser_password(), vo2.getUser_password())) {
-					vo.setUser_password(null);
+					vo2.setUser_password(null);
 					ser.loginday(vo.getUser_id());
 					String token = util.createToken("유저", vo2);
 					System.out.println("token" + token);

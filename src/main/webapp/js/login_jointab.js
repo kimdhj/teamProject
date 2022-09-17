@@ -146,7 +146,7 @@ $("#name").on("propertychange change paste input keyUp keyDown", function(e) {
 });
 function numberonly(e) {
 	console.log(e);
-	//e.target.val($(e.target).val().replace(/[^0-9]/g,'')) ; 
+	e.target.val($(e.target).val().replace(/[^0-9]/g,'')) ; 
 }
 
 $("#phone").on("propertychange change paste input keyUp keyDown", function(e) {
