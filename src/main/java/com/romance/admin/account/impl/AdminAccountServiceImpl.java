@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.romance.admin.account.AdminAccountService;
 import com.romance.admin.account.Criteria;
+import com.romance.admin.coupon.CouponVO;
 import com.romance.admin.coupon.UserCouponVO;
 import com.romance.admin.login.AdminUserVO;
 
@@ -62,14 +63,23 @@ public class AdminAccountServiceImpl implements AdminAccountService {
 	}
 
 	@Override
-	public void deleteUserCoupon(int coupon_seq) throws Exception {
-		adminAccountDAO.deleteUserCoupon(coupon_seq);		
+	public void deleteUserCoupon(int user_coupon_seq) throws Exception {
+		adminAccountDAO.deleteUserCoupon(user_coupon_seq);		
 	}
 
-	
-	
-	
+	@Override
+	public List<CouponVO> getCouponList() throws Exception {
+		return adminAccountDAO.getCouponList();
+	}
 
+	@Override
+	public CouponVO getCouponInfo(int coupon_seq) throws Exception {
+		return adminAccountDAO.getCouponInfo(coupon_seq);
+	}
 
+	@Override
+	public void giveCoupon(UserCouponVO userCouponVO) throws Exception {
+		adminAccountDAO.giveCoupon(userCouponVO);
+	}
 	
 }
