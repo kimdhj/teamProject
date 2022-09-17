@@ -53,7 +53,7 @@
 								for="floatingInput">새 비밀번호</label>
 						</div>
 					</div>
-					<div class="col-auto align-self-center" id="label">
+					<div class="col-auto align-self-center" id="">
 						비밀번호 안전도 <span class="text-danger" id="strength">낮음</span>
 					</div>
 					<!-- <input name="password" id="password" type="text" size="15" maxlength="100" onkeyup="return passwordChanged();" />

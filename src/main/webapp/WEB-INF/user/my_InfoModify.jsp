@@ -18,6 +18,7 @@
 	<jsp:include page="/WEB-INF/commonjsp/common_mypage_header.jsp"></jsp:include>
 
 		<!-- 여기 삽입 -->
+      <form action="myinfopost.do" method="post" id="form" class="row g-3">
 		<div id="main_wrapper" class="row">
 			<div id="title_box" class="row">
 				<div class="col-auto" id="ico">
@@ -38,7 +39,7 @@
 						id="title">아이디</div>
 					<div
 						class="col-10  border-bottom border-dark border-primary align-self-center ps-2"
-						id="content">dhdh13</div>
+						id="content">${user.user_id}</div>
 				</div>
 				<div class="row" id="name_line">
 					<div
@@ -46,48 +47,21 @@
 						id="title">이름</div>
 					<div
 						class="col-10 border-bottom border-dark align-self-center border-bottom border-dark ps-2"
-						id="content">김동현</div>
+						id="content">${user.user_name}</div>
 				</div>
 				<div class="row" id="birth_line">
 					<div
 						class="col-2 ps-2 border-bottom border-dark border-end border-dark  bg-secondary align-self-center"
 						id="title">생일</div>
 					<div
-						class="col-4 border-bottom border-dark  border-bottom border-dark align-self-center"
+						class="col border-bottom border-dark  border-bottom border-dark align-self-center"
 						id="content ">
-						<input type="text" class="ms-2 col-10" id="datepicker">
+						<input name="user_birth" required readonly type="text" value="${user.user_birth}" class="ms-2 col-10" id="datepicker">
+            
 					</div>
-					<div
-						class="col-2 ps-2 border-bottom border-dark border-end border-dark  bg-secondary align-self-center"
-						id="title">성별</div>
-					<div class="col-4 border-bottom border-dark row align-self-center"
-						id="content">
-						<div id="content" class="col-auto ms-2">
-							<input class="form-check-input" type="radio"
-								name="flexRadioDefault" id="flexRadioDefault1"> <label
-								class="form-check-label " for="flexRadioDefault1"> 남성 </label>
-						</div>
-						<div class="col"></div>
-						<div id="content" class="col-auto me-2">
-							<input class="form-check-input" type="radio"
-								name="flexRadioDefault" id="flexRadioDefault2" checked>
-							<label class="form-check-label" for="flexRadioDefault2">
-								여성 </label>
-						</div>
-					</div>
+					
 				</div>
-				<div class="row " id="check_line">
-					<div
-						class="col-2 ps-2 border-bottom  border-end border-dark  bg-secondary  "
-						id="title">본인인증</div>
-					<div class="col-10 row border-bottom border-dark " id="content">
-						<div class="col-auto row text-center align-self-center ms-2">인증(2012-12-11)</div>
-						<div class="col-auto ">
-							<button type="button"
-								class="btn m-2 btn-dark align-self-center rounded-pill">인증하기</button>
-						</div>
-					</div>
-				</div>
+				
 			</div>
 			<div id="alert_top">
 				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -96,23 +70,16 @@
                     <path
 						d="M11.46.146A.5.5 0 0 0 11.107 0H4.893a.5.5 0 0 0-.353.146L.146 4.54A.5.5 0 0 0 0 4.893v6.214a.5.5 0 0 0 .146.353l4.394 4.394a.5.5 0 0 0 .353.146h6.214a.5.5 0 0 0 .353-.146l4.394-4.394a.5.5 0 0 0 .146-.353V4.893a.5.5 0 0 0-.146-.353L11.46.146zM8 4c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995A.905.905 0 0 1 8 4zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
                 </svg>
-				연락처(전화번호,휴대폰번호) 중 하나는 반드시 입력하셔야 합니다.
+				연락처(전화번호,휴대폰번호)는 반드시 입력하셔야 합니다.
 			</div>
 			<div class="row" id="top_table">
 				<div class="row" id="birth_line">
-					<div
-						class="col-2 ps-2 border-top border-bottom border-dark border-end border-dark  bg-secondary align-self-center"
-						id="title">핸드폰 번호</div>
-					<div
-						class="col-4 border-top border-bottom border-dark  border-bottom border-dark"
-						id="content_phone">
-						<input class="col-10" type="text">
-					</div>
+					
 					<div
 						class="col-2 ps-2 border-top border-bottom border-dark border-end border-dark  bg-secondary"
 						id="title">전화 번호</div>
-					<div class="col-4 border-top border-bottom border-dark row"
-						id="content"></div>
+					<div class="col ps-2 border-top border-bottom border-dark row"
+						id="content">${user.user_phone}</div>
 				</div>
 				<div class="row" id="mail_line">
 					<div
@@ -121,12 +88,9 @@
 					<div
 						class="col-10 border-bottom border-dark border-bottom border-dark"
 						id="content_mail">
-						<div class="input-group">
-							<input id="email_input" type="text" class="form-control"
-								placeholder="Username" aria-label="Username"> <span
-								id="email_input" class="input-group-text">@</span> <input
-								id="email_input" type="text" class="form-control"
-								placeholder="Server" aria-label="Server">
+						<div class="input-group align-self-center">
+							<input name="user_email" required id="email_input" type="text" class="form-control"
+								placeholder="Username" value="${user.user_email}" aria-label="Username">
 						</div>
 					</div>
 				</div>
@@ -137,39 +101,39 @@
 						class="col-2 ps-2 h-100 border-top border-bottom border-primary1 border-end border-dark bg-secondary align-self-center"
 						id="title">주소</div>
 					<div
-						class="col-10 border-top border-bottom border-primary1 border-bottom border-dark"
+						class="col-10 flex-column border-top border-bottom border-primary1 border-bottom border-dark"
 						id="content_mail">
-						<form id="zipCode" class="row g-3">
+					
 							<div class="row mt-2" id="zipcode_line">
 								<div class="col-1">
-									<input type="text" readonly class="form-control-plaintext"
+									<input  type="text" readonly class="form-control-plaintext"
 										id="staticEmail2" value="주소:">
 								</div>
 								<div class="col-auto">
-									<input readonly type="text" class="form-control"
-										id="zipCodeBox" placeholder="우편번호">
+									<input name="user_zipcode" readonly type="text" class="form-control"
+										id="zipCodeBox" required value="${user.user_zipcode}" placeholder="우편번호">
 								</div>
 								<div class="col-auto ms-2">
 									<button type="button" id="add_find"
-										class="btn btn-primary mb-3 rounded-pill">주소 찾기</button>
+										class="btn  btn-primary mb-3 rounded-pill">주소 찾기</button>
 								</div>
 							</div>
 							<div class="row mt-2" id="address_line">
 								<div class="col-1"></div>
 								<div class="col-6">
-									<input readonly type="text" class="form-control" id="address"
+									<input name="user_address"  readonly  value="${user.user_address}" type="text" class="col-auto form-control" id="address"
 										placeholder="주소">
 								</div>
 							</div>
 							<div class="row mt-2" id="addressEtc_line">
 								<div class="col-1"></div>
 								<div class="col-6">
-									<input type="text" id="etc" placeholder="추가 주소">
+									<input name="user_remain_address"   value="${user.user_remain_address}" type="text" id="etc" placeholder="추가 주소">
 								</div>
 							</div>
 							<div class="row mt-2" id="alert_add">
 								<ul>
-									<li>위의 주솔르 수정 하면 주소록의 기본 주소도 변경 됩니다.</li>
+									<li>위의 주소를 수정 하면 주소록의 기본 주소도 변경 됩니다.</li>
 									<li>기본 주소는
 										<p id="bol">회원정보관리>나의주소록</p>에서 설정 하실수 잇습니다.
 									</li>
@@ -177,13 +141,18 @@
 										삭제됩니다.</li>
 								</ul>
 							</div>
-						</form>
+            
 					</div>
+          
 				</div>
 			</div>
-			g
+			
 		</div>
-
+  <div class="row mt-2" id="alert_add">
+  <div class="col"></div>
+  <div class="col-auto"><button class="subbtn">수 정</button></div>
+  </div>
+            </form>
 		<jsp:include page="/WEB-INF/commonjsp/common_mypage_bottom.jsp"></jsp:include>
 
 		<!-- Footer Start -->

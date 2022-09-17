@@ -91,7 +91,7 @@
             <!-- 마이페이지 메인 바디 -->
             <div class="row g-5 justify-content-center">
                 <div class="col-lg-3 col-md-12 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="bg-light text-black d-flex flex-column justify-content-center h-100 p-5">
+                    <div class="bg-light text-black d-flex flex-column justify-content-center h-100 p-sm-5 p-lg-3 p-md-3">
 
                         <!-- Split dropend button -->
                         <div class="btn-group dropend">

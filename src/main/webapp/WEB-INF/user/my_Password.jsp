@@ -66,7 +66,7 @@
 			<button type="button" class="btn btn-secondary btn-sm float-end">구독취소</button>
 		</p>
 	<!-- 여기까지 원래헤더대신 삽입 끝 -->
-
+<form method="post" action="myinfoin.do">
         <!-- 여기 삽입 -->
 
         <div class="row" id="middle_menu">
@@ -84,7 +84,7 @@
 
                     <div class="col" id="option_input">
                         <div class="input-group mb-3 ">
-                            <input type="text" class="form-control" placeholder="username"
+                            <input disabled value="${user.user_id}" type="text" class="form-control" placeholder="username"
                                 aria-label="Recipient's username" aria-describedby="basic-addon2">
                         </div>
                     </div>
@@ -96,8 +96,8 @@
 
                     <div class="col" id="option_input">
                         <div class="input-group mb-3 ">
-                            <input type="text" class="form-control" placeholder="password"
-                                aria-label="Recipient's username" aria-describedby="basic-addon2">
+                            <input required type="password" class="form-control" name="user_password" placeholder="password"
+                                 aria-describedby="basic-addon2">
                         </div>
                     </div>
                 </div>
@@ -105,11 +105,11 @@
             <div id="btn" class="row">
                 <div class="col"></div>
                 <div class="col-auto">
-                    <button type="button" class="btn btn-primary rounded-pill">확인</button>
+                    <button  class="btn btn-primary rounded-pill">확인</button>
                 </div>
             </div>
         </div>
-
+</form>
         <jsp:include page="/WEB-INF/commonjsp/common_mypage_bottom.jsp"></jsp:include>
 
         <!-- Footer Start -->
