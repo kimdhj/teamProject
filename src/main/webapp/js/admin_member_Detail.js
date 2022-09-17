@@ -135,13 +135,36 @@ function adminAccountCheck() { //유효성 검사
 }//유효성검사 끝
 
 function couponDelete() {
-	let couponSeq = $("#myCouponMap").val();
-	alert(couponSeq);
+	let userCouponSeq = $("#myCouponMap").val();
+	alert(userCouponSeq);
 	
 	$.ajax({
 		url:"deleteUserCoupon.mdo",//Controller에서 받는 주소
 		type:"post",
-		data:{coupon_seq:couponSeq},
+		data:{user_coupon_seq:userCouponSeq},
+		success:function(){//성공했을때
+			alert("일단데이터는넘어가");
+			location.reload();
+		},
+		error:function(){
+			alert("에러다이자시가");
+		}
+	});
+	
+}
+function giveCoupon() {
+	let couponSeq = $("#giveCouponList").val();
+	let user_id = $("#user_id").val();
+	console.log(couponSeq);
+	console.log(user_id);
+	
+	$.ajax({
+		url:"giveCoupon.mdo",//Controller에서 받는 주소
+		type:"post",
+		data:{
+			coupon_seq:couponSeq,
+			user_id:user_id
+			},
 		success:function(){//성공했을때
 			alert("일단데이터는넘어가");
 			location.reload();

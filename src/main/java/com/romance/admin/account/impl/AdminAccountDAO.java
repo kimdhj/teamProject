@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.romance.admin.account.Criteria;
+import com.romance.admin.coupon.CouponVO;
 import com.romance.admin.coupon.UserCouponVO;
 import com.romance.admin.login.AdminUserVO;
 
@@ -59,7 +60,19 @@ public class AdminAccountDAO {
 		return sqlSessionTemplate.selectList("AdminCoupon.getUserCouponList", user_id);
 	}
 	
-	public void deleteUserCoupon(int coupon_seq) {
-		sqlSessionTemplate.delete("AdminCoupon.deleteUserCoupon", coupon_seq);		
+	public void deleteUserCoupon(int user_coupon_seq) {
+		sqlSessionTemplate.delete("AdminCoupon.deleteUserCoupon", user_coupon_seq);		
+	}
+	
+	public List<CouponVO> getCouponList() {
+		return sqlSessionTemplate.selectList("AdminCoupon.getCouponList");
+	}
+	
+	public CouponVO getCouponInfo(int coupon_seq) {
+		return sqlSessionTemplate.selectOne("AdminCoupon.getCouponInfo", coupon_seq);
+	}
+	
+	public void giveCoupon(UserCouponVO userCouponVO) {
+		sqlSessionTemplate.insert("AdminCoupon.giveCoupon", userCouponVO);
 	}
 }
