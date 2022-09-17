@@ -5,6 +5,7 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.romance.admin.product.ProductSearchVO;
 import com.romance.admin.product.ProductVO;
@@ -34,8 +35,21 @@ public class ProductDAO {
 		sqlSessionTemplate.insert("ProductDAO.insertProduct", vo);
 	}
 	
-	public ConcernWriterVO check_author(ConcernWriterVO vo) {
-		return sqlSessionTemplate.selectOne("ProductDAO.check_author", vo);
+	public String check_author(@RequestParam(name="author_seq") int author_seq) {
+		return sqlSessionTemplate.selectOne("ProductDAO.check_author", author_seq);
 	}
+	
+	public int check_isbn(@RequestParam(name="book_isbn") String book_isbn) {
+		return sqlSessionTemplate.selectOne("ProductDAO.check_isbn", book_isbn);
+	}
+	
+	public int check_category(@RequestParam(name="category_num") int category_num) {
+		return sqlSessionTemplate.selectOne("ProductDAO.check_category", category_num);
+	}
+	
+	public void del_product(@RequestParam(name="book_seq") int book_seq) {
+		sqlSessionTemplate.delete("ProductDAO.del_product", book_seq);
+	}
+	
 	
 }

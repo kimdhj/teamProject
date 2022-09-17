@@ -6,11 +6,14 @@
  	$.ajax({
 			url: "/check_author.mdo",
 			type: 'POST',
+			contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 			data: {
 				author_seq: $("#author_seq").val()
 			},
 			success: function(data) {
 				console.log(data);
+				$("#book_author").val(data);
+				
 			},
 			error: function(jqXHR, textStatus, errorThrown) {
 				console.log('error while post');
@@ -59,23 +62,6 @@ function setThumbnail1(event) {
   }
   reader.readAsDataURL(event.target.files[0]);
 }
-
-//파일 삭제 버튼
-$("#delFile1").on("click", function () {
-	var uFile = $("#uploadFile1").val("");
-});
-$("#delFile2").on("click", function () {
-	var uFile = $("#uploadFile2").val("");
-});
-$("#delFile3").on("click", function () {
-	var uFile = $("#uploadFile3").val("");
-});
-$("#delFile4").on("click", function () {
-	var uFile = $("#uploadFile4").val("");
-});
-$("#delFile5").on("click", function () {
-	var uFile = $("#uploadThumbnail").val("");
-});
 
 
 // 이벤트 유효성 체크
@@ -129,7 +115,57 @@ function event_writeCheck() {
 	book_isbn.focus();
 	return false;
 	};
-	document.upload.submit();
+	
+	// isbn 체크해주기 시작
+	
+	console.log($("#book_isbn").val());
+	$.ajax({
+			url: "/check_isbn.mdo",
+			type: 'POST',
+			dataType: "JSON",
+			data: {
+				book_isbn: $("#book_isbn").val()
+			},
+			success: function(data) {
+				console.log(data);
+				if(data != 0){
+					alert("이미 존재하는 isbn입니다! 다시 확인해주세요!");
+				}else if(data == 0){
+				
+				//카테고리 체크해주기! 시작
+					$.ajax({
+						url: "/check_category.mdo",
+						type: 'POST',
+						dataType: "JSON",
+						data: {
+							category_num: Number($("#category_num").val())
+						},
+						success: function(data) {
+							console.log(data);
+							if(date == 0){
+								alert("존재하지 않는 카테고리입니다! 다시 확인해주세요!");
+							}else if(data != 0){
+								
+								document.upload.submit();
+							}
+
+						},
+						error: function(jqXHR, textStatus, errorThrown) {
+							console.log('error while post');
+						}
+					});
+				//카테고리 체크해주기! 끝
+				
+				
+				}
+				
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+				console.log('error while post');
+			}
+		});
+		
+	
 };
 
 // 날짜 더하기

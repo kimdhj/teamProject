@@ -43,7 +43,7 @@
 					<table class="table">
 						<thead>
 							<tr>
-								<th><input type="checkbox" id="all_pick"></th>
+								<th><input type="checkbox" id="all_pick" name="all_pick" value="selectall" onclick="selectAll(this)"></th>
 								<th>번호</th>
 								<th>제목</th>
 								<th>번호.작가</th>
@@ -59,7 +59,7 @@
 						<tbody>
 						<c:forEach items="${productList }" var="pro" begin="${start }" end="${end }">
 							<tr>
-								<td><input type="checkbox" id=""></td>
+								<td><input type="checkbox" class="del-chk" id=""></td>
 								<td>
 									<p class="rowColumn" contenteditable="false" data-default="${pro.book_seq }">${pro.book_seq }</p>
 								</td>
@@ -70,15 +70,13 @@
 									<p class="rowColumn" contenteditable="false" data-default="${pro.author_seq } . ${pro.book_author}">${pro.author_seq } . ${pro.book_author}</p>
 								</td>
 								<td>
-									<p class="rowColumn" contenteditable="false"
-										data-default="${pro.book_publish }">${pro.book_publish }</p>
+									<p class="rowColumn" contenteditable="false" data-default="${pro.book_publish }">${pro.book_publish }</p>
 								</td>
 								<td>
 									<p class="rowColumn" contenteditable="false" data-default="${pro.book_remain }">${pro.book_remain }</p>
 								</td>
 								<td>
-									<p class="rowColumn" contenteditable="false"
-										data-default="<fmt:formatNumber value="${pro.book_price }" type="number" />원"><fmt:formatNumber value="${pro.book_price }" type="number" />원</p>
+									<p class="rowColumn" contenteditable="false" data-default="<fmt:formatNumber value="${pro.book_price }" type="number" />원"><fmt:formatNumber value="${pro.book_price }" type="number" />원</p>
 								</td>
 								<td>
 									<p class="rowColumn" contenteditable="false" data-default="${pro.category_num }">${pro.category_num }</p>
@@ -90,7 +88,7 @@
 									<p class="rowColumn" contenteditable="false" data-default="${pro.book_sellCount }">${pro.book_sellCount }</p>
 								</td>
 								<td>
-									<button type="button" id="del_one">삭제</button>
+									<button type="button" id="del_one" name="del_one" onclick="del_product(this)">삭제</button>
 								</td>
 							</tr>
 						</c:forEach>
