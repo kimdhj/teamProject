@@ -143,7 +143,8 @@ function couponDelete() {
 		type:"post",
 		data:{coupon_seq:couponSeq},
 		success:function(){//성공했을때
-			alert("일단데이터는넘어가는데 ajax로 새로고침없이 해보자궁!");
+			alert("일단데이터는넘어가");
+			location.reload();
 		},
 		error:function(){
 			alert("에러다이자시가");

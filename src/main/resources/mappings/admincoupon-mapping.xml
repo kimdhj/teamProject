@@ -3,21 +3,21 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="AdminCoupon">
 	
-	<resultMap type="couponVO" id="adminCouponResult">
+	<resultMap type="userCouponVO" id="adminUserCouponResult">
 		<result property="user_id" column="USER_ID" />
-		<result property="coupon_seq" column="USER_COUPON_SEQ" />
-		<result property="coupon_code" column="USER_COUPON_CODE" />
-		<result property="coupon_date" column="USER_COUPON_DATE" />
-		<result property="coupon_name" column="USER_COUPON_NAME" />
-		<result property="coupon_effect" column="USER_COUPON_EFFECT" />
+		<result property="user_coupon_seq" column="USER_COUPON_SEQ" />
+		<result property="user_coupon_code" column="USER_COUPON_CODE" />
+		<result property="user_coupon_date" column="USER_COUPON_DATE" />
+		<result property="user_coupon_name" column="USER_COUPON_NAME" />
+		<result property="user_coupon_effect" column="USER_COUPON_EFFECT" />
 	</resultMap>
 	
-	<select id="getUserCouponList" parameterType="string" resultMap="adminCouponResult">
+	<select id="getUserCouponList" parameterType="string" resultMap="adminUserCouponResult">
 		SELECT * FROM user_coupon WHERE user_id = #{user_id}
 	</select>	
 	
 	<delete id="deleteUserCoupon" parameterType="int">
-		DELETE FROM user_coupon WHERE user_coupon_seq = #{coupon_seq} 			
+		DELETE FROM user_coupon WHERE user_coupon_seq = #{user_coupon_seq} 			
 	</delete>
 	
 </mapper>
