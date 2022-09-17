@@ -111,6 +111,9 @@
 				<typeAlias
 			type="com.romance.user.points.MyPointsSearchVO"
 			alias="mypointssearchVO" />
+			<typeAlias
+			type="com.romance.user.my.delivery.DeliveryVO"
+			alias="deliveryVO" />
 			
 
 	</typeAliases>
@@ -148,5 +151,6 @@
 		<mapper resource="mappings/usercoupon-mapping.xml" />
 		<mapper resource="mappings/profile-mapping.xml" />
 		<mapper resource="mappings/admincoupon-mapping.xml" />
+		<mapper resource="mappings/userdelivery-mapping.xml" />
 	</mappers>
 </configuration>

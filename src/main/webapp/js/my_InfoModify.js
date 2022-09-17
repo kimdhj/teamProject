@@ -31,3 +31,13 @@ $(document).ready(function () {
     }).open();
   });
 });
+let emailreg = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+$("#email_input").on("input keyup keydown",function(){
+console.log("e");
+if(emailreg.test($("#email_input").val())){
+$(".subbtn").removeAttr("disabled");
+}else{
+$(".subbtn").attr("disabled","true");
+
+}
+})
