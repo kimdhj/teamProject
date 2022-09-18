@@ -16,7 +16,7 @@
 
 	<!-- 데이터 목록을 가져오는거 -->
 	<select id="getNoticeList" resultType="notice" parameterType="noticeSearchVO">
-	<![CDATA[SELECT * FROM(SELECT notice_seq, notice_title, notice_writer, notice_content, notice_date, @rownum:=@rownum + 1 as rnum FROM notice, (SELECT @rownum:=0) TMP]]>
+	<![CDATA[SELECT * FROM(SELECT notice_seq, notice_title, notice_writer, notice_content, notice_cnt, notice_date, @rownum:=@rownum + 1 as rnum FROM notice, (SELECT @rownum:=0) TMP]]>
 	<trim prefix="WHERE" prefixOverrides="AND | OR">
 		<if test="title != null and title != ''"><![CDATA[AND notice_title LIKE CONCAT('%', #{title}, '%')]]></if>
 		<if test="content != null and content != ''"><![CDATA[AND notice_content LIKE CONCAT('%', #{content}, '%')]]></if>
@@ -34,7 +34,7 @@
 	
 	<!-- 전체 글 개수 가져오는거 -->
 	<select id="getCount" parameterType="noticeSearchVO" resultType="int">
-		<![CDATA[SELECT COUNT(*) FROM(SELECT notice_seq, notice_title, notice_writer, notice_content, notice_date, @rownum:=@rownum + 1 as rnum FROM notice, (SELECT @rownum:=0) TMP]]>
+		<![CDATA[SELECT COUNT(*) FROM(SELECT notice_seq, notice_title, notice_writer, notice_content, notice_cnt, notice_date, @rownum:=@rownum + 1 as rnum FROM notice, (SELECT @rownum:=0) TMP]]>
 	<trim prefix="WHERE" prefixOverrides="AND | OR">
 		<if test="title != null and title != ''"><![CDATA[AND notice_title LIKE CONCAT('%', #{title}, '%')]]></if>
 		<if test="content != null and content != ''"><![CDATA[AND notice_content LIKE CONCAT('%', #{content}, '%')]]></if>
@@ -76,4 +76,10 @@
 	<delete id="checkBox" parameterType="int">
 		DELETE FROM notice WHERE notice_seq = #{notice_seq}
 	</delete>
+	
+	<!-- cnt -->
+	<update id="cnt" parameterType="notice">
+		UPDATE notice SET notice_cnt = notice_cnt + 1 WHERE notice_seq = #{notice_seq}
+	</update>
+	
 </mapper>
