@@ -78,7 +78,7 @@
                     <a class="btn-sm-square bg-white rounded-circle ms-3" href="/cart.do">
                         <small class="fa fa-shopping-bag text-body"></small>
                     </a>
-                    <a id="mypage" class="btn-sm-square bg-white rounded-circle ms-3" href="/mypage.do">
+                    <a id="mypage" class="btn-sm-square bg-white rounded-circle ms-3" href="/myMain.do">
                         <i class="bi bi-house-door-fill"></i>
                     </a>
                 </div>
