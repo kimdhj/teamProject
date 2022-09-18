@@ -148,6 +148,7 @@ public class MyRequestController {
 		}
 	}
 	
+	//문의글 수정
 	@PostMapping("updateMyRequest.do")
 	public String updateMyRequest(MyRequestVO myRequestVO, @RequestParam(name="uploadFile") MultipartFile uploadFile, HttpSession session, JwtUtils utils) throws Exception {
 		UserVO voToken = utils.getuser(session);
@@ -178,7 +179,15 @@ public class MyRequestController {
 		}
 	}
 	
-	//글 비밀번호 체크
+	//문의글 삭제
+	@PostMapping("deleteMyRequest.do")
+	@ResponseBody
+	public void deleteMyRequest(@RequestParam("ask_seq") int ask_seq, HttpSession session, JwtUtils utils) throws Exception {
+		System.out.println("글번호 가져와서 삭제!! : " + ask_seq);
+		myRequestService.deleteMyRequest(ask_seq);
+	}
+	
+	//문의글 비밀번호 체크
 	@PostMapping("myRequestPasswordCheck.do")
 	@ResponseBody
 	public int myRequestPasswordCheck(@RequestParam("ask_password") String ask_password, @RequestParam("ask_seq") int ask_seq, HttpSession session, JwtUtils utils) throws Exception {

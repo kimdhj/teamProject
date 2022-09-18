@@ -64,5 +64,11 @@ public class MyRequestServiceImpl implements MyRequestService {
 	public void updateMyRequest(MyRequestVO myRequestVO) throws Exception {
 		myRequestDAO.updateMyRequest(myRequestVO);
 	}
+
+	@Override
+	public void deleteMyRequest(int ask_seq) throws Exception {
+		myRequestDAO.deleteMyRequest(ask_seq);		
+	}
+	
 	
 }
