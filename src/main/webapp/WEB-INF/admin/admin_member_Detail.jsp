@@ -1,6 +1,7 @@
- <%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -104,10 +105,9 @@
 										placeholder="이메일을 입력하세요" value="${getUserDetail.user_email}" /></td>
 								</tr>
 								<tr>
-									<th>포인트</th>
-									<td colspan=2><input class="form-control" type="number"
-										id="user_point" name="user_point" style="float: left;"
-										placeholder="포인트입력란" value="${getUserDetail.user_point}" /></td>
+									<th>보유 포인트</th>
+									<td><fmt:formatNumber value="${getUserDetail.user_point}" pattern="#,###"/> Point</td>
+									<td></td>
 								</tr>
 								<tr>
 									<th>쿠폰</th>
@@ -187,23 +187,80 @@
 					<hr/>
 					<form>
 						<div class="card border-light">
-							<div class="card-header">마일리지</div>
+							<div class="card-header">포인트</div>
 							<div class="card-body">
 								<div class="mb-3">
 									<table class="table text-center">
 										<!-- <thead></thead> -->
 										<tbody>
-											<tr><td>123</td></tr>
-											<tr><td>123</td></tr>
+											<tr>
+												<th style="width:25%;">지급</th>
+												<td style="width:55%;">
+													<input type="number" id="givePoint" name="givePoint" value="0" style="text-align:right" />
+												</td>
+												<td style="width:20%;">
+													<button type="button" class="btn btn-outline-dark btn-sm" id="givePointBtn">지급</button>
+												</td>
+											</tr>
+											<tr>
+												<th style="width:25%;"></th>
+												<td style="width:55%;">
+													<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+													  <input type="radio" class="btn-check" name="btnradio" id="givePoint1" value="1000" autocomplete="off" checked>
+													  <label class="btn btn-outline-primary" for="givePoint1">1,000</label>
+													
+													  <input type="radio" class="btn-check" name="btnradio" id="givePoint2" value="5000" autocomplete="off">
+													  <label class="btn btn-outline-primary" for="givePoint2">5,000</label>
+													
+													  <input type="radio" class="btn-check" name="btnradio" id="givePoint3" value="10000" autocomplete="off">
+													  <label class="btn btn-outline-primary" for="givePoint3">10,000</label>
+													</div>
+												</td>
+												<td style="width:20%;">
+													<button type="button" class="btn btn-outline-dark btn-sm" id="givePointResetBtn">리셋</button>
+												</td>
+											</tr>
+											<tr>
+												<th></th>
+												<td></td>
+												<td></td>
+											</tr>
+											<tr>
+												<th>차감</th>
+												<td>
+													<input type="number" id="deletePoint" name="deletePoint" value="0" style="text-align:right" />
+												</td>
+												<td>
+													<button type="button" class="btn btn-outline-dark btn-sm" id="deletePointBtn">차감</button>
+												</td>
+											</tr>
+											<tr>
+												<th style="width:25%;"></th>
+												<td style="width:55%;">
+													<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+													  <input type="radio" class="btn-check" name="btnradio" id="deletePoint1" value="1000" autocomplete="off" checked>
+													  <label class="btn btn-outline-warning" for="deletePoint1">1,000</label>
+													
+													  <input type="radio" class="btn-check" name="btnradio" id="deletePoint2" value="5000" autocomplete="off">
+													  <label class="btn btn-outline-warning" for="deletePoint2">5,000</label>
+													
+													  <input type="radio" class="btn-check" name="btnradio" id="deletePoint3" value="10000" autocomplete="off">
+													  <label class="btn btn-outline-warning" for="deletePoint3">10,000</label>
+													</div>
+												</td>
+												<td style="width:20%;">
+													<button type="button" class="btn btn-outline-dark btn-sm" id="deletePointResetBtn">리셋</button>
+												</td>
+											</tr>
 										</tbody>
 									</table>
 								</div>
 							</div>
-							<div class="card-footer">
+							<!-- <div class="card-footer">
 								<button type="button"
 									class="btn btn-light btn-outline-dark btn-sm"
 									style="float: right;">수정</button>
-							</div>
+							</div> -->
 						</div>
 					</form>
 				</div>

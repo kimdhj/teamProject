@@ -10,6 +10,7 @@ import com.romance.admin.account.Criteria;
 import com.romance.admin.coupon.CouponVO;
 import com.romance.admin.coupon.UserCouponVO;
 import com.romance.admin.login.AdminUserVO;
+import com.romance.user.login.UserVO;
 
 @Service("adminAccountService")
 public class AdminAccountServiceImpl implements AdminAccountService {
@@ -80,6 +81,21 @@ public class AdminAccountServiceImpl implements AdminAccountService {
 	@Override
 	public void giveCoupon(UserCouponVO userCouponVO) throws Exception {
 		adminAccountDAO.giveCoupon(userCouponVO);
+	}
+
+	@Override
+	public int getUserPoint(String user_id) throws Exception {
+		return adminAccountDAO.getUserPoint(user_id);
+	}
+
+	@Override
+	public void giveUserPoint(UserVO userVO) throws Exception {
+		adminAccountDAO.giveUserPoint(userVO);		
+	}
+
+	@Override
+	public void deleteUserPoint(UserVO userVO) throws Exception {
+		adminAccountDAO.deleteUserPoint(userVO);
 	}
 	
 }

@@ -1,6 +1,5 @@
 package com.romance.admin.account;
 
-import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
@@ -23,6 +22,7 @@ import com.romance.admin.coupon.CouponVO;
 import com.romance.admin.coupon.UserCouponVO;
 import com.romance.admin.login.AdminUserVO;
 import com.romance.security.JwtUtils;
+import com.romance.user.login.UserVO;
 
 @Controller
 @RequestMapping("/")
@@ -194,7 +194,34 @@ public class AdminAccountController {
 	}
 	
 	//회원상세 쿠폰관련
-	//보유쿠폰 삭제
+	//쿠폰 지급
+		@PostMapping("giveCoupon.mdo")
+		@ResponseBody
+		public boolean giveCoupon(@RequestParam("coupon_seq") int coupon_seq, @RequestParam("user_id") String user_id, HttpSession session, JwtUtils utils) throws Exception {
+			AdminUserVO voToken = utils.getAdmin(session);
+			if(voToken != null) {
+				System.out.println("으갸갸갸갸 : " + coupon_seq);
+				//지급할 쿠폰 정보 가져오기
+				CouponVO couponVO = adminAccountService.getCouponInfo(coupon_seq);
+				System.out.println("아니진짜루우우 : " + couponVO);
+				System.out.println("으갸갸갸갸 : " + user_id);
+				//가져온 지급할 쿠폰 정보와 현재 지급할 유저의 아이디를 받아서 객체에 저장
+				UserCouponVO userCouponVO = new UserCouponVO();
+				userCouponVO.setUser_coupon_code(couponVO.getCoupon_code());
+				userCouponVO.setUser_coupon_effect(couponVO.getCoupon_effect());
+				userCouponVO.setUser_coupon_name(couponVO.getCoupon_name());
+				userCouponVO.setUser_id(user_id);
+				System.out.println(">>>>>이자시가 쿠폰 선물이당!! : " + userCouponVO);
+				//세팅이 끝났으면 이 객체를 가져가서 insert해준다.
+				adminAccountService.giveCoupon(userCouponVO);
+				return true;
+			} else {
+				return false;
+			}
+			
+		}
+
+		//보유쿠폰 삭제
 	@PostMapping("deleteUserCoupon.mdo")
 	@ResponseBody
 	public boolean deleteUserCoupon(@RequestParam("user_coupon_seq") int user_coupon_seq, HttpSession session, JwtUtils utils) throws Exception {
@@ -208,35 +235,72 @@ public class AdminAccountController {
 			return false;
 		}
 	}
-	//쿠폰 지급
-	@PostMapping("giveCoupon.mdo")
+	
+	//회원상세 포인트관련
+	//포인트 지급
+	@PostMapping("givePoint.mdo")
 	@ResponseBody
-	public boolean giveCoupon(@RequestParam("coupon_seq") int coupon_seq, @RequestParam("user_id") String user_id, HttpSession session, JwtUtils utils) throws Exception {
+	public boolean givePoint(@RequestParam("givePoint") int givePoint, @RequestParam("user_id") String user_id, HttpSession session, JwtUtils utils) throws Exception {
+		boolean returnValue = false;
 		AdminUserVO voToken = utils.getAdmin(session);
 		if(voToken != null) {
-			System.out.println("으갸갸갸갸 : " + coupon_seq);
-			//지급할 쿠폰 정보 가져오기
-			CouponVO couponVO = adminAccountService.getCouponInfo(coupon_seq);
-			System.out.println("아니진짜루우우 : " + couponVO);
-			System.out.println("으갸갸갸갸 : " + user_id);
-			//가져온 지급할 쿠폰 정보와 현재 지급할 유저의 아이디를 받아서 객체에 저장
-			UserCouponVO userCouponVO = new UserCouponVO();
-			userCouponVO.setUser_coupon_code(couponVO.getCoupon_code());
-			userCouponVO.setUser_coupon_effect(couponVO.getCoupon_effect());
-			userCouponVO.setUser_coupon_name(couponVO.getCoupon_name());
-			userCouponVO.setUser_id(user_id);
-			System.out.println(">>>>>이자시가 쿠폰 선물이당!! : " + userCouponVO);
-			//세팅이 끝났으면 이 객체를 가져가서 insert해준다.
-			adminAccountService.giveCoupon(userCouponVO);
+			System.out.println("지급할 포인트 : " + givePoint);
+			System.out.println("지급대상 아이디 : " + user_id);
 			
-
-			return true;
+			//현재 유저의 보유 포인트를 가져와서 지급할 포인트와 더해준다
+			int user_point = adminAccountService.getUserPoint(user_id);
+			user_point += givePoint;
+			
+			//포인트 지급하기
+			UserVO userVO = new UserVO();
+			userVO.setUser_id(user_id);
+			userVO.setUser_point(user_point);
+			adminAccountService.giveUserPoint(userVO);
+			
+			returnValue = true;
+			return returnValue;
 		} else {
-			return false;
+			returnValue = false;
+			return returnValue;
 		}
 		
 	}
 	
+	//포인트 차감
+	@PostMapping("deletePoint.mdo")
+	@ResponseBody
+	public int deletePoint(@RequestParam("deletePoint") int deletePoint, @RequestParam("user_id") String user_id, HttpSession session, JwtUtils utils) throws Exception {
+		int returnValue = 0;
+		AdminUserVO voToken = utils.getAdmin(session);
+		if(voToken != null) {
+			System.out.println("지급할 포인트 : " + deletePoint);
+			System.out.println("지급대상 아이디 : " + user_id);
+			
+			//현재 유저의 보유 포인트를 가져와서 포인트차감을 진행한다.
+			//차감할 포인트가 현재 보유포인트보다 크다면 해당내용 알람 띄우기.
+			int user_point = adminAccountService.getUserPoint(user_id);
+			System.out.println(user_point);
+			if(user_point >= deletePoint) {
+				user_point -= deletePoint;
+			} else {
+				//아닐경우 false반환해서 보유포인트보다 적다고 표기할 목적
+				returnValue = 0;
+				return returnValue;
+			}
+			//포인트 차감하기
+			UserVO userVO = new UserVO();
+			userVO.setUser_id(user_id);
+			userVO.setUser_point(user_point);
+			adminAccountService.deleteUserPoint(userVO);
+			
+			returnValue = 1;
+			return returnValue;
+		} else {
+			//returnValue가 false일 경우 보유포인트보다 차감포인트가 더 크거나, 다시로그인해야함
+			returnValue = 2;
+			return returnValue;
+		}
+		
+	}
 	
-	//회원상세 포인트관련
 }

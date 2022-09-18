@@ -97,10 +97,10 @@
 			alias="concernsearchVO" />
 
 
-		
-			<typeAlias
-			type="com.romance.user.my.request.MyRequestReplyVO"
-			alias="myRequestReplyVO" />
+		<typeAlias type="com.romance.user.my.request.MyRequestReplyVO" alias="myRequestReplyVO" />
+		<typeAlias type="com.romance.admin.reply.ReplyVO" alias="reply" />
+		<typeAlias type="com.romance.admin.reply.ReplySearchVO" alias="replySearch" />
+		<typeAlias type="com.romance.admin.reply.ReplyJoinVO" alias="replyJoin" />
 			<typeAlias
 			type="com.romance.user.coupon.MyCouponVO"
 			alias="mycouponVO" />
@@ -116,6 +116,7 @@
 			<typeAlias
 			type="com.romance.user.my.delivery.DeliveryVO"
 			alias="deliveryVO" />
+
 			<typeAlias
 			type="com.romance.admin.author.AdminAuthorVO"
 			alias="adminauthorVO" />
@@ -123,6 +124,7 @@
 			type="com.romance.admin.author.AdminAuthorSearchVO"
 			alias="adminauthorsearchVO" />
 			
+
 
 	</typeAliases>
 
@@ -155,10 +157,11 @@
 		<mapper resource="mappings/product-mapping.xml" />
 		<mapper resource="mappings/userrequest-mapping.xml" />
 		<mapper resource="mappings/concernwriter-mapping.xml" />
+		<mapper resource="mappings/adminReply-mapping.xml" />
 		<mapper resource="mappings/points-mapping.xml" />
 		<mapper resource="mappings/usercoupon-mapping.xml" />
 		<mapper resource="mappings/profile-mapping.xml" />
-		<mapper resource="mappings/admincoupon-mapping.xml" />
+		<mapper resource="mappings/adminuserdetail-mapping.xml" />
 		<mapper resource="mappings/userdelivery-mapping.xml" />
 		<mapper resource="mappings/adminauthor-mapping.xml" />
 	</mappers>
