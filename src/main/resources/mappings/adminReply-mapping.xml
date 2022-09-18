@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ReplyDAO">
+
+	<select id="getReplyList" parameterType="replySearch" resultType="replyJoin">
+		<![CDATA[SELECT * FROM(SELECT * , @rownum:=@rownum + 1 as rnum FROM 
+		(SELECT reply.reply_seq, reply.reply_cotent, reply.reply_date, reply.user_blank, user.user_id, user.user_name, user.user_birth, user.user_sub, book.book_seq, book.book_author, book.book_title, book.book_publish FROM reply INNER JOIN user ON reply.user_id = user.user_id JOIN book ON reply.book_seq = book.book_seq) A,
+		(SELECT @rownum:=0) TMP]]>
+		<trim prefix="WHERE" prefixOverrides="AND | OR">
+			<if test="id != null and id != ''"><![CDATA[AND user_id LIKE CONCAT('%', #{id}, '%')]]></if>
+			<if test="name != null and name != ''"><![CDATA[AND user_name LIKE CONCAT('%', #{name}, '%')]]></if>
+			<if test="birth != null and birth != ''"><![CDATA[AND user_birth LIKE CONCAT('%', #{birth}, '%')]]></if>
+			<if test="title != null and title != ''"><![CDATA[AND book_title LIKE CONCAT('%', #{title}, '%')]]></if>
+			<if test="content != null and content != ''"><![CDATA[AND reply_cotent LIKE CONCAT('%', #{content}, '%')]]></if>
+			<if test="publish != null and publish != ''"><![CDATA[AND book_publish LIKE CONCAT('%', #{publish}, '%')]]></if>
+			<!-- 0, 1 입력했을 때 아래 -->
+			<if test="sub != null and sub != ''"><![CDATA[AND user_sub LIKE CONCAT('%', #{sub}, '%')]]></if> 
+			<if test="author != null and author != ''"><![CDATA[AND book_author LIKE CONCAT('%', #{author}, '%')]]></if>
+			<if test="startDate != null and endDate != null"><![CDATA[AND reply_date >= #{startDate} AND reply_date <= (#{endDate} + INTERVAL 1 DAY) ]]></if>
+			<if test="blank != null and blank != ''"><![CDATA[AND user_blank LIKE CONCAT('%', #{blank}, '%')]]></if>
+			<if test="date != null"><![CDATA[AND reply_date LIKE CONCAT('%', #{date}, '%')]]></if>
+		</trim>
+		<![CDATA[ORDER BY reply_date DESC) B WHERE]]>
+		<if test="seq != 0">
+			<![CDATA[rnum = #{seq}]]>
+		</if>
+		<if test="seq == 0">
+			<![CDATA[ rnum > (#{page} - 1) * 5 AND rnum <= #{page} * 5 ORDER BY reply_date DESC]]>
+		</if>
+	</select>
+	
+	<select id="getCount" parameterType="replySearch" resultType="int">
+	<![CDATA[SELECT COUNT(*) FROM(SELECT * , @rownum:=@rownum + 1 as rnum FROM 
+		(SELECT reply.reply_seq, reply.reply_cotent, reply.reply_date, reply.user_blank, user.user_id, user.user_name, user.user_birth, user.user_sub, book.book_seq, book.book_author, book.book_title, book.book_publish FROM reply INNER JOIN user ON reply.user_id = user.user_id JOIN book ON reply.book_seq = book.book_seq) A,
+		(SELECT @rownum:=0) TMP]]>
+		<trim prefix="WHERE" prefixOverrides="AND | OR">
+			<if test="id != null and id != ''"><![CDATA[AND user_id LIKE CONCAT('%', #{id}, '%')]]></if>
+			<if test="name != null and name != ''"><![CDATA[AND user_name LIKE CONCAT('%', #{name}, '%')]]></if>
+			<if test="birth != null and birth != ''"><![CDATA[AND user_birth LIKE CONCAT('%', #{birth}, '%')]]></if>
+			<if test="title != null and title != ''"><![CDATA[AND book_title LIKE CONCAT('%', #{title}, '%')]]></if>
+			<if test="content != null and content != ''"><![CDATA[AND reply_cotent LIKE CONCAT('%', #{content}, '%')]]></if>
+			<if test="publish != null and publish != ''"><![CDATA[AND book_publish LIKE CONCAT('%', #{publish}, '%')]]></if>
+			<if test="author != null and author != ''"><![CDATA[AND book_author LIKE CONCAT('%', #{author}, '%')]]></if>
+			<if test="sub != null and sub != ''"><![CDATA[AND user_sub LIKE CONCAT('%', #{sub}, '%')]]></if>
+			<if test="blank != null and blank != ''"><![CDATA[AND user_blank LIKE CONCAT('%', #{blank}, '%')]]></if>
+			<if test="startDate != null and endDate != null"><![CDATA[AND reply_date >= #{startDate} AND reply_date <= (#{endDate} + INTERVAL 1 DAY) ]]></if>
+		</trim>
+		<![CDATA[ORDER BY reply_date DESC) B]]>
+		<trim prefix="WHERE" prefixOverrides="AND | OR">
+		<if test="seq != 0">
+	 		<![CDATA[rnum = #{seq}]]> 
+	 	</if>
+	</trim>
+	</select>
+	
+	<select id="getReply" parameterType="reply" resultType="reply">
+		SELECT * FROM reply WHERE reply_seq = #{reply_seq}
+	</select>
+	
+	<update id="blind" parameterType="reply">
+		UPDATE reply SET reply_blank = 1 WHERE reply_seq = #{reply_seq}
+	</update>
+	
+	<update id="blindCancel" parameterType="reply">
+		UPDATE reply SET reply_blank = 0 WHERE reply_seq = #{reply_seq}
+	</update>
+	
+	<update id="chkboxBlind" parameterType="int">
+		UPDATE reply SET reply_blank = 1 WHERE reply_seq = #{reply_seq}
+	</update>
+
+	<update id="chkboxBlindCancel" parameterType="int">
+		UPDATE reply SET reply_blank = 0 WHERE reply_seq = #{reply_seq}
+	</update>
+	
+	<delete id="delete" parameterType="reply">
+		DELETE FROM reply WHERE reply_seq = #{reply_seq}
+	</delete>
+	
+	<delete id="chkboxDelete" parameterType="int">
+		DELETE FROM reply WHERE reply_seq = #{reply_seq}
+	</delete>
+
+</mapper>

@@ -84,6 +84,9 @@
 
 
 		<typeAlias type="com.romance.user.my.request.MyRequestReplyVO" alias="myRequestReplyVO" />
+		<typeAlias type="com.romance.admin.reply.ReplyVO" alias="reply" />
+		<typeAlias type="com.romance.admin.reply.ReplySearchVO" alias="replySearch" />
+		<typeAlias type="com.romance.admin.reply.ReplyJoinVO" alias="replyJoin" />
 
 	</typeAliases>
 	
@@ -116,6 +119,7 @@
 		<mapper resource="mappings/product-mapping.xml" />
 		<mapper resource="mappings/userrequest-mapping.xml" />
 		<mapper resource="mappings/concernwriter-mapping.xml" />
+		<mapper resource="mappings/adminReply-mapping.xml" />
 
 	</mappers>
 </configuration>
