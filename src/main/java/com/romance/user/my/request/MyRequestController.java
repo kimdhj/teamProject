@@ -2,15 +2,10 @@ package com.romance.user.my.request;
 
 
 import java.io.IOException;
-
-import java.util.List;
-
-
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
-
 
 import javax.servlet.http.HttpSession;
 
@@ -22,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.romance.security.JwtUtils;
@@ -97,7 +93,7 @@ public class MyRequestController {
 		if(voToken != null) {
 			System.out.println(voToken);
 //			System.out.println(myRequestVO);
-			System.out.println("123123 : " + myRequestVO.getAsk_seq());
+			System.out.println("문의글 시퀀스 : " + myRequestVO.getAsk_seq());
 			myRequestReplyVO.setAsk_seq(myRequestVO.getAsk_seq());
 			
 			model.addAttribute("myRequestReplyVO", myRequestService.getMyRequestReply(myRequestReplyVO));
@@ -129,10 +125,11 @@ public class MyRequestController {
 	@PostMapping("myRequestWrite.do")
 	public String insertMyRequest(MyRequestVO myRequestVO, Model model, @RequestParam(name="uploadFile") MultipartFile uploadFile, HttpSession session, JwtUtils utils) throws IOException {
 		UserVO voToken = utils.getuser(session);
+		
 		if(voToken != null) {
 			if(!uploadFile.isEmpty()) {
-				String filename = uploadFile.getOriginalFilename();
-				String expand = filename.substring(filename.indexOf("."));
+				String fileName = uploadFile.getOriginalFilename();
+				String expand = fileName.substring(fileName.indexOf("."));
 				String key = UUID.randomUUID().toString() + expand;
 				System.out.println("key : " + key);
 				InputStream is = uploadFile.getInputStream();
@@ -143,10 +140,66 @@ public class MyRequestController {
 				String uploadFolder = "https://doublejo.s3.ap-northeast-2.amazonaws.com/";
 				myRequestVO.setAsk_file(uploadFolder + key);
 			}
+			
 			myRequestService.insertMyRequest(myRequestVO);
 			return "redirect:myRequestList.do";
 		} else {
 			return "redirect:login.do";
+		}
+	}
+	
+	@PostMapping("updateMyRequest.do")
+	public String updateMyRequest(MyRequestVO myRequestVO, @RequestParam(name="uploadFile") MultipartFile uploadFile, HttpSession session, JwtUtils utils) throws Exception {
+		UserVO voToken = utils.getuser(session);
+		System.out.println(uploadFile);
+		if(voToken != null) {
+			if(!uploadFile.isEmpty()) {
+				//MultipartFile 객체 요소들
+				//MultipartFile[field="uploadFile", filename=파일이름.png, contentType=image/png, size=132058]
+				String fileName = uploadFile.getOriginalFilename();
+				String expand = fileName.substring(fileName.indexOf("."));
+				String key = UUID.randomUUID().toString() + expand;
+				InputStream is = uploadFile.getInputStream();
+				String contentType = uploadFile.getContentType();
+				long contentSize = uploadFile.getSize();
+				//서버랑 통신
+				AwsS3 awsS3 = AwsS3.getInstance();
+				awsS3.upload(is, key, contentType, contentSize);
+				String uploadFolder = "https://doublejo.s3.ap-northeast-2.amazonaws.com/";
+				myRequestVO.setAsk_file(uploadFolder + key);				
+			}			
+			System.out.println("내용 뭐로바꾸려고? : " + myRequestVO.getAsk_content());
+			System.out.println("시퀀스는? : " + myRequestVO.getAsk_seq());
+			//업뎃 해보자..
+			myRequestService.updateMyRequest(myRequestVO);
+			return "redirect:myRequestList.do";
+		} else {
+			return "redirect:login.do";
+		}
+	}
+	
+	//글 비밀번호 체크
+	@PostMapping("myRequestPasswordCheck.do")
+	@ResponseBody
+	public int myRequestPasswordCheck(@RequestParam("ask_password") String ask_password, @RequestParam("ask_seq") int ask_seq, HttpSession session, JwtUtils utils) throws Exception {
+		UserVO voToken = utils.getuser(session);
+		int returnValue = 0;
+		if(voToken != null) {
+			System.out.println("글번호가뭐냐!! : " + ask_seq);
+			String myRequestPassword = myRequestService.getMyRequestPassword(ask_seq);
+			if(myRequestPassword.equals(ask_password)) {
+				//정상작동한 경우 0
+				returnValue = 0;
+				return returnValue;
+			} else {
+				//비번틀린경우 1
+				returnValue = 1;
+				return returnValue;
+			}
+		} else {
+			//재로그인필요 2
+			returnValue = 2;
+			return returnValue;
 		}
 	}
 }
