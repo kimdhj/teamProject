@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 import com.romance.admin.account.AdminAccountService;
 import com.romance.admin.account.Criteria;
 import com.romance.admin.coupon.CouponVO;
+import com.romance.admin.coupon.UserCouponVO;
 import com.romance.admin.login.AdminUserVO;
+import com.romance.user.login.UserVO;
 
 @Service("adminAccountService")
 public class AdminAccountServiceImpl implements AdminAccountService {
@@ -57,12 +59,43 @@ public class AdminAccountServiceImpl implements AdminAccountService {
 	}
 
 	@Override
-	public List<CouponVO> getUserCouponList(String user_id) throws Exception {
+	public List<UserCouponVO> getUserCouponList(String user_id) throws Exception {
 		return adminAccountDAO.getUserCouponList(user_id);
 	}
-	
-	
 
+	@Override
+	public void deleteUserCoupon(int user_coupon_seq) throws Exception {
+		adminAccountDAO.deleteUserCoupon(user_coupon_seq);		
+	}
 
+	@Override
+	public List<CouponVO> getCouponList() throws Exception {
+		return adminAccountDAO.getCouponList();
+	}
+
+	@Override
+	public CouponVO getCouponInfo(int coupon_seq) throws Exception {
+		return adminAccountDAO.getCouponInfo(coupon_seq);
+	}
+
+	@Override
+	public void giveCoupon(UserCouponVO userCouponVO) throws Exception {
+		adminAccountDAO.giveCoupon(userCouponVO);
+	}
+
+	@Override
+	public int getUserPoint(String user_id) throws Exception {
+		return adminAccountDAO.getUserPoint(user_id);
+	}
+
+	@Override
+	public void giveUserPoint(UserVO userVO) throws Exception {
+		adminAccountDAO.giveUserPoint(userVO);		
+	}
+
+	@Override
+	public void deleteUserPoint(UserVO userVO) throws Exception {
+		adminAccountDAO.deleteUserPoint(userVO);
+	}
 	
 }

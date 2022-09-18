@@ -47,6 +47,8 @@
 			alias="termsVO" />
 		<typeAlias type="com.romance.admin.coupon.CouponVO"
 			alias="couponVO" />
+		<typeAlias type="com.romance.admin.coupon.UserCouponVO"
+			alias="userCouponVO" />
 		<typeAlias type="com.romance.admin.coupon.CouponSearchVO"
 			alias="couponsearchVO" />
 		<typeAlias type="com.romance.admin.notice.NoticeSearchVO"
@@ -111,6 +113,9 @@
 				<typeAlias
 			type="com.romance.user.points.MyPointsSearchVO"
 			alias="mypointssearchVO" />
+			<typeAlias
+			type="com.romance.user.my.delivery.DeliveryVO"
+			alias="deliveryVO" />
 			
 
 	</typeAliases>
@@ -147,6 +152,7 @@
 		<mapper resource="mappings/points-mapping.xml" />
 		<mapper resource="mappings/usercoupon-mapping.xml" />
 		<mapper resource="mappings/profile-mapping.xml" />
-		<mapper resource="mappings/admincoupon-mapping.xml" />
+		<mapper resource="mappings/adminuserdetail-mapping.xml" />
+		<mapper resource="mappings/userdelivery-mapping.xml" />
 	</mappers>
 </configuration>

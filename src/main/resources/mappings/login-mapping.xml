@@ -45,4 +45,7 @@
 		id="passwordsearch">
 		select user_password from user where user_id=#{user_id}
 	</select>
+	<update parameterType="userVO" id="infomod">
+		update user set user_birth=#{user_birth},user_email=#{user_email},user_zipcode=#{user_zipcode},user_address=#{user_address},user_remain_address=#{user_remain_address} where user_id=#{user_id}
+	</update>
 </mapper>

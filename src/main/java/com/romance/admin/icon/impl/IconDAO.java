@@ -16,7 +16,7 @@ public class IconDAO {
 	private SqlSessionTemplate sqlSessionTemplate;
 	
 	public IconVO getIcon() {
-		System.out.println("---> MyBatis로 getEvent() 기능 처리");
+		System.out.println("---> MyBatis로 getEvent() 기능 처리 다요다요");
 		return sqlSessionTemplate.selectOne("iconDAO.getIcon");
 	}
 

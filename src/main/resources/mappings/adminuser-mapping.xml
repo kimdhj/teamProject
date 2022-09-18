@@ -37,12 +37,12 @@
 	</update>
 	
 	<select id="getUserDetail" parameterType="adminUserVO" resultMap="adminUserResult">
-		SELECT a.*, b.user_coupon_cnt FROM user a LEFT JOIN (SELECT user_id, COUNT(user_id) AS user_coupon_cnt FROM user_coupon) b ON a.user_id = b.user_id
+		SELECT a.*, b.user_coupon_cnt FROM user a LEFT JOIN (SELECT user_id, COUNT(*) AS user_coupon_cnt FROM user_coupon GROUP BY user_id) b ON a.user_id = b.user_id
 		WHERE a.user_id = #{user_id}
 	</select>
 	
 	<select id="getUserListWithPaging" parameterType="criteria" resultMap="adminUserResult">
-		SELECT a.*, b.user_coupon_cnt FROM user a LEFT JOIN (SELECT user_id, count(user_id) AS user_coupon_cnt FROM user_coupon GROUP BY user_id) b ON a.user_id = b.user_id
+		SELECT a.*, b.user_coupon_cnt FROM user a LEFT JOIN (SELECT user_id, COUNT(user_id) AS user_coupon_cnt FROM user_coupon GROUP BY user_id) b ON a.user_id = b.user_id
 		WHERE 1=1
 		<if test="searchCondition=='USER_NAME'">
 			AND a.user_name like CONCAT('%', #{searchKeyword}, '%')
