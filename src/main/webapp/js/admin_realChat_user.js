@@ -112,9 +112,29 @@ function onMessage(msg) {
 	//로그인 한 클라이언트와 타 클라이언트를 분류하기 위함
 	if (sessionId == cur_session || sessionId == adminid) {
 		//위의 조건들에 맞는 것들을 데이터베이스에서 불렁옴 이름 기준(db)
-		init();
+		//init();
 		//메세지 알림을 뛰워줌ㄴ
-
+		str='';
+		if (sessionId == cur_session) {
+					str += `<div class="chat row  m-0">
+            <div class="row">
+              <div class="send row col-auto">${sessionId}</div>
+            </div>
+            <div class="row">
+              <div class="content row col-auto">${message}</div>
+            </div>
+          </div>`;
+				} else {
+					str += `<div class="chat row  m-0">
+            <div class="row justify-content-end">
+              <div class="send row col-auto">관리자</div>
+            </div>
+            <div class="row justify-content-end">
+              <div class="content row col-auto">${data[co].real_chat_content}</div>
+            </div>
+          </div>`
+				}
+$("#contents").append(str);
 	}
 	
 }

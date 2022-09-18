@@ -84,13 +84,7 @@ public class AuthorController {
     return "suc";
     
   }
-  @GetMapping("adminauthordellist.mdo")
-  @ResponseBody
-  public String adminauthordellist(@RequestParam("auth_seq[]")List<Integer> auth_seq){
-    ser.dellist(auth_seq);
-    return "suc";
-    
-  }
+  
   @GetMapping("adminauthorupdate.mdo")
   @ResponseBody
   public String adminauthorupdate(@RequestParam("auth_seq[]")List<Integer> auth_seq,@RequestParam("auth_name[]")List<String> auth_name){
