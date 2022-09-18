@@ -205,3 +205,6 @@ label{
 .pagination *,#cart{
 	cursor:pointer;
 }
+#authorname{
+	cursor:pointer;
+}

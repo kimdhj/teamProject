@@ -30,8 +30,8 @@
 						<thead>
 							<tr>
 								<%-- <th>${myRequestVO.ask_seq}</th> --%>
-								<th style="width:10%;">Q</th>
-								<th style="width:70%;">${myRequestVO.ask_title}</th>
+								<th style="width:20%;">Q${myRequestVO.ask_seq}</th>
+								<th style="width:60%;">${myRequestVO.ask_title}</th>
 								<th style="width:20%;">${sessionUserInfo.user_name}</th>
 							</tr>
 						</thead>
@@ -41,6 +41,14 @@
 									<textarea rows="10" style="width:100%;">${myRequestVO.ask_content}</textarea>
 								</th>
 							</tr>
+							<c:if test="${myRequestVO.ask_file ne null}">
+								<tr>
+									<th scope="row">첨부파일</th>
+									<%-- <td><a href="#" onclick="window.open('${myRequestVO.ask_file}','Attachment','width=430,height=500,location=no,status=no,scrollbars=yes');">aa${filename}</a></td> --%>
+									<td><a href="javascript:attachPopup()">확인</a></td>
+									<td></td>
+								</tr>
+							</c:if>
 						</tbody>
 					</table>
 				</div>
@@ -100,14 +108,34 @@
 		<!-- Footer Start -->
 		<!-- Common Footer include -->
 		<jsp:include page="/WEB-INF/commonjsp/common_footer.jsp"></jsp:include>
-
+		<script src="/js/my_requestdetail.js"></script>
 		<!-- Footer End -->
-		<script>
+		<script type="text/javascript">
 			$("#returnListBtn")
 				.click(function(){
 					let url = "myRequestList.do?pageNum=${criteria.pageNum}&searchCondition=${criteria.searchCondition}&searchKeyword=${criteria.searchKeyword}&selectCondition=${criteria.selectCondition}";
 					location.href = url;
 				});
+			
+			function attachPopup() {
+				alert("첨부파일");
+				//창 크기 지정
+				let width = 500;
+				let height = 500;
+				
+				//가운데 정렬
+				let left = (window.screen.width / 2) - (width / 2);
+				let top = (window.screen.height / 2) - (height/2);
+				
+				//윈도우 속성 지정
+				let windowStatus = 'width=' + width + ', height=' + height + ', left=' + left + ', top=' + top + ', scrollbars=yes, status=yes, resizable=yes, titlebar=yes';
+				
+				//연결할 url
+				const url = "${myRequestVO.ask_file}";
+				
+				//팝업창 열기
+				window.open(url, "첨부파일", windowStatus);
+			}
 		</script>
 </body>
 
