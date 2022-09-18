@@ -116,6 +116,12 @@
 			<typeAlias
 			type="com.romance.user.my.delivery.DeliveryVO"
 			alias="deliveryVO" />
+			<typeAlias
+			type="com.romance.admin.author.AdminAuthorVO"
+			alias="adminauthorVO" />
+			<typeAlias
+			type="com.romance.admin.author.AdminAuthorSearchVO"
+			alias="adminauthorsearchVO" />
 			
 
 	</typeAliases>
@@ -154,5 +160,6 @@
 		<mapper resource="mappings/profile-mapping.xml" />
 		<mapper resource="mappings/admincoupon-mapping.xml" />
 		<mapper resource="mappings/userdelivery-mapping.xml" />
+		<mapper resource="mappings/adminauthor-mapping.xml" />
 	</mappers>
 </configuration>
