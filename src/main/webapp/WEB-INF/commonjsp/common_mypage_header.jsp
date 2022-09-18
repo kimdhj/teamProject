@@ -91,7 +91,7 @@
             <!-- 마이페이지 메인 바디 -->
             <div class="row g-5 justify-content-center">
                 <div class="col-lg-3 col-md-12 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="bg-light text-black d-flex flex-column justify-content-center h-100 p-5">
+                    <div class="bg-light text-black d-flex flex-column justify-content-center h-100 p-sm-5 p-lg-3 p-md-3">
 
                         <!-- Split dropend button -->
                         <div class="btn-group dropend">
@@ -162,7 +162,7 @@
                                 <li><button class="dropdown-item" type="button">회원정보 수정</button></li>
                                 <li><button class="dropdown-item" type="button">비밀번호 변경</button></li>
                                 <li><button class="dropdown-item" type="button">나의 주소록</button></li>
-                                <li><button class="dropdown-item" type="button">회원탈퇴</button></li>
+                                <li><a href="/myWithdrawal.do"><button class="dropdown-item" type="button">회원탈퇴</button></a></li>
                             </ul>
                         </div><br>
                         <!-- 슬립 드롭다운 끝 -->

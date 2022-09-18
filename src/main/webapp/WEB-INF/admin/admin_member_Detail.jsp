@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +18,10 @@
 					<form action="updateUserAccount.mdo" method="post"
 						id="accountCheckForm" onsubmit="return adminAccountCheck()">
 						<!-- <form action="/insertAdminAccount.mdo" method="post" name="adminAccountInsertForm"> -->
-						<input type="hidden" name="user_id" value="${getUserDetail.user_id}" />
+						<input type="hidden" id ="user_id" name="user_id" value="${getUserDetail.user_id}" />
+						<input type="hidden" id="searchCondition" name="searchCondition" value="${criteria.searchCondition}" /> 
+						<input type="hidden" id="searchKeyword" name="searchKeyword" value="${criteria.searchKeyword}" /> 
+						<input type="hidden" id="selectCondition" name="selectCondition" value="${criteria.selectCondition}" />
 						<table class="table text-center">
 							<thead class="table-dark">
 								<tr>
@@ -55,14 +59,18 @@
 									<th>상태</th>
 									<td colspan=2><select class="form-select form-select-sm"
 									aria-label=".form-select-sm example" name="user_state">
-										<c:if test="${getUserDetail.user_state eq 1}">
-											<c:set var="selectedBlackUser" value="selected" />
-										</c:if>
 										<c:if test="${getUserDetail.user_state eq 0}">
 											<c:set var="selectedNormalUser" value="selected" />
 										</c:if>
-										<option value="1" ${selectedBlackUser}>블랙회원</option>
+										<c:if test="${getUserDetail.user_state eq 1}">
+											<c:set var="selectedBlackUser" value="selected" />
+										</c:if>
+										<c:if test="${getUserDetail.user_state eq 2}">
+											<c:set var="selectedWithdrawalUser" value="selected" />
+										</c:if>
 										<option value="0" ${selectedNormalUser}>정상회원</option>
+										<option value="1" ${selectedBlackUser}>블랙회원</option>
+										<option value="2" ${selectedWithdrawalUser}>탈퇴회원</option>	
 								</select></td>
 								
 								</tr>
@@ -97,10 +105,9 @@
 										placeholder="이메일을 입력하세요" value="${getUserDetail.user_email}" /></td>
 								</tr>
 								<tr>
-									<th>포인트</th>
-									<td colspan=2><input class="form-control" type="number"
-										id="user_point" name="user_point" style="float: left;"
-										placeholder="포인트입력란" value="${getUserDetail.user_point}" /></td>
+									<th>보유 포인트</th>
+									<td><fmt:formatNumber value="${getUserDetail.user_point}" pattern="#,###"/> Point</td>
+									<td></td>
 								</tr>
 								<tr>
 									<th>쿠폰</th>
@@ -127,17 +134,133 @@
 				<div class="col-md-12">
 					<form>
 						<div class="card border-light">
-							<div class="card-header">쪽지</div>
+							<div class="card-header">쿠폰</div>
 							<div class="card-body">
 								<div class="mb-3">
-									<textarea class="form-control" id="" rows="10"></textarea>
+									<table class="table text-center">
+										<!-- <thead></thead> -->
+										<tbody>
+											<tr>
+												<th style="width:25%">지급가능</th>
+												<td>
+													<select class="form-select form-select mb-3"
+														aria-label=".form-select-lg example" id="giveCouponList" name="giveCouponList">
+														<c:if test="${couponVOListSize ne 0}">
+															<c:forEach items="${couponVOList}" var="giveCoupon">
+																<option value="${giveCoupon.coupon_seq}">${giveCoupon.coupon_name}</option>
+															</c:forEach>
+														</c:if>
+														<c:if test="${couponVOListSize <= 0}">
+															<option value="0">지급가능 쿠폰 없음</option>
+														</c:if>
+													</select>
+												</td>
+												<td>
+													<button type="button" class="btn btn-outline-dark btn-sm" onclick="giveCoupon()">지급</button>
+												</td>
+											</tr>
+											<tr>
+												<th>보유쿠폰</th>
+												<td>
+													<select class="form-select form-select mb-3"
+														aria-label=".form-select-lg example" id="myCouponMap" name="myCouponMap">
+														<c:forEach items="${myCouponMap}" var="couponMap">
+															<option value="${couponMap.key}">${couponMap.value}</option>
+														</c:forEach>
+													</select>
+												</td>
+												<td>
+													<button type="button" class="btn btn-outline-dark btn-sm" onclick="couponDelete()">삭제</button>
+												</td>
+											</tr>
+										</tbody>
+									</table>
 								</div>
 							</div>
-							<div class="card-footer">
+							<!-- <div class="card-footer">
 								<button type="button"
 									class="btn btn-light btn-outline-dark btn-sm"
-									style="float: right;">전송</button>
+									style="float: right;">수정</button>
+							</div> -->
+						</div>
+					</form>
+					<hr/>
+					<form>
+						<div class="card border-light">
+							<div class="card-header">포인트</div>
+							<div class="card-body">
+								<div class="mb-3">
+									<table class="table text-center">
+										<!-- <thead></thead> -->
+										<tbody>
+											<tr>
+												<th style="width:25%;">지급</th>
+												<td style="width:55%;">
+													<input type="number" id="givePoint" name="givePoint" value="0" style="text-align:right" />
+												</td>
+												<td style="width:20%;">
+													<button type="button" class="btn btn-outline-dark btn-sm" id="givePointBtn">지급</button>
+												</td>
+											</tr>
+											<tr>
+												<th style="width:25%;"></th>
+												<td style="width:55%;">
+													<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+													  <input type="radio" class="btn-check" name="btnradio" id="givePoint1" value="1000" autocomplete="off" checked>
+													  <label class="btn btn-outline-primary" for="givePoint1">1,000</label>
+													
+													  <input type="radio" class="btn-check" name="btnradio" id="givePoint2" value="5000" autocomplete="off">
+													  <label class="btn btn-outline-primary" for="givePoint2">5,000</label>
+													
+													  <input type="radio" class="btn-check" name="btnradio" id="givePoint3" value="10000" autocomplete="off">
+													  <label class="btn btn-outline-primary" for="givePoint3">10,000</label>
+													</div>
+												</td>
+												<td style="width:20%;">
+													<button type="button" class="btn btn-outline-dark btn-sm" id="givePointResetBtn">리셋</button>
+												</td>
+											</tr>
+											<tr>
+												<th></th>
+												<td></td>
+												<td></td>
+											</tr>
+											<tr>
+												<th>차감</th>
+												<td>
+													<input type="number" id="deletePoint" name="deletePoint" value="0" style="text-align:right" />
+												</td>
+												<td>
+													<button type="button" class="btn btn-outline-dark btn-sm" id="deletePointBtn">차감</button>
+												</td>
+											</tr>
+											<tr>
+												<th style="width:25%;"></th>
+												<td style="width:55%;">
+													<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+													  <input type="radio" class="btn-check" name="btnradio" id="deletePoint1" value="1000" autocomplete="off" checked>
+													  <label class="btn btn-outline-warning" for="deletePoint1">1,000</label>
+													
+													  <input type="radio" class="btn-check" name="btnradio" id="deletePoint2" value="5000" autocomplete="off">
+													  <label class="btn btn-outline-warning" for="deletePoint2">5,000</label>
+													
+													  <input type="radio" class="btn-check" name="btnradio" id="deletePoint3" value="10000" autocomplete="off">
+													  <label class="btn btn-outline-warning" for="deletePoint3">10,000</label>
+													</div>
+												</td>
+												<td style="width:20%;">
+													<button type="button" class="btn btn-outline-dark btn-sm" id="deletePointResetBtn">리셋</button>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
 							</div>
+							<!-- <div class="card-footer">
+								<button type="button"
+									class="btn btn-light btn-outline-dark btn-sm"
+									style="float: right;">수정</button>
+							</div> -->
 						</div>
 					</form>
 				</div>

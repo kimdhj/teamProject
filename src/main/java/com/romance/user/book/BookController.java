@@ -263,7 +263,7 @@ public class BookController {
 		if(vo.getPage()==0) {
 			vo.setPage(1);
 		}
-		System.out.println(ser.mainnew(vo));
+		
 		model.addAttribute("bestlist",ser.mainbest(vo));
 		model.addAttribute("newlist",ser.mainnew(vo));
 		model.addAttribute("ban",ser.getBanner());
@@ -273,9 +273,6 @@ public class BookController {
 	@ResponseBody
 	public List<BookVO> mainnew(BookSearchVO vo) {
 		vo.setPage(2);
-		
-
-	
 		return ser.mainnew(vo);
 	}
 	@GetMapping("mainbest.do")

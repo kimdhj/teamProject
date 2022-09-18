@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,7 +41,7 @@
 								<i class="bi bi-house-fill"></i>
 							</div>
 							<div class="col-auto">입력된 주소</div>
-							<div class="col-auto">1</div>
+							<div id="max" class="col-auto">${max}</div>
 							<div class="col-auto">개</div>
 						</div>
 						<div class="col"></div>
@@ -51,79 +53,72 @@
 					</div>
 
 					<div class="row p-0" id="table">
+       
 						<div id="table_title" class="row">
 							<div class="col-2">구분</div>
 							<div class="col-2">이름</div>
 							<div class="col-3">전화번호</div>
 							<div class="col">주소</div>
-							<div class="col-2">선택</div>
+							<div class="col-2"><input class="form-check-input allche" type="checkbox" value=""
+										id="flexCheckChecked" ></div>
 
 						</div>
+             
+               <div id="table_items">
+                 <c:forEach var="it" items="${list}">
 						<div id="table_item" class="row">
-							<div class="col-2">서울 자취방</div>
-							<div class="col-2">권범준</div>
-							<div class="col-3">010-3573-9617</div>
-							<div class="col text-center">경북 구미시 인동가산로 436</div>
+							<div class="col-2">${it.my_delivery_nickname}<input type="number" id="sew" class="hide" value="${it.my_delivery_seq}"/></div>
+							<div  class="col-2">${it.my_delivery_name}</div>
+							<div class="col-3 phone">${it.my_delivery_phone}</div>
+							<div class="col text-center">${it.my_delivery_address} ${it.my_delivery_remain_address}</div>
 							<div class="col-2">
 								<div class="form-check p-0">
-									<input class="form-check-input" type="checkbox" value=""
-										id="flexCheckChecked" checked>
+									<input class="form-check-input delche" type="checkbox" value=""
+										id="flexCheckChecked" >
 
 								</div>
 							</div>
 						</div>
-						<div id="table_item" class="row">
-							<div class="col-2">서울 자취방</div>
-							<div class="col-2">권범준</div>
-							<div class="col-3">010-3573-9617</div>
-							<div class="col text-center">경북 구미시 인동가산로 436</div>
-							<div class="col-2">
-								<div class="form-check p-0">
-									<input class="form-check-input" type="checkbox" value=""
-										id="flexCheckChecked" checked>
+              </c:forEach>  
+            </div>
+				
 
-								</div>
-							</div>
-						</div>
-						<div id="table_item" class="row">
-							<div class="col-2">서울 자취방</div>
-							<div class="col-2">권범준</div>
-							<div class="col-3">010-3573-9617</div>
-							<div class="col text-center">경북 구미시 인동가산로 436</div>
-							<div class="col-2">
-								<div class="form-check p-0">
-									<input class="form-check-input" type="checkbox" value=""
-										id="flexCheckChecked" checked>
-
-								</div>
-							</div>
-						</div>
-
-
-						<div id="table_bottom" class="row">
-							<nav aria-label="Page navigation example">
-								<ul class="pagination">
-									<li class="page-item"><a class="page-link" href="#"
-										aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-									</a></li>
-									<li class="page-item"><a class="page-link" href="#">1</a></li>
-									<li class="page-item"><a class="page-link" href="#">2</a></li>
-									<li class="page-item"><a class="page-link" href="#">3</a></li>
-									<li class="page-item"><a class="page-link" href="#"
-										aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-									</a></li>
-								</ul>
-							</nav>
-						</div>
+			    <div id="table_bottom" class="row">
+            <nav aria-label="Page     navigation example">
+              <ul class="pagination">
+                <c:if test="${vo.page ne 1}">
+                  <li class="page-item"><a class="page-link"  aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+                  </a></li>
+                </c:if>
+                <c:forEach var="i" begin="${startpage}" end="${endpage}">
+                  <c:if test="${vo.page ne i}">
+                    <li class="page-item"><a class="page-link" >${i}</a></li>
+                  </c:if>
+                  <c:if test="${vo.page eq i}">
+                    <li class="page-item"><a class="page-link active" >${i}</a></li>
+                  </c:if>
+                </c:forEach>
+                <c:if test="${vo.page lt maxpage}">
+                  <li class="page-item"><a class="page-link"  aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+                  </a></li>
+                </c:if>
+              </ul>
+            </nav>
+          </div>
 
 					</div>
 					<div class="row">
 						<div class="col"></div>
 						<div class="col-auto">
-							<button type="button"
-								class="rounded btn-danger border-0 rounded-pill shadow">선택
+							<button type="button" id="seldel"
+								class=" p-2 rounded btn-danger border-0 rounded-pill shadow">선택
 								삭제</button>
 						</div>
+            <div class="col-auto">
+              <button id="add" type="button"
+                class=" p-2 rounded btn-primary border-0 rounded-pill shadow">기본 주소지 등록</button>
+            </div>
+            
 					</div>
 					<div class="row p-2 fs-3 bg-body rounded mt-3">
 						<div class="col-auto row">
@@ -156,38 +151,36 @@
 									aria-label="Close"></button>
 							</div>
 						</div>
+         
 						<div
 							class="row bg-body border-dark border-bottom border-start border-end border-solid border-1"
 							id="body_popUp">
+                 <form action="">
 							<div class="row mt-2" id="split_line">
-								<div class="col-auto">구분:</div>
+								<div class="col-2">구분:</div>
 								<div class="col-auto">
-									<input class="form-control" type="text" placeholder="구분" />
+									<input id="my_delivery_nickname" class="form-control" type="text" placeholder="구분" />
 								</div>
 							</div>
 							<div class="row mt-2" id="split_line">
-								<div class="col-auto">이름:</div>
+								<div class="col-2">이름:</div>
 								<div class="col-auto">
-									<input class="form-control" type="text" placeholder="이름" />
+									<input id="my_delivery_name" class="form-control" type="text" placeholder="이름" />
 								</div>
 							</div>
 
 							<div class="row mt-2" id="split_line">
-								<div class="col-auto">전화번호:</div>
+								<div class="col-2">전화번호:</div>
 								<div class="col d-flex">
-									<select>
-										<option value="010">010</option>
-										<option value="011">011</option>
-									</select>- <input class="form-control " type="number" placeholder="0000" />-
-									<input class="form-control " type="number" placeholder="0000" />
+									<input id="my_delivery_phone" class="form-control " type="text" placeholder="01012346642" />
 								</div>
 							</div>
 
 
 							<div class="row mt-2" id="zipcode_line">
-								<div class="col-auto">주소:</div>
+								<div class="col-2">주소:</div>
 								<div class="col-auto">
-									<input readonly type="text" class="form-control"
+									<input id="my_delivery_zipcode" readonly type="text" class="form-control"
 										id="zipCodeBox" placeholder="우편번호">
 								</div>
 								<div class="col-auto ms-2">
@@ -196,26 +189,29 @@
 								</div>
 							</div>
 							<div class="row mt-2" id="address_line">
-								<div class="col-1"></div>
+								<div class="col-2"></div>
 								<div class="col-6">
-									<input readonly type="text" class="form-control" id="address"
+									<input id="my_delivery_address" readonly type="text" class="form-control" id="address"
 										placeholder="주소">
 								</div>
 							</div>
 							<div class="row mt-2" id="addressEtc_line">
-								<div class="col-1"></div>
+								<div class="col-2"></div>
 								<div class="col-6">
-									<input type="text" id="etc" placeholder="추가 주소">
+									<input id="my_delivery_remain_address" type="text" id="etc" placeholder="추가 주소">
 								</div>
 							</div>
 							<div class="row mb-2">
 								<div class="col"></div>
+                <div class="col-auto">
+                  <button type="reset" class="btn btn-info">초기화</button>
+                </div>
 								<div class="col-auto">
-									<button type="button" id="Address_Add" class="btn btn-info">추가</button>
+									<button type="button" disabled id="Address_Add" class="btn btn-info">추가</button>
 								</div>
 							</div>
 
-
+</form>
 
 
 
@@ -226,7 +222,7 @@
 
 			</div>
 		</div>
-
+<input type="number" id="page" class="hide" value="${vo.page}"/>
 		<jsp:include page="/WEB-INF/commonjsp/common_mypage_bottom.jsp"></jsp:include>
 
 		<!-- Footer Start -->

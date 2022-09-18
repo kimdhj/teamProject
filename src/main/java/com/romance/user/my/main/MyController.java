@@ -21,14 +21,14 @@ public class MyController {
 	MyService ser;
 	
 	@GetMapping("myMain.do")
-	public String myMain(HttpSession session, JwtUtils util) throws IOException {
-		
-		if(CheckToken.isTokenUser(session, util) == 1) {
-			System.out.println("안녕하십니까?");
+	public String myMain(HttpSession session, JwtUtils utils) throws IOException {
+		UserVO voToken = utils.getuser(session);
+		if(voToken != null) {
 			return "my_Main";
 		} else {
 			return "redirect:login.do";
 		}
+		
 	}
 	
 	@GetMapping("myPassword.do")

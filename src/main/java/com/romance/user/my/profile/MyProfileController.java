@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.romance.security.JwtUtils;
 import com.romance.user.login.UserVO;
@@ -60,6 +62,59 @@ public class MyProfileController {
 				return "redirect:myWithdrawal.do";
 			}
 	
+		} else {
+			return "redirect:login.do";
+		}
+	}
+	
+	@GetMapping("myTransPassword.do")
+	public String myTransPassword(HttpSession session, JwtUtils utils) throws IOException {
+		UserVO voToken = utils.getuser(session);
+		if(voToken != null) {
+			return "my_TransPassword";
+		} else {
+			return "redirect:login.do";
+		}
+				
+	}
+	
+	@PostMapping("passwordCheck.do")
+	@ResponseBody
+	public int passwordCheck(@RequestParam("user_now_password") String user_now_password, HttpSession session, JwtUtils utils) throws Exception {
+		UserVO voToken = utils.getuser(session);
+		int checkPassword = 0;
+		if(voToken != null) {
+			String user_id = voToken.getUser_id();
+			UserVO vo = myProfileService.getSessionUser(user_id);
+			String user_session_password = vo.getUser_password();//세션에 등록된 비밀번호
+			System.out.println(">>>>>세션 비번 : " + user_session_password);
+			System.out.println(">>>>>입력받은 비번 : " + user_now_password);
+			//입력받은 비밀번호와의 일치여부 확인
+			if(bCryptPasswordEncoder.matches(user_now_password, user_session_password)) {
+				checkPassword = 1; //비밀번호 일치함
+				return checkPassword;
+			} else {
+				checkPassword = 2; //비밀번호 일치하지않음
+				return checkPassword;
+			}
+		} else {
+			checkPassword = 0;
+			return checkPassword;
+		}
+	}
+	
+	@PostMapping("transPassword.do")
+	public String transPassword(UserVO userVO, HttpSession session, JwtUtils utils) throws Exception {
+		UserVO voToken = utils.getuser(session);
+		if(voToken != null){
+			System.out.println("비밀번호 변경작업 컨트롤러");
+			System.out.println("입력받은 새 비밀번호 : " + userVO.getUser_password());
+			userVO.setUser_id(voToken.getUser_id());
+			userVO.setUser_password(bCryptPasswordEncoder.encode(userVO.getUser_password()));
+			System.out.println("vo에 저장된 아이디 : " + userVO.getUser_id());
+			System.out.println("암호화된 입력받은 새 비밀번호 : " + userVO.getUser_password());
+			myProfileService.transPassword(userVO);
+			return "redirect:myTransPassword.do";
 		} else {
 			return "redirect:login.do";
 		}

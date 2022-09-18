@@ -3,6 +3,7 @@ package com.romance.admin.product;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -17,6 +18,8 @@ public class ProductVO {
 	private String book_descript;
 	private String book_imgURL;
 	private String book_bigimgURL;
+	private MultipartFile imgFile0;
+	private MultipartFile imgFile1;
 	private String book_title;
 	private int book_points;
 	private String book_publish;

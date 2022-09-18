@@ -7,7 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.romance.admin.account.Criteria;
+import com.romance.admin.coupon.CouponVO;
+import com.romance.admin.coupon.UserCouponVO;
 import com.romance.admin.login.AdminUserVO;
+import com.romance.user.login.UserVO;
 
 @Repository
 public class AdminAccountDAO {
@@ -53,4 +56,36 @@ public class AdminAccountDAO {
 		sqlSessionTemplate.update("AdminUserDAO.updateUserAccount", vo);
 	}
 	
+	public List<UserCouponVO> getUserCouponList(String user_id) {
+		System.out.println("Mybatis로 현재 보고있는 회원의 쿠폰명 리스트로 가져오기");
+		return sqlSessionTemplate.selectList("AdminUserDetail.getUserCouponList", user_id);
+	}
+	
+	public void deleteUserCoupon(int user_coupon_seq) {
+		sqlSessionTemplate.delete("AdminUserDetail.deleteUserCoupon", user_coupon_seq);		
+	}
+	
+	public List<CouponVO> getCouponList() {
+		return sqlSessionTemplate.selectList("AdminUserDetail.getCouponList");
+	}
+	
+	public CouponVO getCouponInfo(int coupon_seq) {
+		return sqlSessionTemplate.selectOne("AdminUserDetail.getCouponInfo", coupon_seq);
+	}
+	
+	public void giveCoupon(UserCouponVO userCouponVO) {
+		sqlSessionTemplate.insert("AdminUserDetail.giveCoupon", userCouponVO);
+	}
+	
+	public int getUserPoint(String user_id) {
+		return sqlSessionTemplate.selectOne("AdminUserDetail.getUserPoint", user_id);
+	}
+	
+	public void giveUserPoint(UserVO userVO) {
+		sqlSessionTemplate.update("AdminUserDetail.giveUserPoint", userVO);
+	}
+	
+	public void deleteUserPoint(UserVO userVO) {
+		sqlSessionTemplate.update("AdminUserDetail.deleteUserPoint", userVO);
+	}
 }
