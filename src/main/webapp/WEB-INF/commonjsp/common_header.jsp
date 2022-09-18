@@ -39,7 +39,7 @@
                 <div class="navbar-nav ms-auto p-4 p-lg-0">
 
 
-                <a href="info_Info.jsp" class="nav-item nav-link">소개</a>
+                <a href="info.do" class="nav-item nav-link">소개</a>
                     <div class="nav-item dropdown">
                         <a href="/booklist.do?country=2" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">국내</a>
                         <div id="navko" class="dropdown-menu m-0">
