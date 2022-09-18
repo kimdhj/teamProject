@@ -90,5 +90,16 @@
 		INSERT INTO ask (ask_title, ask_content, ask_status, ask_file, ask_password, user_id)
 		VALUES(#{ask_title}, #{ask_content}, '답변 대기', #{ask_file}, #{ask_password}, #{user_id})
 	</insert>
+	
+	<!-- 글비번 체크 -->
+	<select id="getMyRequestPassword" parameterType="int" resultType="string">
+		SELECT ask_password FROM ask WHERE ask_seq = #{ask_seq}
+	</select>
+	
+	<update id="updateMyRequest" parameterType="myRequestVO">
+		UPDATE ask SET ask_content = #{ask_content}
+		<if test="ask_file != null and !ask_file.equals('')">, ask_file = #{ask_file}</if> 
+		WHERE ask_seq = #{ask_seq}
+	</update>
 
 </mapper>

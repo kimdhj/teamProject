@@ -1,6 +1,7 @@
 package com.romance.user.my.request.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,5 +50,15 @@ public class MyRequestDAO {
 	public void insertMyRequest(MyRequestVO myRequestVO) {
 		System.out.println("Mybatis로 insertMyRequest 기능 처리");
 		sqlSessionTemplate.insert("userRequest.insertMyRequest", myRequestVO);
+	}
+	
+	//문의글 비밀번호 확인
+	public String getMyRequestPassword(int ask_seq) {
+		return sqlSessionTemplate.selectOne("userRequest.getMyRequestPassword", ask_seq);
+	}
+	
+	//문의글 수정
+	public void updateMyRequest(MyRequestVO myRequestVO) {
+		sqlSessionTemplate.update("userRequest.updateMyRequest", myRequestVO);
 	}
 }
