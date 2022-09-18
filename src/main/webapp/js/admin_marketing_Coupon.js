@@ -117,6 +117,7 @@ $(document).ready(function() {
 			}
 		});
 	});
+	
 	// 클릭해서 삭제
 	$(document).on('click', ".del", function(e) {
 		let coupon_code = $(this).parents("tr").children('td:eq(3)').text().trim();
