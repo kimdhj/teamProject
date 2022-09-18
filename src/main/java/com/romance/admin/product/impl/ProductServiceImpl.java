@@ -89,4 +89,16 @@ public class ProductServiceImpl implements ProductService {
 		ProductDAO.del_product(book_seq);
 	}
 	
+	@Override
+	public void del_chk(List<Integer> codelist) {
+		for(int i=0;i<codelist.size();i++) {
+			ProductDAO.del_product(codelist.get(i));
+		}
+	}
+	
+	@Override
+	public int product_Update(@RequestParam(name="book_seq") int book_seq) {
+		return ProductDAO.product_Update(book_seq);
+	}
+	
 }

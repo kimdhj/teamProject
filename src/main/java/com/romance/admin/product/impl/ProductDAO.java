@@ -51,5 +51,8 @@ public class ProductDAO {
 		sqlSessionTemplate.delete("ProductDAO.del_product", book_seq);
 	}
 	
+	public int product_Update(@RequestParam(name="book_seq") int book_seq) {
+		return sqlSessionTemplate.selectOne("ProductDAO.product_Update", book_seq);
+	}
 	
 }

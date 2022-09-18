@@ -18,5 +18,7 @@ public interface ProductService {
 	int check_isbn(@RequestParam(name="book_isbn") String book_isbn);
 	int check_category(@RequestParam(name="category_num") int category_num);
 	void del_product(@RequestParam(name="book_seq") int book_seq);
+	public void del_chk(List<Integer> codelist);
+	int product_Update(@RequestParam(name="book_seq") int book_seq);
 	
 }

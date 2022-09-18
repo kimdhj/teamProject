@@ -142,5 +142,19 @@ public class ProductController {
 			productService.del_product(book_seq);
 		}
 		
+		//물품 체크 삭제!
+		@RequestMapping(value="/del_chk.mdo", method=RequestMethod.POST)
+		@ResponseBody
+		public int dellist(@RequestParam(value="codelist[]")List<Integer> codelist) {
+			productService.del_chk(codelist);
+			return 1;
+		}
+		
+		//물품 수정 페이지!
+		@RequestMapping("/product_Update.mdo")
+		public String product_Update(Model model, @RequestParam(name="book_seq") int book_seq) {
+			model.addAttribute("ProductDAO", productService.product_Update(book_seq));
+			return "admin_product_Update";
+		}
 		
 }
