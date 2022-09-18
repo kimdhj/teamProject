@@ -37,7 +37,8 @@ $(function() {
 // .contentClick 을 click 할 때 해당 function 이 일어남
 // 이걸 처리해줘야 페이징으로 이동했을 때 실행 가능 -> 페이징 처리하는 이벤트 생각하면 쉬움
 $(document).on("click", ".contentClick",function(){
-	$(".form1").removeClass("hide");
+	
+//	$(".form1").removeClass("hide");
 	
 	console.log($(this).parents('tr').children('td:eq(1)').children('input').val());
 	let seq = $(this).parents('tr').children('td:eq(1)').children('input').val();
@@ -60,9 +61,15 @@ $(document).on("click", ".contentClick",function(){
 	console.log(date);
 	console.log(sub);
 	
+	if($(".form1").hasClass("hide")){ // hide 가 있으면 
+//		$(".form1").toggle();
+		$(".form1").removeClass("hide"); // hide 를 지워서 리뷰를 띄운다.
+	}else if(seq == $("#reply_seq").text()){ // hide 없고, 값을 받은 seq 랑 jsp 에서의 #reply_seq 의 값이 같다면
+		$(".form1").addClass("hide"); // hidd 를 추가해서 리뷰를 지운다.
+	} // 받아온 let seq 값과 jsp 에서의 #reply_seq 값이 다를 수 있기 때문에, seq 값을 저장하는 코드 위에서 진행 -> 누르는 seq 값에 따라 설정 가능
 	
+	$("#reply_seq").text(seq);
 	$("#book_title").text(title);
-	$("#user_id").text(id);
 	$("#user_id").text(id);
 	$("#user_name").text(name);
 	$("#user_birth").text(birth);
@@ -70,6 +77,9 @@ $(document).on("click", ".contentClick",function(){
 	$("#reply_date").text(date);
 	$("#book_title").text(title);
 	$("#content1").text(content);
+	console.log($("#reply_seq").text());
+	
+//	$(".form1").toggle();
 	
 	console.log("왜 안되냐");
 });
@@ -284,18 +294,145 @@ $(document).ready(function() {
 	});	
 	
 	// 클릭해서 블라인드
-	$(".blind").click(function(e) {
-		
-//		$(this).parents('tr').remove();
+	$(document).on("click", ".blind", function(e){
+		Swal.fire({
+			text: "해당 리뷰를 블라인드 처리하시겠습니까?",
+			icon: 'warning',
+			showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '예',
+            cancelButtonText: '아니오'
+		}).then((result) => {
+			if(result.isConfirmed){
+				Swal.fire({
+					text: "처리되었습니다.",
+	            	icon: "success",
+	            	showConfirmButton: false,
+	            	timer: 1500,
+				}).then(function(){
+					var seq = Number($(e.target).parents('tr').children('td:eq(1)').children('input').val());
+					console.log("블라인드 번호", seq);
+					location.href="/ReplyBlind.mdo?reply_seq=" + seq;
+				})
+			}else if(result.isDismissed){
+				return false;
+			}
+		})
 	})
 	
+	$(document).on("click", ".blindCancel", function(e){
+		Swal.fire({
+			text: "블라인드 처리를 해제하시겠습니까?",
+			icon: 'warning',
+			showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '예',
+            cancelButtonText: '아니오'
+		}).then((result) => {
+			if(result.isConfirmed){
+				Swal.fire({
+					text: "처리되었습니다.",
+	            	icon: "success",
+	            	showConfirmButton: false,
+	            	timer: 1500,
+				}).then(function(){
+					var seq = Number($(e.target).parents('tr').children('td:eq(1)').children('input').val());
+					console.log("블라인드 번호", seq);
+					location.href="/ReplyBlindCancel.mdo?reply_seq=" + seq;
+				})
+			}else if(result.isDismissed){
+				return false;
+			}
+		})
+	})
+	
+	
 	// 선택 된 요소 블라인드
-	$(".allblind").click(function(e) {
-		
-		console.log($('.delche:checked'))
-//		$('.delche:checked').parents('tr').remove();
-		$('.allche').removeAttr('checked');
+	$(".chkbox").click(function(e){
 	});
+	$(".allblind").click(function() {
+		var chk_arr = [];
+		Swal.fire({
+			text: "선택한 리뷰를 블라인드 처리하시겠습니까?",
+			icon: 'warning',
+			showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '예',
+            cancelButtonText: '아니오'
+		}).then((result)=>{
+			if(result.isConfirmed){
+				$("input[name='chkbox']:checked").map((ine,el)=>{
+	    			// .text() -> .children("input").val();
+					var seq = $(el).parents('tr').children('td:eq(1)').children('input').val();
+					chk_arr.push(seq);
+					console.log(chk_arr);
+				})
+				$.ajax({
+					url: "/chkboxBlind.mdo",
+					type: "GET",
+					async: false,
+					data: {"reply_seq" : chk_arr},
+					success: function(data){
+						Swal.fire({
+							text: "삭제되었습니다.",
+		                	icon: "success",
+		                	showConfirmButton: false,
+		                	timer: 1500,
+						}).then(function(){
+							location.href="/ReplyList.mdo";
+						})
+					}
+				})
+			}else if(result.isDismissed){
+				return false;
+			}
+		})
+	});	
+	
+	$(".chkbox").click(function(e){
+	});
+	$(".allBlind").click(function() {
+		var chk_arr = [];
+		Swal.fire({
+			text: "선택한 리뷰를 블라인드 처리 해제하시겠습니까?",
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: '예',
+			cancelButtonText: '아니오'
+		}).then((result)=>{
+			if(result.isConfirmed){
+				$("input[name='chkbox']:checked").map((ine,el)=>{
+					// .text() -> .children("input").val();
+					var seq = $(el).parents('tr').children('td:eq(1)').children('input').val();
+					chk_arr.push(seq);
+					console.log(chk_arr);
+				})
+				$.ajax({
+					url: "/chkboxBlindCancel.mdo",
+					type: "GET",
+					async: false,
+					data: {"reply_seq" : chk_arr},
+					success: function(data){
+						Swal.fire({
+							text: "삭제되었습니다.",
+							icon: "success",
+							showConfirmButton: false,
+							timer: 1500,
+						}).then(function(){
+							location.href="/ReplyList.mdo";
+						})
+					}
+				})
+			}else if(result.isDismissed){
+				return false;
+			}
+		})
+	});	
 	
 	// 해제시 전체 클릭 비활성화+모두 클릭되면 전체 클릭 활성화
 	$('.delche:checked').click(function() {
@@ -561,15 +698,28 @@ function make() {
 									<p class="rowColumn" id="birth">${reply.user_birth}</p>
 									<input type="hidden" value="${reply.user_birth}" name="user_birth"/>
 								</td>
-								<td>
-									<p class="rowColumn" id="title">${reply.book_title }</p>
+								<td>`
+								console.log("1",reply.book_title);
+								if(reply.book_title.length > 7){
+									title = reply.book_title.substring(0, 6); console.log("2",title);
+									con += `<p class="rowColumn" id="title">${title }...</p>`
+								}else{
+									con += `<p class="rowColumn" id="title">${reply.book_title }</p>`
+								}
+								con += `
 									<input type="hidden" value="${reply.book_title}" name="book_title"/>
 								</td>
 								<td>
 									<p class="rowColumn" id="content">
-									<a href="#" class="contentClick">
-									${reply.reply_cotent }
-									</a>
+									<a href="#" class="contentClick">`
+								if(reply.reply_cotent.length >7){
+									cotent = reply.reply_cotent.substring(0, 6);
+									con += `${cotent}...`
+								}else{
+									con += `${reply.reply_cotent }`
+								}
+								
+						con+=	`</a>
 									</p>
 									<input type="hidden" value="${reply.reply_cotent}" name="reply_cotent"/>
 								</td>
@@ -590,7 +740,7 @@ function make() {
 									if(reply.user_blank == false){
 							con +=	`<button class="btn btn-danger rounded-pill blind">처리</button>`
 									}else if(reply.user_blank == true){
-							con	+=	`<button class="btn btn-outline-danger rounded-pill blind">처리</button>`
+							con	+=	`<button class="btn btn-outline-danger rounded-pill blindCancel">처리 완료</button>`
 									}
 						con+=	`</td>
 								<td>

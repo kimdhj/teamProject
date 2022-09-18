@@ -63,7 +63,6 @@ public class ReplyController {
     return count;
   }
   
-
   // Delete
   @GetMapping("/ReplyDelete.mdo")
   public String delete(ReplyVO vo) {
@@ -84,6 +83,42 @@ public class ReplyController {
     return null;
   }
   
+  // Blind 처리 0 -> 1
+  @GetMapping("/ReplyBlind.mdo")
+  public String blind(ReplyVO vo) {
+      service.blind(vo);
+      
+//    vo = service.getReply(vo);
+//     if(vo.isUser_blank() == false) {
+//       service.blind(vo);
+//     }
+     
+    return "redirect:ReplyList.mdo";
+  }
+  
+  //Blind 처리 해제 1 -> 0
+  @GetMapping("/ReplyBlindCancel.mdo")
+  public String blindCancel(ReplyVO vo) {
+    System.out.println("블라인드 해제 " + vo);
+    
+    service.blindCancel(vo);
+    
+    return "redirect:ReplyList.mdo";
+  }
+  
+  @GetMapping("/chkboxBlind.mdo")
+  @ResponseBody
+  public String chkboxBlind(@RequestParam(value="reply_seq[]") List<String> reply_seq) {
+    service.chkboxBlind(reply_seq);
+    return null;
+  }
+  
+  @GetMapping("/chkboxBlindCancel.mdo")
+  @ResponseBody
+  public String chkboxBlindCancel(@RequestParam(value = "reply_seq[]") List<String> reply_seq) {
+    service.chkboxBlindCancel(reply_seq);
+    return null;
+  }
   
   
   

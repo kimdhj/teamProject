@@ -50,6 +50,7 @@
 						<select class="row form-select w-100 fs-5" id="level" name="level"
 							id="level" aria-label="Default select example"
 							style="margin-left: 1%;">
+							<option class="fs-5" value="전체">전체</option>
 							<option class="fs-5" value="ID">ID</option>
 							<option class="fs-5" value="이름">이름</option>
 							<option class="fs-5" value="생년월일">생년월일</option>
@@ -75,9 +76,7 @@
 					<table class="table " id="table">
 						<thead>
 							<tr>
-								<th><input
-									class="form-check-input border-1 border-dark allche"
-									type="checkbox" value="" id="flexCheckChecked" checked></th>
+								<th><input class="form-check-input border-1 border-dark allche" type="checkbox" value="" id="flexCheckChecked" checked></th>
 								<th>번호</th>
 								<th>ID</th>
 								<th>이름</th>
@@ -86,7 +85,7 @@
 								<th>내용</th>
 								<th>등록일자</th>
 								<th>등급</th>
-								<th><button class="btn btn-warning rounded-pill allblind">블라인드</button></th>
+								<th><button class="btn btn-warning rounded-pill allblind allBlind">블라인드</button></th>
 								<th><button class="btn btn-warning rounded-pill seldel">선택삭제</button></th>
 							</tr>
 						</thead>
@@ -114,15 +113,29 @@
                                       <input type="hidden" value="${reply.user_birth}" name="user_birth"/>
 								</td>
 								<td>
-									<p class="rowColumn" id="title">
-                                      ${reply.book_title }
+                                  <p class="rowColumn" id="title">
+                                  <c:choose>
+                                    <c:when test="${fn:length(reply.book_title) gt 7 }">
+                                      <c:out value="${fn:substring(reply.book_title, 0, 6) }..."></c:out>
+                                    </c:when>
+                                    <c:otherwise>
+                                    <c:out value="${reply.book_title }"/>
+                                    </c:otherwise>
+                                  </c:choose>
                                       </p>
                                     <input type="hidden" value="${reply.book_title}" name="book_title"/>
 								</td>
 								<td>
-									<p class="rowColumn" id="content">
-                                    <a href="#" class="contentClick">
-                                    ${reply.reply_cotent }
+  									<p class="rowColumn" id="content">
+                                     <a href="#" class="contentClick">
+                                    <c:choose>
+                                    <c:when test="${fn:length(reply.reply_cotent) gt 7 }">
+                                      <c:out value="${fn:substring(reply.reply_cotent, 0, 6) }..."></c:out>
+                                    </c:when>
+                                    <c:otherwise>
+                                    <c:out value="${reply.reply_cotent }"/>
+                                    </c:otherwise>
+                                  </c:choose>
                                     </a>
                                     </p>
                                     <input type="hidden" value="${reply.reply_cotent}" name="reply_cotent"/>
@@ -148,7 +161,7 @@
                                     </c:if>
                                     
                                     <c:if test="${reply.user_blank eq true }">
-									 <button class="btn btn-outline-danger rounded-pill blind">처리</button>
+									 <button class="btn btn-outline-danger rounded-pill blindCancel">처리 완료</button>
                                     </c:if>
 								</td>
 								<td>
@@ -205,7 +218,7 @@
       </div>
     
         <!-- 리뷰 내용 클릭하면 해당 리뷰 내용 보여주기 -->
-          <div class="mb-0 mt-5 p-0 form1 hide replyBox">
+          <div class="mb-0 mt-5 p-0 form1 hide replyBox fold">
             <button type="button" id="all" class="select p-2" >리뷰 상세보기</button>
           </div>
       
@@ -238,7 +251,7 @@
             </div>
           </div>
       
-          <div id="all_box" class="bg-white w-100 hide form1 mb-3">
+          <div id="all_box" class="bg-white w-100 hide form1 mb-3 replyBox fold">
             <div class="row d-flex align-items-center" id="input_line_top">
               <div class="row"></div>
               <div class="row" id="content1"></div>

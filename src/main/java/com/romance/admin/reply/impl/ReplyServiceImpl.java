@@ -102,6 +102,40 @@ public class ReplyServiceImpl implements ReplyService {
     return reply.getReply(vo);
   }
   
+  @Override
+  public void blind(ReplyVO vo) {
+    reply.blind(vo);
+  }
   
+  @Override
+  public void blindCancel(ReplyVO vo) {
+    reply.blindCancel(vo);
+  }
+  
+  @Override
+  public void chkboxBlind(List<String> reply_seq) {
+    for(String nSeq : reply_seq) {
+      int seq = Integer.parseInt(nSeq);
+      
+      ReplyVO vo = new ReplyVO();
+      vo.setReply_seq(seq);
+      vo = getReply(vo);
+      
+      blind(vo);
+    }
+  }
+  
+  @Override
+  public void chkboxBlindCancel(List<String> reply_seq) {
+    for(String nSeq : reply_seq) {
+      int seq = Integer.parseInt(nSeq);
+      
+      ReplyVO vo = new ReplyVO();
+      vo.setReply_seq(seq);
+      vo = getReply(vo);
+      
+      blindCancel(vo);
+    }
+  }
   
 }

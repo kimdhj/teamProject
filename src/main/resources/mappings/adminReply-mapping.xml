@@ -59,19 +59,19 @@
 	</select>
 	
 	<update id="blind" parameterType="reply">
-		UPDATE reply SET reply_blank = 1 WHERE reply_seq = #{reply_seq}
+		UPDATE reply SET user_blank = 1 WHERE reply_seq = #{reply_seq}
 	</update>
 	
 	<update id="blindCancel" parameterType="reply">
-		UPDATE reply SET reply_blank = 0 WHERE reply_seq = #{reply_seq}
+		UPDATE reply SET user_blank = 0 WHERE reply_seq = #{reply_seq} AND user_blank = 1
 	</update>
 	
 	<update id="chkboxBlind" parameterType="int">
-		UPDATE reply SET reply_blank = 1 WHERE reply_seq = #{reply_seq}
+		UPDATE reply SET user_blank = 1 WHERE reply_seq = #{reply_seq}
 	</update>
 
 	<update id="chkboxBlindCancel" parameterType="int">
-		UPDATE reply SET reply_blank = 0 WHERE reply_seq = #{reply_seq}
+		UPDATE reply SET user_blank = 0 WHERE reply_seq = #{reply_seq}
 	</update>
 	
 	<delete id="delete" parameterType="reply">
