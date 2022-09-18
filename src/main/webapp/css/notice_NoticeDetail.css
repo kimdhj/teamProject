@@ -11,11 +11,16 @@
   border-color: rgb(212, 212, 212) !important;
 }
 #Content {
-  height: 50vh;
-  overflow: auto;
+	margin-top: 1%;
+	height: 50vh;
+	overflow: auto;
 }
 
 .title{
 	font-weight: bold;
 	font-size: medium;
+}
+
+#endPoint *{
+   cursor:pointer;
 }
