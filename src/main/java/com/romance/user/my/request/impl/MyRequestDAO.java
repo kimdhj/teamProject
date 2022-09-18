@@ -61,4 +61,9 @@ public class MyRequestDAO {
 	public void updateMyRequest(MyRequestVO myRequestVO) {
 		sqlSessionTemplate.update("userRequest.updateMyRequest", myRequestVO);
 	}
+	
+	//문의글 삭제
+	public void deleteMyRequest(int ask_seq) {
+		sqlSessionTemplate.delete("userRequest.deleteMyRequest", ask_seq);
+	}
 }

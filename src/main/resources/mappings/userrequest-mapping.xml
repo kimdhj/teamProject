@@ -101,5 +101,9 @@
 		<if test="ask_file != null and !ask_file.equals('')">, ask_file = #{ask_file}</if> 
 		WHERE ask_seq = #{ask_seq}
 	</update>
+	
+	<delete id="deleteMyRequest" parameterType="int">
+		DELETE FROM ask WHERE ask_seq = #{ask_seq}
+	</delete>
 
 </mapper>

@@ -2,7 +2,6 @@ package com.romance.user.my.request;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 import com.romance.user.login.UserVO;
 
@@ -32,5 +31,8 @@ public interface MyRequestService {
 	
 	//문의글 수정
 	public void updateMyRequest(MyRequestVO myRequestVO) throws Exception;
+	
+	//문의글 삭제
+	public void deleteMyRequest(int ask_seq) throws Exception;
 	
 }
