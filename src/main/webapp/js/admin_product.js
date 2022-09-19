@@ -2,28 +2,7 @@
 
 
 
-//상품 수정 페이지 이동
-function upd_product(upd){
-	console.log($(upd).parents("tr").children("td:eq(1)").children("p").text().trim());
-	
-	$.ajax({
-			url: "/product_Update.mdo",
-			method: "POST",
-			data: {
-				book_seq : $(upd).parents("tr").children("td:eq(1)").children("p").text().trim()
-			},
-			success: function(e) {
 
-				
-			},
-			error: function(e) {
-
-
-			}
-		});
-	
-
-}
 	
 
 
@@ -149,7 +128,7 @@ $("#search_btn").click(function(e){
 									<p class="rowColumn" contenteditable="false" data-default="${pro.book_sellCount }">${pro.book_sellCount }</p>
 								</td>
 								<td>
-									<button type="button" id="upd_product" name="upd_product" onclick="upd_product(this)">수정</button>
+									<button type="button" id="upd_product" name="upd_product" onclick="location.href='/product_Update.mdo?book_seq=${pro.book_seq}'">수정</button>
 								</td>
 								<td>
 									<button type="button" id="del_one" name="del_one" onclick="del_product(this)">삭제</button>
@@ -259,7 +238,7 @@ function viewview(v){
 									<p class="rowColumn" contenteditable="false" data-default="${pro.book_sellCount }">${pro.book_sellCount }</p>
 								</td>
 								<td>
-									<button type="button" id="upd_product" name="upd_product" onclick="upd_product(this)">수정</button>
+									<button type="button" id="upd_product" name="upd_product" onclick="location.href='/product_Update.mdo?book_seq=${pro.book_seq}'">수정</button>
 								</td>
 								<td>
 									<button type="button" id="del_one" name="del_one" onclick="del_product(this)">삭제</button>

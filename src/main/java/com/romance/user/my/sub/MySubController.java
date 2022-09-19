@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.romance.admin.coupon.CouponService;
@@ -24,6 +26,8 @@ public class MySubController {
 
 	@Autowired
 	private IconService iconService;
+	@Autowired
+	private MySubService mySubService;
 	@Autowired
 	private SubscribeService subscribeService;
 	@Autowired
@@ -42,8 +46,19 @@ public class MySubController {
 		model.addAttribute("icon", iconService.getIcon());
 		model.addAttribute("sub", subscribeService.getSub(svo));
 		model.addAttribute("cou", couponService.owncoupon(userVO));
+		System.out.println("콘트" + mySubService.getcate(userVO));
+		model.addAttribute("cate", mySubService.getcate(userVO));
 		
 		return "my_AddReadInfo";
+	}
+	
+	//세션정보를 vo에 전달
+	@RequestMapping(value="check_csb.do", method=RequestMethod.POST)
+	@ResponseBody
+	public UserVO check_csb(HttpSession session, JwtUtils util) throws IOException {
+		UserVO userVO = util.getuser(session);
+		
+		return userVO;
 	}
 	
 	//마이페이지 구독취소
@@ -78,12 +93,6 @@ public class MySubController {
 		return "my_AddReadModify";
 	}
 	
-	//마이페이지 상품관리
-	@RequestMapping("my_product.mdo")
-	public String my_product() {
-		
-		return "admin_product";
-	}
 	
 	
 }

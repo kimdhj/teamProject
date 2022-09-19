@@ -31,24 +31,24 @@
 								<tr>
 									<td rowspan="2" id="book_thumbnail0"><img width="90" height="100" id="book_show0" src="${ProductDAO.book_imgURL }" /></td>
 									<td rowspan="2" id="book_thumbnail1"><img width="90" height="100" id="book_show1" src="${ProductDAO.book_bigimgURL }" /></td>
-									<td><input type="text" id="book_title" name="book_title" placeholder="책 제목">${ProductDAO.book_title }</td>
-									<td><input type="text" id="book_isbn" name="book_isbn" placeholder="책 고유번호">${ProductDAO.book_isbn }</td>
+									<td><input type="text" id="book_title" name="book_title" placeholder="책 제목" value="${ProductDAO.book_title }"></td>
+									<td><input type="text" id="book_isbn" name="book_isbn" placeholder="책 고유번호" value="${ProductDAO.book_isbn }"></td>
 								</tr>
 								<tr>
-									<td><input type="text" id="book_price" name="book_price" placeholder="책 가격">${ProductDAO.book_price }</td>
-									<td><input type="text" id="book_points" name="book_points" placeholder="책 포인트">${ProductDAO.book_points }</td>
+									<td><input type="text" id="book_price" name="book_price" placeholder="책 가격" value="${ProductDAO.book_price }"></td>
+									<td><input type="text" id="book_points" name="book_points" placeholder="책 포인트" value="${ProductDAO.book_points }"></td>
 								</tr>
 								<tr>
 									<td><input type="file" id="imgfile0" name="imgfile0" accept="/image/*" placeholder="작 사진" onchange="setThumbnail0(event);"></td>
 									<td><input type="file" id="imgfile1" name="imgfile1" accept="/image/*" placeholder="큰 사진" onchange="setThumbnail1(event);"></td>
-									<td><input type="text" id="author_seq" name="author_seq" placeholder="작가 번호" onkeyup="if(window.event.keyCode==13){checkAuthor()}">${ProductDAO.author_seq }</td>
-									<td><input type="text" id="book_author" name="book_author" placeholder="책 작가" readonly>${ProductDAO.book_author }</td>
+									<td><input type="text" id="author_seq" name="author_seq" placeholder="작가 번호" onkeyup="if(window.event.keyCode==13){checkAuthor()}" value="${ProductDAO.author_seq }"></td>
+									<td><input type="text" id="book_author" name="book_author" placeholder="책 작가" readonly value="${ProductDAO.book_author }"></td>
 								</tr>
 								<tr>
-									<td><input placeholder="출판일" type="date" id="book_publish_date" name="book_publish_date" value="${ProductDAO.book_publish_date }" /></td>
-									<td><input type="text" id="book_remain" name="book_remain" placeholder="책 재고">${ProductDAO.book_remain }</td>
-									<td><input type="text" id="book_publish" name="book_publish" placeholder="출판사">${ProductDAO.book_publish }</td>
-									<td><input type="text" id="category_num" name="category_num" placeholder="카테고리 번호">${ProductDAO.category_num }</td>
+									<td><input placeholder="출판일" type="text" id="book_publish_date" name="book_publish_date" value="<fmt:formatDate value="${ProductDAO.book_publish_date }" pattern="yyyy-MM-dd"/>" /></td>
+									<td><input type="text" id="book_remain" name="book_remain" placeholder="책 재고" value="${ProductDAO.book_remain }"></td>
+									<td><input type="text" id="book_publish" name="book_publish" placeholder="출판사" value="${ProductDAO.book_publish }"></td>
+									<td><input type="text" id="category_num" name="category_num" placeholder="카테고리 번호" value="${ProductDAO.category_num }"></td>
 								</tr>
 								<tr>
 									<td colspan="4"><textarea rows="6" id="book_descript" name="book_descript" placeholder="책 내용">${ProductDAO.book_descript }</textarea></td>
@@ -82,6 +82,6 @@
 	<!-- 여기서부터 JS 추가 -->
 	<script src="/js/datepicker.js"></script>
 	<script src="/js/datepicker.ko.js"></script>
-	<script src="/js/admin_product_Insert.js"></script>
+	<script src="/js/admin_product_Update.js"></script>
 </body>
 </html>

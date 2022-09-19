@@ -56,9 +56,11 @@
 	<delete id="del_product" parameterType="pros">
 		DELETE FROM book WHERE book_seq=#{book_seq}
 	</delete>
-	<update id="upd_product" parameterType="pros">
-		UPDATE book
-		SET book_price=#{book_price}, book_remain=#{book_remain}, book_descript=#{book_descript}, book_imgURL=#{book_imgURL}, book_bigimgURL=#{book_bigimgURL}, book_title=#{book_title}, book_points=#{book_points}, book_publish=#{book_publish}, book_publish_date=#{book_publish_date}, book_author=#{book_author}, book_isbn=#{book_isbn}, category_num=#{category_num}, author_seq=#{author_seq} WHERE book_seq = #{book_seq}
+	<update id="updateProduct" parameterType="pros">
+		UPDATE book SET 
+		<if test="book_imgURL != null and book_imgURL != ''"><![CDATA[ book_imgURL=#{book_imgURL},]]></if>
+		<if test="book_bigimgURL != null and book_bigimgURL != ''"><![CDATA[ book_bigimgURL=#{book_bigimgURL},]]></if>
+		book_price=#{book_price}, book_remain=#{book_remain}, book_descript=#{book_descript}, book_title=#{book_title}, book_points=#{book_points}, book_publish=#{book_publish}, book_publish_date=#{book_publish_date}, book_author=#{book_author}, book_isbn=#{book_isbn}, category_num=#{category_num}, author_seq=#{author_seq} WHERE book_seq = #{book_seq}
 	</update>
 	<select id="product_Update" parameterType="pros" resultType="pro">
 		select * from book where book_seq=#{book_seq}

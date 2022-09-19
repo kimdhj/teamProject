@@ -83,4 +83,5 @@
     <!-- Template Javascript -->
     <script src="/js/main.js"></script>
     <script src="/js/index.js"></script>    
+    <script src="/js/common_footer.js"></script>    
    

@@ -89,7 +89,7 @@
 									<p class="rowColumn" contenteditable="false" data-default="${pro.book_sellCount }">${pro.book_sellCount }</p>
 								</td>
 								<td>
-									<button type="button" id="upd_product" name="upd_product" onclick="upd_product(this)">수정</button>
+									<button type="button" id="upd_product" name="upd_product" onclick="location.href='/product_Update.mdo?book_seq=${pro.book_seq}'">수정</button>
 								</td>
 								<td>
 									<button type="button" id="del_one" name="del_one" onclick="del_product(this)">삭제</button>
