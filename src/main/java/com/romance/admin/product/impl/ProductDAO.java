@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.romance.admin.product.ProductSearchVO;
 import com.romance.admin.product.ProductVO;
-import com.romance.user.concern.ConcernWriterVO;
 
 @Repository
 public class ProductDAO {
@@ -35,6 +34,10 @@ public class ProductDAO {
 		sqlSessionTemplate.insert("ProductDAO.insertProduct", vo);
 	}
 	
+	public void updateProduct(ProductVO vo) {
+		sqlSessionTemplate.update("ProductDAO.updateProduct", vo);
+	}
+	
 	public String check_author(@RequestParam(name="author_seq") int author_seq) {
 		return sqlSessionTemplate.selectOne("ProductDAO.check_author", author_seq);
 	}
@@ -51,5 +54,8 @@ public class ProductDAO {
 		sqlSessionTemplate.delete("ProductDAO.del_product", book_seq);
 	}
 	
+	public ProductVO product_Update(@RequestParam(name="book_seq") int book_seq) {
+		return sqlSessionTemplate.selectOne("ProductDAO.product_Update", book_seq);
+	}
 	
 }

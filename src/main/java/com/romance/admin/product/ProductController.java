@@ -107,6 +107,14 @@ public class ProductController {
 			return "redirect:getProductList.mdo";
 		}
 		
+		//상품 UPDATE 시키기!
+		@RequestMapping(value="product_Update_real.mdo", method = RequestMethod.POST)
+		public String product_Update_real(@RequestParam(name="imgfile0") MultipartFile imgfile0, @RequestParam(name="imgfile1") MultipartFile imgfile1, ProductVO vo) throws IOException {
+			productService.updateProduct(imgfile0, imgfile1, vo);
+			
+			return "redirect:getProductList.mdo";
+		}
+
 		//작가번호로 작가 검색!
 		@RequestMapping(value="/check_author.mdo", method=RequestMethod.POST, produces = "application/text; charset=UTF-8")
 		@ResponseBody
@@ -142,5 +150,19 @@ public class ProductController {
 			productService.del_product(book_seq);
 		}
 		
+		//물품 체크 삭제!
+		@RequestMapping(value="/del_chk.mdo", method=RequestMethod.POST)
+		@ResponseBody
+		public int dellist(@RequestParam(value="codelist[]")List<Integer> codelist) {
+			productService.del_chk(codelist);
+			return 1;
+		}
+		
+		//물품 수정 페이지!
+		@GetMapping("/product_Update.mdo")
+		public String product_Update(Model model, @RequestParam(name="book_seq") int book_seq) {
+			model.addAttribute("ProductDAO", productService.product_Update(book_seq));
+			return "admin_product_Update";
+		}
 		
 }

@@ -144,7 +144,7 @@
 						<th scope="col">상품정보</th>
 						<th scope="col">수량</th>
 						<th scope="col">주문상태</th>
-						<th scope="col">주문변경</th>
+						<th scope="col">배송조회</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -154,23 +154,11 @@
 						<td>이것이 우분투 리눅스다 - 한빛미디어 (우재남 지음)</td>
 						<td>1</td>
 						<td>배송중</td>
-						<td>변경하기</td>
+						<td>
+							<button type="button" class="btn btn-warning" id="checkArrival" name="checkArrival">조회</button>
+						</td>
 					</tr>
-					<tr>
-						<th scope="row">2</th>
-						<td>Jacob</td>
-						<td>Thornton</td>
-						<td>@fat</td>
-						<td>@fat</td>
-						<td>@fat</td>
-					</tr>
-					<tr>
-						<th scope="row">3</th>
-						<td colspan="2">Larry the Bird</td>
-						<td>@twitter</td>
-						<td>@twitter</td>
-						<td>@twitter</td>
-					</tr>
+					
 				</tbody>
 			</table>
 		</div>
