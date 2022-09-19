@@ -16,5 +16,6 @@ public class TradeJoinVO {
   private String book_title;
   private String orders_status;
   private String order_bookList_count;
+  private String book_bigimgURL;
   private int sum;
 }

@@ -9,5 +9,6 @@ public interface TradeService {
   public TradeJoinVO ordersdetail(int orders_seq); 
   public int maincount(TradeSearchVO vo);
   public int cancelcount(TradeSearchVO vo);
+  public void delorderbooklist(TradeJoinVO vo) throws Exception;
   
 }

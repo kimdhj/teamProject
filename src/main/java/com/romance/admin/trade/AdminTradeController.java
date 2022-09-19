@@ -16,6 +16,7 @@ public class AdminTradeController {
   TradeService ser;
   @GetMapping("tradeordersdetail.mdo")
   public String ordersdetail() {
+  
     return "admin_trade_orders";
   }
   @GetMapping("admintrade.mdo")
@@ -71,8 +72,18 @@ public class AdminTradeController {
   }
   
   @GetMapping("admintradebooklist.mdo")
-  public String admin_trade_booklist() {
+  public String admin_trade_booklist(TradeJoinVO vo,Model model) {
+    System.out.println("주문별개"+vo);
+    TradeJoinVO voj=ser.booklistdetail(vo.getOrder_bookList_seq());
+    model.addAttribute("voj", voj);
     return "admin_trade_booklist";
+  }
+  @GetMapping("delorderbooklist.mdo")
+  public String delorderbooklist(TradeJoinVO vo) throws Exception {
+    System.out.println("삭제 vo"+vo);
+    ser.delorderbooklist(vo);
+    return "redirect:admintradebooklist.mdo?order_bookList_seq="+vo.getOrder_bookList_seq();
+    
   }
   @GetMapping("admintradecancel.mdo")
   public String admintradecancel() {
