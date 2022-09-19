@@ -7,4 +7,5 @@ public class TradeSearchVO {
   private int page;
   private String searchkeyword;
   private String searchcontent;
+  private int searchcontentint;
 }
