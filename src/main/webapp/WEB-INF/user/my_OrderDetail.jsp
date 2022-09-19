@@ -39,7 +39,7 @@
 					<td style="width:35%;">${orderDetail.orders_seq}</td>
 					<th class="bg-light" style="width:15%;">주문날짜</th>
 					<td style="width:35%;">
-						<fmt:formatDate value="${orderDetail.orders_order_day}" pattern="yyyy-MM-dd HH:ss" />
+						<fmt:formatDate value="${orderDetail.orders_order_day}" pattern="yyyy-MM-dd HH:mm:ss" />
 					</td>
 				</tr>
 				<tr>

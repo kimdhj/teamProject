@@ -46,3 +46,69 @@ $(function() {
 				}
 			});
 });
+
+//기간조회
+function searchDateOneWeek() {
+	let d = new Date();
+	const yearNow = d.getFullYear();
+	const monthNow = ('0' + (d.getMonth() + 1)).slice(-2);
+	const dayNow = ('0' + d.getDate()).slice(-2);
+	const today = yearNow + "-" + monthNow + "-" + dayNow;
+	let sel_day = -7; //일주일전
+	d.setDate(d.getDate() + sel_day);
+	let year = d.getFullYear();
+	let month = ('0' + (d.getMonth() + 1)).slice(-2);
+	let day = ('0' + d.getDate()).slice(-2);
+	dt = year + "-" + month + "-" + day;
+	console.log(dt);
+	document.getElementById("fromDate").value = dt;
+	document.getElementById("toDate").value = today;
+}
+function searchDateOneMonth() {
+	let d = new Date();
+	const yearNow = d.getFullYear();
+	const monthNow = ('0' + (d.getMonth() + 1)).slice(-2);
+	const dayNow = ('0' + d.getDate()).slice(-2);
+	const today = yearNow + "-" + monthNow + "-" + dayNow;
+	let sel_month = -1;
+	d.setMonth(d.getMonth() + sel_month);
+	let year = d.getFullYear();
+	let month = ('0' + (d.getMonth() + 1)).slice(-2);
+	let day = ('0' + d.getDate()).slice(-2);
+	dt = year + "-" + month + "-" + day;
+	console.log(dt);
+	document.getElementById("fromDate").value = dt;
+	document.getElementById("toDate").value = today;
+}
+function searchDateThreeMonth() {
+	let d = new Date();
+	const yearNow = d.getFullYear();
+	const monthNow = ('0' + (d.getMonth() + 1)).slice(-2);
+	const dayNow = ('0' + d.getDate()).slice(-2);
+	const today = yearNow + "-" + monthNow + "-" + dayNow;
+	let sel_month = -3;
+	d.setMonth(d.getMonth() + sel_month);
+	let year = d.getFullYear();
+	let month = ('0' + (d.getMonth() + 1)).slice(-2);
+	let day = ('0' + d.getDate()).slice(-2);
+	dt = year + "-" + month + "-" + day;
+	console.log(dt);
+	document.getElementById("fromDate").value = dt;
+	document.getElementById("toDate").value = today;
+}
+function searchDateSixMonth() {
+	let d = new Date();
+	const yearNow = d.getFullYear();
+	const monthNow = ('0' + (d.getMonth() + 1)).slice(-2);
+	const dayNow = ('0' + d.getDate()).slice(-2);
+	const today = yearNow + "-" + monthNow + "-" + dayNow;
+	let sel_month = -6;
+	d.setMonth(d.getMonth() + sel_month);
+	let year = d.getFullYear();
+	let month = ('0' + (d.getMonth() + 1)).slice(-2);
+	let day = ('0' + d.getDate()).slice(-2);
+	dt = year + "-" + month + "-" + day;
+	console.log(dt);
+	document.getElementById("fromDate").value = dt;
+	document.getElementById("toDate").value = today;
+}
