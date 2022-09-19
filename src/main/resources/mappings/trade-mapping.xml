@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="trade">
+	<select parameterType="tradesearchVO" resultType="tradejoinVO"
+		id="mainlist">
+	<![CDATA[select * from (select * ,@rownum:=@rownum+1 as rnum from (select o.orders_seq,user_id,orders_order_day,book_title,orders_status,order_bookList_count,order_bookList_count*book_price as sum from orders as o join order_bookList as b  on o.orders_seq=b.orders_seq join book bo on b.book_seq=bo.book_seq where orders_status not like concat("%","cancel","%")]]>
+<if
+			test="searchkeyword=='orders_seq' and searchcontentint !=0 "><![CDATA[AND o.orders_seq= #{searchcontentint}]]></if>
+		<if
+			test="searchkeyword=='user_id' and searchcontent != '' and searchcontent != null"><![CDATA[AND o.user_id like concat('%',#{searchcontent},'%')]]></if>
+		<if
+			test="searchkeyword=='orders_order_day' and searchcontent != '' and searchcontent != null"><![CDATA[AND o.orders_order_day>=#{searchcontent}]]></if>
+		<if
+			test="searchkeyword=='book_title' and searchcontent != '' and searchcontent != null"><![CDATA[AND book_title like concat('%',#{searchcontent},'%')]]></if>
+
+		<if
+			test="searchkeyword=='orders_state' and searchcontent !=''and searchcontent!=null"><![CDATA[AND o.orders_status like concat('%',#{searchcontent},'%')]]></if>
+		
+		<![CDATA[) M,(SELECT @rownum:=0) TMP ]]>		
+		<if test="searchkeyword=='checksum' and searchcontentint !=0"><![CDATA[where sum>=#{searchcontentint}]]></if> 
+		<![CDATA[order by orders_order_day desc) rn where rnum > (#{page} - 1) * 5 AND rnum <= #{page} * 5]]>
+
+	</select>
+	<select resultType="int" id="maincount">
+	<![CDATA[select count(*) from (select * ,@rownum:=@rownum+1 as rnum from (select o.orders_seq,user_id,orders_order_day,book_title,orders_status,order_bookList_count,order_bookList_count*book_price as sum from orders as o join order_bookList as b  on o.orders_seq=b.orders_seq join book bo on b.book_seq=bo.book_seq where orders_status not like concat("%","cancel","%")]]>
+<if
+			test="searchkeyword=='orders_seq' and searchcontentint != 0 "><![CDATA[AND o.orders_seq= #{searchcontentint}]]></if>
+		<if
+			test="searchkeyword=='user_id' and searchcontent != '' and searchcontent != null"><![CDATA[AND o.user_id like concat('%',#{searchcontent},'%')]]></if>
+		<if
+			test="searchkeyword=='orders_order_day' and searchcontent != '' and searchcontent != null"><![CDATA[AND o.orders_order_day>=#{searchcontent}]]></if>
+		<if
+			test="searchkeyword=='book_title' and searchcontent != '' and searchcontent != null"><![CDATA[AND book_title like concat('%',#{searchcontent},'%')]]></if>
+		
+		<if
+			test="searchkeyword=='orders_state' and searchcontent !=''and searchcontent!=null"><![CDATA[AND o.orders_status like concat('%',#{searchcontent},'%')]]></if>
+		
+<![CDATA[) M,(SELECT @rownum:=0) TMP ]]>		
+		<if test="searchkeyword=='checksum' and searchcontentint !=0"><![CDATA[where sum>=#{searchcontentint}]]></if> 
+		<![CDATA[order by orders_order_day desc) rn ]]>
+	</select>
+	<select parameterType="tradesearchVO" resultType="tradejoinVO"
+		id="cancellist">
+	<![CDATA[select * from (select * ,@rownum:=@rownum+1 as rnum from (select o.orders_seq,user_id,orders_order_day,book_title,orders_status,order_bookList_count,order_bookList_count*book_price as sum from orders as o join order_bookList as b  on o.orders_seq=b.orders_seq join book bo on b.book_seq=bo.book_seq where orders_status like concat("%","cancel","%")]]>
+
+		<if
+			test="searchkeyword=='orders_seq' and searchcontentint != 0 "><![CDATA[AND o.orders_seq= #{searchcontentint}]]></if>
+		<if
+			test="searchkeyword=='user_id' and searchcontent != '' and searchcontent != null"><![CDATA[AND o.user_id like concat('%',#{searchcontent},'%')]]></if>
+		<if
+			test="searchkeyword=='orders_order_day' and searchcontent != '' and searchcontent != null"><![CDATA[AND o.orders_order_day>=#{searchcontent}]]></if>
+		<if
+			test="searchkeyword=='book_title' and searchcontent != '' and searchcontent != null"><![CDATA[AND book_title like concat('%',#{searchcontent},'%')]]></if>
+		
+		<if
+			test="searchkeyword=='orders_state' and searchcontent !=''and searchcontent!=null"><![CDATA[AND o.orders_status like concat('%',#{searchcontent},'%')]]></if>
+		
+	<![CDATA[) M,(SELECT @rownum:=0) TMP ]]>		
+		<if test="searchkeyword=='checksum' and searchcontentint !=0"><![CDATA[where sum>=#{searchcontentint}]]></if> 
+		<![CDATA[order by orders_order_day desc) rn where rnum > (#{page} - 1) * 5 AND rnum <= #{page} * 5]]>
+
+	</select>
+	
+	<select parameterType="tradesearchVO" resultType="int"
+		id="cancelcount">
+	<![CDATA[select count(*) from (select * ,@rownum:=@rownum+1 as rnum from (select o.orders_seq,user_id,orders_order_day,book_title,orders_status,order_bookList_count,order_bookList_count*book_price as sum from orders as o join order_bookList as b  on o.orders_seq=b.orders_seq join book bo on b.book_seq=bo.book_seq where orders_status like concat("%","cancel","%")]]>
+
+		<if
+			test="searchkeyword=='orders_seq' and searchcontentint != 0 "><![CDATA[AND o.orders_seq= #{searchcontentint}]]></if>
+		<if
+			test="searchkeyword=='user_id' and searchcontent != '' and searchcontent != null"><![CDATA[AND o.user_id like concat('%',#{searchcontent},'%')]]></if>
+		<if
+			test="searchkeyword=='orders_order_day' and searchcontent != '' and searchcontent != null"><![CDATA[AND o.orders_order_day>=#{searchcontent}]]></if>
+		<if
+			test="searchkeyword=='book_title' and searchcontent != '' and searchcontent != null"><![CDATA[AND book_title like concat('%',#{searchcontent},'%')]]></if>
+		
+		<if
+			test="searchkeyword=='orders_state' and searchcontent !=''and searchcontent!=null"><![CDATA[AND o.orders_status like concat('%',#{searchcontent},'%')]]></if>
+		
+	<![CDATA[) M,(SELECT @rownum:=0) TMP ]]>		
+		<if test="searchkeyword=='checksum' and searchcontentint !=0"><![CDATA[where sum>=#{searchcontentint}]]></if> 
+		<![CDATA[order by orders_order_day desc) rn ]]>
+
+	</select>
+
+	<select parameterType="int" resultType="tradejoinVO"
+		id="booklistdetail">
+	<![CDATA[select o.orders_seq,order_bookList_count,order_bookList_seq,order_bookList_count*book_price as sum,book_title,orders_status from orders as o join order_bookList as b  on o.orders_seq=b.orders_seq join book bo on b.book_seq=bo.book_seq where b.order_bookList_seq=#{order_bookList_seq}]]>
+	</select>
+	<select parameterType="int" resultType="ordersVO"
+		id="ordersdetail">
+	<![CDATA[select * from orders where orders_seq=#{orders_seq}]]>
+	</select>
+
+
+</mapper>

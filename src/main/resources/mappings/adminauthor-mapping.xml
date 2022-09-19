@@ -8,7 +8,7 @@
 			<if test="author_name != null and author_name != ''"><![CDATA[AND author_name like CONCAT('%',#{author_name},'%')]]></if>
 			<if test="author_seq != null and author_seq != ''">AND a.author_seq=#{author_seq}</if>
 		</trim>
-		<![CDATA[ group by author_seq order by author_seq desc ) B,(SELECT @rownum:=0) TMP ) C where rnum>(#{page}-1)*5 AND rnum<=#{page}*5 order by author_seq ]]>
+		<![CDATA[ group by author_seq order by author_seq desc ) B,(SELECT @rownum:=0) TMP ) C where rnum>(#{page}-1)*5 AND rnum<=#{page}*5 order by author_seq desc ]]>
 	</select>
 	<select parameterType="adminauthorsearchVO" resultType="int"  id="adminauthorcount">
 		<![CDATA[select count(*) from (select count(*) from author as a left join book as b on a.author_seq=b.author_seq ]]>
