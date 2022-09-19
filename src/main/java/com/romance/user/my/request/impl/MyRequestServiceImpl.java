@@ -2,6 +2,7 @@ package com.romance.user.my.request.impl;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -52,5 +53,22 @@ public class MyRequestServiceImpl implements MyRequestService {
 	public void insertMyRequest(MyRequestVO myRequestVO) throws IOException {
 		myRequestDAO.insertMyRequest(myRequestVO);	
 	}
+	
+	
+	@Override
+	public String getMyRequestPassword(int ask_seq) throws Exception {
+		return myRequestDAO.getMyRequestPassword(ask_seq);
+	}
+
+	@Override
+	public void updateMyRequest(MyRequestVO myRequestVO) throws Exception {
+		myRequestDAO.updateMyRequest(myRequestVO);
+	}
+
+	@Override
+	public void deleteMyRequest(int ask_seq) throws Exception {
+		myRequestDAO.deleteMyRequest(ask_seq);		
+	}
+	
 	
 }

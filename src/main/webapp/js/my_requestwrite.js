@@ -35,8 +35,8 @@ function checkWriteForm() {
 		return false;
 	}
 	
-	if(confirm("정말 수정하시겠습니까?") == true) {
-		alert("수정이 완료되었습니다.");
+	if(confirm("정말 등록하시겠습니까?") == true) {
+		console.log("등록눌렀대요~");
 	} else {
 		return false;
 	}

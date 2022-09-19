@@ -15,4 +15,6 @@ public interface NoticeService {
 	public NoticeVO selectSeq(int notice_seq);
 	public boolean checkPW(NoticeVO vo);
 	public void checkBox(List<String> notice_seq) throws FileNotFoundException, IOException;
+	
+	void cnt(int notice_seq);
 }

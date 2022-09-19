@@ -64,7 +64,7 @@
 					<tr>
 						<th class="bg-light">첨부파일</th>
 						<td colspan="2"><input type="file" accept="image/*,.txt"
-							multiple capture='user' onchange='aaa' id="uploadFile" name="uploadFile" /></td>
+							multiple id="uploadFile" name="uploadFile" /></td>
 						<td><input type="button" class="bg-light" id="delFile" value="삭제">
 						</td>
 					</tr>

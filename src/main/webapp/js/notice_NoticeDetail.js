@@ -1,9 +1,11 @@
 $(function() {
 	$("#endPoint").click(function() {
-		$("html").scrollTop("0");
+		console.log("안눌려요!");
+		$(document).scrollTop("0");
 	});
 });
 
+/*
 $(function() {
 	$("#chat_button").click(function() {
 		$("#real_chat").toggleClass("hide");
@@ -12,3 +14,5 @@ $(function() {
 		$("#main_search").toggleClass("hide");
 	});
 })
+*/
+
