@@ -4,7 +4,7 @@
 <mapper namespace="trade">
 	<select parameterType="tradesearchVO" resultType="tradejoinVO"
 		id="mainlist">
-	<![CDATA[select * from (select * ,@rownum:=@rownum+1 as rnum from (select o.orders_seq,user_id,orders_order_day,book_title,orders_status,order_bookList_count,order_bookList_count*book_price as sum from orders as o join order_bookList as b  on o.orders_seq=b.orders_seq join book bo on b.book_seq=bo.book_seq where orders_status not like concat("%","cancel","%")]]>
+	<![CDATA[select * from (select * ,@rownum:=@rownum+1 as rnum from (select o.orders_seq,user_id,orders_order_day,book_title,orders_status,order_bookList_seq,order_bookList_count,order_bookList_count*book_price as sum from orders as o join order_bookList as b  on o.orders_seq=b.orders_seq join book bo on b.book_seq=bo.book_seq where orders_status not like concat("%","cancel","%")]]>
 <if
 			test="searchkeyword=='orders_seq' and searchcontentint !=0 "><![CDATA[AND o.orders_seq= #{searchcontentint}]]></if>
 		<if
@@ -42,7 +42,7 @@
 	</select>
 	<select parameterType="tradesearchVO" resultType="tradejoinVO"
 		id="cancellist">
-	<![CDATA[select * from (select * ,@rownum:=@rownum+1 as rnum from (select o.orders_seq,user_id,orders_order_day,book_title,orders_status,order_bookList_count,order_bookList_count*book_price as sum from orders as o join order_bookList as b  on o.orders_seq=b.orders_seq join book bo on b.book_seq=bo.book_seq where orders_status like concat("%","cancel","%")]]>
+	<![CDATA[select * from (select * ,@rownum:=@rownum+1 as rnum from (select o.orders_seq,order_bookList_seq,user_id,orders_order_day,book_title,orders_status,order_bookList_count,order_bookList_count*book_price as sum from orders as o join order_bookList as b  on o.orders_seq=b.orders_seq join book bo on b.book_seq=bo.book_seq where orders_status like concat("%","cancel","%")]]>
 
 		<if
 			test="searchkeyword=='orders_seq' and searchcontentint != 0 "><![CDATA[AND o.orders_seq= #{searchcontentint}]]></if>
@@ -86,12 +86,13 @@
 
 	<select parameterType="int" resultType="tradejoinVO"
 		id="booklistdetail">
-	<![CDATA[select o.orders_seq,order_bookList_count,order_bookList_seq,order_bookList_count*book_price as sum,book_title,orders_status from orders as o join order_bookList as b  on o.orders_seq=b.orders_seq join book bo on b.book_seq=bo.book_seq where b.order_bookList_seq=#{order_bookList_seq}]]>
+	<![CDATA[select o.orders_seq,order_bookList_count,book_bigimgURL,order_bookList_seq,order_bookList_count*book_price as sum,book_title,orders_status from orders as o join order_bookList as b  on o.orders_seq=b.orders_seq join book bo on b.book_seq=bo.book_seq where b.order_bookList_seq=#{order_bookList_seq}]]>
 	</select>
 	<select parameterType="int" resultType="ordersVO"
 		id="ordersdetail">
 	<![CDATA[select * from orders where orders_seq=#{orders_seq}]]>
 	</select>
+	
 
 
 </mapper>

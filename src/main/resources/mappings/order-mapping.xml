@@ -20,5 +20,25 @@
 	<select parameterType="String" resultType="ordersVO"  id="getorder">
 		select * from orders where orders_cache_uid=#{orders_cache_uid}
 	</select>
+	
+	<delete parameterType="tradejoinVO" id="orderbookdel">
+		delete from order_bookList where order_bookList_seq=#{order_bookList_seq} 
+	</delete>
+	<update parameterType="tradejoinVO" id="orderupdate">
+	update orders set orders_cache_sum=orders_cache_sum-#{sum} where orders_seq=#{orders_seq}
+	</update>
+	<select parameterType="tradejoinVO" resultType="ordersVO" id="ordersel">
+		select * from orders where orders_seq=#{orders_seq}
+	</select>
+	<delete parameterType="tradejoinVO" id="ordersdel">
+		delete from orders where orders_seq=#{orders_seq}
+	</delete>
+	<select parameterType="tradejoinVO" resultType="int" id="chebooklist">
+	select count(*) from order_bookList where orders_seq=#{orders_seq};
+	</select>
+	<update parameterType="tradejoinVO" id="orderpointupdate">
+	update orders set orders_point=orders_point-#{sum} where orders_seq=#{orders_seq}
+	</update>
+	
 
 </mapper>
