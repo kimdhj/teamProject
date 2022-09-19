@@ -39,7 +39,7 @@
                 <div class="navbar-nav ms-auto p-4 p-lg-0">
 
 
-                <a href="info_Info.jsp" class="nav-item nav-link">소개</a>
+                <a href="info.do" class="nav-item nav-link">소개</a>
                     <div class="nav-item dropdown">
                         <a href="/booklist.do?country=2" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">국내</a>
                         <div id="navko" class="dropdown-menu m-0">
@@ -78,7 +78,7 @@
                     <a class="btn-sm-square bg-white rounded-circle ms-3" href="/cart.do">
                         <small class="fa fa-shopping-bag text-body"></small>
                     </a>
-                    <a id="mypage" class="btn-sm-square bg-white rounded-circle ms-3" href="/mypage.do">
+                    <a id="mypage" class="btn-sm-square bg-white rounded-circle ms-3" href="/myMain.do">
                         <i class="bi bi-house-door-fill"></i>
                     </a>
                 </div>

@@ -104,4 +104,9 @@ public class NoticeServiceImpl implements NoticeService{
 		}
 	}
 	
+	@Override
+	public void cnt(int notice_seq) {
+	  noticeDao.cnt(notice_seq);
+	}
+	
 }
