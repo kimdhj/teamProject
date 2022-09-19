@@ -25,7 +25,7 @@
             <div class="section-header text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s"
                 style="max-width: 500px;">
                 <h1 class="display-5 mb-3">My Page</h1>
-                <p>Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed rebum vero dolor duo.</p>
+                <p>삭막한 서울 도심 속, 험난한 나날에 치이며 살아도 우리는 꿋꿋하게 낭만을 가슴속에 간직하는 것이 우리네 짧은 인생을 풍요로이 할 것이라 믿습니다!</p>
             </div>
             
             <!-- 마이페이지 메인 헤더 -->
@@ -174,7 +174,5 @@
                     <br>
                     <p class="mb-4 fs-5 fw-bold"><img src="img/mypage_mainbtn.png" class="rounded float-start"
                             alt="...">&nbsp;마이 페이지
-                            <a href="my_cancelSub.do">
-                        <button type="button" class="btn btn-secondary btn-sm float-end">구독취소</button>
-                            </a>
+                        <button type="button" class="btn btn-secondary btn-sm float-end" onclick="can_sub();">구독취소</button>
                     </p>

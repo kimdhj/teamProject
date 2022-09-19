@@ -3,9 +3,38 @@
 
 
 
+	
 
 
 
+//체크된 항목 삭제
+function del_pick() {
+	let codelist = [];
+		$(".del_chk").map((che, el) => {
+
+			if ($(el).is(':checked')) {
+				console.log($(el).parents("tr").children('td:eq(1)').children('p').text().trim());
+				codelist.push($(el).parents("tr").children('td:eq(1)').children('p').text().trim());
+			}
+
+		});
+		console.log(codelist);
+		$.ajax({
+			url: "/del_chk.mdo",
+			method: "POST",
+			data: {
+				codelist
+			},
+			success: function(e) {
+
+				location.href = "/getProductList.mdo";
+			},
+			error: function(e) {
+
+
+			}
+		});
+}
 
 //전체 선택
 function selectAll(selectAll){
@@ -68,7 +97,7 @@ $("#search_btn").click(function(e){
 				data.map((pro) => {
 				con+=
 				`<tr>
-								<td><input type="checkbox" class="del-chk" id=""></td>
+								<td><input type="checkbox" class="del_chk" name="del_chk"></td>
 								<td>
 									<p class="rowColumn" contenteditable="false" data-default="${pro.book_seq }">${pro.book_seq }</p>
 								</td>
@@ -99,7 +128,10 @@ $("#search_btn").click(function(e){
 									<p class="rowColumn" contenteditable="false" data-default="${pro.book_sellCount }">${pro.book_sellCount }</p>
 								</td>
 								<td>
-									<button type="button" id="del_one">삭제</button>
+									<button type="button" id="upd_product" name="upd_product" onclick="location.href='/product_Update.mdo?book_seq=${pro.book_seq}'">수정</button>
+								</td>
+								<td>
+									<button type="button" id="del_one" name="del_one" onclick="del_product(this)">삭제</button>
 								</td>
 							</tr>
 				`;
@@ -175,7 +207,7 @@ function viewview(v){
 				data.map((pro) => {
 				con+=
 				`<tr>
-								<td><input type="checkbox" class="del-chk" id=""></td>
+								<td><input type="checkbox" class="del_chk" name="del_chk"></td>
 								<td>
 									<p class="rowColumn" contenteditable="false" data-default="${pro.book_seq }">${pro.book_seq }</p>
 								</td>
@@ -206,7 +238,10 @@ function viewview(v){
 									<p class="rowColumn" contenteditable="false" data-default="${pro.book_sellCount }">${pro.book_sellCount }</p>
 								</td>
 								<td>
-									<button type="button" id="del_one">삭제</button>
+									<button type="button" id="upd_product" name="upd_product" onclick="location.href='/product_Update.mdo?book_seq=${pro.book_seq}'">수정</button>
+								</td>
+								<td>
+									<button type="button" id="del_one" name="del_one" onclick="del_product(this)">삭제</button>
 								</td>
 							</tr>
 				`;

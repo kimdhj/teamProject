@@ -53,13 +53,14 @@
 								<th>카테고리</th>
 								<th>출판일</th>
 								<th>판매 수</th>
-								<th><button type="button" id="del_pick">선택 삭제</button></th>
+								<th>수정</th>
+								<th><button type="button" id="del_pick" onclick="del_pick();">선택 삭제</button></th>
 							</tr>
 						</thead>
 						<tbody>
 						<c:forEach items="${productList }" var="pro" begin="${start }" end="${end }">
 							<tr>
-								<td><input type="checkbox" class="del-chk" id=""></td>
+								<td><input type="checkbox" class="del_chk" name="del_chk"></td>
 								<td>
 									<p class="rowColumn" contenteditable="false" data-default="${pro.book_seq }">${pro.book_seq }</p>
 								</td>
@@ -86,6 +87,9 @@
 								</td>
 								<td>
 									<p class="rowColumn" contenteditable="false" data-default="${pro.book_sellCount }">${pro.book_sellCount }</p>
+								</td>
+								<td>
+									<button type="button" id="upd_product" name="upd_product" onclick="location.href='/product_Update.mdo?book_seq=${pro.book_seq}'">수정</button>
 								</td>
 								<td>
 									<button type="button" id="del_one" name="del_one" onclick="del_product(this)">삭제</button>
