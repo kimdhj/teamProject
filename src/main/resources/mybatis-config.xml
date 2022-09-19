@@ -164,5 +164,6 @@
 		<mapper resource="mappings/adminuserdetail-mapping.xml" />
 		<mapper resource="mappings/userdelivery-mapping.xml" />
 		<mapper resource="mappings/adminauthor-mapping.xml" />
+		<mapper resource="mappings/userorder-mapping.xml" />
 	</mappers>
 </configuration>
