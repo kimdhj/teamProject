@@ -7,6 +7,9 @@
 		<result property="sub_info_price" column="SUB_INFO_PRICE" />
 		<result property="sub_info_post_string" column="SUB_INFO_POST_STRING" />
 		<result property="sub_info_pre_string" column="SUB_INFO_PRE_STRING" />
+		<result property="category_name" column="CATEGORY_NAME" />
+		<result property="category_num" column="CATEGORY_NUM" />
+		<result property="user_id" column="USER_ID" />
 	</resultMap>
 	<update id="updateSub" parameterType="subscribe">
 		UPDATE sub_info
@@ -14,6 +17,10 @@
 	</update>
 	<select id="getSub" parameterType="subscribe" resultMap="subResult">
 		SELECT * FROM sub_info where sub_info_seq = 1
+	</select>
+	<select id="getcate" resultType="String">
+		SELECT category_name FROM category JOIN user_category
+		ON category.category_num = user_category.category_num WHERE user_category.user_id = #{user_id};
 	</select>
 
 </mapper>

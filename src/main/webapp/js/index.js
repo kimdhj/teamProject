@@ -1,8 +1,13 @@
 $(document).ready(function() {
 	console.log("HI");
 	$("#chat_button").click(function() {
+		let f = document.createElement('form');
+		f.setAttribute('method', 'post');
+		f.setAttribute('action', '/chat.do');
+		document.body.appendChild(f);
+		f.submit();
 
-		location.href = "/chat.do"
+
 	});
 	$("#book_addbtnmain").click(function() {
 		$.ajax({

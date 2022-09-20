@@ -39,7 +39,7 @@
                   <div class="rowColumn" contenteditable="false" data-default="${top.event_title }">${top.event_title }</div>
                 </td>
                 <td>
-                  <div class="rowColumn" contenteditable="false" data-default="<fmt:formatDate value="${top.event_end_date }" pattern="yyyy-MM-dd"/>"><fmt:formatDate value="${top.event_end_date }" pattern="yyyy-MM-dd"/></div>
+                  <div class="rowColumn" contenteditable="false" data-default="<fmt:formatDate value="${top.event_end_date }" pattern="DD-MMMM-YY"/>"><fmt:formatDate value="${top.event_end_date }" pattern="yyyy-MM-dd"/></div>
                 </td>
                 <td>
                   <div class="rowColumn" contenteditable="false" data-default="${top.event_target }">${top.event_target }</div>

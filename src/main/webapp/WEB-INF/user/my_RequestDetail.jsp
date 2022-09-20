@@ -23,7 +23,7 @@
 		</div>
 
 		<!-- 문의글 시작 -->
-		<form>
+		<form action="updateMyRequest.do" method="post" enctype="multipart/form-data" id="updateMyRequestForm" onsubmit="return checkWriteForm()">
 			<div class="container">
 				<div>
 					<table class="table">
@@ -38,15 +38,35 @@
 						<tbody>
 							<tr>
 								<th scope="row" colspan="3">
-									<textarea rows="10" style="width:100%;">${myRequestVO.ask_content}</textarea>
+									<textarea rows="10" style="width:100%;" id="ask_content" name="ask_content">${myRequestVO.ask_content}</textarea>
 								</th>
 							</tr>
-							<c:if test="${myRequestVO.ask_file ne null}">
 								<tr>
 									<th scope="row">첨부파일</th>
 									<%-- <td><a href="#" onclick="window.open('${myRequestVO.ask_file}','Attachment','width=430,height=500,location=no,status=no,scrollbars=yes');">aa${filename}</a></td> --%>
-									<td><a href="javascript:attachPopup()">확인</a></td>
+									<c:if test="${myRequestVO.ask_file ne null}">
+										<td><a href="javascript:attachPopup()">확인</a></td>
+									</c:if>
+									<c:if test="${myRequestVO.ask_file == null}">
+										<td>첨부파일 없음</td>
+									</c:if>
 									<td></td>
+								</tr>
+							
+							<!-- 답변대기 상태라면 첨부파일 수정 가능 -->
+							<c:if test="${myRequestVO.ask_status == '답변 대기'}">
+								<tr>
+									<th class="bg-light">첨부파일 변경</th>
+									<td colspan="2"><input type="file" accept="image/*,.txt"
+										multiple id="uploadFile" name="uploadFile" /></td>
+									<td><input type="button" class="bg-light" id="delFile" value="삭제">
+									</td>
+								</tr>
+								<tr>
+									<th class="bg-light">비밀번호</th>
+									<td colspan="2"><input type="password" id="ask_password" name="ask_password" /></td>
+									<td>
+									</td>
 								</tr>
 							</c:if>
 						</tbody>
@@ -85,23 +105,22 @@
 				</div> -->
 				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 					<!-- <button class="btn btn-primary me-md-2" type="button">등록하기</button> -->
+					<!-- 답변대기 상태라면 수정 및 삭제 가능, 이미 답변완료된 글은 수정 및 삭제 불가능 -->
+					<c:if test="${myRequestVO.ask_status == '답변 대기'}">
+						<button class="btn btn-primary" type="button" id="updateMyRequestBtn">수정</button>
+						<button class="btn btn-primary" type="button" id="deleteMyRequestBtn">삭제</button>
+					</c:if>
 					<button class="btn btn-primary" type="button" id="returnListBtn">목록으로</button>
-				</div>
+				</div> 
 				<!-- 답글작성 끝 -->
 			</div>
-		</form>
-		<form name="detailForm" method="post">
-			<%-- <input type="hidden" id="ask_seq" name="ask_seq" value="${myRequestList.ask_seq}" />
-			<input type="hidden" id="pageNum" name="pageNum" value="${criteria.pageNum}" /> 
-			<input type="hidden" id="searchCondition" name="searchCondition" value="${criteria.searchCondition}" /> 
-			<input type="hidden" id="searchKeyword" name="searchKeyword" value="${criteria.searchKeyword}" /> 
-			<input type="hidden" id="selectCondition" name="selectCondition" value="${criteria.selectCondition}" /> --%> 
+			<input type="hidden" id="ask_seq" name="ask_seq" value="${myRequestVO.ask_seq}" />
 		</form>
 		
 		<!-- 공통 마이페이지 바텀 -->
 		<jsp:include page="/WEB-INF/commonjsp/common_mypage_bottom.jsp"></jsp:include>
 		<!-- 공통 마이페이지 바텀 끝 -->
-
+		
 		<!-- Contact End -->
 
 

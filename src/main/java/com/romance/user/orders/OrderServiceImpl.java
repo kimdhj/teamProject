@@ -29,6 +29,7 @@ public class OrderServiceImpl implements OrderService {
 	  if(vop.getPoints_count()!=0) {
 	    dao.pointsin(vop);
 	    }
+	  //쿠폰 및 포인트 제외시키기 등록
 	  System.out.println(vop);
 	  System.out.println("포인트 테스트");
 		dao.ordersIn(vo);

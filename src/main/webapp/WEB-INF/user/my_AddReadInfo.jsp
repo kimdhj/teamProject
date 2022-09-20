@@ -68,8 +68,12 @@
 						<div id="nowBook_content">오늘도 놀고 싶다</div>
 					</div>
 					<div id="selectType">
-						<div id="selectType_title">선택된 장르 : </div>
-						<div id="selectType_content">무협,소설,로맨스</div>
+						<div id="selectType_title">선택된 장르 :&nbsp;</div>
+						<div id="selectType_content">
+							<c:forEach var="categ" items="${cate}">
+								${categ.category_name}&nbsp;
+							</c:forEach>
+						</div>
 					</div>
 				</div>
 				<div id="rec_book" class="row">
