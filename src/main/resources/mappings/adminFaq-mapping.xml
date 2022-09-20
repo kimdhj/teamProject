@@ -13,8 +13,9 @@
 		<result property="FAQ_passwd" column="FAQ_passwd" />
 	</resultMap>
 
-	<select id="getFaqList" resultType="faq" parameterType="faqSearch">
-		<![CDATA[SELECT * FROM(SELECT FAQ_seq, FAQ_bigsort, FAQ_smallsort, FAQ_ask, @rownum:=@rownum + 1 as rnum FROM FAQ, (SELECT @rownum:=0) TMP]]>
+	<!-- admin 에서 검색 리스트 -->
+	<select id="getFaqList" resultMap="faqResult" parameterType="faqSearch">
+		<![CDATA[SELECT * FROM(SELECT *, @rownum:=@rownum + 1 as rnum FROM FAQ, (SELECT @rownum:=0) TMP]]>
 			<trim prefix="WHERE" prefixOverrides="AND | OR">
 				<if test="bigsort != null and bigsort != ''"><![CDATA[AND FAQ_bigsort = #{bigsort}]]></if>
 				<if test="smallsort != null and smallsort != ''"><![CDATA[AND FAQ_smallsort = #{smallsort}]]></if>
@@ -30,7 +31,7 @@
 	</select>
 	
 	<select id="getCount" parameterType="faqSearch" resultType="int">
-		<![CDATA[SELECT COUNT(*) FROM(SELECT FAQ_seq, FAQ_bigsort, FAQ_smallsort, FAQ_ask, @rownum:=@rownum + 1 as rnum FROM FAQ, (SELECT @rownum:=0) TMP]]>
+		<![CDATA[SELECT COUNT(*) FROM(SELECT FAQ_seq, FAQ_bigsort, FAQ_smallsort, FAQ_ask, FAQ_answer, @rownum:=@rownum + 1 as rnum FROM FAQ, (SELECT @rownum:=0) TMP]]>
 			<trim prefix="WHERE" prefixOverrides="AND | OR">
 				<if test="bigsort != null and bigsort != ''"><![CDATA[AND FAQ_bigsort = #{bigsort}]]></if>
 				<if test="smallsort != null and smallsort != ''"><![CDATA[AND FAQ_smallsort = #{smallsort}]]></if>
@@ -43,6 +44,131 @@
 				</if>
 			</trim>
 	</select>
+	
+	<!-- user 에서 주문 페이징 
+	<select id="getOrderList" resultType="faq" parameterType="faqSearch">
+		<![CDATA[SELECT * FROM(SELECT FAQ_seq, FAQ_bigsort, FAQ_smallsort, FAQ_ask, FAQ_answer, @rownum:=@rownum + 1 as rnum FROM FAQ, (SELECT @rownum:=0) TMP]]>
+			<trim prefix="WHERE" prefixOverrides="AND | OR">
+			<if test="bigsort != null and bigsort != ''"><![CDATA[AND FAQ_bigsort = #{bigsort}]]></if>
+				<if test="smallsort != null and smallsort != ''"><![CDATA[AND FAQ_smallsort = #{smallsort}]]></if>
+				<if test="ask != null and ask != ''"><![CDATA[AND FAQ_ask LIKE CONCAT('%', #{ask}, '%')]]></if>
+			</trim>
+		<![CDATA[ORDER BY FAQ_seq DESC) B WHERE]]>
+		<if test="seq != 0">
+			<![CDATA[rnum = #{seq}]]>
+		</if>
+		<if test="seq == 0">
+			<![CDATA[ rnum > (#{page} - 1) * 5 AND rnum <= #{page} * 5 ORDER BY FAQ_seq DESC]]>
+		</if>
+	</select>
+	
+	<select id="getOrderCount" parameterType="faqSearch" resultType="int">
+		<![CDATA[SELECT COUNT(*) FROM(SELECT FAQ_seq, FAQ_bigsort, FAQ_smallsort, FAQ_ask, FAQ_answer, @rownum:=@rownum + 1 as rnum FROM FAQ, (SELECT @rownum:=0) TMP]]>
+			<trim prefix="WHERE" prefixOverrides="AND | OR">
+				<if test="smallsort != null and smallsort != ''"><![CDATA[AND FAQ_smallsort = #{smallsort}]]></if>
+				<if test="ask != null and ask != ''"><![CDATA[AND FAQ_ask LIKE CONCAT('%', #{ask}, '%')]]></if>
+			</trim>
+		<![CDATA[ORDER BY FAQ_seq DESC) B]]>
+			<trim prefix="WHERE" prefixOverrides="AND | OR">
+				<if test="seq != 0">
+					<![CDATA[rnum = #{seq}]]>
+				</if>
+			</trim>
+	</select>
+	-->
+	
+	<!-- user 에서 배송 페이징 
+		<select id="getDeliveryList" resultType="faq" parameterType="faqSearch">
+		<![CDATA[SELECT * FROM(SELECT FAQ_seq, FAQ_bigsort, FAQ_smallsort, FAQ_ask, FAQ_answer, @rownum:=@rownum + 1 as rnum FROM FAQ, (SELECT @rownum:=0) TMP]]>
+			<trim prefix="WHERE" prefixOverrides="AND | OR">
+				<if test="smallsort != null and smallsort != ''"><![CDATA[AND FAQ_smallsort = #{smallsort}]]></if>
+				<if test="ask != null and ask != ''"><![CDATA[AND FAQ_ask LIKE CONCAT('%', #{ask}, '%')]]></if>
+			</trim>
+		<![CDATA[ORDER BY FAQ_seq DESC) B WHERE]]>
+		<if test="seq != 0">
+			<![CDATA[rnum = #{seq}]]>
+		</if>
+		<if test="seq == 0">
+			<![CDATA[ rnum > (#{page} - 1) * 5 AND rnum <= #{page} * 5 ORDER BY FAQ_seq DESC]]>
+		</if>
+	</select>
+	
+	<select id="getDeliveryCount" parameterType="faqSearch" resultType="int">
+		<![CDATA[SELECT COUNT(*) FROM(SELECT FAQ_seq, FAQ_bigsort, FAQ_smallsort, FAQ_ask, FAQ_answer, @rownum:=@rownum + 1 as rnum FROM FAQ, (SELECT @rownum:=0) TMP]]>
+			<trim prefix="WHERE" prefixOverrides="AND | OR">
+				<if test="smallsort != null and smallsort != ''"><![CDATA[AND FAQ_smallsort = #{smallsort}]]></if>
+				<if test="ask != null and ask != ''"><![CDATA[AND FAQ_ask LIKE CONCAT('%', #{ask}, '%')]]></if>
+			</trim>
+		<![CDATA[ORDER BY FAQ_seq DESC) B]]>
+			<trim prefix="WHERE" prefixOverrides="AND | OR">
+				<if test="seq != 0">
+					<![CDATA[rnum = #{seq}]]>
+				</if>
+			</trim>
+	</select>
+	-->
+	
+	<!-- user 에서 반품 페이징 
+		<select id="getChangeList" resultType="faq" parameterType="faqSearch">
+		<![CDATA[SELECT * FROM(SELECT FAQ_seq, FAQ_bigsort, FAQ_smallsort, FAQ_ask, FAQ_answer, @rownum:=@rownum + 1 as rnum FROM FAQ, (SELECT @rownum:=0) TMP]]>
+			<trim prefix="WHERE" prefixOverrides="AND | OR">
+				<if test="smallsort != null and smallsort != ''"><![CDATA[AND FAQ_smallsort = #{smallsort}]]></if>
+				<if test="ask != null and ask != ''"><![CDATA[AND FAQ_ask LIKE CONCAT('%', #{ask}, '%')]]></if>
+			</trim>
+		<![CDATA[ORDER BY FAQ_seq DESC) B WHERE]]>
+		<if test="seq != 0">
+			<![CDATA[rnum = #{seq}]]>
+		</if>
+		<if test="seq == 0">
+			<![CDATA[ rnum > (#{page} - 1) * 5 AND rnum <= #{page} * 5 ORDER BY FAQ_seq DESC]]>
+		</if>
+	</select>
+	
+	<select id="getChangeCount" parameterType="faqSearch" resultType="int">
+		<![CDATA[SELECT COUNT(*) FROM(SELECT FAQ_seq, FAQ_bigsort, FAQ_smallsort, FAQ_ask, FAQ_answer, @rownum:=@rownum + 1 as rnum FROM FAQ, (SELECT @rownum:=0) TMP]]>
+			<trim prefix="WHERE" prefixOverrides="AND | OR">
+				<if test="smallsort != null and smallsort != ''"><![CDATA[AND FAQ_smallsort = #{smallsort}]]></if>
+				<if test="ask != null and ask != ''"><![CDATA[AND FAQ_ask LIKE CONCAT('%', #{ask}, '%')]]></if>
+			</trim>
+		<![CDATA[ORDER BY FAQ_seq DESC) B]]>
+			<trim prefix="WHERE" prefixOverrides="AND | OR">
+				<if test="seq != 0">
+					<![CDATA[rnum = #{seq}]]>
+				</if>
+			</trim>
+	</select>
+	-->
+	
+	<!-- user 에서 회원 페이징
+		<select id="getUserList" resultType="faq" parameterType="faqSearch">
+		<![CDATA[SELECT * FROM(SELECT FAQ_seq, FAQ_bigsort, FAQ_smallsort, FAQ_ask, FAQ_answer, @rownum:=@rownum + 1 as rnum FROM FAQ, (SELECT @rownum:=0) TMP]]>
+			<trim prefix="WHERE" prefixOverrides="AND | OR">
+				<if test="smallsort != null and smallsort != ''"><![CDATA[AND FAQ_smallsort = #{smallsort}]]></if>
+				<if test="ask != null and ask != ''"><![CDATA[AND FAQ_ask LIKE CONCAT('%', #{ask}, '%')]]></if>
+			</trim>
+		<![CDATA[ORDER BY FAQ_seq DESC) B WHERE]]>
+		<if test="seq != 0">
+			<![CDATA[rnum = #{seq}]]>
+		</if>
+		<if test="seq == 0">
+			<![CDATA[ rnum > (#{page} - 1) * 5 AND rnum <= #{page} * 5 ORDER BY FAQ_seq DESC]]>
+		</if>
+	</select>
+	
+	<select id="getUserCount" parameterType="faqSearch" resultType="int">
+		<![CDATA[SELECT COUNT(*) FROM(SELECT FAQ_seq, FAQ_bigsort, FAQ_smallsort, FAQ_ask, FAQ_answer, @rownum:=@rownum + 1 as rnum FROM FAQ, (SELECT @rownum:=0) TMP]]>
+			<trim prefix="WHERE" prefixOverrides="AND | OR">
+				<if test="smallsort != null and smallsort != ''"><![CDATA[AND FAQ_smallsort = #{smallsort}]]></if>
+				<if test="ask != null and ask != ''"><![CDATA[AND FAQ_ask LIKE CONCAT('%', #{ask}, '%')]]></if>
+			</trim>
+		<![CDATA[ORDER BY FAQ_seq DESC) B]]>
+			<trim prefix="WHERE" prefixOverrides="AND | OR">
+				<if test="seq != 0">
+					<![CDATA[rnum = #{seq}]]>
+				</if>
+			</trim>
+	</select>
+	 -->
 	
 	<delete id="delete" parameterType="faq">
 		DELETE FROM FAQ WHERE FAQ_seq = #{FAQ_seq}

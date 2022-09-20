@@ -185,7 +185,7 @@
             <div class="col-5"></div>
             <div class="row col-4">
               <button class="col-auto bg-white border-1 answerinsert" type="button">등록</button>
-              <button class="col-auto bg-white border-1 qnalist">목록</button>
+              <button class="col-auto bg-white border-1 qnalist" type="button">목록</button>
             </div>
             <div class="col-3"></div>
           </div>

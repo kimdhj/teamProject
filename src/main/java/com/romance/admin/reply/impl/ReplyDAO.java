@@ -55,4 +55,7 @@ public class ReplyDAO {
     sqlSession.update("ReplyDAO.chkboxBlindCancel", reply_seq);
   }
   
+  public void insert(ReplyVO vo) {
+    sqlSession.insert("ReplyDAO.insert", vo);
+  }
 }
