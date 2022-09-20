@@ -1,7 +1,5 @@
 package com.romance.user.my.order;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -45,6 +43,7 @@ public class MyOrderController {
 			System.out.println(">>>>>검색종료일 : " + criteria.getToDate());
 			
 			//검색 문자열 공백 제거 및 날짜 null값이 아닐 때 추가
+			//
 			String searchCondition = criteria.getSearchCondition();
 			String searchKeyword = criteria.getSearchKeyword();
 			String fromDate = criteria.getFromDate();
@@ -53,10 +52,17 @@ public class MyOrderController {
 				criteria.setSearchCondition("ORDERS_TITLE");
 			}
 			if(searchKeyword != null) {
-				searchKeyword = searchKeyword.trim(); //앞뒤 공백 제거
+				//앞뒤 공백 제거(검색시 앞뒤에 공백입력들어올경우)
+				searchKeyword = searchKeyword.trim(); 
 				criteria.setSearchKeyword(searchKeyword);
 				System.out.println(">>>>>공백제거 검색키워드 : " + searchKeyword);
 			}
+			
+			/*
+			 * fromDate = "yyyy-MM-dd" 형식이기 때문에 DB상의 "yyyy-MM-dd HH:mm:ss" 
+			 * 형식과 비교할 수 없음
+			 * null이 아니면서 빈문자열이 아닌 경우에만 비교를 위한 시,분,초 문자열 추가
+			 */
 			if(fromDate != null && !fromDate.equals("")) {
 				fromDate = fromDate + " 00:00:00";
 				System.out.println(fromDate);
