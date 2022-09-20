@@ -16,4 +16,5 @@ public class MyRequestVO {
 	private String ask_file;
 	private String ask_password;
 	private String user_id;
+	private String ask_dateToString;//ajax로 전송할때 문자열타입의 날짜를 위한 변수
 }

@@ -121,6 +121,7 @@
 								<fmt:formatDate value="${myOrder.orders_order_day}" pattern="yyyy-MM-dd" />
 							</td>
 							<td>
+								<c:if test="${myOrder.orders_status eq 'paid'}">결제완료</c:if>
 								<c:if test="${myOrder.orders_status eq 'ready'}">배송준비</c:if>
 								<c:if test="${myOrder.orders_status eq 'arrival'}">배송완료</c:if>
 							</td>
