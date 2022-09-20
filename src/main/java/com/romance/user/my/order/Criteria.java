@@ -1,7 +1,6 @@
 package com.romance.user.my.order;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class Criteria {
 	private int pageNum; //현재 페이지 번호
@@ -13,7 +12,7 @@ public class Criteria {
 	private String fromDate; //기간검색
 	private String toDate; //기간검색
 	private LocalDate fromDateFormat; //문자열로 받은 날짜형식 변환
-	private LocalDate toDateFormat; //문자열로 받은 날짜형식 변환
+	private LocalDate toDateFormat; //문자열로 받은 날짜형식 변환s
 	
 	
 	public int getPageStart() {//특정 페이지의 게시글 시작 번호, 행 번호

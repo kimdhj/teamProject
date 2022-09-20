@@ -22,53 +22,6 @@
 	<jsp:include page="/WEB-INF/commonjsp/common_mypage_header.jsp"></jsp:include>
 
 		<!-- 여기 삽입 -->
-		<!-- 배송정보 시작 -->
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-md-auto align-self-center">
-					<img src="/img/mypage_delivery_1.png" class="rounded" alt="...">
-				</div>
-				<div class="col-md-auto align-self-center">
-					<img src="/img/mypage_delivery_7.png" class="rounded" alt="...">
-				</div>
-				<div class="col-md-auto align-self-center">
-					<img src="/img/mypage_delivery_2.png" class="rounded" alt="...">
-				</div>
-				<div class="col-md-auto align-self-center">
-					<img src="/img/mypage_delivery_7.png" class="rounded" alt="...">
-				</div>
-				<div class="col-md-auto align-self-center">
-					<img src="/img/mypage_delivery_3.png" class="rounded" alt="...">
-				</div>
-				<div class="col-md-auto align-self-center">
-					<img src="/img/mypage_delivery_7.png" class="rounded" alt="...">
-				</div>
-				<div class="col-md-auto align-self-center">
-					<img src="/img/mypage_delivery_4.png" class="rounded" alt="...">
-				</div>
-				<div class="col-md-auto align-self-center">
-					<img src="/img/mypage_delivery_7.png" class="rounded" alt="...">
-				</div>
-				<div class="col-md-auto align-self-center">
-					<img src="/img/mypage_delivery_5.png" class="rounded" alt="...">
-				</div>
-				<div class="col-md-auto align-self-center">
-					<img src="/img/mypage_delivery_7.png" class="rounded" alt="...">
-				</div>
-				<div class="col-md-auto align-self-center">
-					<img src="/img/mypage_delivery_6.png" class="rounded" alt="...">
-				</div>
-				<div class="col-md-auto">
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item">-취소</li>
-						<li class="list-group-item">-교환</li>
-						<li class="list-group-item">-반품</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<!-- 배송정보 끝 -->
-
 
 		<!-- 기간조회 및 조건검색 -->
 
