@@ -29,7 +29,7 @@
 	<div class="container">
 		<div class="d-flex flex-row">
 			<div class="col-md-7">
-				<form>
+				<form action="/getAdmin_member_List.mdo" method="get">
 					<div class="d-flex flex-row">
 						<div class="col-md-4">
 							<select class="form-select form-select mb-3"
@@ -64,7 +64,7 @@
 			<div class="col-md-1">
 				<button type="submit" class="btn btn-light btn-outline-dark">검색</button>
 			</div> -->
-			<form>
+			<form action="/getAdmin_member_List.mdo" method="get">
 				<div class="col-md-12">
 					<div class="btn-group" role="group"
 						aria-label="Basic mixed styles example">
@@ -78,7 +78,7 @@
 			</form>
 		</div>
 		<div class="d-flex flex-row">
-			<p style="color:blue;">${pagination.criteria.pageNum}/${pagination.endPage}페이지</p>
+			<p style="color:blue;">${pagination.criteria.pageNum}페이지</p>
 		</div>
 		<div class="d-flex flex-row">
 			<table class="table text-center">
