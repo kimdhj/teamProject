@@ -71,8 +71,7 @@
 									placeholder="우편번호">
 							</div>
 							<div class="col-auto">
-								<button type="button" id="add_find" class="btn btn-primary mb-3">주소
-									찾기</button>
+								<button type="button" id="add_find" class="btn btn-primary mb-3">주소 찾기</button>
 							</div>
 						</div>
 						<div class="row" id="address_line">

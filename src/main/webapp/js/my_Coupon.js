@@ -1,3 +1,9 @@
+//혜성 추가
+function goGetPoint(){
+	location.href="/goGetPoint.do";
+}
+
+
 $(function() {
 	$("#coupon_add").click(function() {
 		$("#coupon_popUp").removeClass("hide");
