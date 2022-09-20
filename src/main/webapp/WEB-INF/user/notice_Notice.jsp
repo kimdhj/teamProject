@@ -82,6 +82,7 @@
         <div class="col"></div>
       </div>
       
+      
 			<input type="hidden" value="${allSvo.page}" id="pageche"/>
 			</div>
 		</div>

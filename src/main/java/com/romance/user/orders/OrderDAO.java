@@ -6,6 +6,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.romance.user.coupon.MyCouponVO;
+import com.romance.user.login.UserVO;
+import com.romance.user.my.delivery.DeliveryVO;
 import com.romance.user.points.MyPointsVO;
 
 @Repository
@@ -30,5 +33,21 @@ public class OrderDAO {
 	}
 	public void pointsin(MyPointsVO vo) {
 	  sql.insert("points.pointsin",vo);
+	}
+	public void refundpoints(UserVO vo) {
+	  sql.update("user.refundpoints",vo);
+	}
+	public List<MyCouponVO> paycouponlist(String user_id){
+	  return sql.selectList("usercoupon.paycouponlist",user_id);
+	}
+	public List<DeliveryVO> paydelivery(String user_id){
+    return sql.selectList("delivery.paydelivery",user_id);
+  }
+	public void usecoupon(int user_coupon_seq) {
+	  sql.delete("usercoupon.usecoupon",user_coupon_seq);
+	}
+	public DeliveryVO seledelivery(int my_delivery_seq) {
+	  return sql.selectOne("delivery.seledelivery",my_delivery_seq);
+	  
 	}
 }

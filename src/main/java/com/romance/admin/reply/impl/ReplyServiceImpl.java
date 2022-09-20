@@ -138,4 +138,9 @@ public class ReplyServiceImpl implements ReplyService {
     }
   }
   
+  @Override
+  public void insert(ReplyVO vo) {
+    reply.insert(vo);
+  }
+  
 }

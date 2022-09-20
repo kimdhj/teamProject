@@ -15,4 +15,6 @@ public interface ReplyService {
   void blindCancel(ReplyVO vo);
   void chkboxBlind(List<String> reply_seq);
   void chkboxBlindCancel(List<String> reply_seq);
+  
+  void insert(ReplyVO vo);
 }

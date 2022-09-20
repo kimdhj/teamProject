@@ -54,6 +54,11 @@
 	</trim>
 	</select>
 	
+	<insert id="insert" parameterType="reply">
+		INSERT INTO reply(reply_seq, user_id, reply_cotent, reply_date, reply_point, book_seq)
+		VALUES (null, #{user_id}, #{reply_cotent}, default, #{reply_point}, #{book_seq})
+	</insert>	
+	
 	<select id="getReply" parameterType="reply" resultType="reply">
 		SELECT * FROM reply WHERE reply_seq = #{reply_seq}
 	</select>

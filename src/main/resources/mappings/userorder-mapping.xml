@@ -34,10 +34,34 @@
 	
 	<select id="myOrderTotalCount" parameterType="criteria" resultType="int">
 		SELECT COUNT(*) FROM orders WHERE user_id = #{session_user_id}
+		<if test="fromDate != null and !fromDate.equals('')">
+			<![CDATA[AND orders_order_day >= #{fromDate}]]>
+		</if>
+		<if test="toDate != null and !toDate.equals('')">
+			<![CDATA[AND orders_order_day <= #{toDate}]]>
+		</if>
+		<if test="searchCondition == 'ORDERS_TITLE'">
+			AND	orders_title LIKE CONCAT('%', #{searchKeyword}, '%')
+		</if>
+		<if test="searchCondition == 'ORDERS_NAME'">
+			AND	orders_name LIKE CONCAT('%', #{searchKeyword}, '%')
+		</if>
 	</select>
 	
 	<select id="getMyOrderListWithPaging" parameterType="criteria" resultMap="userOrderResult">
 		SELECT * FROM orders WHERE user_id = #{session_user_id} 
+		<if test="fromDate != null and !fromDate.equals('')">
+			<![CDATA[AND orders_order_day >= #{fromDate}]]>
+		</if>
+		<if test="toDate != null and !toDate.equals('')">
+			<![CDATA[AND orders_order_day <= #{toDate}]]>
+		</if>
+		<if test="searchCondition == 'ORDERS_TITLE'">
+			AND	orders_title LIKE CONCAT('%', #{searchKeyword}, '%')
+		</if>
+		<if test="searchCondition == 'ORDERS_NAME'">
+			AND	orders_name LIKE CONCAT('%', #{searchKeyword}, '%')
+		</if>
 		ORDER BY orders_seq DESC
 		LIMIT #{pageStart}, #{perPageNum}
 	</select>

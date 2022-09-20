@@ -169,6 +169,7 @@
 		<mapper resource="mappings/userdelivery-mapping.xml" />
 		<mapper resource="mappings/adminauthor-mapping.xml" />
 		<mapper resource="mappings/userorder-mapping.xml" />
+		<mapper resource="mappings/usermain-mapping.xml" />
 		<mapper resource="mappings/trade-mapping.xml" />
 	</mappers>
 </configuration>
