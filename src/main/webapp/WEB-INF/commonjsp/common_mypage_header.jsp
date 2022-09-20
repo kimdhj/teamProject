@@ -173,6 +173,6 @@
                 <div class="col-lg-9 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
                     <br>
                     <p class="mb-4 fs-5 fw-bold"><img src="img/mypage_mainbtn.png" class="rounded float-start"
-                            alt="...">&nbsp;마이 페이지
+                            alt="...">&nbsp;<a href="/myMain.do">마이 페이지</a>
                         <button type="button" class="btn btn-secondary btn-sm float-end" onclick="can_sub();">구독취소</button>
                     </p>

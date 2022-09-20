@@ -57,8 +57,7 @@
 #selectType {
   display: flex;
   margin-top: 5%;
-
-  align-items: flex-end;
+  align-items: center;
 }
 #nowBook_content,
 #nextBook_content {
@@ -67,6 +66,7 @@
 }
 #selectType_content {
   font-weight: bolder;
+
 }
 #rec_book {
   margin: 5% 0%;

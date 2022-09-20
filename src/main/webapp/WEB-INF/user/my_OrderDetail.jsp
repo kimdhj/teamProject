@@ -39,7 +39,7 @@
 					<td style="width:35%;">${orderDetail.orders_seq}</td>
 					<th class="bg-light" style="width:15%;">주문날짜</th>
 					<td style="width:35%;">
-						<fmt:formatDate value="${orderDetail.orders_order_day}" pattern="yyyy-MM-dd HH:ss" />
+						<fmt:formatDate value="${orderDetail.orders_order_day}" pattern="yyyy-MM-dd HH:mm:ss" />
 					</td>
 				</tr>
 				<tr>
@@ -84,7 +84,7 @@
 		<!-- 문의글 끝 -->
 		
 		<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-			<a href="myOrder.do?pageNum=${criteria.pageNum}&searchCondition=${criteria.searchCondition}&searchKeyword=${criteria.searchKeyword}">
+			<a href="myOrder.do?pageNum=${criteria.pageNum}&searchCondition=${criteria.searchCondition}&searchKeyword=${criteria.searchKeyword}&fromDate=${criteria.fromDate}&toDate=${criteria.toDate}">
 				<button class="btn btn-primary me-md-2" type="button" id="requestListBtn">목록으로</button>
 			</a>
 			<button class="btn btn-primary me-md-2" type="button" onclick="checkArrival()">배송조회</button>

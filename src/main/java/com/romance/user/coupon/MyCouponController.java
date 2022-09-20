@@ -19,7 +19,8 @@ import com.romance.user.points.MyPointsVO;
 
 @Controller
 public class MyCouponController {
-  @Autowired
+
+	@Autowired
   MyCouponService ser;
   
   @GetMapping("mycoupon.do")

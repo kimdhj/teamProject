@@ -84,7 +84,7 @@
                 type="button"
                 id="1month_sub"
                 value="1달 구독"
-                href="subscribePay.html"
+                onclick="goPaySub();"
               />
             </div>
             <div class="row d-flex justify-content-center">

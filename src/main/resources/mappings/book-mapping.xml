@@ -93,8 +93,7 @@
 		select * from
 		book where book_seq=#{book_seq}
 	</select>
-	<select resultType="bookVO" parameterType="int"
-		id="detailbooklist">
+	<select resultType="bookVO" parameterType="int" id="detailbooklist">
 	<![CDATA[select * from (select *,@rownum:=@rownum+1 as rnum from (select
 		b.book_imgURL,b.book_price,b.category_num,b.book_bigimgURL,b.book_title,b.book_descript,b.book_seq,b.book_publish_date,sum(order_bookList_count)
 		as sum from book as b left join order_bookList
