@@ -63,20 +63,24 @@ public class OrderController {
 		 vo.setOrders_vbank_Date(date);
 		}
 		 System.out.println("결제1"+vo);
-
+		 //orders테이블에 추가 포인트 기록 남기기
 		 ser.ordersIn(vo);
 		 System.out.println("결제3"+vo);
+		 //orders테이블에 검색
 		 vo=ser.getorder(vo.getOrders_cache_uid());
 		 System.out.println("결제4"+vo);
 		 List<OrderBookListVO> vol=new ArrayList<OrderBookListVO>();
+		
 		 for(int i= 0;i<book_seq.size();i++) {
 			 lvo.setBook_seq(book_seq.get(i));
 			 lvo.setOrder_bookList_count(book_count.get(i));
 			 lvo.setOrders_seq(vo.getOrders_seq());
 			 vol.add(lvo);
 		 }
+		//booklist에 추가
 		 ser.booklistin(vol);
 		 if(iscart==1) {
+		   //cart에서 구매한거 삭제
 		 ser.delfin(vo.getUser_id());
 		 }
 		 System.out.println("결제2"+vo);

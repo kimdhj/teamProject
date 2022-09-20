@@ -52,6 +52,9 @@
 			</div>
 		</div>
 		<div class="d-flex flex-row">
+			<p style="color:blue;">${pagination.criteria.pageNum}/${pagination.endPage}페이지</p>
+		</div>
+		<div class="d-flex flex-row">
 			<table class="table text-center">
 				<thead class="table-dark">
 					<tr>

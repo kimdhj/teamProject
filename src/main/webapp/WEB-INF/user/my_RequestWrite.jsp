@@ -45,10 +45,10 @@
 						</td>
 					</tr>
 					<tr>
-						<th class="bg-light">이름</th>
-						<td>${voToken.user_name}</td>
-						<th class="bg-light">이메일</th>
-						<td>${voToken.user_email}</td>
+						<th class="bg-light" style="width:15%;">이름</th>
+						<td style="width:35%;">${voToken.user_name}</td>
+						<th class="bg-light" style="width:15%;">이메일</th>
+						<td style="width:35%;">${voToken.user_email}</td>
 					</tr>
 					<tr>
 						<th class="bg-light align-middle">내용</th>

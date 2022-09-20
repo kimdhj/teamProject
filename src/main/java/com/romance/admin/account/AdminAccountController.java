@@ -82,6 +82,7 @@ public class AdminAccountController {
 	public String getUserDetail(AdminUserVO vo, @ModelAttribute("criteria") Criteria criteria, Model model, HttpSession session, JwtUtils utils) throws Exception {
 		AdminUserVO voToken = utils.getAdmin(session);
 		if(voToken != null) {
+			System.out.println("무엇을 들고오셨는가? : " + vo);
 			System.out.println("지금 보고있는 아이디가? : " + vo.getUser_id());
 						
 			//현재 상세페이지 에서 보고있는 회원의 보유쿠폰명 리스트로 받아오기

@@ -78,7 +78,7 @@
 			</form>
 		</div>
 		<div class="d-flex flex-row">
-			<p style="color:blue;">${pagination.criteria.pageNum}페이지</p>
+			<p style="color:blue;">${pagination.criteria.pageNum}/${pagination.endPage}페이지</p>
 		</div>
 		<div class="d-flex flex-row">
 			<table class="table text-center">
@@ -122,9 +122,9 @@
 								<td><fmt:formatNumber value="${adminAccount.user_point }" pattern="#,###"/>P</td>
 								<td>${adminAccount.user_coupon_cnt } 장</td>
 								<td>
-									<button type="submit" class="btn btn-light btn-outline-dark" id="searchDetailBtn">
-										<a href="getAdmin_member_Detail.mdo?user_id=${adminAccount.user_id}&pageNum=${criteria.pageNum}&searchCondition=${criteria.searchCondition}&searchKeyword=${criteria.searchKeyword}&selectCondition=${criteria.selectCondition}">조회</a>
-									</button>
+									<a href="getAdmin_member_Detail.mdo?user_id=${adminAccount.user_id}&pageNum=${criteria.pageNum}&searchCondition=${criteria.searchCondition}&searchKeyword=${criteria.searchKeyword}&selectCondition=${criteria.selectCondition}">
+										<button type="button" class="btn btn-light btn-outline-dark" id="searchDetailBtn">조회</button>
+									</a>
 								</td>
 							</tr>
 					</c:forEach>
