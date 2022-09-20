@@ -92,7 +92,16 @@
 		id="ordersdetail">
 	<![CDATA[select * from orders where orders_seq=#{orders_seq}]]>
 	</select>
-	
+	<select parameterType="int" resultType="orderbooklistVO"
+		id="booklistsel">
+	<![CDATA[select * from order_bookList where orders_seq=#{orders_seq}]]>
+	</select>
+	<update parameterType="ordersVO" id="updateorders">
+		update orders set orders_status=#{orders_status},orders_delivery=#{orders_delivery},orders_delivery_company=#{orders_delivery_company},orders_email=#{orders_email},orders_name=#{orders_name},orders_phone=#{orders_phone},orders_zipcode=#{orders_zipcode},orders_address=#{orders_address},orders_remainaddress=#{orders_remainaddress}   where orders_seq=#{orders_seq}
+	</update>
+	<delete parameterType="int" id="booklistorderdel">
+	delete from order_bookList where orders_seq=#{orders_seq}
+	</delete>
 
 
 </mapper>

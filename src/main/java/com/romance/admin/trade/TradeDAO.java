@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.romance.admin.coupon.CouponVO;
 import com.romance.user.coupon.MyCouponVO;
 import com.romance.user.login.UserVO;
+import com.romance.user.orders.OrderBookListVO;
 import com.romance.user.orders.OrdersVO;
 import com.romance.user.points.MyPointsVO;
 
@@ -34,7 +35,7 @@ public class TradeDAO {
     
     return sql.selectOne("trade.booklistdetail",order_bookList_seq);
   }
-public TradeJoinVO ordersdetail(int orders_seq) {
+public OrdersVO ordersdetail(int orders_seq) {
     
     return sql.selectOne("trade.ordersdetail",orders_seq);
   }
@@ -70,6 +71,21 @@ public void pointsin(MyPointsVO vo) {
 }
 public void refundpoints(UserVO vo) {
   sql.update("user.refundpoints",vo);
+}
+public List<OrderBookListVO> booklistsel(int orders_seq) {
+  return sql.selectList("trade.booklistsel", orders_seq);
+}
+public int chebookseq(int book_seq) {
+  return sql.selectOne("book.chebookseq",book_seq);
+}
+public void updateorders(OrdersVO vo) {
+  sql.update("trade.updateorders",vo);
+}
+public void booklistin(OrderBookListVO vo) {
+  sql.insert("order.booklistin",vo);
+}
+public void booklistorderdel(int orders_seq) {
+  sql.delete("trade.booklistorderdel",orders_seq);
 }
 
 }

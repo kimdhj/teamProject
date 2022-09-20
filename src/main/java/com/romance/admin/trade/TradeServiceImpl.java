@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.romance.server.refund;
 import com.romance.user.coupon.MyCouponVO;
 import com.romance.user.login.UserVO;
+import com.romance.user.orders.OrderBookListVO;
 import com.romance.user.orders.OrdersVO;
 import com.romance.user.points.MyPointsVO;
 
@@ -58,7 +59,7 @@ public class TradeServiceImpl implements TradeService {
   }
   
   @Override
-  public TradeJoinVO ordersdetail(int orders_seq) {
+  public OrdersVO ordersdetail(int orders_seq) {
     // TODO Auto-generated method stub
     return dao.ordersdetail(orders_seq);
   }
@@ -103,11 +104,106 @@ public class TradeServiceImpl implements TradeService {
   }
   
   @Override
+  public List<OrderBookListVO> booklistsel(int orders_seq) {
+    // TODO Auto-generated method stub
+    return dao.booklistsel(orders_seq);
+  }
+  
+
+  @Override
+  public void updateorders(OrdersVO vo) {
+    // TODO Auto-generated method stub
+    dao.updateorders(vo);
+    
+  }
+
+  @Override
+  public void booklistin(List<OrderBookListVO> vol) {
+    // TODO Auto-generated method stub
+    for(OrderBookListVO vo:vol) {
+      dao.booklistin(vo);
+    }
+  }
+
+  @Override
+  public int chebookseq(int book_seq) {
+    // TODO Auto-generated method stub
+    return dao.chebookseq(book_seq);
+  }
+
+  @Override
+  @Transactional
+  public void dellevel(TradeJoinVO vo) throws Exception {
+    // TODO Auto-generated method stub
+    
+    OrdersVO voo = dao.ordersel(vo);
+    dao.booklistorderdel(vo.getOrders_seq());
+    System.out.println("orders 삭제"+voo);
+    refund.refund(voo.getOrders_cache_uid(), "주문 취소", Integer.toString(voo.getOrders_cache_sum()));
+    System.out.println("결제 대기");
+    dao.ordersdel(vo);
+    // 쿠폰 추가
+    if(voo.getOrders_coupon_effect()>0) {
+    MyCouponVO voc = new MyCouponVO();
+   
+    
+    voc.setUser_coupon_effect(voo.getOrders_coupon_effect());
+    voc.setUser_coupon_name("환불된 쿠폰"+Integer.toString(voo.getOrders_coupon_effect()));
+    voc.setUser_id(voo.getUser_id());
+    dao.couponin(voc);
+    }
+    // 포인트 추가 뺀거 계산해서 포인트 추가(user테이블이랑 포인트 사용기록에도)
+    int remain = voo.getOrders_point() - voo.getOrders_add_point();
+    if(voo.getOrders_point()>0) {
+      MyPointsVO vop = new MyPointsVO();
+    vop.setPoints_content("환불 포인트");
+    vop.setPoints_count(remain);
+    vop.setUser_id(voo.getUser_id());
+    dao.pointsin(vop);
+    }
+    if(remain>0) {
+      UserVO vou = new UserVO();
+    vou.setUser_id(voo.getUser_id());
+    vou.setUser_point(remain);
+    dao.refundpoints(vou);
+    }
+    
+  }
+
+  @Override
   public void delorderbooklist(TradeJoinVO vo) throws Exception {
     // TODO Auto-generated method stub
     int che = 0;
     if (vo.getOrders_status().equals("ready")) {
+      OrdersVO voo = dao.ordersel(vo);
+
       System.out.println("결제 대기");
+      dao.ordersdel(vo);
+      // 쿠폰 추가
+      if(voo.getOrders_coupon_effect()>0) {
+      MyCouponVO voc = new MyCouponVO();
+     
+      
+      voc.setUser_coupon_effect(voo.getOrders_coupon_effect());
+      voc.setUser_coupon_name("환불된 쿠폰"+Integer.toString(voo.getOrders_coupon_effect()));
+      voc.setUser_id(voo.getUser_id());
+      dao.couponin(voc);
+      }
+      // 포인트 추가 뺀거 계산해서 포인트 추가(user테이블이랑 포인트 사용기록에도)
+      int remain = voo.getOrders_point() - voo.getOrders_add_point();
+      if(voo.getOrders_point()>0) {
+        MyPointsVO vop = new MyPointsVO();
+      vop.setPoints_content("환불 포인트");
+      vop.setPoints_count(remain);
+      vop.setUser_id(voo.getUser_id());
+      dao.pointsin(vop);
+      }
+      if(remain>0) {
+        UserVO vou = new UserVO();
+      vou.setUser_id(voo.getUser_id());
+      vou.setUser_point(remain);
+      dao.refundpoints(vou);
+      }
     } else {
       OrdersVO voo = dao.ordersel(vo);
       

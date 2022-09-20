@@ -80,6 +80,7 @@ $(document).ready(function() {
 				$("#cache_tool").val(data.pay_method);
 				$("#orders_cache_sum").val(data.paid_amount);
 				$("#orders_status").val(data.status);
+				$("#orders_email").val(data.buyer_email);
 				$("#payfin").submit();
 
 			} else {
@@ -110,7 +111,7 @@ $(document).ready(function() {
 				console.log(rsp.success);
 				let data = rsp;
 				console.log(data.imp_uid);
-
+$("#orders_email").val(data.buyer_email);
 				$("#orders_cache_uid").val(data.imp_uid);
 				$("#cache_tool").val(data.pay_method);
 				$("#orders_cache_sum").val(data.paid_amount);
@@ -151,6 +152,7 @@ $(document).ready(function() {
 				$("#vbank_name").val(data.vbank_name);
 				$("#orders_vbank_num").val(data.vbank_num);
 				$("#orders_vbank_Date").val(data.vbank_date);
+				$("#orders_email").val(data.buyer_email);
 				$("#payfin").submit();
 			} else {
 				var msg = '결제에 실패하였습니다.';
@@ -183,6 +185,7 @@ $(document).ready(function() {
 				$("#orders_cache_uid").val(data.imp_uid);
 				$("#cache_tool").val(data.pay_method);
 				$("#orders_cache_sum").val(data.paid_amount);
+				$("#orders_email").val(data.buyer_email);
 				$("#orders_status").val(data.status);
 				$("#payfin").submit();
 

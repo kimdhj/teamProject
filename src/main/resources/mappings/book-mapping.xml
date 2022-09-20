@@ -111,6 +111,9 @@
 		 group by b.book_seq) D  where sum>10 or book_publish_date> (current_date()- INTERVAL 1
 		YEAR) ]]>
 	</select>
+	<select parameterType="int" resultType="int" id="chebookseq">
+		select count(*) from book where book_seq=#{book_seq}
+	</select>
 
 </mapper>
 

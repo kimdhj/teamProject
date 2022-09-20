@@ -115,11 +115,13 @@
 			<div class="row" id="whysoclose">
 				<div class="col-4"></div>
 				<div class="col ps-0">
-					<select name="orders_coupon_effect" id="coupon">
-						<option value="0" >쿠폰을 선택하세요</option>
-						<option value="20" id="new_user_coupon">신규 유저 쿠폰</option>
-						<option value="50" id="my_friend_coupon">추천인 특별 쿠폰</option>
-						<option value="100" id="roulette_coupon">룰렛 5등 당첨 쿠폰</option>
+        <input type="number" class="hide" value="0"  name="orders_coupon_effect" id="orders_coupon_effect"/>
+					<select  id="coupon">
+						<option data-seq="0" value="0" >쿠폰을 선택하세요</option>
+            <c:forEach var="co" items="${coupon}">
+						<option data-seq="${co.user_coupon_seq}" value="${co.user_coupon_effect}" >${co.user_coupon_name}</option>
+					
+            </c:forEach>
 					</select>
 				</div>
 				<div class="col-4 text-end me-1">
@@ -223,12 +225,14 @@
 				<div class="col-6">
 					<div class="row">
 						<select id="home" class="col">
-							<option value="">우리집</option>
-							<option value="">우리집앞집</option>
+            <option value="0">주소를 선택 해주세요</option>
+             <c:forEach var="de" items="${delivery}">
+							<option value="${de.my_delivery_seq}">${de.my_delivery_nickname}</option>
+						
+              </c:forEach>
 						</select>
 						<div class="col-1"></div>
-						<button type="button" id="addhome" name="addhome" class="col">
-							배송지 추가</button>
+						
 					</div>
 				</div>
 				<div class="col-2"></div>
@@ -330,6 +334,7 @@
 				</div>
 				
 			</div>
+  
 			<div>
 				<br /> <br />
 			</div>
@@ -359,15 +364,9 @@
 			<input type="number" value="0" class="hide" name="orders_add_point" id="orders_add_point" /> 
 				<input type="hidden" value="${user.user_id}" name="user_id" id="orders_status" />   
 				<input type="number" class="hide" value="${iscart}" name="iscart" id="orders_status" />   
-			
+			<input type="number" value="0" class="hide" name="couponselcode" id="couponselcode"/>
 		<!-- 구독가격, 쿠폰가격 하이딩 -->
-		<div class="col-2" id="right_blank">
-			<div class="hide" id="subPrice">30000</div>
-			<div class="hide" id="new_user_coupon_val">30000</div>
-			<div class="hide" id="my_friend_coupon_val">40000</div>
-			<div class="hide" id="roulette_coupon_val">50000</div>
-			<div class="hide" id="bookPrice">20000</div>
-		</div>
+	
 	</div>
 </form> 
 

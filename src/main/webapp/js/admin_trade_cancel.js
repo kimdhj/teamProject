@@ -1,7 +1,7 @@
 function make() {
 		let count = 0;
 		$.ajax({
-			url: "/admintrademaincount.mdo",
+			url: "/admintradecancelcount.mdo",
 			method: "get",
 			dataType: 'json',
 			async: false,
@@ -65,7 +65,7 @@ function make() {
 			}
 		});
 		$.ajax({
-			url: "/admintrademainlist.mdo",
+			url: "/admintradecancellist.mdo",
 			method: "get",
 			dataType: 'json',
 			async: false,

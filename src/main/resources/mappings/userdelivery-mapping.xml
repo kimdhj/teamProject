@@ -27,7 +27,11 @@
 	<update parameterType="deliveryVO" id="userdelivery">
 	 update user set user_zipcode=#{my_delivery_zipcode},user_address=#{my_delivery_address},user_remain_address=#{my_delivery_remain_address} where user_id=#{user_id}
 	</update>
-
-
+	<select parameterType="String" resultType="deliveryVO" id="paydelivery">
+	select * from my_delivery where user_id=#{user_id} order by my_delivery_seq desc
+	</select>
+	<select parameterType="int" resultType="deliveryVO" id="seledelivery">
+	select * from my_delivery where my_delivery_seq=#{my_delivery_seq}
+	</select>
 
 </mapper>
