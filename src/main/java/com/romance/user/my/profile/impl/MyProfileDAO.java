@@ -23,4 +23,9 @@ public class MyProfileDAO {
 		sqlSessionTemplate.update("userProfile.transPassword", userVO);
 	}
 	
+	//혜성 추가 구독 취소
+	public void cancelSubs(String user_id) {
+		sqlSessionTemplate.update("userProfile.cancelSubs", user_id);
+	}
+	
 }

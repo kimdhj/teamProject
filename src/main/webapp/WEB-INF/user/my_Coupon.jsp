@@ -121,7 +121,7 @@
           </div>
           <div class="col"></div>
           <div class="col-auto">
-            <button id="coupon_add" type="button" class="btn btn-warning rounded-pill">마일리지 충전</button>
+            <button id="coupon_add" type="button" class="btn btn-warning rounded-pill" onclick="goGetPoint();">마일리지 충전</button>
           </div>
         </div>
         <div class="row mt-2" id="select_cash">

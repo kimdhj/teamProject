@@ -8,3 +8,7 @@ function dobutton() {
   $("#subscribe_Price_oneMonth").number(subPrice);
   $("#subscribe_Price_oneYear").number(subPrice * 12);
 }
+
+function goPaySub(){
+	location.href="/go_Sub_Pay.do";
+}
