@@ -37,6 +37,7 @@ public class MyOrderController {
 		UserVO voToken = utils.getuser(session);
 		if(voToken != null) {
 			criteria.setSession_user_id(voToken.getUser_id());
+			System.out.println("세션아이디 : " + voToken.getUser_id());
 			System.out.println(">>>>>검색조건 : " + criteria.getSearchCondition());
 			System.out.println(">>>>>검색키워드 : " + criteria.getSearchKeyword());
 			System.out.println(">>>>>검색시작일 : " + criteria.getFromDate());
@@ -48,10 +49,15 @@ public class MyOrderController {
 			String searchKeyword = criteria.getSearchKeyword();
 			String fromDate = criteria.getFromDate();
 			String toDate = criteria.getToDate();
+			
 			if(searchCondition == null) {
 				criteria.setSearchCondition("ORDERS_TITLE");
 			}
-			if(searchKeyword != null) {
+			if(searchKeyword == null) {
+				criteria.setSearchKeyword("");
+			}
+			
+			if(searchKeyword != null && !searchKeyword.equals("")) {
 				//앞뒤 공백 제거(검색시 앞뒤에 공백입력들어올경우)
 				searchKeyword = searchKeyword.trim(); 
 				criteria.setSearchKeyword(searchKeyword);
@@ -74,9 +80,9 @@ public class MyOrderController {
 				criteria.setToDate(toDate);
 			}
 			Pagination pagination = new Pagination();
+			pagination.setCriteria(criteria);
 			int myOrderTotalCount = myOrderService.myOrderTotalCount(criteria);
 			System.out.println("내주문 몇개있냐? : " + myOrderTotalCount);
-			pagination.setCriteria(criteria);
 			pagination.setTotalCount(myOrderTotalCount);
 			model.addAttribute("pagination", pagination);
 			model.addAttribute("myOrderList", myOrderService.getMyOrderList(criteria));
