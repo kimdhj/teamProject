@@ -60,7 +60,7 @@
 						</div>
 						<div class="card-footer">
 							<div align="right">
-								<input type="submit" value="추가" /> <input type="reset"
+								<input type="submit" value="수정" /> <input type="reset"
 									value="다시작성" />
 							</div>
 						</div>

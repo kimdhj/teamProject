@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="com.romance.admin.terms.impl.termsDAO"%>
-<%@ page import="com.romance.admin.terms.termsVO"%>
+<%@ page import="com.romance.admin.terms.impl.TermsDAO"%>
+<%@ page import="com.romance.admin.terms.TermsVO"%>
 <%@ page import="java.util.List"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
@@ -19,8 +19,9 @@
 	<div class="container">
 		<div class="d-flex flex-row">
 			<div class="col-md-12">
-			<input id="seq" type="hidden" value="${terms.terms_seq}"/>
-				<!--<form action="admin_terms_Update.mdo" method="post">  -->
+				<form action="/admin_terms_Delete.mdo" method="post">
+				<input type="hidden" name="terms_seq" value="${terms.terms_seq}"/>
+				<input class="hide" id="terms_seq" type="number" value="${terms.terms_seq}"/>
 					<div class="card border-light">
 						<div class="card-header">
 							<div class="d-flex flex-row">
@@ -66,16 +67,16 @@
 							</div>
 						</div>
 						<div class="card-footer">
-							<button type="button"
+							<button type="submit"
 								class="btn btn-light btn-outline-dark btn-sm"
-								style="float: right;">삭제</button>
+								style="float: right;"">삭제</button>
 							<button type="button"
 								class="btn btn-light btn-outline-dark btn-sm"
 								style="float: right;"
 								onclick="location.href='admin_terms_Main.mdo' ">목록</button>
 							<button type="button"
 								class="btn btn-light btn-outline-dark btn-sm"
-								style="float: right;" onclick="location.href='/admin_terms_Update.mdo?seq=${terms.terms_seq}'">수정</button>
+								style="float: right;" onclick="location.href='/admin_terms_Update.mdo?terms_seq=${terms.terms_seq}'">수정</button>
 						</div>
 					</div>
 				</form>
