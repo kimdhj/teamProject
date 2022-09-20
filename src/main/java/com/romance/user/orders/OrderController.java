@@ -64,7 +64,7 @@ public class OrderController {
 		}
 		 System.out.println("결제1"+vo);
 		 //orders테이블에 추가 포인트 기록 남기기
-		 ser.ordersIn(vo);
+		 ser.ordersIn(vo); //책 주문 리스트 인서트
 		 System.out.println("결제3"+vo);
 		 //orders테이블에 검색
 		 vo=ser.getorder(vo.getOrders_cache_uid());
@@ -77,10 +77,10 @@ public class OrderController {
 			 lvo.setOrders_seq(vo.getOrders_seq());
 			 vol.add(lvo);
 		 }
-		//booklist에 추가
+		 //booklist에 추가
 		 ser.booklistin(vol);
 		 if(iscart==1) {
-		   //cart에서 구매한거 삭제
+		 //cart에서 구매한거 삭제
 		 ser.delfin(vo.getUser_id());
 		 }
 		 System.out.println("결제2"+vo);
