@@ -37,8 +37,8 @@
                         <!-- 메인페이지 헤더 내용 -->
                         <div class="container">
                             <div class="row">
-                                <div class="col-3">
-
+                                <div class="col-2">
+									<a href="/myMain.do"><img src="/img/moveMyMain.png" style="cursor:pointer;" /></a>
                                 </div>
                                 <div class="row col-9">
                                     <div class="col-4">
