@@ -20,7 +20,7 @@ public class MyOrderDAO {
 	}
 	
 	public List<OrdersVO> getMyOrderList(Criteria criteria) {
-		return sqlSessionTemplate.selectList("userOrder.getMyOrderListWithPaging", criteria);
+		return sqlSessionTemplate.selectList("userOrder.getMyOrderList", criteria);
 	}
 	
 	public OrdersVO getMyOrderDetail(int orders_seq) {

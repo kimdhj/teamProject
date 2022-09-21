@@ -9,6 +9,7 @@
 	
 	<select id="getMyMainOrders" resultType="ordersVO">
 		SELECT * FROM orders WHERE user_id = #{user_id}
+		AND orders_status NOT LIKE CONCAT('%', 'cancel', '%')
 		ORDER BY orders_seq DESC
 		LIMIT 0, 3
 	</select>
