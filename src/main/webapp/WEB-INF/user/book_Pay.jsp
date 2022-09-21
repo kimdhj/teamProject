@@ -356,14 +356,14 @@
 			<input type="hidden" name="orders_vbank_name" id="vbank_name" /> 
 			<input type="hidden" name="orders_cache_tool" value="카드" id="cache_tool" /> 
 			<input type="hidden" name="orders_vbank_num" id="orders_vbank_num" /> 
-			<input type="datetime-local" class="hide" name="orders_vbank_Date_String" id="orders_vbank_Date" /> 
+			<input type="datetime-local" class="hide"  name="orders_vbank_Date_String" id="orders_vbank_Date" /> 
 			<input type="hidden" name="orders_title" id="orders_title" />   
 			<input type="hidden" name="orders_cache_uid" id="orders_cache_uid" />  
 			<input type="hidden" name="orders_cache_sum"  id="orders_cache_sum" />  
 			<input type="hidden" name="orders_status" id="orders_status" /> 
 			<input type="number" value="0" class="hide" name="orders_add_point" id="orders_add_point" /> 
 				<input type="hidden" value="${user.user_id}" name="user_id" id="orders_status" />   
-				<input type="number" class="hide" value="${iscart}" name="iscart" id="orders_status" />   
+				<input type="number" class="hide" value="${iscart}" name="iscart" id="iscart" />   
 			<input type="number" value="0" class="hide" name="couponselcode" id="couponselcode"/>
 		<!-- 구독가격, 쿠폰가격 하이딩 -->
 	

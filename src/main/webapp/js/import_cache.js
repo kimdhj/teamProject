@@ -12,7 +12,7 @@ $(document).ready(function() {
                 })
 
 	console.log($("#usePoint").val());
-
+$("orders_vbank_Date").val(null);
 	function getToday() {
 		var date = new Date();
 		date.setDate(date.getDate() + 7);
