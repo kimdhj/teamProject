@@ -117,3 +117,7 @@
 .pagination *{
    cursor:pointer;
 }
+
+.hide, .hide2{
+	display: none !important;
+}

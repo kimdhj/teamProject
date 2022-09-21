@@ -28,6 +28,7 @@ public class OrderDAO {
 		return sql.selectOne("order.getorder",vo);
 	}
 	public void delfin(String user_id) {
+	  System.out.println("delfin"+user_id);
 		sql.delete("bucket.delfin",user_id);
 		
 	}
@@ -59,4 +60,9 @@ public class OrderDAO {
 	  return sql.selectOne("delivery.seledelivery",my_delivery_seq);
 	  
 	}
+	
+	public void purchaseCancel(OrdersVO vo) {
+	  sql.update("order.purchaseCancel", vo);
+	}
+	
 }

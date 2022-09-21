@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,12 +15,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.romance.security.JwtUtils;
 import com.romance.user.login.UserVO;
+import com.romance.user.my.order.MyOrderService;
 
 @Controller
 public class PurchaseController {
   @Autowired
   private OrderService service;
  
+  @Autowired
+  private MyOrderService order;
+  
+  
   @RequestMapping("/myPurchase.do") // 구매 목록가기
   public String purchase(HttpSession session, JwtUtils util, OrdersVO vo, Model model, PurchaseSearchVO svo, PurchaseJoinVO pjvo) throws IOException {
     UserVO userVO = util.getuser(session); // 로그인 여부를 확인하는 것
@@ -91,9 +97,42 @@ public class PurchaseController {
   }
   
   @RequestMapping("/myPurchaseDetail.do") // 구매 상세보기
-  public String purchaseDetail() {
+  public String purchaseDetail(OrdersVO vo, PurchaseSearchVO svo, PurchaseJoinVO pjvo, HttpSession session, JwtUtils util, Model model) throws Exception {
+    UserVO userVO = util.getuser(session);
+
+    svo.setUser_id(userVO.getUser_id());
     
-    return "my_PurchaseDetail";
+    System.out.println("시퀀스 : " + vo.getOrders_seq());
+    
+    OrdersVO orderDetail = order.getMyOrderDetail(vo.getOrders_seq());
+    System.out.println("주문상세 : " + orderDetail);
+    
+//   if(vo.getOrders_status() == "ready" || vo.getOrders_status() == "paid") {
+//     service.purchaseCancel(vo); // 상태를 cancelwaitall 로 변경
+//     System.out.println("상태 변경 : " + vo.getOrders_status());
+//   }
+   
+    model.addAttribute("svo", svo);
+    model.addAttribute("orderDetail", orderDetail);
+    
+    return "my_OrderDetail";
+  }
+  
+  @RequestMapping("/purchaseCancel.do")
+  @ResponseBody
+  public void purchaseCancel(OrdersVO vo, HttpSession session, JwtUtils util) throws IOException {
+    UserVO userVO = util.getuser(session);
+    
+    vo.setUser_id(userVO.getUser_id());
+    
+    System.out.println(vo);
+    
+//    if(vo.getOrders_status() == "ready" || vo.getOrders_status() == "paid") {
+    service.purchaseCancel(vo); // 상태를 cancelwaitall 로 변경
+    System.out.println("번호 : " + vo.getOrders_seq());
+    System.out.println("상태 변경 : " + vo.getOrders_status());
+//    }
+    
   }
   
 }

@@ -104,6 +104,9 @@
 	<delete parameterType="int" id="booklistorderdel">
 	delete from order_bookList where orders_seq=#{orders_seq}
 	</delete>
+	<update parameterType="int"  id="finupdate">
+		<![CDATA[update orders set orders_cache_sum=0,orders_point=0,orders_add_point=0,orders_coupon_effect=0  where orders_seq=#{orders_seq}]]>
+	</update>
 
 
 </mapper>
