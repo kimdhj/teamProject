@@ -55,85 +55,95 @@
 			</tbody>
 		</table>
 	</div>
+	
 	<!-- 나의 최근 주문현황 끝 -->
-	<!-- 관심상품 -->
-	<ul class="nav nav-tabs" id="myTab" role="tablist">
-		<li class="nav-item" role="presentation">
-			<button class="nav-link active" id="myRecentNoticeTab" data-bs-toggle="tab"
-				data-bs-target="#myRecentNotice" type="button" role="tab" aria-controls="myRecentNotice"
-				aria-selected="true">공지사항</button>
-		</li>
-		<li class="nav-item" role="presentation">
-			<button class="nav-link" id="myCartTab" data-bs-toggle="tab"
-				data-bs-target="#myCart" type="button" role="tab"
-				aria-controls="myCart" aria-selected="false">내보관함</button>
-		</li>
-		<li class="nav-item" role="presentation">
-			<button class="nav-link" id="myRecentRequestTab" data-bs-toggle="tab"
-				data-bs-target="#myRecentRequest" type="button" role="tab"
-				aria-controls="myRecentRequest" aria-selected="false">최근문의</button>
-		</li>
-	</ul>
-	<div class="tab-content" id="myTabContent">
-		<div class="tab-pane fade show active" id="myRecentNotice" role="tabpanel" aria-labelledby="myRecentNoticeTab">
-			<!-- 안내테이블 -->
-			<table class="table">
-				<thead class="table-light">
-					<tr>
-						<th scope="col"><img src="/img/myRecentNotice.png"
-							class="rounded float-first" alt="...">&nbsp;최신 공지사항 :
-							${getRecentNotice.notice_title}</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td><textarea rows=5 style="width: 100%;" readonly>${getRecentNotice.notice_content}</textarea>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			<!-- 안내테이블 끝 -->
-		</div>
-		<div class="tab-pane fade" id="myCart" role="tabpanel" aria-labelledby="myCartTab">
-			<!-- 장바구니 테이블 -->
-			<div class="table-responsive">
-				<table class="table ">
-					<thead>
+	<div class="container">
+		<!-- 관심상품 -->
+		<ul class="nav nav-tabs" id="myTab" role="tablist">
+			<li class="nav-item" role="presentation">
+				<button class="nav-link active" id="myRecentNoticeTab" data-bs-toggle="tab"
+					data-bs-target="#myRecentNotice" type="button" role="tab" aria-controls="myRecentNotice"
+					aria-selected="true">공지사항</button>
+			</li>
+			<li class="nav-item" role="presentation">
+				<button class="nav-link" id="myCartTab" data-bs-toggle="tab"
+					data-bs-target="#myCart" type="button" role="tab"
+					aria-controls="myCart" aria-selected="false">내보관함</button>
+			</li>
+			<li class="nav-item" role="presentation">
+				<button class="nav-link" id="myRecentRequestTab" data-bs-toggle="tab"
+					data-bs-target="#myRecentRequest" type="button" role="tab"
+					aria-controls="myRecentRequest" aria-selected="false">최근문의</button>
+			</li>
+		</ul>
+		<div class="tab-content" id="myTabContent">
+			<div class="tab-pane fade show active" id="myRecentNotice" role="tabpanel" aria-labelledby="myRecentNoticeTab">
+				<!-- 안내테이블 -->
+				<table class="table">
+					<thead class="table-light">
 						<tr>
-							<th style="width:20%;">표지</th>
-							<th style="width:30%;">제목</th>
-							<th style="width:10%;">작가</th>
-							<th style="width:10%;">출판사</th>
-							<th style="width:20%;">출판일</th>
-							<th style="width:10%;">가격</th>
+							<th scope="col"><img src="/img/myRecentNotice.png"
+								class="rounded float-first" alt="...">&nbsp;최신 공지사항 :
+								${getRecentNotice.notice_title}</th>
 						</tr>
 					</thead>
-					<tbody id="tbodyCartTab">
-					</tbody>
-				</table>
-			</div>
-			<!-- 장바구니 테이블 끝 -->
-		</div>
-		<div class="tab-pane fade" id="myRecentRequest" role="tabpanel" aria-labelledby="myRecentRequestTab">
-			<!-- 최근문의 3개 테이블 -->
-			<div class="table-responsive">
-				<table class="table ">
-					<thead>
+					<tbody>
 						<tr>
-							<th style="width:5%;">No</th>
-							<th style="width:40%;">문의글 제목</th>
-							<th style="width:20%;">답변상태</th>
-							<th style="width:30%;">작성날짜</th>
+							<td><textarea rows=5 style="width: 100%;" readonly>${getRecentNotice.notice_content}</textarea>
+							</td>
 						</tr>
-					</thead>
-					<tbody id="tbodyRequestTab">
 					</tbody>
 				</table>
+				<!-- 안내테이블 끝 -->
 			</div>
-			<!-- 최근문의 3개 테이블 끝 -->
+			<div class="tab-pane fade" id="myCart" role="tabpanel" aria-labelledby="myCartTab">
+				<!-- 장바구니 테이블 -->
+				<div class="table-responsive">
+					<table class="table ">
+						<thead>
+							<tr>
+								<th style="width:20%;">표지</th>
+								<th style="width:30%;">제목</th>
+								<th style="width:10%;">작가</th>
+								<th style="width:10%;">출판사</th>
+								<th style="width:20%;">출판일</th>
+								<th style="width:10%;">가격</th>
+							</tr>
+						</thead>
+						<tbody id="tbodyCartTab">
+						</tbody>
+					</table>
+				</div>
+				<!-- 장바구니 테이블 끝 -->
+			</div>
+			
+			<div class="tab-pane fade" id="myRecentRequest" role="tabpanel" aria-labelledby="myRecentRequestTab">
+				<!-- 최근문의 3개 테이블 -->
+				<div class="table-responsive">
+					<table class="table ">
+						<thead>
+							<tr>
+								<th style="width:5%;">No</th>
+								<th style="width:40%;">문의글 제목</th>
+								<th style="width:20%;">답변상태</th>
+								<th style="width:30%;">작성날짜</th>
+							</tr>
+						</thead>
+						<tbody id="tbodyRequestTab">
+						</tbody>
+					</table>
+				</div>
+				<!-- 최근문의 3개 테이블 끝 -->
+			</div>
 		</div>
+		<input type="hidden" id="user_id" name="user_id" value="${sessionUserId}" />
 	</div>
-	<input type="hidden" id="user_id" name="user_id" value="${sessionUserId}" />
+	
+	<!-- 모달 -->
+	<!-- Button trigger modal -->
+	<div class="container" id="modalContainer">
+		
+	</div>
 
 
 	<!-- 공통 마이페이지 바텀 -->
