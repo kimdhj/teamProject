@@ -2,10 +2,6 @@ package com.romance.user.points;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -17,16 +13,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.romance.security.JwtUtils;
 import com.romance.user.login.UserVO;
-import com.romance.user.orders.OrderBookListVO;
 import com.romance.user.orders.OrderService;
-import com.romance.user.orders.OrdersVO;
 
 @Controller
 public class MyPointsController {
 
 		@Autowired
 		OrderService ser;
-	
+		@Autowired
+		MyPointsService myPointsService;
+		
 		@RequestMapping("/goGetPoint.do")
 		public String goGetPoint(Model model,JwtUtils util,HttpSession session) throws IOException {
 			UserVO vou = util.getuser(session);
@@ -38,19 +34,27 @@ public class MyPointsController {
 			return "my_MileagePay";
 		}
 		
-		@PostMapping("pointfinish.do")
-		public String bookfinish(OrdersVO vo,OrderBookListVO lvo,Model model) throws ParseException {
+		@PostMapping("/pointfinish.do")
+		public String pointfinish(MyPointsVO vo, Model model,JwtUtils util,HttpSession session) throws ParseException, IOException {
+			UserVO userVO = util.getuser(session);
+			System.out.println("어째서" +userVO);
+			System.out.println("저째서"+vo);
+			String iiiid = userVO.getUser_id();
+			vo.setUser_id(iiiid);
+			int popoint = vo.getPoints_count();
+			int pointnt = userVO.getUser_point();
+			System.out.println(popoint);
+			System.out.println(pointnt);
+			userVO.setUser_point(popoint+pointnt);
+			myPointsService.createPoints(vo);
+			myPointsService.addPoint(userVO);  
 			
-			if(vo.getOrders_cache_tool()=="vbank") {
-			 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");         // 문자열 -> Date        Date date = formatter.parse(dateStr);
-			 Date date = formatter.parse(vo.getOrders_vbank_Date_String().replaceAll("T", " ")); 
-			 vo.setOrders_vbank_Date(date);
-			}
+			userVO = myPointsService.renew(userVO);
 			
-			 model.addAttribute("result", vo);
-					 
-			  
-			return "redirect:bookfin.do";
+			String token = util.createToken("user", userVO);
+			session.setAttribute("id", token);
+			
+			return "redirect:myMain.do";
 		}
 		
 		

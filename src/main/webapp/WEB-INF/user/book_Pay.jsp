@@ -365,8 +365,8 @@
 			<input type="hidden" value="${user.user_id}" name="user_id" id="orders_status" />   
 			<input type="number" class="hide" value="${iscart}" name="iscart" id="orders_status" />   
 			
-				<input type="hidden" value="${user.user_id}" name="user_id" id="orders_status" />   
-				<input type="number" class="hide" value="${iscart}" name="iscart" id="orders_status" />   
+			<input type="hidden" value="${user.user_id}" name="user_id" id="orders_status" />   
+			<input type="number" class="hide" value="${iscart}" name="iscart" id="orders_status" />   
 			<input type="number" value="0" class="hide" name="couponselcode" id="couponselcode"/>
 		<!-- 구독가격, 쿠폰가격 하이딩 -->
 	

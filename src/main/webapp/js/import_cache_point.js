@@ -79,7 +79,7 @@ $(document).ready(function() {
 				console.log($("#orders_cache_uid"));
 				$("#orders_cache_uid").val(data.imp_uid);
 				$("#cache_tool").val(data.pay_method);
-				$("#orders_cache_sum").val(data.paid_amount);
+				$("#points_count").val(data.paid_amount);
 				$("#orders_status").val(data.status);
 				$("#payfin").submit();
 			} else {
@@ -109,7 +109,7 @@ $(document).ready(function() {
 				console.log(data.imp_uid);
 				$("#orders_cache_uid").val(data.imp_uid);
 				$("#cache_tool").val(data.pay_method);
-				$("#orders_cache_sum").val(data.paid_amount);
+				$("#points_count").val(data.paid_amount);
 				$("#orders_status").val(data.status);
 				$("#payfin").submit();
 			} else {
@@ -141,7 +141,7 @@ $(document).ready(function() {
 				console.log(data.imp_uid);
 				$("#orders_cache_uid").val(data.imp_uid);
 				$("#cache_tool").val(data.pay_method);
-				$("#orders_cache_sum").val(data.paid_amount);
+				$("#points_count").val(data.paid_amount);
 				$("#orders_status").val(data.status);
 				$("#payfin").submit();
 

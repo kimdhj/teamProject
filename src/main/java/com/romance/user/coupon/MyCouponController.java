@@ -25,13 +25,13 @@ public class MyCouponController {
   
   @GetMapping("mycoupon.do")
   public String mycoupon(MyCouponSearchVO vo,MyPointsSearchVO vop,Model model,JwtUtils util,HttpSession session) throws IOException {
-    UserVO vou=util.getuser(session);
-    if (vou==null) {
-
-      return "redirect:index.do";
-    }
-    vo.setUser_id(vou.getUser_id());
-    vop.setUser_id(vou.getUser_id());
+	  	UserVO vou=util.getuser(session);
+    
+    	if (vou==null) {
+    	return "redirect:index.do";
+    	}
+    	vo.setUser_id(vou.getUser_id());
+    	vop.setUser_id(vou.getUser_id());
    
       if(vo.getPage()==0) {
         vo.setPage(1);
