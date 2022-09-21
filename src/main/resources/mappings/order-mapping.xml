@@ -14,7 +14,7 @@
 	<insert parameterType="ordersVO" id="ordersIn">
 	<![CDATA[	insert into
 		orders(orders_cache_sum,orders_phone,orders_name,orders_zipcode,orders_address,orders_cache_tool,orders_status,orders_email,orders_title,orders_coupon_effect,orders_point,orders_add_point,orders_recommend,orders_vbank_name,orders_vbank_num,orders_cache_uid,orders_refund_num,orders_refund_bank,user_id,orders_remainaddress,orders_vbank_Date)
-		values(#{orders_cache_sum},#{orders_phone},#{orders_name},#{orders_zipcode},#{orders_address},#{orders_cache_tool},#{orders_status},#{orders_email},#{orders_title},#{orders_coupon_effect},#{orders_point},#{orders_add_point},#{orders_recommend},#{orders_vbank_name},#{orders_vbank_num},#{orders_cache_uid},#{orders_refund_num},#{orders_refund_bank},#{user_id},#{orders_remainaddress},#{orders_vbank_Date})]]>
+		values(#{orders_cache_sum},#{orders_phone},#{orders_name},#{orders_zipcode},#{orders_address},#{orders_cache_tool},#{orders_status},#{orders_email},#{orders_title},#{orders_coupon_effect},#{orders_point},#{orders_add_point},#{orders_recommend},#{orders_vbank_name},#{orders_vbank_num},#{orders_cache_uid},#{orders_refund_num},#{orders_refund_bank},#{user_id},#{orders_remainaddress},#{orders_vbank_Date_String})]]>
 	</insert>
 	
 	<!-- 구매자가 구매한 책을 하나씩 입력하는 메소드 -->

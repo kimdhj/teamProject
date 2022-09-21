@@ -32,6 +32,20 @@
 		<![CDATA[) B  ]]>
 
 	</select>
-
+	
+	<insert id="createPoints" parameterType="MyPointsVO">
+		INSERT INTO points(points_count, points_content, user_id)
+		VALUES(#{points_count}, #{points_content}, #{user_id})
+	</insert>
+	<update id="addPoint" parameterType="UserVO">
+		UPDATE user
+		SET user_point=#{user_point} WHERE user_id=#{user_id}
+	</update>
+	<select id="renew" parameterType="String" resultType="UserVO">
+		select * from user where user_id=#{user_id}
+	</select>
+	
+	
+	
 
 </mapper>

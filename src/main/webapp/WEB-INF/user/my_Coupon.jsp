@@ -121,7 +121,7 @@
           </div>
           <div class="col"></div>
           <div class="col-auto">
-            <button id="coupon_add" type="button" class="btn btn-warning rounded-pill">마일리지 충전</button>
+            <button id="coupon_add" type="button" class="btn btn-warning rounded-pill" onclick="goGetPoint();">마일리지 충전</button>
           </div>
         </div>
         <div class="row mt-2" id="select_cash">
@@ -159,7 +159,7 @@
             </c:forEach>
           </div>
           <div id="table_bottom" class="row">
-            <nav aria-label="Page     navigation example">
+            <nav aria-label="Page navigation example">
               <ul class="pagination">
                 <c:if test="${vop.page ne 1}">
                   <li class="page-item"><a class="page-link" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>

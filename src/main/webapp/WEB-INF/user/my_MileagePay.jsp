@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,6 +19,7 @@
 
     <!-- Page Header End -->
     <!-- 여기서부터 바디 작업 하면됨 --> 
+    <form method="post" action="/pointfinish.do" id="payfin">
     <div class="row" id="main_wrapper">
       <div class="col-2" id="left_blank"></div>
       <div class="col-8" id="middle_contents">
@@ -29,7 +33,7 @@
           <div class="col-4 d-flex flex-row align-items-center"></div>
           <div class="col-4 d-flex flex-row align-items-center text-end">
             <div class="col"></div>
-            <div class="col-auto p-0" id="myMileage_have">5,000,000</div>
+            <div class="col-auto p-0" id="myMileage_have"><fmt:formatNumber value="${mapoint.user_point }" pattern="#,###" /></div>
             <div class="col-auto p-0">P</div>
           </div>
           <div><br /></div>
@@ -61,7 +65,7 @@
           <div class="col-5 d-flex flex-row align-items-center"></div>
           <div class="col-3 d-flex flex-row align-items-center text-end">
             <div class="col"></div>
-            <div class="col-auto p-0" id="myMileage_sum">5,000,000</div>
+            <div class="col-auto p-0" id="myMileage_sum">${mapoint.user_point }</div>
             <div class="col-auto p-0">P</div>
           </div>
           <div><br /></div>
@@ -97,45 +101,59 @@
         </div>
         <div><br /><br /></div>
         <div class="row">
-          <div class="col-2" id="big_big">결제 정보</div>
-          <form class="col">
-            <input
-              type="radio"
-              name="howPay"
-              value="신용카드"
-              checked
-            />신용카드
-            <input type="radio" name="howPay" value="실시간 계좌이체" />실시간
-            계좌이체
-            <input type="radio" name="howPay" value="무통장 입금" />무통장 입금
-            <input type="radio" name="howPay" value="PAYCO" />PAYCO
-            <input type="radio" name="howPay" value="네이버페이" />네이버페이
-          </form>
-        </div>
-        <div><br /><br /></div>
-        <div class="row">
-          <div class="col-4"></div>
-          <div class="col">
-            <input type="submit" name="payAccess" value="결제" />
-          </div>
-          <div class="col">
-            <input type="submit" name="payCancel" value="취소" />
-          </div>
-        </div>
-        <div><br /><br /></div>
+				<div class="col-2" id="big_big">결제 정보</div>
+				<div class="row d-flex">
+					<input class="col-auto" type="radio" name="orders_cache_tools" value="카드" checked />카드
+					<input  class="col-auto" type="radio" name="orders_cache_tools" value="계좌이체" />실시간
+					계좌이체 <input  class="col-auto" type="radio" name="orders_cache_tools" value="핸드폰결제" />핸드폰
+					결제
+				</div>
+			</div>
+        <div>
+				<br /> <br />
+			</div>
+			<div class="row">
+				<div class="col-4"></div>
+				<div class="col">
+					<input type="button" id="paystart" name="payAccess" value="결제" />
+				</div>
+				<div class="col">
+					<input type="button" name="payCancel" value="취소" />
+				</div>
+			</div>
+			<div>
+				<br /> <br />
+			</div>
       </div>
       <div class="col-2" id="right_blank"></div>
     </div>
 	   
+	   //결제 페이지에 필요한 정보
+	<input type="hidden" id="orders_title" name="orders_title" value="마일리지" />
+	<input type="hidden" id="orders_email" name="orders_email" value="${mapoint.user_email }" />
+	<input type="hidden" id="orders_name" name="orders_name" value="${mapoint.user_name }" />
+	<input type="hidden" id="phone" name="phone" value="${mapoint.user_phone }" />
+	<input type="hidden" id="orders_address" name="orders_address" value="${mapoint.user_address }" />
+	<input type="hidden" id="zipcode" name="zipcode" value="${mapoint.user_zipcode }" />
 	
-	    
-    
+	//결제 이후 받을 정보
+	<input type="hidden" name="points_count" id="points_count" />  
+	<input type="hidden" name="points_content"  id="points_content" value="마일리지" />  //결제 금액
+	<input type="hidden" name="orders_status" id="orders_status" /> 
+	<input type="hidden" name="orders_cache_tool" value="카드" id="cache_tool" /> 
+	
+    </form>
     <!-- Footer Start -->
     	<!-- Common Footer include -->
         <jsp:include page="/WEB-INF/commonjsp/common_footer.jsp"></jsp:include>
            <!-- 여기에 js관련  -->
+           <!-- iamport.payment.js -->
+	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
+	<!--다음 주소  -->
+	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
            <script src="/js/jquery.number.min.js"></script>
         <script src="/js/my_MileagePay.js"></script>
+        <script src="/js/import_cache_point.js"></script>
 	<!-- Footer End -->
 </body>
 </html>

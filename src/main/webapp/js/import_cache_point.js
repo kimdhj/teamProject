@@ -23,23 +23,20 @@ $(document).ready(function() {
 		return year + month + day;	//년 월 일 리턴
 	}
 	$("#paystart").click(function() {	//결제 버튼 클릭시
-		console.log($("#orders_name").val());		
+		console.log($("#orders_name").val());
 		var radioVal = $('input[name="orders_cache_tools"]:checked').val(); // radioVal 변수에 라디오 버튼체크된거 값 삽입
 		
-		
-		
-		
+
 		
 	console.log(radioVal);
-		let title = $("#bookName").text().trim() + " 외 " + $("#items").children().length + "권";	//title 변수에 책이름 외 6권
-		let amount = Number($("#sumsumsum").text().trim().replaceAll(",", "")) + Number($("#delivery").text().trim().replaceAll(",", ""));	//amount에 합계
+		let title = $("#orders_title").val();	//title 변수에 책이름 외 6권
+		let amount = Number($("#sumsumsum").text().trim().replaceAll(",", ""));	//amount에 합계
 		let email = $("#orders_email").val();	
 		let name = $("#orders_name").val();
 		let tel = $("#phone").val();
 		let address = $("#orders_address").val() + $("#orders_remainaddress").val();
 		let postcode = $("#zipcode").val();
 		let due = getToday();
-		$("#orders_title").val(title);	//제목 히든
 		console.log(title, amount, email, name, tel, address, postcode, due);
 		if (amount != 0) {	//합계가 있으면
 			if (radioVal == "핸드폰결제") {
@@ -82,22 +79,18 @@ $(document).ready(function() {
 				console.log($("#orders_cache_uid"));
 				$("#orders_cache_uid").val(data.imp_uid);
 				$("#cache_tool").val(data.pay_method);
-				$("#orders_cache_sum").val(data.paid_amount);
+				$("#points_count").val(data.paid_amount);
 				$("#orders_status").val(data.status);
-				$("#orders_email").val(data.buyer_email);
 				$("#payfin").submit();
-
 			} else {
 				var msg = '결제에 실패하였습니다.';
 				msg += '에러내용 : ' + rsp.error_msg;
 				alert(msg);
 			}
 		});
-
 	}
 	//카드
 	function card(title, amount, email, name, tel, address, postcode) {
-
 		IMP.request_pay({
 			pg: "html5_inicis.INIpayTest",
 			pay_method: "card", //가상계좌 vbank 카드결제(네이버 및 카카오) card
@@ -108,41 +101,6 @@ $(document).ready(function() {
 			buyer_tel: name,
 			buyer_addr: address,
 			buyer_postcode: postcode
-
-		}, function(rsp) {
-			console.log(rsp);
-			if (rsp.success) {
-				console.log(rsp.success);
-				let data = rsp;
-				console.log(data.imp_uid);
-$("#orders_email").val(data.buyer_email);
-				$("#orders_cache_uid").val(data.imp_uid);
-				$("#cache_tool").val(data.pay_method);
-				$("#orders_cache_sum").val(data.paid_amount);
-				$("#orders_status").val(data.status);
-				$("#payfin").submit();
-			} else {
-				var msg = '결제에 실패하였습니다.';
-				msg += '에러내용 : ' + rsp.error_msg;
-				alert(msg);
-			}
-		});
-
-	}
-	//가상계좌
-	function vbank(title, amount, email, name, tel, address, postcode, due) {
-
-		IMP.request_pay({
-			pg: "html5_inicis.INIpayTest",
-			pay_method: "vbank", //가상계좌 vbank 카드결제(네이버 및 카카오) card
-			name: title,
-			amount: amount,
-			buyer_email: email,
-			buyer_name: name,
-			buyer_tel: tel,
-			buyer_addr: address,
-			buyer_postcode: postcode,
-			vbank_due: due
 		}, function(rsp) {
 			console.log(rsp);
 			if (rsp.success) {
@@ -151,12 +109,8 @@ $("#orders_email").val(data.buyer_email);
 				console.log(data.imp_uid);
 				$("#orders_cache_uid").val(data.imp_uid);
 				$("#cache_tool").val(data.pay_method);
-				$("#orders_cache_sum").val(data.paid_amount);
+				$("#points_count").val(data.paid_amount);
 				$("#orders_status").val(data.status);
-				$("#vbank_name").val(data.vbank_name);
-				$("#orders_vbank_num").val(data.vbank_num);
-				$("#orders_vbank_Date").val(data.vbank_date);
-				$("#orders_email").val(data.buyer_email);
 				$("#payfin").submit();
 			} else {
 				var msg = '결제에 실패하였습니다.';
@@ -164,7 +118,6 @@ $("#orders_email").val(data.buyer_email);
 				alert(msg);
 			}
 		});
-
 	}
 	//실시간계좌 이체
 	function trans(title, amount, email, name, tel, address, postcode) {
@@ -188,8 +141,7 @@ $("#orders_email").val(data.buyer_email);
 				console.log(data.imp_uid);
 				$("#orders_cache_uid").val(data.imp_uid);
 				$("#cache_tool").val(data.pay_method);
-				$("#orders_cache_sum").val(data.paid_amount);
-				$("#orders_email").val(data.buyer_email);
+				$("#points_count").val(data.paid_amount);
 				$("#orders_status").val(data.status);
 				$("#payfin").submit();
 

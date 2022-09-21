@@ -66,18 +66,27 @@
 		<div class="container">
 			<table class="table text-center">
 				<thead>
+					<tr>
+						<th scope="col">No</th>
+						<th scope="col">QnA</th>
+						<th scope="col">문의글 제목</th>
+						<th scope="col">답변상태</th>
+						<th scope="col">작성날짜</th>
+					</tr>
+				</thead>
+				<tbody>
 					<c:forEach var="myRequest" items="${myRequestList}">
 						<tr>
 							<th style="width:5%;">${myRequest.ask_seq}</th>
-							<th style="width:10%;">QnA</th>
-							<th style="width:35%;">
+							<td style="width:10%;">QnA</td>
+							<td style="width:35%;">
 								<a href="/myRequestDetail.do?ask_seq=${myRequest.ask_seq}&pageNum=${criteria.pageNum}&searchCondition=${criteria.searchCondition}&searchKeyword=${criteria.searchKeyword}&selectCondition=${criteria.selectCondition}">${myRequest.ask_title}</a>
-							</th>
-							<th style="width:20%;">${myRequest.ask_status}</th>
-							<th style="width:25%;"><fmt:formatDate value="${myRequest.ask_date}" pattern="yyyy-MM-dd HH:ss" /></th>
+							</td>
+							<td style="width:20%;">${myRequest.ask_status}</td>
+							<td style="width:25%;"><fmt:formatDate value="${myRequest.ask_date}" pattern="yyyy-MM-dd HH:ss" /></td>
 						</tr>
 					</c:forEach>
-				</thead>
+				</tbody>
 
 			</table>
 			<!-- 문의글 끝 -->

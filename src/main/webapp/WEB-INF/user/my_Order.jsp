@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,106 +22,72 @@
 	<jsp:include page="/WEB-INF/commonjsp/common_mypage_header.jsp"></jsp:include>
 
 		<!-- 여기 삽입 -->
-		<!-- 배송정보 시작 -->
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-md-auto align-self-center">
-					<img src="/img/mypage_delivery_1.png" class="rounded" alt="...">
-				</div>
-				<div class="col-md-auto align-self-center">
-					<img src="/img/mypage_delivery_7.png" class="rounded" alt="...">
-				</div>
-				<div class="col-md-auto align-self-center">
-					<img src="/img/mypage_delivery_2.png" class="rounded" alt="...">
-				</div>
-				<div class="col-md-auto align-self-center">
-					<img src="/img/mypage_delivery_7.png" class="rounded" alt="...">
-				</div>
-				<div class="col-md-auto align-self-center">
-					<img src="/img/mypage_delivery_3.png" class="rounded" alt="...">
-				</div>
-				<div class="col-md-auto align-self-center">
-					<img src="/img/mypage_delivery_7.png" class="rounded" alt="...">
-				</div>
-				<div class="col-md-auto align-self-center">
-					<img src="/img/mypage_delivery_4.png" class="rounded" alt="...">
-				</div>
-				<div class="col-md-auto align-self-center">
-					<img src="/img/mypage_delivery_7.png" class="rounded" alt="...">
-				</div>
-				<div class="col-md-auto align-self-center">
-					<img src="/img/mypage_delivery_5.png" class="rounded" alt="...">
-				</div>
-				<div class="col-md-auto align-self-center">
-					<img src="/img/mypage_delivery_7.png" class="rounded" alt="...">
-				</div>
-				<div class="col-md-auto align-self-center">
-					<img src="/img/mypage_delivery_6.png" class="rounded" alt="...">
-				</div>
-				<div class="col-md-auto">
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item">-취소</li>
-						<li class="list-group-item">-교환</li>
-						<li class="list-group-item">-반품</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<!-- 배송정보 끝 -->
-
 
 		<!-- 기간조회 및 조건검색 -->
 
-
-		<table class="table">
-			<thead>
-
-			</thead>
-			<tbody>
-				<tr>
-					<th scope="row" class="bg-light align-middle">기간조회</th>
-					<td>
-						<div class="btn btn-group" role="group" aria-label="Basic example">
-							<button type="button" class="btn btn-dark btn-sm"
-								name="filterDate" id="oneWeek" value="1"
-								onclick="searchDateOneWeek()">1주일</button>
-							<button type="button" class="btn btn-dark btn-sm"
-								name="filterDate" id="oneMonth" value="2"
-								onclick="searchDateOneMonth()">1개월</button>
-							<button type="button" class="btn btn-dark btn-sm"
-								name="filterDate" id="threeMonth" value="3"
-								onclick="searchDateThreeMonth()">3개월</button>
-							<button type="button" class="btn btn-dark btn-sm"
-								name="filterDate" id="sixMonth" value="4"
-								onclick="searchDateSixMonth()">6개월</button>
-						</div>
-						<div>
-							오늘 날짜 : <span id="today"></span>
-							<form>
-								<input type="text" name="fromDate" id="fromDate"> ~ <input
-									type="text" name="toDate" id="toDate">
-							</form>
-						</div>
-					</td>
-					<td class="align-middle">
-						<button type="button" class="btn btn-secondary">조회</button>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row" class="bg-light align-middle">조건검색</th>
-					<td><select name="Appia">
-							<option value="Python" selected>상품명</option>
-							<option value="MATLAB">주문번호</option>
-							<option value="HTML">받는분 이름</option>
-					</select> <input type="text" class="form-control" id="" placeholder="">
-					</td>
-					<td>
-						<button type="button" class="btn btn-secondary">검색</button>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-
+		<div class="container">
+			<form action="/myOrder.do" method="get">
+				<div class="d-flex flex-row">
+					<div class="col-md-12">
+						<table class="table">
+							<thead>
+				
+							</thead>
+							<tbody>
+								<tr>
+									<th scope="row" class="bg-light align-middle">기간조회</th>
+									<td>
+										<div class="btn btn-group" role="group" aria-label="Basic example">
+											<button type="button" class="btn btn-dark btn-sm"
+												name="filterDate" id="oneWeek" value="1"
+												onclick="searchDateOneWeek()">1주일</button>
+											<button type="button" class="btn btn-dark btn-sm"
+												name="filterDate" id="oneMonth" value="2"
+												onclick="searchDateOneMonth()">1개월</button>
+											<button type="button" class="btn btn-dark btn-sm"
+												name="filterDate" id="threeMonth" value="3"
+												onclick="searchDateThreeMonth()">3개월</button>
+											<button type="button" class="btn btn-dark btn-sm"
+												name="filterDate" id="sixMonth" value="4"
+												onclick="searchDateSixMonth()">6개월</button>
+										</div>
+										<div>
+											오늘 날짜 : <span id="today"></span>
+											
+												<input type="text" name="fromDate" id="fromDate" value="">
+												~ 
+												<input type="text" name="toDate" id="toDate" value="">
+											
+										</div>
+									</td>
+									<td class="align-middle">
+										<!-- <button type="button" class="btn btn-secondary">조회</button> -->
+									</td>
+								</tr>
+								<tr>
+									<th scope="row" class="bg-light align-middle">조건검색</th>
+									<td>
+									<select class="form-select form-select mb-3"
+										aria-label=".form-select-lg example" name="searchCondition">
+										<c:forEach items="${conditionMap}" var="option">
+											<option value="${option.value}">${option.key}</option>
+										</c:forEach>
+									</select> 
+									<input type="text" class="form-control" id="searchKeyword" name="searchKeyword" placeholder="">
+									</td>
+									<td></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="d-flex flex-row">
+					<div class="col-md-12">
+						<button type="submit" class="btn btn-secondary" id="orderSearchBtn" onclick="" style="float:right;">검색</button>
+					</div>
+				</div>
+			</form>
+		</div>
 
 		<!-- 기간조회 및 조건검색 끝 -->
 
@@ -128,15 +95,18 @@
 		<br>
 		<div class="d-flex flex-row">
 			<p style="color:red;">${pagination.criteria.pageNum}/${pagination.endPage}페이지</p>
-			<p style="color:black;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2022-06-29 ~ 2022-07-28 까지의 주문 총 <a>0</a>건</p>
+			<p style="color:black;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				2022-06-29 ~ 2022-07-28 까지의 주문 총
+			<a>0</a>건</p>
 		</div>
 		<div class="table-responsive">
 			<table class="table ">
 				<thead>
 					<tr>
 						<th scope="col">주문번호</th>
-						<th scope="col">주문금액</th>
 						<th scope="col">상품정보</th>
+						<th scope="col">받는이</th>
+						<th scope="col">주문일</th>
 						<th scope="col">주문상태</th>
 						<th scope="col">주문상세</th>
 					</tr>
@@ -145,14 +115,18 @@
 					<c:forEach var="myOrder" items="${myOrderList}">
 						<tr>
 							<th scope="row">${myOrder.orders_seq}</th>
-							<td>${myOrder.orders_cache_sum}</td>
 							<td>${myOrder.orders_title}</td>
+							<td>${myOrder.orders_name}</td>
 							<td>
+								<fmt:formatDate value="${myOrder.orders_order_day}" pattern="yyyy-MM-dd" />
+							</td>
+							<td>
+								<c:if test="${myOrder.orders_status eq 'paid'}">결제완료</c:if>
 								<c:if test="${myOrder.orders_status eq 'ready'}">배송준비</c:if>
 								<c:if test="${myOrder.orders_status eq 'arrival'}">배송완료</c:if>
 							</td>
 							<td>
-								<a href="/myOrderDetail.do?orders_seq=${myOrder.orders_seq}&pageNum=${pagination.criteria.pageNum}">
+								<a href="/myOrderDetail.do?orders_seq=${myOrder.orders_seq}&pageNum=${criteria.pageNum}&searchCondition=${criteria.searchCondition}&searchKeyword=${criteria.searchKeyword}&fromDate=${criteria.fromDate}&toDate=${criteria.toDate}">
 									<button type="button" class="btn btn-warning" id="checkArrival" name="checkArrival">조회</button>
 								</a>
 								
@@ -175,16 +149,16 @@
 						</a></li> -->
 						<c:if test="${pagination.prev}">
 							<li class="page-item"><a class="page-link"
-								href="<c:url value="/myOrder.do?searchCondition=${pagination.criteria.getSearchCondition() }&searchKeyword=${pagination.criteria.getSearchKeyword() }&pageNum=${pagination.startPage - 1 }" />">이전</a></li>
+								href="<c:url value="/myOrder.do?searchCondition=${criteria.getSearchCondition() }&searchKeyword=${criteria.getSearchKeyword() }&pageNum=${startPage - 1 }" />">이전</a></li>
 						</c:if>
 						<c:forEach begin="${pagination.startPage}"
 							end="${pagination.endPage}" var="pageNum">
 							<li class="page-item"><a class="page-link"
-								href="<c:url value="/myOrder.do?searchCondition=${pagination.criteria.getSearchCondition() }&searchKeyword=${pagination.criteria.getSearchKeyword() }&pageNum=${pageNum}" />">${pageNum}</a></li>
+								href="<c:url value="/myOrder.do?searchCondition=${criteria.getSearchCondition() }&searchKeyword=${criteria.getSearchKeyword() }&pageNum=${pageNum}&fromDate=${criteria.fromDate}&toDate=${criteria.toDate}" />">${pageNum}</a></li>
 						</c:forEach>
 						<c:if test="${pagination.next && pagination.endPage > 0}">
 							<li class="page-item"><a class="page-link"
-								href="<c:url value="/myOrder.do?searchCondition=${pagination.criteria.getSearchCondition() }&searchKeyword=${pagination.criteria.getSearchKeyword() }&pageNum=${pagination.endPage + 1 }" />">다음</a></li>
+								href="<c:url value="/myOrder.do?searchCondition=${criteria.getSearchCondition() }&searchKeyword=${criteria.getSearchKeyword() }&pageNum=${pagination.endPage + 1 }" />">다음</a></li>
 						</c:if>
 						<!-- <a class="page-link" href="#" aria-label="Next"> <span
 							aria-hidden="true">&raquo;</span>

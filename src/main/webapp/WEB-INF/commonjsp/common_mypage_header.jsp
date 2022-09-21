@@ -37,8 +37,8 @@
                         <!-- 메인페이지 헤더 내용 -->
                         <div class="container">
                             <div class="row">
-                                <div class="col-3">
-
+                                <div class="col-2">
+									<a href="/myMain.do"><img src="/img/moveMyMain.png" style="cursor:pointer;" /></a>
                                 </div>
                                 <div class="row col-9">
                                     <div class="col-4">
@@ -118,7 +118,7 @@
                             </button>
                             <ul class="dropdown-menu">
                                 <!-- Dropdown menu links -->
-                                <li><button class="dropdown-item" type="button">할인쿠폰/마일리지</button></li>
+                                <li><button class="dropdown-item" type="button" onclick="moveToCuMa();">할인쿠폰/마일리지</button></li>
                             </ul>
                         </div><br><br><br>
                         <div class="btn-group dropend">
@@ -173,6 +173,6 @@
                 <div class="col-lg-9 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
                     <br>
                     <p class="mb-4 fs-5 fw-bold"><img src="img/mypage_mainbtn.png" class="rounded float-start"
-                            alt="...">&nbsp;마이 페이지
+                            alt="...">&nbsp;<a href="/myMain.do">마이 페이지</a>
                         <button type="button" class="btn btn-secondary btn-sm float-end" onclick="can_sub();">구독취소</button>
                     </p>
