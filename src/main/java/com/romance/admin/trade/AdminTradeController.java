@@ -111,7 +111,7 @@ public class AdminTradeController {
     
   }
   @GetMapping("adminordersmod.mdo")
-  public String adminordersmod(OrdersVO vo,@RequestParam(value = "book_seq",required=false)List<Integer> book_seq,@RequestParam(value = "book_count",required=false)List<Integer> book_count) {
+  public String adminordersmod(OrdersVO vo,@RequestParam(value = "book_seq",required=false)List<Integer> book_seq,@RequestParam(value = "book_count",required=false)List<Integer> book_count) throws Exception {
    System.out.println("vo수정"+vo);
    System.out.println("vo수정"+book_seq);
    System.out.println("vo수정"+book_count);
@@ -127,6 +127,10 @@ public class AdminTradeController {
    ser.booklistin(vol);
    }
    ser.updateorders(vo);
+   System.out.println("끝 확인"+vo.getOrders_status().trim().equals("cancelallfinish"));
+   if(vo.getOrders_status().trim().equals("cancelallfinish")) {
+     return"redirect:admintrade.mdo";
+   }
     return "redirect:tradeordersdetail.mdo?orders_seq="+vo.getOrders_seq();
   }
   //취소 리스트
