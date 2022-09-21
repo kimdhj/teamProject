@@ -118,7 +118,7 @@
                             </button>
                             <ul class="dropdown-menu">
                                 <!-- Dropdown menu links -->
-                                <li><button class="dropdown-item" type="button">할인쿠폰/마일리지</button></li>
+                                <li><button class="dropdown-item" type="button" onclick="moveToCuMa();">할인쿠폰/마일리지</button></li>
                             </ul>
                         </div><br><br><br>
                         <div class="btn-group dropend">

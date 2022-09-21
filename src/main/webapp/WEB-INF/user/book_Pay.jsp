@@ -362,6 +362,9 @@
 			<input type="hidden" name="orders_cache_sum"  id="orders_cache_sum" />  
 			<input type="hidden" name="orders_status" id="orders_status" /> 
 			<input type="number" value="0" class="hide" name="orders_add_point" id="orders_add_point" /> 
+			<input type="hidden" value="${user.user_id}" name="user_id" id="orders_status" />   
+			<input type="number" class="hide" value="${iscart}" name="iscart" id="orders_status" />   
+			
 				<input type="hidden" value="${user.user_id}" name="user_id" id="orders_status" />   
 				<input type="number" class="hide" value="${iscart}" name="iscart" id="orders_status" />   
 			<input type="number" value="0" class="hide" name="couponselcode" id="couponselcode"/>
