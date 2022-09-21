@@ -20,4 +20,7 @@ public interface OrderService {
 	public List<DeliveryVO> paydelivery(String user_id);
 	public void usecoupon(int user_coupon_seq);
 	public DeliveryVO seledelivery(int my_delivery_seq) ;
+	
+	
+	void purchaseCancel(OrdersVO vo);
 }

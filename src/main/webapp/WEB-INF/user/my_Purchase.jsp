@@ -52,11 +52,27 @@
           </select>
         </div>
         &nbsp;
-        <div class="col" id="option_input">
+        
+        <div class="col inputbox" id="option_input ">
           <div class="input-group mb-3 ">
-            <input type="text" id="search" class="form-control" aria-describedby="basic-addon2"> <button class="input-group-text search_btn" id="basic-addon2">검색</button>
+            <input type="text" id="search" style="margin-top: 7%;" class="form-control" aria-describedby="basic-addon2"> 
           </div>
         </div>
+        
+        <div class="col-4 dbstatus hide" id="option_dropdown">
+          <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="dbstatus2" style="height: 37px; margin-top: 2px;">
+            <option value="ready" selected>결제 대기</option>
+            <option value="paid">결제 완료</option>
+            <option value="delivery">배송중</option>
+            <option value="finish">배송완료</option>
+            <option value="cacelallwait">환불/교환/반품대기</option>
+            <option value="cancelallfinish">환불/교환/반품완료</option>
+          </select>
+        </div>
+        
+        &nbsp;<button class="input-group-text search_btn" id="basic-addon2">검색</button>&nbsp;
+        <button class="input-group-text" onclick="location.reload();" id="basic-addon2">초기화</button>
+        
       </div>
     </div>
   </div>
@@ -66,9 +82,10 @@
   <div class="row hellobox">
       <c:forEach items="${purchaseList }" var="purchase" begin="0" end="4">
     <div class="row purchaseList_box mt-5">
+    <input type="hidden" value="${purchase.orders_seq }" id="myorderseq" />
     
       <div class="col-2 purchaseList_img">
-        <img width="100%" src="${purchase.book_bigimgURL }">
+        <img class="mt-3 mb-3" width="100%" src="${purchase.book_bigimgURL }">
       </div>
       
       <div class="col-9 bookBox">
@@ -107,20 +124,23 @@
           <div class="col-12 purchaseList_hr"></div>
         </div>
         
-        <div class="row">
+        <div class="row mt-3 mb-3">
             <div class="col-2 purchaseList_btns">
-              <button onclick="#">배송조회</button>
-          </div>
+              <button onclick="location.href='/myreviewInsert.do'">리뷰작성</button>
+           </div>
+           
             <div class="col-2 purchaseList_btns">
-              <button onclick="/myreviewInsert.do">리뷰작성</button>
-          </div>
+              <button onclick="location.href='/myPurchaseDetail.do?orders_seq=${purchase.orders_seq}'">구매상세</button>
+         	</div>
+            
+            <c:if test="${purchase.orders_status eq 'ready' or purchase.orders_status eq 'paid' }">
             <div class="col-2 purchaseList_btns">
-              <button onclick="/mypurchaseDetail.do">구매상세</button>
-          </div>
-            <div class="col-2 purchaseList_btns">
-              <button class="purchaseCancel" onclick="#">구매취소</button>
-          </div>
+              <button class="purchaseCancel" type="button">구매취소</button>
+            </div>
+          </c:if>
+          
         </div>
+        
       </div>
       
     </div>

@@ -84,9 +84,12 @@
 		<!-- 문의글 끝 -->
 		
 		<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <%--
 			<a href="myOrder.do?pageNum=${criteria.pageNum}&searchCondition=${criteria.searchCondition}&searchKeyword=${criteria.searchKeyword}&fromDate=${criteria.fromDate}&toDate=${criteria.toDate}">
 				<button class="btn btn-primary me-md-2" type="button" id="requestListBtn">목록으로</button>
 			</a>
+     --%>
+            <button class="btn btn-primary me-md-2" type="button" onclick="location.href='myPurchase.do'">목록으로</button>
 			<button class="btn btn-primary me-md-2" type="button" onclick="checkArrival()">배송조회</button>
 		</div>
 		<input type="hidden" id="orders_seq" name="orders_seq" value="${orderDetail.orders_seq}" />
