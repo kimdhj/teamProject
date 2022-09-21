@@ -109,6 +109,7 @@ function make() {
 		});
 	}
 	//숫자만
+	// contentche : 검색, stateche : select id 임
 	$(document).on("propertychange change paste input keyUp keyDown","#contentche,#stateche",function(){
 	var datetime_pattern = /^(19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1]) (0[0-9]|1[0-9]|2[0-3]):([0-5][0-9])$/; 
 
@@ -116,6 +117,7 @@ function make() {
 		$("#contentche").val($("#contentche").val().replace(/[^0-9]/g,'')) ; 
 	}
 	
+	// 숫자바꾸기
 	if($("#stateche").val().trim()=="orders_order_day"){
 	  $('#contentche').prop("type", "date");
 	}else{
@@ -123,6 +125,7 @@ function make() {
 	}
 
 	})
+	
 	$(document).on('click', '.page-link', makeDisplay);
 	//태그 클릭에 따른 제한
 	function makeDisplay(e) {

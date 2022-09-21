@@ -17,6 +17,9 @@
 	<jsp:include page="/WEB-INF/commonjsp/common_mypage_header.jsp"></jsp:include>
 
 		<!-- 여기 삽입 -->
+		<div class="container">
+			<h3 style="color:red; text-align:center">*회원탈퇴*</h3>
+		</div>
 		<form action="/myWithdrawal.do" method="post" onsubmit="return formCheck()">
 			<div class="row" id="middle_menu">
 				<div id="under_topText">

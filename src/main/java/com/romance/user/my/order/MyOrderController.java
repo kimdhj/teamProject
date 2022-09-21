@@ -32,7 +32,7 @@ public class MyOrderController {
 		return conditionMap;
 	}
 	
-	@GetMapping("myOrder.do")
+	@GetMapping("myOrderCancel.do")
 	public String myOrder(Criteria criteria, Model model, HttpSession session, JwtUtils utils) throws Exception {
 		UserVO voToken = utils.getuser(session);
 		if(voToken != null) {
@@ -88,13 +88,13 @@ public class MyOrderController {
 			model.addAttribute("myOrderList", myOrderService.getMyOrderList(criteria));
 			System.out.println("내 주문목록 내놔바! : " + myOrderService.getMyOrderList(criteria));
 			
-			return "my_Order";
+			return "my_OrderCancel";
 		} else {
 			return "redirect:login.do";
 		}
 	}
 	
-	@GetMapping("myOrderDetail.do")
+	@GetMapping("myOrderCancelDetail.do")
 	public String myOrderDetail(OrdersVO ordersVO, Criteria criteria, Model model, HttpSession session, JwtUtils utils) throws Exception {
 		UserVO voToken = utils.getuser(session);
 		if(voToken != null) {
@@ -104,7 +104,7 @@ public class MyOrderController {
 			System.out.println("에라이 주문상세다 : " + orderDetail);
 			model.addAttribute("orderDetail", orderDetail);
 			model.addAttribute("criteria", criteria);
-			return "my_OrderDetail";
+			return "my_OrderCancelDetail";
 		} else {
 			return "redirect:login.do";
 		}

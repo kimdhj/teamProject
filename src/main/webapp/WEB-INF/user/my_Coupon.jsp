@@ -159,7 +159,7 @@
             </c:forEach>
           </div>
           <div id="table_bottom" class="row">
-            <nav aria-label="Page     navigation example">
+            <nav aria-label="Page navigation example">
               <ul class="pagination">
                 <c:if test="${vop.page ne 1}">
                   <li class="page-item"><a class="page-link" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>

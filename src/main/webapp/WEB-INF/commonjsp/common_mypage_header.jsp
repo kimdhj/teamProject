@@ -37,8 +37,8 @@
                         <!-- 메인페이지 헤더 내용 -->
                         <div class="container">
                             <div class="row">
-                                <div class="col-3">
-
+                                <div class="col-2">
+									<a href="/myMain.do"><img src="/img/moveMyMain.png" style="cursor:pointer;" /></a>
                                 </div>
                                 <div class="row col-9">
                                     <div class="col-4">
@@ -104,8 +104,8 @@
                             </button>
                             <ul class="dropdown-menu">
                                 <!-- Dropdown menu links -->
-                                <li><a href="/myOrder.do"><button class="dropdown-item" type="button">주문/배송조회</button></a></li>
-                                <li><button class="dropdown-item" type="button">취소/교환/반품조회</button></li>
+                                <li><button class="dropdown-item" type="button">주문/배송조회</button></li>
+                                <li><a href="/myOrderCancel.do"><button class="dropdown-item" type="button">취소/교환/반품조회</button></a></li>
                             </ul>
                         </div><br><br><br>
                         <div class="btn-group dropend">
@@ -118,7 +118,7 @@
                             </button>
                             <ul class="dropdown-menu">
                                 <!-- Dropdown menu links -->
-                                <li><button class="dropdown-item" type="button">할인쿠폰/마일리지</button></li>
+                                <li><button class="dropdown-item" type="button" onclick="moveToCuMa();">할인쿠폰/마일리지</button></li>
                             </ul>
                         </div><br><br><br>
                         <div class="btn-group dropend">
