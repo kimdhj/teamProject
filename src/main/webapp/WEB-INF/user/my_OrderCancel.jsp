@@ -26,7 +26,7 @@
 		<!-- 기간조회 및 조건검색 -->
 
 		<div class="container">
-			<form action="/myOrder.do" method="get">
+			<form action="/myOrderCancel.do" method="get">
 				<div class="d-flex flex-row">
 					<div class="col-md-12">
 						<table class="table">
@@ -126,7 +126,7 @@
 								<c:if test="${myOrder.orders_status eq 'arrival'}">배송완료</c:if>
 							</td>
 							<td>
-								<a href="/myOrderDetail.do?orders_seq=${myOrder.orders_seq}&pageNum=${criteria.pageNum}&searchCondition=${criteria.searchCondition}&searchKeyword=${criteria.searchKeyword}&fromDate=${criteria.fromDate}&toDate=${criteria.toDate}">
+								<a href="/myOrderCancelDetail.do?orders_seq=${myOrder.orders_seq}&pageNum=${criteria.pageNum}&searchCondition=${criteria.searchCondition}&searchKeyword=${criteria.searchKeyword}&fromDate=${criteria.fromDate}&toDate=${criteria.toDate}">
 									<button type="button" class="btn btn-warning" id="checkArrival" name="checkArrival">조회</button>
 								</a>
 								
@@ -149,16 +149,16 @@
 						</a></li> -->
 						<c:if test="${pagination.prev}">
 							<li class="page-item"><a class="page-link"
-								href="<c:url value="/myOrder.do?searchCondition=${criteria.getSearchCondition() }&searchKeyword=${criteria.getSearchKeyword() }&pageNum=${startPage - 1 }" />">이전</a></li>
+								href="<c:url value="/myOrderCancel.do?searchCondition=${criteria.getSearchCondition() }&searchKeyword=${criteria.getSearchKeyword() }&pageNum=${startPage - 1 }" />">이전</a></li>
 						</c:if>
 						<c:forEach begin="${pagination.startPage}"
 							end="${pagination.endPage}" var="pageNum">
 							<li class="page-item"><a class="page-link"
-								href="<c:url value="/myOrder.do?searchCondition=${criteria.getSearchCondition() }&searchKeyword=${criteria.getSearchKeyword() }&pageNum=${pageNum}&fromDate=${criteria.fromDate}&toDate=${criteria.toDate}" />">${pageNum}</a></li>
+								href="<c:url value="/myOrderCancel.do?searchCondition=${criteria.getSearchCondition() }&searchKeyword=${criteria.getSearchKeyword() }&pageNum=${pageNum}&fromDate=${criteria.fromDate}&toDate=${criteria.toDate}" />">${pageNum}</a></li>
 						</c:forEach>
 						<c:if test="${pagination.next && pagination.endPage > 0}">
 							<li class="page-item"><a class="page-link"
-								href="<c:url value="/myOrder.do?searchCondition=${criteria.getSearchCondition() }&searchKeyword=${criteria.getSearchKeyword() }&pageNum=${pagination.endPage + 1 }" />">다음</a></li>
+								href="<c:url value="/myOrderCancel.do?searchCondition=${criteria.getSearchCondition() }&searchKeyword=${criteria.getSearchKeyword() }&pageNum=${pagination.endPage + 1 }" />">다음</a></li>
 						</c:if>
 						<!-- <a class="page-link" href="#" aria-label="Next"> <span
 							aria-hidden="true">&raquo;</span>
@@ -190,7 +190,7 @@
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 		<script	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/i18n/datepicker-ko.js"></script>
-		<script src="/js/my_order.js"></script>
+		<script src="/js/my_OrderCancel.js"></script>
 </body>
 
 </html>

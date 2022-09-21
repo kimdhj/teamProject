@@ -56,7 +56,10 @@ public class OrderController {
 	}
 	@PostMapping("bookfinish.do")
 	public String bookfinish(OrdersVO vo,@RequestParam(value = "book_seq")List<Integer> book_seq,@RequestParam(value = "book_count")List<Integer> book_count,int iscart,int couponselcode,OrderBookListVO lvo,Model model) throws ParseException {
-    System.out.println("결제끝 : "+vo);
+    if(vo.getOrders_vbank_Date_String()=="") {
+      vo.setOrders_vbank_Date_String(null);
+    }
+	  System.out.println("결제끝 : "+vo);
 	  System.out.println(vo.getOrders_vbank_Date_String());
 		System.out.println("controllerl vo : "+vo);
 		System.out.println("bookseq : "+book_seq);

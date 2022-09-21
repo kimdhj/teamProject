@@ -105,7 +105,7 @@
                             <ul class="dropdown-menu">
                                 <!-- Dropdown menu links -->
                                 <li><a href="/myPurchase.do"><button class="dropdown-item" type="button">주문/배송조회</button></a></li>
-                                <li><button class="dropdown-item" type="button">취소/교환/반품조회</button></li>
+                                <li><a href="/myOrderCancel.do"><button class="dropdown-item" type="button">취소/교환/반품조회</button></a></li>
                             </ul>
                         </div><br><br><br>
                         <div class="btn-group dropend">
