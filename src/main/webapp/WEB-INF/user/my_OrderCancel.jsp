@@ -121,9 +121,9 @@
 								<fmt:formatDate value="${myOrder.orders_order_day}" pattern="yyyy-MM-dd" />
 							</td>
 							<td>
-								<c:if test="${myOrder.orders_status eq 'paid'}">결제완료</c:if>
-								<c:if test="${myOrder.orders_status eq 'ready'}">배송준비</c:if>
-								<c:if test="${myOrder.orders_status eq 'arrival'}">배송완료</c:if>
+								<c:if test="${myOrder.orders_status eq 'cancelallwait'}">취소/교환/반품대기</c:if>
+								<c:if test="${myOrder.orders_status eq 'cancelallfinish'}">취소/교환/반품완료</c:if>
+								
 							</td>
 							<td>
 								<a href="/myOrderCancelDetail.do?orders_seq=${myOrder.orders_seq}&pageNum=${criteria.pageNum}&searchCondition=${criteria.searchCondition}&searchKeyword=${criteria.searchKeyword}&fromDate=${criteria.fromDate}&toDate=${criteria.toDate}">
