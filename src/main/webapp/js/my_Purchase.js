@@ -1,3 +1,46 @@
+$(document).on("change", $("#stateche"), function(){
+	if($("#stateche").val() == "orders_status"){ // orders_status 를 선택했을 때만
+		$(".inputbox").addClass("hide");
+		$(".dbstatus").removeClass("hide");
+		
+		if($("#dbstatus2").val() == "ready"){
+			$(".purchasestatus").val("ready");
+			$("#search").val("ready");
+
+			console.log($("#search").val());
+			console.log("결제대기",$(".purchasestatus").val());
+			
+		}else if($("#dbstatus2").val() == "paid"){
+			$(".purchasestatus").val("paid");
+			$("#search").val("paid");
+
+			console.log($("#search").val());
+			console.log("결제완료",$(".purchasestatus").val());
+			
+		}else if($("#dbstatus2").val() == "delivery"){
+			$(".purchasestatus").val("delivery");
+			$("#search").val("delivery");
+			
+		}else if($("#dbstatus2").val() == "finish"){
+			$(".purchasestatus").val("finish");
+			$("#search").val("finish");
+			
+		}else if($("#dbstatus2").val() == "cacelallwait"){
+			$(".purchasestatus").val("cacelallwait");
+			$("#search").val("cacelallwait");
+			
+		}else if($("#dbstatus2").val() == "cancelallfinish"){
+			$(".purchasestatus").val("cancelallfinish");
+			$("#search").val("cancelallfinish");
+		}
+		
+	}else{ // 그 외 값들을 선택했을 때
+		$(".inputbox").removeClass("hide");
+		$(".dbstatus").addClass("hide");
+		$("#search").val('');
+	}
+})
+
 $(function() {
 	$(".week").click(function() {
 		let st = new Date($("#start_date").val());
@@ -306,18 +349,18 @@ function make() {
 						        
 						        <div class="row">
 						            <div class="col-2 purchaseList_btns">
-						              <button onclick="#">배송조회</button>
+						            <button onclick="location.href='/myreviewInsert.do'">리뷰작성</button>
 						          </div>
 						            <div class="col-2 purchaseList_btns">
-						              <button onclick="/myreviewInsert.do">리뷰작성</button>
-						          </div>
-						            <div class="col-2 purchaseList_btns">
-						              <button onclick="/mypurchaseDetail.do">구매상세</button>
-						          </div>
-						            <div class="col-2 purchaseList_btns">
-						              <button class="purchaseCancel" onclick="#">구매취소</button>
-						          </div>
-						        </div>
+						            <button onclick="location.href='/myPurchaseDetail.do?orders_seq=${purchase.orders_seq}'">구매상세</button>
+						          </div>`
+									if(purchase.orders_status == "ready" || purchase.orders_status == "paid"){
+										con += `<div class="col-2 purchaseList_btns">
+						            <button class="purchaseCancel" type="button">구매취소</button>
+						          </div>`;
+									}
+						            
+						   con +=     `</div>
 						      </div>
 						      
 						    </div>
@@ -334,11 +377,12 @@ function make() {
 }
 
 
-$().ready(function () {
-    $(".purchaseCancel").click(function () {
+$(document).ready(function () {
+    $(".purchaseCancel").click(function (e) {
+    	console.log($(e.target).parents('div:eq(3)').children('input').val());
+    	
         Swal.fire({
-            title: '구매를 취소하시겠습니까?',
-            text: "취소하시면 상품을 받아볼 수 없습니다. 🥺",
+            text: "구매를 취소하시겠습니까?",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -347,10 +391,26 @@ $().ready(function () {
             cancelButtonText: '아니오'
         }).then((result) => {
             if (result.isConfirmed) {
-                Swal.fire(
-                    '구매가 취소되었습니다.',
-                    '즐거운 쇼핑되세요 😊'
-                )
+            	$.ajax({
+            		url: "/purchaseCancel.do",
+            		method: "get",
+            		dataType: "JSON",
+            		async: false,
+            		data:{
+            			orders_seq : Number($(e.target).parents('div:eq(3)').children('input').val())
+            		},
+            		// 컨트롤러에서 return 없으면 success 사용불가 -> 대체를 위해 complete 사용 가능
+            		complete : function(){
+            			location.href="/myPurchase.do";
+            		}
+            	})
+                Swal.fire({
+                	html: "구매를 취소하셨습니다. <br>자세한 내용은 취소/교환/반품 조회 페이지에서 <br> 확인해주세요.",
+					icon: "success",
+					showConfirmButton: true,
+                })
+            }else if(result.isDismissed){
+            	return false;
             }
         })
     });

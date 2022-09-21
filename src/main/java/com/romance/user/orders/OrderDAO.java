@@ -59,4 +59,9 @@ public class OrderDAO {
 	  return sql.selectOne("delivery.seledelivery",my_delivery_seq);
 	  
 	}
+	
+	public void purchaseCancel(OrdersVO vo) {
+	  sql.update("order.purchaseCancel", vo);
+	}
+	
 }
