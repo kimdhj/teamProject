@@ -46,7 +46,7 @@ $("#myCartTab").on("click", function(){
 						        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 						      </div>
 						      <div class="modal-body">
-						      <h3>요약</h3><br>
+						      <h3>요약 맛좀 볼래?</h3><br>
 						      <textarea rows=10 style="width:100%;">${book_descript}</textarea>
 						      </div>
 						      <div class="modal-footer">
