@@ -11,4 +11,7 @@ public interface OrderService {
 	public OrdersVO getorder(String vo);
 	public void delfin(String user_id);
 	
+	// eunxi
+	List<PurchaseJoinVO> purchaseList(PurchaseSearchVO svo);
+	int purchaseCount(PurchaseSearchVO svo);
 }

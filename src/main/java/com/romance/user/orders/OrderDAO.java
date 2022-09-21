@@ -31,4 +31,13 @@ public class OrderDAO {
 	public void pointsin(MyPointsVO vo) {
 	  sql.insert("points.pointsin",vo);
 	}
+	
+	public List<PurchaseJoinVO> purchaseList(PurchaseSearchVO svo){
+	  return sql.selectList("order.purchaselist", svo);
+	}
+	
+	public int purchaseCount(PurchaseSearchVO svo) {
+	  return sql.selectOne("order.purchaseCount", svo);
+	}
+	
 }
