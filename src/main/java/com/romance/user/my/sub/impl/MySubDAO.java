@@ -22,4 +22,13 @@ public class MySubDAO {
 	public List<BookVO> newcate(BookSearchVO vo){
 		return sqlSessionTemplate.selectList("SubscribeDAO.newcate",vo);
 	}
+	public void subon(String user_id) {
+	  sqlSessionTemplate.update("user.subon",user_id);
+	}
+	public void subdel(String user_id) {
+    sqlSessionTemplate.update("user.subdel",user_id);
+  }
+	public void subupdate(UserVO vo) {
+	  sqlSessionTemplate.update("user.subupdate",vo);
+	}
 }

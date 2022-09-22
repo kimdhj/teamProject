@@ -25,5 +25,24 @@ public class MySubServiceImpl implements MySubService {
 	public List<BookVO> newcate(BookSearchVO vo){
 		return mySubDAO.newcate(vo);
 	}
+
+  @Override
+  public void subdel(String user_id) {
+    // TODO Auto-generated method stub
+    mySubDAO.subdel(user_id);
+  }
+
+  @Override
+  public void subon(String user_id) {
+    // TODO Auto-generated method stub
+    mySubDAO.subon(user_id);
+  }
+
+  @Override
+  public void subupdate(UserVO vo) {
+    // TODO Auto-generated method stub
+    mySubDAO.subupdate(vo);
+  }
+  
 	
 }

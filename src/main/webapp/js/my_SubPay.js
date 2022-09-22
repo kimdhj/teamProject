@@ -30,7 +30,7 @@ function timestamp(){
 	}
 
 	$("#paystart").click(function() {
-	let cuid=$("#user_id").val()+timestamp().replaceAll(" ","").replaceAll(":","").replaceAll("-","");
+	let cuid=$("#user_id").val()+"&"+timestamp().replaceAll(" ","").replaceAll(":","").replaceAll("-","");
 console.log(cuid);
 		console.log("메롱",cuid);
 		var radioVal = $('input[name="orders_cache_tools"]:checked').val();
@@ -53,7 +53,7 @@ console.log(cuid);
 			pg: "kakaopay.TCSUBSCRIP",
 			pay_method: "card",
 		
-			name: '구독 결제',
+			name: '낭만 서점 구독 결제',
 			amount: 30000
 		}, function(rsp) { // callback
 			if (rsp.success) {
@@ -66,8 +66,9 @@ console.log(cuid);
 					},
 					async: true,
 					dataType: "JSON",
-					succnss: function(e) {
+					success: function(e) {
 						console.log("성공");
+						location.href="/subfin.do";
 					}
 				})
 				// 빌링키 발급 성공
@@ -86,7 +87,7 @@ console.log(cuid);
 			pg: "html5_inicis.INIBillTst",
 			pay_method: "card",
 			
-			name: '결제테스트',
+				name: '낭만 서점 구독 결제',
 			amount: 30000
 
 		}, function(rsp) { // callback
@@ -103,6 +104,7 @@ console.log(cuid);
 					dataType: "JSON",
 					success: function(e) {
 						console.log("성공");
+						location.href="/subfin.do";
 					}
 				})
 				// 빌링키 발급 성공

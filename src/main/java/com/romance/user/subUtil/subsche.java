@@ -127,6 +127,7 @@ public class subsche {
 		json1.put("schedule_at", System.currentTimeMillis() / 1000+60);
 		json1.put("currency", "KRW");
 		json1.put("amount", 100);
+		json1.put("name", "낭만 서점 구독 결제"); 
 		jarr.add(json1);
 		
 		json.put("schedules", jarr);//환불금액

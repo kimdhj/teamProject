@@ -174,5 +174,5 @@
                     <br>
                     <p class="mb-4 fs-5 fw-bold"><img src="img/mypage_mainbtn.png" class="rounded float-start"
                             alt="...">&nbsp;<a href="/myMain.do">마이 페이지</a>
-                        <button type="button" class="btn btn-secondary btn-sm float-end" onclick="can_sub();">구독취소</button>
+                        <button type="button" id="subcancel" class="btn btn-secondary btn-sm float-end" onclick="can_sub();">구독취소</button>
                     </p>
