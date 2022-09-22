@@ -60,7 +60,7 @@
 	<select parameterType="purchaseSearch" resultType="purchaseJoin" id="purchaselist">
 	<![CDATA[
 		SELECT * FROM (SELECT *, @rownum:=@rownum + 1 as rnum FROM
-		(SELECT orders.orders_seq, orders_order_day, orders_status, order_bookList_review_complete, COUNT(orders.orders_seq) AS order_bookList_count,
+		(SELECT orders.orders_seq, orders_order_day, orders_status,  order_bookList_review_complete, COUNT(orders.orders_seq) AS order_bookList_count,
 		order_bookList_seq, book_bigimgURL, book_title, book_author, book.book_seq FROM orders JOIN order_bookList
 		ON orders.orders_seq = order_bookList.orders_seq JOIN book
 		ON order_bookList.book_seq = book.book_seq WHERE orders_status NOT LIKE CONCAT('%', 'cancel', '%')

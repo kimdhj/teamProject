@@ -155,4 +155,14 @@ public class ReplyServiceImpl implements ReplyService {
     reply.reviewStateUpdate(blvo);
   }
   
+  @Override
+  public void reviewUpdate(ReplyVO vo) {
+    reply.reviewUpdate(vo);
+  }
+  
+  @Override
+  public ReplyVO doubleReply(ReplyJoinVO rjvo) {
+   return reply.doubleReply(rjvo);
+  }
+  
 }

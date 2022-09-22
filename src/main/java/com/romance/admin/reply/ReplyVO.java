@@ -16,6 +16,7 @@ public class ReplyVO {
   private String reply_cotent; // 내용
   private String user_id; // 유저 id
   private boolean user_blank; // 유저 댓글 블라인드 처리
+  private int order_bookList_seq;
   
   @DateTimeFormat(pattern = "yyyy-MM-dd")
   @JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
