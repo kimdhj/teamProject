@@ -83,7 +83,6 @@
       <c:forEach items="${purchaseList }" var="purchase" begin="0" end="4">
     <div class="row purchaseList_box mt-5">
     <input type="hidden" value="${purchase.orders_seq }" id="myorderseq" />
-    
       <div class="col-2 purchaseList_img">
         <img class="mt-3 mb-3" width="100%" src="${purchase.book_bigimgURL }">
       </div>
@@ -128,24 +127,24 @@
             <div class="col-2 purchaseList_btns">
                 <button onclick="location.href='/myPurchaseDetail.do?orders_seq=${purchase.orders_seq}'">구매상세</button>
             </div>
-              
-              <c:if test="${purchase.order_bookList_review_complete eq false}">
-              <div class="col-2 purchaseList_btns">
-                <button onclick="location.href='/myreviewInsert.do?book_seq=${purchase.book_seq}&order_bookList_seq=${purchase.order_bookList_seq }'">리뷰작성</button>
-             </div>
-             </c:if>
-             
-              <c:if test="${purchase.order_bookList_review_complete eq true}">
-              <div class="col-2 purchaseList_btns">
-                <button onclick="#">리뷰수정</button>
-             </div>
-             </c:if>
-           
+            
             <c:if test="${purchase.orders_status eq 'ready' or purchase.orders_status eq 'paid' }">
             <div class="col-2 purchaseList_btns">
               <button class="purchaseCancel" type="button">구매취소</button>
             </div>
             </c:if>
+              
+              <c:if test="${purchase.order_bookList_review_complete eq false && purchase.orders_status eq 'finish'}">
+              <div class="col-2 purchaseList_btns">
+                <button onclick="location.href='/myreviewInsert.do?book_seq=${purchase.book_seq}&order_bookList_seq=${purchase.order_bookList_seq }'">리뷰작성</button>
+             </div>
+             </c:if>
+           
+            <c:if test="${purchase.order_bookList_review_complete eq true}">
+              <div class="col-2 purchaseList_btns">
+                <button onclick="location.href='/myreviewUpdate.do?book_seq=${purchase.book_seq}&order_bookList_seq=${purchase.order_bookList_seq }'">리뷰수정</button>
+             </div>
+             </c:if>
           
         </div>
         
