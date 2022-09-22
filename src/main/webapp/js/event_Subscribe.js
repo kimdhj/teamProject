@@ -10,5 +10,5 @@ function dobutton() {
 }
 
 function goPaySub(){
-	location.href="/go_Sub_Pay.do";
+	location.href="/mysubpay.do";
 }
