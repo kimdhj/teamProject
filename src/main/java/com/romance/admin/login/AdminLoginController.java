@@ -1,6 +1,5 @@
 package com.romance.admin.login;
 
-import java.io.IOException;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -14,6 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.romance.admin.log.LoginLogVO;
+import com.romance.admin.log.LoginLogUtils;
 import com.romance.security.JwtUtils;
 
 @Controller
@@ -36,9 +37,58 @@ public class AdminLoginController {
 	
 	//관리자 로그인
 	@PostMapping("admin_login.mdo")
-	public String login(AdminUserVO vo, HttpSession session, JwtUtils util, RedirectAttributes redirectAttributes) throws IOException {
+	public String login(AdminUserVO vo, HttpSession session, JwtUtils util, RedirectAttributes redirectAttributes) throws Exception {
 		System.out.println("로그인 인증 처리");
-
+		
+		//로그인로그 정보들
+		//로그 넣을때는 아이디가 존재하든 하지않든 먼저 로그인 시도 로그부터 실행해야함
+		LoginLogUtils loginLogUtils = new LoginLogUtils();
+		System.out.println("브라우저 정보 : " + loginLogUtils.getUserBrowser());
+		System.out.println("로그인 아이피 : " + loginLogUtils.getUserIp());
+		System.out.println("로그인 url : " + loginLogUtils.getUserUrl());
+		System.out.println("아이디정보 : " + vo.getUser_id());
+		//입력받은 아이디 패스워드 값
+		String login_log_id = vo.getUser_id();
+		String login_log_password = vo.getUser_password();
+		String login_log_browser = loginLogUtils.getUserBrowser();
+		String login_log_ip = loginLogUtils.getUserIp();
+		String login_log_url = loginLogUtils.getUserUrl();
+		String login_log_sucess = "";
+		String login_log_role = "";
+		//login_log_id로 아이디 존재여부 확인 존재하면1 아니면0
+		int isUserId = adminUserService.isUserId(login_log_id);
+		if(isUserId > 0) {
+			//존재하므로 가져와서 비교
+			AdminUserVO adminUserVO = adminUserService.getLoginlogInfo(login_log_id);
+			System.out.println(">>>값3개 들고오냐?? : " + adminUserVO);
+			//들고온 값의 user_role로 초기화
+			login_log_role = adminUserVO.getUser_role();
+			//DB에서 가져온 비밀번호와 입력받은 비밀번호 비교하는 분기
+			if(bCryptPasswordEncoder.matches(login_log_password, adminUserVO.getUser_password())) {
+				//로그인 성공 로그
+				login_log_sucess = "success";
+			} else {
+				//아이디는 있지만 로그인 실패 로그
+				login_log_sucess = "failed";
+			}
+		} else {
+			//아이디도 틀렸음 실패 쿼리넣기 (user_role 값 null)
+			System.out.println(">>>에라이 아이디가 없네~");
+			login_log_sucess = "failed";
+		}
+		//LogVO 값 세팅
+		LoginLogVO loginLogVO = new LoginLogVO();
+		loginLogVO.setLogin_log_id(login_log_id);
+		loginLogVO.setLogin_log_browser(login_log_browser);
+		loginLogVO.setLogin_log_ip(login_log_ip);
+		loginLogVO.setLogin_log_url(login_log_url);
+		loginLogVO.setLogin_log_sucess(login_log_sucess);
+		loginLogVO.setLogin_log_role(login_log_role);
+		//원하는 값은 다 가져왔고 로그에 입력 실행
+		adminUserService.insertLoginLog(loginLogVO);
+		//여기까지 로그인 로그 끝
+		
+		
 		AdminUserVO user = adminUserService.getUser(vo);
 		String warning = null;
 		

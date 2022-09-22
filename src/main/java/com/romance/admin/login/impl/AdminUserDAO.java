@@ -4,6 +4,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.romance.admin.log.LoginLogVO;
 import com.romance.admin.login.AdminUserVO;
 
 @Repository
@@ -22,4 +23,15 @@ public class AdminUserDAO {
 		sqlSessionTemplate.update("AdminUserDAO.loginDay", user_id);
 	}
 	
+	public int isUserId(String inputId) {
+		return sqlSessionTemplate.selectOne("loggingUtils.isUserId", inputId);
+	}
+	
+	public AdminUserVO getLoginlogInfo(String inputId) {
+		return sqlSessionTemplate.selectOne("loggingUtils.getLoginlogInfo", inputId);
+	}	
+	
+	public void insertLoginLog(LoginLogVO loginLogVO) {
+		sqlSessionTemplate.insert("loggingUtils.insertLoginLog", loginLogVO);
+	}
 }

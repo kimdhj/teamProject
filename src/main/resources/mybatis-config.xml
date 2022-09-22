@@ -136,11 +136,12 @@
 			alias="tradejoinVO" />
 		<typeAlias type="com.romance.admin.trade.TradeSearchVO"
 			alias="tradesearchVO" />
-
 		<typeAlias type="com.romance.user.orders.PurchaseJoinVO"
 			alias="purchaseJoin" />
 		<typeAlias type="com.romance.user.orders.PurchaseSearchVO"
 			alias="purchaseSearch" />
+		<typeAlias type="com.romance.admin.log.LoginLogVO"
+			alias="loginLogVO" />
 
 
 	</typeAliases>
@@ -184,5 +185,6 @@
 		<mapper resource="mappings/userorder-mapping.xml" />
 		<mapper resource="mappings/usermain-mapping.xml" />
 		<mapper resource="mappings/trade-mapping.xml" />
+		<mapper resource="mappings/logging-mapping.xml" />
 	</mappers>
 </configuration>
