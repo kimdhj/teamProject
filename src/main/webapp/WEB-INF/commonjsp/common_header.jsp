@@ -63,8 +63,8 @@
 
                         </div>
                     </div>
-                    <a href="product.html" class="nav-item nav-link">이벤트</a>
-                    <a href="product.html" class="nav-item nav-link">구독</a>
+                    <a href="/getEventList.do" class="nav-item nav-link">이벤트</a>
+                    <a href="/event_Sub.do" class="nav-item nav-link">구독</a>
 
 
                 </div>

@@ -34,6 +34,7 @@
 	
 	<select id="myOrderTotalCount" parameterType="criteria" resultType="int">
 		SELECT COUNT(*) FROM orders WHERE user_id = #{session_user_id}
+		AND orders_status LIKE CONCAT('%', 'cancel', '%')
 		<if test="fromDate != null and !fromDate.equals('')">
 			<![CDATA[AND orders_order_day >= #{fromDate}]]>
 		</if>
@@ -48,8 +49,9 @@
 		</if>
 	</select>
 	
-	<select id="getMyOrderListWithPaging" parameterType="criteria" resultMap="userOrderResult">
-		SELECT * FROM orders WHERE user_id = #{session_user_id} 
+	<select id="getMyOrderList" parameterType="criteria" resultMap="userOrderResult">
+		SELECT * FROM orders WHERE user_id = #{session_user_id}
+		AND orders_status LIKE CONCAT('%', 'cancel', '%')
 		<if test="fromDate != null and !fromDate.equals('')">
 			<![CDATA[AND orders_order_day >= #{fromDate}]]>
 		</if>

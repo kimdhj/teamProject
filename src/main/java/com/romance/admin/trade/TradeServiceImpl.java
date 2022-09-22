@@ -111,9 +111,48 @@ public class TradeServiceImpl implements TradeService {
   
 
   @Override
-  public void updateorders(OrdersVO vo) {
+  @Transactional
+  public void updateorders(OrdersVO vo) throws Exception {
     // TODO Auto-generated method stub
     dao.updateorders(vo);
+    System.out.println("service  끝확인"+vo.getOrders_status().trim().equals("cancelallfinish"));
+    if(vo.getOrders_status().trim().equals("cancelallfinish")) {
+      //쿠폰밑 그에 수반하는 처리
+      TradeJoinVO vot=new TradeJoinVO();
+      vot.setOrders_seq(vo.getOrders_seq());
+      OrdersVO voo = dao.ordersel(vot);
+      System.out.println("orders 삭제"+voo);
+      refund.refund(voo.getOrders_cache_uid(), "주문 취소", Integer.toString(voo.getOrders_cache_sum()));
+      System.out.println("결제 대기");
+     
+      // 쿠폰 추가
+      if(voo.getOrders_coupon_effect()>0) {
+      MyCouponVO voc = new MyCouponVO();
+     
+      
+      voc.setUser_coupon_effect(voo.getOrders_coupon_effect());
+      voc.setUser_coupon_name("환불된 쿠폰"+Integer.toString(voo.getOrders_coupon_effect()));
+      voc.setUser_id(voo.getUser_id());
+      dao.couponin(voc);
+      }
+      // 포인트 추가 뺀거 계산해서 포인트 추가(user테이블이랑 포인트 사용기록에도)
+      int remain = voo.getOrders_point() - voo.getOrders_add_point();
+      if(voo.getOrders_point()>0) {
+        MyPointsVO vop = new MyPointsVO();
+      vop.setPoints_content("환불 포인트");
+      vop.setPoints_count(remain);
+      vop.setUser_id(voo.getUser_id());
+      dao.pointsin(vop);
+      }
+      if(remain>0) {
+        UserVO vou = new UserVO();
+      vou.setUser_id(voo.getUser_id());
+      vou.setUser_point(remain);
+      dao.refundpoints(vou);
+      }
+      dao.finupdate(vo.getOrders_seq());
+      
+    }
     
   }
 

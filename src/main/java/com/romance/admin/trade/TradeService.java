@@ -15,7 +15,7 @@ public interface TradeService {
   public void delorderbooklist(TradeJoinVO vo) throws Exception;
   public List<OrderBookListVO> booklistsel(int orders_seq) ;
   public int chebookseq(int book_seq);
-  public void updateorders(OrdersVO vo);
+  public void updateorders(OrdersVO vo) throws Exception;
   public void booklistin(List<OrderBookListVO> vol);
   public void dellevel(TradeJoinVO vo)throws Exception;
   
