@@ -15,22 +15,50 @@
 
 	<insert id="insertTerms" parameterType="termsVO">
 		INSERT INTO terms
-		(terms_seq, terms_article_number, terms_title, terms_content,
-		terms_state) VALUES(#{terms_seq}, #{terms_article_number},
-		#{terms_title}, #{terms_content}, #{terms_state})
+		(terms_article_number, terms_title, terms_content,
+		terms_state)
+		VALUES(#{terms_article_number},
+		#{terms_title}, #{terms_content},
+		#{terms_state})
 	</insert>
 
-	<select id="getTermsList" resultMap="termsResult">
-		SELECT * FROM terms
+	<select parameterType="termsSearchVO" id="getTermsList"
+		resultMap="termsResult">
+ 	<![CDATA[SELECT * FROM (SELECT * , @rownum:=@rownum + 1 as rnum FROM terms, (SELECT @rownum:=0) TMP]]>
+		<trim prefix="WHERE" prefixOverrides="AND | OR">
+			<if test="title != null"><![CDATA[AND terms_title LIKE CONCAT('%', #{title}, '%')]]></if>
+		</trim>
+	<![CDATA[ORDER BY terms_seq DESC) B WHERE]]>
+		<if test="seq != 0">
+	 		<![CDATA[	rnum = #{seq}]]>
+		</if>
+		<if test="seq == 0">
+	 		<![CDATA[	rnum > (#{page} - 1) *5 AND rnum <= #{page} * 5 ORDER BY terms_seq DESC]]>
+		</if>
 	</select>
-	
-	<select id="getTerms" parameterType="termsVO" resultType="termsVO">
+
+	<select id="getTerms" parameterType="termsVO"
+		resultType="termsVO">
 		SELECT * FROM terms WHERE terms_seq=#{terms_seq}
 	</select>
-	
+
 	<update id="alterTerms" parameterType="termsVO">
-		UPDATE terms
-		SET terms_title=#{terms_title}, terms_content=#{terms_content} terms_state=#{terms_state} WHERE terms_seq = #{terms_seq}
+		UPDATE terms SET
+		terms_title=#{terms_title}, terms_content=#{terms_content},
+		terms_state=#{terms_state} WHERE terms_seq=#{terms_seq}
 	</update>
+
+	<select parameterType="termsSearchVO" resultType="int"
+		id="getCount">
+		<![CDATA[select count(*) from terms ]]>
+		<trim prefix="WHERE" prefixOverrides="AND | OR">
+			<if test="title != null"><![CDATA[AND terms_title LIKE CONCAT('%', #{title}, '%')]]></if>
+		</trim>
+	</select>
+
+	<delete id="deleteTerms" parameterType="termsVO">
+		DELETE FROM terms WHERE
+		terms_seq = #{terms_seq}
+	</delete>
 
 </mapper>
