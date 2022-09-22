@@ -17,11 +17,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.romance.admin.terms.termsVO;
 import com.romance.security.JwtUtils;
 import com.romance.security.KakaoLogin;
 import com.romance.security.MailService;
@@ -198,16 +200,6 @@ public class LoginController {
 		return chenum;
 	}
 
-
-
-
-
-
-
-
-  
-
-
   
   @PostMapping("findid.do")
   public String findid(UserVO vo, Model model) {
@@ -274,11 +266,6 @@ public class LoginController {
 
 	}
 
-	
-
-
-
-
 	@GetMapping("cheid.do")
 	@ResponseBody
 	public int cheid(String user_id) {
@@ -286,6 +273,5 @@ public class LoginController {
 	}
 
 
-	
 
 }
