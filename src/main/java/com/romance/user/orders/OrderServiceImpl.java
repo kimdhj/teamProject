@@ -85,5 +85,38 @@ public class OrderServiceImpl implements OrderService {
   }
   
 	
+	@Override
+	public List<PurchaseJoinVO> purchaseList(PurchaseSearchVO svo) {
+	  // 검색 입력 칸에 아무런 키워드를 적지 않았을 때 페이지를 초기화시켜주는 코드
+	  if(svo.getSearchkeyword() != null && svo.getSearchcontent() != null && svo.getSearchcontent() != "") {
+	    System.out.println("검색 내용: " + svo.getSearchcontent());
+	    if(svo.getSearchkeyword().trim().equals("orders_seq")) {
+	      svo.setSearchcontentint(Integer.parseInt(svo.getSearchcontent()));
+	    }
+	    
+	    svo.setSearchcontent(svo.getSearchcontent().trim());
+	  }
+	  
+	  return dao.purchaseList(svo);
+	}
+	
+	@Override
+	public int purchaseCount(PurchaseSearchVO svo) {
+	  if(svo.getSearchkeyword() != null && svo.getSearchcontent() != null && svo.getSearchcontent() != "") {
+	    System.out.println("검색 내용: " + svo.getSearchcontent());
+	    if(svo.getSearchkeyword().trim().equals("orders_seq")) {
+        svo.setSearchcontentint(Integer.parseInt(svo.getSearchcontent()));
+      }
+	    
+      svo.setSearchcontent(svo.getSearchcontent().trim());
+    }
+	  
+	  return dao.purchaseCount(svo);
+	}
+	
+	@Override
+	public void purchaseCancel(OrdersVO vo) {
+	  dao.purchaseCancel(vo);
+	}
 
 }

@@ -6,7 +6,7 @@
 		insert into bucket(book_seq,user_id) values(#{book_seq},#{user_id})
 	</insert>
 	<select parameterType="bucketsearchVO" resultType="bucketVO" id="bucgetlist">
-	<![CDATA[select * from bucket order by bucket_seq]]>
+	<![CDATA[select * from bucket where user_id=#{user_id} order by bucket_seq]]>
 	</select>
 	<select resultType="int" parameterType="bucketVO" id="chedouble">
 		<![CDATA[select count(*) from  bucket where book_seq=#{book_seq} and user_id=#{user_id}]]>

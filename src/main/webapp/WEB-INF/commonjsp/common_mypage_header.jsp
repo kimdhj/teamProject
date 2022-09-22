@@ -104,8 +104,8 @@
                             </button>
                             <ul class="dropdown-menu">
                                 <!-- Dropdown menu links -->
-                                <li><a href="/myOrder.do"><button class="dropdown-item" type="button">주문/배송조회</button></a></li>
-                                <li><button class="dropdown-item" type="button">취소/교환/반품조회</button></li>
+                                <li><a href="/myPurchase.do"><button class="dropdown-item" type="button">주문/배송조회</button></a></li>
+                                <li><a href="/myOrderCancel.do"><button class="dropdown-item" type="button">취소/교환/반품조회</button></a></li>
                             </ul>
                         </div><br><br><br>
                         <div class="btn-group dropend">
@@ -174,5 +174,5 @@
                     <br>
                     <p class="mb-4 fs-5 fw-bold"><img src="img/mypage_mainbtn.png" class="rounded float-start"
                             alt="...">&nbsp;<a href="/myMain.do">마이 페이지</a>
-                        <button type="button" class="btn btn-secondary btn-sm float-end" onclick="can_sub();">구독취소</button>
+                        <button type="button" id="subcancel" class="btn btn-secondary btn-sm float-end" onclick="can_sub();">구독취소</button>
                     </p>

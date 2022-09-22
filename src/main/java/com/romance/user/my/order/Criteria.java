@@ -13,6 +13,7 @@ public class Criteria {
 	private String toDate; //기간검색
 	private LocalDate fromDateFormat; //문자열로 받은 날짜형식 변환
 	private LocalDate toDateFormat; //문자열로 받은 날짜형식 변환s
+	private String order_status; //주문 취소관련 데이터만 가져오기위해
 	
 	
 	public int getPageStart() {//특정 페이지의 게시글 시작 번호, 행 번호
@@ -104,6 +105,14 @@ public class Criteria {
 
 	public void setToDateFormat(LocalDate toDateFormat) {
 		this.toDateFormat = toDateFormat;
+	}
+
+	public String getOrder_status() {
+		return order_status;
+	}
+
+	public void setOrder_status(String order_status) {
+		this.order_status = order_status;
 	}
 	
 	

@@ -87,5 +87,8 @@ public void booklistin(OrderBookListVO vo) {
 public void booklistorderdel(int orders_seq) {
   sql.delete("trade.booklistorderdel",orders_seq);
 }
+public void finupdate(int orders_seq) {
+  sql.update("trade.finupdate",orders_seq);
+}
 
 }
