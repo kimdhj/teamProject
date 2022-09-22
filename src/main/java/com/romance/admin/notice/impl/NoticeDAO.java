@@ -67,4 +67,8 @@ public class NoticeDAO {
 		System.out.println("DAO : " + notice_seq);
 		sqlSession.delete("NoticeDAO.checkBox", notice_seq);
 	}
+	
+	public void cnt(int notice_seq) {
+	  sqlSession.update("NoticeDAO.cnt", notice_seq);
+	}
 }

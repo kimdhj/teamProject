@@ -18,10 +18,42 @@ public class FaqDAO {
 		return sqlSession.selectList("FaqDAO.getFaqList", svo);
 	}
 	
+	public List<FaqVO> getOrderList(FaqSearchVO svo){
+	  return sqlSession.selectList("FaqDAO.getOrderList", svo);
+	}
+	
 	public int getCount(FaqSearchVO svo) {
 		return sqlSession.selectOne("FaqDAO.getCount", svo);
 	}
 	
+//	public int getOrderCount(FaqSearchVO svo) {
+//	  return sqlSession.selectOne("FaqDAO.getOrderCount", svo);
+//	}
+//
+//  public List<FaqVO> getDeliveryList(FaqSearchVO svo){
+//    return sqlSession.selectList("FaqDAO.getDeliveryList", svo);
+//  }
+//  
+//  public int getDeliveryCount(FaqSearchVO svo) {
+//    return sqlSession.selectOne("FaqDAO.getDeliveryCount", svo);
+//  }	
+//	
+//  public List<FaqVO> getChangeList(FaqSearchVO svo){
+//    return sqlSession.selectList("FaqDAO.getChangeList", svo);
+//  }
+//  
+//  public int getChangeCount(FaqSearchVO svo) {
+//    return sqlSession.selectOne("FaqDAO.getChangeCount", svo);
+//  }	
+//	
+//  public List<FaqVO> getUserList(FaqSearchVO svo){
+//    return sqlSession.selectList("FaqDAO.getUserList", svo);
+//  }
+//  
+//  public int getUserCount(FaqSearchVO svo) {
+//    return sqlSession.selectOne("FaqDAO.getUserCount", svo);
+//  }	
+  
 	public void chkboxDelete(int FAQ_seq) {
 		sqlSession.delete("FaqDAO.chkboxDelete", FAQ_seq);
 	}

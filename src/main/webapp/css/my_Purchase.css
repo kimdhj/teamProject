@@ -7,7 +7,10 @@
 	margin-top: 4%;
 }
 .purchaseList_img{
-	margin: auto;
+	margin-top: 2%;
+	margin-bottom: 2%;
+	margin-left: 2%;
+	margin-right: 2%;
 }
 #purchaseList_title{
 	margin-top: 3%;
@@ -36,15 +39,21 @@
 	background-color: rgb(247, 247, 247);
 	border-radius: 15px;
 }
-
+/*
 .purchaseList_btns{
+	
+	display: inline-block;
 	padding-top: 20px;
 	margin-top: 2%;
 	margin-bottom: 2%;
 }
+*/
 .purchaseList_btns>*>*{
+/*	
 	margin: auto;
 	display: block;
+	*/
+	margin-top:1%;
 	margin-bottom: 20%;
 }
 
@@ -101,6 +110,14 @@
   justify-content: center;
 }
 
-.status{
+.purchasestatus{
 	font-weight: bolder;
+}
+
+.pagination *{
+   cursor:pointer;
+}
+
+.hide, .hide2{
+	display: none !important;
 }

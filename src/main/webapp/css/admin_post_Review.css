@@ -53,6 +53,14 @@ div.bg-white {
   padding: 2% !important;
   text-align: center;
 }
+
+#content1 {
+  height: 30vh;
+  overflow: auto;
+  margin-top: 1%;
+  margin-left: 1%;
+}
+
 #day_btn {
   padding: 2% !important;
 }
@@ -92,3 +100,10 @@ div.bg-white {
 	font-size: larger;
 }
 
+.pagination *{
+   cursor:pointer;
+}
+
+.hide{
+	display: none !important;
+}

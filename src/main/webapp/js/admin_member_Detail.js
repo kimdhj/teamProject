@@ -134,8 +134,155 @@ function adminAccountCheck() { //유효성 검사
 	
 }//유효성검사 끝
 
+//쿠폰삭제
+function couponDelete() {
+	let userCouponSeq = $("#myCouponMap").val();
+	alert(userCouponSeq);
+	
+	$.ajax({
+		url:"deleteUserCoupon.mdo",//Controller에서 받는 주소
+		type:"post",
+		data:{user_coupon_seq:userCouponSeq},
+		success:function(){//성공했을때
+			alert("일단데이터는넘어가");
+			location.reload();
+		},
+		error:function(){
+			alert("에러다이자시가");
+		}
+	});
+	
+}
+
+//쿠폰지급
+function giveCoupon() {
+	let couponSeq = $("#giveCouponList").val();
+	let user_id = $("#user_id").val();
+	console.log(couponSeq);
+	console.log(user_id);
+	
+	$.ajax({
+		url:"giveCoupon.mdo",//Controller에서 받는 주소
+		type:"post",
+		data:{
+			coupon_seq:couponSeq,
+			user_id:user_id
+			},
+		success:function(){//성공했을때
+			alert("일단데이터는넘어가");
+			location.reload();
+		},
+		error:function(){
+			alert("에러다이자시가");
+		}
+	});
+	
+}
+
+//포인트 넣고 빼고 함수
+$(document).ready(function(){
+	
+	const givePoint1 = Number($("#givePoint1").val());	
+	const givePoint2 = Number($("#givePoint2").val());	
+	const givePoint3 = Number($("#givePoint3").val());	
+	const deletePoint1 = Number($("#deletePoint1").val());	
+	const deletePoint2 = Number($("#deletePoint2").val());	
+	const deletePoint3 = Number($("#deletePoint3").val());	
+	
+	//리셋 버튼클릭
+	$("#givePointResetBtn").on("click", function(){
+		$("input[id=givePoint]").val(0);
+	});
+	
+	$("#deletePointResetBtn").on("click", function(){
+		$("input[id=deletePoint]").val(0);
+	});
+	
+	//숫자 더하고 빼기
+	$("#givePoint1").on("click", function(){
+		let givePoint = Number($("#givePoint").val());
+		givePoint += givePoint1;
+		$("input[id=givePoint]").val(givePoint);
+	});
+	$("#givePoint2").on("click", function(){
+		let givePoint = Number($("#givePoint").val());
+		givePoint += givePoint2;
+		$("input[id=givePoint]").val(givePoint);
+	});
+	$("#givePoint3").on("click", function(){
+		let givePoint = Number($("#givePoint").val());
+		givePoint += givePoint3;
+		$("input[id=givePoint]").val(givePoint);
+	});
+	
+	$("#deletePoint1").on("click", function(){
+		let deletePoint = Number($("#deletePoint").val());
+		deletePoint += deletePoint1;
+		$("input[id=deletePoint]").val(deletePoint);
+	});
+	$("#deletePoint2").on("click", function(){
+		let deletePoint = Number($("#deletePoint").val());
+		deletePoint += deletePoint2;
+		$("input[id=deletePoint]").val(deletePoint);
+	});
+	$("#deletePoint3").on("click", function(){
+		let deletePoint = Number($("#deletePoint").val());
+		deletePoint += deletePoint3;
+		$("input[id=deletePoint]").val(deletePoint);
+	});
+	
+});
 
 
+$("#givePointBtn").on("click", function(){
+	let givePoint = Number($("#givePoint").val());
+	let user_id = $("#user_id").val();
+	console.log(user_id, givePoint);
+	
+	$.ajax({
+		url:"givePoint.mdo",
+		type:"post",
+		data:{
+			givePoint:givePoint,
+			user_id:user_id
+		},
+		success:function(){
+			alert("포인트선물이라구!");
+			location.reload();
+		},
+		error:function(){
+			alert("에러다이자시가");
+		}
+	});
+});
+
+$("#deletePointBtn").on("click", function(){
+	alert("응?");
+	let deletePoint = Number($("#deletePoint").val());
+	let user_id = $("#user_id").val();
+	$.ajax({
+		url:"deletePoint.mdo",
+		type:"post",
+		data:{
+			deletePoint:deletePoint,
+			user_id:user_id
+		},
+		success:function(returnValue){
+			if(returnValue == 1) {
+				alert("포인트뺏어간다구!");
+				location.reload();
+			} else if(returnValue == 0) {
+				alert("보유 포인트보다 차감포인트가 더 큽니다.");
+			} else {//재로그인 필요
+				alert("다시 로그인 하세요");
+			}
+			
+		},
+		error:function(){
+			alert("에러다이자시가");
+		}
+	});
+});
 
 
 

@@ -17,7 +17,7 @@
 			<if test="points_date !=null and points_date !=''"><![CDATA[AND points_date>#{points_date}]]></if>
 		</trim>
 	 
-		<![CDATA[) B where rnum>(#{page}-1)*5 AND rnum<=#{page}*5 ]]>
+		<![CDATA[order by points_seq desc) B where rnum>(#{page}-1)*5 AND rnum<=#{page}*5 ]]>
 
 	</select>
 	<select parameterType="mypointssearchVO" resultType="int"
@@ -32,6 +32,20 @@
 		<![CDATA[) B  ]]>
 
 	</select>
-
+	
+	<insert id="createPoints" parameterType="MyPointsVO">
+		INSERT INTO points(points_count, points_content, user_id)
+		VALUES(#{points_count}, #{points_content}, #{user_id})
+	</insert>
+	<update id="addPoint" parameterType="UserVO">
+		UPDATE user
+		SET user_point=#{user_point} WHERE user_id=#{user_id}
+	</update>
+	<select id="renew" parameterType="String" resultType="UserVO">
+		select * from user where user_id=#{user_id}
+	</select>
+	
+	
+	
 
 </mapper>

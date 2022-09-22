@@ -28,7 +28,7 @@
 	<div class="container">
 		<div class="d-flex flex-row">
 			<div class="col-md-7">
-				<form>
+				<form action="/getAdmin_admin_List.mdo" method="get">
 					<div class="d-flex flex-row">
 						<div class="col-md-4">
 							<select class="form-select form-select mb-3"
@@ -50,6 +50,9 @@
 					<input type="hidden" name="perPageNum" value="${pagination.criteria.getPerPageNum() }"> --%>
 				</form>
 			</div>
+		</div>
+		<div class="d-flex flex-row">
+			<p style="color:blue;">${pagination.criteria.pageNum}페이지</p>
 		</div>
 		<div class="d-flex flex-row">
 			<table class="table text-center">

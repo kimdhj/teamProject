@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="userOrder">
+	
+	<resultMap type="ordersVO" id="userOrderResult">
+		<result property="orders_order_day" column="ORDERS_ORDER_DAY" />
+		<result property="orders_seq" column="ORDERS_SEQ" />
+		<result property="orders_coupon_effect" column="ORDERS_COUPON_EFFECT" />
+		<result property="orders_point" column="ORDERS_POINT" />
+		<result property="orders_add_point" column="ORDERS_ADD_POINT" />
+		<result property="orders_delivery" column="ORDERS_DELIVERY" />
+		<result property="orders_cache_sum" column="ORDERS_CACHE_SUM" />
+		<result property="orders_delivery_company" column="ORDERS_DELIVERY_COMPANY" />
+		<result property="user_id" column="USER_ID" />
+		<result property="orders_remainaddress" column="ORDERS_REMAINADDRESS" />
+		<result property="orders_name" column="ORDERS_NAME" />
+		<result property="orders_address" column="ORDERS_ADDRESS" />
+		<result property="orders_vbank_name" column="ORDERS_VBANK_NAME" />
+		<result property="orders_vbank_num" column="ORDERS_VBANK_NUM" />
+		<result property="orders_cache_uid" column="ORDERS_CACHE_UID" />
+		<result property="orders_email" column="ORDERS_EMAIL" />
+		<result property="orders_title" column="ORDERS_TITLE" />
+		<result property="orders_recommend" column="ORDERS_RECOMMEND" />
+		<result property="orders_zipcode" column="ORDERS_ZIPCODE" />
+		<result property="orders_cache_tool" column="ORDERS_CACHE_TOOL" />
+		<result property="orders_status" column="ORDERS_STATUS" />
+		<result property="orders_phone" column="ORDERS_PHONE" />
+		<result property="orders_refund_num" column="ORDERS_REFUND_NUM" />
+		<result property="orders_refund_bank" column="ORDERS_REFUND_BANK" />
+		<result property="orders_vbank_Date_String" column="ORDERS_VBANK_DATE_STRING" />
+		<result property="orders_vbank_Date" column="ORDERS_VBANK_DATE" />
+	</resultMap>
+	
+	<select id="myOrderTotalCount" parameterType="criteria" resultType="int">
+		SELECT COUNT(*) FROM orders WHERE user_id = #{session_user_id}
+		AND orders_status LIKE CONCAT('%', 'cancel', '%')
+		<if test="fromDate != null and !fromDate.equals('')">
+			<![CDATA[AND orders_order_day >= #{fromDate}]]>
+		</if>
+		<if test="toDate != null and !toDate.equals('')">
+			<![CDATA[AND orders_order_day <= #{toDate}]]>
+		</if>
+		<if test="searchCondition == 'ORDERS_TITLE'">
+			AND	orders_title LIKE CONCAT('%', #{searchKeyword}, '%')
+		</if>
+		<if test="searchCondition == 'ORDERS_NAME'">
+			AND	orders_name LIKE CONCAT('%', #{searchKeyword}, '%')
+		</if>
+	</select>
+	
+	<select id="getMyOrderList" parameterType="criteria" resultMap="userOrderResult">
+		SELECT * FROM orders WHERE user_id = #{session_user_id}
+		AND orders_status LIKE CONCAT('%', 'cancel', '%')
+		<if test="fromDate != null and !fromDate.equals('')">
+			<![CDATA[AND orders_order_day >= #{fromDate}]]>
+		</if>
+		<if test="toDate != null and !toDate.equals('')">
+			<![CDATA[AND orders_order_day <= #{toDate}]]>
+		</if>
+		<if test="searchCondition == 'ORDERS_TITLE'">
+			AND	orders_title LIKE CONCAT('%', #{searchKeyword}, '%')
+		</if>
+		<if test="searchCondition == 'ORDERS_NAME'">
+			AND	orders_name LIKE CONCAT('%', #{searchKeyword}, '%')
+		</if>
+		ORDER BY orders_seq DESC
+		LIMIT #{pageStart}, #{perPageNum}
+	</select>
+	
+	<select id="getMyOrderDetail" parameterType="int" resultType="ordersVO">
+		SELECT * FROM orders WHERE orders_seq = #{orders_seq}
+	</select>
+	
+	
+</mapper>

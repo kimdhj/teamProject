@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="adminauthor">
+	<select parameterType="adminauthorsearchVO" resultType="adminauthorVO" id="adminauthorlist">
+	<![CDATA[select * from (select * ,@rownum:=@rownum+1 as rnum from (select a.author_seq,a.author_name,count(b.book_price)  as count  from author as a left join book as b on a.author_seq=b.author_seq  ]]>
+		<trim prefix="WHERE" prefixOverrides="AND |OR">
+			<if test="author_name != null and author_name != ''"><![CDATA[AND author_name like CONCAT('%',#{author_name},'%')]]></if>
+			<if test="author_seq != null and author_seq != ''">AND a.author_seq=#{author_seq}</if>
+		</trim>
+		<![CDATA[ group by author_seq order by author_seq desc ) B,(SELECT @rownum:=0) TMP ) C where rnum>(#{page}-1)*5 AND rnum<=#{page}*5 order by author_seq desc ]]>
+	</select>
+	<select parameterType="adminauthorsearchVO" resultType="int"  id="adminauthorcount">
+		<![CDATA[select count(*) from (select count(*) from author as a left join book as b on a.author_seq=b.author_seq ]]>
+		<trim prefix="WHERE" prefixOverrides="AND |OR">
+			<if test="author_name != null and author_name != ''"><![CDATA[AND author_name like CONCAT('%',#{author_name},'%')]]></if>
+			<if test="author_seq != 0"><![CDATA[AND author_seq=#{author_seq}]]></if>
+		</trim> 
+group by a.author_seq) B 
+	</select>
+	<insert parameterType="adminauthorVO" id="adminauthorcreate">
+	insert into author(author_name) values(#{author_name})
+	</insert>
+	<update parameterType="adminauthorVO"  id="adminauthorupdate">
+		update author set author_name=#{author_name} where author_seq=#{author_seq}
+	</update>
+	<delete parameterType="adminauthorVO" id="adminauthordelete">
+		delete from author where author_seq=#{author_seq}
+	</delete>
+	<delete parameterType="adminauthorVO" id="adminbookdelete">
+		delete from book where author_seq=#{author_seq}
+	</delete>
+	<update parameterType="adminauthorVO"  id="adminbookupdate">
+		update book set book_author =#{author_name} where author_seq=#{author_seq}
+	</update>
+	
+</mapper>

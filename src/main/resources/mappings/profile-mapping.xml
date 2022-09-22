@@ -35,5 +35,12 @@
 		UPDATE user SET user_state = 2 WHERE user_id = #{user_id}
 	</update>
 	
+	<update id="transPassword" parameterType="userVO">
+		UPDATE user SET user_password = #{user_password} WHERE user_id = #{user_id}
+	</update>
+	<!-- 혜성 추가 구독 취소 -->
+	<update id="cancelSubs" parameterType="String">
+		UPDATE user SET user_sub = 0 WHERE user_id = #{user_id}
+	</update>
 	
 </mapper>

@@ -1,30 +1,72 @@
-function tableDelete(obj) {
-	var tr = $(obj).parent().parent();
-	var del = $(obj).next().val();
-	var rs = $(obj).next().next().val();
-
-	var rrs = rs.indexOf('룰렛');
-	var srs = rs.indexOf('구독');
-	var con = confirm("룰렛, 구독이벤트는 삭제하지 않는것이 좋습니다. 정말 삭제하시겠습니까?");
 
 
-	if(con == true){
 
+
+
+	
+
+
+
+//체크된 항목 삭제
+function del_pick() {
+	let codelist = [];
+		$(".del_chk").map((che, el) => {
+
+			if ($(el).is(':checked')) {
+				console.log($(el).parents("tr").children('td:eq(1)').children('p').text().trim());
+				codelist.push($(el).parents("tr").children('td:eq(1)').children('p').text().trim());
+			}
+
+		});
+		console.log(codelist);
 		$.ajax({
-			url: "/ajax_del.mdo",
+			url: "/del_chk.mdo",
+			method: "POST",
+			data: {
+				codelist
+			},
+			success: function(e) {
+
+				location.href = "/getProductList.mdo";
+			},
+			error: function(e) {
+
+
+			}
+		});
+}
+
+//전체 선택
+function selectAll(selectAll){
+	const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  
+  checkboxes.forEach((checkbox) => {
+    checkbox.checked = selectAll.checked
+  })
+}
+
+// 상품 삭제
+function del_product(obj) {
+
+	console.log($(obj).parents("tr").children("td:eq(1)").children("p").text());
+	let cq = $(obj).parents("tr").children("td:eq(1)").children("p").text();
+
+	$.ajax({
+			url: "/del_product.mdo",
 			type: 'POST',
 			data: {
-				del: del
+				book_seq: Number(cq)
 			},
 			success: function(data) {
-				console.log(data);
+				
+				location.href = "/getProductList.mdo";
+				
 			},
 			error: function(jqXHR, textStatus, errorThrown) {
 				console.log('error while post');
 			}
 		});
-		tr.remove();
-					}
+
 }
 		
 		
@@ -36,6 +78,10 @@ $("#search_btn").click(function(e){
 	 console.log($("#searchThing").val());
 	 
 	 $("#Hpage").val(1);
+	 
+
+	 
+	 
 	 
 	$.ajax({
 			url: "/ajax_search.mdo",
@@ -51,7 +97,7 @@ $("#search_btn").click(function(e){
 				data.map((pro) => {
 				con+=
 				`<tr>
-								<td><input type="checkbox" id=""></td>
+								<td><input type="checkbox" class="del_chk" name="del_chk"></td>
 								<td>
 									<p class="rowColumn" contenteditable="false" data-default="${pro.book_seq }">${pro.book_seq }</p>
 								</td>
@@ -82,7 +128,10 @@ $("#search_btn").click(function(e){
 									<p class="rowColumn" contenteditable="false" data-default="${pro.book_sellCount }">${pro.book_sellCount }</p>
 								</td>
 								<td>
-									<button type="button" id="del_one">삭제</button>
+									<button type="button" id="upd_product" name="upd_product" onclick="location.href='/product_Update.mdo?book_seq=${pro.book_seq}'">수정</button>
+								</td>
+								<td>
+									<button type="button" id="del_one" name="del_one" onclick="del_product(this)">삭제</button>
 								</td>
 							</tr>
 				`;
@@ -101,6 +150,13 @@ $("#search_btn").click(function(e){
 				countt();
 				
 				$("#Hpage").val($("#now").text());
+				
+				//검색했는데 유지되어있는 전체 선택 체크박스 해제
+				console.log($("#all_pick").is(":checked"));
+					if ($("#all_pick").is(":checked")) {
+						$("#all_pick").prop("checked",false);
+					}
+				
 				
 			},
 			error: function(jqXHR, textStatus, errorThrown) {
@@ -151,7 +207,7 @@ function viewview(v){
 				data.map((pro) => {
 				con+=
 				`<tr>
-								<td><input type="checkbox" id=""></td>
+								<td><input type="checkbox" class="del_chk" name="del_chk"></td>
 								<td>
 									<p class="rowColumn" contenteditable="false" data-default="${pro.book_seq }">${pro.book_seq }</p>
 								</td>
@@ -182,13 +238,22 @@ function viewview(v){
 									<p class="rowColumn" contenteditable="false" data-default="${pro.book_sellCount }">${pro.book_sellCount }</p>
 								</td>
 								<td>
-									<button type="button" id="del_one">삭제</button>
+									<button type="button" id="upd_product" name="upd_product" onclick="location.href='/product_Update.mdo?book_seq=${pro.book_seq}'">수정</button>
+								</td>
+								<td>
+									<button type="button" id="del_one" name="del_one" onclick="del_product(this)">삭제</button>
 								</td>
 							</tr>
 				`;
 
 				});
 				$("tbody").html(con);
+				
+				//검색했는데 유지되어있는 전체 선택 체크박스 해제
+				console.log($("#all_pick").is(":checked"));
+					if ($("#all_pick").is(":checked")) {
+						$("#all_pick").prop("checked",false);
+					}
 				
 			},
 			error: function(jqXHR, textStatus, errorThrown) {

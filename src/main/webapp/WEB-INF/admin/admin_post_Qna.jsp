@@ -49,6 +49,7 @@
             <select class="row form-select w-100 fs-5" id="level" name="level"
               id="level" aria-label="Default select example"
               style="margin-left: 1px;">
+              <option class="fs-5" value="전체">전체</option>
               <option class="fs-5" value="제목">제목</option>
               <option class="fs-5" value="작성자">작성자</option>
               <option class="fs-5" value="답변여부">답변여부</option>

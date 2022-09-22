@@ -13,7 +13,7 @@ import com.romance.admin.qna.AskService;
 import com.romance.admin.qna.AskVO;
 import com.romance.server.AwsS3;
 
-@Service("qnaService")
+@Service("askService")
 public class AskServiceImpl implements AskService{
 	@Autowired
 	private AskDAO ask;

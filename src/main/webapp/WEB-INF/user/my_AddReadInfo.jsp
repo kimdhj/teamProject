@@ -54,22 +54,21 @@
 						<div id="months_count" class="align-self-center">${user_sub_count }</div>
 						<div id="months_etc" class="align-self-center">개월 째 이용 중 입니다.</div>
 					</div>
-					<div id="money">
-						<div id="money_title" class="align-self-center">지금 까지 결제 금액 : </div>
-						<div id="money_count"><fmt:formatNumber value="${sub.sub_info_price }" type="number" />&nbsp;원</div>
+					<div id="money" class="row d-flex">
+						<div id="money_title" class="align-self-center col-4">지금 까지 결제 금액 : </div>
+						<div id="money_count" class="col"><fmt:formatNumber value="${sub.sub_info_price }" type="number" />&nbsp;원</div>
 
 					</div>
-					<div id="nowBook">
-						<div id="nowBook_title" class="align-self-center">현재 대여책 : </div>
-						<div id="nowBook_content">오늘도 놀고 싶다</div>
+					<div id="nowBook" class="row d-flex">
+						<div id="nowBook_title" class="align-self-center col-3">배송 예정 도서 : </div>
+						<div id="nowBook_content" class="col">{user_book}</div>
+						<div></div>
 					</div>
-					<div id="nextBook">
-						<div id="nowBook_title" class="align-self-center">현재 대여책 : </div>
-						<div id="nowBook_content">오늘도 놀고 싶다</div>
-					</div>
-					<div id="selectType">
-						<div id="selectType_title">선택된 장르 : </div>
-						<div id="selectType_content">무협,소설,로맨스</div>
+					<div id="selectType" class="row d-flex">
+						<div id="selectType_title" class="col-3">선택된 장르 :</div>
+						<div id="selectType_content" class="col">
+							${cate}
+						</div>
 					</div>
 				</div>
 				<div id="rec_book" class="row">
@@ -84,90 +83,44 @@
 
 					</div>
 					<div class="tab-content">
-						<!-- 탭1 시작 -->
-						<div id="tab-1" class="tab-pane fade show p-0 active">
-							<div class="row g-4">
-								<div class="col-xl-3 col-lg-4 col-md-6 col-sm-6  wow fadeInUp"
+					<!-- 탭1 시작 -->
+					<div id="tab-1" class="tab-pane fade show p-0 active">
+						<div class="row g-4">
+							<c:forEach var="newb" items="${mynewlist}">
+								<div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp"
 									data-wow-delay="0.1s">
-									<div class="product-item">
-										<div class="position-relative bg-light overflow-hidden">
-											<img class="img-fluid w-100" src="/img/product1-1.jpg" alt="">
+									<div class="product-item h-80">
+										<input type="hidden" id="seq" value="${newb.book_seq}" />
+										<div class="position-relative bg-light h-100 overflow-hidden">
+											<img height="100%" class="w-100" src="${newb.book_bigimgURL}"
+												alt="">
 											<div
-												class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-												월간</div>
+												class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">new</div>
 										</div>
 										<div class="text-center p-4">
-											<a class="d-block h5 mb-2" href="">역행자</a> <span
-												class="text-primary me-1">15,750</span> <span
-												class="text-body text-decoration-line-through">17,500</span>
+											<a class="d-block h5 mb-2"
+												href="bookdetail.do?book_seq=${newb.book_seq}">${newb.book_title}</a>
+											<span class="text-primary me-1"><fmt:formatNumber
+													value="${newb.book_price}" pattern="#,###" />원</span>
 										</div>
 										<div class="d-flex border-top">
 											<small class="w-50 text-center border-end py-2"> <a
-												class="text-body" href=""><i
+												class="text-body"
+												href="bookdetail.do?book_seq=${newb.book_seq}"><i
 													class="fa fa-eye text-primary me-2"></i>상세보기</a>
-											</small> <small class="w-50 text-center py-2"> <a
-												class="text-body" href=""><i
+											</small> <small class="w-50 text-center py-2"> <a id="cart"
+												class="text-body"><i
 													class="fa fa-shopping-bag text-primary me-2"></i>Add to
 													cart</a>
 											</small>
 										</div>
 									</div>
 								</div>
-								<div class="col-xl-3 col-lg-4 col-md-6 col-sm-6  wow fadeInUp"
-									data-wow-delay="0.3s">
-									<div class="product-item">
-										<div class="position-relative bg-light overflow-hidden">
-											<img class="img-fluid w-100" src="/img/product1-2.jpg" alt="">
-											<div
-												class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-												New</div>
-										</div>
-										<div class="text-center p-4">
-											<a class="d-block h5 mb-2" href="">Fresh Tomato</a> <span
-												class="text-primary me-1">$19.00</span> <span
-												class="text-body text-decoration-line-through">$29.00</span>
-										</div>
-										<div class="d-flex border-top">
-											<small class="w-50 text-center border-end py-2"> <a
-												class="text-body" href=""><i
-													class="fa fa-eye text-primary me-2"></i>View detail</a>
-											</small> <small class="w-50 text-center py-2"> <a
-												class="text-body" href=""><i
-													class="fa fa-shopping-bag text-primary me-2"></i>Add to
-													cart</a>
-											</small>
-										</div>
-									</div>
-								</div>
-								<div class="col-xl-3 col-lg-4 col-md-6 col-sm-6  wow fadeInUp"
-									data-wow-delay="0.5s">
-									<div class="product-item">
-										<div class="position-relative bg-light overflow-hidden">
-											<img class="img-fluid w-100" src="/img/product1-3.jpg" alt="">
-											<div
-												class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-												New</div>
-										</div>
-										<div class="text-center p-4">
-											<a class="d-block h5 mb-2" href="">Fresh Tomato</a> <span
-												class="text-primary me-1">$19.00</span> <span
-												class="text-body text-decoration-line-through">$29.00</span>
-										</div>
-										<div class="d-flex border-top">
-											<small class="w-50 text-center border-end py-2"> <a
-												class="text-body" href=""><i
-													class="fa fa-eye text-primary me-2"></i>View detail</a>
-											</small> <small class="w-50 text-center py-2"> <a
-												class="text-body" href=""><i
-													class="fa fa-shopping-bag text-primary me-2"></i>Add to
-													cart</a>
-											</small>
-										</div>
-									</div>
-								</div>
-							</div>
+							</c:forEach>
 						</div>
 					</div>
+					<!-- 탭1 끝 -->
+				</div>
 				</div>
 			</div>
 

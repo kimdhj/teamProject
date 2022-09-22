@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +29,7 @@
 	<div class="container">
 		<div class="d-flex flex-row">
 			<div class="col-md-7">
-				<form>
+				<form action="/getAdmin_member_List.mdo" method="get">
 					<div class="d-flex flex-row">
 						<div class="col-md-4">
 							<select class="form-select form-select mb-3"
@@ -63,7 +64,7 @@
 			<div class="col-md-1">
 				<button type="submit" class="btn btn-light btn-outline-dark">검색</button>
 			</div> -->
-			<form>
+			<form action="/getAdmin_member_List.mdo" method="get">
 				<div class="col-md-12">
 					<div class="btn-group" role="group"
 						aria-label="Basic mixed styles example">
@@ -77,12 +78,16 @@
 			</form>
 		</div>
 		<div class="d-flex flex-row">
+			<p style="color:blue;">${pagination.criteria.pageNum}페이지</p>
+		</div>
+		<div class="d-flex flex-row">
 			<table class="table text-center">
 				<thead class="table-dark">
 					<tr>
 						<th scope="col">이름</th>
 						<th scope="col">아이디</th>
 						<th scope="col">구분</th>
+						<th scope="col">상태</th>
 						<th scope="col">생년월일</th>
 						<th scope="col">연락처</th>
 						<th scope="col">Email</th>
@@ -90,22 +95,36 @@
 						<th scope="col">보유쿠폰</th>
 						<th scope="col">조회</th>
 					</tr>
-				</thead>
+				</thead>		
 				<tbody>
 					<c:forEach var="adminAccount" items="${adminUserListWithPaging }">
 							<tr>
 								<td>${adminAccount.user_name }</td>
 								<td>${adminAccount.user_id }</td>
-								<td>${adminAccount.user_sub }</td>
+								<c:if test="${adminAccount.user_sub == 0}">
+									<td>일반</td>
+								</c:if>
+								<c:if test="${adminAccount.user_sub == 1}">
+									<td>구독</td>
+								</c:if>
+								<c:if test="${adminAccount.user_state == 0}">
+									<td>정상</td>
+								</c:if>
+								<c:if test="${adminAccount.user_state == 1}">
+									<td>블랙</td>
+								</c:if>
+								<c:if test="${adminAccount.user_state == 2}">
+									<td>탈퇴</td>
+								</c:if>
 								<td>${adminAccount.user_birth }</td>
 								<td>${adminAccount.user_phone }</td>
 								<td>${adminAccount.user_email }</td>
-								<td>${adminAccount.user_point }</td>
-								<td>${adminAccount.user_coupon_cnt }</td>
+								<td><fmt:formatNumber value="${adminAccount.user_point }" pattern="#,###"/>P</td>
+								<td>${adminAccount.user_coupon_cnt } 장</td>
 								<td>
-									<button type="submit" class="btn btn-light btn-outline-dark" id="searchDetailBtn">
-										<a href="getAdmin_member_Detail.mdo?user_id=${adminAccount.user_id}&pageNum=${criteria.pageNum}&searchCondition=${criteria.searchCondition}&searchKeyword=${criteria.searchKeyword}&selectCondition=${criteria.selectCondition}">조회</a>
-									</button>
+									<a href="getAdmin_member_Detail.mdo?user_id=${adminAccount.user_id}&pageNum=${criteria.pageNum}&searchCondition=${criteria.searchCondition}&searchKeyword=${criteria.searchKeyword}&selectCondition=${criteria.selectCondition}">
+										<button type="button" class="btn btn-light btn-outline-dark" id="searchDetailBtn">조회</button>
+									</a>
 								</td>
 							</tr>
 					</c:forEach>

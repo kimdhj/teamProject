@@ -15,6 +15,12 @@
 	<insert id="couponin" parameterType="mycouponVO">
 		insert into user_coupon(user_coupon_effect,user_coupon_name,user_coupon_code,user_id) values(#{user_coupon_effect},#{user_coupon_name},#{user_coupon_code},#{user_id})
 	</insert>
+	<select parameterType="String" resultType="mycouponVO" id="paycouponlist">
+	select * from user_coupon where user_id=#{user_id}order by user_coupon_date desc
+	</select>
+	<delete parameterType="int" id="usecoupon">
+	delete from user_coupon where user_coupon_seq=#{user_coupon_seq}
+	</delete>
 
 
 

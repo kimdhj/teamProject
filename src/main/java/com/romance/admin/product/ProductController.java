@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.romance.user.concern.ConcernWriterVO;
+
 @Controller
 @SessionAttributes("pro")
 public class ProductController {
@@ -105,6 +107,62 @@ public class ProductController {
 			return "redirect:getProductList.mdo";
 		}
 		
+		//상품 UPDATE 시키기!
+		@RequestMapping(value="product_Update_real.mdo", method = RequestMethod.POST)
+		public String product_Update_real(@RequestParam(name="imgfile0") MultipartFile imgfile0, @RequestParam(name="imgfile1") MultipartFile imgfile1, ProductVO vo) throws IOException {
+			productService.updateProduct(imgfile0, imgfile1, vo);
+			
+			return "redirect:getProductList.mdo";
+		}
 
+		//작가번호로 작가 검색!
+		@RequestMapping(value="/check_author.mdo", method=RequestMethod.POST, produces = "application/text; charset=UTF-8")
+		@ResponseBody
+		public String check_author(@RequestParam(name="author_seq") int author_seq) {
+			System.out.println(author_seq);
+			System.out.println(productService.check_author(author_seq));
+			
+			return productService.check_author(author_seq);
+		}
+		
+		//고유번호 있는지 확인!
+		@RequestMapping(value="/check_isbn.mdo", method=RequestMethod.POST)
+		@ResponseBody
+		public int check_isbn(@RequestParam(name="book_isbn") String book_isbn) {
+			System.out.println(book_isbn);
+			
+			return productService.check_isbn(book_isbn);
+		}
+		
+		//카테고리 있는지 확인!
+		@RequestMapping(value="/check_category.mdo", method=RequestMethod.POST)
+		@ResponseBody
+		public int check_category(@RequestParam(name="category_num") int category_num) {
+			System.out.println(category_num);
+			
+			return productService.check_category(category_num);
+		}
+		
+		//물품 단일 삭제!
+		@RequestMapping(value="/del_product.mdo", method=RequestMethod.POST)
+		@ResponseBody
+		public void del_product(@RequestParam(name="book_seq") int book_seq) {
+			productService.del_product(book_seq);
+		}
+		
+		//물품 체크 삭제!
+		@RequestMapping(value="/del_chk.mdo", method=RequestMethod.POST)
+		@ResponseBody
+		public int dellist(@RequestParam(value="codelist[]")List<Integer> codelist) {
+			productService.del_chk(codelist);
+			return 1;
+		}
+		
+		//물품 수정 페이지!
+		@GetMapping("/product_Update.mdo")
+		public String product_Update(Model model, @RequestParam(name="book_seq") int book_seq) {
+			model.addAttribute("ProductDAO", productService.product_Update(book_seq));
+			return "admin_product_Update";
+		}
 		
 }

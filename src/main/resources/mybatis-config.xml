@@ -49,6 +49,8 @@
 			alias="termssearchVO" />
 		<typeAlias type="com.romance.admin.coupon.CouponVO"
 			alias="couponVO" />
+		<typeAlias type="com.romance.admin.coupon.UserCouponVO"
+			alias="userCouponVO" />
 		<typeAlias type="com.romance.admin.coupon.CouponSearchVO"
 			alias="couponsearchVO" />
 		<typeAlias type="com.romance.admin.notice.NoticeSearchVO"
@@ -98,9 +100,21 @@
 
 
 
+
 		<typeAlias
 			type="com.romance.user.my.request.MyRequestReplyVO"
 			alias="myRequestReplyVO" />
+
+		<typeAlias
+			type="com.romance.user.my.request.MyRequestReplyVO"
+			alias="myRequestReplyVO" />
+		<typeAlias type="com.romance.admin.reply.ReplyVO"
+			alias="reply" />
+		<typeAlias type="com.romance.admin.reply.ReplySearchVO"
+			alias="replySearch" />
+		<typeAlias type="com.romance.admin.reply.ReplyJoinVO"
+			alias="replyJoin" />
+
 		<typeAlias type="com.romance.user.coupon.MyCouponVO"
 			alias="mycouponVO" />
 		<typeAlias type="com.romance.user.coupon.MyCouponSearchVO"
@@ -109,6 +123,24 @@
 			alias="mypointsVO" />
 		<typeAlias type="com.romance.user.points.MyPointsSearchVO"
 			alias="mypointssearchVO" />
+
+		<typeAlias type="com.romance.user.my.delivery.DeliveryVO"
+			alias="deliveryVO" />
+
+		<typeAlias type="com.romance.admin.author.AdminAuthorVO"
+			alias="adminauthorVO" />
+		<typeAlias
+			type="com.romance.admin.author.AdminAuthorSearchVO"
+			alias="adminauthorsearchVO" />
+		<typeAlias type="com.romance.admin.trade.TradeJoinVO"
+			alias="tradejoinVO" />
+		<typeAlias type="com.romance.admin.trade.TradeSearchVO"
+			alias="tradesearchVO" />
+
+		<typeAlias type="com.romance.user.orders.PurchaseJoinVO"
+			alias="purchaseJoin" />
+		<typeAlias type="com.romance.user.orders.PurchaseSearchVO"
+			alias="purchaseSearch" />
 
 
 	</typeAliases>
@@ -142,8 +174,15 @@
 		<mapper resource="mappings/product-mapping.xml" />
 		<mapper resource="mappings/userrequest-mapping.xml" />
 		<mapper resource="mappings/concernwriter-mapping.xml" />
+		<mapper resource="mappings/adminReply-mapping.xml" />
 		<mapper resource="mappings/points-mapping.xml" />
 		<mapper resource="mappings/usercoupon-mapping.xml" />
 		<mapper resource="mappings/profile-mapping.xml" />
+		<mapper resource="mappings/adminuserdetail-mapping.xml" />
+		<mapper resource="mappings/userdelivery-mapping.xml" />
+		<mapper resource="mappings/adminauthor-mapping.xml" />
+		<mapper resource="mappings/userorder-mapping.xml" />
+		<mapper resource="mappings/usermain-mapping.xml" />
+		<mapper resource="mappings/trade-mapping.xml" />
 	</mappers>
 </configuration>

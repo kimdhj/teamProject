@@ -22,5 +22,16 @@ public class MyProfileServiceImpl implements MyProfileService {
 	public void userWithdrawal(String user_id) throws Exception {
 		myProfileDAO.userWithdrawal(user_id);		
 	}
+
+	@Override
+	public void transPassword(UserVO userVO) throws Exception {
+		myProfileDAO.transPassword(userVO);
+	}
+	//혜성 추가 구독 취소
+	@Override
+	public void cancelSubs(String user_id) throws Exception{
+		myProfileDAO.cancelSubs(user_id);				
+	}
+	
 	
 }

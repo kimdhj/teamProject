@@ -25,7 +25,7 @@
             <div class="section-header text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s"
                 style="max-width: 500px;">
                 <h1 class="display-5 mb-3">My Page</h1>
-                <p>Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed rebum vero dolor duo.</p>
+                <p>삭막한 서울 도심 속, 험난한 나날에 치이며 살아도 우리는 꿋꿋하게 낭만을 가슴속에 간직하는 것이 우리네 짧은 인생을 풍요로이 할 것이라 믿습니다!</p>
             </div>
             
             <!-- 마이페이지 메인 헤더 -->
@@ -37,8 +37,8 @@
                         <!-- 메인페이지 헤더 내용 -->
                         <div class="container">
                             <div class="row">
-                                <div class="col-3">
-
+                                <div class="col-2">
+									<a href="/myMain.do"><img src="/img/moveMyMain.png" style="cursor:pointer;" /></a>
                                 </div>
                                 <div class="row col-9">
                                     <div class="col-4">
@@ -91,7 +91,7 @@
             <!-- 마이페이지 메인 바디 -->
             <div class="row g-5 justify-content-center">
                 <div class="col-lg-3 col-md-12 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="bg-light text-black d-flex flex-column justify-content-center h-100 p-5">
+                    <div class="bg-light text-black d-flex flex-column justify-content-center h-100 p-sm-5 p-lg-3 p-md-3">
 
                         <!-- Split dropend button -->
                         <div class="btn-group dropend">
@@ -104,8 +104,8 @@
                             </button>
                             <ul class="dropdown-menu">
                                 <!-- Dropdown menu links -->
-                                <li><button class="dropdown-item" type="button">주문/배송조회</button></li>
-                                <li><button class="dropdown-item" type="button">취소/교환/반품조회</button></li>
+                                <li><a href="/myPurchase.do"><button class="dropdown-item" type="button">주문/배송조회</button></a></li>
+                                <li><a href="/myOrderCancel.do"><button class="dropdown-item" type="button">취소/교환/반품조회</button></a></li>
                             </ul>
                         </div><br><br><br>
                         <div class="btn-group dropend">
@@ -118,7 +118,7 @@
                             </button>
                             <ul class="dropdown-menu">
                                 <!-- Dropdown menu links -->
-                                <li><button class="dropdown-item" type="button">할인쿠폰/마일리지</button></li>
+                                <li><button class="dropdown-item" type="button" onclick="moveToCuMa();">할인쿠폰/마일리지</button></li>
                             </ul>
                         </div><br><br><br>
                         <div class="btn-group dropend">
@@ -160,7 +160,7 @@
                             <ul class="dropdown-menu">
                                 <!-- Dropdown menu links -->
                                 <li><button class="dropdown-item" type="button">회원정보 수정</button></li>
-                                <li><button class="dropdown-item" type="button">비밀번호 변경</button></li>
+                                <li><a href="/myTransPassword.do"><button class="dropdown-item" type="button">비밀번호 변경</button></a></li>
                                 <li><button class="dropdown-item" type="button">나의 주소록</button></li>
                                 <li><a href="/myWithdrawal.do"><button class="dropdown-item" type="button">회원탈퇴</button></a></li>
                             </ul>
@@ -173,8 +173,6 @@
                 <div class="col-lg-9 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
                     <br>
                     <p class="mb-4 fs-5 fw-bold"><img src="img/mypage_mainbtn.png" class="rounded float-start"
-                            alt="...">&nbsp;마이 페이지
-                            <a href="my_cancelSub.do">
-                        <button type="button" class="btn btn-secondary btn-sm float-end">구독취소</button>
-                            </a>
+                            alt="...">&nbsp;<a href="/myMain.do">마이 페이지</a>
+                        <button type="button" class="btn btn-secondary btn-sm float-end" onclick="can_sub();">구독취소</button>
                     </p>

@@ -45,10 +45,10 @@
 						</td>
 					</tr>
 					<tr>
-						<th class="bg-light">이름</th>
-						<td>${voToken.user_name}</td>
-						<th class="bg-light">이메일</th>
-						<td>${voToken.user_email}</td>
+						<th class="bg-light" style="width:15%;">이름</th>
+						<td style="width:35%;">${voToken.user_name}</td>
+						<th class="bg-light" style="width:15%;">이메일</th>
+						<td style="width:35%;">${voToken.user_email}</td>
 					</tr>
 					<tr>
 						<th class="bg-light align-middle">내용</th>
@@ -64,7 +64,7 @@
 					<tr>
 						<th class="bg-light">첨부파일</th>
 						<td colspan="2"><input type="file" accept="image/*,.txt"
-							multiple capture='user' onchange='aaa' id="uploadFile" name="uploadFile" /></td>
+							multiple id="uploadFile" name="uploadFile" /></td>
 						<td><input type="button" class="bg-light" id="delFile" value="삭제">
 						</td>
 					</tr>

@@ -63,21 +63,6 @@
 	margin-bottom: 1%;
 }
 
-#form-select2{
-	margin-top: 1%;
-	margin-bottom: 1%;
-}
-
-#form-select3{
-	margin-top: 1%;
-	margin-bottom: 1%;
-}
-
-#form-select4{
-	margin-top: 1%;
-	margin-bottom: 1%;
-}
-
 .table{
 	margin-top: 1%;
 }
@@ -85,7 +70,6 @@
 	font-size: 18px;
 	font-weight: bolder;
 	text-align: center;
-	display: flex;
 	align-items: center;
 	justify-content: center;
 }
@@ -100,75 +84,6 @@
 	border-top: 1px solid black;
 }
 #table_payment_content{
-	font-weight: normal;
-	font-size: 1rem;
-}
-
-#table_delivery>*{
-	font-size: 18px;
-	font-weight: bolder;
-	text-align: center;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-#table_delivery>*>*{
-	border-bottom: 1px solid black;
-	border-top: 0px;
-	border-right: 0px;
-	margin: 0px;
-	padding: 0px;
-}
-#table_delivery_height>*{
-	border-top: 1px solid black;
-}
-#table_delivery_content{
-	font-weight: normal;
-	font-size: 1rem;
-}
-
-#table_change>*{
-	font-size: 18px;
-	font-weight: bolder;
-	text-align: center;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-#table_change>*>*{
-	border-bottom: 1px solid black;
-	border-top: 0px;
-	border-right: 0px;
-	margin: 0px;
-	padding: 0px;
-}
-#table_change_height>*{
-	border-top: 1px solid black;
-}
-#table_change_content{
-	font-weight: normal;
-	font-size: 1rem;
-}
-
-#table_user>*{
-	font-size: 18px;
-	font-weight: bolder;
-	text-align: center;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-#table_user>*>*{
-	border-bottom: 1px solid black;
-	border-top: 0px;
-	border-right: 0px;
-	margin: 0px;
-	padding: 0px;
-}
-#table_user_height>*{
-	border-top: 1px solid black;
-}
-#table_user_content{
 	font-weight: normal;
 	font-size: 1rem;
 }
@@ -192,11 +107,24 @@
 	border-top: 2px solid black;
 	border-bottom: 2px solid black;
 }
+
 #table_content2{
 	font-weight: normal;
 	font-size: 1rem;
+	align-items: center;
+	text-align: center;
 }
 
 .hide{
 	display: none !important;
+}
+
+.pagination *{
+   cursor:pointer;
+}
+
+#img{
+	margin-bottom: 1%;
+	width: 30%;
+	height: 50%;
 }

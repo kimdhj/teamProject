@@ -301,6 +301,8 @@ $("#all_box #search_btn").click(function(e) {
 	$("#all_box #startDateche").val(null);
 	$("#all_box #endDateche").val(null);
 	
+	console.log(isNaN($("#pageche")));
+	
 	$("#all_box #startDateche").val($("#all_box #start_date").val());
 	$("#all_box #endDateche").val($("#all_box #end_date").val());
 	console.log($("#all_box #startDateche").val());

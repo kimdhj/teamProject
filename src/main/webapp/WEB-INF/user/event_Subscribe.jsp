@@ -83,8 +83,8 @@
               <input
                 type="button"
                 id="1month_sub"
-                value="1달 구독"
-                href="subscribePay.html"
+                value="구독 시작!"
+                onclick="goPaySub();"
               />
             </div>
             <div class="row d-flex justify-content-center">
@@ -96,19 +96,6 @@
               ${sub.sub_info_pre_string }
             </div>
             <div><br></div>
-            <div class="d-flex justify-content-center">
-              <input
-                type="button"
-                id="1year_sub"
-                value="1년 구독"
-                href="subscribePay.html"
-              />
-            </div>
-            <div class="row d-flex justify-content-center">
-              <div class="col-auto pe-0" id="subscribe_Price_oneYear"><fmt:formatNumber value="${sub.sub_info_price*12 }" type="number" /></div>
-              <div class="col-auto ps-0"> 원</div>
-              <br></br>
-            </div>
             <div id="br_under_content">
             ${sub.sub_info_post_string }
             </div>

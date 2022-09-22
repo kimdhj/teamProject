@@ -49,6 +49,106 @@ public class FaqServiceImpl implements FaqService{
 		return faq.getCount(svo);
 	}
 	
+//  @Override
+//  public List<FaqVO> getOrderList(FaqSearchVO svo) {
+//    if(svo.getPage() == 0) {
+//      svo.setPage(1);
+//    }
+//    if(svo.getAsk() != null) {
+//      svo.setAsk(svo.getAsk().trim());
+//    }
+//    if(svo.getSmallsort() != null) {
+//      svo.setSmallsort(svo.getSmallsort().trim());
+//    }
+//    return faq.getOrderList(svo);
+//  }
+//  
+//  @Override
+//  public int getOrderCount(FaqSearchVO svo) {
+//    if(svo.getAsk() != null) {
+//      svo.setAsk(svo.getAsk().trim());
+//    }
+//    if(svo.getSmallsort() != null) {
+//      svo.setSmallsort(svo.getSmallsort().trim());
+//    }
+//    return faq.getOrderCount(svo);
+//  }
+//  
+//  @Override
+//  public List<FaqVO> getDeliveryList(FaqSearchVO svo) {
+//    if(svo.getPage() == 0) {
+//      svo.setPage(1);
+//    }
+//    if(svo.getAsk() != null) {
+//      svo.setAsk(svo.getAsk().trim());
+//    }
+//    if(svo.getSmallsort() != null) {
+//      svo.setSmallsort(svo.getSmallsort().trim());
+//    }
+//    return faq.getDeliveryList(svo);
+//  }
+//
+//  @Override
+//  public List<FaqVO> getChangeList(FaqSearchVO svo) {
+//    if(svo.getPage() == 0) {
+//      svo.setPage(1);
+//    }
+//    if(svo.getAsk() != null) {
+//      svo.setAsk(svo.getAsk().trim());
+//    }
+//    if(svo.getSmallsort() != null) {
+//      svo.setSmallsort(svo.getSmallsort().trim());
+//    }
+//    return faq.getChangeList(svo);
+//  }
+//
+//  @Override
+//  public List<FaqVO> getUserList(FaqSearchVO svo) {
+//    if(svo.getPage() == 0) {
+//      svo.setPage(1);
+//    }
+//    if(svo.getAsk() != null) {
+//      svo.setAsk(svo.getAsk().trim());
+//    }
+//    if(svo.getSmallsort() != null) {
+//      svo.setSmallsort(svo.getSmallsort().trim());
+//    }
+//    return faq.getUserList(svo);
+//  }
+//
+//  @Override
+//  public int getDeliveryCount(FaqSearchVO svo) {
+//    if(svo.getAsk() != null) {
+//      svo.setAsk(svo.getAsk().trim());
+//    }
+//    if(svo.getSmallsort() != null) {
+//      svo.setSmallsort(svo.getSmallsort().trim());
+//    }
+//    return faq.getDeliveryCount(svo);
+//  }
+//
+//  @Override
+//  public int getChangeCount(FaqSearchVO svo) {
+//    if(svo.getAsk() != null) {
+//      svo.setAsk(svo.getAsk().trim());
+//    }
+//    if(svo.getSmallsort() != null) {
+//      svo.setSmallsort(svo.getSmallsort().trim());
+//    }
+//    return faq.getChangeCount(svo);
+//  }
+//
+//  @Override
+//  public int getUserCount(FaqSearchVO svo) {
+//    if(svo.getAsk() != null) {
+//      svo.setAsk(svo.getAsk().trim());
+//    }
+//    if(svo.getSmallsort() != null) {
+//      svo.setSmallsort(svo.getSmallsort().trim());
+//    }
+//    return faq.getUserCount(svo);
+//  }
+	
 	@Override
 	public void delete(FaqVO vo) {
 		faq.delete(vo);
@@ -102,4 +202,6 @@ public class FaqServiceImpl implements FaqService{
 	public boolean checkPW(FaqVO vo) {
 		return faq.checkPW(vo);
 	}
+	
+	
 }

@@ -6,7 +6,35 @@
 doAddPoint();
 let final=Number($("#sumsumsum").text().trim().replaceAll(",", ""));
 let mymypoint = $("#myPoint").text();
+//쿠폰 선택
+$("#coupon").on("change",function(){
+//console.log($("#coupon").html().data("seq"));
+$("#orders_coupon_effect").val(Number($("#coupon").val()));
+$("#couponselcode").val(Number($("#coupon").find("option:selected").data("seq")));
+console.log($("#couponselcode").val());
+})
+//주소지 선택
+$("#home").on("change",function(){
+console.log($("#home").val());
+$.ajax({
+  type: "GET",
+  url: "seldeli.do",  
+  data: {
+  seq:$("#home").val()
+  },  
+  success: function(re){
+  console.log(re);
+  $("#orders_name").val(re.my_delivery_name);
+  $("#phone").val(re.my_delivery_phone);
+  $("#zipcode").val(re.my_delivery_zipcode);
+  $("#orders_address").val(re.my_delivery_address);
+  $("#orders_remainaddress").val(re.my_delivery_remain_address);
 
+  },  
+  dataType: "json"  
+});  
+
+})
 
 //보유 포인트 포맷 시작
 
