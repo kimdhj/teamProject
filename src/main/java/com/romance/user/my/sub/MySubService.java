@@ -10,5 +10,8 @@ public interface MySubService {
 
 	List<String> getcate(UserVO vo);
 	public List<BookVO> newcate(BookSearchVO vo);
+	 public void subdel(String user_id);
+	  public void subon(String user_id);
+	  public void subupdate(UserVO vo);
 	
 }
