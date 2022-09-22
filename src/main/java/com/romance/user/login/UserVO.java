@@ -5,7 +5,7 @@ import java.util.Date;
 import lombok.Data;
 @Data
 public class UserVO {
-	private Date user_sub_start;
+	private String user_sub_start;
 	private Date user_login_day;
 	private int user_point;
 	private int user_sub_count;

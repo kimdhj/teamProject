@@ -16,7 +16,7 @@
   <div class="row">
     <div class="col-12">
       <div class="row">
-        <h3 id="purchaseList_name">구매 목록</h3>
+        <div style="font-size: x-large; font-weight: bolder;" id="purchaseList_name">구매 목록</div>
       </div>
     </div>
   </div>
@@ -126,18 +126,26 @@
         
         <div class="row mt-3 mb-3">
             <div class="col-2 purchaseList_btns">
-              <button onclick="location.href='/myreviewInsert.do'">리뷰작성</button>
-           </div>
+                <button onclick="location.href='/myPurchaseDetail.do?orders_seq=${purchase.orders_seq}'">구매상세</button>
+            </div>
+              
+              <c:if test="${purchase.order_bookList_review_complete eq false}">
+              <div class="col-2 purchaseList_btns">
+                <button onclick="location.href='/myreviewInsert.do?book_seq=${purchase.book_seq}&order_bookList_seq=${purchase.order_bookList_seq }'">리뷰작성</button>
+             </div>
+             </c:if>
+             
+              <c:if test="${purchase.order_bookList_review_complete eq true}">
+              <div class="col-2 purchaseList_btns">
+                <button onclick="#">리뷰수정</button>
+             </div>
+             </c:if>
            
-            <div class="col-2 purchaseList_btns">
-              <button onclick="location.href='/myPurchaseDetail.do?orders_seq=${purchase.orders_seq}'">구매상세</button>
-         	</div>
-            
             <c:if test="${purchase.orders_status eq 'ready' or purchase.orders_status eq 'paid' }">
             <div class="col-2 purchaseList_btns">
               <button class="purchaseCancel" type="button">구매취소</button>
             </div>
-          </c:if>
+            </c:if>
           
         </div>
         
