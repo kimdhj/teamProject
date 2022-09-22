@@ -11,7 +11,7 @@ import lombok.Data;
 @Data
 public class ReplyVO {
   private int reply_seq; // 번호
-  private int reply_point; // 포인트 
+  private int reply_point; // 별점
   private int book_seq; // 책 번호
   private String reply_cotent; // 내용
   private String user_id; // 유저 id
