@@ -306,12 +306,7 @@ public class BookController {
 	
 		return "book_Finish";
 	}
-	//정기결제
-	@PostMapping("/subtest.do")
-	public void subtest(@RequestBody JSONObject jsonObject,HttpServletResponse rep) {
-		System.out.println("pay");
-		System.out.println("pay"+jsonObject);
-	}
+
 	//아이콘 받아오기
 	@GetMapping("/navicon.do")
 	@ResponseBody

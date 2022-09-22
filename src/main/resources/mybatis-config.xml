@@ -43,8 +43,10 @@
 			alias="banner" />
 		<typeAlias type="com.romance.admin.sub.SubscribeVO"
 			alias="subscribe" />
-		<typeAlias type="com.romance.admin.terms.termsVO"
+		<typeAlias type="com.romance.admin.terms.TermsVO"
 			alias="termsVO" />
+		<typeAlias type="com.romance.admin.terms.TermsSearchVO"
+			alias="termssearchVO" />
 		<typeAlias type="com.romance.admin.coupon.CouponVO"
 			alias="couponVO" />
 		<typeAlias type="com.romance.admin.coupon.UserCouponVO"
@@ -97,6 +99,12 @@
 			alias="concernsearchVO" />
 
 
+
+
+		<typeAlias
+			type="com.romance.user.my.request.MyRequestReplyVO"
+			alias="myRequestReplyVO" />
+
 		<typeAlias
 			type="com.romance.user.my.request.MyRequestReplyVO"
 			alias="myRequestReplyVO" />
@@ -106,6 +114,7 @@
 			alias="replySearch" />
 		<typeAlias type="com.romance.admin.reply.ReplyJoinVO"
 			alias="replyJoin" />
+
 		<typeAlias type="com.romance.user.coupon.MyCouponVO"
 			alias="mycouponVO" />
 		<typeAlias type="com.romance.user.coupon.MyCouponSearchVO"
@@ -114,6 +123,7 @@
 			alias="mypointsVO" />
 		<typeAlias type="com.romance.user.points.MyPointsSearchVO"
 			alias="mypointssearchVO" />
+
 		<typeAlias type="com.romance.user.my.delivery.DeliveryVO"
 			alias="deliveryVO" />
 
@@ -132,6 +142,7 @@
 			alias="purchaseSearch" />
 		<typeAlias type="com.romance.admin.log.LoginLogVO"
 			alias="loginLogVO" />
+
 
 	</typeAliases>
 

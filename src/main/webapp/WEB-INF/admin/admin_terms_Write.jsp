@@ -32,11 +32,12 @@
 								<table class="table">
 									<tr>
 										<td>번호</td>
-										<td><input class="form-control" type="text" name="terms_seq"></td>
+										<td>${getCount+1}</td>
+										<!-- <td><input class="form-control" type="text" name="terms_seq"></td>  -->
 									</tr>
 									<tr>
 										<td>조항</td>
-										<td><input class="form-control" type="text" name="terms_article_number"></td>
+										<td><input class="form-control" type="text" name="terms_article_number" placeholder="조항 번호를 적어주세요."></td>
 									</tr>
 									<tr>
 										<td>약관제목</td>

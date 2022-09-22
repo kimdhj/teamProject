@@ -54,10 +54,21 @@
 	</trim>
 	</select>
 	
+	<!-- 책 정보 출력해오기 -->
+	<select id="getBookInfo" parameterType="bookVO" resultType="bookVO">
+		select * from book WHERE book_seq = #{book_seq};
+	</select>
+	
+	<!-- 리뷰 insert -->
 	<insert id="insert" parameterType="reply">
 		INSERT INTO reply(reply_seq, user_id, reply_cotent, reply_date, reply_point, book_seq)
 		VALUES (null, #{user_id}, #{reply_cotent}, default, #{reply_point}, #{book_seq})
 	</insert>	
+	
+	<!-- 리뷰 작성한 경우 update 로 order_bookList_review_complete  -->
+	<update id="reviewStateUpdate" parameterType="orderbooklistVO">
+		UPDATE order_bookList SET order_bookList_review_complete = 1 WHERE order_bookList_seq = #{order_bookList_seq}
+	</update>
 	
 	<select id="getReply" parameterType="reply" resultType="reply">
 		SELECT * FROM reply WHERE reply_seq = #{reply_seq}

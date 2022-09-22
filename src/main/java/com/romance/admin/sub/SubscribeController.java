@@ -47,50 +47,5 @@ public class SubscribeController {
     return "redirect:getSubInfo.mdo";
   }
   
-  @GetMapping("/mysubpay.do")
-  public String mysubpay(Model model, JwtUtils util, HttpSession session) throws IOException {
-    UserVO vo = util.getuser(session);
-    model.addAttribute("user", vo);
-    return "my_SubPay";
-  }
-  
-  @PostMapping("/subreg.do")
-  @ResponseBody
-  public int subreg(@RequestParam("cuid") String cuid, subsche sc) throws Exception {
-    System.out.println("subreg " + cuid);
-    UUID ran = UUID.randomUUID();
-    
-    sc.subpay(cuid, cuid + "|" + ran.toString());
-    // 테이블에 시간 밀리세컨드로 만든거 넣기 + 개월수 1로 바꾸기
-    return 1;
-  }
-  
-  @PostMapping("/subcancel.do")
-  @ResponseBody
-  public int subcancel(String cuid, subscancel sc) throws Exception {
-    // 테이블에 시간 밀리세컨드로 만든거 지우기
-    sc.subpay(cuid);
-    return 1;
-  }
-  
-  @PostMapping("/subrepay.do")
-  @ResponseBody
-  public void subrepay(@RequestBody JSONObject json, subsche sc) throws Exception {
-    System.out.println("구독 재결제");
-    System.out.println(json);
-    System.out.println(json.get("merchant_uid"));
-    
-    String mid = (String) json.get("merchant_uid");
-    if (!mid.contains("_")) {
-      int ind = mid.indexOf("|");
-      System.out.println("결과물12" + mid.substring(0, ind));
-      String cuid = mid.substring(0, ind);
-      UUID ran = UUID.randomUUID();
-      
-      sc.subpay(cuid, cuid + "|" + ran.toString());
-      
-    }
-    
-  }
   
 }
