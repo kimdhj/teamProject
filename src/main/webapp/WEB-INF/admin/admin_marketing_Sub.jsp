@@ -50,7 +50,7 @@
               <button type="submit" class="btn btn-primary">수정</button>
             </div>
             <div class="col-2">
-            <a href="#">//관리자 메인?
+            <a href="/adminMain.mdo">
               <button type="button" class="btn btn-light">취소</button>
             </a>
             </div>
