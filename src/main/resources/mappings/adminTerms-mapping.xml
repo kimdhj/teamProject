@@ -22,11 +22,13 @@
 		#{terms_state})
 	</insert>
 
-	<select id="getTermsList" resultMap="termsResult">
-		SELECT * FROM terms order by terms_seq DESC
-
-		<![CDATA[SELECT * FROM (SELECT * , @rownum:=@rownum + 1 as rnum FROM terms, (SELECT @rownum:=0) TMP]]>
-		<![CDATA[ORDER BY terms_seq DESC) B WHERE]]>
+	<select parameterType="termsSearchVO" id="getTermsList"
+		resultMap="termsResult">
+ 	<![CDATA[SELECT * FROM (SELECT * , @rownum:=@rownum + 1 as rnum FROM terms, (SELECT @rownum:=0) TMP]]>
+		<trim prefix="WHERE" prefixOverrides="AND | OR">
+			<if test="title != null"><![CDATA[AND terms_title LIKE CONCAT('%', #{title}, '%')]]></if>
+		</trim>
+	<![CDATA[ORDER BY terms_seq DESC) B WHERE]]>
 		<if test="seq != 0">
 	 		<![CDATA[	rnum = #{seq}]]>
 		</if>
@@ -46,8 +48,12 @@
 		terms_state=#{terms_state} WHERE terms_seq=#{terms_seq}
 	</update>
 
-	<select parameterType="termsVO" resultType="int" id="getCount">
+	<select parameterType="termsSearchVO" resultType="int"
+		id="getCount">
 		<![CDATA[select count(*) from terms ]]>
+		<trim prefix="WHERE" prefixOverrides="AND | OR">
+			<if test="title != null"><![CDATA[AND terms_title LIKE CONCAT('%', #{title}, '%')]]></if>
+		</trim>
 	</select>
 
 	<delete id="deleteTerms" parameterType="termsVO">

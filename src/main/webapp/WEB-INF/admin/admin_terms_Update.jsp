@@ -16,6 +16,7 @@
 				<form method="post" action="admin_terms_Alter.mdo"
 					onsubmit="return writeSave()">
 					<input type="hidden" name="terms_seq" value="${terms.terms_seq}"/>
+					<input type="hidden" name="count" value="${count}"/>
 					<div class="card border-light">
 						<div class="card-header">
 							<div class="d-flex flex-row">
@@ -33,7 +34,7 @@
 								<table class="table">
 									<tr>
 										<td>번호</td>
-										<td>${terms.terms_seq}</td>
+										<td>${count}</td>
 									</tr>
 									<tr>
 										<td>조항</td>

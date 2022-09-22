@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.romance.admin.terms.TermsSearchVO;
 import com.romance.admin.terms.TermsService;
 import com.romance.admin.terms.TermsVO;
 
@@ -20,13 +21,13 @@ public class TermsServiceImpl implements TermsService {
 	}
 	
 	@Override
-	public int getCount() {
-		return dao.getCount();
+	public int getCount(TermsSearchVO svo) {
+		return dao.getCount(svo);
 	}
 
 	@Override
-	public List<TermsVO> getTermsList(TermsVO vo) {
-		return dao.getTermsList(vo);
+	public List<TermsVO> getTermsList(TermsSearchVO svo) {
+		return dao.getTermsList(svo);
 	}
 
 	@Override

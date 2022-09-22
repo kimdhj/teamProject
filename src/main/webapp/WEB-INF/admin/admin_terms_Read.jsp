@@ -38,7 +38,7 @@
 								<table class="table">
 									<tr>
 										<td>번호</td>
-										<td>${terms.terms_seq}</td>
+										<td>${count}</td>
 									</tr>
 									<tr>
 										<td>조항</td>
@@ -76,7 +76,7 @@
 								onclick="location.href='admin_terms_Main.mdo' ">목록</button>
 							<button type="button"
 								class="btn btn-light btn-outline-dark btn-sm"
-								style="float: right;" onclick="location.href='/admin_terms_Update.mdo?terms_seq=${terms.terms_seq}'">수정</button>
+								style="float: right;" onclick="location.href='/admin_terms_Update.mdo?terms_seq=${terms.terms_seq}&count=${count}'">수정</button>
 						</div>
 					</div>
 				</form>

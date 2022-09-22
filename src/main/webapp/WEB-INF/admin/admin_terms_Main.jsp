@@ -15,7 +15,7 @@
 	<jsp:include page="/WEB-INF/admin_commonjsp/admin_common_header.jsp"></jsp:include>
 	<!-- 여기서부터 화면 작성 시작 -->
 
-	<div class="container">
+	<div class="container" id="search">
 		<div class="terms_header">
 			<div class="card border-light">
 				<div class="card-header">
@@ -29,6 +29,13 @@
 						</div>
 					</div>
 				</div>
+
+
+				<div class="search">
+					<input type="text" id="search_content" placeholder="검색할 약관 제목 입력">
+					<button id="search_btn" >검색</button>
+				</div>
+
 				<div class="card-body">
 					<div class="d-flex flex-row">
 						<table class="table">
@@ -41,23 +48,22 @@
 									<th width="70" scope="col">상태</th>
 								</tr>
 							</thead>
-							<c:set var="count" value="1" />
 							<tbody>
 								<c:forEach var="terms" items="${termsList}">
 									<tr>
 										<td scope="row">${count}</td>
-										<c:set var="count" value="${count+1}" />
-
 
 										<td>제 ${terms.terms_article_number}조</td>
 										<td><a
-											href="/admin_terms_Read.mdo?terms_seq=${terms.terms_seq}">${terms.terms_title}</a></td>
+											href="/admin_terms_Read.mdo?terms_seq=${terms.terms_seq}&count=${count}">${terms.terms_title}</a></td>
 										<td><fmt:formatDate value="${terms.terms_date }"
 												pattern="yyyy-MM-dd" /></td>
 										<td><c:choose>
 												<c:when test="${terms.terms_state == true }">공개</c:when>
 												<c:otherwise>비공개</c:otherwise>
 											</c:choose></td>
+
+										<c:set var="count" value="${count - 1}" />
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -67,31 +73,44 @@
 			</div>
 		</div>
 
-		<div class="d-flex flex-row">
+		<div class="d-flex flex-row" id="paging">
 			<div class="col-md-12">
 				<nav aria-label="Page navigation example">
-					<ul class="pagination justify-content-center pagination-sm">
-						<li class="page-item"><a class="page-link" href="#"
-							aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-						</a></li>
-						<li class="page-item disabled"><a class="page-link" href="#"
-							tabindex="-1" aria-disabled="true">이전</a></li>
-						<li class="page-item"><a class="page-link" href="#">1</a></li>
-						<li class="page-item"><a class="page-link" href="#">2</a></li>
-						<li class="page-item"><a class="page-link" href="#">3</a></li>
-						<li class="page-item"><a class="page-link" href="#">다음</a></li>
-						<a class="page-link" href="#" aria-label="Next"> <span
-							aria-hidden="true">&raquo;</span>
-						</a>
+					<ul class="pagination justify-content-center pagination-sm" id="reload">
+						<c:if test="${currentpage ne 1} ">
+							<li class="page-item"><a class="page-link" href="#"
+								aria-label="Previous"> <span aria-hidden="tr">&laquo;</span>
+							</a></li>
+							<li class="page-item"><a class="page-link" href="#"
+								tabindex="-1" aria-disabled="true">이전</a></li>
+						</c:if>
+						<c:forEach var="i" begin="${startpage }" end="${endpage}">
+							<c:if test="${currentpage eq i }">
+								<li class="page-item active"><a class="page-link" href="#"
+									id="now">${i}</a></li>
+							</c:if>
+							<c:if test="${currentpage ne i }">
+								<li class="page-item"><a href="#" class="page-link">${i }</a></li>
+							</c:if>
+						</c:forEach>
+						<c:if test="${currentpage ne page}">
+							<li class="page-item"><a class="page-link" href="#">다음</a></li>
+							<a class="page-link" href="#" aria-label="Next"> <span
+								aria-hidden="true">&raquo;</span>
+							</a>
+						</c:if>
 					</ul>
 				</nav>
 			</div>
+			<input type="number" class="hide" value="${currentpage}" id="page">
+			<input type="number" class="hide" value="${page}" id="count">
+			<input type="hidden" value="${svo.title}" id="title">
 		</div>
 	</div>
 
 
 	<jsp:include page="/WEB-INF/admin_commonjsp/admin_common_footer.jsp"></jsp:include>
 	<!-- 여기서부터 JS 추가 -->
-
+	<script src="js/admin_terms_Main.js"></script>
 </body>
 </html>

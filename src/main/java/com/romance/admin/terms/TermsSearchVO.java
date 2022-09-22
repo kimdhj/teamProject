@@ -12,16 +12,5 @@ import lombok.Data;
 public class TermsSearchVO {
 	private int page;
 	private int seq;
-	private String title;
-	private String content;
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
-	private Date startDate;
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
-	private Date endDate; //
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
-	private Date date;
-	
+	private String title;	
 }
