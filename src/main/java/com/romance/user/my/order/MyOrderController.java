@@ -82,11 +82,11 @@ public class MyOrderController {
 			Pagination pagination = new Pagination();
 			pagination.setCriteria(criteria);
 			int myOrderTotalCount = myOrderService.myOrderTotalCount(criteria);
-			System.out.println("내주문 몇개있냐? : " + myOrderTotalCount);
+			System.out.println("내 취소관련 주문 몇개있냐? : " + myOrderTotalCount);
 			pagination.setTotalCount(myOrderTotalCount);
 			model.addAttribute("pagination", pagination);
 			model.addAttribute("myOrderList", myOrderService.getMyOrderList(criteria));
-			System.out.println("내 주문목록 내놔바! : " + myOrderService.getMyOrderList(criteria));
+			System.out.println("내 취소관련 주문목록 내놔바! : " + myOrderService.getMyOrderList(criteria));
 			
 			return "my_OrderCancel";
 		} else {

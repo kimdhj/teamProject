@@ -90,4 +90,8 @@
 		<![CDATA[AND user_id = #{user_id} group by orders.orders_seq) M, (SELECT @rownum:=0) TMP ORDER BY orders_order_day DESC) rn ]]>
 	</select>
 	
+	<update id="purchaseCancel" parameterType="ordersVO">
+		<![CDATA[UPDATE orders SET orders_status = 'cancelwaitall' WHERE orders_seq = #{orders_seq}]]>
+	</update>
+	
 </mapper>

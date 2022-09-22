@@ -51,14 +51,16 @@
 					</td>
 				</tr>
 				<tr>
-					<th class="bg-light" style="width:15%;">배송지정보</th>
-					<td style="width:35%;">${orderDetail.orders_address}</td>
-					<th class="bg-light" style="width:15%;">취소상태</th>
+					<th class="bg-light" style="width:15%;">결제수단</th>
 					<td style="width:35%;">
-						<c:if test="${orderDetail.orders_status eq 'cancelallwait'}">취소/교환/반품대기</c:if>
-						<c:if test="${orderDetail.orders_status eq 'cancelallfinish'}">취소/교환/반품완료</c:if>
-						
+						<c:if test="${orderDetail.orders_cache_tool eq 'vbank'}">
+							(가상계좌)${orderDetail.orders_vbank_name}
+						</c:if>
+						<c:if test="${orderDetail.orders_cache_tool eq 'trans'}">실시간계좌이체</c:if>
+						<c:if test="${orderDetail.orders_cache_tool eq 'card'}">카드</c:if>
 					</td>
+					<th class="bg-light" style="width:15%;">환불은행</th>
+					<td style="width:35%;">${orderDetail.orders_refund_bank}</td>
 				</tr>
 				<tr>
 					<th class="bg-light" style="width:15%;">택배사</th>
@@ -72,10 +74,15 @@
 				</tr>
 				<tr>
 					<th scope="row" class="bg-light align-middle">결제금액</th>
-					<td colspan="3">
+					<td>
 						<div class="form-floating mb-3">
 							${orderDetail.orders_cache_sum}
 						</div>
+					</td>
+					<th class="bg-light" style="width:15%;">취소상태</th>
+					<td style="width:35%;">
+						<c:if test="${orderDetail.orders_status eq 'cancelallwait'}">취소/교환/반품대기</c:if>
+						<c:if test="${orderDetail.orders_status eq 'cancelallfinish'}">취소/교환/반품완료</c:if>
 					</td>
 				</tr>
 			

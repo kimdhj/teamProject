@@ -10,7 +10,7 @@
 		<div class="sidebar-start">
 			<!-- 젤상단 로고 -->
 			<div class="sidebar-head">
-				<a href="/" class="logo-wrapper" title="Home"> <span
+				<a href="/adminMain.mdo" class="logo-wrapper" title="Home"> <span
 					class="sr-only">Home</span> <span class="icon logo"
 					style="background-image: url(/img/서점로고.ico);" aria-hidden="true"></span>
 					<div class="logo-text">
@@ -43,16 +43,14 @@
 							<li><a href="/getAdmin_admin_List.mdo">관리자계정 관리</a></li>
 							<li><a href="/new-post.html">약관관리</a></li>
 						</ul></li>
-					<li><a class="show-cat-btn" href="/ab"> <span
+					<li><a href="/ab"> <span
 							class="icon folder " aria-hidden="true"></span>카테고리 관리
 					</a></li>
-					<li><a class="show-cat-btn" href="##"> <span
+					<li><a href="##"> <span
 							class="icon document" aria-hidden="true"></span>로그
 					</a></li>
-					<li><a class="show-cat-btn" href="##"> <span
-							class="marketing fs-5"><i class="bi bi-box2-heart-fill"></i></span>상품
-
-					</a></li>
+					<li><a href="/getProductList.mdo"> <span class="marketing fs-5"><i class="bi bi-box2-heart-fill">
+					</i></span>&nbsp;&nbsp;&nbsp;상품</a></li>
 					<li><a class="show-cat-btn" href="##"> <span
 							class="icon paper" aria-hidden="true"></span>주문 <span
 							class="category__btn transparent-btn" title="Open list"> <span
@@ -78,17 +76,17 @@
 							<li><a href="/QnaList.mdo">문의(Q&A)</a></li>
 						</ul></li>
 					<li><a class="show-cat-btn" href="##"> <span
-							class=" fs-5 marketing"><i class="bi bi-newspaper"></i></span>마케팅
+							class=" fs-5 marketing"><i class="bi bi-newspaper"></i></span>&nbsp;&nbsp;&nbsp;마케팅
 							<span class="category__btn transparent-btn" title="Open list">
 								<span class="sr-only">Open list</span> <span
 								class="icon arrow-down" aria-hidden="true"></span>
 						</span>
 					</a>
 						<ul class="cat-sub-menu">
-							<li><a href="/pages.html">배너/아이콘</a></li>
-							<li><a href="/new-page.html">구독</a></li>
-							<li><a href="/new-page.html">쿠폰</a></li>
-							<li><a href="/new-page.html">이벤트 관리</a></li>
+							<li><a href="/getIcon.mdo">배너/아이콘</a></li>
+							<li><a href="/getSubInfo.mdo">구독</a></li>
+							<li><a href="/coupon.mdo">쿠폰</a></li>
+							<li><a href="/getEventList.mdo">이벤트 관리</a></li>
 						</ul></li>
 				</ul>
 			</div>

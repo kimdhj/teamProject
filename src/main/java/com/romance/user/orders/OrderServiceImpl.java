@@ -113,5 +113,10 @@ public class OrderServiceImpl implements OrderService {
 	  
 	  return dao.purchaseCount(svo);
 	}
+	
+	@Override
+	public void purchaseCancel(OrdersVO vo) {
+	  dao.purchaseCancel(vo);
+	}
 
 }
