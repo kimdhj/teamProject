@@ -28,7 +28,7 @@
 	</resultMap>
 	
 	
-	<select id="getUser" parameterType="adminUserVO" resultType="adminUserVO">
+	<select id="getUser" parameterType="string" resultType="adminUserVO">
 		SELECT * FROM user WHERE user_id = #{user_id} 
 	</select>
 	

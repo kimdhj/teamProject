@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.romance.admin.coupon.CouponVO;
 import com.romance.admin.coupon.UserCouponVO;
+import com.romance.admin.log.LoggingService;
+import com.romance.admin.log.WorkLogVO;
 import com.romance.admin.login.AdminUserVO;
 import com.romance.security.JwtUtils;
 import com.romance.user.login.UserVO;
@@ -30,6 +32,10 @@ public class AdminAccountController {
 	
 	@Autowired
 	private AdminAccountService adminAccountService;
+	
+	@Autowired
+	private LoggingService loggingService; //로그관련 서비스 의존성 주입(로그인로그는 각 로그인 패키지에 따로작업함)
+	
 	@Autowired
 	BCryptPasswordEncoder bCryptPasswordEncoder;
 	
@@ -158,6 +164,9 @@ public class AdminAccountController {
 			vo.setUser_password(bCryptPasswordEncoder.encode(vo.getUser_password()));
 			adminAccountService.insertAdminAccount(vo);
 			
+			//관리자계정 생성 후 로그입력
+			makeAdminAccount(vo, voToken);
+			
 			return "redirect:getAdmin_admin_List.mdo";
 		} else {
 			return "redirect:admin_login.mdo";
@@ -181,7 +190,7 @@ public class AdminAccountController {
 			System.out.println(">>>>>뭐가뭐가들어갔나" + vo);
 			
 			//회원정보 수정로그 (수정전에 체크하여 변경전 값 기록)
-			userInfoWorkLog(vo, voToken); //View에서 받아온 정보와, 세션정보를 파라미터로 보낸다
+			userInfoWorkLog(vo.getUser_id(), voToken); //작업대상 아이디와 세션정보를 파라미터로 보낸다
 			
 			//회원정보 수정
 			adminAccountService.updateUserAccount(vo);
@@ -223,8 +232,13 @@ public class AdminAccountController {
 				userCouponVO.setUser_coupon_name(couponVO.getCoupon_name());
 				userCouponVO.setUser_id(user_id);
 				System.out.println(">>>>>이자시가 쿠폰 선물이당!! : " + userCouponVO);
+				
 				//세팅이 끝났으면 이 객체를 가져가서 insert해준다.
 				adminAccountService.giveCoupon(userCouponVO);
+				
+				//쿠폰지급이 완료되면 로그에 찍어준다.
+				couponInsertWorkLog(userCouponVO, voToken);
+				
 				return true;
 			} else {
 				return false;
@@ -241,7 +255,15 @@ public class AdminAccountController {
 		if(voToken != null) {
 			System.out.println("컨트롤러로 넘어는오냐?");
 			System.out.println("쿠폰시퀀스 : " + user_coupon_seq);
+			
+			//삭제할 쿠폰의 정보를 가져온다(로그입력용)
+			UserCouponVO userCouponVO = adminAccountService.forDeleteCoupon(user_coupon_seq);
+
+			//쿠폰삭제!
 			adminAccountService.deleteUserCoupon(user_coupon_seq);
+			
+			//쿠폰삭제가 완료되면 로그입력
+			couponDeleteWorkLog(userCouponVO, voToken);
 			return true;
 		} else {
 			return false;
@@ -269,6 +291,9 @@ public class AdminAccountController {
 			userVO.setUser_id(user_id);
 			userVO.setUser_point(user_point);
 			adminAccountService.giveUserPoint(userVO);
+			
+			//포인트 지급완료 후 로그에 기록한다.
+			pointPlusWorkLog(givePoint, user_id, voToken);
 			
 			returnValue = true;
 			return returnValue;
@@ -306,8 +331,11 @@ public class AdminAccountController {
 			userVO.setUser_id(user_id);
 			userVO.setUser_point(user_point);
 			adminAccountService.deleteUserPoint(userVO);
+			
+			//포인트 차감완료 후 로그에 기록한다.
+			pointMinusWorkLog(deletePoint, user_id, voToken);
+			
 			returnValue = 1;
-
 			return returnValue;
 		} else {
 			//returnValue가 false일 경우 보유포인트보다 차감포인트가 더 크거나, 다시로그인해야함
@@ -317,22 +345,122 @@ public class AdminAccountController {
 		
 	}
 	
-	//View에서 받아온 정보와 Session정보를 받아서 작업
-	public void userInfoWorkLog(AdminUserVO vo, AdminUserVO voToken) throws Exception {
+	//회원정보 수정 로그
+	public void userInfoWorkLog(String user_id, AdminUserVO voToken) throws Exception {
 		if(voToken != null) {
 			//변경전 데이터 받아오기
-			System.out.println(">>>>>토큰에서 받아온 값" + voToken);
+			AdminUserVO beforeVO = adminAccountService.getUser(user_id);
+			System.out.println(">>>>>변경전 데이터 : " + beforeVO);
 			
+			System.out.println(">>>>>토큰에서 받아온 값" + voToken);
 			String work_log_id = voToken.getUser_id();
-			String work_log_target_id = vo.getUser_id();
-			String work_log_contents = "회원정보수정";
+			String work_log_target_id = user_id;
+			String work_log_contents = "[회원정보수정] 변경전 ";
+			work_log_contents += "구분 : " + beforeVO.getUser_sub()
+								+ ", 상태 : " + beforeVO.getUser_state()
+								+ ", 연락처 : " + beforeVO.getUser_phone()
+								+ ", 이메일 : " + beforeVO.getUser_email();
 			System.out.println("작업자 아이디 : " + work_log_id);			
 			System.out.println("작업대상 아이디 : " + work_log_target_id);			
 			System.out.println("작업 내용 : " + work_log_contents);
+			
+			//작업로그에 기록할 정보 담기
+			WorkLogVO workLogVO = new WorkLogVO();
+			workLogVO.setWork_log_id(work_log_id);//작업자
+			workLogVO.setWork_log_target_id(work_log_target_id);//작업대상
+			workLogVO.setWork_log_contents(work_log_contents);//작업내용
+			loggingService.insertWorkLog(workLogVO);
+			
 		} else {
 			System.out.println("토큰값 없음");
 		}
 		
 	}
 	
+	//쿠폰 지급 로그
+	public void couponInsertWorkLog(UserCouponVO userCouponVO, AdminUserVO voToken) throws Exception {
+		String work_log_id = voToken.getUser_id();
+		String work_log_target_id = userCouponVO.getUser_id();
+		String work_log_contents = "[쿠폰지급] ";
+		work_log_contents += "쿠폰명 : " + userCouponVO.getUser_coupon_name()
+							+ ", 쿠폰효과 : " + userCouponVO.getUser_coupon_effect()
+							+ ", 쿠폰코드 : " + userCouponVO.getUser_coupon_code();
+		System.out.println("작업자 아이디 : " + work_log_id);			
+		System.out.println("작업대상 아이디 : " + work_log_target_id);			
+		System.out.println("작업 내용 : " + work_log_contents);
+		WorkLogVO workLogVO = new WorkLogVO();
+		workLogVO.setWork_log_id(work_log_id);//작업자
+		workLogVO.setWork_log_target_id(work_log_target_id);//작업대상
+		workLogVO.setWork_log_contents(work_log_contents);//작업내용
+		loggingService.insertWorkLog(workLogVO);
+	}
+	
+	//쿠폰 차감 로그
+	public void couponDeleteWorkLog(UserCouponVO userCouponVO, AdminUserVO voToken) throws Exception {
+		String work_log_id = voToken.getUser_id();
+		String work_log_target_id = userCouponVO.getUser_id();
+		String work_log_contents = "[쿠폰삭제] ";
+		work_log_contents += "쿠폰명 : " + userCouponVO.getUser_coupon_name()
+							+ ", 쿠폰효과 : " + userCouponVO.getUser_coupon_effect()
+							+ ", 쿠폰코드 : " + userCouponVO.getUser_coupon_code();
+		System.out.println("작업자 아이디 : " + work_log_id);			
+		System.out.println("작업대상 아이디 : " + work_log_target_id);			
+		System.out.println("작업 내용 : " + work_log_contents);
+		WorkLogVO workLogVO = new WorkLogVO();
+		workLogVO.setWork_log_id(work_log_id);//작업자
+		workLogVO.setWork_log_target_id(work_log_target_id);//작업대상
+		workLogVO.setWork_log_contents(work_log_contents);//작업내용
+		loggingService.insertWorkLog(workLogVO);
+	}
+	
+	//포인트 지급 로그
+	public void pointPlusWorkLog(int givePoint, String user_id, AdminUserVO voToken) throws Exception {
+		String work_log_id = voToken.getUser_id();
+		String work_log_target_id = user_id;
+		String work_log_contents = "[포인트지급] ";
+		work_log_contents += "지급한 포인트 : " + givePoint + "포인트";
+		
+		System.out.println("작업자 아이디 : " + work_log_id);			
+		System.out.println("작업대상 아이디 : " + work_log_target_id);			
+		System.out.println("작업 내용 : " + work_log_contents);
+		WorkLogVO workLogVO = new WorkLogVO();
+		workLogVO.setWork_log_id(work_log_id);//작업자
+		workLogVO.setWork_log_target_id(work_log_target_id);//작업대상
+		workLogVO.setWork_log_contents(work_log_contents);//작업내용
+		loggingService.insertWorkLog(workLogVO);
+	}
+	
+	//포인트 차감 로그
+	public void pointMinusWorkLog(int deletePoint, String user_id, AdminUserVO voToken) throws Exception {
+		String work_log_id = voToken.getUser_id();
+		String work_log_target_id = user_id;
+		String work_log_contents = "[포인트차감] ";
+		work_log_contents += "차감한 포인트 : " + deletePoint + "포인트";
+		
+		System.out.println("작업자 아이디 : " + work_log_id);			
+		System.out.println("작업대상 아이디 : " + work_log_target_id);			
+		System.out.println("작업 내용 : " + work_log_contents);
+		WorkLogVO workLogVO = new WorkLogVO();
+		workLogVO.setWork_log_id(work_log_id);//작업자
+		workLogVO.setWork_log_target_id(work_log_target_id);//작업대상
+		workLogVO.setWork_log_contents(work_log_contents);//작업내용
+		loggingService.insertWorkLog(workLogVO);
+	}
+	
+	//관리자 계정 생성 로그
+	public void makeAdminAccount(AdminUserVO vo, AdminUserVO voToken) throws Exception {
+		String work_log_id = voToken.getUser_id();
+		String work_log_target_id = vo.getUser_id();
+		String work_log_contents = "[관리자계정생성] ";
+		work_log_contents += "생성 아이디 : " + vo.getUser_id() + ", 생성 이름 : " + vo.getUser_name();
+		
+		System.out.println("작업자 아이디 : " + work_log_id);			
+		System.out.println("작업대상 아이디 : " + work_log_target_id);			
+		System.out.println("작업 내용 : " + work_log_contents);
+		WorkLogVO workLogVO = new WorkLogVO();
+		workLogVO.setWork_log_id(work_log_id);//작업자
+		workLogVO.setWork_log_target_id(work_log_target_id);//작업대상
+		workLogVO.setWork_log_contents(work_log_contents);//작업내용
+		loggingService.insertWorkLog(workLogVO);
+	}
 }

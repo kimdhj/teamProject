@@ -18,6 +18,10 @@ public class AdminAccountDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 	
+	public AdminUserVO getUser(String user_id) {
+		return sqlSessionTemplate.selectOne("AdminUserDAO.getUser", user_id);
+	}
+	
 	public AdminUserVO getUserDetail(AdminUserVO vo) {
 		System.out.println("Mybatis로 getUserList 기능 처리");
 		return sqlSessionTemplate.selectOne("AdminUserDAO.getUserDetail", vo);
@@ -75,6 +79,10 @@ public class AdminAccountDAO {
 	
 	public void giveCoupon(UserCouponVO userCouponVO) {
 		sqlSessionTemplate.insert("AdminUserDetail.giveCoupon", userCouponVO);
+	}
+	
+	public UserCouponVO forDeleteCoupon(int user_coupon_seq) {
+		return sqlSessionTemplate.selectOne("loggingUtils.forDeleteCoupon", user_coupon_seq);
 	}
 	
 	public int getUserPoint(String user_id) {
