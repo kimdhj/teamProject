@@ -76,15 +76,9 @@
 			alias="dashVO" />
 		<typeAlias type="com.romance.admin.product.ProductVO"
 			alias="pro" />
-		<typeAlias type="com.romance.admin.product.ProductSearchVO"
-			alias="pros" />
-
-		<typeAlias type="com.romance.user.orders.OrdersVO"
-			alias="ordersVO" />
-
-		<typeAlias
-			type="com.romance.user.usecategory.UserCategoryVO"
-			alias="usercategoryVO" />
+		<typeAlias type="com.romance.admin.product.ProductSearchVO"	alias="pros" />
+		<typeAlias type="com.romance.user.orders.OrdersVO" alias="ordersVO" />
+		<typeAlias type="com.romance.user.usecategory.UserCategoryVO" alias="usercategoryVO" />
 		<typeAlias type="com.romance.admin.qna.AskVO" alias="ask" />
 		<typeAlias type="com.romance.admin.qna.AskReplyVO"
 			alias="askReply" />
@@ -97,10 +91,6 @@
 			alias="concernVO" />
 		<typeAlias type="com.romance.user.concern.ConcernSearchVO"
 			alias="concernsearchVO" />
-
-
-
-
 		<typeAlias
 			type="com.romance.user.my.request.MyRequestReplyVO"
 			alias="myRequestReplyVO" />
@@ -140,9 +130,9 @@
 			alias="purchaseJoin" />
 		<typeAlias type="com.romance.user.orders.PurchaseSearchVO"
 			alias="purchaseSearch" />
-		<typeAlias type="com.romance.admin.log.LoginLogVO"
-			alias="loginLogVO" />
-
+		<typeAlias type="com.romance.admin.log.LoginLogVO" alias="loginLogVO" />
+		<typeAlias type="com.romance.admin.log.WorkLogVO" alias="workLogVO" />
+		<typeAlias type="com.romance.admin.log.PaymentLogVO" alias="paymentLogVO" />
 
 	</typeAliases>
 

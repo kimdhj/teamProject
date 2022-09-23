@@ -52,12 +52,15 @@ public class MyController {
 		if(voToken != null) {
 			List<MyRequestVO> myRecentRequest = new ArrayList<>();
 			myRecentRequest = ser.myRecentRequest(voToken.getUser_id());
-			System.out.println("날짜 뭥미 : " + myRecentRequest.get(0).getAsk_date());
 			//날짜형식 String으로 변환해서 저장한뒤 뿌려준다. (MyRequestVO에 String타입 날짜 저장할 변수 생성)
-			for(int i = 0; i < myRecentRequest.size(); i++) {
-				String dateToString = DateFormatUtils.format(myRecentRequest.get(i).getAsk_date(), "yyyy-MM-dd HH:mm:SS");
-				System.out.println(dateToString);
-				myRecentRequest.get(i).setAsk_dateToString(dateToString); //문자열 변수에 넣어줌
+			//최근문의가 없을때는 반복문 실행 불가
+			if(myRecentRequest.size() > 0) {
+				System.out.println("날짜 뭥미 : " + myRecentRequest.get(0).getAsk_date());
+				for(int i = 0; i < myRecentRequest.size(); i++) {
+					String dateToString = DateFormatUtils.format(myRecentRequest.get(i).getAsk_date(), "yyyy-MM-dd HH:mm:SS");
+					System.out.println(dateToString);
+					myRecentRequest.get(i).setAsk_dateToString(dateToString); //문자열 변수에 넣어줌
+				}
 			}
 			System.out.println(myRecentRequest);			
 			return myRecentRequest;
