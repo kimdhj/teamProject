@@ -348,18 +348,25 @@ function make() {
 						        </div>
 						        
 						        <div class="row">
-						            <div class="col-2 purchaseList_btns">
-						            <button onclick="location.href='/myreviewInsert.do'">리뷰작성</button>
-						          </div>
-						            <div class="col-2 purchaseList_btns">
-						            <button onclick="location.href='/myPurchaseDetail.do?orders_seq=${purchase.orders_seq}'">구매상세</button>
-						          </div>`
-									if(purchase.orders_status == "ready" || purchase.orders_status == "paid"){
-										con += `<div class="col-2 purchaseList_btns">
-						            <button class="purchaseCancel" type="button">구매취소</button>
-						          </div>`;
-									}
-						            
+									<div class="col-2 purchaseList_btns">
+										<button onclick="location.href='/myPurchaseDetail.do?orders_seq=${purchase.orders_seq}'">구매상세</button>
+									</div>
+									
+						            <div class="col-2 purchaseList_btns">`
+						
+						if(purchase.orders_status == "ready" || purchase.orders_status == "paid"){
+							con += `<button class="purchaseCancel" type="button">구매취소</button>`;
+						}
+					con += `</div>
+					 <div class="col-2 purchaseList_btns">
+					`;
+						
+						if(purchase.orders_status == "finish" && purchase.order_bookList_review_complete == false){
+							con += `<button onclick="location.href='/myreviewInsert.do?book_seq=${purchase.book_seq}&order_bookList_seq=${purchase.order_bookList_seq }'">리뷰작성</button>`;
+						}else if(purchase.order_bookList_review_complete == true){
+							con += ` <button onclick="location.href='/myreviewUpdate.do?book_seq=${purchase.book_seq}&order_bookList_seq=${purchase.order_bookList_seq }'">리뷰수정</button>`;
+						}
+						
 						   con +=     `</div>
 						      </div>
 						      

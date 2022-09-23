@@ -9,6 +9,8 @@ import com.romance.admin.reply.ReplyJoinVO;
 import com.romance.admin.reply.ReplySearchVO;
 import com.romance.admin.reply.ReplyService;
 import com.romance.admin.reply.ReplyVO;
+import com.romance.user.book.BookVO;
+import com.romance.user.orders.OrderBookListVO;
 
 @Service("replyService")
 public class ReplyServiceImpl implements ReplyService {
@@ -141,6 +143,26 @@ public class ReplyServiceImpl implements ReplyService {
   @Override
   public void insert(ReplyVO vo) {
     reply.insert(vo);
+  }
+  
+  @Override
+  public BookVO getBookInfo(BookVO vo) {
+    return reply.getBookInfo(vo);
+  }
+  
+  @Override
+  public void reviewStateUpdate(OrderBookListVO blvo) {
+    reply.reviewStateUpdate(blvo);
+  }
+  
+  @Override
+  public void reviewUpdate(ReplyVO vo) {
+    reply.reviewUpdate(vo);
+  }
+  
+  @Override
+  public ReplyVO doubleReply(ReplyJoinVO rjvo) {
+   return reply.doubleReply(rjvo);
   }
   
 }

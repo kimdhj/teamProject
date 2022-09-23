@@ -84,7 +84,7 @@
                 type="button"
                 id="1month_sub"
                 value="구독 시작!"
-                onclick="goPaySub();"
+                onclick="sub_terms();"
               />
             </div>
             <div class="row d-flex justify-content-center">
@@ -124,6 +124,7 @@
         <jsp:include page="/WEB-INF/commonjsp/common_footer.jsp"></jsp:include>
            <!-- 여기에 js관련  -->
         <script src="/js/event_Subscribe.js"></script>
+        <script src="/js/all_terms.js"></script>
 	<!-- Footer End -->
 </body>
 </html>

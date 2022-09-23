@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 import com.romance.admin.reply.ReplyJoinVO;
 import com.romance.admin.reply.ReplySearchVO;
 import com.romance.admin.reply.ReplyVO;
+import com.romance.user.book.BookVO;
+import com.romance.user.orders.OrderBookListVO;
 
 import edu.emory.mathcs.backport.java.util.AbstractSequentialList;
 
@@ -58,4 +60,21 @@ public class ReplyDAO {
   public void insert(ReplyVO vo) {
     sqlSession.insert("ReplyDAO.insert", vo);
   }
+  
+  public BookVO getBookInfo(BookVO vo) {
+    return sqlSession.selectOne("ReplyDAO.getBookInfo", vo);
+  }
+  
+  public void reviewStateUpdate(OrderBookListVO blvo) {
+    sqlSession.update("ReplyDAO.reviewStateUpdate", blvo);
+  }
+  
+  public void reviewUpdate(ReplyVO vo) {
+    sqlSession.update("ReplyDAO.reviewUpdate", vo);
+  }
+  
+  public ReplyVO doubleReply(ReplyJoinVO rjvo) {
+   return sqlSession.selectOne("ReplyDAO.doubleReply", rjvo);
+  }
+  
 }

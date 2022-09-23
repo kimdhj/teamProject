@@ -72,3 +72,11 @@
 
    min-width:0px !important;
 }
+
+.note-frame{
+	padding: 0px;
+}
+
+.note-resizebar{
+	display: none;
+}

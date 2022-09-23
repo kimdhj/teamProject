@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.romance.admin.log.LoginLogVO;
 import com.romance.admin.sample.category.CategoryVO;
 import com.romance.user.usecategory.UserCategoryVO;
 
@@ -41,5 +42,18 @@ public class UserDAO {
 	}
 	public void passwordin(UserVO vo) {
 		sql.update("user.passwordin",vo);
+	}
+	
+	//로그관련
+	public int isUserId(String login_log_id) {
+		return sql.selectOne("loggingUtils.isUserId", login_log_id);
+	}
+	
+	public UserVO getLoginlogInfo(String login_log_id) {
+		return sql.selectOne("loggingUtils.getUserLoginlogInfo", login_log_id);
+	}	
+	
+	public void insertLoginLog(LoginLogVO loginLogVO) {
+		sql.insert("loggingUtils.insertLoginLog", loginLogVO);
 	}
 }

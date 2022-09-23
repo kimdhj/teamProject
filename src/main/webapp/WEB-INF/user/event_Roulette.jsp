@@ -82,14 +82,14 @@
               <div
                 class="row the_wheel justify-content-center fs-1"
                 align="center"
-                valign="center"
+                align="center"
               >
                 <i class="bi bi-arrow-down fs-1"></i>
               </div>
               <div
                 class="row the_wheel justify-content-center"
                 align="center"
-                valign="center"
+                align="center"
               >
                 <canvas width="500" height="500" class="col-auto" id="canvas">
                 </canvas>
@@ -111,6 +111,7 @@
             </div>
           </div>
         </div>
+        <div><br></br></div>
         <div class="row d-flex justify-content-end bg-gray back-to-top" id="endPoint">
           맨위로<i class="bi bi-caret-up-fill col-auto"></i>
         </div>
