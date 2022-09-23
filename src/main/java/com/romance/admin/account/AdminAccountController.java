@@ -146,6 +146,8 @@ public class AdminAccountController {
 		}
 		
 	}
+	
+	//work_log 포인트
 	//관리자계정 생성
 	@PostMapping("insertAdminAccount.mdo")
 	public String insertAdminAccount(AdminUserVO vo, HttpSession session, JwtUtils utils) throws Exception {
@@ -161,7 +163,8 @@ public class AdminAccountController {
 			return "redirect:admin_login.mdo";
 		}
 	}
-	
+
+	//work_log 포인트
 	//회원정보 수정
 	@PostMapping("updateUserAccount.mdo")
 	public String updateUserAccount(AdminUserVO vo, HttpSession session, JwtUtils utils, Criteria criteria) throws Exception {
@@ -194,6 +197,7 @@ public class AdminAccountController {
 		return cnt;
 	}
 	
+	//work_log 포인트
 	//회원상세 쿠폰관련
 	//쿠폰 지급
 		@PostMapping("giveCoupon.mdo")
@@ -222,7 +226,8 @@ public class AdminAccountController {
 			
 		}
 
-		//보유쿠폰 삭제
+	//work_log 포인트
+	//보유쿠폰 삭제
 	@PostMapping("deleteUserCoupon.mdo")
 	@ResponseBody
 	public boolean deleteUserCoupon(@RequestParam("user_coupon_seq") int user_coupon_seq, HttpSession session, JwtUtils utils) throws Exception {
@@ -237,6 +242,7 @@ public class AdminAccountController {
 		}
 	}
 	
+	//work_log 포인트
 	//회원상세 포인트관련
 	//포인트 지급
 	@PostMapping("givePoint.mdo")
@@ -267,6 +273,7 @@ public class AdminAccountController {
 		
 	}
 	
+	//work_log 포인트
 	//포인트 차감
 	@PostMapping("deletePoint.mdo")
 	@ResponseBody
