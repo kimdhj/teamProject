@@ -65,7 +65,11 @@ $("#myCartTab").on("click", function(){
 			
 		},
 		error:function(){
-			alert("에러다이자시가");
+			Swal.fire({
+				text: "에러!",
+				icon: "error"
+			})
+//			alert("에러다이자시가");
 		}		
 	});
 });
@@ -104,12 +108,20 @@ $("#myRecentRequestTab").on("click", function(){
 //							+ "</td><td>" + ask_dateToString + "</td></tr>");
 				}
 			} else {
-				alert("문의한 게시물이 없다이자시가");
+				Swal.fire({
+					text: "문의한 게시글이 없습니다.",
+					icon: "error"
+				})
+//				alert("문의한 게시물이 없다이자시가");
 			}
 			
 		},
 		error:function(){
-			alert("에러다이자시가");
+			Swal.fire({
+				text: "에러!",
+				icon: "error"
+			})
+//			alert("에러다이자시가");
 		}		
 	});
 });

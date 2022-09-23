@@ -21,14 +21,26 @@ function deliveryTracking(orders_delivery, orders_delivery_company) {
 	
 	//조회하기위한 url 작성
 	if (orders_delivery_company == 0) {
-		alert("우체국택배");
+		Swal.fire({
+			text: "우체국택배",
+			icon: "info"
+		})
+//		alert("우체국택배");
 		link += "kr.epost/"
 		console.log(link);
 	} else if (orders_delivery_company == 1) {
-		alert("CJ대한통운");
+		Swal.fire({
+			text: "CJ대한통운",
+			icon: "info"
+		})
+//		alert("CJ대한통운");
 		link += "kr.cjlogistics/"
 	} else if (orders_delivery_company == 2) {
-		alert("로젠택배");
+		Swal.fire({
+			text: "로젠택배",
+			icon: "info"
+		})
+//		alert("로젠택배");
 		link += "kr.logen/"
 	}
 	link += orders_delivery;

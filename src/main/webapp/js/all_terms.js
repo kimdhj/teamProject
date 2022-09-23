@@ -11,7 +11,11 @@ function sub_terms() {
 				location.href="/login.do";
 			}else{							
 				if(user_sub==1){
-					alert("이미 구독중입니다!");
+					Swal.fire({
+						text: "이미 구독중입니다!",
+						icon: "warning"
+					})
+//					alert("이미 구독중입니다!");
 				}else{							
 					location.href="/sub_terms.do";
 				}
@@ -38,7 +42,12 @@ function everycheck(everycheck){
 function movingJoin(){
 	
 	if($('.ccheck:checked').length != $('.ccheck').length){
-		alert("약관에 모두 동의해 주십시오!");
+		Swal.fire({
+			text: "약관에 모두 동의해 주십시오!",
+			icon: "warning"
+		})
+		
+//		alert("약관에 모두 동의해 주십시오!");
 	}else{
 		location.href="/join.do";
 	}
@@ -47,7 +56,10 @@ function movingJoin(){
 function movingSub(){
 	
 	if($('.ccheck:checked').length != $('.ccheck').length){
-		alert("약관에 모두 동의해 주십시오!");
+		Swal.fire({
+			text: "약관에 모두 동의해 주십시오!",
+			icon: "warning"
+		})
 	}else{
 		location.href="/mysubpay.do";
 	}

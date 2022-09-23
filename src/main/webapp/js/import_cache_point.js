@@ -45,7 +45,11 @@ $(document).ready(function() {
 				trans(title, amount, email, name, tel, address, postcode, due);
 			} else if (radioVal == "가상계좌") {
 			if($("#refund_num").val().trim().length<11||$("#refund_bank").val()==0){ //환불계좌, 환불은행
-			alert("환불계좌 또는 은행을 확인해주세요");
+				Swal.fire({
+					text: "환불계좌 또는 은행을 확인해주세요.",
+					icon: "warning"
+				})
+//			alert("환불계좌 또는 은행을 확인해주세요");
 			return;
 			}
 				vbank(title, amount, email, name, tel, address, postcode, due);
@@ -83,9 +87,13 @@ $(document).ready(function() {
 				$("#orders_status").val(data.status);
 				$("#payfin").submit();
 			} else {
-				var msg = '결제에 실패하였습니다.';
-				msg += '에러내용 : ' + rsp.error_msg;
-				alert(msg);
+				var msg = '결제에 실패하였습니다.<br>';
+				msg += '에러내용 : <br>' + rsp.error_msg;
+				Swal.fire({
+					html: msg,
+					icon: "error"
+				})
+//				alert(msg);
 			}
 		});
 	}
@@ -113,9 +121,13 @@ $(document).ready(function() {
 				$("#orders_status").val(data.status);
 				$("#payfin").submit();
 			} else {
-				var msg = '결제에 실패하였습니다.';
-				msg += '에러내용 : ' + rsp.error_msg;
-				alert(msg);
+				var msg = '결제에 실패하였습니다.<br>';
+				msg += '에러내용 : <br>' + rsp.error_msg;
+				Swal.fire({
+					html: msg,
+					icon: "error"
+				})
+//				alert(msg);
 			}
 		});
 	}
@@ -146,9 +158,13 @@ $(document).ready(function() {
 				$("#payfin").submit();
 
 			} else {
-				var msg = '결제에 실패하였습니다.';
-				msg += '에러내용 : ' + rsp.error_msg;
-				alert(msg);
+				var msg = '결제에 실패하였습니다.<br>';
+				msg += '에러내용 : <br>' + rsp.error_msg;
+				Swal.fire({
+					html: msg,
+					icon: "error"
+				})
+//				alert(msg);
 			}
 		});
 

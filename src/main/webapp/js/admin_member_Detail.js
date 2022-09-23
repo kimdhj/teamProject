@@ -127,7 +127,11 @@ function adminAccountCheck() { //유효성 검사
 	}
 	
 	if(confirm("정말 수정하시겠습니까?") == true) {
-		alert("수정이 완료되었습니다.")
+//		alert("수정이 완료되었습니다.")
+		Swal.fire({
+			text: "수정이 완료되었습니다.",
+			icon: "success"
+		})
 	} else {
 		return false;
 	}
@@ -144,11 +148,15 @@ function couponDelete() {
 		type:"post",
 		data:{user_coupon_seq:userCouponSeq},
 		success:function(){//성공했을때
-			alert("일단데이터는넘어가");
+//			alert("일단데이터는넘어가");
 			location.reload();
 		},
 		error:function(){
-			alert("에러다이자시가");
+			Swal.fire({
+				text: "에러!",
+				icon: "error"
+			})
+//			alert("에러다이자시가");
 		}
 	});
 	
@@ -169,11 +177,15 @@ function giveCoupon() {
 			user_id:user_id
 			},
 		success:function(){//성공했을때
-			alert("일단데이터는넘어가");
+//			alert("일단데이터는넘어가");
 			location.reload();
 		},
 		error:function(){
-			alert("에러다이자시가");
+			Swal.fire({
+				text: "에러!",
+				icon: "error"
+			})
+//			alert("에러다이자시가");
 		}
 	});
 	
@@ -247,11 +259,19 @@ $("#givePointBtn").on("click", function(){
 			user_id:user_id
 		},
 		success:function(){
+			Swal.fire({
+				text: "포인트 선물!",
+				icon: "success"
+			})
 			alert("포인트선물이라구!");
 			location.reload();
 		},
 		error:function(){
-			alert("에러다이자시가");
+			Swal.fire({
+				text: "에러!",
+				icon: "error"
+			})
+//			alert("에러다이자시가");
 		}
 	});
 });
@@ -272,14 +292,26 @@ $("#deletePointBtn").on("click", function(){
 				alert("포인트뺏어간다구!");
 				location.reload();
 			} else if(returnValue == 0) {
-				alert("보유 포인트보다 차감포인트가 더 큽니다.");
+				Swal.fire({
+					text: "보유 포인트보다 차감포인트가 더 큽니다.",
+					icon: "warning"
+				})
+//				alert("보유 포인트보다 차감포인트가 더 큽니다.");
 			} else {//재로그인 필요
-				alert("다시 로그인 하세요");
+				Swal.fire({
+					text: "다시 로그인 하세요.",
+					icon: "warning"
+				})
+//				alert("다시 로그인 하세요");
 			}
 			
 		},
 		error:function(){
-			alert("에러다이자시가");
+			Swal.fire({
+				text: "에러!",
+				icon: "error"
+			})
+//			alert("에러다이자시가");
 		}
 	});
 });

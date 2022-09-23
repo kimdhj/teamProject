@@ -6,13 +6,13 @@ function formCheck() {
 	alert(session_user_id.val());
 	
 	if(user_id.val() == "") {
-		alert("아이디를 입력하세요");
+		alert("아이디를 입력하세요.");
 		user_id.focus();
 		return false;
 	}
 	
 	if(user_password.val() == "") {
-		alert("비밀번호를 입력하세요");
+		alert("비밀번호를 입력하세요.");
 		user_password.focus();
 		return false;
 	}
@@ -24,7 +24,11 @@ function formCheck() {
 			return false;
 		}
 	} else {
-		alert("아이디를 다시 입력해주세요");
+		Swal.fire({
+			text: "아이디를 다시 입력해주세요.",
+			icon: "warning"
+		})
+//		alert("아이디를 다시 입력해주세요");
 		return false;
 	}
 	

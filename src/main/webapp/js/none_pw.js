@@ -12,7 +12,13 @@ $('#mail-Check-Btn').click(function() {
       console.log("data : " +  data);
       checkInput.attr('disabled',false);
       code =data;
-      alert('인증번호가 전송되었습니다.')
+      Swal.fire({
+			text: "인증번호가 전송되었습니다.",
+			icon: "info",
+			showConfirmButton: false,
+			timer: 1500
+		})
+//      alert('인증번호가 전송되었습니다.')
     }			
   }); // end ajax
 }); // end send eamil

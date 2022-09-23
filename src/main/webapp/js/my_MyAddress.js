@@ -111,7 +111,11 @@ $(document).ready(function() {
 
 		});
 		if (codelist.length != 1) {
-			alert("한 개만 선택해주세요");
+			Swal.fire({
+				text: "한 개만 선택해주세요.",
+				icon: "warning"
+			})
+//			alert("한 개만 선택해주세요");
 			return;
 		}
 		console.log("author-seq" + codelist);
@@ -136,7 +140,7 @@ $(document).ready(function() {
 	//추가 함수
 	$("#Address_Add").click(function() {
 		if ($("#my_delivery_nickname").val().length <= 5 && $("#my_delivery_name").val().length <= 5 && $("#my_delivery_phone").val().length == 11 && /^([0-8]).{0,20}$/.test($("#my_delivery_phone").val()) && $("#my_delivery_zipcode").val() != "" && $("#my_delivery_zipcode").val() != null && $("#my_delivery_address").val() != "" && $("#my_delivery_address").val() != null) {
-			alert("정규식");
+//			alert("정규식");
 			return;
 		}
 		$.ajax({

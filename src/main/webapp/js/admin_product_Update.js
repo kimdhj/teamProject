@@ -128,7 +128,11 @@ function event_writeCheck() {
 						success: function(data) {
 							console.log(data);
 							if(date == 0){
-								alert("존재하지 않는 카테고리입니다! 다시 확인해주세요!");
+								Swal.fire({
+									text: "존재하지 않는 카테고리입니다! 다시 확인해주세요!",
+									icon: "error"
+								})
+//								alert("존재하지 않는 카테고리입니다! 다시 확인해주세요!");
 							}else if(data != 0){
 								
 								document.upload.submit();
