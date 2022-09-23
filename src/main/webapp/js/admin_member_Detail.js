@@ -129,28 +129,13 @@ function adminAccountCheck() { //유효성 검사
 	}
 }//유효성검사 끝
 
-//쿠폰삭제
-function couponDelete() {
-	let userCouponSeq = $("#myCouponMap").val();
-	alert(userCouponSeq);
-	
-	$.ajax({
-		url:"deleteUserCoupon.mdo",//Controller에서 받는 주소
-		type:"post",
-		data:{user_coupon_seq:userCouponSeq},
-		success:function(){//성공했을때
-			alert("일단데이터는넘어가");
-			location.reload();
-		},
-		error:function(){
-			alert("에러다이자시가");
-		}
-	});
-	
-}
-
 //쿠폰지급
 function giveCoupon() {
+	if(confirm("정말 지급 하시겠습니까?") == true) {
+		console.log("쿠폰지급");
+	} else {
+		return false;
+	}
 	let couponSeq = $("#giveCouponList").val();
 	let user_id = $("#user_id").val();
 	console.log(couponSeq);
@@ -164,7 +149,32 @@ function giveCoupon() {
 			user_id:user_id
 			},
 		success:function(){//성공했을때
-			alert("일단데이터는넘어가");
+			console.log("통신완료");
+			location.reload();
+		},
+		error:function(){
+			alert("에러다이자시가");
+		}
+	});
+	
+}
+
+//쿠폰삭제
+function couponDelete() {
+	if(confirm("정말 삭제 하시겠습니까?") == true) {
+		console.log("쿠폰삭제");
+	} else {
+		return false;
+	}
+	let userCouponSeq = $("#myCouponMap").val();
+	alert(userCouponSeq);
+	
+	$.ajax({
+		url:"deleteUserCoupon.mdo",//Controller에서 받는 주소
+		type:"post",
+		data:{user_coupon_seq:userCouponSeq},
+		success:function(){//성공했을때
+			console.log("통신완료");
 			location.reload();
 		},
 		error:function(){
@@ -230,6 +240,11 @@ $(document).ready(function(){
 
 
 $("#givePointBtn").on("click", function(){
+	if(confirm("정말 지급 하시겠습니까?") == true) {
+		console.log("포인트차감");
+	} else {
+		return false;
+	}
 	let givePoint = Number($("#givePoint").val());
 	let user_id = $("#user_id").val();
 	console.log(user_id, givePoint);
@@ -242,7 +257,6 @@ $("#givePointBtn").on("click", function(){
 			user_id:user_id
 		},
 		success:function(){
-			alert("포인트선물이라구!");
 			location.reload();
 		},
 		error:function(){
@@ -252,7 +266,11 @@ $("#givePointBtn").on("click", function(){
 });
 
 $("#deletePointBtn").on("click", function(){
-	alert("응?");
+	if(confirm("정말 차감 하시겠습니까?") == true) {
+		console.log("포인트차감");
+	} else {
+		return false;
+	}
 	let deletePoint = Number($("#deletePoint").val());
 	let user_id = $("#user_id").val();
 	$.ajax({
@@ -264,7 +282,6 @@ $("#deletePointBtn").on("click", function(){
 		},
 		success:function(returnValue){
 			if(returnValue == 1) {
-				alert("포인트뺏어간다구!");
 				location.reload();
 			} else if(returnValue == 0) {
 				alert("보유 포인트보다 차감포인트가 더 큽니다.");

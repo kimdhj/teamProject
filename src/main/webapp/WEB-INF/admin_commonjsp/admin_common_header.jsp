@@ -46,7 +46,7 @@
 					<li><a href="/ab"> <span
 							class="icon folder " aria-hidden="true"></span>카테고리 관리
 					</a></li>
-					<li><a href="##"> <span
+					<li><a href="/adminLog.mdo"> <span
 							class="icon document" aria-hidden="true"></span>로그
 					</a></li>
 					<li><a href="/getProductList.mdo"> <span class="marketing fs-5"><i class="bi bi-box2-heart-fill">
