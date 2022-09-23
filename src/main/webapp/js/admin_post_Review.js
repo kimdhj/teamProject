@@ -32,11 +32,20 @@ $(function() {
 	});
 });
 
+
+
+	$(".oneqjawns").map((e, ind) =>{
+		$(ind).text($(ind).text().trim().substring(0, 7) + "...");
+	})
+
+
+
+
 // document : 현재 html 화면
 // on : 동작이 일어날 때
 // .contentClick 을 click 할 때 해당 function 이 일어남
 // 이걸 처리해줘야 페이징으로 이동했을 때 실행 가능 -> 페이징 처리하는 이벤트 생각하면 쉬움
-$(document).on("click", ".contentClick",function(){
+$(document).on("click", ".qjawnsno",function(){
 	
 //	$(".form1").removeClass("hide");
 	
@@ -46,7 +55,9 @@ $(document).on("click", ".contentClick",function(){
 	let name =  $(this).parents('tr').children('td:eq(3)').children('input').val();
 	let birth =  $(this).parents('tr').children('td:eq(4)').children('input').val();
 	let title =  $(this).parents('tr').children('td:eq(5)').children('input').val();
-	let content =  $(this).parents('tr').children('td:eq(6)').children('input').val();
+	
+	let content =  $(this).parents('tr').children('td:eq(6)').children("#recontent").html();
+	console.log($(this).parents('tr').children('td:eq(6)').children("#recontent"));
 	let date =  $(this).parents('tr').children('td:eq(7)').children('p').text();
 	let sub =  $(this).parents('tr').children('td:eq(8)').children('p').text();
 	
@@ -76,7 +87,7 @@ $(document).on("click", ".contentClick",function(){
 	$("#user_sub").text(sub);
 	$("#reply_date").text(date);
 	$("#book_title").text(title);
-	$("#content1").text(content);
+	$("#content1").html(content);
 	console.log($("#reply_seq").text());
 	
 //	$(".form1").toggle();
@@ -710,18 +721,15 @@ function make() {
 									<input type="hidden" value="${reply.book_title}" name="book_title"/>
 								</td>
 								<td>
-									<p class="rowColumn" id="content">
-									<a href="#" class="contentClick">`
-								if(reply.reply_cotent.length >7){
-									cotent = reply.reply_cotent.substring(0, 6);
-									con += `${cotent}...`
-								}else{
-									con += `${reply.reply_cotent }`
-								}
-								
-						con+=	`</a>
-									</p>
-									<input type="hidden" value="${reply.reply_cotent}" name="reply_cotent"/>
+									<p id="content">
+                                     <div class="qjawnsno oneqjawns">
+                                      ${reply.reply_cotent }
+                                    </div>
+                                    </p>
+                                    
+                                    <div class="hide" id="recontent">
+                                      ${reply.reply_cotent}
+                                    </div>
 								</td>
 								<td>
 									<p class="rowColumn" >${reply.reply_date }
@@ -754,6 +762,9 @@ function make() {
 //			console.log(con);
 			
 			$("#all_box tbody").html(con);
+			$(".oneqjawns").map((e, ind) =>{
+				$(ind).text($(ind).text().trim().substring(0, 7) + "...");
+			})
 //			console.log("con: " + con);
 //			console.log("공지사항 목록 : " + $("#all_box tbody").html());
 		}

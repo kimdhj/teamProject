@@ -74,8 +74,16 @@ $(function() {
 								</div>
 								<div id="thumb_count" class="col-4">좋아요${re.finecount}</div>
 							</div>
-							<div id="review_textBox" class="row">
-								${re.reply_cotent}</div>
+							<div id="review_textBox" class="row">`
+						if (re.user_blank==false){
+							constr += `${re.reply_cotent}`
+						}
+		              
+		              if(re.user_blank!=false){
+		            	  constr += ` <div id="blankreview">블랙 처리된 리뷰입니다. 고객센터로 문의 주세요</div>`
+		              }
+		             
+					constr += `</div>
 						</div>
 					</div>`;
 					id++;
@@ -291,7 +299,11 @@ $(document).on("click", "#add_cartCheck", function(e) {
 		dataType: "json",
 		success: function(re) {
 			console.log(re);
-			alert("장바구니에 담았습니다.");
+			Swal.fire({
+				text: "장바구니에 담았습니다.",
+				icon: "success"
+			})
+	//		alert("장바구니에 담았습니다.");
 
 		},
 		error: function(re) {
@@ -302,17 +314,29 @@ $(document).on("click", "#add_cartCheck", function(e) {
 					$("#add_cartCheck").addClass("bg-gray border-0")
 					$("#add_cartCheck").attr("disabled", "true");
 				} else {
-					alert("장바구니에 이미 존재 합니다.");
+					Swal.fire({
+						text: "장바구니에 이미 존재합니다.",
+						icon: "error"
+					})
+//					alert("장바구니에 이미 존재 합니다.");
 				}
 
 			} else {
-				alert("로그인하고 장바구니 이용 해주세요");
+				Swal.fire({
+					text: "로그인하고 장바구니 이용해주세요.",
+					icon: "warning"
+				})
+//				alert("로그인하고 장바구니 이용 해주세요");
 			}
 		}
 	})
 })
 $(document).on('click', "#fin", function() {
-	alert("로그인 후 진행해주세요");
+	Swal.fire({
+		text: "로그인 후 진행해주세요.",
+		icon: "warning"
+	})
+//	alert("로그인 후 진행해주세요");
 })
 $(document).on("click", ".bi-heart", function(e) {
 	console.log($(e.target).parents(".row").children("#reseq").val());
@@ -330,7 +354,11 @@ $(document).on("click", ".bi-heart", function(e) {
 			console.log(re.responseText);
 			let num = Number($(e.target).parents(".col-9").children("#review_starBox").children("#thumb_count").text().replaceAll("좋아요", ""));
 			if (re.responseText.trim() == "fail") {
-				alert("로그인 후 진행해주세요")
+				Swal.fire({
+					text: "로그인 후 진행해주세요.",
+					icon: "warning"
+				})
+//				alert("로그인 후 진행해주세요")
 			} else {
 				$(e.target).parents(".col-9").children("#review_starBox").children("#thumb_count").text("좋아요" + (num + 1))
 				$(e.target).removeClass("bi-heart");
@@ -357,7 +385,11 @@ $(document).on("click", ".bi-heart-fill", function(e) {
 		error: function(re) {
 			console.log(re.responseText)
 			if (re.responseText.trim() == "fail") {
-				alert("로그인 후 진행해주세요")
+				Swal.fire({
+					text: "로그인 후 진행해주세요.",
+					icon: "warning"
+				})
+//				alert("로그인 후 진행해주세요")
 			} else {
 				$(e.target).parents(".col-9").children("#review_starBox").children("#thumb_count").text("좋아요" + (num - 1))
 				$(e.target).removeClass("bi-heart-fill");
@@ -382,10 +414,18 @@ $(document).on("click", "#authorname", function() {
 		error: function(re) {
 		
 			if (re.responseText.trim() == "fail") {
-				alert("로그인 후 진행해주세요");
+				Swal.fire({
+					text: "로그인 후 진행해주세요.",
+					icon: "warning"
+				})
+//				alert("로그인 후 진행해주세요");
 			} else {
 				if (re.responseText.trim() == "no") {
-					alert("이미 추가되었습니다.");
+					Swal.fire({
+						text: "이미 추가되었습니다.",
+						icon: "error"
+					})
+//					alert("이미 추가되었습니다.");
 				}
 			}
 		}

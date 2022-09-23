@@ -28,8 +28,8 @@
 	</resultMap>
 	
 	
-	<select id="getUser" parameterType="adminUserVO" resultType="adminUserVO">
-		SELECT user_id, user_password, user_name, user_role FROM user WHERE user_id = #{user_id} 
+	<select id="getUser" parameterType="string" resultType="adminUserVO">
+		SELECT * FROM user WHERE user_id = #{user_id} 
 	</select>
 	
 	<update id="loginDay" parameterType="string">

@@ -16,7 +16,11 @@ function can_sub() {
 				})
 				location.href = "/my_cancelSub.do";
 			} else {
-				alert("현재 구독하지 않은 상태입니다! 구독 결제 창으로 이동합니다.");
+				Swal.fire({
+					text: "현재 구독하지 않은 상태입니다! 구독 결제창으로 이동합니다.",
+					icon: "warning"
+				})
+//				alert("현재 구독하지 않은 상태입니다! 구독 결제 창으로 이동합니다.");
 				location.href = "/mysubpay.do";
 			}
 		},

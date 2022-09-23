@@ -17,9 +17,9 @@
 		</div>
 		<div class="row mt-2 " id="table_titleLine">
 			<div class="col-2 bg-gray border-2 border-top border-dark m-0 p-2 text-center align-items-center title">제목</div>
-			<div class="col d-flex align-items-center border-2 border-top border-dark">${vo.notice_title }</div>
+			<div class="col-5 d-flex align-items-center border-2 border-top border-dark">${vo.notice_title }</div>
       
-            <div class="col-4 border-2 border-top border-dark m-0 p-2 text-center align-items-center"></div>
+            <div class="col-1 border-2 border-top border-dark m-0 p-2 text-center align-items-center"></div>
 
 			<div class="col-2 bg-gray border-2 border-top border-dark m-0 p-2 text-center align-items-center title">조회수</div>
 			<div class="col d-flex align-items-center border-2 border-top border-dark">${vo.notice_cnt + 1}</div>

@@ -108,6 +108,20 @@ public class NoticeController {
 	public String insert(HttpSession session, JwtUtils util, Model model) throws IOException {
 		UserVO userVo = util.getuser(session);
 		
+		if(userVo == null) {
+		  return "/admin_login.mdo";
+		}
+		
+		System.out.println("userVo ==========> \n" + userVo);
+		
+//		if(userVo.getUser_role().equals("ROLE_ADMIN")) {
+//		  userVo.setUser_id("관리자");
+//		}
+		
+		if(userVo.getUser_id().equals("qjawns0222")) {
+		  userVo.setUser_id("관리자");
+		}
+		
 		model.addAttribute("user", userVo.getUser_id());
 		System.out.println(userVo.getUser_id());
 //		model.addAttribute("user", userVo.getUser_name());

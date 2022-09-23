@@ -83,6 +83,7 @@ public class UserReplyController {
     
     System.out.println();
     System.out.println("update 사이트 왔다아아");
+    System.out.println("rjvo = " + rjvo);
     System.out.println(service.doubleReply(rjvo));
 //    System.out.println(service.getBookInfo(bvo));
     System.out.println();

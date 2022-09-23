@@ -57,7 +57,11 @@ function startSpin() {
 		success:function(st){
 			console.log(st);
 			if(st==""){
-				alert("먼저 로그인이 필요합니다!");
+				Swal.fire({
+					text: "로그인을 먼저 진행해주세요.",
+					icon: "warning"
+				})
+//				alert("먼저 로그인이 필요합니다!");
 				che = false;
 			}else{
 				
@@ -66,10 +70,14 @@ function startSpin() {
 					type:"post",
 					async : false,
 					success:function(da){
-						console.log("일단 넘어와" +da);
+//						console.log("일단 넘어와" +da);
 						if(da != 0){
 							che = false;
-							alert("오늘은 이미 룰렛을 이용하셨습니다!");
+							Swal.fire({
+								text: "오늘은 이미 룰렛을 이용하였습니다.",
+								icon: "warning"
+							})
+//							alert("오늘은 이미 룰렛을 이용하셨습니다!");
 						}
 						
 					},

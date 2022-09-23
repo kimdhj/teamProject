@@ -208,7 +208,13 @@ $(document).ready(function() {
 				success:function(re){
 					if(re>0&&!ale){
 						ale=true;
-					alert("이름 중복 추가 실패");
+					
+					Swal.fire({
+						text: "이름 중복 추가 실패",
+						icon: "error"
+					})	
+						
+			//		alert("이름 중복 추가 실패");
 				
 					return false;
 					
@@ -225,7 +231,12 @@ $(document).ready(function() {
 				success:function(re){
 					if(re>0&&!ale){
 					ale=true;
-					alert("번호 중복 추가 실패");
+					
+					Swal.fire({
+						text: "번호 중복 추가 실패",
+						icon: "error"
+					})
+			//		alert("번호 중복 추가 실패");
 					
 					return false;
 					}
@@ -425,7 +436,8 @@ $(document).ready(function() {
 		$(".delche").map((che, el) => {
 			if ($(el).is(":checked")) {
 				name.push($(el).parents("tr").children("td:eq(2)").text().trim());
-				num.push($(el).parents("tr").children("td:eq(3)").text().trim());
+				num.push($(el).parents("tr").children("td:eq(3)").children("p:eq(0)").text().trim());
+				console.log($(el).parents("tr").children("td:eq(3)").children("p:eq(0)").text().trim());
 
 				seq.push($(el).parents("tr").children("td:eq(4)").text().trim());
 			}
@@ -443,6 +455,11 @@ $(document).ready(function() {
 				},
 				success: function(e) {
 					if (e.length > 0) {
+//						Swal.fire({
+//							e,
+//							text: "를 수정에 실패했습니다.",
+//							icon: "error"
+//						})
 						alert(e, "를 수정에 실패했습니다.");
 					}
 					make();

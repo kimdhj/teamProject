@@ -18,6 +18,12 @@ public class AdminAccountServiceImpl implements AdminAccountService {
 	@Autowired
 	private AdminAccountDAO adminAccountDAO;
 	
+	
+	@Override
+	public AdminUserVO getUser(String user_id) throws Exception {
+		return adminAccountDAO.getUser(user_id);
+	}
+
 	@Override
 	public AdminUserVO getUserDetail(AdminUserVO vo) {
 		return adminAccountDAO.getUserDetail(vo);
@@ -81,6 +87,11 @@ public class AdminAccountServiceImpl implements AdminAccountService {
 	@Override
 	public void giveCoupon(UserCouponVO userCouponVO) throws Exception {
 		adminAccountDAO.giveCoupon(userCouponVO);
+	}
+
+	@Override
+	public UserCouponVO forDeleteCoupon(int user_coupon_seq) throws Exception {
+		return adminAccountDAO.forDeleteCoupon(user_coupon_seq);
 	}
 
 	@Override

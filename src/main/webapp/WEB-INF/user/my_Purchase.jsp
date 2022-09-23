@@ -65,7 +65,7 @@
             <option value="paid">결제 완료</option>
             <option value="delivery">배송중</option>
             <option value="finish">배송완료</option>
-            <option value="cacelallwait">환불/교환/반품대기</option>
+            <option value="cancelallwait">환불/교환/반품대기</option>
             <option value="cancelallfinish">환불/교환/반품완료</option>
           </select>
         </div>
@@ -87,6 +87,7 @@
         <img class="mt-3 mb-3" width="100%" src="${purchase.book_bigimgURL }">
       </div>
       
+      ${purchase.orders_seq }
       <div class="col-9 bookBox">
         <div class="row">
           <div class="col-8" style="font-size: large; font-weight: bolder;" id="purchaseList_title">${purchase.book_title }</div>

@@ -45,7 +45,7 @@
 					<li><a class="show-cat-btn" href="/ab"> <span
 							class="icon folder " aria-hidden="true"></span>카테고리 관리
 					</a></li>
-					<li><a class="show-cat-btn" href="##"> <span
+					<li><a class="show-cat-btn" href="/adminLog.mdo"> <span
 							class="icon document" aria-hidden="true"></span>로그
 					</a></li>
 					<li><a class="show-cat-btn" href="##"> <span

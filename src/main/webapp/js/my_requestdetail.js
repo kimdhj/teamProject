@@ -17,6 +17,28 @@ function checkWriteForm() {
 $("#updateMyRequestBtn").on("click", function(){
 	let ask_password = $("#ask_password").val();
 	let ask_seq = $("#ask_seq").val();
+	
+//	Swal.fire({
+//		text: "정말 수정하시겠습니까?",
+//		icon: "warning",
+//		showCancelButton: true,
+//		confirmButtonColor: '#3085d6',
+//		cancelButtonColor: '#d33',
+//		confirmButtonText: '예',
+//		cancelButtonText: '아니오',
+//	}).then((result) => {
+//		if (result.isConfirmed) {
+//			Swal.fire({
+//				text: "수정하였습니다.",
+//				icon: "success",
+//				showConfirmButton: false,
+//				timer: 1500,
+//			})
+//			// 보내줄 주소 적어주고 싶은 경우, location.href="#";
+//		}else if(result.isDismissed){
+//			return false;
+//		}
+//	})
 		
 	if(confirm("정말 수정하시겠습니까?") == true) {
 		console.log("수정 눌렀대요~");
@@ -35,20 +57,37 @@ $("#updateMyRequestBtn").on("click", function(){
 		},
 		success:function(returnValue){
 			if(returnValue == 0) {
-				alert("비밀번호 확인 완료!");
+				Swal.fire({
+					text: "비밀번호 확인을 완료하였습니다.",
+					icon: "success"
+				})
+//				alert("비밀번호 확인 완료!");
 				$("#updateMyRequestForm").submit();
 				return false;
+				
 			} else if(returnValue == 1) {
-				alert("비밀번호를 다시 입력하세요");
+				Swal.fire({
+					text: "비밀번호를 다시 입력하세요.",
+					icon: "error"
+				})
+//				alert("비밀번호를 다시 입력하세요");
 				return false;
 			} else { //returnValue가 2인 경우
-				alert("재로그인 필요");
+				Swal.fire({
+					text: "로그인을 다시 해주세요.",
+					icon: "warning"
+				})
+//				alert("재로그인 필요");
 				return false;
 			}
 			
 		},
 		error:function(){
-			alert("에러다 이자시가");
+			Swal.fire({
+				text: "에러!",
+				icon: "error"
+			})
+//			alert("에러다 이자시가");
 		}
 	});
 });
@@ -78,16 +117,28 @@ $("#deleteMyRequestBtn").on("click", function(){
 				deleteMyRequest(ask_password, ask_seq); //글삭제 함수
 				return false;
 			} else if(returnValue == 1) {
-				alert("비밀번호를 다시 입력하세요");
+				Swal.fire({
+					text: "비밀번호를 다시 입력하세요.",
+					icon: "warning"
+				})
+//				alert("비밀번호를 다시 입력하세요");
 				return false;
 			} else { //returnValue가 2인 경우
-				alert("재로그인 필요");
+				Swal.fire({
+					text: "로그인을 다시 해주세요.",
+					icon: "warning"
+				})
+//				alert("재로그인 필요");
 				return false;
 			}
 			
 		},
 		error:function(){
-			alert("에러다 이자시가");
+			Swal.fire({
+				text: "에러",
+				icon: "error"
+			})
+//			alert("에러다 이자시가");
 		}
 	});
 });
@@ -100,11 +151,19 @@ function deleteMyRequest(ask_seq) {
 		type:"post",
 		data:{ask_seq:ask_seq},
 		success:function(){
-			console.log("삭제완료");
+			Swal.fire({
+				text: "삭제가 완료되었습니다.",
+				icon: "success"
+			})
+//			console.log("삭제완료");
 			location.replace("myRequestList.do");
 		},
 		error:function(){
-			alert("에러다 이자시가");
+			Swal.fire({
+				text: "에러",
+				icon: "error"
+			})
+//			alert("에러다 이자시가");
 		}
 	});
 }

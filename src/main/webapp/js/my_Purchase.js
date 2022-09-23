@@ -25,9 +25,9 @@ $(document).on("change", $("#stateche"), function(){
 			$(".purchasestatus").val("finish");
 			$("#search").val("finish");
 			
-		}else if($("#dbstatus2").val() == "cacelallwait"){
-			$(".purchasestatus").val("cacelallwait");
-			$("#search").val("cacelallwait");
+		}else if($("#dbstatus2").val() == "cancelallwait"){
+			$(".purchasestatus").val("cancelallwait");
+			$("#search").val("cancelallwait");
 			
 		}else if($("#dbstatus2").val() == "cancelallfinish"){
 			$(".purchasestatus").val("cancelallfinish");
@@ -37,7 +37,6 @@ $(document).on("change", $("#stateche"), function(){
 	}else{ // 그 외 값들을 선택했을 때
 		$(".inputbox").removeClass("hide");
 		$(".dbstatus").addClass("hide");
-		$("#search").val('');
 	}
 })
 
@@ -213,14 +212,19 @@ function makeDisplay(e) {
 
 // 검색할 값들 추가
 $(document).on("click", ".search_btn", function(){
+	
 	$("#searchkeyword").val($("#stateche").val().trim());
 	$("#searchcontent").val($("#search").val().trim());
 	$("#startDateche").val($("#start_date").val());
 	$("#endDateche").val($("#end_date").val());
 	$("#page").val(Number(1));
 	
-	console.log($("#startDateche").val());
-	console.log($("#endDateche").val());
+	console.log($("#searchkeyword").val());
+	console.log($("#searchcontent").val());
+	console.log($("#search").val());
+	
+//	console.log($("#startDateche").val());
+//	console.log($("#endDateche").val());
 	
 	make();
 })
@@ -369,7 +373,7 @@ function make() {
 						
 						   con +=     `</div>
 						      </div>
-						      
+						      </div>
 						    </div>
 						`;
 			});

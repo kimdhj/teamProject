@@ -74,6 +74,7 @@
 		UPDATE order_bookList SET order_bookList_review_complete = 1 WHERE order_bookList_seq = #{order_bookList_seq}
 	</update>
 	
+	<!-- 사용자 리뷰 상세보기 -->
 	<select id="doubleReply" parameterType="replyJoin" resultType="reply">
 		SELECT * FROM reply WHERE book_seq = #{book_seq} AND order_bookList_seq = #{order_bookList_seq}	
 	</select>
