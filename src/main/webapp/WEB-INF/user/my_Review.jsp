@@ -38,7 +38,6 @@
 							<div class="col-3">책</div>
 							<div class="col">내용</div>
 							<div class="col-1">별점</div>
-
 						</div>
 						<div id="table_item" class="row">
 							<div class="col-2">2022-11-17</div>

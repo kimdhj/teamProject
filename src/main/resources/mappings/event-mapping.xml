@@ -18,6 +18,9 @@
 		<result property="event_thumbnail" column="EVENT_THUMBNAIL" />
 		<result property="event_cnt" column="EVENT_CNT" />
 	</resultMap>
+	<select id="confirmdate" parameterType="MyPointsSearchVO" resultType="int">
+		SELECT count(*) FROM points WHERE user_id=#{user_id} AND DATE_FORMAT(points_date,'%Y-%m-%d') = #{points_date}
+	</select>
 	<insert id="insertEvent" parameterType="event_event">
 		INSERT INTO event (event_title, event_target, event_content, event_start_date, event_end_date, event_allday, event_top_event, event_file1, event_file2, event_file3, event_file4, event_thumbnail)
 		VALUES(#{event_title}, #{event_target}, #{event_content}, #{event_start_date}, #{event_end_date}, #{event_allday}, #{event_top_event}, #{event_file1}, #{event_file2}, #{event_file3}, #{event_file4}, #{event_thumbnail})

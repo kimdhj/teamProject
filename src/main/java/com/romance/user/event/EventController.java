@@ -3,8 +3,13 @@ package com.romance.user.event;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.UUID;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +23,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.romance.admin.sub.SubscribeService;
 import com.romance.admin.sub.SubscribeVO;
+import com.romance.security.JwtUtils;
 import com.romance.server.AwsS3;
+import com.romance.user.login.UserVO;
+import com.romance.user.points.MyPointsSearchVO;
+import com.romance.user.points.MyPointsService;
+import com.romance.user.points.MyPointsVO;
 
 
 @Controller
@@ -28,28 +38,63 @@ public class EventController {
     private EventService eventService;
     @Autowired
     private SubscribeService subscribeService;
+    @Autowired
+    private MyPointsService myPointsService;
 
+    //룰렛 날짜 체크
+    @RequestMapping(value="/confirmdate.do", method=RequestMethod.POST)
+    @ResponseBody
+    public int confirmdate(JwtUtils util, HttpSession session, MyPointsSearchVO my) throws IOException {
+    	UserVO userVO = util.getuser(session);
+    	String iiid = userVO.getUser_id();
+    	LocalDateTime now = LocalDateTime.now();
+    	String formatedNow = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+    	
+    	my.setPoints_date(formatedNow);
+    	my.setUser_id(iiid);
+    	
+    	return eventService.confirmdate(my);
+    }
     
-//검색이었던 부분    
-//    @RequestMapping("/dataTransform.do")
-//    @ResponseBody
-//    public BoardListVO dataTransform(BoardVO vo) {
-//        vo.setSearchCondition("TITLE");
-//        vo.setSearchKeyword("");
-//        List<BoardVO> boardList = boardService.getBoardList(vo);
-//        BoardListVO boardListVO = new BoardListVO();
-//        boardListVO.setBoardList(boardList);
-//        return boardListVO;
-//    }
-
-//    @ModelAttribute("conditionMap")
-//    public Map<String, String> searchConditionMap() {
-//        Map<String, String> conditionMap = new HashMap<String, String>();
-//        conditionMap.put("제목", "TITLE");
-//        conditionMap.put("내용", "CONTENT");
-//        return conditionMap;
-//    }
+    //룰렛 로그인 체크
+    @RequestMapping(value="/confirmyou.do", method=RequestMethod.POST)
+    @ResponseBody
+    public String confirmyou(JwtUtils util, HttpSession session, UserVO vo) throws IOException {
+    	UserVO userVO = util.getuser(session);
+    	if(userVO !=null) {
+    	return userVO.getUser_id();
+    	}else {
+    		return null;
+    	}
+    }
     
+    
+    //룰렛 포인트 에이잭스
+    @RequestMapping(value="/getPoint.do", method = RequestMethod.POST)
+    @ResponseBody
+    public String getPoint(JwtUtils util, HttpSession session, MyPointsVO vo) throws IOException {
+    	
+    	UserVO userVO = util.getuser(session);
+    	String iiiid = null;
+		if(userVO != null) {
+			iiiid = userVO.getUser_id();
+		}
+		vo.setUser_id(iiiid);
+		int popoint = vo.getPoints_count();
+		int pointnt = userVO.getUser_point();
+		System.out.println(popoint);
+		System.out.println(pointnt);
+		userVO.setUser_point(popoint+pointnt);
+		myPointsService.createPoints(vo);
+		myPointsService.addPoint(userVO);  
+		
+		userVO = myPointsService.renew(userVO);
+		
+		String token = util.createToken("user", userVO);
+		session.setAttribute("id", token);
+    	
+    	return null;
+    }
     
 	@RequestMapping("moveInsert.mdo")
 	public String moveInsert(EventVO vo, Model model) {
