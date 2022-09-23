@@ -4,15 +4,15 @@
 <mapper namespace="loggingUtils">
 	
 	<select id="getAdminLoginlogInfo" parameterType="string" resultType="adminUserVO">
-		SELECT user_id, user_password, user_role FROM user WHERE user_id = #{inputId}
+		SELECT user_id, user_password, user_role FROM user WHERE user_id = #{login_log_id}
 	</select>
 	
 	<select id="getUserLoginlogInfo" parameterType="string" resultType="userVO">
-		SELECT user_id, user_password, user_role FROM user WHERE user_id = #{inputId}
+		SELECT user_id, user_password, user_role FROM user WHERE user_id = #{login_log_id}
 	</select>
 	
 	<select id="isUserId" parameterType="string" resultType="int">
-		SELECT COUNT(*) FROM user WHERE user_id = #{inputId}
+		SELECT COUNT(*) FROM user WHERE user_id = #{login_log_id}
 	</select>
 	
 	<select id="insertLoginLog" parameterType="loginLogVo">
