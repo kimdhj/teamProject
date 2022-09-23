@@ -125,21 +125,19 @@
                                       </p>
                                     <input type="hidden" value="${reply.book_title}" name="book_title"/>
 								</td>
+                
 								<td>
-  									<p class="rowColumn" id="content">
-                                     <a href="#" class="contentClick">
-                                    <c:choose>
-                                    <c:when test="${fn:length(reply.reply_cotent) gt 7 }">
-                                      <c:out value="${fn:substring(reply.reply_cotent, 0, 6) }..."></c:out>
-                                    </c:when>
-                                    <c:otherwise>
-                                    <c:out value="${reply.reply_cotent }"/>
-                                    </c:otherwise>
-                                  </c:choose>
-                                    </a>
+  									<p id="content">
+                                     <div class="qjawnsno oneqjawns">
+                                      ${reply.reply_cotent }
+                                    </div>
                                     </p>
-                                    <input type="hidden" value="${reply.reply_cotent}" name="reply_cotent"/>
+                                    
+                                    <div class="hide" id="recontent">
+                                      ${reply.reply_cotent}
+                                    </div>
 								</td>
+                
 								<td>
 									<p class="rowColumn" >
                                       <fmt:formatDate value="${reply.reply_date }" pattern="yyyy-MM-dd"/>
