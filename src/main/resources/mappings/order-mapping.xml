@@ -9,55 +9,63 @@
 		select * from
 		book where book_seq=#{book_seq}
 	</select>
-	
+
 	<!-- 구매자 정보 입력 -->
 	<insert parameterType="ordersVO" id="ordersIn">
 	<![CDATA[	insert into
 		orders(orders_cache_sum,orders_phone,orders_name,orders_zipcode,orders_address,orders_cache_tool,orders_status,orders_email,orders_title,orders_coupon_effect,orders_point,orders_add_point,orders_recommend,orders_vbank_name,orders_vbank_num,orders_cache_uid,orders_refund_num,orders_refund_bank,user_id,orders_remainaddress,orders_vbank_Date)
 		values(#{orders_cache_sum},#{orders_phone},#{orders_name},#{orders_zipcode},#{orders_address},#{orders_cache_tool},#{orders_status},#{orders_email},#{orders_title},#{orders_coupon_effect},#{orders_point},#{orders_add_point},#{orders_recommend},#{orders_vbank_name},#{orders_vbank_num},#{orders_cache_uid},#{orders_refund_num},#{orders_refund_bank},#{user_id},#{orders_remainaddress},#{orders_vbank_Date_String})]]>
 	</insert>
-	
+
 	<!-- 구매자가 구매한 책을 하나씩 입력하는 메소드 -->
 	<insert parameterType="orderbooklistVO" id="booklistin">
 		insert into
 		order_bookList(order_bookList_count,book_seq,orders_seq)
 		values(#{order_bookList_count},#{book_seq},#{orders_seq})
 	</insert>
-	
+
 	<!-- 주문하고 결제번호로 다음에 넘겨 줄 주문 번호 가져오는거(uid 로 주문번호 받아오는 메소드) -->
-	<select parameterType="String" resultType="ordersVO"  id="getorder">
+	<select parameterType="String" resultType="ordersVO"
+		id="getorder">
 		select * from orders where orders_cache_uid=#{orders_cache_uid}
 	</select>
-	
+
 	<!-- trade 는 관리자쪽 책 부분 삭제 -->
 	<delete parameterType="tradejoinVO" id="orderbookdel">
-		delete from order_bookList where order_bookList_seq=#{order_bookList_seq} 
+		delete from
+		order_bookList where order_bookList_seq=#{order_bookList_seq}
 	</delete>
-	
-	
+
+
 	<update parameterType="tradejoinVO" id="orderupdate">
-	update orders set orders_cache_sum=orders_cache_sum-#{sum} where orders_seq=#{orders_seq}
+		update orders set orders_cache_sum=orders_cache_sum-#{sum} where
+		orders_seq=#{orders_seq}
 	</update>
-	
+
 	<!-- 주문자 정보들어간 값 출력 -->
-	<select parameterType="tradejoinVO" resultType="ordersVO" id="ordersel">
+	<select parameterType="tradejoinVO" resultType="ordersVO"
+		id="ordersel">
 		select * from orders where orders_seq=#{orders_seq}
 	</select>
-	
+
 	<delete parameterType="tradejoinVO" id="ordersdel">
-		delete from orders where orders_seq=#{orders_seq}
+		delete from orders where
+		orders_seq=#{orders_seq}
 	</delete>
-	
-	<select parameterType="tradejoinVO" resultType="int" id="chebooklist">
+
+	<select parameterType="tradejoinVO" resultType="int"
+		id="chebooklist">
 		select count(*) from order_bookList where orders_seq=#{orders_seq};
 	</select>
-	
+
 	<update parameterType="tradejoinVO" id="orderpointupdate">
-	update orders set orders_point=orders_point-#{sum} where orders_seq=#{orders_seq}
+		update orders set orders_point=orders_point-#{sum} where
+		orders_seq=#{orders_seq}
 	</update>
-	
+
 	<!-- eunxi 작품 -->
-	<select parameterType="purchaseSearch" resultType="purchaseJoin" id="purchaselist">
+	<select parameterType="purchaseSearch" resultType="purchaseJoin"
+		id="purchaselist">
 	<![CDATA[
 		SELECT * FROM (SELECT *, @rownum:=@rownum + 1 as rnum FROM
 		(SELECT orders.orders_seq, orders_order_day, orders_status,  order_bookList_review_complete, COUNT(orders.orders_seq) AS order_bookList_count,
@@ -65,16 +73,20 @@
 		ON orders.orders_seq = order_bookList.orders_seq JOIN book
 		ON order_bookList.book_seq = book.book_seq WHERE orders_status NOT LIKE CONCAT('%', 'cancel', '%')
 	]]>
-		<if test="searchkeyword=='orders_status' and searchcontent != '' and searchcontent != null"><![CDATA[AND orders.orders_status= #{searchcontent}]]></if>
+		<if
+			test="searchkeyword=='orders_status' and searchcontent != '' and searchcontent != null"><![CDATA[AND orders.orders_status= #{searchcontent}]]></if>
 		<if test="searchkeyword=='orders_seq' and searchcontentint != 0"><![CDATA[AND orders.orders_seq = #{searchcontentint}]]></if>
-		<if test="searchkeyword=='book_title' and searchcontent != '' and searchcontent != null"><![CDATA[AND book_title like concat('%',#{searchcontent},'%')]]></if>
-		<if test="searchkeyword=='book_author' and searchcontent != '' and searchcontent != null"><![CDATA[AND book_author like concat('%',#{searchcontent},'%')]]></if>
+		<if
+			test="searchkeyword=='book_title' and searchcontent != '' and searchcontent != null"><![CDATA[AND book_title like concat('%',#{searchcontent},'%')]]></if>
+		<if
+			test="searchkeyword=='book_author' and searchcontent != '' and searchcontent != null"><![CDATA[AND book_author like concat('%',#{searchcontent},'%')]]></if>
 		<if test="startDate != null and endDate != null"><![CDATA[AND orders_order_day>=#{startDate} AND orders_order_day <= (#{endDate} + INTERVAL 1 DAY)]]></if>
 		<![CDATA[AND user_id = #{user_id} group by orders.orders_seq) M, (SELECT @rownum:=0) TMP 
 				ORDER BY orders_order_day DESC) rn where rnum > (#{page} - 1) * 5 AND rnum <= #{page} * 5]]>
 	</select>
-	
-	<select resultType="int" parameterType="purchaseSearch" id="purchaseCount">
+
+	<select resultType="int" parameterType="purchaseSearch"
+		id="purchaseCount">
 	<![CDATA[
 		SELECT COUNT(*) FROM (SELECT *, @rownum:=@rownum + 1 as rnum FROM
 		(SELECT orders.orders_seq, orders_order_day, orders_status, order_bookList_review_complete, COUNT(orders.orders_seq) AS order_bookList_count,
@@ -82,16 +94,30 @@
 		ON orders.orders_seq = order_bookList.orders_seq JOIN book
 		ON order_bookList.book_seq = book.book_seq WHERE orders_status NOT LIKE CONCAT('%', 'cancel', '%')
 	]]>
-		<if test="searchkeyword=='orders_status' and searchcontent != '' and searchcontent != null"><![CDATA[AND orders.orders_status= #{searchcontent}]]></if>
+		<if
+			test="searchkeyword=='orders_status' and searchcontent != '' and searchcontent != null"><![CDATA[AND orders.orders_status= #{searchcontent}]]></if>
 		<if test="searchkeyword=='orders_seq' and searchcontentint != 0"><![CDATA[AND orders.orders_seq = #{searchcontentint}]]></if>
-		<if test="searchkeyword=='book_title' and searchcontent != '' and searchcontent != null"><![CDATA[AND book_title like concat('%',#{searchcontent},'%')]]></if>
-		<if test="searchkeyword=='book_author' and searchcontent != '' and searchcontent != null"><![CDATA[AND book_author like concat('%',#{searchcontent},'%')]]></if>
+		<if
+			test="searchkeyword=='book_title' and searchcontent != '' and searchcontent != null"><![CDATA[AND book_title like concat('%',#{searchcontent},'%')]]></if>
+		<if
+			test="searchkeyword=='book_author' and searchcontent != '' and searchcontent != null"><![CDATA[AND book_author like concat('%',#{searchcontent},'%')]]></if>
 		<if test="startDate != null and endDate != null"><![CDATA[AND orders_order_day>=#{startDate} AND orders_order_day <= (#{endDate} + INTERVAL 1 DAY)]]></if>
 		<![CDATA[AND user_id = #{user_id} group by orders.orders_seq) M, (SELECT @rownum:=0) TMP ORDER BY orders_order_day DESC) rn ]]>
 	</select>
-	
+
 	<update id="purchaseCancel" parameterType="ordersVO">
 		<![CDATA[UPDATE orders SET orders_status = 'cancelwaitall' WHERE orders_seq = #{orders_seq}]]>
 	</update>
-	
+	<insert parameterType="userVO" id="subinorder">
+		insert into
+		orders(orders_name,orders_phone,orders_zipcode,orders_address,orders_cache_tool,orders_status,orders_cache_sum,orders_email,orders_title,orders_remainaddress,user_id)
+		values(#{user_name},#{user_phone},#{user_zipcode},#{user_address},"card","paid",0,#{user_email},"낭만서점 구독 상품",#{user_remain_address},#{user_id})
+	</insert>
+	<select resultType="int" parameterType="String" id="suborderseq">
+	 select max(orders_seq) from orders where user_id=#{user_id}
+	</select>
+	<insert parameterType="orderbooklistVO" id="subinbook">
+		insert into order_bookList(order_bookList_count,book_seq,orders_seq) values(1,#{book_seq},#{orders_seq})
+	</insert>
+
 </mapper>

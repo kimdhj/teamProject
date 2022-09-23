@@ -32,13 +32,12 @@ public class MyPointsController {
 			model.addAttribute("mapoint", vou);
 			
 			return "my_MileagePay";
+			
 		}
 		
 		@PostMapping("/pointfinish.do")
 		public String pointfinish(MyPointsVO vo, Model model,JwtUtils util,HttpSession session) throws ParseException, IOException {
 			UserVO userVO = util.getuser(session);
-			System.out.println("어째서" +userVO);
-			System.out.println("저째서"+vo);
 			String iiiid = userVO.getUser_id();
 			vo.setUser_id(iiiid);
 			int popoint = vo.getPoints_count();

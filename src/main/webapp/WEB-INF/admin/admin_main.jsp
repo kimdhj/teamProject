@@ -122,7 +122,7 @@
 			</div>
 		</div>
 		<div class="d-flex flex-row">
-			<div class="col-md-6">
+			<div id="donught" class="col-md-6">
 				<div class="card border-light">
 					<div class="card-header">Header</div>
 					<div class="card-body">
@@ -132,7 +132,7 @@
 				</div>
 			</div>
 			<div class="col-md-6">
-				<div class="card border-light">
+				<div id="donught2" class="card border-light">
 					<div class="card-header">일반회원 ${getSubRatio.normal_cnt}명</div>
 					<div class="card-body">
 						
@@ -149,128 +149,10 @@
 	<jsp:include page="/WEB-INF/admin_commonjsp/admin_common_footer.jsp"></jsp:include>
 	<!-- js 추가 -->
 	<!-- 차트js 시작 -->
-
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src="/js/admin_main.js"></script>
 	<script>
-		let myChartOne = document.getElementById('myChartOne').getContext('2d');
-		let myChartTwo = document.getElementById('myChartTwo').getContext('2d');
-		let myChartThree = document.getElementById('myChartThree').getContext('2d');
-		let myChartFour = document.getElementById('myChartFour').getContext('2d');
-
-		let barChart = new Chart(myChartOne, {
-			type : 'bar', //pie, line, doughnut, polarArea
-			data : {
-				labels : [ '학원', '연구원', '출판사', '미디어사', '위니브' ],
-				datasets : [ {
-					label : '테스트',
-					data : [ 10, 100, 100, 200, 1000 ]
-
-				} ]
-			}
-		})
-
-		let barChartTwo = new Chart(myChartTwo, {
-			type : 'bar', //pie, line, doughnut, polarArea
-			data : {
-				labels : [ '1월', '3월', '6월', '9월', '12월' ],
-				datasets : [ {
-					label : '기간별 매출액',
-					data : [ 2000, 1000, 1000, 2000, 500 ],
-					backgroundColor : [ 'red', 'blue', 'green', 'yellow',
-							'purple' ],
-					borderWidth : 5,
-					borderColor : '#000',
-					hoverBorderWidth : 8
-
-				} ]
-			}
-		})
-
-		let barChartThree = new Chart(myChartThree, {
-			type : 'bar', //pie, line, doughnut, polarArea
-			data : {
-				labels : [ '1월', '3월', '6월', '9월', '12월' ],
-				datasets : [ {
-					label : '구독자 현황',
-					data : [ 200, 100, 100, 200, 500 ],
-					backgroundColor : [ 'red', 'blue', 'green', 'yellow',
-							'purple' ],
-					borderWidth : 5,
-					borderColor : '#000',
-					hoverBorderWidth : 8
-
-				} ]
-			},
-			options : {
-				plugins : {
-					title : {
-						display : true,
-						text : '바올랩 매출',
-						fontSize : 30,
-						fontColor : 'red'
-					},
-					legend : {
-						display : true,
-						position : 'top'
-					},
-					tooltip : {
-						enabled : true
-					}
-
-				},
-				layout : {
-					padding : {
-						left : 80,
-						right : 80,
-						top : 20,
-						bottom : 0
-					}
-				}
-
-			}
-		})
-
-		let barChartFour = new Chart(myChartFour, {
-			type : 'line', //pie, line, doughnut, polarArea
-			data : {
-				labels : [ '10대', '20대', '30대', '40대', '50대이상' ],
-				datasets : [ {
-					label : '도서 구매량',
-					data : [ 230, 110, 90, 300, 500 ],
-					backgroundColor : [ 'red', 'blue', 'green', 'yellow', 'brown' ],
-					borderWidth : 5,
-					borderColor : '#000',
-					hoverBorderWidth : 8
-
-				} ]
-			},
-			options : {
-				plugins : {
-					title : {
-						display : false,
-						text : '바올랩 매출',
-						fontSize : 30,
-						fontColor : 'red'
-					},
-					legend : {
-						display : true,
-						position : 'top'
-					},
-					tooltip : {
-						enabled : true
-					}
-
-				},
-				layout : {
-					padding : {
-						left : 0,
-						right : 0,
-						top : 0,
-						bottom : 0
-					}
-				}
-
-			}
-		})
+		
 	</script>
 	<!-- 차트 js 끝 -->
 </body>

@@ -7,12 +7,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.romance.user.event.EventVO;
+import com.romance.user.points.MyPointsSearchVO;
 
 @Repository
 public class EventDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 
+	public int confirmdate(MyPointsSearchVO my) {
+		return sqlSessionTemplate.selectOne("EventDAO.confirmdate", my);
+	}
+	
 	public void insertEvent(EventVO vo) {
 		System.out.println("---> MyBatis로 insertEvent() 기능 처리");
 		sqlSessionTemplate.insert("EventDAO.insertEvent", vo);

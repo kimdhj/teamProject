@@ -23,12 +23,12 @@ public class AdminUserDAO {
 		sqlSessionTemplate.update("AdminUserDAO.loginDay", user_id);
 	}
 	
-	public int isUserId(String inputId) {
-		return sqlSessionTemplate.selectOne("loggingUtils.isUserId", inputId);
+	public int isUserId(String login_log_id) {
+		return sqlSessionTemplate.selectOne("loggingUtils.isUserId", login_log_id);
 	}
 	
-	public AdminUserVO getLoginlogInfo(String inputId) {
-		return sqlSessionTemplate.selectOne("loggingUtils.getLoginlogInfo", inputId);
+	public AdminUserVO getLoginlogInfo(String login_log_id) {
+		return sqlSessionTemplate.selectOne("loggingUtils.getAdminLoginlogInfo", login_log_id);
 	}	
 	
 	public void insertLoginLog(LoginLogVO loginLogVO) {

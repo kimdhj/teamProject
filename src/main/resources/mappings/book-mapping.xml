@@ -93,7 +93,8 @@
 		select * from
 		book where book_seq=#{book_seq}
 	</select>
-	<select resultType="bookVO" parameterType="int" id="detailbooklist">
+	<select resultType="bookVO" parameterType="int"
+		id="detailbooklist">
 	<![CDATA[select * from (select *,@rownum:=@rownum+1 as rnum from (select
 		b.book_imgURL,b.book_price,b.category_num,b.book_bigimgURL,b.book_title,b.book_descript,b.book_seq,b.book_publish_date,sum(order_bookList_count)
 		as sum from book as b left join order_bookList
@@ -111,7 +112,30 @@
 		YEAR) ]]>
 	</select>
 	<select parameterType="int" resultType="int" id="chebookseq">
-		select count(*) from book where book_seq=#{book_seq}
+		select count(*)
+		from book where book_seq=#{book_seq}
+	</select>
+	<select resultType="bookVO" parameterType="mysubbookVO" id="subselbook">
+		select * from (select *, @rownum:=@rownum + 1 as rnum from book,(SELECT
+		@rownum:=0) TMP
+		<trim prefix="WHERE" prefixOverrides="OR">
+		<foreach collection="catelist" item="item" >
+ 				OR category_num=#{item} 
+		</foreach>
+		</trim>
+		 
+		) B where rnum=#{rnum}
+	</select>
+		<select resultType="int" parameterType="mysubbookVO" id="subselbookcount">
+		select count(*) from (select *, @rownum:=@rownum + 1 as rnum from book,(SELECT
+		@rownum:=0) TMP
+		<trim prefix="WHERE" prefixOverrides="OR">
+		<foreach collection="catelist" item="item" >
+ 				OR category_num=#{item} 
+		</foreach>
+		</trim>
+	
+		) B
 	</select>
 
 </mapper>

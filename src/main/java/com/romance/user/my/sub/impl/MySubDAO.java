@@ -9,6 +9,10 @@ import org.springframework.stereotype.Repository;
 import com.romance.user.book.BookSearchVO;
 import com.romance.user.book.BookVO;
 import com.romance.user.login.UserVO;
+import com.romance.user.my.sub.MySubBookVO;
+import com.romance.user.my.sub.SubPerVO;
+import com.romance.user.orders.OrderBookListVO;
+import com.romance.user.orders.OrdersVO;
 
 @Repository
 public class MySubDAO {
@@ -30,5 +34,32 @@ public class MySubDAO {
   }
 	public void subupdate(UserVO vo) {
 	  sqlSessionTemplate.update("user.subupdate",vo);
+	}
+	public int subselbookcount(MySubBookVO vo) {
+	  return sqlSessionTemplate.selectOne("book.subselbookcount", vo);
+	}
+	public BookVO subselbook(MySubBookVO vo) {
+    return sqlSessionTemplate.selectOne("book.subselbook", vo);
+  }
+	public List<Integer> suballcate(String user_id){
+	  return sqlSessionTemplate.selectList("usercategory.suballcate", user_id);
+	}
+	public void inssubper(SubPerVO vo) {
+	  sqlSessionTemplate.insert("SubscribeDAO.inssubper",vo);
+	}
+	public void delsubper(String user_id) {
+	  sqlSessionTemplate.delete("SubscribeDAO.delsubper",user_id);
+	}
+	public UserVO onesearch(String user_id) {
+	  return sqlSessionTemplate.selectOne("user.onesearch",user_id);
+	}
+	public void subinorder(UserVO vo) {
+	  sqlSessionTemplate.insert("order.subinorder",vo);
+	}
+	public int suborderseq(String user_id) {
+	  return sqlSessionTemplate.selectOne("order.suborderseq",user_id);
+	}
+	public void subinbook(OrderBookListVO vo) {
+	  sqlSessionTemplate.insert("order.subinbook",vo);
 	}
 }
