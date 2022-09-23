@@ -130,10 +130,13 @@
 			alias="purchaseJoin" />
 		<typeAlias type="com.romance.user.orders.PurchaseSearchVO"
 			alias="purchaseSearch" />
+    <typeAlias type="com.romance.user.my.sub.MySubBookVO"
+			alias="mysubbookVO" />
+			<typeAlias type="com.romance.user.my.sub.SubPerVO"
+			alias="subperVO" />
 		<typeAlias type="com.romance.admin.log.LoginLogVO" alias="loginLogVO" />
 		<typeAlias type="com.romance.admin.log.WorkLogVO" alias="workLogVO" />
 		<typeAlias type="com.romance.admin.log.PaymentLogVO" alias="paymentLogVO" />
-
 	</typeAliases>
 
 
