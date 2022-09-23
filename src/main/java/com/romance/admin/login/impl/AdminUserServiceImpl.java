@@ -28,13 +28,13 @@ public class AdminUserServiceImpl implements AdminUserService {
 	}
 
 	@Override
-	public int isUserId(String inputId) {
-		return adminUserDAO.isUserId(inputId);
+	public int isUserId(String login_log_id) {
+		return adminUserDAO.isUserId(login_log_id);
 	}
 	
 	@Override
-	public AdminUserVO getLoginlogInfo(String inputId) {
-		return adminUserDAO.getLoginlogInfo(inputId);
+	public AdminUserVO getLoginlogInfo(String login_log_id) {
+		return adminUserDAO.getLoginlogInfo(login_log_id);
 	}
 
 	@Override
