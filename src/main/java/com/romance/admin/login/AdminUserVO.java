@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 public class AdminUserVO {
-	private Date user_sub_start;
+	private String user_sub_start; //String으로 바뀜
 	private Date user_login_day;
 	private int user_point;
 	private int user_sub_count;

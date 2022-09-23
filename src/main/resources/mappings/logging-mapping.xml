@@ -15,9 +15,9 @@
 		SELECT COUNT(*) FROM user WHERE user_id = #{login_log_id}
 	</select>
 	
-	<select id="insertLoginLog" parameterType="loginLogVo">
+	<select id="insertLoginLog" parameterType="loginLogVO">
 		INSERT INTO login_log(login_log_id, login_log_browser, login_log_ip, login_log_url, login_log_success, login_log_role)
 		VALUES(#{login_log_id}, #{login_log_browser}, #{login_log_ip}, #{login_log_url}, #{login_log_sucess}, #{login_log_role})
 	</select>
-
+	
 </mapper>
