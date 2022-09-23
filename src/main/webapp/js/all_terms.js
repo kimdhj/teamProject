@@ -1,32 +1,23 @@
 
 
-function movingSub() {
+function sub_terms() {
 	$.ajax({
 		url: "/getUid.do",
 		method: "POST",
-		dataType: "JSON",
-		async: false,
-		success: function(e) {
-			console.log(e);
-			let user_id = e.user_id;
-			let user_sub = e.user_sub;
-			
-			if(user_id=="null"){
+		success: function(vo) {
+			let user_id = vo.user_id;
+			let user_sub = vo.user_sub;
+			if(user_id==null){		
 				location.href="/login.do";
-			}else{
-				if(user_sub=="1"){
+			}else{							
+				if(user_sub==1){
 					alert("이미 구독중입니다!");
-				}else{
-					location.href="/mysubpay.do";
+				}else{							
+					location.href="/sub_terms.do";
 				}
 			}
-			console.log(user_id);
-			console.log(user_sub);
-
 		},
-		error: function(e) {
-
-
+		error: function() {
 		}
 	});
 	
@@ -50,5 +41,14 @@ function movingJoin(){
 		alert("약관에 모두 동의해 주십시오!");
 	}else{
 		location.href="/join.do";
+	}
+}
+//동의 클릭시 체크박스 검증후 이동
+function movingSub(){
+	
+	if($('.ccheck:checked').length != $('.ccheck').length){
+		alert("약관에 모두 동의해 주십시오!");
+	}else{
+		location.href="/mysubpay.do";
 	}
 }

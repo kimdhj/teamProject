@@ -4,6 +4,7 @@ import java.util.List;
 
 public interface AddTermsService {
 
-	List<termsVO> getAddTerms();
+	List<TermsVO> getAddTerms();
+	List<TermsVO> getAddsubTerms();
 	
 }

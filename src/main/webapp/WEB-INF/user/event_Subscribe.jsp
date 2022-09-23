@@ -84,7 +84,7 @@
                 type="button"
                 id="1month_sub"
                 value="구독 시작!"
-                onclick="movingSub();"
+                onclick="sub_terms();"
               />
             </div>
             <div class="row d-flex justify-content-center">

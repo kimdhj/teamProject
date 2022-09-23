@@ -6,5 +6,8 @@
 	<select id="getJoin_terms" resultType="termsVO">
 		select * from terms where terms_title LIKE CONCAT('%', '회원가입', '%') AND terms_state = 1 ORDER BY terms_article_number
 	</select>
+	<select id="getSub_terms" resultType="termsVO">
+		select * from terms where terms_title LIKE CONCAT('%', '구독', '%') AND terms_state = 1 ORDER BY terms_article_number
+	</select>
 
 </mapper>

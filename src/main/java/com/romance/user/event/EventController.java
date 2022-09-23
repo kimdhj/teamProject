@@ -18,7 +18,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.romance.admin.sub.SubscribeService;
 import com.romance.admin.sub.SubscribeVO;
-import com.romance.admin.terms.termsVO;
 import com.romance.server.AwsS3;
 
 
