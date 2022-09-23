@@ -10,6 +10,8 @@ public interface LogService {
 	
 	//작업로그 토탈
 	public int getWorkTotalCount() throws Exception;
+	//작업로그 목록
+	public List<WorkLogVO> getWorkLogList(Criteria criteria) throws Exception;
 	
 	//결제로그 토탈
 //	public int getPaymentTotalCount() throws Exception;

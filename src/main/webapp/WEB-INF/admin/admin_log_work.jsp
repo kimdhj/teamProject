@@ -89,15 +89,15 @@
 					</tr>
 				</thead>		
 				<tbody>
-					<%-- <c:forEach var="" items=""> --%>
+					<c:forEach var="workList" items="${workLogList}">
 							<tr>
-								<td>1</td>
-								<td>aaa</td>
-								<td>성공</td>
-								<td>asdlkfj</td>
-								<td>aldsfjasl;fkjaslfjdlas;fj</td>
+								<td>${workList.work_log_seq}</td>
+								<td>${workList.work_log_id}</td>
+								<td>${workList.work_log_target_id}</td>
+								<td>${workList.work_log_contents}</td>
+								<td>${workList.work_log_day}</td>
 							</tr>
-					<%-- </c:forEach> --%>
+					</c:forEach>
 				</tbody>
 			</table>
 		</div>
@@ -110,16 +110,16 @@
 						</a></li> -->
 						<c:if test="${pagination.prev}">
 							<li class="page-item"><a class="page-link"
-								href="<c:url value="/getAdmin_member_List.mdo?searchCondition=${pagination.criteria.getSearchCondition() }&searchKeyword=${pagination.criteria.getSearchKeyword() }&pageNum=${pagination.startPage - 1 }&selectCondition=${pagination.criteria.getSelectCondition()}" />">이전</a></li>
+								href="<c:url value="/adminWorkLog.mdo?searchCondition=${pagination.criteria.getSearchCondition() }&searchKeyword=${pagination.criteria.getSearchKeyword() }&pageNum=${pagination.startPage - 1 }&selectCondition=${pagination.criteria.getSelectCondition()}" />">이전</a></li>
 						</c:if>
 						<c:forEach begin="${pagination.startPage}"
 							end="${pagination.endPage}" var="pageNum">
 							<li class="page-item"><a class="page-link"
-								href="<c:url value="/getAdmin_member_List.mdo?searchCondition=${pagination.criteria.getSearchCondition() }&searchKeyword=${pagination.criteria.getSearchKeyword() }&pageNum=${pageNum}&selectCondition=${pagination.criteria.getSelectCondition()}" />">${pageNum}</a></li>
+								href="<c:url value="/adminWorkLog.mdo?searchCondition=${pagination.criteria.getSearchCondition() }&searchKeyword=${pagination.criteria.getSearchKeyword() }&pageNum=${pageNum}&selectCondition=${pagination.criteria.getSelectCondition()}" />">${pageNum}</a></li>
 						</c:forEach>
 						<c:if test="${pagination.next && pagination.endPage > 0}">
 							<li class="page-item"><a class="page-link"
-								href="<c:url value="/getAdmin_member_List.mdo?searchCondition=${pagination.criteria.getSearchCondition() }&searchKeyword=${pagination.criteria.getSearchKeyword() }&pageNum=${pagination.endPage + 1 }&selectCondition=${pagination.criteria.getSelectCondition()}" />">다음</a></li>
+								href="<c:url value="/adminWorkLog.mdo?searchCondition=${pagination.criteria.getSearchCondition() }&searchKeyword=${pagination.criteria.getSearchKeyword() }&pageNum=${pagination.endPage + 1 }&selectCondition=${pagination.criteria.getSelectCondition()}" />">다음</a></li>
 						</c:if>
 						<!-- <a class="page-link" href="#" aria-label="Next"> <span
 							aria-hidden="true">&raquo;</span>

@@ -36,7 +36,11 @@ public class LogController {
 	public String adminWorkLog(Criteria criteria, Model model, HttpSession session, JwtUtils utils) throws Exception {
 		AdminUserVO voToken = utils.getAdmin(session);
 		if(voToken != null) {
-		
+			Pagination pagination = new Pagination();
+			pagination.setCriteria(criteria);
+			pagination.setTotalCount(logService.getWorkTotalCount());
+			model.addAttribute("pagination", pagination);
+			model.addAttribute("workLogList", logService.getWorkLogList(criteria));
 			return "admin_log_work";
 		} else {
 			return "redirect:admin_login.mdo";
