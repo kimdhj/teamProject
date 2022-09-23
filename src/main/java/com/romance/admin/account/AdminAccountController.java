@@ -171,7 +171,6 @@ public class AdminAccountController {
 		AdminUserVO voToken = utils.getAdmin(session);
 		if(voToken != null) {
 			System.out.println("계정정보 수정");
-			System.out.println("키워드 : " + criteria.getSearchKeyword());
 			if(vo.getUser_password() != null && !vo.getUser_password().equals("")) { // 입력비밀번호 null값, ''빈문자열 아닐경우에만 암호화 진행
 				vo.setUser_password(bCryptPasswordEncoder.encode(vo.getUser_password()));
 			}
@@ -181,6 +180,10 @@ public class AdminAccountController {
 			System.out.println("쿼리스트링 : " + queryString);
 			System.out.println(">>>>>뭐가뭐가들어갔나" + vo);
 			adminAccountService.updateUserAccount(vo);
+			
+			//회원정보 수정로그
+			userInfoWorkLog(vo, voToken); //View에서 받아온 정보와, 세션정보를 파라미터로 보낸다
+	
 			return "redirect:getAdmin_member_Detail.mdo" + queryString;
 		} else {
 			return "redirect:admin_login.mdo";
@@ -300,13 +303,28 @@ public class AdminAccountController {
 			userVO.setUser_id(user_id);
 			userVO.setUser_point(user_point);
 			adminAccountService.deleteUserPoint(userVO);
-			
 			returnValue = 1;
+
 			return returnValue;
 		} else {
 			//returnValue가 false일 경우 보유포인트보다 차감포인트가 더 크거나, 다시로그인해야함
 			returnValue = 2;
 			return returnValue;
+		}
+		
+	}
+	
+	//View에서 받아온 정보와 Session정보를 받아서 작업
+	public void userInfoWorkLog(AdminUserVO vo, AdminUserVO voToken) throws Exception {
+		if(voToken != null) {
+			String work_log_id = voToken.getUser_id();
+			String work_log_target_id = vo.getUser_id();
+			String work_log_contents = "회원정보수정";
+			System.out.println("작업자 아이디 : " + work_log_id);			
+			System.out.println("작업대상 아이디 : " + work_log_target_id);			
+			System.out.println("작업 내용 : " + work_log_contents);
+		} else {
+			System.out.println("토큰값 없음");
 		}
 		
 	}

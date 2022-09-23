@@ -107,6 +107,9 @@
 								<c:if test="${adminAccount.user_sub == 1}">
 									<td>구독</td>
 								</c:if>
+								<c:if test="${adminAccount.user_sub == 2}">
+									<td>관리자</td>
+								</c:if>
 								<c:if test="${adminAccount.user_state == 0}">
 									<td>정상</td>
 								</c:if>

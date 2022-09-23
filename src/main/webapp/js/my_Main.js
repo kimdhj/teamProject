@@ -71,7 +71,7 @@ $("#myCartTab").on("click", function(){
 });
 
 $("#myRecentRequestTab").on("click", function(){
-	
+	console.log("클릭은됨");
 	$.ajax({
 		url:"/myRecentRequest.do",
 		type:"post",
@@ -82,26 +82,29 @@ $("#myRecentRequestTab").on("click", function(){
 			//실행할때마다 중복값이 중첩되어서 출력되는것을 방지하기위해 초기화 해준다.
 			$("#tbodyRequestTab").empty();
 			let myRequestHtml = "";
-			
-			for(let i = 0; i < myRecentRequest.length; i++) {
-				console.log(myRecentRequest[i]);
-				//받아온 객체배열을 하나씩 꺼내서 변수로 저장한다.
-				let ask_seq = myRecentRequest[i].ask_seq;
-				let ask_title = myRecentRequest[i].ask_title;
-				let ask_status = myRecentRequest[i].ask_status;
-				let ask_dateToString = myRecentRequest[i].ask_dateToString;
-				
-				//Backtick 기호를 활용하여 ${}를 사용하여 변수를 받고 <a>태그로 링크걸기
-				myRequestHtml += `<tr><td>${ask_seq}</td>
-				<td><a href="/myRequestDetail.do?ask_seq=${ask_seq}">${ask_title}</a></td>
-				<td>${ask_status}</td><td>${ask_dateToString}</td></tr>`;
-				$("#tbodyRequestTab").html(myRequestHtml);
-				
-				//링크걸기 실패
-//				//id값이 tbody인 <table id="tbody"></table> 안에 넣어줄 html
-//				$("#tbodyRequestTab").append("<tr><td>" + ask_seq 
-//						+ "</td><td>" + ask_title + "</td><td>" + ask_status 
-//						+ "</td><td>" + ask_dateToString + "</td></tr>");
+			if(myRecentRequest.length > 0) {
+				for(let i = 0; i < myRecentRequest.length; i++) {
+					console.log(myRecentRequest[i]);
+					//받아온 객체배열을 하나씩 꺼내서 변수로 저장한다.
+					let ask_seq = myRecentRequest[i].ask_seq;
+					let ask_title = myRecentRequest[i].ask_title;
+					let ask_status = myRecentRequest[i].ask_status;
+					let ask_dateToString = myRecentRequest[i].ask_dateToString;
+					
+					//Backtick 기호를 활용하여 ${}를 사용하여 변수를 받고 <a>태그로 링크걸기
+					myRequestHtml += `<tr><td>${ask_seq}</td>
+					<td><a href="/myRequestDetail.do?ask_seq=${ask_seq}">${ask_title}</a></td>
+					<td>${ask_status}</td><td>${ask_dateToString}</td></tr>`;
+					$("#tbodyRequestTab").html(myRequestHtml);
+					
+					//링크걸기 실패
+//					//id값이 tbody인 <table id="tbody"></table> 안에 넣어줄 html
+//					$("#tbodyRequestTab").append("<tr><td>" + ask_seq 
+//							+ "</td><td>" + ask_title + "</td><td>" + ask_status 
+//							+ "</td><td>" + ask_dateToString + "</td></tr>");
+				}
+			} else {
+				alert("문의한 게시물이 없다이자시가");
 			}
 			
 		},
