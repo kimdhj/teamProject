@@ -53,6 +53,12 @@
 		VALUES(#{work_log_id}, #{work_log_target_id}, #{work_log_contents})
 	</insert>
 	
+	<!-- 결제로그 입력 공통 쿼리 -->
+	<insert id="insertPaymentLog" parameterType="paymentLogVO">
+		INSERT INTO payment_log(payment_log_id, payment_log_money, payment_log_contents)
+		VALUES(#{payment_log_id}, #{payment_log_money}, #{payment_log_contents})
+	</insert>
+	
 	<select id="forDeleteCoupon" parameterType="int" resultType="userCouponVO">
 		SELECT * FROM user_coupon WHERE user_coupon_seq = #{user_coupon_seq}
 	</select>
@@ -71,4 +77,14 @@
 	<select id="getWorkLogList" parameterType="criteria" resultMap="workLogResult">
 		SELECT * FROM work_log ORDER BY work_log_seq DESC LIMIT #{pageStart}, #{perPageNum}
 	</select>
+	
+	<select id="getPaymentTotalCount" resultType="int">
+		SELECT COUNT(*) FROM payment_log
+	</select>
+	
+	<select id="getPaymentLogList" parameterType="criteria" resultMap="paymentLogResult">
+		SELECT * FROM payment_log ORDER BY payment_log_seq DESC LIMIT #{pageStart}, #{perPageNum}
+	</select>
+	
+	
 </mapper>

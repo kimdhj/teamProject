@@ -14,6 +14,8 @@ public interface LogService {
 	public List<WorkLogVO> getWorkLogList(Criteria criteria) throws Exception;
 	
 	//결제로그 토탈
-//	public int getPaymentTotalCount() throws Exception;
+	public int getPaymentTotalCount() throws Exception;
+	//결제로그 목록
+	public List<PaymentLogVO> getPaymentLogList(Criteria criteria) throws Exception;
 	
 }

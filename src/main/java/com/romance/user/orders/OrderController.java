@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.romance.admin.log.LoggingService;
+import com.romance.admin.log.PaymentLogVO;
 import com.romance.security.JwtUtils;
 import com.romance.user.login.UserVO;
 import com.romance.user.my.delivery.DeliveryVO;
@@ -27,6 +29,9 @@ import com.romance.user.my.delivery.DeliveryVO;
 public class OrderController {
 	@Autowired
 	OrderService ser;
+	
+	@Autowired
+	LoggingService loggingService; //로그입력 서비스
 
 	@GetMapping("bookpay.do")
 	public String bookpay(@RequestParam(value = "book_seq")List<Integer> book_seq,@RequestParam(value = "book_count")List<Integer> book_count,int iscart,Model model,HttpSession session,JwtUtils util) throws IOException {
@@ -99,10 +104,14 @@ public class OrderController {
 		return "redirect:bookfin.do";
 	}
 	@GetMapping("bookfin.do")
-	public String bookfin(HttpSession session,Model model) {
+	public String bookfin(HttpSession session,Model model) throws Exception {
 		
 		model.addAttribute("result", session.getAttribute("result"));
 		System.out.println(session.getAttribute("result"));
+		
+		//세션 끊기기 전에 로그메서드 호출
+		bookPaymentLog(session);
+		
 		session.removeAttribute("result");
 		return "book_Finish";
 	}
@@ -111,4 +120,32 @@ public class OrderController {
 	public DeliveryVO seldeli(int seq) {
 	  return ser.seledelivery(seq);
 	}
+	
+	//책 결제 로그
+	public void bookPaymentLog(HttpSession session) throws Exception {
+		OrdersVO vo = (OrdersVO) session.getAttribute("result");
+		System.out.println(">>>>>주문정보 출력 : " + session.getAttribute("result"));
+		System.out.println(">>>>>유저아이디 출력 : " + vo.getUser_id());
+		
+		//로그 입력내용
+		String payment_log_id = vo.getUser_id(); //구매자
+		int payment_log_money = vo.getOrders_cache_sum(); //총 결제금액
+		String payment_log_contents = "";
+		payment_log_contents += "[책 구매] "
+								+ "결제수단 : " + vo.getOrders_cache_tool()
+								+ "포인트 사용 : " + vo.getOrders_point()
+								+ ", 포인트 적립 : " + vo.getOrders_add_point()
+								+ ", 주문내용 : " + vo.getOrders_title();
+		
+		PaymentLogVO paymentVO = new PaymentLogVO();
+		paymentVO.setPayment_log_id(payment_log_id);
+		paymentVO.setPayment_log_money(payment_log_money);
+		paymentVO.setPayment_log_contents(payment_log_contents);
+		
+		//입력 메서드 호출
+		loggingService.insertPaymentLog(paymentVO);
+		
+	}
+	
+	
 }
