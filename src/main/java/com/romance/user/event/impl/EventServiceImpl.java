@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.romance.server.AwsS3;
 import com.romance.user.event.EventService;
 import com.romance.user.event.EventVO;
+import com.romance.user.points.MyPointsSearchVO;
 
 @Service("EventService")
 public class EventServiceImpl implements EventService {
@@ -18,6 +19,12 @@ public class EventServiceImpl implements EventService {
 	@Autowired
 	private EventDAO EventDAO;
 
+	
+	@Override
+	public int confirmdate(MyPointsSearchVO my) {
+		return EventDAO.confirmdate(my);
+	}
+	
 	@Override
 	public void insertEvent(EventVO vo) {
 		EventDAO.insertEvent(vo);

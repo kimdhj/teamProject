@@ -4,6 +4,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
+import com.romance.user.points.MyPointsSearchVO;
+
 public interface EventService {
 	
 	void insertEvent(EventVO vo);
@@ -16,5 +18,6 @@ public interface EventService {
 	void topEvent(List<String> event_seq);
 	void ajaxDel(int del) throws FileNotFoundException, IOException;
 	int topCheck(EventVO vo);
+	int confirmdate(MyPointsSearchVO my);
 	
 }
