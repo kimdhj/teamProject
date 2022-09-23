@@ -3,7 +3,11 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="loggingUtils">
 	
-	<select id="getLoginlogInfo" parameterType="string" resultType="adminUserVO">
+	<select id="getAdminLoginlogInfo" parameterType="string" resultType="adminUserVO">
+		SELECT user_id, user_password, user_role FROM user WHERE user_id = #{inputId}
+	</select>
+	
+	<select id="getUserLoginlogInfo" parameterType="string" resultType="userVO">
 		SELECT user_id, user_password, user_role FROM user WHERE user_id = #{inputId}
 	</select>
 	
