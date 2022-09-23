@@ -131,7 +131,10 @@
 			alias="purchaseJoin" />
 		<typeAlias type="com.romance.user.orders.PurchaseSearchVO"
 			alias="purchaseSearch" />
-
+<typeAlias type="com.romance.user.my.sub.MySubBookVO"
+			alias="mysubbookVO" />
+			<typeAlias type="com.romance.user.my.sub.SubPerVO"
+			alias="subperVO" />
 	</typeAliases>
 
 

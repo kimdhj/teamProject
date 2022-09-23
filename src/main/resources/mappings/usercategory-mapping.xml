@@ -5,7 +5,9 @@
 <insert parameterType="usercategoryVO" id="joininsert">
 	insert into user_category(category_num,user_id) values(#{category_num},#{user_id})
 </insert>
-	
+	<select resultType="int" parameterType="String" id="suballcate">
+		select category_num from user_category where user_id=#{user_id}
+	</select>
 
 
 

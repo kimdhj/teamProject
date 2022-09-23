@@ -28,6 +28,11 @@
 		YEAR)) E where rnum>(#{page}-1)*8 AND rnum<=#{page}*8 order by
 		book_seq]]>
 	</select>
-
+	<delete parameterType="String" id="delsubper">
+	delete from subscribe_person where user_id=#{user_id}
+	</delete>
+	<insert parameterType="subperVO" id="inssubper">
+		insert into subscribe_person(user_id,book_seq) values(#{user_id},#{book_seq})
+	</insert>
 
 </mapper>
