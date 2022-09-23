@@ -7,10 +7,10 @@ public interface AdminUserService {
 	public void loginDay(String user_id);
 	
 	//로그인시 입력아이디가 존재하는아이디인지 확인
-	public int isUserId(String inputId);
+	public int isUserId(String login_log_id);
 	
 	//로그인 성공실패 및 user_role을 가져오기 위함.
-	public AdminUserVO getLoginlogInfo(String inputId);
+	public AdminUserVO getLoginlogInfo(String login_log_id);
 	
 	//로그인 로그 삽입
 	public void insertLoginLog(LoginLogVO loginLogVO);
