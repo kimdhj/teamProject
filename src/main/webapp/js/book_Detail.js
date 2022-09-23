@@ -74,8 +74,16 @@ $(function() {
 								</div>
 								<div id="thumb_count" class="col-4">좋아요${re.finecount}</div>
 							</div>
-							<div id="review_textBox" class="row">
-								${re.reply_cotent}</div>
+							<div id="review_textBox" class="row">`
+						if (re.user_blank==false){
+							constr += `${re.reply_cotent}`
+						}
+		              
+		              if(re.user_blank!=false){
+		            	  constr += ` <div id="blankreview">블랙 처리된 리뷰입니다. 고객센터로 문의 주세요</div>`
+		              }
+		             
+					constr += `</div>
 						</div>
 					</div>`;
 					id++;
