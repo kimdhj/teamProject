@@ -57,11 +57,11 @@
 				<div class="row d-flex">
 					<div class="col-3"></div>
 					<div class="col-2">
-							<button type="button" class="btn btn-success btn-sm" onclick="movingJoin();">동의</button>
+							<button type="button" class="btn btn-success btn-sm" onclick="moving${oc}();">동의</button>
 					</div>
 					<div class="col-2"></div>
 					<div class="col-2">
-						<a href="/login.do">
+						<a href="/login.do"> 	
 							<button type="button" class="btn btn-secondary btn-sm">취소</button>
 						</a>
 					</div>
