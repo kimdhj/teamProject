@@ -1,0 +1,87 @@
+@charset "UTF-8";
+
+#review_name {
+	margin-top: 4%;
+}
+
+#review_name2 {
+	margin-top: 10%;
+}
+
+#review_title {
+	margin-top: 2%;
+	margin-bottom: 2%;
+}
+
+.review_img {
+	margin: auto;
+}
+
+.review_hr {
+	border: 1px solid black;
+	border-bottom: 0px;
+	border-right: 0px;
+	border-left: 0px;
+	margin-top: 2%;
+	margin-bottom: 2%;
+}
+
+#review_textarea {
+	margin-bottom: 1.5%;
+	font-size: 1vw;
+}
+
+#review_btn {
+	margin-bottom: 2%;
+}
+
+.note-color-all button.active +.note-dropdown-menu>div:nth-child(2) {
+
+   display:none !important;
+}
+.note-color-all button.active +.note-dropdown-menu {
+
+   min-width:0px !important;
+}
+.note-current-fontsize + .note-icon-caret:before,.note-current-fontname + .note-icon-caret:before, .note-icon-table + .note-icon-caret:before, .note-icon-align-left + .note-icon-caret:before, .note-icon-text-height + .note-icon-caret:before{
+	content: "" !important;
+}
+
+.note-current-color-button + .dropdown-toggle:after{
+	content:none !important;
+}
+
+#input_line_top *{
+	font-size: 0.8vw;
+}
+#review_btn>* {
+	margin-right: 10%;
+}
+
+.review_box{
+	background-color: rgb(247, 247, 247);
+	border-radius: 15px;
+	height: 220px;
+}
+
+.note-color-all button.active +.note-dropdown-menu>div:nth-child(2) {
+
+   display:none !important;
+}
+.note-color-all button.active +.note-dropdown-menu {
+
+   min-width:0px !important;
+}
+
+.note-frame{
+	padding: 0px;
+}
+
+.note-resizebar{
+	display: none;
+}
+
+
+#myform{
+	pointer-events : none;
+}

@@ -42,16 +42,16 @@ public class UserReplyController {
   public String reviewInsert(BookVO bvo, ReplyVO vo, PurchaseJoinVO blvo , ReplyJoinVO rjvo, Model model, HttpSession session, JwtUtils util) throws IOException {
     UserVO userVO = util.getuser(session);
 
-    System.out.println("insertVOVOVOVO : " + vo);
-    System.out.println("blvo : " + blvo);
+//    System.out.println("insertVOVOVOVO : " + vo);
+//    System.out.println("blvo : " + blvo);
 
     rjvo.setUser_id(userVO.getUser_id());
     
-    System.out.println("정보 가져갈 번호 = " + bvo.getBook_seq());
-    System.out.println("책 정보 = " + service.getBookInfo(bvo));
+//    System.out.println("정보 가져갈 번호 = " + bvo.getBook_seq());
+//    System.out.println("책 정보 = " + service.getBookInfo(bvo));
     
-    System.out.println();
-    System.out.println("review rjvo === " + rjvo + "\n");
+//    System.out.println();
+//    System.out.println("review rjvo === " + rjvo + "\n");
     
     model.addAttribute("info", service.getBookInfo(bvo)); 
     model.addAttribute("bs", blvo);
@@ -77,6 +77,39 @@ public class UserReplyController {
     return "redirect:bookdetail.do?book_seq=" + vo.getBook_seq();
   }
   
+  @RequestMapping("/myreviewUpdate.do")
+  public String goUpdate(HttpSession session, ReplyJoinVO rjvo, JwtUtils util, Model model, ReplyVO vo, BookVO bvo) throws IOException {
+    UserVO userVO = util.getuser(session);
+    
+    System.out.println();
+    System.out.println("update 사이트 왔다아아");
+    System.out.println(service.doubleReply(rjvo));
+//    System.out.println(service.getBookInfo(bvo));
+    System.out.println();
+    
+    vo.setUser_id(userVO.getUser_id());
+    
+    model.addAttribute("info", service.getBookInfo(bvo));
+    model.addAttribute("reply", service.doubleReply(rjvo));
+//    model.addAttribute("bs", blvo);
+    
+    return "my_PurchaseReviewUpdate";
+  }
+  
+  @PostMapping("/replyUpdate.do")
+  public String replyUpdate(ReplyVO vo, HttpSession session, JwtUtils util, Model model) throws IOException {
+    UserVO userVO = util.getuser(session);
+    
+    System.out.println();
+//    System.out.println("replyUpdate : " +  vo);
+    System.out.println();
+    
+    vo.setUser_id(userVO.getUser_id());
+    
+    service.reviewUpdate(vo);
+    
+    return "redirect:bookdetail.do?book_seq=" + vo.getBook_seq();
+  }
   
   
 }

@@ -68,4 +68,13 @@ public class ReplyDAO {
   public void reviewStateUpdate(OrderBookListVO blvo) {
     sqlSession.update("ReplyDAO.reviewStateUpdate", blvo);
   }
+  
+  public void reviewUpdate(ReplyVO vo) {
+    sqlSession.update("ReplyDAO.reviewUpdate", vo);
+  }
+  
+  public ReplyVO doubleReply(ReplyJoinVO rjvo) {
+   return sqlSession.selectOne("ReplyDAO.doubleReply", rjvo);
+  }
+  
 }

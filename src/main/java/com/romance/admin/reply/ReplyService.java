@@ -22,5 +22,6 @@ public interface ReplyService {
   void insert(ReplyVO vo); // review 작성
   BookVO getBookInfo(BookVO vo); // 책 상세정보 가져옴
   void reviewStateUpdate(OrderBookListVO blvo);
- 
+  void reviewUpdate(ReplyVO vo); // review 업데이트
+  ReplyVO doubleReply(ReplyJoinVO rjvo);
 }
