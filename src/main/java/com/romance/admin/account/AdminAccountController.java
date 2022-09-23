@@ -179,11 +179,14 @@ public class AdminAccountController {
 			String queryString = "?user_id=" + vo.getUser_id() + "&pageNum=" + criteria.getPageNum() + "&searchCondition=" + criteria.getSearchCondition() + "&searchKeyword=" + encodedSearchKeyword + "&selectCondition=" + criteria.getSelectCondition();
 			System.out.println("쿼리스트링 : " + queryString);
 			System.out.println(">>>>>뭐가뭐가들어갔나" + vo);
+			
+			//회원정보 수정로그 (수정전에 체크하여 변경전 값 기록)
+			userInfoWorkLog(vo, voToken); //View에서 받아온 정보와, 세션정보를 파라미터로 보낸다
+			
+			//회원정보 수정
 			adminAccountService.updateUserAccount(vo);
 			
-			//회원정보 수정로그
-			userInfoWorkLog(vo, voToken); //View에서 받아온 정보와, 세션정보를 파라미터로 보낸다
-	
+			
 			return "redirect:getAdmin_member_Detail.mdo" + queryString;
 		} else {
 			return "redirect:admin_login.mdo";
@@ -317,6 +320,9 @@ public class AdminAccountController {
 	//View에서 받아온 정보와 Session정보를 받아서 작업
 	public void userInfoWorkLog(AdminUserVO vo, AdminUserVO voToken) throws Exception {
 		if(voToken != null) {
+			//변경전 데이터 받아오기
+			System.out.println(">>>>>토큰에서 받아온 값" + voToken);
+			
 			String work_log_id = voToken.getUser_id();
 			String work_log_target_id = vo.getUser_id();
 			String work_log_contents = "회원정보수정";
