@@ -29,9 +29,9 @@
 			
 			<div
 						class="col-auto button-field d-flex justify-content-center mt-5 mb-5">
-						<button  class="change me-5">아이디/비밀번호 찾기</button>
+						<button  class="change me-5" onclick="location.href='/findaccount.do'">아이디/비밀번호 찾기</button>
 						<input type="hidden" name="user_id" value="${id}"/>
-						<button  class="cancel">메인 화면</button>
+						<button  class="cancel" onclick="location.href='/index.do'">메인 화면</button>
 					</div>
 	
 

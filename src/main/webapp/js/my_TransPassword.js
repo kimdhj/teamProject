@@ -43,7 +43,7 @@ function passwordChanged() {
 }
 
 function passwordChangedForm() {
-	alert("체크포인트 값 1이면 확인한것! : " + checkPoint);//체크포인트 값 확인 (1일경우에만 수정가능 하도록)
+//	alert("체크포인트 값 1이면 확인한것! : " + checkPoint);//체크포인트 값 확인 (1일경우에만 수정가능 하도록)
 	let user_now_password = document.getElementById("user_now_password");
 	let user_password = document.getElementById("user_password");
 	let user_passwordCheck = document.getElementById("user_passwordCheck");
@@ -52,9 +52,13 @@ function passwordChangedForm() {
 	const reg_password = /(?=.*[a-zA-ZS])(?=.*?[#?!@$%^&*-]).{8,24}/; //문자, 특수문자 조합의 8~24자리
 	
 	if(checkPoint == 0) {
-		alert("비밀번호 확인을 눌러주세요");
+		Swal.fire({
+			text: "비밀번호 확인을 눌러주세요.",
+			icon: "warning"
+		})
+//		alert("비밀번호 확인을 눌러주세요");
 		return false;
-	} else {
+	} else {ㅉ
 		if(user_now_password.value.length == 0) {
 			alert("기존 비밀번호를 입력하세요");
 			user_now_password.focus();
@@ -94,7 +98,7 @@ function passwordChangedForm() {
 }
 
 function checkPassword(){
-	alert("비밀번호 확인 시작");
+//	alert("비밀번호 확인 시작");
 	let user_now_password = $("#user_now_password").val();
 	console.log(user_password);
 	
@@ -125,7 +129,11 @@ function checkPassword(){
 			}
 		},
 		error:function(){
-			alert("에러다이자시가");
+			Swal.fire({
+				text: "에러",
+				icon: "error"
+			})
+		//	alert("에러다이자시가");
 			return false;
 		}
 			

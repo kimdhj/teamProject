@@ -46,7 +46,7 @@
 							<c:if test="${myOrder.orders_status eq 'ready'}">배송준비</c:if> <c:if
 								test="${myOrder.orders_status eq 'arrival'}">배송완료</c:if></td>
 						<td><a
-							href="/myOrderDetail.do?orders_seq=${myOrder.orders_seq}">
+							href="/myPurchaseDetail.do?orders_seq=${myOrder.orders_seq}">
 								<button type="button" class="btn btn-warning" id="checkArrival"
 									name="checkArrival">조회</button>
 						</a></td>
