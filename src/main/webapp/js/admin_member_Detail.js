@@ -21,8 +21,6 @@ function adminAccountCheck() { //유효성 검사
 	let user_passwordCheck = document.getElementById("user_passwordCheck");
 	let user_phone = document.getElementById("user_phone");
 	let user_email = document.getElementById("user_email");
-	let user_point = document.getElementById("user_point");
-	alert("되냐?");
 	//유효성 정규표현식
 //	//이름
 //	const reg_name_kor = /^[가-힣]+$/; //한글만
@@ -42,7 +40,7 @@ function adminAccountCheck() { //유효성 검사
 	const reg_tel = /^\d{2,3}\d{3,4}\d{4}$/; //일반전화
 	
 	//주민번호
-	const reg_registrationNum = /([0-9]{2}(0[1-9]|1[0-2])(0[1-9]|[1,2][0-9]|3[0,1]))/; //주민번호
+//	const reg_registrationNum = /([0-9]{2}(0[1-9]|1[0-2])(0[1-9]|[1,2][0-9]|3[0,1]))/; //주민번호
 	
 //	if(user_name.value == "") {
 //		alert("이름을 입력하세요");
@@ -83,6 +81,9 @@ function adminAccountCheck() { //유효성 검사
 //		return false;
 //	}
 	
+	
+	
+	
 // 비밀번호가 빈값일 경우에는 체크하지않음 (유저정보 업데이트 할때 비밀번호가 null, '' 빈값 이면 비밀번호 변경 안되도록 쿼리문 수정
 // 비밀번호 빈값 허용(빈값이 아닐경우에만 정규식 적용)
 	if(user_password.value != ""){
@@ -118,24 +119,19 @@ function adminAccountCheck() { //유효성 검사
 		alert("이메일을 다시 입력해주세요");
 		user_email.focus();
 		return false;
-	}	
-	
-	if(user_point.value == "") {
-		alert("포인트가 비어있습니다.");
-		user_point.focus();
-		return false;
 	}
 	
+	//수정확인
 	if(confirm("정말 수정하시겠습니까?") == true) {
 //		alert("수정이 완료되었습니다.")
 		Swal.fire({
 			text: "수정이 완료되었습니다.",
 			icon: "success"
 		})
+		console.log("수정확인 누름");
 	} else {
 		return false;
 	}
-	
 }//유효성검사 끝
 
 //쿠폰삭제
@@ -164,6 +160,11 @@ function couponDelete() {
 
 //쿠폰지급
 function giveCoupon() {
+	if(confirm("정말 지급 하시겠습니까?") == true) {
+		console.log("쿠폰지급");
+	} else {
+		return false;
+	}
 	let couponSeq = $("#giveCouponList").val();
 	let user_id = $("#user_id").val();
 	console.log(couponSeq);
@@ -178,6 +179,36 @@ function giveCoupon() {
 			},
 		success:function(){//성공했을때
 //			alert("일단데이터는넘어가");
+			console.log("통신완료");
+			location.reload();
+		},
+		error:function(){
+			Swal.fire({
+				text: "에러!",
+				icon: "error"
+			})
+//			alert("에러다이자시가");
+		}
+	});
+	
+}
+
+//쿠폰삭제
+function couponDelete() {
+	if(confirm("정말 삭제 하시겠습니까?") == true) {
+		console.log("쿠폰삭제");
+	} else {
+		return false;
+	}
+	let userCouponSeq = $("#myCouponMap").val();
+	alert(userCouponSeq);
+	
+	$.ajax({
+		url:"deleteUserCoupon.mdo",//Controller에서 받는 주소
+		type:"post",
+		data:{user_coupon_seq:userCouponSeq},
+		success:function(){//성공했을때
+			console.log("통신완료");
 			location.reload();
 		},
 		error:function(){
@@ -247,6 +278,11 @@ $(document).ready(function(){
 
 
 $("#givePointBtn").on("click", function(){
+	if(confirm("정말 지급 하시겠습니까?") == true) {
+		console.log("포인트차감");
+	} else {
+		return false;
+	}
 	let givePoint = Number($("#givePoint").val());
 	let user_id = $("#user_id").val();
 	console.log(user_id, givePoint);
@@ -260,10 +296,10 @@ $("#givePointBtn").on("click", function(){
 		},
 		success:function(){
 			Swal.fire({
-				text: "포인트 선물!",
+				text: "포인트 선물입니다!",
 				icon: "success"
 			})
-			alert("포인트선물이라구!");
+//			alert("포인트선물이라구!");
 			location.reload();
 		},
 		error:function(){
@@ -277,7 +313,11 @@ $("#givePointBtn").on("click", function(){
 });
 
 $("#deletePointBtn").on("click", function(){
-	alert("응?");
+	if(confirm("정말 차감 하시겠습니까?") == true) {
+		console.log("포인트차감");
+	} else {
+		return false;
+	}
 	let deletePoint = Number($("#deletePoint").val());
 	let user_id = $("#user_id").val();
 	$.ajax({
@@ -289,7 +329,6 @@ $("#deletePointBtn").on("click", function(){
 		},
 		success:function(returnValue){
 			if(returnValue == 1) {
-				alert("포인트뺏어간다구!");
 				location.reload();
 			} else if(returnValue == 0) {
 				Swal.fire({

@@ -37,14 +37,16 @@ public class AdminLoginController {
 	
 	//관리자 로그인
 	@PostMapping("admin_login.mdo")
-	public String login(AdminUserVO vo, HttpSession session, JwtUtils util, RedirectAttributes redirectAttributes) throws Exception {
+	public String login(AdminUserVO vo, Model model, HttpSession session, JwtUtils util, RedirectAttributes redirectAttributes) throws Exception {
 		System.out.println("로그인 인증 처리");
 		//로그인 로그 넣기
 		insertLoginLog(vo);
 		
-		AdminUserVO user = adminUserService.getUser(vo);
+		AdminUserVO user = new AdminUserVO();
+		user = adminUserService.getUser(vo);
+		System.out.println("로그인 데이터 : " + user);
 		String warning = null;
-		
+				
 		if(user != null && user.getUser_role().equals("ROLE_ADMIN")) {
 			System.out.println("입력받은 pw : " + vo.getUser_password());
 			System.out.println("DB상의 pw : " + user.getUser_password());
@@ -52,9 +54,9 @@ public class AdminLoginController {
 			String dbPassword = user.getUser_password();//데이터베이스에 저장된 비밀번호
 			
 			if(bCryptPasswordEncoder.matches(inputPassword, dbPassword)) {// 입력받은 패스워드, 디비상의 패스워드(암호화된)
-				vo.setUser_password(null);//로그인 성공 이후 null값 설정하여 토큰에 Password값 null로 받음
-				adminUserService.loginDay(vo.getUser_id());//로그인 날짜 업데이트
-				String token = util.createToken("유저", vo);//토큰생성
+				user.setUser_password(null);//로그인 성공 이후 null값 설정하여 토큰에 Password값 null로 받음
+				adminUserService.loginDay(user.getUser_id());//로그인 날짜 업데이트
+				String token = util.createToken("유저", user);//토큰생성
 				System.out.println("생성된 토큰 : " + token);
 				Map<String, Object> con = util.parseJwtToken(token);//토큰 유효성 체크 메서드
 				System.out.println("유효성체크 con : " + con);
