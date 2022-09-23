@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.romance.admin.log.Criteria;
 import com.romance.admin.log.LoginLogVO;
+import com.romance.admin.log.WorkLogVO;
 
 @Repository
 public class LogDAO {
@@ -21,6 +22,14 @@ public class LogDAO {
 	
 	public List<LoginLogVO> getLoginLogList(Criteria criteria) {
 		return sqlSessionTemplate.selectList("loggingUtils.getLoginLogList", criteria);
+	}
+	
+	public int getWorkTotalCount() {
+		return sqlSessionTemplate.selectOne("loggingUtils.getWorkTotalCount");
+	}
+	
+	public List<WorkLogVO> getWorkLogList(Criteria criteria) {
+		return sqlSessionTemplate.selectList("loggingUtils.getWorkLogList", criteria);
 	}
 	
 }

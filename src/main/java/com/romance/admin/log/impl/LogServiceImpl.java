@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.romance.admin.log.Criteria;
 import com.romance.admin.log.LogService;
 import com.romance.admin.log.LoginLogVO;
+import com.romance.admin.log.WorkLogVO;
 
 @Service("logService")
 public class LogServiceImpl implements LogService {
@@ -27,9 +28,12 @@ public class LogServiceImpl implements LogService {
 
 	@Override
 	public int getWorkTotalCount() throws Exception {
-		return 0;
+		return logDAO.getWorkTotalCount();
 	}
-	
-	
+
+	@Override
+	public List<WorkLogVO> getWorkLogList(Criteria criteria) throws Exception {
+		return logDAO.getWorkLogList(criteria);
+	}
 
 }

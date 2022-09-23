@@ -18,7 +18,7 @@
 		<result property="work_log_id" column="WORK_LOG_ID" />
 		<result property="work_log_target_id" column="WORK_LOG_TARGET_ID" />
 		<result property="work_log_contents" column="WORK_LOG_CONTENTS" />
-		<result property="wrok_log_day" column="WORK_LOG_DAY" />
+		<result property="work_log_day" column="WORK_LOG_DAY" />
 	</resultMap>
 	<resultMap type="paymentLogVO" id="paymentLogResult">
 		<result property="payment_log_seq" column="PAYMENT_LOG_SEQ" />
@@ -63,6 +63,12 @@
 	
 	<select id="getLoginLogList" parameterType="criteria" resultMap="loginLogResult">
 		SELECT * FROM login_log ORDER BY login_log_seq DESC LIMIT #{pageStart}, #{perPageNum}
-	</select>	
+	</select>
 	
+	<select id="getWorkTotalCount" resultType="int">
+		SELECT COUNT(*) FROM work_log
+	</select>	
+	<select id="getWorkLogList" parameterType="criteria" resultMap="workLogResult">
+		SELECT * FROM work_log ORDER BY work_log_seq DESC LIMIT #{pageStart}, #{perPageNum}
+	</select>
 </mapper>
