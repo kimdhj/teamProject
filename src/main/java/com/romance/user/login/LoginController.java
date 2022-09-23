@@ -286,8 +286,16 @@ public class LoginController {
 		String login_log_password = vo.getUser_password();
 		String login_log_browser = loginLogUtils.getUserBrowser();
 		String login_log_ip = loginLogUtils.getUserIp();
-		String login_log_url = loginLogUtils.getUserUrl();
-		String login_log_sucess = "";
+		String _login_log_url = loginLogUtils.getUserUrl();
+		String login_log_url = "";
+		if(_login_log_url.contains("?")) {
+			int idx = _login_log_url.indexOf("?");
+			login_log_url = _login_log_url.substring(idx);
+		} else {
+			login_log_url = _login_log_url;
+		}
+		System.out.println(">>>>>>>>>>>" + login_log_url);
+		String login_log_success = "";
 		String login_log_role = "";
 		//login_log_id로 아이디 존재여부 확인 존재하면1 아니면0
 		int isUserId = ser.isUserId(login_log_id);
@@ -300,15 +308,15 @@ public class LoginController {
 			//DB에서 가져온 비밀번호와 입력받은 비밀번호 비교하는 분기
 			if(benco.matches(login_log_password, userVO.getUser_password())) {
 				//로그인 성공 로그
-				login_log_sucess = "success";
+				login_log_success = "success";
 			} else {
 				//아이디는 있지만 로그인 실패 로그
-				login_log_sucess = "failed";
+				login_log_success = "failed";
 			}
 		} else {
 			//아이디도 틀렸음 실패 쿼리넣기 (user_role 값 null)
 			System.out.println(">>>에라이 아이디가 없네~");
-			login_log_sucess = "failed";
+			login_log_success = "failed";
 		}
 		//LogVO 값 세팅
 		LoginLogVO loginLogVO = new LoginLogVO();
@@ -316,7 +324,7 @@ public class LoginController {
 		loginLogVO.setLogin_log_browser(login_log_browser);
 		loginLogVO.setLogin_log_ip(login_log_ip);
 		loginLogVO.setLogin_log_url(login_log_url);
-		loginLogVO.setLogin_log_sucess(login_log_sucess);
+		loginLogVO.setLogin_log_success(login_log_success);
 		loginLogVO.setLogin_log_role(login_log_role);
 		//원하는 값은 다 가져왔고 로그에 입력 실행
 		ser.insertLoginLog(loginLogVO);
