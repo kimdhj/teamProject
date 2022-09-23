@@ -94,7 +94,16 @@ public class AdminLoginController {
 		String login_log_password = vo.getUser_password();
 		String login_log_browser = loginLogUtils.getUserBrowser();
 		String login_log_ip = loginLogUtils.getUserIp();
-		String login_log_url = loginLogUtils.getUserUrl();
+		//login_log_url값을 ? 기준으로 앞의 url부분만 추출해서 가져온다
+		String _login_log_url = loginLogUtils.getUserUrl();
+		String login_log_url = "";
+		if(_login_log_url.contains("?")) {
+			int idx = _login_log_url.indexOf("?");
+			login_log_url = _login_log_url.substring(idx);
+		} else {
+			login_log_url = _login_log_url;
+		}
+		System.out.println(">>>>>>>>>>>" + login_log_url);
 		String login_log_success = "";
 		String login_log_role = "";
 		//login_log_id로 아이디 존재여부 확인 존재하면1 아니면0
