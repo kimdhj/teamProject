@@ -60,7 +60,74 @@
 						<c:if test="${orderDetail.orders_cache_tool eq 'card'}">카드</c:if>
 					</td>
 					<th class="bg-light" style="width:15%;">환불은행</th>
-					<td style="width:35%;">${orderDetail.orders_refund_bank}</td>
+					<td style="width:35%;">
+						<c:if test="${orderDetail.orders_refund_bank eq 04}">
+							KB국민은행
+						</c:if>						
+						<c:if test="${orderDetail.orders_refund_bank eq 23}">
+							SC제일은행
+						</c:if>						
+						<c:if test="${orderDetail.orders_refund_bank eq 39}">
+							경남은행
+						</c:if>						
+						<c:if test="${orderDetail.orders_refund_bank eq 34}">
+							광주은행
+						</c:if>						
+						<c:if test="${orderDetail.orders_refund_bank eq 03}">
+							기업은행
+						</c:if>						
+						<c:if test="${orderDetail.orders_refund_bank eq 11}">
+							농협
+						</c:if>						
+						<c:if test="${orderDetail.orders_refund_bank eq 31}">
+							대구은행
+						</c:if>						
+						<c:if test="${orderDetail.orders_refund_bank eq 32}">
+							부산은행
+						</c:if>						
+						<c:if test="${orderDetail.orders_refund_bank eq 02}">
+							산업은행
+						</c:if>						
+						<c:if test="${orderDetail.orders_refund_bank eq 45}">
+							새마을금고
+						</c:if>						
+						<c:if test="${orderDetail.orders_refund_bank eq 07}">
+							수협
+						</c:if>						
+						<c:if test="${orderDetail.orders_refund_bank eq 88}">
+							신한은행
+						</c:if>						
+						<c:if test="${orderDetail.orders_refund_bank eq 48}">
+							신협
+						</c:if>						
+						<c:if test="${orderDetail.orders_refund_bank eq 05}">
+							외환은행
+						</c:if>						
+						<c:if test="${orderDetail.orders_refund_bank eq 20}">
+							우리은행
+						</c:if>						
+						<c:if test="${orderDetail.orders_refund_bank eq 71}">
+							우체국
+						</c:if>						
+						<c:if test="${orderDetail.orders_refund_bank eq 90}">
+							카카오뱅크
+						</c:if>						
+						<c:if test="${orderDetail.orders_refund_bank eq 89}">
+							케이뱅크
+						</c:if>						
+						<c:if test="${orderDetail.orders_refund_bank eq 16}">
+							축협
+						</c:if>						
+						<c:if test="${orderDetail.orders_refund_bank eq 37}">
+							전북은행
+						</c:if>						
+						<c:if test="${orderDetail.orders_refund_bank eq 81}">
+							하나은행
+						</c:if>						
+						<c:if test="${orderDetail.orders_refund_bank eq 53}">
+							한국씨티은행
+						</c:if>						
+					</td>
 				</tr>
 				<tr>
 					<th class="bg-light" style="width:15%;">택배사</th>
