@@ -22,7 +22,11 @@ public class BucketController {
 	BucketService ser;
 	@GetMapping("cart.do")
 	public String cart(BucketSearchVO vob,Model model,HttpSession session,JwtUtils util) throws IOException {
-		UserVO vo=util.getuser(session);
+	  UserVO vosession = util.getuser(session);
+    if((vosession == null||!vosession.getUser_role().equals("ROLE_MEMBER"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+return "redirect:index.do";
+} 
+	  UserVO vo=util.getuser(session);
 		if(vo!=null) {
 		vob.setUser_id(vo.getUser_id());
 		List<BucketVO> blist=ser.bucgetlist(vob);

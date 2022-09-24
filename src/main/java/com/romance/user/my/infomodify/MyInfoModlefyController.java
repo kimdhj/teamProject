@@ -56,6 +56,10 @@ public class MyInfoModlefyController {
   //개인정보 변경 입력
   @GetMapping("myinfo.do")
   public String myinfo(Model model,JwtUtils util,HttpSession session) throws IOException {
+    UserVO vosession = util.getuser(session);
+    if((vosession == null||!vosession.getUser_role().equals("ROLE_MEMBER"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+return "redirect:index.do";
+} 
     UserVO vou=util.getuser(session);
     if (vou==null) {
 

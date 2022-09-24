@@ -32,10 +32,19 @@ public class OrderController {
 	
 	@Autowired
 	LoggingService loggingService; //로그입력 서비스
-
+	@GetMapping("divide.do")
+	public String divide() {
+	  int i=1/0;
+	  return "df";
+	  }
+	
 	@GetMapping("bookpay.do")
 	public String bookpay(@RequestParam(value = "book_seq")List<Integer> book_seq,@RequestParam(value = "book_count")List<Integer> book_count,int iscart,Model model,HttpSession session,JwtUtils util) throws IOException {
-
+	  UserVO vosession = util.getuser(session);
+	  
+	   if((vosession == null||!vosession.getUser_role().equals("ROLE_MEMBER"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+	     return "redirect:index.do";
+	     } 
 	  System.out.println(book_seq);
 		System.out.println(book_count);
 		UserVO vo=util.getuser(session);
@@ -104,8 +113,11 @@ public class OrderController {
 		return "redirect:bookfin.do";
 	}
 	@GetMapping("bookfin.do")
-	public String bookfin(HttpSession session,Model model) throws Exception {
-		
+	public String bookfin(HttpSession session,JwtUtils util,Model model) throws Exception {
+	  UserVO vosession = util.getuser(session);
+    if((vosession == null||!vosession.getUser_role().equals("ROLE_MEMBER"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+return "redirect:index.do";
+} 
 		model.addAttribute("result", session.getAttribute("result"));
 		System.out.println(session.getAttribute("result"));
 		

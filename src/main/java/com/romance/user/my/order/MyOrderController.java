@@ -34,7 +34,13 @@ public class MyOrderController {
 	
 	@GetMapping("myOrderCancel.do")
 	public String myOrder(Criteria criteria, Model model, HttpSession session, JwtUtils utils) throws Exception {
-		UserVO voToken = utils.getuser(session);
+	   
+	  UserVO vosession = utils.getuser(session);
+	   if((vosession == null||!vosession.getUser_role().equals("ROLE_MEMBER"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+	     return "redirect:index.do";
+	     } 
+
+	  UserVO voToken = utils.getuser(session);
 		if(voToken != null) {
 			criteria.setSession_user_id(voToken.getUser_id());
 			System.out.println("세션아이디 : " + voToken.getUser_id());
@@ -96,7 +102,13 @@ public class MyOrderController {
 	
 	@GetMapping("myOrderCancelDetail.do")
 	public String myOrderDetail(OrdersVO ordersVO, Criteria criteria, Model model, HttpSession session, JwtUtils utils) throws Exception {
-		UserVO voToken = utils.getuser(session);
+	   
+	  UserVO vosession = utils.getuser(session);
+    if((vosession == null||!vosession.getUser_role().equals("ROLE_MEMBER"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+return "redirect:index.do";
+} 
+
+	  UserVO voToken = utils.getuser(session);
 		if(voToken != null) {
 			System.out.println("시퀀스 네이놈!!!! : " + ordersVO.getOrders_seq());
 			System.out.println("페이지넘버 네이노옴!! : " + criteria.getPageNum());

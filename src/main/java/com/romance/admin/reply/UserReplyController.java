@@ -40,6 +40,11 @@ public class UserReplyController {
   // 들어가는 페이지
   @RequestMapping("/myreviewInsert.do")
   public String reviewInsert(BookVO bvo, ReplyVO vo, PurchaseJoinVO blvo , ReplyJoinVO rjvo, Model model, HttpSession session, JwtUtils util) throws IOException {
+    
+    UserVO vosession = util.getuser(session);
+    if((vosession == null||!vosession.getUser_role().equals("ROLE_MEMBER"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+return "redirect:index.do";
+} 
     UserVO userVO = util.getuser(session);
 
 //    System.out.println("insertVOVOVOVO : " + vo);
@@ -79,6 +84,12 @@ public class UserReplyController {
   
   @RequestMapping("/myreviewUpdate.do")
   public String goUpdate(HttpSession session, ReplyJoinVO rjvo, JwtUtils util, Model model, ReplyVO vo, BookVO bvo) throws IOException {
+    
+    UserVO vosession = util.getuser(session);
+    if((vosession == null||!vosession.getUser_role().equals("ROLE_MEMBER"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+return "redirect:index.do";
+} 
+
     UserVO userVO = util.getuser(session);
     
     System.out.println();

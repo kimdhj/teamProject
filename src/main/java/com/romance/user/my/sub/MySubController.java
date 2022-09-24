@@ -159,7 +159,11 @@ public class MySubController {
 	
 	@GetMapping("/mysubpay.do")
   public String mysubpay(Model model, JwtUtils util, HttpSession session) throws IOException {
-    UserVO vo = util.getuser(session);
+	  UserVO vosession = util.getuser(session);
+    if((vosession == null||!vosession.getUser_role().equals("ROLE_MEMBER"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+return "redirect:index.do";
+} 
+	  UserVO vo = util.getuser(session);
     model.addAttribute("user", vo);
     return "my_SubPay";
   }
@@ -223,7 +227,11 @@ public class MySubController {
     
   }
   @GetMapping("subfin.do")
-  public String subfin() {
+  public String subfin(JwtUtils util, HttpSession session) throws IOException {
+    UserVO vosession = util.getuser(session);
+    if((vosession == null||!vosession.getUser_role().equals("ROLE_MEMBER"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+      return "redirect:index.do";
+      } 
     return "sub_Finish";
   }
   

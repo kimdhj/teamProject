@@ -24,6 +24,12 @@ public class DeliveryController {
   UserService seru;
   @GetMapping("mydelivery.do")
   public String mydelivery(DeliveryVO vo,Model model,JwtUtils util,HttpSession session) throws IOException {
+    
+    UserVO vosession = util.getuser(session);
+    if((vosession == null||!vosession.getUser_role().equals("ROLE_MEMBER"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+      return "redirect:index.do";
+      } 
+
     UserVO vou=util.getuser(session);
     if (vou==null) {
 

@@ -236,8 +236,9 @@ $("#phche").click(function(e) {
 		clearInterval(timers);
 		$("#time").text("인증 완료 되었습니다.");
 		$("#time").css("color", "green");
+		$("#chword").text(null);
 	} else {
-		$("#chenum").text("인증 실패 다시 확인해주세요.");
+		$("#chword").text("인증 실패 다시 확인해주세요.");
 	}
 })
 $("#addbtn").click(function() {

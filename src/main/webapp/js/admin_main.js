@@ -5,12 +5,7 @@ $(document).on("change","#yearselect,#monthsel",function(){
 console.log($("rect"));
 
 
-$("#myChartOne").slideUp(1000,'linear')
-$("#myChartTwo").slideUp(1000,'linear')
-$("#myChartThree").slideUp(1000,'linear')
-$("#myChartFour").slideUp(1000,'linear')
-$("#donught").slideUp(1000,'linear')
-$("#donught2").slideUp(1000,'linear')
+
 init();
 
 })
@@ -54,6 +49,13 @@ console.log("달", $("#monthsel").val());
 console.log("연도", $("#yearselect").val());
 init();
 function init(){
+
+$("#myChartOne").slideUp(1000,'linear')
+$("#myChartTwo").slideUp(1000,'linear')
+$("#myChartThree").slideUp(1000,'linear')
+$("#myChartFour").slideUp(1000,'linear')
+$("#donught").slideUp(1000,'linear')
+$("#donught2").slideUp(1000,'linear')
 $.ajax({
 	type: 'get',
 	url: '/categorysel.do',
@@ -70,7 +72,7 @@ $.ajax({
 		let bgcolor=['red', 'blue', 'green', 'yellow', 'brown'];
 		re.map((it,ind)=>{
 		
-		label.push([String(it.title),Number(it.count)]);
+		label.push([String(it.titlestr),Number(it.count)]);
 		data.push(it.count);
 		color.push(bgcolor[ind]);
 		})
@@ -94,7 +96,8 @@ $.ajax({
 		var options = {
 			'title': '카테고리 별 분류',
 			'width': 500,
-			'height': 500
+			'height': 500,
+			 is3D: true
 		};
 
 		// Instantiate and draw our chart, passing in some options.
@@ -147,11 +150,12 @@ $.ajax({
 		var options = {
 			'title': '가장 많이 팔린 책',
 			'width': 500,
-			'height':500
+			'height':500,
+			 is3D: true
 		};
 
 		// Instantiate and draw our chart, passing in some options.
-		var chart = new google.visualization.LineChart(document.getElementById('myChartTwo'));
+		var chart = new google.visualization.ColumnChart(document.getElementById('myChartTwo'));
 		chart.draw(data, options);
 
 		$("#myChartTwo").slideDown(2000,'linear')
@@ -205,7 +209,8 @@ $.ajax({
 		var options = {
 			'title': '총 매출',
 			'width': 500,
-			'height': 500
+			'height': 500,
+			 is3D: true
 		};
 
 		// Instantiate and draw our chart, passing in some options.
@@ -259,11 +264,12 @@ $.ajax({
 		var options = {
 			'title': '책 판매 수',
 			'width': 500,
-			'height': 500
+			'height': 500,
+			 is3D: true
 		};
 
 		// Instantiate and draw our chart, passing in some options.
-		var chart = new google.visualization.ColumnChart(document.getElementById('myChartFour'));
+		var chart = new google.visualization.LineChart(document.getElementById('myChartFour'));
 		chart.draw(data, options);
 			
 			$("#myChartFour").slideDown(2000,'linear')
@@ -312,7 +318,8 @@ $.ajax({
 		var options = {
 			'title': '책구매 댓글',
 			'width': 500,
-			'height': 500
+			'height': 500,
+			 is3D: true
 		};
 
 		// Instantiate and draw our chart, passing in some options.
@@ -364,7 +371,8 @@ $.ajax({
 		var options = {
 			'title': '일반회원 구독 회원',
 			'width': 500,
-			'height': 500
+			'height': 500,
+			 is3D: true
 		};
 
 		// Instantiate and draw our chart, passing in some options.
