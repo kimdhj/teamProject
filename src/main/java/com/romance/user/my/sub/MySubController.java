@@ -179,6 +179,9 @@ public class MySubController {
     // 테이블에 시간 밀리세컨드로 만든거 넣기 + 개월수 1로 바꾸기
  
     mySubService.subon(vo.getUser_id());
+    UserVO vou=seru.onesearch(vo.getUser_id());
+    String token=util.createToken("유저", vou);
+    session.setAttribute("id", token);
     return 1;
   }
   
@@ -191,6 +194,9 @@ public class MySubController {
     System.out.println("취소 아이디"+cuid);
     sc.subcancel(cuid);
     mySubService.subdel(user.getUser_id());
+    UserVO vo=seru.onesearch(user.getUser_id());
+    String token=util.createToken("유저", vo);
+    session.setAttribute("id", token);
     return 1;
   }
   

@@ -463,7 +463,7 @@ $("#idfind #fin").click(function() {
 	if (idemail) {
 		if (idemailfin) {
 		$("#idfind #phone").attr("disabled", "true");
-		$("idform").submit();
+		$("#idform").submit();
 		} else {
 			Swal.fire({
 				text: "인증을 해주세요.",
@@ -475,7 +475,7 @@ $("#idfind #fin").click(function() {
 
 		if (idfin) {
 		$("#idfind #email").attr("disabled", "true");
-		$("idform").submit();
+		$("#idform").submit();
 		} else {
 			Swal.fire({
 				text: "인증을 해주세요.",

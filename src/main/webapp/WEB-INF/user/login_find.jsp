@@ -94,7 +94,7 @@
 
 					<div
 						class="col-auto button-field d-flex justify-content-center mt-5 mb-5">
-						<button id="fin" class="find_id">아이디 찾기</button>
+						<button id="fin" type="button" class="find_id">아이디 찾기</button>
 					</div>
 				</div>
 			</div>
@@ -176,7 +176,7 @@
 					</div>
 					<div
 						class="col-auto button-field d-flex justify-content-center mt-5 mb-5">
-						<button id="fin" class="find_id">비밀번호 찾기</button>
+						<button type="button" id="fin" class="find_id">비밀번호 찾기</button>
 					</div>
 				</div>
 			</div>
