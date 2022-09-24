@@ -77,7 +77,7 @@
               </div>
               
               <div class="col-1 mb-2 qnaDetail_font" style="padding-right: 0px;">작성자</div>
-              <div class="col-3 mb-2" style="padding-left: 0px;">${askReply.ask_reply_writer }
+              <div class="col-3 mb-2" style="padding-left: 0px;">${admin }
                 <input type="hidden" id="ask_reply_writer" name="ask_reply_writer"/>
               </div>
               

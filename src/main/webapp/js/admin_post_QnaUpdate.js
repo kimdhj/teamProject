@@ -1,12 +1,12 @@
 function init(){ // html 로 인식하던 "" 을 value 로 인식시켜서 " 나 ' 를 사용 가능하도록 만들어줌
 	console.log($(".note-editable").text());
-	$("#content").val($(".note-editable").text());
+	$("#content").val($(".note-editable").html());
 	console.log($("#content").val());
 }
 
 function init(){ // html 로 인식하던 "" 을 value 로 인식시켜서 " 나 ' 를 사용 가능하도록 만들어줌
 	console.log($(".note-editable").text());
-	$("#content1").val($(".note-editable").text());
+	$("#content1").val($(".note-editable").html());
 	console.log($("#content").val());
 }
 
