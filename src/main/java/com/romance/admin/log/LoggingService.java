@@ -14,5 +14,5 @@ public interface LoggingService {
 	public void insertWorkLog(WorkLogVO workLogVO) throws Exception;
 	
 	//결제 로그
-	
+	public void insertPaymentLog(PaymentLogVO paymentLogVO) throws Exception;
 }

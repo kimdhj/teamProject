@@ -90,13 +90,13 @@
 				</thead>		
 				<tbody>
 					<c:forEach var="workList" items="${workLogList}">
-							<tr>
-								<td>${workList.work_log_seq}</td>
-								<td>${workList.work_log_id}</td>
-								<td>${workList.work_log_target_id}</td>
-								<td>${workList.work_log_contents}</td>
-								<td>${workList.work_log_day}</td>
-							</tr>
+						<tr>
+							<td>${workList.work_log_seq}</td>
+							<td>${workList.work_log_id}</td>
+							<td>${workList.work_log_target_id}</td>
+							<td>${workList.work_log_contents}</td>
+							<td>${workList.work_log_day}</td>
+						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
