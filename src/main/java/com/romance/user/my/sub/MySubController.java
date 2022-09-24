@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.romance.admin.coupon.CouponService;
 import com.romance.admin.icon.IconService;
+import com.romance.admin.log.LoggingService;
+import com.romance.admin.log.PaymentLogVO;
 import com.romance.admin.sub.SubscribeService;
 import com.romance.admin.sub.SubscribeVO;
 import com.romance.security.JwtUtils;
@@ -53,6 +55,8 @@ public class MySubController {
 	MyInfoService ser;
 	@Autowired
 	UserService seru;
+	@Autowired
+	LoggingService loggingService;
 	
 	//인클루드 사항 삭제
 	//마이페이지 구독정보
@@ -177,6 +181,9 @@ public class MySubController {
     UUID ran = UUID.randomUUID();
     sc.subpay(cuid, cuid + "|" + ran.toString());
     // 테이블에 시간 밀리세컨드로 만든거 넣기 + 개월수 1로 바꾸기
+    
+    //구독 결제 로그 입력
+    subPaymentLog(vo.getUser_id());
  
     mySubService.subon(vo.getUser_id());
     UserVO vou=seru.onesearch(vo.getUser_id());
@@ -217,6 +224,10 @@ public class MySubController {
       sc.subpay(cuid, cuid + "|" + ran.toString());
       int idd=cuid.indexOf("&");
       String id=cuid.substring(0,idd);
+      
+      //구독 재결재 로그 입력
+      subRePaymentLog(id);
+      
       mySubService.subon(id);
       
     }
@@ -227,5 +238,31 @@ public class MySubController {
     return "sub_Finish";
   }
   
+  //구독로그
+  public void subPaymentLog(String user_id) throws Exception {
+	  String payment_log_id = user_id;
+	  int payment_log_money = 30000;
+	  String payment_log_contents = "[구독 결제] ";
+	  payment_log_contents += "결제금액 30,000";
+	  
+	  PaymentLogVO paymentLogVO = new PaymentLogVO();
+	  paymentLogVO.setPayment_log_id(payment_log_id);
+	  paymentLogVO.setPayment_log_money(payment_log_money);
+	  paymentLogVO.setPayment_log_contents(payment_log_contents);
+	  loggingService.insertPaymentLog(paymentLogVO);
+  }
+  //구독 repay 로그
+  public void subRePaymentLog(String user_id) throws Exception {
+	  String payment_log_id = user_id;
+	  int payment_log_money = 30000;
+	  String payment_log_contents = "[구독 재결제] ";
+	  payment_log_contents += "결제금액 30,000";
+	  
+	  PaymentLogVO paymentLogVO = new PaymentLogVO();
+	  paymentLogVO.setPayment_log_id(payment_log_id);
+	  paymentLogVO.setPayment_log_money(payment_log_money);
+	  paymentLogVO.setPayment_log_contents(payment_log_contents);
+	  loggingService.insertPaymentLog(paymentLogVO);
+  }
 	
 }
