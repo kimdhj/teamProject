@@ -29,13 +29,13 @@
 	<div class="container">
 		<div class="d-flex flex-row">
 			<div class="col-md-7">
-				<form action="/getAdmin_member_List.mdo" method="get">
+				<form action="/adminWorkLog.mdo" method="get">
 					<div class="d-flex flex-row">
 						<div class="col-md-4">
 							<select class="form-select form-select mb-3"
 								aria-label=".form-select-lg example" name="searchCondition">
-								<c:forEach items="${conditionMap }" var="option">
-									<option value="${option.value }">${option.key }</option>
+								<c:forEach items="${conditionMapVTwo}" var="option">
+									<option value="${option.value}">${option.key}</option>
 								</c:forEach>
 							</select>
 						</div>
@@ -90,13 +90,13 @@
 				</thead>		
 				<tbody>
 					<c:forEach var="workList" items="${workLogList}">
-							<tr>
-								<td>${workList.work_log_seq}</td>
-								<td>${workList.work_log_id}</td>
-								<td>${workList.work_log_target_id}</td>
-								<td>${workList.work_log_contents}</td>
-								<td>${workList.work_log_day}</td>
-							</tr>
+						<tr>
+							<td>${workList.work_log_seq}</td>
+							<td>${workList.work_log_id}</td>
+							<td>${workList.work_log_target_id}</td>
+							<td>${workList.work_log_contents}</td>
+							<td>${workList.work_log_day}</td>
+						</tr>
 					</c:forEach>
 				</tbody>
 			</table>

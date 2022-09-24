@@ -52,13 +52,9 @@ function passwordChangedForm() {
 	const reg_password = /(?=.*[a-zA-ZS])(?=.*?[#?!@$%^&*-]).{8,24}/; //문자, 특수문자 조합의 8~24자리
 	
 	if(checkPoint == 0) {
-		Swal.fire({
-			text: "비밀번호 확인을 눌러주세요.",
-			icon: "warning"
-		})
-//		alert("비밀번호 확인을 눌러주세요");
+		alert("비밀번호 확인을 눌러주세요");
 		return false;
-	} else {ㅉ
+	} else {
 		if(user_now_password.value.length == 0) {
 			alert("기존 비밀번호를 입력하세요");
 			user_now_password.focus();
@@ -98,7 +94,7 @@ function passwordChangedForm() {
 }
 
 function checkPassword(){
-//	alert("비밀번호 확인 시작");
+	alert("비밀번호 확인 시작");
 	let user_now_password = $("#user_now_password").val();
 	console.log(user_password);
 	

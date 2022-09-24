@@ -8,11 +8,10 @@ public interface LoggingService {
 	 */
 	
 	//작업 로그
-	//회원정보 수정
-//	public void insertUserInfoWorkLog(WorkLogVO workLogVO) throws Exception;
-	//쿠폰지급
 	public void insertWorkLog(WorkLogVO workLogVO) throws Exception;
 	
 	//결제 로그
+	public void insertPaymentLog(PaymentLogVO paymentLogVO) throws Exception;
+	
 	
 }

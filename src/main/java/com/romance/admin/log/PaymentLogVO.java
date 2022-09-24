@@ -7,7 +7,7 @@ import lombok.Data;
 public class PaymentLogVO {
 	private int payment_log_seq;
 	private String payment_log_id;
-	private String payment_log_money;
+	private int payment_log_money;
 	private String payment_log_contents;
 	private Date payment_log_day;
 }

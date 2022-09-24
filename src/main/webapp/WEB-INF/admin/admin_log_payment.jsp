@@ -29,13 +29,13 @@
 	<div class="container">
 		<div class="d-flex flex-row">
 			<div class="col-md-7">
-				<form action="/getAdmin_member_List.mdo" method="get">
+				<form action="/adminPaymentLog.mdo" method="get">
 					<div class="d-flex flex-row">
 						<div class="col-md-4">
 							<select class="form-select form-select mb-3"
 								aria-label=".form-select-lg example" name="searchCondition">
-								<c:forEach items="${conditionMap }" var="option">
-									<option value="${option.value }">${option.key }</option>
+								<c:forEach items="${conditionMapVOne}" var="option">
+									<option value="${option.value}">${option.key}</option>
 								</c:forEach>
 							</select>
 						</div>
@@ -89,15 +89,15 @@
 					</tr>
 				</thead>		
 				<tbody>
-					<%-- <c:forEach var="" items=""> --%>
-							<tr>
-								<td>1</td>
-								<td>aaa</td>
-								<td>성공</td>
-								<td>asdlkfj</td>
-								<td>aldsfjasl;fkjaslfjdlas;fj</td>
-							</tr>
-					<%-- </c:forEach> --%>
+					<c:forEach var="paymentList" items="${paymentLogList}">
+						<tr>
+							<td>${paymentList.payment_log_seq}</td>
+							<td>${paymentList.payment_log_id}</td>
+							<td>${paymentList.payment_log_money}</td>
+							<td>${paymentList.payment_log_contents}</td>
+							<td>${paymentList.payment_log_day}</td>
+						</tr>
+					</c:forEach>
 				</tbody>
 			</table>
 		</div>
@@ -110,16 +110,16 @@
 						</a></li> -->
 						<c:if test="${pagination.prev}">
 							<li class="page-item"><a class="page-link"
-								href="<c:url value="/getAdmin_member_List.mdo?searchCondition=${pagination.criteria.getSearchCondition() }&searchKeyword=${pagination.criteria.getSearchKeyword() }&pageNum=${pagination.startPage - 1 }&selectCondition=${pagination.criteria.getSelectCondition()}" />">이전</a></li>
+								href="<c:url value="/adminPaymentLog.mdo?searchCondition=${pagination.criteria.getSearchCondition() }&searchKeyword=${pagination.criteria.getSearchKeyword() }&pageNum=${pagination.startPage - 1 }&selectCondition=${pagination.criteria.getSelectCondition()}" />">이전</a></li>
 						</c:if>
 						<c:forEach begin="${pagination.startPage}"
 							end="${pagination.endPage}" var="pageNum">
 							<li class="page-item"><a class="page-link"
-								href="<c:url value="/getAdmin_member_List.mdo?searchCondition=${pagination.criteria.getSearchCondition() }&searchKeyword=${pagination.criteria.getSearchKeyword() }&pageNum=${pageNum}&selectCondition=${pagination.criteria.getSelectCondition()}" />">${pageNum}</a></li>
+								href="<c:url value="/adminPaymentLog.mdo?searchCondition=${pagination.criteria.getSearchCondition() }&searchKeyword=${pagination.criteria.getSearchKeyword() }&pageNum=${pageNum}&selectCondition=${pagination.criteria.getSelectCondition()}" />">${pageNum}</a></li>
 						</c:forEach>
 						<c:if test="${pagination.next && pagination.endPage > 0}">
 							<li class="page-item"><a class="page-link"
-								href="<c:url value="/getAdmin_member_List.mdo?searchCondition=${pagination.criteria.getSearchCondition() }&searchKeyword=${pagination.criteria.getSearchKeyword() }&pageNum=${pagination.endPage + 1 }&selectCondition=${pagination.criteria.getSelectCondition()}" />">다음</a></li>
+								href="<c:url value="/adminPaymentLog.mdo?searchCondition=${pagination.criteria.getSearchCondition() }&searchKeyword=${pagination.criteria.getSearchKeyword() }&pageNum=${pagination.endPage + 1 }&selectCondition=${pagination.criteria.getSelectCondition()}" />">다음</a></li>
 						</c:if>
 						<!-- <a class="page-link" href="#" aria-label="Next"> <span
 							aria-hidden="true">&raquo;</span>
