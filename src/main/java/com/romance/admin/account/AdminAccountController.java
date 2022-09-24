@@ -1,5 +1,6 @@
 package com.romance.admin.account;
 
+import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
@@ -126,27 +127,54 @@ public class AdminAccountController {
 		}
 	}
 	
+	//링크로 접속할때 마스터 아니면 들어갈 수 없도록 함
+	@PostMapping("isMaster.mdo")
+	@ResponseBody
+	public int isMaster(HttpSession session, JwtUtils utils) throws Exception {
+		int returnValue = 0;
+		AdminUserVO voToken = utils.getAdmin(session);
+		if(voToken != null) {
+			if(voToken.getUser_role().equals("ROLE_MASTER")) {
+				System.out.println("마스터는 접근을 허용한다");
+				returnValue = 0;
+				return returnValue; //마스터임 접근을 허용한다
+			} else {
+				returnValue = 1;
+				return returnValue; //마스터가 아님 접근불가
+			}
+			
+		} else {
+			returnValue = 2;
+			return returnValue; //로그인부터 하세요
+		}
+	}
+	
 	@GetMapping("getAdmin_admin_List.mdo")
 	public String getAdminListWithPaging(AdminUserVO vo, Criteria criteria, Model model, HttpSession session, JwtUtils utils) throws Exception {
 		AdminUserVO voToken = utils.getAdmin(session);
 		if(voToken != null) {
-			System.out.println("Mybatis로 adminList 기능 처리");
-			
-			if(criteria.getSearchCondition() == null) {
-				criteria.setSearchCondition("USER_ID");
-			}
-			if(criteria.getSearchKeyword() == null) {
-				criteria.setSearchKeyword("");
-			}
-			
-			Pagination pagination = new Pagination();
-			pagination.setCriteria(criteria);
-			pagination.setTotalCount(adminAccountService.adminTotalCount(criteria));
-			System.out.println(">>>>페이지네이션 토탈카운트!" + pagination.getTotalCount());
-			System.out.println(">>>>Criteria pageNum! " + criteria.getPageNum());
-			model.addAttribute("pagination", pagination);
-			model.addAttribute("adminListWithPaging", adminAccountService.getAdminListWithPaging(criteria));
-			return "admin_admin_List";
+			if(voToken.getUser_role().equals("ROLE_MASTER")) {
+				System.out.println("Mybatis로 adminList 기능 처리");
+				
+				if(criteria.getSearchCondition() == null) {
+					criteria.setSearchCondition("USER_ID");
+				}
+				if(criteria.getSearchKeyword() == null) {
+					criteria.setSearchKeyword("");
+				}
+				
+				Pagination pagination = new Pagination();
+				pagination.setCriteria(criteria);
+				pagination.setTotalCount(adminAccountService.adminTotalCount(criteria));
+				System.out.println(">>>>페이지네이션 토탈카운트!" + pagination.getTotalCount());
+				System.out.println(">>>>Criteria pageNum! " + criteria.getPageNum());
+				model.addAttribute("pagination", pagination);
+				model.addAttribute("adminListWithPaging", adminAccountService.getAdminListWithPaging(criteria));
+				return "admin_admin_List";
+			} else {
+				System.out.println("권한부족");
+				return "redirect:adminMain.mdo";
+			}			
 		} else {
 			return "redirect:admin_login.mdo";
 		}

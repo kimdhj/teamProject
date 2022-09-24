@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<script src="/js/admin_common_header.js"></script>
 <div class="layer"></div>
 <!-- ! Body -->
 <a class="skip-link sr-only" href="#skip-target">Skip to content</a>
@@ -40,7 +40,7 @@
 					</a>
 						<ul class="cat-sub-menu">
 							<li><a href="/getAdmin_member_List.mdo">회원관리</a></li>
-							<li><a href="/getAdmin_admin_List.mdo">관리자계정 관리</a></li>
+							<li><a href="#" onclick="isMaster()">관리자계정 관리</a></li>
 							<li><a href="/new-post.html">약관관리</a></li>
               <li><a href="/chatList.mdo">채팅 관리</a></li>
 						</ul></li>

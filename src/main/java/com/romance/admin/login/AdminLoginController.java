@@ -47,7 +47,7 @@ public class AdminLoginController {
 		System.out.println("로그인 데이터 : " + user);
 		String warning = null;
 				
-		if(user != null && user.getUser_role().equals("ROLE_ADMIN")) {
+		if(user != null && user.getUser_role().equals("ROLE_ADMIN") || user != null && user.getUser_role().equals("ROLE_MASTER")) {
 			System.out.println("입력받은 pw : " + vo.getUser_password());
 			System.out.println("DB상의 pw : " + user.getUser_password());
 			String inputPassword = vo.getUser_password();//입력받은 비밀번호
