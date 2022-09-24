@@ -43,7 +43,7 @@
 	
 	<select id="getUserListWithPaging" parameterType="criteria" resultMap="adminUserResult">
 		SELECT a.*, b.user_coupon_cnt FROM user a LEFT JOIN (SELECT user_id, COUNT(user_id) AS user_coupon_cnt FROM user_coupon GROUP BY user_id) b ON a.user_id = b.user_id
-		WHERE 1=1
+		WHERE user_role = 'ROLE_MEMBER'
 		<if test="searchCondition=='USER_NAME'">
 			AND a.user_name LIKE CONCAT('%', #{searchKeyword}, '%')
 		</if>
@@ -79,7 +79,7 @@
 	</select>
 	
 	<select id="totalCount" parameterType="criteria" resultType="int">
-		SELECT count(*) FROM user WHERE 1=1
+		SELECT count(*) FROM user WHERE user_role = 'ROLE_MEMBER'
 		<if test="searchCondition=='USER_NAME' ">
 			AND user_name like CONCAT('%', #{searchKeyword}, '%')
 		</if>

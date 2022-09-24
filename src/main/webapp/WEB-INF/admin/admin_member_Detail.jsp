@@ -64,6 +64,14 @@
 											</select>
 										</td>
 									</c:if>
+									<c:if test="${getUserDetail.user_role eq 'ROLE_MASTER'}">
+										<td colspan=2>
+											<select class="form-select form-select-sm"
+											aria-label=".form-select-sm example" name="user_sub">
+												<option value="2">마스터</option>
+											</select>
+										</td>
+									</c:if>
 								</tr>
 								<tr>
 									<th>상태</th>
