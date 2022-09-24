@@ -37,14 +37,16 @@ public class AdminLoginController {
 	
 	//관리자 로그인
 	@PostMapping("admin_login.mdo")
-	public String login(AdminUserVO vo, HttpSession session, JwtUtils util, RedirectAttributes redirectAttributes) throws Exception {
+	public String login(AdminUserVO vo, Model model, HttpSession session, JwtUtils util, RedirectAttributes redirectAttributes) throws Exception {
 		System.out.println("로그인 인증 처리");
 		//로그인 로그 넣기
 		insertLoginLog(vo);
 		
-		AdminUserVO user = adminUserService.getUser(vo);
+		AdminUserVO user = new AdminUserVO();
+		user = adminUserService.getUser(vo);
+		System.out.println("로그인 데이터 : " + user);
 		String warning = null;
-		
+				
 		if(user != null && user.getUser_role().equals("ROLE_ADMIN")) {
 			System.out.println("입력받은 pw : " + vo.getUser_password());
 			System.out.println("DB상의 pw : " + user.getUser_password());
@@ -52,9 +54,9 @@ public class AdminLoginController {
 			String dbPassword = user.getUser_password();//데이터베이스에 저장된 비밀번호
 			
 			if(bCryptPasswordEncoder.matches(inputPassword, dbPassword)) {// 입력받은 패스워드, 디비상의 패스워드(암호화된)
-				vo.setUser_password(null);//로그인 성공 이후 null값 설정하여 토큰에 Password값 null로 받음
-				adminUserService.loginDay(vo.getUser_id());//로그인 날짜 업데이트
-				String token = util.createToken("유저", vo);//토큰생성
+				user.setUser_password(null);//로그인 성공 이후 null값 설정하여 토큰에 Password값 null로 받음
+				adminUserService.loginDay(user.getUser_id());//로그인 날짜 업데이트
+				String token = util.createToken("유저", user);//토큰생성
 				System.out.println("생성된 토큰 : " + token);
 				Map<String, Object> con = util.parseJwtToken(token);//토큰 유효성 체크 메서드
 				System.out.println("유효성체크 con : " + con);
@@ -92,8 +94,17 @@ public class AdminLoginController {
 		String login_log_password = vo.getUser_password();
 		String login_log_browser = loginLogUtils.getUserBrowser();
 		String login_log_ip = loginLogUtils.getUserIp();
-		String login_log_url = loginLogUtils.getUserUrl();
-		String login_log_sucess = "";
+		//login_log_url값을 ? 기준으로 앞의 url부분만 추출해서 가져온다
+		String _login_log_url = loginLogUtils.getUserUrl();
+		String login_log_url = "";
+		if(_login_log_url.contains("?")) {
+			int idx = _login_log_url.indexOf("?");
+			login_log_url = _login_log_url.substring(idx);
+		} else {
+			login_log_url = _login_log_url;
+		}
+		System.out.println(">>>>>>>>>>>" + login_log_url);
+		String login_log_success = "";
 		String login_log_role = "";
 		//login_log_id로 아이디 존재여부 확인 존재하면1 아니면0
 		int isUserId = adminUserService.isUserId(login_log_id);
@@ -106,15 +117,15 @@ public class AdminLoginController {
 			//DB에서 가져온 비밀번호와 입력받은 비밀번호 비교하는 분기
 			if(bCryptPasswordEncoder.matches(login_log_password, adminUserVO.getUser_password())) {
 				//로그인 성공 로그
-				login_log_sucess = "success";
+				login_log_success = "success";
 			} else {
 				//아이디는 있지만 로그인 실패 로그
-				login_log_sucess = "failed";
+				login_log_success = "failed";
 			}
 		} else {
 			//아이디도 틀렸음 실패 쿼리넣기 (user_role 값 null)
 			System.out.println(">>>에라이 아이디가 없네~");
-			login_log_sucess = "failed";
+			login_log_success = "failed";
 		}
 		//LogVO 값 세팅
 		LoginLogVO loginLogVO = new LoginLogVO();
@@ -122,7 +133,7 @@ public class AdminLoginController {
 		loginLogVO.setLogin_log_browser(login_log_browser);
 		loginLogVO.setLogin_log_ip(login_log_ip);
 		loginLogVO.setLogin_log_url(login_log_url);
-		loginLogVO.setLogin_log_sucess(login_log_sucess);
+		loginLogVO.setLogin_log_success(login_log_success);
 		loginLogVO.setLogin_log_role(login_log_role);
 		//원하는 값은 다 가져왔고 로그에 입력 실행
 		adminUserService.insertLoginLog(loginLogVO);

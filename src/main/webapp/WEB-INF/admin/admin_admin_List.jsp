@@ -193,7 +193,7 @@
 	<jsp:include page="/WEB-INF/admin_commonjsp/admin_common_footer.jsp"></jsp:include>
 	<!-- 여기서부터 JS 추가 -->
 	<script src="/js/admin_admin_List.js"></script>
-	
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 </body>
 </html>

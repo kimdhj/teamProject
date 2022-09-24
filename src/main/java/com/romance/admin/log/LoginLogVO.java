@@ -12,6 +12,6 @@ public class LoginLogVO {
 	private String login_log_id;
 	private String login_log_browser;
 	private String login_log_role;
-	private String login_log_sucess;
+	private String login_log_success;
 	private Date login_log_day;
 }

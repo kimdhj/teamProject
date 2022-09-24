@@ -11,6 +11,9 @@ public interface AdminAccountService {
 	
 	public AdminUserVO getUserDetail(AdminUserVO vo);
 	
+	//user테이블 한명의 유저정보
+	public AdminUserVO getUser(String user_id) throws Exception;
+	
 	//총 회원 목록 조회
 	public List<AdminUserVO> getUserListWithPaging(Criteria criteria) throws Exception;
 	
@@ -46,6 +49,9 @@ public interface AdminAccountService {
 	
 	//쿠폰 지급하기
 	public void giveCoupon(UserCouponVO userCouponVO) throws Exception;
+	
+	//삭제할 유저쿠폰 정보 가져오기(로그기록용)
+	public UserCouponVO forDeleteCoupon(int user_coupon_seq) throws Exception;
 	
 	//현재 유저 보유 포인트 가져오기
 	public int getUserPoint(String user_id) throws Exception;

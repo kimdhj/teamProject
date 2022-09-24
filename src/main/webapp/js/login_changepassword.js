@@ -27,6 +27,10 @@ $("#fin").on("click", function(e) {
 		$("#pass").submit();
 
 	} else {
-		alert("비밀번호와 비밀번호확인을 체크해주세요");
+		Swal.fire({
+			text: "비밀번호와 비밀번호 확인을 체크해주세요.",
+			icon: "warning"
+		})
+//		alert("비밀번호와 비밀번호확인을 체크해주세요");
 	}
 });

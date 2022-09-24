@@ -43,7 +43,7 @@ function passwordChanged() {
 }
 
 function passwordChangedForm() {
-	alert("체크포인트 값 1이면 확인한것! : " + checkPoint);//체크포인트 값 확인 (1일경우에만 수정가능 하도록)
+//	alert("체크포인트 값 1이면 확인한것! : " + checkPoint);//체크포인트 값 확인 (1일경우에만 수정가능 하도록)
 	let user_now_password = document.getElementById("user_now_password");
 	let user_password = document.getElementById("user_password");
 	let user_passwordCheck = document.getElementById("user_passwordCheck");
@@ -125,7 +125,11 @@ function checkPassword(){
 			}
 		},
 		error:function(){
-			alert("에러다이자시가");
+			Swal.fire({
+				text: "에러",
+				icon: "error"
+			})
+		//	alert("에러다이자시가");
 			return false;
 		}
 			

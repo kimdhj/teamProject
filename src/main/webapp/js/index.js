@@ -123,19 +123,35 @@ $(document).ready(function() {
 			dataType: "json",
 			success: function(re) {
 				console.log(re);
-				alert("장바구니에 담았습니다.");
+				Swal.fire({
+					text: "장바구니에 담았습니다.",
+					icon: "success"
+				})
+//				alert("장바구니에 담았습니다.");
 			},
 			error: function(re) {
 				console.log(re);
 				if (re.responseText != "실패") {
 					if (re.responseText != "중복") {
-						alert("장바구니에 담았습니다.");
+						Swal.fire({
+							text: "장바구니에 담았습니다.",
+							icon: "success"
+						})
+//						alert("장바구니에 담았습니다.");
 					} else {
-						alert("장바구니에 이미 존재 합니다.");
+						Swal.fire({
+							text: "장바구니에 이미 존재합니다.",
+							icon: "warning"
+						})
+//						alert("장바구니에 이미 존재 합니다.");
 					}
 
 				} else {
-					alert("로그인하고 장바구니 이용 해주세요");
+					Swal.fire({
+						text: "로그인하고 장바구니 이용해주세요.",
+						icon: "warning"
+					})
+//					alert("로그인하고 장바구니 이용 해주세요");
 				}
 			}
 		})

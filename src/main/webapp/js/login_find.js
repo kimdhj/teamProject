@@ -465,7 +465,11 @@ $("#idfind #fin").click(function() {
 		$("#idfind #phone").attr("disabled", "true");
 		$("idform").submit();
 		} else {
-			alert("인증을 해주세요");
+			Swal.fire({
+				text: "인증을 해주세요.",
+				icon: "warning"
+			})
+//			alert("인증을 해주세요");
 		}
 	} else {
 
@@ -473,7 +477,11 @@ $("#idfind #fin").click(function() {
 		$("#idfind #email").attr("disabled", "true");
 		$("idform").submit();
 		} else {
-			alert("인증을 해주세요");
+			Swal.fire({
+				text: "인증을 해주세요.",
+				icon: "warning"
+			})
+//			alert("인증을 해주세요");
 		}
 	}
 })
@@ -485,14 +493,22 @@ console.log("작동")
 		$("#passwordfind #phone").attr("disabled", "true");
 		$("#passwordform").submit();
 		} else {
-			alert("인증을 해주세요");
+			Swal.fire({
+				text: "인증을 해주세요.",
+				icon: "warning"
+			})
+//			alert("인증을 해주세요");
 		}
 	} else {
 		if (passwordfin) {
 		$("#passwordfind #email").attr("disabled", "true");
 		$("#passwordform").submit();
 		} else {
-			alert("인증을 해주세요");
+			Swal.fire({
+				text: "인증을 해주세요.",
+				icon: "warning"
+			})
+//			alert("인증을 해주세요");
 		}
 	}
 })

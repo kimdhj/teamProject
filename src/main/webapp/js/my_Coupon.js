@@ -156,9 +156,17 @@ $(function() {
 			data: {coupon_code:$("#cou_code").val()},
 			success: function(da) {
 				if(da==0){
-				alert("쿠폰 번호를 확인해주세요.");
+					Swal.fire({
+						text: "쿠폰 번호를 확인해주세요.",
+						icon: "warning"
+					})
+//				alert("쿠폰 번호를 확인해주세요.");
 				}else if(da==1){
-				alert("쿠폰 등록 되었습니다.");
+					Swal.fire({
+						text: "쿠폰이 등록되었습니다.",
+						icon: "success"
+					})
+//				alert("쿠폰 등록 되었습니다.");
 				make();
 				}else{
 				location.href="/index.do"

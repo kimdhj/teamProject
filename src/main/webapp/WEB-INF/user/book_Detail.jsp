@@ -165,7 +165,7 @@
 								</div>
 								<div id="thumb_count" class="col-4">좋아요${re.finecount}</div>
 							</div>
-							<div id="review_textBox" class="row">
+							<div id="review_textBox" class="d-flex">
               <c:if test="${re.user_blank==false}">
               ${re.reply_cotent}
               </c:if>
