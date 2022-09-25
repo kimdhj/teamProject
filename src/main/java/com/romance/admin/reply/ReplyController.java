@@ -1,6 +1,9 @@
 package com.romance.admin.reply;
 
+import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.romance.security.JwtUtils;
+import com.romance.user.login.UserVO;
+
 @Controller
 public class ReplyController {
   @Autowired
@@ -16,7 +22,13 @@ public class ReplyController {
   
   // 전체 List - 조인 값이 필요하니깐 !
   @GetMapping("/ReplyList.mdo")
-  public String getReplyList(ReplyVO vo, Model model, ReplySearchVO svo, ReplyJoinVO rjvo) {
+  public String getReplyList(HttpSession session, JwtUtils util , ReplyVO vo, Model model, ReplySearchVO svo, ReplyJoinVO rjvo) throws IOException {
+    UserVO user = util.getuser(session);
+    
+    if(user == null) {
+      return "admin_login.do";
+    }
+    
     List<ReplyJoinVO> replyList = service.getReplyList(svo);
     model.addAttribute("replyList", replyList);
     
