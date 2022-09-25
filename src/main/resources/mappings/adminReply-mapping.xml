@@ -10,7 +10,7 @@
 	<select id="ajax_recount" resultType="int">
 		SELECT count(*) FROM reply WHERE user_id=#{user_id}
 	</select>
-	<select id="ajax_rerecount" resultType="int">
+	<select id="ajax_rerecount" parameterType="ReplyVO" resultType="ReplyVO">
 		select R1.* FROM (SELECT reply.*, book.book_title FROM reply JOIN book ON reply.book_seq = book.book_seq WHERE user_id=#{user_id} order by reply_seq) R1 LIMIT 5 OFFSET #{st}
 	</select>
 	<!-- 혜성 작업 끝 -->

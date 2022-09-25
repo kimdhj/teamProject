@@ -32,7 +32,9 @@
 							<div id="item_title" class="col-5 row  ">구독</div>
 							<div id="btn_box" class="col-7 row gy-1">
 								<div class="col-lg col-sm-12" id="cancel_btn">
+									<a href="/event_Sub_Info.do">
 									<button type="button" class="btn btn-primary">구독 안내</button>
+									</a>
 								</div>
 								<div class="col-lg col-sm-12" id="modify_btn">
 									<a href="my_modifySub.do">

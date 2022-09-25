@@ -19,5 +19,6 @@ public interface EventService {
 	void ajaxDel(int del) throws FileNotFoundException, IOException;
 	int topCheck(EventVO vo);
 	int confirmdate(MyPointsSearchVO my);
+	EventVO showSub();
 	
 }

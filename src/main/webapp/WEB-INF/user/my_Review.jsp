@@ -92,7 +92,10 @@
 
 					</div>
 
-
+				<input type="hidden" id="user_id" name="user_id" value="${user_id }">
+				<input type="hidden" id="st" name="st" value="${st }">
+				<input type="hidden" id="total" name="total" value="${total }">
+				<input type="hidden" id="fullpage" name="fullpage" value="${fullpage }">
 
 				</div>
 

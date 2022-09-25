@@ -56,7 +56,7 @@ public class MySubController {
 	
 	//인클루드 사항 삭제
 	//마이페이지 구독정보
-	@RequestMapping("my_getSub.do")
+	@RequestMapping("/my_getSub.do")
 	public String my_getSub(HttpSession session, JwtUtils util, Model model, SubscribeVO svo, BookSearchVO vo) throws IOException {
 		UserVO userVO = util.getuser(session);
 		
