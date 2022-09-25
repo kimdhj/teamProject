@@ -488,7 +488,7 @@ public class AdminAccountController {
 		loggingService.insertWorkLog(workLogVO);
 	}
 	
-	//관리자 계정 생성 로그
+	//관리자계정 생성 로그
 	public void makeAdminAccount(AdminUserVO vo, AdminUserVO voToken) throws Exception {
 		String work_log_id = voToken.getUser_id();
 		String work_log_target_id = vo.getUser_id();
