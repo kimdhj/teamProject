@@ -21,6 +21,7 @@ public class OwnReplyDAO {
 	}
 	
 	public List<ReplyVO> ajax_rerecount(ReplyVO vo) {
+		System.out.println("뭐냐 대체 : "+vo);
 		return sqlSessionTemplate.selectList("ReplyDAO.ajax_rerecount",vo);
 	}
 	

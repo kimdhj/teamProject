@@ -25,7 +25,8 @@ public class OwnReplyServiceImpl implements OwnReplyService {
 	
 	@Override
 	public List<ReplyVO> ajax_rerecount(ReplyVO vo){
-		return ownReplyDAO.movingReview(vo);
+		System.out.println("임플입니다 : "+ownReplyDAO.movingReview(vo));
+		return ownReplyDAO.ajax_rerecount(vo);
 	}
 
 }

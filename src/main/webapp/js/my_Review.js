@@ -1,7 +1,26 @@
 console.log("rate" + Number(6) - Number($("#star").val()));
-let star = "rate" + (Number(6) - Number($("#star").val())); // jsp 에서 star 의 값(value) 구해와서 6 에서 차감해주고,
-star = "#" + star; // rate 랑 합쳐서 문자열로 만들어줌(jsp 에서 id="rateN" 형식)
-$(star).attr("checked", "true"); // star 에 chcekd 속성을 추가 (true : 추가, false : 추가안함)
+$(".star").map((ind,el)=>{
+	let star = "rate" + (Number(6) - Number($(el).val()));// jsp 에서 star 의 값(value) 구해와서 6 에서 차감해주고,
+	
+	star = "#" + star; // rate 랑 합쳐서 문자열로 만들어줌(jsp 에서 id="rateN" 형식)
+	console.log($(el).next());
+	$(el).next().children(star).attr("checked", "true"); // star 에 chcekd 속성을 추가 (true : 추가, false : 추가안함)
+
+});
+
+// ajax 별점 변화 감지
+function reloadstar(){
+	console.log("아무거나 : ");
+	$(".star").map((ind,el)=>{
+		let star = "rate" + (Number(6) - Number($(el).val()));// jsp 에서 star 의 값(value) 구해와서 6 에서 차감해주고,
+		
+		star = "#" + star; // rate 랑 합쳐서 문자열로 만들어줌(jsp 에서 id="rateN" 형식)
+		$(el).next().children(star).attr("checked", "true"); // star 에 chcekd 속성을 추가 (true : 추가, false : 추가안함)
+	});
+	console.log("아무거나 : ");
+}
+
+
 
 
 function delmyre(g){
@@ -47,8 +66,9 @@ function viewview(e){
 		nst = pst;
 		console.log("숫자클릭"+nst+"pst"+pst);
 	}
+	console.log("숫자클릭익"+nst+"pst"+pst);
 	//이동 할 페이지의 게시글 범위
-	let cst = (nst-1)*5 +1;
+	let cst = parseInt((nst-1)*5);
 	console.log("클릭후 게시글 범위"+cst);
 	$.ajax({
 		url: "/ajax_rerecount.do",
@@ -64,7 +84,7 @@ function viewview(e){
 			data.map((rev) => {
 			con+=
 				`<div id="table_item" class="row">
-							<div class="col-2"><fmt:formatDate value="${rev.reply_date }" pattern="yyyy-MM-dd"/>
+							<div class="col-2">${rev.reply_date }
 								<input type="hidden" value="${rev.order_bookList_seq }"> 
 							</div>
 							<div class="col-2">${rev.book_title }</div>
@@ -72,7 +92,7 @@ function viewview(e){
 							<div class="col-1"><input type="hidden" value="${rev.reply_seq }"></div>
 							<div id="starBox" class="col-1">
 								<form name="myform" id="myform" method="post" action="./save">
-              					  <b>별점</b><input type="number" class="hide" value="${rev.reply_point }" id="star" name="reply_point" />
+              					  <b>별점</b><input type="number" class="hide star" value="${rev.reply_point }" id="star" name="reply_point" />
               					  <fieldset>
                					   <input type="radio" name="rating" value="5" id="rate1"> <label for="rate1">⭐</label>
              					     <input type="radio" name="rating" value="4" id="rate2"> <label for="rate2">⭐</label>
@@ -87,10 +107,16 @@ function viewview(e){
 				`;
 			});
 			$("#fordol").html(con);
-			
-			let startpage = parseInt((nst-1)/5)*5+1; 
-			let endpage = parseInt((nst-1)/5)*5+5; 
+			//별점 반응 시킬 메소드 추가
+			reloadstar();
+			let startpage = parseInt((nst-1)/5)*5+1;
+			console.log("포시작"+startpage);
+			let endpage = parseInt((nst-1)/5)*5+5;
+			console.log("포끝"+endpage);
 			let fullpage = $("#fullpage").val();
+			if(endpage>fullpage){
+				endpage=fullpage;
+			}
 			let go = "";
 			
 			if(startpage != 1){
@@ -109,6 +135,8 @@ function viewview(e){
 			
 			
 			$(".pagination").html(go);
+			
+
 			
 			$("#st").val(nst);
 		},
