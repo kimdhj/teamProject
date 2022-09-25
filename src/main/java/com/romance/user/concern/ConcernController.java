@@ -39,7 +39,12 @@ public class ConcernController {
   }
   @GetMapping("/mywriter.do")
   public String myConcertWriter(ConcernSearchVO vo,JwtUtils util,HttpSession session,String pages,Model model) throws IOException  {
-   UserVO vou= util.getuser(session);
+    
+    UserVO vosession = util.getuser(session);
+    if((vosession == null||!vosession.getUser_role().equals("ROLE_MEMBER"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+      return "redirect:index.do";
+      } 
+    UserVO vou= util.getuser(session);
    if(vou==null) {
      return "redirect:index.do";
    }

@@ -29,6 +29,11 @@ public class PurchaseController {
   
   @RequestMapping("/myPurchase.do") // 구매 목록가기
   public String purchase(HttpSession session, JwtUtils util, OrdersVO vo, Model model, PurchaseSearchVO svo, PurchaseJoinVO pjvo) throws IOException {
+    
+    UserVO vosession = util.getuser(session);
+    if((vosession == null||!vosession.getUser_role().equals("ROLE_MEMBER"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+      return "redirect:index.do";
+      } 
     UserVO userVO = util.getuser(session); // 로그인 여부를 확인하는 것
     if(svo.getPage() == 0) {
       svo.setPage(1);
@@ -99,6 +104,12 @@ public class PurchaseController {
   
   @RequestMapping("/myPurchaseDetail.do") // 구매 상세보기
   public String purchaseDetail(OrdersVO vo, PurchaseSearchVO svo, PurchaseJoinVO pjvo, HttpSession session, JwtUtils util, Model model) throws Exception {
+    
+    UserVO vosession = util.getuser(session);
+    if((vosession == null||!vosession.getUser_role().equals("ROLE_MEMBER"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+return "redirect:index.do";
+} 
+
     UserVO userVO = util.getuser(session);
 
     svo.setUser_id(userVO.getUser_id());

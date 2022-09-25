@@ -29,7 +29,13 @@ public class MyProfileController {
 	
 	@GetMapping("myWithdrawal.do")
 	public String myWithdrawal(UserVO vo, Model model, HttpSession session, JwtUtils utils) throws Exception {
-		UserVO voToken = utils.getuser(session);
+	
+	   
+	  UserVO vosession = utils.getuser(session);
+    if((vosession == null||!vosession.getUser_role().equals("ROLE_MEMBER"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+return "redirect:index.do";
+} 
+	  UserVO voToken = utils.getuser(session);
 		if(voToken != null) {
 			System.out.println(">>>>>세션 아이디 정보 : " + voToken.getUser_id());
 			String user_id = voToken.getUser_id();
@@ -69,7 +75,13 @@ public class MyProfileController {
 	
 	@GetMapping("myTransPassword.do")
 	public String myTransPassword(HttpSession session, JwtUtils utils) throws IOException {
-		UserVO voToken = utils.getuser(session);
+	   
+	  UserVO vosession = utils.getuser(session);
+    if((vosession == null||!vosession.getUser_role().equals("ROLE_MEMBER"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+return "redirect:index.do";
+} 
+
+	  UserVO voToken = utils.getuser(session);
 		if(voToken != null) {
 			return "my_TransPassword";
 		} else {

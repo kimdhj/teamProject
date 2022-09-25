@@ -91,8 +91,15 @@ public class chatController {
   
   @PostMapping("/chat.do")
   public String chat(String user, Model model, JwtUtils util, HttpSession session) throws IOException {
+    
+    UserVO vosession = util.getuser(session);
+    if((vosession == null||!vosession.getUser_role().equals("ROLE_MEMBER"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+return "redirect:index.do";
+} 
+
     UserVO vo = util.getuser(session);
     if (vo == null) {
+ 
       return "redirect:index.do";
     }
     System.out.println("chat");

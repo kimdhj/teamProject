@@ -29,7 +29,11 @@ public class MyController {
 	
 	@GetMapping("myMain.do")
 	public String myMain(NoticeVO noticeVO, Model model, HttpSession session, JwtUtils utils) throws Exception {
-		UserVO voToken = utils.getuser(session);
+	  UserVO vosession = utils.getuser(session);
+    if((vosession == null||!vosession.getUser_role().equals("ROLE_MEMBER"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+return "redirect:index.do";
+} 
+	  UserVO voToken = utils.getuser(session);
 		if(voToken != null) {
 			//유저아이디값
 			model.addAttribute("sessionUserId", voToken.getUser_id());

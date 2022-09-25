@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.romance.admin.sample.category.CategoryVO;
 import com.romance.user.book.BookSearchVO;
 import com.romance.user.book.BookVO;
 import com.romance.user.login.UserVO;
@@ -14,6 +15,7 @@ import com.romance.user.my.sub.MySubBookVO;
 import com.romance.user.my.sub.MySubService;
 import com.romance.user.my.sub.SubPerVO;
 import com.romance.user.orders.OrderBookListVO;
+import com.romance.user.usecategory.UserCategoryVO;
 
 @Service("My_Sub")
 @Transactional
@@ -73,6 +75,44 @@ public class MySubServiceImpl implements MySubService {
     // TODO Auto-generated method stub
     mySubDAO.subupdate(vo);
   }
+
+  @Override
+  public List<CategoryVO> getcatelist() {
+    // TODO Auto-generated method stub
+    return mySubDAO.getcatelist();
+  }
+
+  @Override
+  public List<Integer> getcatemy(String user_id) {
+    // TODO Auto-generated method stub
+    return mySubDAO.getcatemy(user_id);
+  }
+
+  @Override
+  public String mybook(String user_id) {
+    // TODO Auto-generated method stub
+    return mySubDAO.mybook(user_id);
+  }
+
+  @Override
+  public void joininsert(int[] category_num, String user_id) {
+    // TODO Auto-generated method stub
+    UserCategoryVO vou=new UserCategoryVO();
+    vou.setUser_id(user_id);
+    for(int cnum:category_num) {
+      vou.setCategory_num(cnum);
+      System.out.println("cnum "+cnum);
+      mySubDAO.joininsert(vou);
+    }
+    
+  }
+
+  @Override
+  public void delcate(String user_id) {
+    // TODO Auto-generated method stub
+    mySubDAO.delcate(user_id);
+  }
+  
   
 	
 }

@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.romance.admin.sample.category.CategoryVO;
 import com.romance.user.book.BookSearchVO;
 import com.romance.user.book.BookVO;
 import com.romance.user.login.UserVO;
@@ -13,6 +14,7 @@ import com.romance.user.my.sub.MySubBookVO;
 import com.romance.user.my.sub.SubPerVO;
 import com.romance.user.orders.OrderBookListVO;
 import com.romance.user.orders.OrdersVO;
+import com.romance.user.usecategory.UserCategoryVO;
 
 @Repository
 public class MySubDAO {
@@ -61,5 +63,20 @@ public class MySubDAO {
 	}
 	public void subinbook(OrderBookListVO vo) {
 	  sqlSessionTemplate.insert("order.subinbook",vo);
+	}
+	public List<CategoryVO> getcatelist(){
+	  return sqlSessionTemplate.selectList("Category.logincate");
+	}
+	public List<Integer> getcatemy(String user_id){
+    return sqlSessionTemplate.selectList("usercategory.suballcate",user_id);
+  }
+	public String mybook(String user_id) {
+	  return sqlSessionTemplate.selectOne("usercategory.mybook",user_id);
+	}
+	public void delcate(String user_id) {
+	  sqlSessionTemplate.delete("usercategory.delcate",user_id);
+	}
+	public void joininsert(UserCategoryVO vo) {
+	  sqlSessionTemplate.insert("usercategory.joininsert",vo);
 	}
 }
