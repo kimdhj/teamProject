@@ -63,7 +63,7 @@
 						<th scope="col">구분</th>
 						<th scope="col">연락처</th>
 						<th scope="col">Email</th>
-						<th scope="col">삭제</th>
+						<!-- <th scope="col">삭제</th> -->
 					</tr>
 				</thead>
 				<tbody>
@@ -74,8 +74,8 @@
 							<td>${adminAccount.user_role}</td>
 							<td>${adminAccount.user_phone}</td>
 							<td>${adminAccount.user_email}</td>
-							<td><button type="button"
-									class="btn btn-light btn-outline-dark">삭제</button></td>
+							<!-- <td><button type="button"
+									class="btn btn-light btn-outline-dark">삭제</button></td> -->
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -193,7 +193,7 @@
 	<jsp:include page="/WEB-INF/admin_commonjsp/admin_common_footer.jsp"></jsp:include>
 	<!-- 여기서부터 JS 추가 -->
 	<script src="/js/admin_admin_List.js"></script>
-	
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 </body>
 </html>

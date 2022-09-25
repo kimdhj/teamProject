@@ -7,30 +7,30 @@ let theWheel = new Winwheel({
   textMargin: 0, // Take out default margin.
   // Define segments including colour and text.
   segments: [
-    { fillStyle: "#e7706f", text: "500P" },
-    { fillStyle: "#7de6ef", text: "10P" },
-    { fillStyle: "#89f26e", text: "20P" },
-    { fillStyle: "#7de6ef", text: "10P" },
-    { fillStyle: "#89f26e", text: "20P" },
-    { fillStyle: "#7de6ef", text: "10P" },
-    { fillStyle: "#89f26e", text: "20P" },
-    { fillStyle: "#7de6ef", text: "10P" },
-    { fillStyle: "#eae56f", text: "100P" },
-    { fillStyle: "#7de6ef", text: "10P" },
-    { fillStyle: "#89f26e", text: "20P" },
-    { fillStyle: "#7de6ef", text: "10P" },
-    { fillStyle: "#89f26e", text: "20P" },
-    { fillStyle: "#7de6ef", text: "10P" },
-    { fillStyle: "#89f26e", text: "20P" },
-    { fillStyle: "#7de6ef", text: "10P" },
-    { fillStyle: "#eae56f", text: "100P" },
-    { fillStyle: "#7de6ef", text: "10P" },
-    { fillStyle: "#89f26e", text: "20P" },
-    { fillStyle: "#7de6ef", text: "10P" },
-    { fillStyle: "#89f26e", text: "20P" },
-    { fillStyle: "#7de6ef", text: "10P" },
-    { fillStyle: "#89f26e", text: "20P" },
-    { fillStyle: "#7de6ef", text: "10P" },
+    { fillStyle: "#e7706f", text: "500" },
+    { fillStyle: "#7de6ef", text: "10" },
+    { fillStyle: "#89f26e", text: "20" },
+    { fillStyle: "#7de6ef", text: "10" },
+    { fillStyle: "#89f26e", text: "20" },
+    { fillStyle: "#7de6ef", text: "10" },
+    { fillStyle: "#89f26e", text: "20" },
+    { fillStyle: "#7de6ef", text: "10" },
+    { fillStyle: "#eae56f", text: "100" },
+    { fillStyle: "#7de6ef", text: "10" },
+    { fillStyle: "#89f26e", text: "20" },
+    { fillStyle: "#7de6ef", text: "10" },
+    { fillStyle: "#89f26e", text: "20" },
+    { fillStyle: "#7de6ef", text: "10" },
+    { fillStyle: "#89f26e", text: "20" },
+    { fillStyle: "#7de6ef", text: "10" },
+    { fillStyle: "#eae56f", text: "100" },
+    { fillStyle: "#7de6ef", text: "10" },
+    { fillStyle: "#89f26e", text: "20" },
+    { fillStyle: "#7de6ef", text: "10" },
+    { fillStyle: "#89f26e", text: "20" },
+    { fillStyle: "#7de6ef", text: "10" },
+    { fillStyle: "#89f26e", text: "20" },
+    { fillStyle: "#7de6ef", text: "10" },
   ],
   // Define spin to stop animation.
   animation: {
@@ -49,7 +49,49 @@ let wheelPower = 3;
 // -------------------------------------------------------
 function startSpin() {
   // Ensure that spinning can't be clicked again while already running.
-
+	let che = true;
+	$.ajax({
+		url:"/confirmyou.do",
+		type:"post",
+		async : false,
+		success:function(st){
+			console.log(st);
+			if(st==""){
+				Swal.fire({
+					text: "로그인을 먼저 진행해주세요.",
+					icon: "warning"
+				})
+//				alert("먼저 로그인이 필요합니다!");
+				che = false;
+			}else{
+				
+				$.ajax({
+					url:"/confirmdate.do",
+					type:"post",
+					async : false,
+					success:function(da){
+//						console.log("일단 넘어와" +da);
+						if(da != 0){
+							che = false;
+							Swal.fire({
+								text: "오늘은 이미 룰렛을 이용하였습니다.",
+								icon: "warning"
+							})
+//							alert("오늘은 이미 룰렛을 이용하셨습니다!");
+						}
+						
+					},
+					error:function(){
+					}		
+				});		
+			}	
+		},
+		error:function(){
+		}		
+	});
+	if(che==false){
+		return false;
+	}
   // Based on the power level selected adjust the number of spins for the wheel, the more times is has
   // to rotate with the duration of the animation the quicker the wheel spins.
   if (wheelPower == 1) {
@@ -79,7 +121,24 @@ function startSpin() {
 // -------------------------------------------------------
 function alertPrize(indicatedSegment) {
   // Do basic alert of the segment text. You would probably want to do something more interesting with this information.
-  alert("You have won " + indicatedSegment.text);
+  alert("You have won " + indicatedSegment.text+"P");
+  $.ajax({
+		url:"/getPoint.do",
+		type:"post",
+		data:{
+			points_count : Number(indicatedSegment.text), 
+			points_content : "룰렛", 
+			user_point : Number(indicatedSegment.text)
+		},
+		success:function(st){
+			location.href="/event_Roulette.do";
+		},
+		error:function(){
+
+		}		
+	});
+
+  
   theWheel.stopAnimation(false); // Stop the animation, false as param so does not call callback function.
   theWheel.rotationAngle = 0; // Re-set the wheel angle to 0 degrees.
   theWheel.draw(); // Call draw to render changes to the wheel.

@@ -165,8 +165,14 @@
 								</div>
 								<div id="thumb_count" class="col-4">좋아요${re.finecount}</div>
 							</div>
-							<div id="review_textBox" class="row">
-								${re.reply_cotent}</div>
+							<div id="review_textBox" class="d-flex">
+              <c:if test="${re.user_blank==false}">
+              ${re.reply_cotent}
+              </c:if>
+                <c:if test="${re.user_blank!=false}">
+              <div id="blankreview">블랙 처리된 리뷰입니다. 고객센터로 문의 주세요</div>
+              </c:if>
+								</div>
 						</div>
 					</div>
 					</c:forEach>

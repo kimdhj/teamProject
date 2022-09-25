@@ -22,4 +22,7 @@ public class ReplyVO {
 	private String reply_cotent;
 	private int fine;
 	private int finecount;
+	private String book_title;
+	private int order_bookList_seq;
+	private int st;
 }

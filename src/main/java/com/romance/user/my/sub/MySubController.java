@@ -1,21 +1,28 @@
 package com.romance.user.my.sub;
 
 import java.io.IOException;
+import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.romance.admin.coupon.CouponService;
 import com.romance.admin.icon.IconService;
+import com.romance.admin.log.LoggingService;
+import com.romance.admin.log.PaymentLogVO;
 import com.romance.admin.sub.SubscribeService;
 import com.romance.admin.sub.SubscribeVO;
 import com.romance.security.JwtUtils;
@@ -24,6 +31,8 @@ import com.romance.user.login.UserService;
 import com.romance.user.login.UserVO;
 import com.romance.user.my.infomodify.MyInfoService;
 import com.romance.user.my.profile.MyProfileService;
+import com.romance.user.subUtil.subscancel;
+import com.romance.user.subUtil.subsche;
 
 
 @Controller
@@ -46,6 +55,8 @@ public class MySubController {
 	MyInfoService ser;
 	@Autowired
 	UserService seru;
+	@Autowired
+	LoggingService loggingService;
 	
 	//인클루드 사항 삭제
 	//마이페이지 구독정보
@@ -149,5 +160,109 @@ public class MySubController {
 		
 		return "sub_Pay";
 	}
+	
+	@GetMapping("/mysubpay.do")
+  public String mysubpay(Model model, JwtUtils util, HttpSession session) throws IOException {
+    UserVO vo = util.getuser(session);
+    model.addAttribute("user", vo);
+    return "my_SubPay";
+  }
+  
+  @PostMapping("/subreg.do")
+  @ResponseBody
+  public int subreg(@RequestParam("cuid") String cuid, subsche sc,JwtUtils util,HttpSession session) throws Exception {
+    System.out.println("subreg " + cuid);
+    UserVO vo=util.getuser(session);
+    String num=cuid.replaceAll(vo.getUser_id(),"");
+    System.out.println("구독 num : "+num);
+    vo.setUser_sub_start(num);
+    System.out.println("구독 vo : "+vo);
+    mySubService.subupdate(vo);
+    UUID ran = UUID.randomUUID();
+    sc.subpay(cuid, cuid + "|" + ran.toString());
+    // 테이블에 시간 밀리세컨드로 만든거 넣기 + 개월수 1로 바꾸기
+    
+    //구독 결제 로그 입력
+    subPaymentLog(vo.getUser_id());
+ 
+    mySubService.subon(vo.getUser_id());
+    UserVO vou=seru.onesearch(vo.getUser_id());
+    String token=util.createToken("유저", vou);
+    session.setAttribute("id", token);
+    return 1;
+  }
+  
+  @PostMapping("/subcancel.do")
+  @ResponseBody
+  public int subcancel(String cuid, subscancel sc,JwtUtils util,HttpSession session) throws Exception {
+    // 테이블에 시간 밀리세컨드로 만든거 지우기
+    UserVO user=util.getuser(session);
+    cuid=user.getUser_id()+user.getUser_sub_start();
+    System.out.println("취소 아이디"+cuid);
+    sc.subcancel(cuid);
+    mySubService.subdel(user.getUser_id());
+    UserVO vo=seru.onesearch(user.getUser_id());
+    String token=util.createToken("유저", vo);
+    session.setAttribute("id", token);
+    return 1;
+  }
+  
+  @PostMapping("/subrepay.do")
+  @ResponseBody
+  public void subrepay(@RequestBody JSONObject json, subsche sc,JwtUtils util,HttpSession session) throws Exception {
+    System.out.println("구독 재결제");
+    System.out.println(json);
+    System.out.println(json.get("merchant_uid"));
+    
+    String mid = (String) json.get("merchant_uid");
+    if (!mid.contains("_")) {
+      int ind = mid.indexOf("|");
+      System.out.println("결과물12" + mid.substring(0, ind));
+      String cuid = mid.substring(0, ind);
+      UUID ran = UUID.randomUUID();
+      
+      sc.subpay(cuid, cuid + "|" + ran.toString());
+      int idd=cuid.indexOf("&");
+      String id=cuid.substring(0,idd);
+      
+      //구독 재결재 로그 입력
+      subRePaymentLog(id);
+      
+      mySubService.subon(id);
+      
+    }
+    
+  }
+  @GetMapping("subfin.do")
+  public String subfin() {
+    return "sub_Finish";
+  }
+  
+  //구독로그
+  public void subPaymentLog(String user_id) throws Exception {
+	  String payment_log_id = user_id;
+	  int payment_log_money = 30000;
+	  String payment_log_contents = "[구독 결제] ";
+	  payment_log_contents += "결제금액 30,000";
+	  
+	  PaymentLogVO paymentLogVO = new PaymentLogVO();
+	  paymentLogVO.setPayment_log_id(payment_log_id);
+	  paymentLogVO.setPayment_log_money(payment_log_money);
+	  paymentLogVO.setPayment_log_contents(payment_log_contents);
+	  loggingService.insertPaymentLog(paymentLogVO);
+  }
+  //구독 repay 로그
+  public void subRePaymentLog(String user_id) throws Exception {
+	  String payment_log_id = user_id;
+	  int payment_log_money = 30000;
+	  String payment_log_contents = "[구독 재결제] ";
+	  payment_log_contents += "결제금액 30,000";
+	  
+	  PaymentLogVO paymentLogVO = new PaymentLogVO();
+	  paymentLogVO.setPayment_log_id(payment_log_id);
+	  paymentLogVO.setPayment_log_money(payment_log_money);
+	  paymentLogVO.setPayment_log_contents(payment_log_contents);
+	  loggingService.insertPaymentLog(paymentLogVO);
+  }
 	
 }

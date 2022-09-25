@@ -97,7 +97,7 @@ public class subscancel {
 		return _token;
 
 	}
-	public JSONObject subpay(String cuid) throws Exception {
+	public JSONObject subcancel(String cuid) throws Exception {
 	  String acckey=getToken();
 	  System.out.println("key"+acckey);
 		System.out.println("cuid"+cuid);

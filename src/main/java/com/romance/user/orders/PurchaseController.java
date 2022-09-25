@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.romance.admin.reply.ReplyService;
+import com.romance.admin.reply.ReplyVO;
 import com.romance.security.JwtUtils;
 import com.romance.user.login.UserVO;
 import com.romance.user.my.order.MyOrderService;
@@ -24,7 +26,6 @@ public class PurchaseController {
  
   @Autowired
   private MyOrderService order;
-  
   
   @RequestMapping("/myPurchase.do") // 구매 목록가기
   public String purchase(HttpSession session, JwtUtils util, OrdersVO vo, Model model, PurchaseSearchVO svo, PurchaseJoinVO pjvo) throws IOException {

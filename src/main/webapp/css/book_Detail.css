@@ -208,3 +208,8 @@ label{
 #authorname{
 	cursor:pointer;
 }
+#blankreview{
+	color:gray;
+	opacity:0.8;
+	text-decoration:line-through 
+}

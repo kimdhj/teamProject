@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.romance.admin.log.LoginLogVO;
 import com.romance.admin.sample.category.CategoryVO;
 import com.romance.user.usecategory.UserCategoryVO;
 
@@ -69,6 +70,23 @@ public class UserServiceImpl implements UserService {
 	public void passwordin(UserVO vo) {
 		// TODO Auto-generated method stub
 		dao.passwordin(vo);
+	}
+	
+	
+	//로그관련
+	@Override
+	public int isUserId(String login_log_id) {
+		return dao.isUserId(login_log_id);
+	}
+	
+	@Override
+	public UserVO getLoginlogInfo(String login_log_id) {
+		return dao.getLoginlogInfo(login_log_id);
+	}
+
+	@Override
+	public void insertLoginLog(LoginLogVO loginLogVO) {
+		dao.insertLoginLog(loginLogVO);
 	}
 
 }

@@ -17,6 +17,7 @@ public class PurchaseJoinVO {
   private String book_bigimgURL;
   private String book_title; // 검색
   private String book_author; // 검색
+  private boolean order_bookList_review_complete; // 리뷰 여분
   
   @DateTimeFormat(pattern = "yyyy-MM-dd")
   @JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")

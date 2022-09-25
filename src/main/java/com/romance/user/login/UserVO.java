@@ -5,7 +5,7 @@ import java.util.Date;
 import lombok.Data;
 @Data
 public class UserVO {
-	private Date user_sub_start;
+	private String user_sub_start;
 	private Date user_login_day;
 	private int user_point;
 	private int user_sub_count;
@@ -26,5 +26,4 @@ public class UserVO {
 	private String user_birth;
 	private String user_phone;
 	private int user_coupon_cnt;//AdminUserVO에 user_coupon_cnt값 사용해서 로그인시 에러발생하여 임시로 추가해둠
-	
 }

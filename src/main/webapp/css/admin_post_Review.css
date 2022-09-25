@@ -100,7 +100,7 @@ div.bg-white {
 	font-size: larger;
 }
 
-.pagination *{
+.pagination *, .qjawnsno{
    cursor:pointer;
 }
 

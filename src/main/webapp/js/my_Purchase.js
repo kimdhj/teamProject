@@ -25,9 +25,9 @@ $(document).on("change", $("#stateche"), function(){
 			$(".purchasestatus").val("finish");
 			$("#search").val("finish");
 			
-		}else if($("#dbstatus2").val() == "cacelallwait"){
-			$(".purchasestatus").val("cacelallwait");
-			$("#search").val("cacelallwait");
+		}else if($("#dbstatus2").val() == "cancelallwait"){
+			$(".purchasestatus").val("cancelallwait");
+			$("#search").val("cancelallwait");
 			
 		}else if($("#dbstatus2").val() == "cancelallfinish"){
 			$(".purchasestatus").val("cancelallfinish");
@@ -37,7 +37,6 @@ $(document).on("change", $("#stateche"), function(){
 	}else{ // 그 외 값들을 선택했을 때
 		$(".inputbox").removeClass("hide");
 		$(".dbstatus").addClass("hide");
-		$("#search").val('');
 	}
 })
 
@@ -213,14 +212,19 @@ function makeDisplay(e) {
 
 // 검색할 값들 추가
 $(document).on("click", ".search_btn", function(){
+	
 	$("#searchkeyword").val($("#stateche").val().trim());
 	$("#searchcontent").val($("#search").val().trim());
 	$("#startDateche").val($("#start_date").val());
 	$("#endDateche").val($("#end_date").val());
 	$("#page").val(Number(1));
 	
-	console.log($("#startDateche").val());
-	console.log($("#endDateche").val());
+	console.log($("#searchkeyword").val());
+	console.log($("#searchcontent").val());
+	console.log($("#search").val());
+	
+//	console.log($("#startDateche").val());
+//	console.log($("#endDateche").val());
 	
 	make();
 })
@@ -348,21 +352,28 @@ function make() {
 						        </div>
 						        
 						        <div class="row">
-						            <div class="col-2 purchaseList_btns">
-						            <button onclick="location.href='/myreviewInsert.do'">리뷰작성</button>
-						          </div>
-						            <div class="col-2 purchaseList_btns">
-						            <button onclick="location.href='/myPurchaseDetail.do?orders_seq=${purchase.orders_seq}'">구매상세</button>
-						          </div>`
-									if(purchase.orders_status == "ready" || purchase.orders_status == "paid"){
-										con += `<div class="col-2 purchaseList_btns">
-						            <button class="purchaseCancel" type="button">구매취소</button>
-						          </div>`;
-									}
-						            
+									<div class="col-2 purchaseList_btns">
+										<button onclick="location.href='/myPurchaseDetail.do?orders_seq=${purchase.orders_seq}'">구매상세</button>
+									</div>
+									
+						            <div class="col-2 purchaseList_btns">`
+						
+						if(purchase.orders_status == "ready" || purchase.orders_status == "paid"){
+							con += `<button class="purchaseCancel" type="button">구매취소</button>`;
+						}
+					con += `</div>
+					 <div class="col-2 purchaseList_btns">
+					`;
+						
+						if(purchase.orders_status == "finish" && purchase.order_bookList_review_complete == false){
+							con += `<button onclick="location.href='/myreviewInsert.do?book_seq=${purchase.book_seq}&order_bookList_seq=${purchase.order_bookList_seq }'">리뷰작성</button>`;
+						}else if(purchase.order_bookList_review_complete == true){
+							con += ` <button onclick="location.href='/myreviewUpdate.do?book_seq=${purchase.book_seq}&order_bookList_seq=${purchase.order_bookList_seq }'">리뷰수정</button>`;
+						}
+						
 						   con +=     `</div>
 						      </div>
-						      
+						      </div>
 						    </div>
 						`;
 			});

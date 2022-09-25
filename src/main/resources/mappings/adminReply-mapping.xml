@@ -3,6 +3,18 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ReplyDAO">
 
+	<!-- 혜성 나의 리뷰 작업 -->
+	<select id="movingReview" parameterType="ReplyVO" resultType="ReplyVO">
+		select R1.* FROM (SELECT reply.*, book.book_title FROM reply JOIN book ON reply.book_seq = book.book_seq WHERE user_id=#{user_id} order by reply_seq) R1 LIMIT 10 OFFSET 0
+	</select>
+	<select id="ajax_recount" resultType="int">
+		SELECT count(*) FROM reply WHERE user_id=#{user_id}
+	</select>
+	<select id="ajax_rerecount" resultType="int">
+		select R1.* FROM (SELECT reply.*, book.book_title FROM reply JOIN book ON reply.book_seq = book.book_seq WHERE user_id=#{user_id} order by reply_seq) R1 LIMIT 5 OFFSET #{st}
+	</select>
+	<!-- 혜성 작업 끝 -->
+	
 	<select id="getReplyList" parameterType="replySearch" resultType="replyJoin">
 		<![CDATA[SELECT * FROM(SELECT * , @rownum:=@rownum + 1 as rnum FROM 
 		(SELECT reply.reply_seq, reply.reply_cotent, reply.reply_date, reply.user_blank, user.user_id, user.user_name, user.user_birth, user.user_sub, book.book_seq, book.book_author, book.book_title, book.book_publish FROM reply INNER JOIN user ON reply.user_id = user.user_id JOIN book ON reply.book_seq = book.book_seq) A,
@@ -54,10 +66,31 @@
 	</trim>
 	</select>
 	
+	<!-- 책 정보 출력해오기 -->
+	<select id="getBookInfo" parameterType="bookVO" resultType="bookVO">
+		select * from book WHERE book_seq = #{book_seq};
+	</select>
+	
+	<!-- 리뷰 insert -->
 	<insert id="insert" parameterType="reply">
-		INSERT INTO reply(reply_seq, user_id, reply_cotent, reply_date, reply_point, book_seq)
-		VALUES (null, #{user_id}, #{reply_cotent}, default, #{reply_point}, #{book_seq})
+		INSERT INTO reply(reply_seq, user_id, reply_cotent, reply_date, reply_point, book_seq, order_bookList_seq)
+		VALUES (null, #{user_id}, #{reply_cotent}, default, #{reply_point}, #{book_seq}, #{order_bookList_seq})
 	</insert>	
+	
+	<update id="reviewUpdate" parameterType="reply">
+		UPDATE reply SET reply_cotent = #{reply_cotent}, reply_date = default WHERE reply_seq = #{reply_seq}
+	</update>
+	
+	<!-- 리뷰 작성한 경우 update 로 order_bookList_review_complete  -->
+	<update id="reviewStateUpdate" parameterType="orderbooklistVO">
+		UPDATE order_bookList SET order_bookList_review_complete = 1 WHERE order_bookList_seq = #{order_bookList_seq}
+	</update>
+	
+	<!-- 사용자 리뷰 상세보기 -->
+	<select id="doubleReply" parameterType="replyJoin" resultType="reply">
+		SELECT * FROM reply WHERE book_seq = #{book_seq} AND order_bookList_seq = #{order_bookList_seq}	
+	</select>
+	
 	
 	<select id="getReply" parameterType="reply" resultType="reply">
 		SELECT * FROM reply WHERE reply_seq = #{reply_seq}

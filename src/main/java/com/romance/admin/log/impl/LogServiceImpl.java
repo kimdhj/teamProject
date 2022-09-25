@@ -1,0 +1,52 @@
+package com.romance.admin.log.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.romance.admin.log.Criteria;
+import com.romance.admin.log.LogService;
+import com.romance.admin.log.LoginLogVO;
+import com.romance.admin.log.PaymentLogVO;
+import com.romance.admin.log.WorkLogVO;
+
+@Service("logService")
+public class LogServiceImpl implements LogService {
+
+	@Autowired
+	private LogDAO logDAO;
+	
+	@Override
+	public int getLoginTotalCount() throws Exception {
+		return logDAO.getLoginTotalCount();
+	}
+	
+	@Override
+	public List<LoginLogVO> getLoginLogList(Criteria criteria) throws Exception {
+		return logDAO.getLoginLogList(criteria);
+	}
+
+	@Override
+	public int getWorkTotalCount() throws Exception {
+		return logDAO.getWorkTotalCount();
+	}
+
+	@Override
+	public List<WorkLogVO> getWorkLogList(Criteria criteria) throws Exception {
+		return logDAO.getWorkLogList(criteria);
+	}
+
+	@Override
+	public int getPaymentTotalCount() throws Exception {
+		return logDAO.getPaymentTotalCount();
+	}
+
+	@Override
+	public List<PaymentLogVO> getPaymentLogList(Criteria criteria) throws Exception {
+		return logDAO.getPaymentLogList(criteria);
+	}
+
+	
+	
+}

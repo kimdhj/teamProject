@@ -1,0 +1,27 @@
+#main_wrapper{
+	margin-top: 18%;
+}
+
+body {
+	font-size: 1vw;
+
+}
+
+#topborder{
+	border-top: 2px solid #666666;
+}
+
+textarea{
+	width :100%;
+}
+
+#all_checking{
+	border-style: solid;
+}
+#confirming{
+	font-size:1.5vw;
+}
+
+#all_checking> *{
+	padding: 0px;
+}

@@ -1,5 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="com.romance.user.event.EventVO" %>
+<%@ page import="java.util.List"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,89 +39,53 @@
 					<div class="row" id="table">
 						<div id="table_title" class="row">
 							<div class="col-2">일자</div>
-							<div class="col-3">책</div>
+							<div class="col-2">책</div>
 							<div class="col">내용</div>
 							<div class="col-1">별점</div>
-
+							<div class="col-1">삭제</div>
 						</div>
+						<div id="fordol">
+						<c:forEach var="rev" items="${ownReview }"  begin="${st }" end="${en }">
 						<div id="table_item" class="row">
-							<div class="col-2">2022-11-17</div>
-							<div class="col-3">호모나 이타다기</div>
-							<div class="col">오늘도 맛있는 이타다기</div>
-							<div id="starBox" class="col-1">
-								<form class="row" name="myform" id="myform" method="post"
-									action="/save">
-									<fieldset>
-										<input disabled type="radio" class="col" name="rating"
-											value="5" id="rate1"><label for="rate1">⭐</label> <input
-											class="col" checked type="radio" name="rating" value="4"
-											id="rate2"><label for="rate2">⭐</label> <input
-											class="col" disabled type="radio" name="rating" value="3"
-											id="rate3"><label for="rate3">⭐</label> <input
-											class="col" disabled type="radio" name="rating" value="2"
-											id="rate4"><label for="rate4">⭐</label> <input
-											class="col" disabled type="radio" name="rating" value="1"
-											id="rate5"><label for="rate5">⭐</label>
-									</fieldset>
-								</form>
+							<div class="col-2"><fmt:formatDate value="${rev.reply_date }" pattern="yyyy-MM-dd"/>
+								<input type="hidden" value="${rev.order_bookList_seq }"> 
 							</div>
+							<div class="col-2">${rev.book_title }</div>
+							<div class="col"><a href="/myreviewUpdate.do?book_seq=${rev.book_seq }&order_bookList_seq=${rev.order_bookList_seq}">${rev.reply_cotent }</a></div>
+							<div class="col-1"><input type="hidden" value="${rev.reply_seq }"></div>
+							<div id="starBox" class="col-1">
+								<form name="myform" id="myform" method="post" action="./save">
+              					  <b>별점</b><input type="number" class="hide" value="${rev.reply_point }" id="star" name="reply_point" />
+              					  <fieldset>
+               					   <input type="radio" name="rating" value="5" id="rate1"> <label for="rate1">⭐</label>
+             					     <input type="radio" name="rating" value="4" id="rate2"> <label for="rate2">⭐</label>
+             					     <input type="radio" name="rating" value="3" id="rate3"> <label for="rate3">⭐</label>
+             					     <input type="radio" name="rating" value="2" id="rate4"> <label for="rate4">⭐</label> 
+           					       <input type="radio" name="rating" value="1" id="rate5"> <label for="rate5">⭐</label>
+        					        </fieldset>
+       					       </form>
+							</div>
+							<div class="col-1"><button type="button" class="btn-close" aria-label="Close" onclick="delmyre(this);"></button></div>
 						</div>
-						<div id="table_item" class="row">
-							<div class="col-2">2022-11-17</div>
-							<div class="col-3">호모나 이타다기</div>
-							<div class="col">오늘도 맛있는 이타다기</div>
-							<div id="starBox" class="col-1">
-								<form class="row" name="myform" id="myform" method="post"
-									action="/save">
-									<fieldset>
-										<input disabled type="radio" class="col" name="rating"
-											value="5" id="rate1"><label for="rate1">⭐</label> <input
-											class="col" checked type="radio" name="rating" value="4"
-											id="rate2"><label for="rate2">⭐</label> <input
-											class="col" disabled type="radio" name="rating" value="3"
-											id="rate3"><label for="rate3">⭐</label> <input
-											class="col" disabled type="radio" name="rating" value="2"
-											id="rate4"><label for="rate4">⭐</label> <input
-											class="col" disabled type="radio" name="rating" value="1"
-											id="rate5"><label for="rate5">⭐</label>
-									</fieldset>
-								</form>
-							</div>
-						</div>
-						<div id="table_item" class="row">
-							<div class="col-2">2022-11-17</div>
-							<div class="col-3">호모나 이타다기</div>
-							<div class="col">오늘도 맛있는 이타다기</div>
-							<div id="starBox" class="col-1">
-								<form class="row" name="myform" id="myform" method="post"
-									action="/save">
-									<fieldset>
-										<input disabled type="radio" class="col" name="rating"
-											value="5" id="rate1"><label for="rate1">⭐</label> <input
-											class="col" checked type="radio" name="rating" value="4"
-											id="rate2"><label for="rate2">⭐</label> <input
-											class="col" disabled type="radio" name="rating" value="3"
-											id="rate3"><label for="rate3">⭐</label> <input
-											class="col" disabled type="radio" name="rating" value="2"
-											id="rate4"><label for="rate4">⭐</label> <input
-											class="col" disabled type="radio" name="rating" value="1"
-											id="rate5"><label for="rate5">⭐</label>
-									</fieldset>
-								</form>
-							</div>
+						</c:forEach>
 						</div>
 						<div id="table_bottom" class="row">
 							<nav aria-label="Page navigation example">
 								<ul class="pagination">
-									<li class="page-item"><a class="page-link" href="#"
-										aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-									</a></li>
-									<li class="page-item"><a class="page-link" href="#">1</a></li>
-									<li class="page-item"><a class="page-link" href="#">2</a></li>
-									<li class="page-item"><a class="page-link" href="#">3</a></li>
-									<li class="page-item"><a class="page-link" href="#"
-										aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-									</a></li>
+									<c:if test="${start ne 1 }">
+									<li class="page-item"><a class="page-link" href="#" tabindex="-1" aria-disabled="true"><span aria-hidden="true">&laquo;</span></a></li>
+								</c:if>
+								<c:forEach var="i" begin="${start }" end="${end}">
+									<c:if test="${now eq i }">
+										<li class="page-item active"><a class="page-link" href="#" id="now">${i }</a></li>
+									</c:if>
+									<c:if test="${now ne i }">
+										<li class="page-item"><a href="#" class="page-link">${i }</a></li>
+									</c:if>
+								</c:forEach>	
+								<c:if test="${end ne fullpage }">
+									<li class="page-item"><a class="page-link" href="#"><span aria-hidden="true">&raquo;</span></a></li>
+								</c:if>
 								</ul>
 							</nav>
 						</div>
@@ -138,8 +106,9 @@
 		<!-- Footer Start -->
 		<!-- Common Footer include -->
 		<jsp:include page="/WEB-INF/commonjsp/common_footer.jsp"></jsp:include>
-
+	
 		<!-- Footer End -->
+		<script src="/js/my_Review.js"></script>
 </body>
 
 </html>

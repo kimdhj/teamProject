@@ -41,38 +41,57 @@
 								</tr>
 								<tr>
 									<th>구분</th>
-									<td colspan=2><select class="form-select form-select-sm"
-									aria-label=".form-select-sm example" name="user_sub">
-										
-										<c:if test="${getUserDetail.user_sub eq '1'}">
-											<c:set var="selectedSub" value="selected" />
-										</c:if>
-										<c:if test="${getUserDetail.user_sub eq '0'}">
-											<c:set var="selectedNormal" value="selected" />
-										</c:if>
-										<option value="1" ${selectedSub}>구독회원</option>
-										<option value="0" ${selectedNormal}>일반회원</option>
-								</select></td>
-								
+									<c:if test="${getUserDetail.user_role eq 'ROLE_MEMBER'}">
+										<td colspan=2>
+											<select class="form-select form-select-sm"
+											aria-label=".form-select-sm example" name="user_sub">
+												<c:if test="${getUserDetail.user_sub eq '1'}">
+													<c:set var="selectedSub" value="selected" />
+												</c:if>
+												<c:if test="${getUserDetail.user_sub eq '0'}">
+													<c:set var="selectedNormal" value="selected" />
+												</c:if>
+												<option value="1" ${selectedSub}>구독회원</option>
+												<option value="0" ${selectedNormal}>일반회원</option>
+											</select>
+										</td>
+									</c:if>
+									<c:if test="${getUserDetail.user_role eq 'ROLE_ADMIN'}">
+										<td colspan=2>
+											<select class="form-select form-select-sm"
+											aria-label=".form-select-sm example" name="user_sub">
+												<option value="2">관리자</option>
+											</select>
+										</td>
+									</c:if>
+									<c:if test="${getUserDetail.user_role eq 'ROLE_MASTER'}">
+										<td colspan=2>
+											<select class="form-select form-select-sm"
+											aria-label=".form-select-sm example" name="user_sub">
+												<option value="2">마스터</option>
+											</select>
+										</td>
+									</c:if>
 								</tr>
 								<tr>
 									<th>상태</th>
-									<td colspan=2><select class="form-select form-select-sm"
-									aria-label=".form-select-sm example" name="user_state">
-										<c:if test="${getUserDetail.user_state eq 0}">
-											<c:set var="selectedNormalUser" value="selected" />
-										</c:if>
-										<c:if test="${getUserDetail.user_state eq 1}">
-											<c:set var="selectedBlackUser" value="selected" />
-										</c:if>
-										<c:if test="${getUserDetail.user_state eq 2}">
-											<c:set var="selectedWithdrawalUser" value="selected" />
-										</c:if>
-										<option value="0" ${selectedNormalUser}>정상회원</option>
-										<option value="1" ${selectedBlackUser}>블랙회원</option>
-										<option value="2" ${selectedWithdrawalUser}>탈퇴회원</option>	
-								</select></td>
-								
+									<td colspan=2>
+										<select class="form-select form-select-sm"
+										aria-label=".form-select-sm example" name="user_state">
+											<c:if test="${getUserDetail.user_state eq 0}">
+												<c:set var="selectedNormalUser" value="selected" />
+											</c:if>
+											<c:if test="${getUserDetail.user_state eq 1}">
+												<c:set var="selectedBlackUser" value="selected" />
+											</c:if>
+											<c:if test="${getUserDetail.user_state eq 2}"> <!-- 2인경우 구분에 관리자로표시 -->
+												<c:set var="selectedWithdrawalUser" value="selected" />
+											</c:if>
+											<option value="0" ${selectedNormalUser}>정상회원</option>
+											<option value="1" ${selectedBlackUser}>블랙회원</option>
+											<option value="2" ${selectedWithdrawalUser}>탈퇴회원</option>	
+										</select>
+									</td>
 								</tr>
 								<tr>
 									<td colspan='2'><h6 style="color: red;" id="id_check"></h6></td>

@@ -39,7 +39,7 @@
 			</div>
 			<div id="info_description2" data-aos="fade-down" data-aos-easing="ease-out-cubic" data-aos-duration="2000">
 				<div class="row">
-					<div class="col-12" id="info_description3">낭만 서점에서만 느낄 수 있는
+					<div class="col-12" id="info_description3" style="font-size: x-large;">낭만 서점에서만 느낄 수 있는
 						특별한 세 가지 경험</div>
 					<div class="col-12">
 						<div class="col info_hr"></div>

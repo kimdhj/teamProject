@@ -105,5 +105,5 @@
 	<delete id="deleteMyRequest" parameterType="int">
 		DELETE FROM ask WHERE ask_seq = #{ask_seq}
 	</delete>
-
+	
 </mapper>
