@@ -88,6 +88,7 @@ public class MyController {
 		
 		return "my_Password";
 	}
+	
 	@GetMapping("/getmyuser.do")
 	@ResponseBody
 	public UserVO getmyuser(HttpSession session, JwtUtils util) throws IOException  {
@@ -98,7 +99,6 @@ public class MyController {
 	    return vo;
 	  }else {
 	    return null;
-	  }
-	  
+	  } 
 	}
 }

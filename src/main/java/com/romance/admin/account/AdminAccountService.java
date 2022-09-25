@@ -29,6 +29,9 @@ public interface AdminAccountService {
 	//관리자계정 생성
 	public void insertAdminAccount(AdminUserVO vo) throws Exception;
 	
+	//관리자계정 삭제(MASTER만 가능)
+	public void deleteAdminAccount(String user_id) throws Exception;
+	
 	//아이디 중복체크
 	public int idCheck(String user_id) throws Exception;
 	
