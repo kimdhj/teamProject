@@ -6,6 +6,8 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.UUID;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.romance.security.JwtUtils;
 import com.romance.server.AwsS3;
+import com.romance.user.login.UserVO;
 
 @Controller
 public class AskController {
@@ -25,8 +29,11 @@ public class AskController {
   
   // List
   @GetMapping(value = "/QnaList.mdo")
-  public String getAskList(AskSearchVO svo, Model model, AskVO vo) {
-    
+  public String getAskList(AskSearchVO svo, Model model, AskVO vo,JwtUtils util, HttpSession session) throws IOException  {
+    UserVO vosession = util.getuser(session);
+    if((vosession == null||!vosession.getUser_role().equals("ROLE_ADMIN"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+      return "redirect:admin_login.mdo";
+    }
     List<AskVO> askList = service.getAskList(svo);
     model.addAttribute("askList", askList);
     
@@ -222,7 +229,12 @@ public class AskController {
   
   // 문의 답변 작성
   @PostMapping("/askReplyInsert.mdo")
-  public String insert(AskReplyVO arvo, AskVO vo) throws IOException{
+  public String insert(AskReplyVO arvo, AskVO vo,JwtUtils util, HttpSession session) throws IOException{
+    UserVO vosession = util.getuser(session);
+    if((vosession == null||!vosession.getUser_role().equals("ROLE_ADMIN"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+      return "redirect:admin_login.mdo";
+    }
+
     System.out.println("askReplyInsert : " + arvo);
     System.out.println("askReplyInsert2 : " + vo);
     
@@ -258,7 +270,12 @@ public class AskController {
   
   // Update
   @GetMapping("/QnaUpdate.mdo")
-  public String getUpdate(AskReplyVO arvo, AskVO vo, Model model) {
+  public String getUpdate(AskReplyVO arvo, AskVO vo, Model model,JwtUtils util, HttpSession session) throws IOException {
+    UserVO vosession = util.getuser(session);
+    if((vosession == null||!vosession.getUser_role().equals("ROLE_ADMIN"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+      return "redirect:admin_login.mdo";
+    }
+
     System.out.println("GET update AskVO : " + vo);
     System.out.println("GET update AskReplyVO : " + arvo);
     
@@ -275,7 +292,11 @@ public class AskController {
   }
   
   @PostMapping("/QnaUpdate.mdo")
-  public String update(AskReplyVO arvo, AskVO vo, Model model) throws IOException {
+  public String update(AskReplyVO arvo, AskVO vo, Model model,JwtUtils util, HttpSession session) throws IOException {
+    UserVO vosession = util.getuser(session);
+    if((vosession == null||!vosession.getUser_role().equals("ROLE_ADMIN"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+      return "redirect:admin_login.mdo";
+    }
     System.out.println("POST update AskReplyVO : " + arvo);
     System.out.println("POST update AskVO : " + vo);
 

@@ -30,8 +30,14 @@ public class FaqController {
 	
 	// Faq List
 	@RequestMapping(value="/FaqList.mdo", method=RequestMethod.GET)
-	public String getFaqList(FaqSearchVO svo, Model model) {
-//		System.out.println(svo);
+	public String getFaqList(FaqSearchVO svo, Model model,JwtUtils util, HttpSession session) throws IOException {
+	  UserVO vosession = util.getuser(session);
+	  if((vosession == null||!vosession.getUser_role().equals("ROLE_ADMIN"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+	    return "redirect:admin_login.mdo";
+	  }
+
+
+	  //		System.out.println(svo);
 		List<FaqVO> faqList = service.getFaqList(svo);
 		model.addAttribute("faqList", faqList);
 
@@ -63,6 +69,7 @@ public class FaqController {
 	@GetMapping("/faqList.mdo")
 	@ResponseBody
 	public List<FaqVO> faqList(FaqSearchVO svo){
+	  
 //		System.out.println(svo);
 		List<FaqVO> faqList = service.getFaqList(svo);
 		return faqList;
@@ -156,7 +163,12 @@ public class FaqController {
 	// get 방식 insert 로 페이지 호출 -> 여기서 로그인 세션 넣어주기
 	@GetMapping(value="/FaqInsert.mdo")
 	public String getInsert(FaqVO vo, Model model, HttpSession session, JwtUtils util) throws IOException {
-		UserVO userVO = util.getuser(session);
+
+	  UserVO vosession = util.getuser(session);
+	 if((vosession == null||!vosession.getUser_role().equals("ROLE_ADMIN"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+	   return "redirect:admin_login.mdo";
+	 }
+	  UserVO userVO = util.getuser(session);
 		model.addAttribute("seq", vo.getFAQ_seq());
 		model.addAttribute("user", userVO.getUser_id());
 		
@@ -167,7 +179,12 @@ public class FaqController {
 	
 	// Update -> 내가 가져가야 하는 값을 잘 생각하고 찍어야됨.
 	@GetMapping(value="/FaqUpdate.mdo")
-	public String update(FaqVO vo, FaqSearchVO svo, Model model) {
+	public String update(FaqVO vo, FaqSearchVO svo, Model model,JwtUtils util, HttpSession session) throws IOException  {
+	
+	  UserVO vosession = util.getuser(session);
+	  if((vosession == null||!vosession.getUser_role().equals("ROLE_ADMIN"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+	    return "redirect:admin_login.mdo";
+	  }
 //		System.out.println("getUpdate: " + service.getFaq(vo));
 		model.addAttribute("svo", svo);
 		model.addAttribute("faq", service.getFaq(vo)); // 해당 vo 를 넘겨줘서 getFaq(상세보기 화면) 가져오기

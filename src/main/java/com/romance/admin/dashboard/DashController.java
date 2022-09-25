@@ -1,6 +1,9 @@
 package com.romance.admin.dashboard;
 
+import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.romance.security.JwtUtils;
+import com.romance.user.login.UserVO;
+
 @Controller
 @RequestMapping("/")
 public class DashController {
@@ -16,7 +22,11 @@ public class DashController {
 	private DashService dashService;
 	
 	@GetMapping("adminMain.mdo")
-	public String myMain(DashVO dashVO, Model model) {
+	public String myMain(DashVO dashVO, Model model,JwtUtils util, HttpSession session) throws IOException {
+	  UserVO vosession = util.getuser(session);
+	  if((vosession == null||!vosession.getUser_role().equals("ROLE_ADMIN"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+	    return "redirect:admin_login.mdo";
+	  }
 		System.out.println("Mybatis로 차트데이터 테스트용 처리");
 		model.addAttribute("dashVO", dashVO);
 		model.addAttribute("getSubRatio", dashService.getSubRatio(dashVO));

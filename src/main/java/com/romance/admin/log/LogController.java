@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.romance.admin.login.AdminUserVO;
 import com.romance.security.JwtUtils;
+import com.romance.user.login.UserVO;
 
 @Controller
 @RequestMapping("/")
@@ -38,7 +39,12 @@ public class LogController {
 	
 	@GetMapping("adminLoginLog.mdo")
 	public String adminLoginLog(Criteria criteria, Model model, HttpSession session, JwtUtils utils) throws Exception {
-		AdminUserVO voToken = utils.getAdmin(session);
+	  UserVO vosession = utils.getuser(session);
+	  if((vosession == null||!vosession.getUser_role().equals("ROLE_ADMIN"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+	    return "redirect:admin_login.mdo";
+	  }
+
+	  AdminUserVO voToken = utils.getAdmin(session);
 		if(voToken != null) {
 			
 			if(criteria.getSearchCondition() == null) {
@@ -61,7 +67,13 @@ public class LogController {
 	}
 	@GetMapping("adminWorkLog.mdo")
 	public String adminWorkLog(Criteria criteria, Model model, HttpSession session, JwtUtils utils) throws Exception {
-		AdminUserVO voToken = utils.getAdmin(session);
+		
+	  UserVO vosession = utils.getuser(session);
+	  if((vosession == null||!vosession.getUser_role().equals("ROLE_ADMIN"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+	    return "redirect:admin_login.mdo";
+	  }
+
+	  AdminUserVO voToken = utils.getAdmin(session);
 		if(voToken != null) {
 			
 			if(criteria.getSearchCondition() == null) {
@@ -84,7 +96,12 @@ public class LogController {
 	}
 	@GetMapping("adminPaymentLog.mdo")
 	public String adminPaymentLog(Criteria criteria, Model model, HttpSession session, JwtUtils utils) throws Exception {
-		AdminUserVO voToken = utils.getAdmin(session);
+	  UserVO vosession = utils.getuser(session);
+	  if((vosession == null||!vosession.getUser_role().equals("ROLE_ADMIN"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+	    return "redirect:admin_login.mdo";
+	  }
+
+	  AdminUserVO voToken = utils.getAdmin(session);
 		if(voToken != null) {
 			
 			if(criteria.getSearchCondition() == null) {
