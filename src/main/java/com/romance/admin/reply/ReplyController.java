@@ -23,7 +23,6 @@ public class ReplyController {
   
   // 전체 List - 조인 값이 필요하니깐 !
   @GetMapping("/ReplyList.mdo")
-<<<<<<< HEAD
   public String getReplyList(ReplyVO vo, Model model, ReplySearchVO svo, ReplyJoinVO rjvo,JwtUtils util, HttpSession session) throws IOException  {
 
     UserVO vosession = util.getuser(session);

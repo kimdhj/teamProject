@@ -258,22 +258,16 @@ public class AskController {
   
   // 문의 답변 작성
   @PostMapping("/askReplyInsert.mdo")
-<<<<<<< HEAD
+
   public String insert(AskReplyVO arvo, AskVO vo,JwtUtils util, HttpSession session) throws IOException{
     UserVO vosession = util.getuser(session);
     if((vosession == null||!vosession.getUser_role().equals("ROLE_ADMIN"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
       return "redirect:admin_login.mdo";
     }
 
-=======
-  public String insert(AskReplyVO arvo, AskVO vo, HttpSession session, JwtUtils util) throws IOException{
-    AdminUserVO admin = util.getAdmin(session);
-    
-    if(admin == null) {
-      return "admin_login.mdo";
-    }
-    
->>>>>>> main
+
+ 
+
     System.out.println("askReplyInsert : " + arvo);
     System.out.println("askReplyInsert2 : " + vo);
     
@@ -309,15 +303,14 @@ public class AskController {
   
   // Update
   @GetMapping("/QnaUpdate.mdo")
-<<<<<<< HEAD
   public String getUpdate(AskReplyVO arvo, AskVO vo, Model model,JwtUtils util, HttpSession session) throws IOException {
     UserVO vosession = util.getuser(session);
     if((vosession == null||!vosession.getUser_role().equals("ROLE_ADMIN"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
       return "redirect:admin_login.mdo";
     }
 
-=======
-  public String getUpdate(AskReplyVO arvo, AskVO vo, Model model, HttpSession session, JwtUtils util) throws IOException {
+
+  
     AdminUserVO admin = util.getAdmin(session);
     
     if(admin == null) {
@@ -330,7 +323,7 @@ public class AskController {
     
     model.addAttribute("admin", admin.getUser_id());
     
->>>>>>> main
+
     System.out.println("GET update AskVO : " + vo);
     System.out.println("GET update AskReplyVO : " + arvo);
     
