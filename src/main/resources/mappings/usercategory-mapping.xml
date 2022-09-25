@@ -8,6 +8,13 @@
 	<select resultType="int" parameterType="String" id="suballcate">
 		select category_num from user_category where user_id=#{user_id}
 	</select>
+	<select resultType="String" parameterType="String" id="mybook">
+		select book_title from subscribe_person as sp join book as b on b.book_seq=sp.book_seq where sp.user_id=#{user_id}
+	</select>
+	<delete parameterType="String" id="delcate">
+		delete from user_category where user_id=#{user_id}
+	</delete> 
+	
 
 
 

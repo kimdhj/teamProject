@@ -40,10 +40,14 @@
 					</a>
 						<ul class="cat-sub-menu">
 							<li><a href="/getAdmin_member_List.mdo">회원관리</a></li>
+
+							<li><a href="/getAdmin_admin_List.mdo">관리자계정 관리</a></li>
+							<li><a href="/admin_terms_Main.mdo">약관관리</a></li>
 							<li><a href="#" onclick="isMaster()">관리자계정 관리</a></li>
 							<li><a href="/new-post.html">약관관리</a></li>
+              <li><a href="/chatList.mdo">채팅 관리</a></li>
 						</ul></li>
-					<li><a href="/ab"> <span
+					<li><a href="/category.mdo"> <span
 							class="icon folder " aria-hidden="true"></span>카테고리 관리
 					</a></li>
 					<li><a href="/adminLoginLog.mdo"> <span
@@ -59,8 +63,8 @@
 						</span>
 					</a>
 						<ul class="cat-sub-menu">
-							<li><a href=/pages.html">주문 관리</a></li>
-							<li><a href="/new-page.html">환불/교환/반품</a></li>
+							<li><a href="/admintrade.mdo">주문 관리</a></li>
+							<li><a href="/admintradecancel.mdo">환불/교환/반품</a></li>
 						</ul></li>
 					<li><a class="show-cat-btn" href="##"> <span
 							class="icon edit" aria-hidden="true"></span>게시판 <span
@@ -87,6 +91,7 @@
 							<li><a href="/getSubInfo.mdo">구독</a></li>
 							<li><a href="/coupon.mdo">쿠폰</a></li>
 							<li><a href="/getEventList.mdo">이벤트 관리</a></li>
+              <li><a href="/adminauthor.mdo">작가 관리</a></li>
 						</ul></li>
 				</ul>
 			</div>

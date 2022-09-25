@@ -78,44 +78,32 @@
       </div>
       <div id="myChartTwo" class="col-md-6">
         <div class="card border-light">
-          <div class="card-header">Header</div>
-          <div class="card-body">
-            <canvas ></canvas>
-          </div>
+          
+         
         </div>
       </div>
     </div>
     <div  class="d-flex flex-row">
       <div id="myChartThree" class="col-md-6">
         <div class="card border-light">
-          <div class="card-header">Header</div>
-          <div class="card-body">
-            <canvas ></canvas>
-          </div>
+          
         </div>
       </div>
       <div id="myChartFour" class="col-md-6">
         <div class="card border-light">
-          <div class="card-header">Header</div>
-          <div class="card-body">
-            <canvas ></canvas>
-          </div>
+        
         </div>
       </div>
     </div>
     <div class="d-flex flex-row">
       <div id="donught" class="col-md-6">
         <div class="card border-light">
-          <div class="card-header">Header</div>
-          <div class="card-body"></div>
-          <div class="card-footer">footer</div>
+        
         </div>
       </div>
       <div class="col-md-6">
         <div id="donught2" class="card border-light">
-          <div class="card-header">일반회원 ${getSubRatio.normal_cnt}명</div>
-          <div class="card-body"></div>
-          <div class="card-footer">구독자 ${getSubRatio.sub_cnt}명</div>
+          
         </div>
       </div>
     </div>

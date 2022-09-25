@@ -1,5 +1,9 @@
 $(document).ready(function () {
+$(".myca").map((ind,el)=>{
  
+ let text=`input:checkbox[id='${$(el).val()}']`;
+ $(text).prop("checked", true);   
+ })
   $("#add_find").click(function () {
     console.log("hi");
     new daum.Postcode({

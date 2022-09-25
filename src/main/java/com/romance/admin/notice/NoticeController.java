@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.romance.admin.login.AdminUserVO;
 import com.romance.security.JwtUtils;
 import com.romance.server.AwsS3;
 import com.romance.user.login.UserVO;
@@ -29,7 +30,13 @@ public class NoticeController {
 	
 	// 공지사항 목록 - 페이징
 	@RequestMapping(value = "/admin_post_Notice.mdo", method=RequestMethod.GET)
-	public String getNoticeList(Model model, NoticeSearchVO svo) {
+	public String getNoticeList(HttpSession session, JwtUtils util, Model model, NoticeSearchVO svo) throws IOException {
+	  AdminUserVO admin = util.getAdmin(session);
+	  
+	  if(admin == null) {
+	    return "admin_login.mdo";
+	  }
+	  
 		System.out.println("svo : " + svo); // 데이터가 넘어오는지 확인
 		List<NoticeVO> noticeList = noticeService.getNoticeList(svo); // 공지사항 목록
 		int count = noticeService.getCount(svo);
@@ -106,24 +113,24 @@ public class NoticeController {
 	// NoticeInsert.jsp 로 이동 처리해주는 컨트롤러
 	@RequestMapping(value = "/admin_post_Insert.mdo")
 	public String insert(HttpSession session, JwtUtils util, Model model) throws IOException {
-		UserVO userVo = util.getuser(session);
+		AdminUserVO admin = util.getAdmin(session);
 		
-		if(userVo == null) {
+		if(admin == null) {
 		  return "/admin_login.mdo";
 		}
 		
-		System.out.println("userVo ==========> \n" + userVo);
+		System.out.println("userVo ==========> \n" + admin);
 		
-//		if(userVo.getUser_role().equals("ROLE_ADMIN")) {
+		if(admin.getUser_role().equals("ROLE_ADMIN")) {
+		  admin.setUser_id("관리자");
+		}
+		
+//		if(userVo.getUser_id().equals("qjawns0222")) {
 //		  userVo.setUser_id("관리자");
 //		}
 		
-		if(userVo.getUser_id().equals("qjawns0222")) {
-		  userVo.setUser_id("관리자");
-		}
-		
-		model.addAttribute("user", userVo.getUser_id());
-		System.out.println(userVo.getUser_id());
+		model.addAttribute("user", admin.getUser_id());
+		System.out.println(admin.getUser_id());
 //		model.addAttribute("user", userVo.getUser_name());
 		return "admin_post_NoticeInsert";
 	}
@@ -175,7 +182,13 @@ public class NoticeController {
 	
 	// 공지사항 수정인데, seq 를 들고가서 해당 seq 값의 전체 데이터를 뽑아내서 수정하도록 해주는 컨트롤ㄹ러
 	@RequestMapping(value = "/admin_post_NoticeUpdate.mdo", method=RequestMethod.GET)
-	public String updateNotice(String notice_seq, Model model, NoticeSearchVO svo) {
+	public String updateNotice(HttpSession session, JwtUtils util, String notice_seq, Model model, NoticeSearchVO svo) throws IOException {
+	  AdminUserVO admin = util.getAdmin(session);
+	  
+	  if(admin == null) {
+	    return "/admin_login.mdo";
+	  }
+	  
 //		System.out.println(notice_seq);
 		
 		NoticeVO vo = new NoticeVO();

@@ -50,6 +50,10 @@ public class AdminAccountDAO {
 		sqlSessionTemplate.insert("AdminUserDAO.insertAdminAccount", vo);
 	}
 	
+	public void deleteAdminAccount(String user_id) {
+		sqlSessionTemplate.delete("AdminUserDAO.deleteAdminAccount", user_id);
+	}
+	
 	public int idCheck(String user_id) {
 		System.out.println("Mybatis로 idCheck 기능 처리");
 		return sqlSessionTemplate.selectOne("AdminUserDAO.idCheck", user_id);

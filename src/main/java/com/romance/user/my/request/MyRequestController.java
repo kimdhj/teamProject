@@ -41,6 +41,11 @@ public class MyRequestController {
 	
 	@GetMapping("myRequestList.do")
 	public String myRequestList(Criteria criteria, Model model, HttpSession session, JwtUtils utils) throws IOException  {
+	   
+	  UserVO vosession = utils.getuser(session);
+	   if((vosession == null||!vosession.getUser_role().equals("ROLE_MEMBER"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+	     return "redirect:index.do";
+	     } 
 
 		UserVO voToken = utils.getuser(session);
 		if(voToken != null) {
@@ -88,6 +93,11 @@ public class MyRequestController {
 	
 	@GetMapping("myRequestDetail.do")
 	public String myRequestDetail(MyRequestVO myRequestVO, MyRequestReplyVO myRequestReplyVO, Criteria criteria, Model model, HttpSession session, JwtUtils utils) throws IOException {
+	   
+	  UserVO vosession = utils.getuser(session);
+	   if((vosession == null||!vosession.getUser_role().equals("ROLE_MEMBER"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+	     return "redirect:index.do";
+	     } 
 
 		UserVO voToken = utils.getuser(session);
 		if(voToken != null) {
@@ -108,7 +118,12 @@ public class MyRequestController {
 	
 	@GetMapping("myRequestWrite.do")
 	public String myRequestWrite(Model model, HttpSession session, JwtUtils utils) throws IOException {
-		UserVO voToken = utils.getuser(session);
+	   
+	  UserVO vosession = utils.getuser(session);
+    if((vosession == null||!vosession.getUser_role().equals("ROLE_MEMBER"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+return "redirect:index.do";
+} 
+	  UserVO voToken = utils.getuser(session);
 		if(voToken != null) {
 			System.out.println(voToken);
 			String session_user_id = voToken.getUser_id();

@@ -17,7 +17,7 @@
 	</select>
 	<!-- 1번으로 5개 -->
 	<select parameterType="dashdataVO" resultType="dashoutVO" id="categorysel">
-	<![CDATA[select * from (select count(c.category_num) as count,c.category_num as title,@rownum:=@rownum + 1 as rnum from (SELECT @rownum:=0) TMP,   orders as o join order_bookList as b on o.orders_seq=b.orders_seq join book bo on b.book_seq=bo.book_seq join category c on c.category_num=bo.category_num 
+	<![CDATA[select * from (select count(c.category_num) as count,c.category_num as title,c.category_name as titlestr,@rownum:=@rownum + 1 as rnum from (SELECT @rownum:=0) TMP,   orders as o join order_bookList as b on o.orders_seq=b.orders_seq join book bo on b.book_seq=bo.book_seq join category c on c.category_num=bo.category_num 
 	]]>
 		<trim prefix="WHERE" prefixOverrides="AND | OR">
 			<if test="month != null and month != ''"><![CDATA[AND date_format(o.orders_order_day,'%m')=#{month} ]]></if>
