@@ -51,7 +51,13 @@ public class AdminAccountController {
 	
 	@GetMapping("getAdmin_member_List.mdo")
 	public String getUserListWithPaging(Criteria criteria, Model model, HttpSession session, JwtUtils utils) throws Exception {
-		AdminUserVO voToken = utils.getAdmin(session);
+	  
+	  UserVO vosession = utils.getuser(session);
+	  if((vosession == null||!vosession.getUser_role().equals("ROLE_ADMIN"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+	    return "redirect:admin_login.mdo";
+	  }
+
+	  AdminUserVO voToken = utils.getAdmin(session);
 		if(voToken != null) { //토큰값이 null이 아닌경우
 			System.out.println("관리자에서 회원목록 처리");
 			System.out.println("검색 조건 : " + criteria.getSearchCondition());
@@ -87,7 +93,12 @@ public class AdminAccountController {
 	
 	@GetMapping("getAdmin_member_Detail.mdo")
 	public String getUserDetail(AdminUserVO vo, @ModelAttribute("criteria") Criteria criteria, Model model, HttpSession session, JwtUtils utils) throws Exception {
-		AdminUserVO voToken = utils.getAdmin(session);
+	  UserVO vosession = utils.getuser(session);
+	  if((vosession == null||!vosession.getUser_role().equals("ROLE_ADMIN"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+	    return "redirect:admin_login.mdo";
+	  }
+
+	  AdminUserVO voToken = utils.getAdmin(session);
 		if(voToken != null) {
 			System.out.println("무엇을 들고오셨는가? : " + vo);
 			System.out.println("지금 보고있는 아이디가? : " + vo.getUser_id());
@@ -151,7 +162,11 @@ public class AdminAccountController {
 	
 	@GetMapping("getAdmin_admin_List.mdo")
 	public String getAdminListWithPaging(AdminUserVO vo, Criteria criteria, Model model, HttpSession session, JwtUtils utils) throws Exception {
-		AdminUserVO voToken = utils.getAdmin(session);
+	  UserVO vosession = utils.getuser(session);
+	  if(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER")){
+	    return "redirect:admin_login.mdo";
+	  }   
+	  AdminUserVO voToken = utils.getAdmin(session);
 		if(voToken != null) {
 			if(voToken.getUser_role().equals("ROLE_MASTER")) {
 				System.out.println("Mybatis로 adminList 기능 처리");

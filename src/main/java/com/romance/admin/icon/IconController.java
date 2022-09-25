@@ -3,6 +3,8 @@ package com.romance.admin.icon;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.romance.security.JwtUtils;
+import com.romance.user.login.UserVO;
+
 @Controller
 @SessionAttributes("icon")
 public class IconController {
@@ -20,7 +25,12 @@ public class IconController {
 	private IconService iconService;
 	
 	@RequestMapping("/getIcon.mdo")
-	 public String getIcon(Model model) {
+	 public String getIcon(Model model,JwtUtils util, HttpSession session) throws IOException {
+	  UserVO vosession = util.getuser(session);
+	  if((vosession == null||!vosession.getUser_role().equals("ROLE_ADMIN"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+	    return "redirect:admin_login.mdo";
+	  }
+
 		 model.addAttribute("icon", iconService.getIcon());
 		 model.addAttribute("bannerList", iconService.getBanner());
 		 return "admin_marketing_Icon";
