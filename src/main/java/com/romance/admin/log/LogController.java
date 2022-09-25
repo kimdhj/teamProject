@@ -106,4 +106,5 @@ public class LogController {
 			return "redirect:admin_login.mdo";
 		}
 	}
+	
 }

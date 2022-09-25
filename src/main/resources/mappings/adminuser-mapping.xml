@@ -118,6 +118,10 @@
 		VALUES(#{user_password}, #{user_name}, #{user_phone}, #{user_email}, '0', '0', '0', '0', 'ROLE_ADMIN', #{user_id}, '0', 'A', '0', 0)
 	</insert>
 	
+	<delete id="deleteAdminAccount" parameterType="string">
+		DELETE FROM user WHERE user_id = #{user_id}
+	</delete>
+	
 	<select id="idCheck" parameterType="string" resultType="int">
 		SELECT COUNT(user_id) FROM user WHERE user_id = #{user_id}
 	</select>

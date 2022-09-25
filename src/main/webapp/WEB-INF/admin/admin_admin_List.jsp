@@ -51,36 +51,39 @@
 				</form>
 			</div>
 		</div>
-		<div class="d-flex flex-row">
-			<p style="color:blue;">${pagination.criteria.pageNum}페이지</p>
-		</div>
-		<div class="d-flex flex-row">
-			<table class="table text-center">
-				<thead class="table-dark">
-					<tr>
-						<th scope="col">이름</th>
-						<th scope="col">아이디</th>
-						<th scope="col">구분</th>
-						<th scope="col">연락처</th>
-						<th scope="col">Email</th>
-						<!-- <th scope="col">삭제</th> -->
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="adminAccount" items="${adminListWithPaging}">
+		<%-- <form action="/delAdminAccount.mdo?${}" method="post" onsubmit="return delAdmin()"> --%>	
+			<div class="d-flex flex-row">
+				<p style="color:blue;">${pagination.criteria.pageNum}페이지</p>
+			</div>
+			<div class="d-flex flex-row">
+				<table class="table text-center">
+					<thead class="table-dark">
 						<tr>
-							<td>${adminAccount.user_name}</td>
-							<td>${adminAccount.user_id}</td>
-							<td>${adminAccount.user_role}</td>
-							<td>${adminAccount.user_phone}</td>
-							<td>${adminAccount.user_email}</td>
-							<!-- <td><button type="button"
-									class="btn btn-light btn-outline-dark">삭제</button></td> -->
+							<th scope="col">이름</th>
+							<th scope="col">아이디</th>
+							<th scope="col">구분</th>
+							<th scope="col">연락처</th>
+							<th scope="col">Email</th>
+							<th scope="col">삭제</th>
 						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-		</div>
+					</thead>
+					<tbody>
+						<c:forEach var="adminAccount" items="${adminListWithPaging}">
+								<input type="hidden" id="delUserId" name="delUserId" value="" />
+							<tr>
+								<td>${adminAccount.user_name}</td>
+								<td>${adminAccount.user_id}</td>
+								<td>${adminAccount.user_role}</td>
+								<td>${adminAccount.user_phone}</td>
+								<td>${adminAccount.user_email}</td>
+								<td><a href="/deleteAdminAccount.mdo?user_id=${adminAccount.user_id}" onclick="return delAdmin()"><button type="button"
+										class="btn btn-light btn-outline-dark">삭제</button></a></td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+		<!-- </form> -->
 		<!-- <div class="d-flex flex-row">
 			<div class="col-md-12">
 				<nav aria-label="Page navigation example">
