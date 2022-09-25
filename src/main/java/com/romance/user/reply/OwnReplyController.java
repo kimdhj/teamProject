@@ -1,6 +1,7 @@
 package com.romance.user.reply;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -23,7 +24,15 @@ public class OwnReplyController {
 	@Autowired
 	ReplyService replyService;
 	
-	@RequestMapping(value="/ajax_recount", method=RequestMethod.POST)
+
+	@RequestMapping(value="/ajax_rerecount.do", method=RequestMethod.POST)
+	@ResponseBody
+	public List<ReplyVO> ajax_rerecount(ReplyVO vo, Model model,JwtUtils util, HttpSession session) {
+			
+		return ownReplyService.ajax_rerecount(vo);
+	}
+	
+	@RequestMapping(value="/ajax_recount.do", method=RequestMethod.POST)
 	@ResponseBody
 	public int ajax_recount(ReplyVO vo, Model model,JwtUtils util, HttpSession session) {
 		
@@ -73,7 +82,8 @@ public class OwnReplyController {
 		model.addAttribute("end",end);
 		model.addAttribute("st",st);
 		model.addAttribute("en",en);
-		
+		model.addAttribute("user_id",iid);
+		model.addAttribute("total", total);
 		
 		return "my_Review";
 	}

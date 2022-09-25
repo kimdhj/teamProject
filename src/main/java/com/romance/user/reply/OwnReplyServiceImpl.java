@@ -22,4 +22,10 @@ public class OwnReplyServiceImpl implements OwnReplyService {
 		return ownReplyDAO.ajax_recount(vo);
 	}
 	
+	
+	@Override
+	public List<ReplyVO> ajax_rerecount(ReplyVO vo){
+		return ownReplyDAO.movingReview(vo);
+	}
+
 }

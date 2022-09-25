@@ -130,4 +130,10 @@ public class EventServiceImpl implements EventService {
 		if (file4!=null) {awsS3.delete(file4); }
 		if (file5!=null) {awsS3.delete(file5); }
 	}
+	
+	@Override
+	public EventVO showSub() {
+		return EventDAO.showSub();
+	}
+	
 }

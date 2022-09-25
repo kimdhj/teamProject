@@ -62,5 +62,8 @@
 	<select id="topCheck" resultType="int">
 		SELECT COUNT(*) FROM event WHERE event_top_event = true;
 	</select>
+	<select id="showSub" resultMap="eventResult">
+		SELECT * FROM event where event_title LIKE CONCAT('%', "구독", '%')
+	</select>
 	
 </mapper>
