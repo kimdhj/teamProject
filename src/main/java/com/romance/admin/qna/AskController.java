@@ -159,6 +159,11 @@ public class AskController {
   // Detail - 답변 대기
   @GetMapping(value = "/QnaDetail.mdo")
   public String getDetail1(Model model, AskVO vo, AskReplyVO arvo, AskSearchVO svo, HttpSession session, JwtUtils util) throws IOException {
+    UserVO vosession = util.getuser(session);
+    if((vosession == null||!vosession.getUser_role().equals("ROLE_ADMIN"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+      return "redirect:admin_login.mdo";
+    }
+
     AdminUserVO admin = util.getAdmin(session);
     
     if(admin == null) {
@@ -196,6 +201,11 @@ public class AskController {
   // Detail - 답변 완료 (오류나는 이유가 답변 완료인데, 답변이 없기 때문에) -> 답변 있을 때
   @GetMapping(value = "/qnaDetail.mdo")
   public String getDetail2(Model model, AskVO vo, AskReplyVO arvo, AskSearchVO svo, HttpSession session, JwtUtils util) throws IOException {
+    UserVO vosession = util.getuser(session);
+    if((vosession == null||!vosession.getUser_role().equals("ROLE_ADMIN"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+      return "redirect:admin_login.mdo";
+    }
+
     AdminUserVO admin = util.getAdmin(session);
     
     if(admin == null) {
@@ -258,7 +268,6 @@ public class AskController {
   
   // 문의 답변 작성
   @PostMapping("/askReplyInsert.mdo")
-
   public String insert(AskReplyVO arvo, AskVO vo,JwtUtils util, HttpSession session) throws IOException{
     UserVO vosession = util.getuser(session);
     if((vosession == null||!vosession.getUser_role().equals("ROLE_ADMIN"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){

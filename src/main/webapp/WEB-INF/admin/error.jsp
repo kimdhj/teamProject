@@ -20,14 +20,14 @@
                 <!--BEGIN CONTENT-->
                 <div class="inner-circle"><i class="fa fa-cogs"></i><span>ERROR</span></div>
                 <span class="inner-status">이용에 불편을 드려 죄송합니다</span>
-                <span class="inner-detail">문의 사항은 고객센터로 문의 주세요.<br/><a href="/index.do">메인페이지</a>로 자동으로 이동 됩니다.</span>
+                <span class="inner-detail">문의 사항은 고객센터로 문의 주세요.<br/><a href="/admin_login.mdo">메인페이지</a>로 자동으로 이동 됩니다.</span>
                 <!--END CONTENT-->
             </div>
         </div>
     </div>
 </div>
  <script type="text/javascript">
- setTimeout(function(){location.href="/index.do"},10000);
+ setTimeout(function(){location.href="/admin_login.mdo"},10000);
  
  </script>
 </body>
