@@ -93,7 +93,7 @@ public class MySubController {
 	@RequestMapping("my_cancelSub.do")
 	public String my_cancelSub(HttpSession session, JwtUtils util, Model model, SubscribeVO svo) throws IOException {
 		UserVO userVO = util.getuser(session);
-		
+	
 		model.addAttribute("user_name", userVO.getUser_name());
 		model.addAttribute("user_point", userVO.getUser_point());
 		model.addAttribute("user_sub_count", userVO.getUser_sub_count());
@@ -109,7 +109,11 @@ public class MySubController {
 	@RequestMapping("my_modifySub.do")
 	public String my_modifySub(HttpSession session, JwtUtils util, Model model, SubscribeVO svo) throws IOException {
 		UserVO userVO = util.getuser(session);
-		
+	  System.out.println("subcateall"+mySubService.getcatelist());
+	 
+    model.addAttribute("catelist",mySubService.getcatelist());
+    model.addAttribute("mybook",mySubService.mybook(userVO.getUser_id()));
+    model.addAttribute("catemy",mySubService.getcatemy(userVO.getUser_id()));
 		model.addAttribute("user_name", userVO.getUser_name());
 		model.addAttribute("user_point", userVO.getUser_point());
 		model.addAttribute("user_sub_count", userVO.getUser_sub_count());
@@ -271,6 +275,14 @@ return "redirect:index.do";
 	  paymentLogVO.setPayment_log_money(payment_log_money);
 	  paymentLogVO.setPayment_log_contents(payment_log_contents);
 	  loggingService.insertPaymentLog(paymentLogVO);
+  }
+  @PostMapping("subupdate.do")
+  public String subupdate(int[] category_num,JwtUtils util, HttpSession session) throws IOException {
+    UserVO user=util.getuser(session);
+    mySubService.delcate(user.getUser_id());
+    mySubService.joininsert(category_num, user.getUser_id());
+    System.out.println("cnum : "+category_num.toString());
+    return "redirect:my_getSub.do";
   }
 	
 }

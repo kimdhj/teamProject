@@ -96,7 +96,10 @@ $(document).ready(function() {
 		method: "get",
 		dataType: "json",
 		success: function(el) {
-		
+		if(el!=null){
+			console.log(el)
+			$(".fa-user").addClass("lime")
+		}
 			$("#mypage_name_header").text(el.user_name);
 			$("#mypage_coupon_header").text(el.user_enabled);
 			$("#mypage_point_header").text(el.user_point.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
