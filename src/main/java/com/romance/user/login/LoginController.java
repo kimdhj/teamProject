@@ -218,6 +218,7 @@ public class LoginController {
   
   @PostMapping("findpassword.do")
   public String findpassword(UserVO vo, Model model) {
+    System.out.println(vo);
     int re = ser.findpassword(vo);
     if (re > 0) {
       model.addAttribute("id", vo.getUser_id());

@@ -2,15 +2,91 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="DashDAO">
-	
+
 	<resultMap type="dashVO" id="dashResult">
 		<result property="sub_cnt" column="SUB_CNT" />
 		<result property="normal_cnt" column="NORMAL_CNT" />
 	</resultMap>
-	
-	
-	<select id="getSubRatio" parameterType="dashVO" resultType="dashVO">
-		SELECT COUNT(if(user_sub = '1', 1, null)) AS sub_cnt, COUNT(if(user_sub = '0', 1, null)) AS normal_cnt FROM user WHERE user_role = 'ROLE_MEMBER' 
+
+
+	<select id="getSubRatio" parameterType="dashVO"
+		resultType="dashVO">
+		SELECT COUNT(if(user_sub = '1', 1, null)) AS sub_cnt,
+		COUNT(if(user_sub = '0', 1, null)) AS normal_cnt FROM user WHERE
+		user_role = 'ROLE_MEMBER'
 	</select>
+	<!-- 1번으로 5개 -->
+	<select parameterType="dashdataVO" resultType="dashoutVO" id="categorysel">
+	<![CDATA[select * from (select count(c.category_num) as count,c.category_num as title,@rownum:=@rownum + 1 as rnum from (SELECT @rownum:=0) TMP,   orders as o join order_bookList as b on o.orders_seq=b.orders_seq join book bo on b.book_seq=bo.book_seq join category c on c.category_num=bo.category_num 
+	]]>
+		<trim prefix="WHERE" prefixOverrides="AND | OR">
+			<if test="month != null and month != ''"><![CDATA[AND date_format(o.orders_order_day,'%m')=#{month} ]]></if>
+			<if test="year != null and year != ''"><![CDATA[AND date_format(o.orders_order_day,'%Y')=#{year} ]]></if>
+		</trim>
 	
+	<![CDATA[
+	group by c.category_num order by count asc) dz where rnum<=5]]>
+	</select>
+	<!-- 1번으로 5개 -->
+	<select parameterType="dashdataVO" resultType="dashoutVO" id="booksel">
+<![CDATA[select * from (select count(b.book_seq) as count,b.book_title as titlestr,@rownum:=@rownum + 1 as rnum  from (SELECT @rownum:=0) TMP,order_bookList as ob join book as b on b.book_seq=ob.book_seq join orders as ord on ord.orders_seq=ob.orders_seq ]]>
+		<trim prefix="WHERE" prefixOverrides="AND | OR">
+			<if test="month != null and month != ''"><![CDATA[AND date_format(ord.orders_order_day,'%m')=#{month} ]]></if>
+			<if test="year != null and year != ''"><![CDATA[AND date_format(ord.orders_order_day,'%Y')=#{year} ]]></if>
+		</trim>
+ <![CDATA[group by b.book_seq) EQ where rnum<=5 order by count asc]]>
+	</select>
+	<!-- 1개씩 5번 -->
+	<select parameterType="dashdataVO" resultType="dashoutVO" id="dashcache">
+		select IFNULL(sum(order_bookList_count*book_price),0) as count from orders as o
+		join
+		order_bookList as b on o.orders_seq=b.orders_seq join book bo on
+		b.book_seq=bo.book_seq
+		<trim prefix="WHERE" prefixOverrides="AND | OR">
+			<if test="month != null and month != ''"><![CDATA[AND date_format(o.orders_order_day,'%m')=concat('0',#{month}) ]]></if>
+			<if test="year != null and year != ''"><![CDATA[AND date_format(o.orders_order_day,'%Y')=#{year} ]]></if>
+		</trim>
+	</select>
+	<!-- 1개씩 5번 -->
+	<select parameterType="dashdataVO" resultType="dashoutVO" id="dashcount">
+		select count(order_bookList_count) as count from orders as o join
+		order_bookList as b on o.orders_seq=b.orders_seq
+		<trim prefix="WHERE" prefixOverrides="AND | OR">
+			<if test="month != null and month != ''"><![CDATA[AND date_format(o.orders_order_day,'%m')=concat('0',#{month}) ]]></if>
+			<if test="year != null and year != ''"><![CDATA[AND date_format(o.orders_order_day,'%Y')=#{year} ]]></if>
+		</trim>
+	</select>
+	<!-- 도넛 -->
+	<select parameterType="dashdataVO" resultType="dashoutVO" id="dashbookbuy">
+		select count(*) as count from order_bookList as ob join orders as o on
+		o.orders_seq=ob.orders_seq
+		
+	</select>
+
+	<select parameterType="dashdataVO" resultType="dashoutVO" id="dashreply">
+		select count(*) as count from reply
+		
+	</select>
+	<!-- 도넛 -->
+	<select parameterType="dashdataVO" resultType="dashoutVO" id="dashgetuser"> select count(*) as count
+		from user where user_sub=1 and
+		user_role="ROLE_MEMBER"
+	</select>
+	<select parameterType="dashdataVO" resultType="dashoutVO" id="dashgetsub">select count(*) as count
+		from user where user_sub!=1 and
+		user_role="ROLE_MEMBER"
+	</select>
+
+	<!-- 위에뛰울거 -->
+	<select parameterType="dashdataVO" resultType="dashoutVO" id="dashcancelcount">
+		select count(*) as count from orders where orders_status like
+		concat('%','cancel','%') 
+		<![CDATA[AND date_format(orders_order_day,'%Y-%m-%d')=#{date}	 ]]>
+	</select>
+	<select resultType="dashoutVO" parameterType="dashdataVO"
+		id="dashnotcancelcount">
+		select count(*) as count from orders
+	<![CDATA[where date_format(orders_order_day,'%Y-%m-%d')=#{date}	 ]]>
+	</select>
+
 </mapper>

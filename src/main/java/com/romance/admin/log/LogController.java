@@ -1,11 +1,15 @@
 package com.romance.admin.log;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.romance.admin.login.AdminUserVO;
@@ -17,10 +21,33 @@ public class LogController {
 	@Autowired
 	private LogService logService;
 	
+	@ModelAttribute("conditionMapVOne")
+	public Map<String, String> searchConditionVOneMap() {
+		Map<String, String> conditionMapVOne = new HashMap<>();
+		conditionMapVOne.put("회원ID", "USER_ID");
+		return conditionMapVOne;
+	}
+	@ModelAttribute("conditionMapVTwo")
+	public Map<String, String> searchConditionVTwoMap() {
+		Map<String, String> conditionMapVTwo = new HashMap<>();
+		conditionMapVTwo.put("회원ID", "USER_ID");
+		conditionMapVTwo.put("작업자ID", "ADMIN_ID");
+		return conditionMapVTwo;
+	}
+	
+	
 	@GetMapping("adminLoginLog.mdo")
 	public String adminLoginLog(Criteria criteria, Model model, HttpSession session, JwtUtils utils) throws Exception {
 		AdminUserVO voToken = utils.getAdmin(session);
 		if(voToken != null) {
+			
+			if(criteria.getSearchCondition() == null) {
+				criteria.setSearchCondition("USER_ID");
+			}
+			if(criteria.getSearchKeyword() == null) {
+				criteria.setSearchKeyword("");
+			}
+			
 			Pagination pagination = new Pagination();
 			pagination.setCriteria(criteria);
 			pagination.setTotalCount(logService.getLoginTotalCount());
@@ -36,6 +63,14 @@ public class LogController {
 	public String adminWorkLog(Criteria criteria, Model model, HttpSession session, JwtUtils utils) throws Exception {
 		AdminUserVO voToken = utils.getAdmin(session);
 		if(voToken != null) {
+			
+			if(criteria.getSearchCondition() == null) {
+				criteria.setSearchCondition("USER_ID");
+			}
+			if(criteria.getSearchKeyword() == null) {
+				criteria.setSearchKeyword("");
+			}
+			
 			Pagination pagination = new Pagination();
 			pagination.setCriteria(criteria);
 			pagination.setTotalCount(logService.getWorkTotalCount());
@@ -51,6 +86,14 @@ public class LogController {
 	public String adminPaymentLog(Criteria criteria, Model model, HttpSession session, JwtUtils utils) throws Exception {
 		AdminUserVO voToken = utils.getAdmin(session);
 		if(voToken != null) {
+			
+			if(criteria.getSearchCondition() == null) {
+				criteria.setSearchCondition("USER_ID");
+			}
+			if(criteria.getSearchKeyword() == null) {
+				criteria.setSearchKeyword("");
+			}
+			
 			Pagination pagination = new Pagination();
 			pagination.setCriteria(criteria);
 			pagination.setTotalCount(logService.getPaymentTotalCount());

@@ -29,13 +29,13 @@
 	<div class="container">
 		<div class="d-flex flex-row">
 			<div class="col-md-7">
-				<form action="/getAdmin_member_List.mdo" method="get">
+				<form action="/adminLoginLog.mdo" method="get">
 					<div class="d-flex flex-row">
 						<div class="col-md-4">
 							<select class="form-select form-select mb-3"
 								aria-label=".form-select-lg example" name="searchCondition">
-								<c:forEach items="${conditionMap }" var="option">
-									<option value="${option.value }">${option.key }</option>
+								<c:forEach items="${conditionMapVOne}" var="option">
+									<option value="${option.value}">${option.key}</option>
 								</c:forEach>
 							</select>
 						</div>

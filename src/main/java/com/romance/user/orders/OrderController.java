@@ -133,7 +133,7 @@ public class OrderController {
 		String payment_log_contents = "";
 		payment_log_contents += "[책 구매] "
 								+ "결제수단 : " + vo.getOrders_cache_tool()
-								+ "포인트 사용 : " + vo.getOrders_point()
+								+ ", 포인트 사용 : " + vo.getOrders_point()
 								+ ", 포인트 적립 : " + vo.getOrders_add_point()
 								+ ", 주문내용 : " + vo.getOrders_title();
 		
