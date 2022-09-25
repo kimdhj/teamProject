@@ -30,13 +30,12 @@ public class NoticeController {
 	
 	// 공지사항 목록 - 페이징
 	@RequestMapping(value = "/admin_post_Notice.mdo", method=RequestMethod.GET)
-	public String getNoticeList(HttpSession session, JwtUtils util, Model model, NoticeSearchVO svo) throws IOException {
-	  AdminUserVO admin = util.getAdmin(session);
-	  
-	  if(admin == null) {
-	    return "admin_login.mdo";
-	  }
-	  
+	public String getNoticeList(Model model, NoticeSearchVO svo,JwtUtils util, HttpSession session) throws IOException {
+	  UserVO vosession = util.getuser(session);
+    if((vosession == null||!vosession.getUser_role().equals("ROLE_ADMIN"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+      return "redirect:admin_login.mdo";
+    }
+
 		System.out.println("svo : " + svo); // 데이터가 넘어오는지 확인
 		List<NoticeVO> noticeList = noticeService.getNoticeList(svo); // 공지사항 목록
 		int count = noticeService.getCount(svo);
@@ -113,7 +112,16 @@ public class NoticeController {
 	// NoticeInsert.jsp 로 이동 처리해주는 컨트롤러
 	@RequestMapping(value = "/admin_post_Insert.mdo")
 	public String insert(HttpSession session, JwtUtils util, Model model) throws IOException {
+<<<<<<< HEAD
+	  UserVO vosession = util.getuser(session);
+	  if((vosession == null||!vosession.getUser_role().equals("ROLE_ADMIN"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+	    return "redirect:admin_login.mdo";
+	  }
+
+	  UserVO userVo = util.getuser(session);
+=======
 		AdminUserVO admin = util.getAdmin(session);
+>>>>>>> main
 		
 		if(admin == null) {
 		  return "/admin_login.mdo";
@@ -182,6 +190,15 @@ public class NoticeController {
 	
 	// 공지사항 수정인데, seq 를 들고가서 해당 seq 값의 전체 데이터를 뽑아내서 수정하도록 해주는 컨트롤ㄹ러
 	@RequestMapping(value = "/admin_post_NoticeUpdate.mdo", method=RequestMethod.GET)
+<<<<<<< HEAD
+	public String updateNotice(String notice_seq, Model model, NoticeSearchVO svo,JwtUtils util, HttpSession session) throws IOException {
+
+	  UserVO vosession = util.getuser(session);
+	 if((vosession == null||!vosession.getUser_role().equals("ROLE_ADMIN"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+	   return "redirect:admin_login.mdo";
+	 }
+
+=======
 	public String updateNotice(HttpSession session, JwtUtils util, String notice_seq, Model model, NoticeSearchVO svo) throws IOException {
 	  AdminUserVO admin = util.getAdmin(session);
 	  
@@ -189,6 +206,7 @@ public class NoticeController {
 	    return "/admin_login.mdo";
 	  }
 	  
+>>>>>>> main
 //		System.out.println(notice_seq);
 		
 		NoticeVO vo = new NoticeVO();
@@ -202,7 +220,13 @@ public class NoticeController {
 	
 	// 공지사항 수정
 	@RequestMapping(value = "/admin_post_NoticeUpdate.mdo", method=RequestMethod.POST)
-	public String updateNotice(NoticeVO vo, Model model) throws IOException {
+	public String updateNotice(NoticeVO vo, Model model,JwtUtils util, HttpSession session) throws IOException  {
+	  UserVO vosession = util.getuser(session);
+	  if((vosession == null||!vosession.getUser_role().equals("ROLE_ADMIN"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+	    return "redirect:admin_login.mdo";
+	  }
+
+
 		System.out.println("update vo : " + vo);
 		String uploadFolder = "https://doublejo.s3.ap-northeast-2.amazonaws.com/";
 		

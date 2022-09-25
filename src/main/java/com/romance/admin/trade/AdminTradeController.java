@@ -1,5 +1,6 @@
 package com.romance.admin.trade;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,8 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.romance.admin.author.AdminAuthorVO;
 import com.romance.security.JwtUtils;
+import com.romance.user.login.UserVO;
 import com.romance.user.orders.OrderBookListVO;
 import com.romance.user.orders.OrdersVO;
 
@@ -22,7 +23,12 @@ public class AdminTradeController {
   @Autowired
   TradeService ser;
   @GetMapping("tradeordersdetail.mdo")
-  public String ordersdetail(OrdersVO vo,Model model) {
+  public String ordersdetail(OrdersVO vo,Model model,JwtUtils util, HttpSession session) throws IOException {
+    UserVO vosession = util.getuser(session);
+    if((vosession == null||!vosession.getUser_role().equals("ROLE_ADMIN"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+      return "redirect:admin_login.mdo";
+    }
+
     vo=ser.ordersdetail(vo.getOrders_seq());
     System.out.println("orders상세 : "+vo);
     System.out.println("책정보 : "+ser.booklistsel(vo.getOrders_seq()));
@@ -32,8 +38,12 @@ public class AdminTradeController {
     return "admin_trade_orders";
   }
   @GetMapping("admintrade.mdo")
-  public String admintrade(TradeSearchVO vo,Model model) {
-    
+  public String admintrade(TradeSearchVO vo,Model model,JwtUtils util, HttpSession session) throws IOException {
+    UserVO vosession = util.getuser(session);
+    if((vosession == null||!vosession.getUser_role().equals("ROLE_ADMIN"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+      return "redirect:admin_login.mdo";
+    }
+
     if(vo.getPage()==0) {
       vo.setPage(1);
     }
@@ -84,7 +94,12 @@ public class AdminTradeController {
   }
   
   @GetMapping("admintradebooklist.mdo")
-  public String admin_trade_booklist(TradeJoinVO vo,Model model) {
+  public String admin_trade_booklist(TradeJoinVO vo,Model model,JwtUtils util, HttpSession session) throws IOException {
+
+    UserVO vosession = util.getuser(session);
+   if((vosession == null||!vosession.getUser_role().equals("ROLE_ADMIN"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+     return "redirect:admin_login.mdo";
+   }
     System.out.println("주문별개"+vo);
     TradeJoinVO voj=ser.booklistdetail(vo.getOrder_bookList_seq());
     model.addAttribute("voj", voj);
@@ -135,8 +150,13 @@ public class AdminTradeController {
   }
   //취소 리스트
   @GetMapping("admintradecancel.mdo")
-  public String admintradecancel(TradeSearchVO vo,Model model) {
-    
+  public String admintradecancel(TradeSearchVO vo,Model model,JwtUtils util, HttpSession session) throws IOException {
+    UserVO vosession = util.getuser(session);
+    if((vosession == null||!vosession.getUser_role().equals("ROLE_ADMIN"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+      return "redirect:admin_login.mdo";
+    }
+
+
     if(vo.getPage()==0) {
       vo.setPage(1);
     }

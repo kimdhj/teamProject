@@ -22,6 +22,11 @@ public class AuthorController {
   AdminAuthorService ser;
   @GetMapping("adminauthor.mdo")
   public String adminauthor(AdminAuthorSearchVO vo,Model model,JwtUtils util,HttpSession session) throws IOException {
+    UserVO vosession = util.getuser(session);
+    if((vosession == null||!vosession.getUser_role().equals("ROLE_ADMIN"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+      return "redirect:admin_login.mdo";
+    }
+
     UserVO vou=util.getuser(session);
     if (vou==null) {
 
