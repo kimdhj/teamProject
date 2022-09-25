@@ -5,7 +5,7 @@
 
 	<!-- 혜성 나의 리뷰 작업 -->
 	<select id="movingReview" parameterType="ReplyVO" resultType="ReplyVO">
-		select R1.* FROM (SELECT reply.*, book.book_title FROM reply JOIN book ON reply.book_seq = book.book_seq WHERE user_id=#{user_id} order by reply_seq) R1 LIMIT 10 OFFSET 0
+		select R1.* FROM (SELECT reply.*, book.book_title FROM reply JOIN book ON reply.book_seq = book.book_seq WHERE user_id=#{user_id} order by reply_seq) R1 LIMIT 5 OFFSET 0
 	</select>
 	<select id="ajax_recount" resultType="int">
 		SELECT count(*) FROM reply WHERE user_id=#{user_id}

@@ -28,7 +28,7 @@ public class OwnReplyController {
 	@RequestMapping(value="/ajax_rerecount.do", method=RequestMethod.POST)
 	@ResponseBody
 	public List<ReplyVO> ajax_rerecount(ReplyVO vo, Model model,JwtUtils util, HttpSession session) {
-			
+			System.out.println("깐뜨롤러 : "+ownReplyService.ajax_rerecount(vo));
 		return ownReplyService.ajax_rerecount(vo);
 	}
 	
@@ -54,7 +54,7 @@ public class OwnReplyController {
 		}
 		String iid = userVO.getUser_id();
 		ReplyVO replyVO = new ReplyVO();
-		replyVO.setUser_id(iid); 
+		replyVO.setUser_id(iid);
 		model.addAttribute("ownReview", ownReplyService.movingReview(replyVO));
 		
 		int total = ownReplyService.ajax_recount(replyVO);
@@ -70,7 +70,7 @@ public class OwnReplyController {
 		if(end>fullpage) {
 			end = fullpage;
 		}
-		int st = (now*5)-4;
+		int st = (now*5)-5;
 		int en = (now*5);
 		System.out.println("아"+now);
 		System.out.println("제발"+fullpage);

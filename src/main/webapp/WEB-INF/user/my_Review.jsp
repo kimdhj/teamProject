@@ -55,7 +55,7 @@
 							<div class="col-1"><input type="hidden" value="${rev.reply_seq }"></div>
 							<div id="starBox" class="col-1">
 								<form name="myform" id="myform" method="post" action="./save">
-              					  <b>별점</b><input type="number" class="hide" value="${rev.reply_point }" id="star" name="reply_point" />
+              					  <b>별점</b><input type="number" class="hide star" value="${rev.reply_point }" id="star" name="reply_point" />
               					  <fieldset>
                					   <input type="radio" name="rating" value="5" id="rate1"> <label for="rate1">⭐</label>
              					     <input type="radio" name="rating" value="4" id="rate2"> <label for="rate2">⭐</label>
