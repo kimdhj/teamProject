@@ -215,6 +215,19 @@ public class AdminAccountController {
 			return "redirect:admin_login.mdo";
 		}
 	}
+	
+	//관리자 계정 삭제
+	@GetMapping("deleteAdminAccount.mdo")
+	public String delAdminAccount(String user_id, HttpSession session, JwtUtils utils) throws Exception {
+		AdminUserVO voToken = utils.getAdmin(session);
+		if(voToken != null) {
+			System.out.println(">>>>>>>계정삭제할 아이디 : " + user_id);
+			adminAccountService.deleteAdminAccount(user_id);
+			return "redirect:getAdmin_admin_List.mdo";
+		} else {
+			return "redirect:admin_login.mdo";
+		}
+	}
 
 	//work_log 포인트
 	//회원정보 수정

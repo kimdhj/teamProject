@@ -19,9 +19,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.romance.admin.login.AdminUserVO;
 import com.romance.security.JwtUtils;
 import com.romance.server.AwsS3;
-import com.romance.user.login.UserVO;
 
 @Controller
 public class FaqController {
@@ -30,6 +30,7 @@ public class FaqController {
 	
 	// Faq List
 	@RequestMapping(value="/FaqList.mdo", method=RequestMethod.GET)
+
 	public String getFaqList(FaqSearchVO svo, Model model,JwtUtils util, HttpSession session) throws IOException {
 	  UserVO vosession = util.getuser(session);
 	  if((vosession == null||!vosession.getUser_role().equals("ROLE_ADMIN"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
@@ -38,6 +39,7 @@ public class FaqController {
 
 
 	  //		System.out.println(svo);
+
 		List<FaqVO> faqList = service.getFaqList(svo);
 		model.addAttribute("faqList", faqList);
 
@@ -163,6 +165,7 @@ public class FaqController {
 	// get 방식 insert 로 페이지 호출 -> 여기서 로그인 세션 넣어주기
 	@GetMapping(value="/FaqInsert.mdo")
 	public String getInsert(FaqVO vo, Model model, HttpSession session, JwtUtils util) throws IOException {
+<<<<<<< HEAD
 
 	  UserVO vosession = util.getuser(session);
 	 if((vosession == null||!vosession.getUser_role().equals("ROLE_ADMIN"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
@@ -171,20 +174,44 @@ public class FaqController {
 	  UserVO userVO = util.getuser(session);
 		model.addAttribute("seq", vo.getFAQ_seq());
 		model.addAttribute("user", userVO.getUser_id());
+=======
+		AdminUserVO admin = util.getAdmin(session);
+>>>>>>> main
 		
-		System.out.println(userVO.getUser_id());
+		if(admin == null) {
+		  return "admin_login.mdo";
+		}
+		
+		if(admin.getUser_role().equals("ROLE_ADMIN")) {
+		  admin.setUser_id("관리자");
+		}
+		
+		model.addAttribute("seq", vo.getFAQ_seq());
+		model.addAttribute("user", admin.getUser_id());
+		
+		System.out.println(admin.getUser_id());
 		
 		return "admin_post_FaqInsert";
 	}
 	
 	// Update -> 내가 가져가야 하는 값을 잘 생각하고 찍어야됨.
 	@GetMapping(value="/FaqUpdate.mdo")
+<<<<<<< HEAD
 	public String update(FaqVO vo, FaqSearchVO svo, Model model,JwtUtils util, HttpSession session) throws IOException  {
 	
 	  UserVO vosession = util.getuser(session);
 	  if((vosession == null||!vosession.getUser_role().equals("ROLE_ADMIN"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
 	    return "redirect:admin_login.mdo";
 	  }
+=======
+	public String update(FaqVO vo, FaqSearchVO svo, Model model, HttpSession session, JwtUtils util) throws IOException {
+	  AdminUserVO admin = util.getAdmin(session);
+	  
+	  if(admin == null) {
+	    return "admin_login.mdo";
+	  }
+	  
+>>>>>>> main
 //		System.out.println("getUpdate: " + service.getFaq(vo));
 		model.addAttribute("svo", svo);
 		model.addAttribute("faq", service.getFaq(vo)); // 해당 vo 를 넘겨줘서 getFaq(상세보기 화면) 가져오기

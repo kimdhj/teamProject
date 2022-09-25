@@ -16,7 +16,6 @@ import com.romance.security.JwtUtils;
 import com.romance.user.login.UserVO;
 
 
-
 @Controller
 public class ReplyController {
   @Autowired
@@ -24,12 +23,14 @@ public class ReplyController {
   
   // 전체 List - 조인 값이 필요하니깐 !
   @GetMapping("/ReplyList.mdo")
+<<<<<<< HEAD
   public String getReplyList(ReplyVO vo, Model model, ReplySearchVO svo, ReplyJoinVO rjvo,JwtUtils util, HttpSession session) throws IOException  {
 
     UserVO vosession = util.getuser(session);
    if((vosession == null||!vosession.getUser_role().equals("ROLE_ADMIN"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
      return "redirect:admin_login.mdo";
    }
+
 
     List<ReplyJoinVO> replyList = service.getReplyList(svo);
     model.addAttribute("replyList", replyList);

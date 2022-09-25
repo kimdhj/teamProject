@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+
+import com.romance.admin.login.AdminUserVO;
+
 import com.romance.security.JwtUtils;
 import com.romance.server.AwsS3;
 import com.romance.user.login.UserVO;
@@ -34,6 +37,7 @@ public class AskController {
     if((vosession == null||!vosession.getUser_role().equals("ROLE_ADMIN"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
       return "redirect:admin_login.mdo";
     }
+
     List<AskVO> askList = service.getAskList(svo);
     model.addAttribute("askList", askList);
     
@@ -82,6 +86,7 @@ public class AskController {
   // Delete (List, 상세보기에서 질문 + 답변 삭제)
   @GetMapping(value = "/AskDelete.mdo") // 질문 삭제(질문 + 답변)
   public String delete(AskVO vo, AskReplyVO arvo) throws FileNotFoundException, IOException {
+    
     System.out.println("AskDelete : " + vo);
     
     if (vo.getAsk_file() != null) { // isEmpty() : 업로드 한 파일 존재 여부를 리턴(없으면 true 리턴)
@@ -153,7 +158,19 @@ public class AskController {
   
   // Detail - 답변 대기
   @GetMapping(value = "/QnaDetail.mdo")
-  public String getDetail1(Model model, AskVO vo, AskReplyVO arvo, AskSearchVO svo) {
+  public String getDetail1(Model model, AskVO vo, AskReplyVO arvo, AskSearchVO svo, HttpSession session, JwtUtils util) throws IOException {
+    AdminUserVO admin = util.getAdmin(session);
+    
+    if(admin == null) {
+      return "admin_login.mdo";
+    }
+    
+    if(admin.getUser_role().equals("ROLE_ADMIN")) {
+      admin.setUser_id("관리자");
+    }
+    
+    model.addAttribute("admin", admin.getUser_id());
+    
     vo = service.getAsk(vo);
     arvo = service.getAskReply(arvo);
     System.out.println("답변 없을 때 : " + vo);
@@ -178,7 +195,19 @@ public class AskController {
   
   // Detail - 답변 완료 (오류나는 이유가 답변 완료인데, 답변이 없기 때문에) -> 답변 있을 때
   @GetMapping(value = "/qnaDetail.mdo")
-  public String getDetail2(Model model, AskVO vo, AskReplyVO arvo, AskSearchVO svo) {
+  public String getDetail2(Model model, AskVO vo, AskReplyVO arvo, AskSearchVO svo, HttpSession session, JwtUtils util) throws IOException {
+    AdminUserVO admin = util.getAdmin(session);
+    
+    if(admin == null) {
+      return "admin_login.mdo";
+    }
+    
+    if(admin.getUser_role().equals("ROLE_ADMIN")) {
+      admin.setUser_id("관리자");
+    }
+    
+    model.addAttribute("admin", admin.getUser_id());
+    
     vo = service.getAsk(vo);
     arvo = service.getAskReply(arvo);
     
@@ -229,12 +258,22 @@ public class AskController {
   
   // 문의 답변 작성
   @PostMapping("/askReplyInsert.mdo")
+<<<<<<< HEAD
   public String insert(AskReplyVO arvo, AskVO vo,JwtUtils util, HttpSession session) throws IOException{
     UserVO vosession = util.getuser(session);
     if((vosession == null||!vosession.getUser_role().equals("ROLE_ADMIN"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
       return "redirect:admin_login.mdo";
     }
 
+=======
+  public String insert(AskReplyVO arvo, AskVO vo, HttpSession session, JwtUtils util) throws IOException{
+    AdminUserVO admin = util.getAdmin(session);
+    
+    if(admin == null) {
+      return "admin_login.mdo";
+    }
+    
+>>>>>>> main
     System.out.println("askReplyInsert : " + arvo);
     System.out.println("askReplyInsert2 : " + vo);
     
@@ -270,12 +309,28 @@ public class AskController {
   
   // Update
   @GetMapping("/QnaUpdate.mdo")
+<<<<<<< HEAD
   public String getUpdate(AskReplyVO arvo, AskVO vo, Model model,JwtUtils util, HttpSession session) throws IOException {
     UserVO vosession = util.getuser(session);
     if((vosession == null||!vosession.getUser_role().equals("ROLE_ADMIN"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
       return "redirect:admin_login.mdo";
     }
 
+=======
+  public String getUpdate(AskReplyVO arvo, AskVO vo, Model model, HttpSession session, JwtUtils util) throws IOException {
+    AdminUserVO admin = util.getAdmin(session);
+    
+    if(admin == null) {
+      return "admin_login.mdo";
+    }
+    
+    if(admin.getUser_role().equals("ROLE_ADMIN")) {
+      admin.setUser_id("관리자");
+    }
+    
+    model.addAttribute("admin", admin.getUser_id());
+    
+>>>>>>> main
     System.out.println("GET update AskVO : " + vo);
     System.out.println("GET update AskReplyVO : " + arvo);
     

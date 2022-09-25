@@ -92,6 +92,7 @@ return "redirect:index.do";
 		
 		return "my_Password";
 	}
+	
 	@GetMapping("/getmyuser.do")
 	@ResponseBody
 	public UserVO getmyuser(HttpSession session, JwtUtils util) throws IOException  {
@@ -102,7 +103,6 @@ return "redirect:index.do";
 	    return vo;
 	  }else {
 	    return null;
-	  }
-	  
+	  } 
 	}
 }

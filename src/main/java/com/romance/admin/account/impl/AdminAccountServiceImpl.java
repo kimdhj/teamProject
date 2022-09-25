@@ -53,6 +53,11 @@ public class AdminAccountServiceImpl implements AdminAccountService {
 	public void insertAdminAccount(AdminUserVO vo) throws Exception {
 		adminAccountDAO.insertAdminAccount(vo);		
 	}
+	
+	@Override
+	public void deleteAdminAccount(String user_id) throws Exception {
+		adminAccountDAO.deleteAdminAccount(user_id);
+	}
 
 	@Override
 	public int idCheck(String user_id) throws Exception {

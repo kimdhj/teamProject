@@ -1,6 +1,7 @@
 package com.romance.user.reply;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -23,7 +24,15 @@ public class OwnReplyController {
 	@Autowired
 	ReplyService replyService;
 	
-	@RequestMapping(value="/ajax_recount", method=RequestMethod.POST)
+
+	@RequestMapping(value="/ajax_rerecount.do", method=RequestMethod.POST)
+	@ResponseBody
+	public List<ReplyVO> ajax_rerecount(ReplyVO vo, Model model,JwtUtils util, HttpSession session) {
+			System.out.println("깐뜨롤러 : "+ownReplyService.ajax_rerecount(vo));
+		return ownReplyService.ajax_rerecount(vo);
+	}
+	
+	@RequestMapping(value="/ajax_recount.do", method=RequestMethod.POST)
 	@ResponseBody
 	public int ajax_recount(ReplyVO vo, Model model,JwtUtils util, HttpSession session) {
 		
@@ -45,7 +54,7 @@ public class OwnReplyController {
 		}
 		String iid = userVO.getUser_id();
 		ReplyVO replyVO = new ReplyVO();
-		replyVO.setUser_id(iid); 
+		replyVO.setUser_id(iid);
 		model.addAttribute("ownReview", ownReplyService.movingReview(replyVO));
 		
 		int total = ownReplyService.ajax_recount(replyVO);
@@ -61,7 +70,7 @@ public class OwnReplyController {
 		if(end>fullpage) {
 			end = fullpage;
 		}
-		int st = (now*5)-4;
+		int st = (now*5)-5;
 		int en = (now*5);
 		System.out.println("아"+now);
 		System.out.println("제발"+fullpage);
@@ -73,7 +82,8 @@ public class OwnReplyController {
 		model.addAttribute("end",end);
 		model.addAttribute("st",st);
 		model.addAttribute("en",en);
-		
+		model.addAttribute("user_id",iid);
+		model.addAttribute("total", total);
 		
 		return "my_Review";
 	}

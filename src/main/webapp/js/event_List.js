@@ -12,7 +12,7 @@ function ifRoulSub(e){
 	if(roul != -1) {
 	location.href = 'http://localhost:8080/event_Roulette.do?event_seq='+seq;
 	}else if(sub != -1){
-	location.href = 'http://localhost:8080/event_Sub.do?event_seq='+seq;		
+	location.href = 'http://localhost:8080/event_Sub_Info.do?event_seq='+seq;		
 	}else{
 	location.href = 'http://localhost:8080/getEvent.do?event_seq='+seq;		
 	};

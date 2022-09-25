@@ -60,7 +60,7 @@ public class MySubController {
 	
 	//인클루드 사항 삭제
 	//마이페이지 구독정보
-	@RequestMapping("my_getSub.do")
+	@RequestMapping("/my_getSub.do")
 	public String my_getSub(HttpSession session, JwtUtils util, Model model, SubscribeVO svo, BookSearchVO vo) throws IOException {
 		UserVO userVO = util.getuser(session);
 		
@@ -90,7 +90,7 @@ public class MySubController {
 	}
 	
 	//마이페이지 구독취소
-	@RequestMapping("my_cancelSub.do")
+	@RequestMapping("/my_cancelSub.do")
 	public String my_cancelSub(HttpSession session, JwtUtils util, Model model, SubscribeVO svo) throws IOException {
 		UserVO userVO = util.getuser(session);
 	
@@ -106,7 +106,7 @@ public class MySubController {
 	}
 	
 	//마이페이지 구독정보변경
-	@RequestMapping("my_modifySub.do")
+	@RequestMapping("/my_modifySub.do")
 	public String my_modifySub(HttpSession session, JwtUtils util, Model model, SubscribeVO svo) throws IOException {
 		UserVO userVO = util.getuser(session);
 	  System.out.println("subcateall"+mySubService.getcatelist());

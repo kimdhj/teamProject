@@ -69,5 +69,8 @@ public class EventDAO {
 	public EventVO selectFile(int del) {
 		return sqlSessionTemplate.selectOne("EventDAO.selectFile", del);
 	}
+	public EventVO showSub() {
+		return sqlSessionTemplate.selectOne("EventDAO.showSub");
+	}
 	
 }

@@ -21,7 +21,7 @@ function can_sub() {
 					icon: "warning"
 				})
 //				alert("현재 구독하지 않은 상태입니다! 구독 결제 창으로 이동합니다.");
-				location.href = "/mysubpay.do";
+				location.href = "/event_Sub_Info.do";
 			}
 		},
 		error: function(jqXHR, textStatus, errorThrown) {

@@ -7,5 +7,6 @@ public interface OwnReplyService {
 	
 	List<ReplyVO> movingReview(ReplyVO vo);
 	int ajax_recount(ReplyVO vo);
+	List<ReplyVO> ajax_rerecount(ReplyVO vo);
 	
 }

@@ -354,13 +354,22 @@ public class EventController {
 	}
 	
 	@RequestMapping("/event_Sub.do")
-	public String goSub(EventVO vo, Model model, SubscribeVO svo){
-		eventService.countCnt(vo.getEvent_seq());
-		model.addAttribute("sub", subscribeService.getSub(svo));
-		model.addAttribute("event_event", eventService.getEvent(vo));
-		return "event_Subscribe";
+	public String goSub(EventVO vo, Model model, SubscribeVO svo, JwtUtils util, HttpSession session) throws IOException{
+		UserVO vosession = util.getuser(session);
+		if((vosession == null||!vosession.getUser_sub().equals("1"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+		   return "redirect:event_Sub_Info.do";
+		}    
+		return "redirect:/my_getSub.do";
 	}
 	
+	@RequestMapping("/event_Sub_Info.do")
+	public String goSub2(EventVO vo, Model model, SubscribeVO svo){
+		eventService.countCnt(vo.getEvent_seq());
+		model.addAttribute("sub", subscribeService.getSub(svo));
+		model.addAttribute("event_event", eventService.showSub());
+		return "event_Subscribe";
+	}
+
 	
 	
 	
