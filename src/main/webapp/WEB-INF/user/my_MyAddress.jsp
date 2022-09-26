@@ -41,7 +41,15 @@
 								<i class="bi bi-house-fill"></i>
 							</div>
 							<div class="col-auto">입력된 주소</div>
-							<div id="max" class="col-auto">${max}</div>
+							<div id="max" class="col-auto">
+              <c:if test="${max<=0}">
+              0
+              </c:if>
+             
+               <c:if test="${max>0}">
+               ${max}
+              </c:if>
+              </div>
 							<div class="col-auto">개</div>
 						</div>
 						<div class="col"></div>
