@@ -49,10 +49,10 @@
 								<th>번호.작가</th>
 								<th>출판사</th>
 								<th>재고</th>
-								<th><a id="pri">가격<i class="bi bi-chevron-expand"></i></a></th>
+								<th><a id="pri">가격<i id="pri" class="bi bi-chevron-expand"></i></a></th>
 								<th>카테고리</th>
-								<th><a id="pub">출판일<i class="bi bi-chevron-expand"></i></a></th>
-								<th><a id="sel">판매 수<i class="bi bi-chevron-expand"></i></a></th>
+								<th><a id="pub">출판일<i id="pub" class="bi bi-chevron-expand"></i></a></th>
+								<th><a id="sel">판매 수<i id="sel" class="bi bi-chevron-expand"></i></a></th>
 								<th>수정</th>
 								<th><button type="button" id="del_pick" onclick="del_pick();">선택 삭제</button></th>
 							</tr>
