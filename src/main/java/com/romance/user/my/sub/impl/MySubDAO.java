@@ -29,6 +29,7 @@ public class MySubDAO {
 		return sqlSessionTemplate.selectList("SubscribeDAO.newcate",vo);
 	}
 	public void subon(String user_id) {
+	  System.out.println("구독 on");
 	  sqlSessionTemplate.update("user.subon",user_id);
 	}
 	public void subdel(String user_id) {
