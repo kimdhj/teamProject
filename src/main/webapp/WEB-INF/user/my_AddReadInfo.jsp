@@ -58,12 +58,12 @@
 					</div>
 					<div id="money" class="row d-flex">
 						<div id="money_title" class="align-self-center col-4">지금 까지 결제 금액 : </div>
-						<div id="money_count" class="col"><fmt:formatNumber value="${sub.sub_info_price }" type="number" />&nbsp;원</div>
+						<div id="money_count" class="col"><fmt:formatNumber value="${user_sub_count*sub.sub_info_price }" type="number" />&nbsp;원</div>
 
 					</div>
 					<div id="nowBook" class="row d-flex">
 						<div id="nowBook_title" class="align-self-center col-3">배송 예정 도서 : </div>
-						<div id="nowBook_content" class="col">{user_book}</div>
+						<div id="nowBook_content" class="col">${mybook}</div>
 						<div></div>
 					</div>
 					<div id="selectType" class="row d-flex">

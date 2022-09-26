@@ -48,7 +48,7 @@
 					</div>
 					<div id="money">
 						<div id="money_title" class="align-self-center">지금 까지 결제 금액 : </div>
-						<div id="money_count"><fmt:formatNumber value="${user_sub_count*30000 }" type="number" />&nbsp;원</div>
+						<div id="money_count"><fmt:formatNumber value="${user_sub_count*sub.sub_info_price }" type="number" />&nbsp;원</div>
 
 					</div>
 					<div id="nowBook">

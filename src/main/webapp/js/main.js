@@ -103,6 +103,17 @@ $(document).ready(function() {
 			$("#mypage_name_header").text(el.user_name);
 			$("#mypage_coupon_header").text(el.user_enabled);
 			$("#mypage_point_header").text(el.user_point.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+			
+			let sb ="";
+			if(el.user_sub ==1){
+				sb +=
+				`<button type="button" id="subcancel" class="btn btn-secondary btn-sm float-end" onclick="location.href='/my_cancelSub.do';">구독취소</button>`;
+			}else{
+				sb +=
+					`<button type="button" id="substart" class="btn btn-primary btn-sm float-end" onclick="location.href='/event_Sub_Info.do';">구독하기</button>`;
+			}
+			$("#showbutton").html(sb);
+			
 		mypagestate=true;
 		if(navstate&&mypagestate&&iconstate){
 		
