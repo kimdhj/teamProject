@@ -18,8 +18,8 @@ public class LogServiceImpl implements LogService {
 	private LogDAO logDAO;
 	
 	@Override
-	public int getLoginTotalCount() throws Exception {
-		return logDAO.getLoginTotalCount();
+	public int getLoginTotalCount(Criteria criteria) throws Exception {
+		return logDAO.getLoginTotalCount(criteria);
 	}
 	
 	@Override
@@ -28,8 +28,8 @@ public class LogServiceImpl implements LogService {
 	}
 
 	@Override
-	public int getWorkTotalCount() throws Exception {
-		return logDAO.getWorkTotalCount();
+	public int getWorkTotalCount(Criteria criteria) throws Exception {
+		return logDAO.getWorkTotalCount(criteria);
 	}
 
 	@Override
@@ -38,8 +38,8 @@ public class LogServiceImpl implements LogService {
 	}
 
 	@Override
-	public int getPaymentTotalCount() throws Exception {
-		return logDAO.getPaymentTotalCount();
+	public int getPaymentTotalCount(Criteria criteria) throws Exception {
+		return logDAO.getPaymentTotalCount(criteria);
 	}
 
 	@Override
