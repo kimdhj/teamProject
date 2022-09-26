@@ -73,8 +73,6 @@
 						<button type="submit" class="btn btn-dark" name="selectCondition" value="user_black">블랙</button>
 						<button type="submit" class="btn btn-secondary" name="selectCondition" value="user_withdrawal">탈퇴</button>
 						<button type="submit" class="btn btn-success" name="selectCondition" value="user_all">전체</button>
-						<input type="hidden" id="searchCondition" name="searchCondition" value="${criteria.searchCondition}"/>
-						<input type="hidden" id="searchKeyword" name="searchKeyword" value="${criteria.searchKeyword}"/>
 						<!-- <button type="submit" class="btn btn-success" name="sortCondition" value="sort">정렬</button> -->
 					</div>
 				</div>
