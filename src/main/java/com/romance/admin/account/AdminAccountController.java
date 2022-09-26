@@ -208,7 +208,7 @@ public class AdminAccountController {
 			adminAccountService.insertAdminAccount(vo);
 			
 			//관리자계정 생성 후 로그입력
-			makeAdminAccount(vo, voToken);
+			makeAdminAccountLog(vo, voToken);
 			
 			return "redirect:getAdmin_admin_List.mdo";
 		} else {
@@ -222,6 +222,7 @@ public class AdminAccountController {
 		AdminUserVO voToken = utils.getAdmin(session);
 		if(voToken != null) {
 			System.out.println(">>>>>>>계정삭제할 아이디 : " + user_id);
+			deleteAdminAccountLog(user_id, voToken);
 			adminAccountService.deleteAdminAccount(user_id);
 			return "redirect:getAdmin_admin_List.mdo";
 		} else {
@@ -504,7 +505,7 @@ public class AdminAccountController {
 	}
 	
 	//관리자 계정 생성 로그
-	public void makeAdminAccount(AdminUserVO vo, AdminUserVO voToken) throws Exception {
+	public void makeAdminAccountLog(AdminUserVO vo, AdminUserVO voToken) throws Exception {
 		String work_log_id = voToken.getUser_id();
 		String work_log_target_id = vo.getUser_id();
 		String work_log_contents = "[관리자계정생성] ";
@@ -513,6 +514,19 @@ public class AdminAccountController {
 		System.out.println("작업자 아이디 : " + work_log_id);			
 		System.out.println("작업대상 아이디 : " + work_log_target_id);			
 		System.out.println("작업 내용 : " + work_log_contents);
+		WorkLogVO workLogVO = new WorkLogVO();
+		workLogVO.setWork_log_id(work_log_id);//작업자
+		workLogVO.setWork_log_target_id(work_log_target_id);//작업대상
+		workLogVO.setWork_log_contents(work_log_contents);//작업내용
+		loggingService.insertWorkLog(workLogVO);
+	}
+	
+	//관리자 계정 삭제 로그
+	public void deleteAdminAccountLog(String user_id, AdminUserVO voToken) throws Exception {
+		String work_log_id = voToken.getUser_id();
+		String work_log_target_id = user_id;
+		String work_log_contents = "[관리자계정삭제] ";
+		work_log_contents += "작업자 : " + work_log_id + ", 삭제한 아이디 : " + work_log_target_id;
 		WorkLogVO workLogVO = new WorkLogVO();
 		workLogVO.setWork_log_id(work_log_id);//작업자
 		workLogVO.setWork_log_target_id(work_log_target_id);//작업대상

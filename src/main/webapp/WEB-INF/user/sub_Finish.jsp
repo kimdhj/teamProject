@@ -34,7 +34,7 @@
                     <div class="col-auto fs-4" id="sub_title">구독 갱신료</div>
                     <div class="col-auto row fs-4" id="sub_content">
                         <div class="col-auto p-0 fs-4" id="sub_pre">월(연)</div>
-                        <div class="col-auto p-0 fs-4" id="sub_mid">30,000(300,000)</div>
+                        <div class="col-auto p-0 fs-4" id="sub_mid">30,000(360,000)</div>
                         <div class="col-auto p-0 fs-4" id="sub_suf">원</div>
                     </div>
                 </div>

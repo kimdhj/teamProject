@@ -204,6 +204,7 @@ return "redirect:index.do";
  
     mySubService.subon(vo.getUser_id());
     UserVO vou=seru.onesearch(vo.getUser_id());
+    vou.setUser_password(null);
     String token=util.createToken("유저", vou);
     session.setAttribute("id", token);
     return 1;
