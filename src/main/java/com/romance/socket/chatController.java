@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.romance.security.JwtUtils;
@@ -104,7 +105,7 @@ return "redirect:index.do";
     }
     System.out.println("chat");
     
-    model.addAttribute("userid", user);
+    model.addAttribute("userid", vo.getUser_id());
     return "realchat_user";
   }
   
@@ -127,7 +128,12 @@ return "redirect:index.do";
     
     return ser.countlist(vos);
   }
-  
+  @GetMapping("/chatseldel.mdo")
+  @ResponseBody
+  public void chatseldel(@RequestParam("delid[]") List<String> delid) {
+    System.out.println("chatseldel"+delid);
+    ser.chatseldel(delid);
+  }
   @GetMapping("/chatList.mdo")
   public String chatList(chatVO vo, chatSearchVO vos, Model model,JwtUtils util, HttpSession session) throws IOException  {
     UserVO vosession = util.getuser(session);

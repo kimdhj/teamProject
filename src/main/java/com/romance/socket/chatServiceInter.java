@@ -22,4 +22,5 @@ public interface chatServiceInter {
 	public void author();
 	public void delall();
 	 public int countlist(chatSearchVO vo);
+   public void chatseldel(List<String> dellist);
 }

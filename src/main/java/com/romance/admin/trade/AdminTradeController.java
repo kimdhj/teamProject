@@ -109,7 +109,7 @@ public class AdminTradeController {
   public String delorderbooklist(TradeJoinVO vo) throws Exception {
     System.out.println("삭제 vo"+vo);
     ser.delorderbooklist(vo);
-    return "redirect:admintradebooklist.mdo?order_bookList_seq="+vo.getOrder_bookList_seq();
+    return "redirect:admintradecancel.mdo";
     
   }
  

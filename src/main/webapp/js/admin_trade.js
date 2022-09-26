@@ -70,7 +70,7 @@ function make() {
 			dataType: 'json',
 			async: false,
 			data: {
-				page:Number($("#page").val()),
+				page:Number($("input#page").val()),
 				searchkeyword: $("#searchkeyword").val(),
 				searchcontent: $("#searchcontent").val(),
 			},
@@ -130,17 +130,17 @@ function make() {
 	//태그 클릭에 따른 제한
 	function makeDisplay(e) {
 	
-		console.log($(e.target).text());
+			console.log("pagef",$("input#page").val());
 		
 
 		if ($(e.target).text().trim() == "<") {
-			$("#page").val(Number($("#page").val()) - 1);
+			$("#page").val(Number($("input#page").val()) - 1);
 		} else if ($(e.target).text().trim() == ">") {
-			$("#page").val(Number($("#page").val()) + 1);
+			$("#page").val(Number($("input#page").val()) + 1);
 		} else {
 			$("#page").val(Number($(e.target).text()));
 		}
-	console.log("page",$("#page").val());
+	console.log("page",$("input#page").val());
 		make();
 	}
 	$(document).on("click","#search_btn",function(){
