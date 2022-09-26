@@ -91,7 +91,7 @@
 						<tr>
 							<td>
 								<%-- <textarea rows=5 style="width: 100%;" readonly>${getRecentNotice.notice_content}</textarea> --%>
-								<div class="editable" contenteditable="true">${getRecentNotice.notice_content}</div>
+								<div class="editable" contenteditable="false">${getRecentNotice.notice_content}</div>
 							</td>
 						</tr>
 					</tbody>
