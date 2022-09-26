@@ -28,15 +28,17 @@ public class MyPointsController {
 		LoggingService loggingService; //로그기록 서비스
 		
 		@RequestMapping("/goGetPoint.do")
-		public String goGetPoint(Model model,JwtUtils util,HttpSession session) throws IOException {
-			UserVO vou = util.getuser(session);
-			
-			System.out.println("찍어봤어요"+vou);
-			
-			model.addAttribute("mapoint", vou);
-			
+		public String goGetPoint(Model model, JwtUtils util, HttpSession session) throws IOException {
+			UserVO vosession = util.getuser(session);
+			if ((vosession == null || !vosession.getUser_role().equals("ROLE_MEMBER")) && (vosession == null || !vosession.getUser_role().equals("ROLE_MASTER"))) {
+				return "redirect:index.do";
+			}
+			System.out.println("찍어봤어요" + vosession);
+
+			model.addAttribute("mapoint", vosession);
+
 			return "my_MileagePay";
-			
+
 		}
 		
 		@PostMapping("/pointfinish.do")

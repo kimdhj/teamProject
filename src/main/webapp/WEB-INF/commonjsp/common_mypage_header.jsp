@@ -132,7 +132,8 @@
                             <ul class="dropdown-menu">
                                 <!-- Dropdown menu links -->
                                 <li><button class="dropdown-item" onclick="location.href='/mywriter.do'" type="button">관심작가</button></li>
-                                <li><button class="dropdown-item" type="button">나의리뷰</button></li>
+                                <li><button class="dropdown-item" onclick="location.href='/movingReview.do'" type="button">나의 리뷰</button></li>
+                                <li><button class="dropdown-item" onclick="location.href='/my_getSub.do'" type="button">나의 구독</button></li>
                             </ul>
                         </div><br><br><br>
                         <div class="btn-group dropend">
@@ -174,5 +175,5 @@
                     <br>
                     <p class="mb-4 fs-5 fw-bold"><img src="img/mypage_mainbtn.png" class="rounded float-start"
                             alt="...">&nbsp;<a href="/myMain.do">마이 페이지</a>
-                        <button type="button" id="subcancel" class="btn btn-secondary btn-sm float-end" onclick="can_sub();">구독취소</button>
+                            <div id="showbutton"></div>
                     </p>
