@@ -40,11 +40,8 @@
 					</a>
 						<ul class="cat-sub-menu">
 							<li><a href="/getAdmin_member_List.mdo">회원관리</a></li>
-
-							<li><a href="/getAdmin_admin_List.mdo">관리자계정 관리</a></li>
-							<li><a href="/admin_terms_Main.mdo">약관관리</a></li>
 							<li><a href="#" onclick="isMaster()">관리자계정 관리</a></li>
-							<li><a href="/new-post.html">약관관리</a></li>
+							<li><a href="/admin_terms_Main.mdo">약관관리</a></li>
               <li><a href="/chatList.mdo">채팅 관리</a></li>
 						</ul></li>
 					<li><a href="/category.mdo"> <span
