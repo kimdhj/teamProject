@@ -27,6 +27,7 @@ import com.romance.admin.sub.SubscribeService;
 import com.romance.admin.sub.SubscribeVO;
 import com.romance.security.JwtUtils;
 import com.romance.user.book.BookSearchVO;
+import com.romance.user.book.BookService;
 import com.romance.user.login.UserService;
 import com.romance.user.login.UserVO;
 import com.romance.user.my.infomodify.MyInfoService;
@@ -57,6 +58,8 @@ public class MySubController {
 	UserService seru;
 	@Autowired
 	LoggingService loggingService;
+	@Autowired
+	BookService serr;
 	
 	//인클루드 사항 삭제
 	//마이페이지 구독정보
@@ -78,7 +81,8 @@ public class MySubController {
 		model.addAttribute("sub", subscribeService.getSub(svo));
 		model.addAttribute("cou", couponService.owncoupon(vosession));
 		model.addAttribute("cate", mySubService.getcate(vosession));
-		model.addAttribute("mynewlist",mySubService.newcate(vo));
+		model.addAttribute("mynewlist",serr.detailbooklist());
+		model.addAttribute("newlist",mySubService.newcate(vo));
 		
 		return "my_AddReadInfo";
 	}

@@ -45,14 +45,14 @@
 							<tr>
 								<th><input type="checkbox" id="all_pick" name="all_pick" value="selectall" onclick="selectAll(this)"></th>
 								<th>번호</th>
-								<th>제목</th>
+								<th><a id="tit">제목</a></th>
 								<th>번호.작가</th>
 								<th>출판사</th>
 								<th>재고</th>
-								<th>가격</th>
+								<th><a id="pri">가격<i class="bi bi-chevron-expand"></i></a></th>
 								<th>카테고리</th>
-								<th>출판일</th>
-								<th>판매 수</th>
+								<th><a id="pub">출판일<i class="bi bi-chevron-expand"></i></a></th>
+								<th><a id="sel">판매 수<i class="bi bi-chevron-expand"></i></a></th>
 								<th>수정</th>
 								<th><button type="button" id="del_pick" onclick="del_pick();">선택 삭제</button></th>
 							</tr>
@@ -128,7 +128,8 @@
 				<input type="hidden" value="${svo.seq }" id="Hseq">
 				<input type="hidden" value="${svo.sort }" id="Hsort">
 				<input type="hidden" value="${svo.thing }" id="Hthing">
-		</div>
+				<input type="hidden" value="${svo.arr }" id="arr">
+			</div>
 	</div>
 
 	<jsp:include page="/WEB-INF/admin_commonjsp/admin_common_footer.jsp"></jsp:include>

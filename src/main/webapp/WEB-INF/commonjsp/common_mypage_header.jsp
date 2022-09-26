@@ -61,7 +61,7 @@
                                         <div class="container">
                                             <div class="row justify-content-center">
                                                 <div class="col-md-auto align-self-center">
-                                                    <a class="fs-6 text-dark">할인쿠폰</a>&nbsp;&nbsp;<a href=""
+                                                    <a class="fs-6 text-dark" href="/mycoupon.do">할인쿠폰</a>&nbsp;&nbsp;<a href="/mycoupon.do"
                                                         class="" id="mypage_coupon_header">${cou}</a>장
                                                 </div>
                                             </div>
@@ -71,8 +71,8 @@
                                         <div class="container">
                                             <div class="row justify-content-center">
                                                 <div class="col-md-auto align-self-center">
-                                                    <a class="fs-6 text-dark">마일리지</a>&nbsp;&nbsp;<a href=""
-                                                      id="mypage_point_header"  class=""><fmt:formatNumber value="${user_point }" type="number" /></a>P
+                                                    <a class="fs-6 text-dark" href="/mycoupon.do">마일리지</a>&nbsp;&nbsp;<a href=""
+                                                      id="mypage_point_header" href="/mycoupon.do" class=""><fmt:formatNumber value="${user_point }" type="number" /></a>P
                                                 </div>
                                             </div>
                                         </div>
@@ -118,7 +118,7 @@
                             </button>
                             <ul class="dropdown-menu">
                                 <!-- Dropdown menu links -->
-                                <li><button class="dropdown-item" type="button"  onclick="moveToCuMa();">할인쿠폰/마일리지</button></li>
+                                <li><button class="dropdown-item" type="button"  onclick="location.href='/mycoupon.do'">할인쿠폰/마일리지</button></li>
                             </ul>
                         </div><br><br><br>
                         <div class="btn-group dropend">

@@ -30,7 +30,15 @@
 				<if test="Hsort == '작가'" > AND book_author LIKE CONCAT('%', #{Hthing}, '%')</if>
 				<if test="Hsort == '카테고리'" > AND category_num LIKE CONCAT('%', #{Hthing}, '%')</if>
 			</trim>
-			
+			<trim prefix="ORDER BY">
+				<if test="arr == 0"> book_seq asc </if>
+				<if test="arr == 1"> book_price desc </if>
+				<if test="arr == 2"> book_price asc </if>
+				<if test="arr == 3"> book_publish_date desc </if>
+				<if test="arr == 4"> book_publish_date asc </if>
+				<if test="arr == 5"> book_sellCount desc </if>
+				<if test="arr == 6"> book_sellCount asc </if>
+			</trim>
 			<![CDATA[) tnum where rnum>=(#{Hpage}*20-19) and rnum<=(#{Hpage}*20)]]>
 	</select>
 	<select id="all_count" parameterType="pros" resultType="int">
