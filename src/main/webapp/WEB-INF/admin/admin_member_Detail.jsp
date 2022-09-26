@@ -305,7 +305,7 @@
 		$("#returnListBtn")
 				.click(
 						function() {
-							let url = "getAdmin_member_List.mdo?pageNum=${criteria.pageNum}&searchCondition=${criteria.searchCondition}&searchKeyword=${criteria.searchKeyword}&selectCondition=${criteria.selectCondition}";
+							let url = "getAdmin_member_List.mdo?pageNum=${criteria.pageNum}&searchCondition=${criteria.searchCondition}&searchKeyword=${criteria.searchKeyword}&selectCondition=${criteria.selectCondition}&sortConditionUp=${criteria.sortConditionUp}&sortConditionDown=${criteria.sortConditionDown}";
 							/* let url = "getAdmin_member_List.mdo"; */
 							location.href = url;
 						});
