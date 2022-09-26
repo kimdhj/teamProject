@@ -1,7 +1,3 @@
-//마이페이지 헤더 이동
-function moveToCuMa(){
-	location.href="/mycoupon.do";
-}
 
 
 $(document).ready(function() {

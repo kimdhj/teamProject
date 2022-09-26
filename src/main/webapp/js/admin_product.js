@@ -69,6 +69,13 @@ function del_product(obj) {
 
 }
 		
+//정렬하기
+$(document).on('click', '#pppp #reload a', array);
+
+function array(v){
+	console.log("클릭 한거에요 : "+v);
+}
+
 		
 //검색버튼클릭시 - 테이블갱신 - 페이징 갱신		
 $("#search_btn").click(function(e){
