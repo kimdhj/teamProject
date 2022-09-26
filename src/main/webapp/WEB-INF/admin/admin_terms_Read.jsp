@@ -19,7 +19,7 @@
 	<div class="container">
 		<div class="d-flex flex-row">
 			<div class="col-md-12">
-				<form action="/admin_terms_Delete.mdo" method="post">
+				<form id="del_terms" action="/admin_terms_Delete.mdo" method="post">
 				<input type="hidden" name="terms_seq" value="${terms.terms_seq}"/>
 				<input class="hide" id="terms_seq" type="number" value="${terms.terms_seq}"/>
 					<div class="card border-light">
@@ -67,9 +67,9 @@
 							</div>
 						</div>
 						<div class="card-footer">
-							<button type="submit"
+							<button type="button"
 								class="btn btn-light btn-outline-dark btn-sm"
-								style="float: right;"">삭제</button>
+								style="float: right;" id="del">삭제</button>
 							<button type="button"
 								class="btn btn-light btn-outline-dark btn-sm"
 								style="float: right;"
@@ -87,6 +87,7 @@
 
 	<jsp:include page="/WEB-INF/admin_commonjsp/admin_common_footer.jsp"></jsp:include>
 	<!-- 여기서부터 JS 추가 -->
+	<script src="js/admin_terms_Read.js"></script>
 
 </body>
 </html>

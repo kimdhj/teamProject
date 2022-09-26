@@ -146,6 +146,7 @@
 	<mappers>
 		<!-- <mapper resource="mappings/board-mapping.xml" /> -->
 		<mapper resource="mappings/adminTerms-mapping.xml" />
+		<mapper resource="mappings/paymentTerms-mapping.xml" />
 		<mapper resource="mappings/terms-mapping.xml" />
 		<mapper resource="mappings/ajax-mapping.xml" />
 		<mapper resource="mappings/adminNotice-mapping.xml" />

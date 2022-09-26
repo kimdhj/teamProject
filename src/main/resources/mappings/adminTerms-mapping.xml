@@ -60,5 +60,9 @@
 		DELETE FROM terms WHERE
 		terms_seq = #{terms_seq}
 	</delete>
+	
+	<select id="termsOverlap" parameterType="termsSearchVO" resultType="int">
+		select count(*) from terms where terms_title like concat(#{title},'%') and terms_article_number=#{seq}
+	</select>
 
 </mapper>
