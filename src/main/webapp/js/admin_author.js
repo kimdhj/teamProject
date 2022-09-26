@@ -222,7 +222,10 @@ console.log("suc");
 
 	//추가 버튼
 	$(document).on("click", "#add_btn", function() {
-
+		if($("#author_name").val()==null||$("#author_name").val()==""){
+		alert("작가이름을 입력해주세요");
+		return;
+		}
 		$.ajax({
 			url: "/adminauthorcreate.mdo",
 			method: "get",
@@ -241,9 +244,8 @@ console.log("suc");
 			url: "/adminauthorcount.mdo",
 			method: "get",
 			dataType: 'json',
-
 			data: {
-				page: Number($("#page").val()),
+			
 				author_seq: Number($("#seqche").val()),
 				author_name: $("#nameche").val().trim()
 			},

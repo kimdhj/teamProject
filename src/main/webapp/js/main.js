@@ -119,6 +119,16 @@ $(document).ready(function() {
 		
 			$("body").css("display", "block");
 			}
+			$(".sidebar-user__title").text(el.user_id);
+			
+			$(".logo-subtitle").text(el.user_name);
+			if(el.user_role=="ROLE_MASTER"){
+			$(".sidebar-user__subtitle").text("낭만 감독관");
+			$("picture").children("source").attr("srcset","/img/avatar/avatar-illustrated-03.webp");
+			$("picture").children("img").attr("src","/img/avatar/avatar-illustrated-03.png");
+			}else if(el.user_role=="ROLE_ADMIN"){
+			$(".sidebar-user__subtitle").text("낭만 감시자");
+			}
 
 		},
 		error: function(el) {

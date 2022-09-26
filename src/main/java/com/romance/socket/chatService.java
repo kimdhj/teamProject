@@ -84,6 +84,14 @@ public class chatService implements chatServiceInter {
 		}
 		
 	}
+	 @Override
+	  public void chatseldel(List<String> dellist) {
+	    
+	    for(String name:dellist) {
+	      dao.delall(name);
+	    }
+	    
+	  }
 
   @Override
   public int countlist(chatSearchVO vo) {

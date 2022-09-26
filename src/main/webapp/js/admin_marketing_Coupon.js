@@ -259,7 +259,7 @@ $(document).ready(function() {
 									<c:set var="count" value="${count - 1}" />
 								</td>
 								<td>
-									<p contenteditable="true" data-default="${cou.coupon_name}">${cou.coupon_name}</p>
+									<p  data-default="${cou.coupon_name}">${cou.coupon_name}</p>
 								</td>
 								<td>
 									<p contenteditable="false" data-default="${cou.coupon_code}">${cou.coupon_code}</p>
