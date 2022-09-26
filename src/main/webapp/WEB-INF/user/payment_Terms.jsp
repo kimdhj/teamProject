@@ -25,50 +25,31 @@
 	<div id="main_wrapper" class="row d-flex">
 		<div class="col-2"></div>
 		<div class="col">
-			<h3>${termscategory }&nbsp;약관</h3>
+			<h3>${termscategory}&nbsp;약관</h3>
 			<div id="topborder">
 				&nbsp;<br></br>
 			</div>
 			<c:forEach var="term" items="${termsList}">
 			<div class="row d-flex">
-			<div class="col-4 fw-bold">${status.count}&nbsp;${term.terms_title }</div>
+			<div class="col-4 fw-bold">${term.terms_article_number}조 ${term.terms_title}</div>
 			<div class="col"></div>
 			</div>
 			<div>
 				<textarea rows="6" readonly>${term.terms_content }</textarea>
 			</div>
-			<div>
-				<div><input type="checkbox" class="ccheck">${term.terms_title }에 동의 합니다.</div>
-			</div>
+			
 			<div>
 				<br></br>
 			</div>
 			</c:forEach>			
-			<div id="all_checking" class="row d-flex m-0">
-				<input type="checkbox" class="col-1" onclick="everycheck(this);"><div class="col fw-bold" id="confirming">모든 약관에 동의 하시겠습니까?</div><div class="col-5"></div>
-			</div>
+			
 			<div>
 				<br></br>
 			</div>
 			<div>
 				<br></br>
 			</div>
-			<div class="container">
-				<div class="row d-flex">
-					<div class="col-3"></div>
-					<div class="col-2">
-							<button type="button" class="btn btn-success btn-sm" onclick="moving${oc}();">동의</button>
-					</div>
-					<div class="col-2"></div>
-					<div class="col-2">
-						<a href="/login.do"> 	
-							<button type="button" class="btn btn-secondary btn-sm">취소</button>
-						</a>
-					</div>
-					<div class="col-3"></div>
-				</div>
-				<div><br></br><br></br></div>
-			</div>
+
 		</div>
 		<div class="col-2"></div>
 	</div>
@@ -80,7 +61,6 @@
     	<!-- Common Footer include -->
         <jsp:include page="/WEB-INF/commonjsp/common_footer.jsp"></jsp:include>
            <!-- 여기에 js관련  -->
-        <script src="/js/all_terms.js"></script>
 	<!-- Footer End -->
 </body>
 </html>

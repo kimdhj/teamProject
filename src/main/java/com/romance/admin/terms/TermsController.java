@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -47,12 +47,18 @@ public class TermsController {
 	
 	@RequestMapping(value = "ajax_b.mdo", method=RequestMethod.POST)
 	@ResponseBody
-	public List<TermsVO> ajax_b(TermsSearchVO svo, Model model){
+	public List<TermsVO> ajax_b(TermsSearchVO svo){
 		if(svo.getPage()==0) {
 			svo.setPage(1);
 		}
 		
 		return service.getTermsList(svo);
+	}
+	
+	@GetMapping("/ajax_c.mdo")
+	@ResponseBody
+	public int ajax_c(TermsSearchVO svo) {
+		return service.termsOverlap(svo);
 	}
 	
 	@RequestMapping("/admin_terms_Write.mdo")

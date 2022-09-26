@@ -10,5 +10,6 @@ public interface TermsService {
 	public void alterTerms(TermsVO vo);
 	public int getCount(TermsSearchVO svo);
 	public void deleteTerms(TermsVO vo);
+	public int termsOverlap(TermsSearchVO svo);
 }
  
