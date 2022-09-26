@@ -61,7 +61,7 @@
                                         <div class="container">
                                             <div class="row justify-content-center">
                                                 <div class="col-md-auto align-self-center">
-                                                    <a class="fs-6 text-dark">할인쿠폰</a>&nbsp;&nbsp;<a href=""
+                                                    <a class="fs-6 text-dark" href="/mycoupon.do">할인쿠폰</a>&nbsp;&nbsp;<a href="/mycoupon.do"
                                                         class="" id="mypage_coupon_header">${cou}</a>장
                                                 </div>
                                             </div>
@@ -71,8 +71,8 @@
                                         <div class="container">
                                             <div class="row justify-content-center">
                                                 <div class="col-md-auto align-self-center">
-                                                    <a class="fs-6 text-dark">마일리지</a>&nbsp;&nbsp;<a href=""
-                                                      id="mypage_point_header"  class=""><fmt:formatNumber value="${user_point }" type="number" /></a>P
+                                                    <a class="fs-6 text-dark" href="/mycoupon.do">마일리지</a>&nbsp;&nbsp;<a href=""
+                                                      id="mypage_point_header" href="/mycoupon.do" class=""><fmt:formatNumber value="${user_point }" type="number" /></a>P
                                                 </div>
                                             </div>
                                         </div>
@@ -118,7 +118,7 @@
                             </button>
                             <ul class="dropdown-menu">
                                 <!-- Dropdown menu links -->
-                                <li><button class="dropdown-item" type="button"  onclick="moveToCuMa();">할인쿠폰/마일리지</button></li>
+                                <li><button class="dropdown-item" type="button"  onclick="location.href='/mycoupon.do'">할인쿠폰/마일리지</button></li>
                             </ul>
                         </div><br><br><br>
                         <div class="btn-group dropend">
@@ -132,7 +132,8 @@
                             <ul class="dropdown-menu">
                                 <!-- Dropdown menu links -->
                                 <li><button class="dropdown-item" onclick="location.href='/mywriter.do'" type="button">관심작가</button></li>
-                                <li><button class="dropdown-item" type="button">나의리뷰</button></li>
+                                <li><button class="dropdown-item" onclick="location.href='/movingReview.do'" type="button">나의 리뷰</button></li>
+                                <li><button class="dropdown-item" onclick="location.href='/my_getSub.do'" type="button">나의 구독</button></li>
                             </ul>
                         </div><br><br><br>
                         <div class="btn-group dropend">
@@ -159,7 +160,7 @@
                             </button>
                             <ul class="dropdown-menu">
                                 <!-- Dropdown menu links -->
-                                <li><button class="dropdown-item" onclick="location.href='/myinfo.do'" type="button">회원정보 수정</button></li>
+                                <li><button class="dropdown-item" onclick="location.href='/myinfoin.do'" type="button">회원정보 수정</button></li>
                                 <li><a href="/myTransPassword.do"><button class="dropdown-item" type="button">비밀번호 변경</button></a></li>
                                 <li><button class="dropdown-item"  onclick="location.href='/mydelivery.do'" type="button">나의 주소록</button></li>
                                 <li><a href="/myWithdrawal.do"><button class="dropdown-item" type="button">회원탈퇴</button></a></li>
@@ -174,5 +175,5 @@
                     <br>
                     <p class="mb-4 fs-5 fw-bold"><img src="img/mypage_mainbtn.png" class="rounded float-start"
                             alt="...">&nbsp;<a href="/myMain.do">마이 페이지</a>
-                        <button type="button" id="subcancel" class="btn btn-secondary btn-sm float-end" onclick="can_sub();">구독취소</button>
+                            <div id="showbutton"></div>
                     </p>

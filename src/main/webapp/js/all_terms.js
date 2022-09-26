@@ -49,7 +49,14 @@ function movingJoin(){
 		
 //		alert("약관에 모두 동의해 주십시오!");
 	}else{
+	console.log($("#kakaoid").val()==null);
+	console.log($("#kakaoid").val()=="");
+	console.log($("#kakaoid").val());
+	if($("#kakaoid").val()==null||$("#kakaoid").val()==""){
 		location.href="/join.do";
+		}else{
+		location.href="/join.do?kakaoid="+$("#kakaoid").val();
+		}
 	}
 }
 //동의 클릭시 체크박스 검증후 이동

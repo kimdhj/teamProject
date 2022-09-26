@@ -6,12 +6,10 @@ import java.io.OutputStream;
 import java.io.Reader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Properties;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.io.Resources;
 import org.json.simple.JSONArray;
@@ -113,8 +111,19 @@ public class subsche {
 	}
 	public String subpay(String cuid,String mid) throws Exception {
 	  String acckey=getToken();
-	  
+	  java.util.Date d = new java.util.Date();
+	   SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+	   String date = df.format(d);
+	   Date ydate=df.parse(date);
+	   Calendar cal = Calendar.getInstance();
+	   cal.add(Calendar.MONTH, +1);
+	   Date currentTime=cal.getTime();
+	   SimpleDateFormat formatter=new SimpleDateFormat("yyyy-MM-dd");
+	   String release_Dt_start=formatter.format(currentTime);
+	   Date mday=formatter.parse(release_Dt_start);
 		System.out.println("cuid함수"+cuid);
+		Long time=mday.getTime()-ydate.getTime();
+		System.out.println("달 밀리 세컨드 : "+time);
 		// requestURL 아임퐅크 고유키, 시크릿 키 정보를 포함하는 url 정보
 		JSONObject json = new JSONObject();
 	
@@ -124,9 +133,9 @@ public class subsche {
 		JSONArray jarr=new JSONArray();
 		JSONObject json1 = new JSONObject();
 		json1.put("merchant_uid", mid);
-		json1.put("schedule_at", System.currentTimeMillis() / 1000+60);
+		json1.put("schedule_at", System.currentTimeMillis() / 1000+time);
 		json1.put("currency", "KRW");
-		json1.put("amount", 100);
+		json1.put("amount", 30000);
 		json1.put("name", "낭만 서점 구독 결제"); 
 		jarr.add(json1);
 		

@@ -69,14 +69,77 @@ function del_product(obj) {
 
 }
 		
+//정렬하기 시작
+//제목
+$(document).on('click', 'th #tit', tit);
+
+function tit(v){
+	$("#arr").val(0);
+	
+	//페이징, 게시글 ajax
+	$("#Hpage").val(1);
+	rerenew();
+	countt();
+}
+
+//가격
+$(document).on('click', 'th #pri', pri);
+
+function pri(v){
+	if($("#arr").val()==1){
+		$("#arr").val(2);		
+	}else{
+		$("#arr").val(1);		
+	}
+	
+	//페이징, 게시글 ajax
+	$("#Hpage").val(1);
+	rerenew();
+	countt();
+	
+}
+//출판일
+$(document).on('click', 'th #pub', pub);
+
+function pub(v){
+	if($("#arr").val()==3){
+		$("#arr").val(4);		
+	}else{
+		$("#arr").val(3);		
+	}
+	
+	//페이징, 게시글 ajax
+	$("#Hpage").val(1);
+	rerenew();
+	countt();
+	
+}
+//판매수
+$(document).on('click', 'th #sel', sel);
+
+function sel(v){
+	if($("#arr").val()==5){
+		$("#arr").val(6);		
+	}else{
+		$("#arr").val(5);		
+	}
+	//페이징, 게시글 ajax
+	$("#Hpage").val(1);
+	rerenew();
+	countt();
+}
+
+
 		
+//정렬하기 끝
+
 //검색버튼클릭시 - 테이블갱신 - 페이징 갱신		
 $("#search_btn").click(function(e){
 	 
 	 console.log($("#Hpage").val());
 	 console.log($("#sort").val());
 	 console.log($("#searchThing").val());
-	 
+	 $("#arr").val(0);
 	 $("#Hpage").val(1);
 	 
 
@@ -89,7 +152,8 @@ $("#search_btn").click(function(e){
 			data: {
 				Hpage: Number($("#Hpage").val()),
 				Hsort: $("#sort").val(),
-				Hthing: $("#searchThing").val()
+				Hthing: $("#searchThing").val(),
+				arr: $("#arr").val()
 			},
 			success: function(data) {
 				console.log("검색버튼 결과"+data);
@@ -199,7 +263,8 @@ function viewview(v){
 			data: {
 				Hpage: Number($("#Hpage").val()),
 				Hsort: $("#Hsort").val(),
-				Hthing: $("#Hthing").val()
+				Hthing: $("#Hthing").val(),
+				arr: $("#arr").val()
 			},
 			success: function(data) {
 				console.log("뷰뷰 결과"+data);
@@ -274,7 +339,8 @@ function countt() {
 		data:{
 			Hpage: Number($("#Hpage").val()),
 			Hsort: $("#Hsort").val(),
-			Hthing: $("#Hthing").val()
+			Hthing: $("#Hthing").val(),
+			arr: $("#arr").val()
 		},
 		success: function(co){
 		
@@ -332,5 +398,70 @@ function countt() {
 		}
 	});
 }
+
+//게시글 갱신 메소드
+function rerenew(){
+	$.ajax({
+		url: "/ajax_search.mdo",
+		type: 'POST',
+		data: {
+			Hpage: Number($("#Hpage").val()),
+			Hsort: $("#Hsort").val(),
+			Hthing: $("#Hthing").val(),
+			arr: $("#arr").val()
+		},
+		success: function(data) {
+			console.log("메소드 결과"+data);
+			let con="";
+			data.map((pro) => {
+			con+=
+			`<tr>
+							<td><input type="checkbox" class="del_chk" name="del_chk"></td>
+							<td>
+								<p class="rowColumn" contenteditable="false" data-default="${pro.book_seq }">${pro.book_seq }</p>
+							</td>
+							<td>
+								<p class="rowColumn" contenteditable="false" data-default="${pro.book_title }">${pro.book_title }</p>
+							</td>
+							<td>
+								<p class="rowColumn" contenteditable="false" data-default="${pro.author_seq } . ${pro.book_author}">${pro.author_seq } . ${pro.book_author}</p>
+							</td>
+							<td>
+								<p class="rowColumn" contenteditable="false"
+									data-default="${pro.book_publish }">${pro.book_publish }</p>
+							</td>
+							<td>
+								<p class="rowColumn" contenteditable="false" data-default="${pro.book_remain }">${pro.book_remain }</p>
+							</td>
+							<td>
+								<p class="rowColumn" contenteditable="false"
+									data-default="${pro.book_price.toLocaleString('ko-KR') }원">${pro.book_price.toLocaleString('ko-KR') }원</p>
+							</td>
+							<td>
+								<p class="rowColumn" contenteditable="false" data-default="${pro.category_num }">${pro.category_num }</p>
+							</td>
+							<td>
+								<p class="rowColumn" contenteditable="false" data-default="${pro.book_publish_date }">${pro.book_publish_date }</p>
+							</td>
+							<td>
+								<p class="rowColumn" contenteditable="false" data-default="${pro.book_sellCount }">${pro.book_sellCount }</p>
+							</td>
+							<td>
+								<button type="button" id="upd_product" name="upd_product" onclick="location.href='/product_Update.mdo?book_seq=${pro.book_seq}'">수정</button>
+							</td>
+							<td>
+								<button type="button" id="del_one" name="del_one" onclick="del_product(this)">삭제</button>
+							</td>
+						</tr>
+			`;
+			
+			});
+			$("tbody").html(con);
+		}
+		});
+		}		
+
+
+	
 
 		

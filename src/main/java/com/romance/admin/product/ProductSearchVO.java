@@ -13,5 +13,6 @@ public class ProductSearchVO {
 	private int Hseq;
 	private String Hsort;
 	private String Hthing;
+	private int arr;
 	
 }

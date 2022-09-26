@@ -57,6 +57,8 @@ public class ProductController {
 			int start = page*20-20;
 			int end = page*20-1;
 			
+			svo.setArr(0);
+			
 			System.out.println("count : " + count);
 			System.out.println("page : " + page);
 			System.out.println("fullpage : " + fullpage);
@@ -172,6 +174,7 @@ public class ProductController {
 		//물품 수정 페이지!
 		@GetMapping("/product_Update.mdo")
 		public String product_Update(Model model, @RequestParam(name="book_seq") int book_seq,JwtUtils util, HttpSession session) throws IOException {
+		  System.out.println("왜 404");
 		  UserVO vosession = util.getuser(session);
 		  if((vosession == null||!vosession.getUser_role().equals("ROLE_ADMIN"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
 		    return "redirect:admin_login.mdo";

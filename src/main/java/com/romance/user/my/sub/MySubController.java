@@ -27,6 +27,7 @@ import com.romance.admin.sub.SubscribeService;
 import com.romance.admin.sub.SubscribeVO;
 import com.romance.security.JwtUtils;
 import com.romance.user.book.BookSearchVO;
+import com.romance.user.book.BookService;
 import com.romance.user.login.UserService;
 import com.romance.user.login.UserVO;
 import com.romance.user.my.infomodify.MyInfoService;
@@ -57,25 +58,31 @@ public class MySubController {
 	UserService seru;
 	@Autowired
 	LoggingService loggingService;
+	@Autowired
+	BookService serr;
 	
 	//인클루드 사항 삭제
 	//마이페이지 구독정보
 	@RequestMapping("/my_getSub.do")
 	public String my_getSub(HttpSession session, JwtUtils util, Model model, SubscribeVO svo, BookSearchVO vo) throws IOException {
-		UserVO userVO = util.getuser(session);
-		
+		UserVO vosession = util.getuser(session);
+		if((vosession == null||!vosession.getUser_sub().equals("1"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+		   return "redirect:/myMain.do";
+		}   
 		if(vo.getPage()==0) {
 			vo.setPage(1);
 		}
 		
-		model.addAttribute("user_name", userVO.getUser_name());
-		model.addAttribute("user_point", userVO.getUser_point());
-		model.addAttribute("user_sub_count", userVO.getUser_sub_count());
+		model.addAttribute("mybook",mySubService.mybook(vosession.getUser_id()));
+		model.addAttribute("user_name", vosession.getUser_name());
+		model.addAttribute("user_point", vosession.getUser_point());
+		model.addAttribute("user_sub_count", vosession.getUser_sub_count());
 		model.addAttribute("icon", iconService.getIcon());
 		model.addAttribute("sub", subscribeService.getSub(svo));
-		model.addAttribute("cou", couponService.owncoupon(userVO));
-		model.addAttribute("cate", mySubService.getcate(userVO));
-		model.addAttribute("mynewlist",mySubService.newcate(vo));
+		model.addAttribute("cou", couponService.owncoupon(vosession));
+		model.addAttribute("cate", mySubService.getcate(vosession));
+		model.addAttribute("mynewlist",serr.detailbooklist());
+		model.addAttribute("newlist",mySubService.newcate(vo));
 		
 		return "my_AddReadInfo";
 	}
@@ -108,19 +115,21 @@ public class MySubController {
 	//마이페이지 구독정보변경
 	@RequestMapping("/my_modifySub.do")
 	public String my_modifySub(HttpSession session, JwtUtils util, Model model, SubscribeVO svo) throws IOException {
-		UserVO userVO = util.getuser(session);
-	  System.out.println("subcateall"+mySubService.getcatelist());
+		UserVO vosession = util.getuser(session);
+		if((vosession == null||!vosession.getUser_sub().equals("1"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+		   return "redirect:index.do";
+		}   
 	 
     model.addAttribute("catelist",mySubService.getcatelist());
-    model.addAttribute("mybook",mySubService.mybook(userVO.getUser_id()));
-    model.addAttribute("catemy",mySubService.getcatemy(userVO.getUser_id()));
-		model.addAttribute("user_name", userVO.getUser_name());
-		model.addAttribute("user_point", userVO.getUser_point());
-		model.addAttribute("user_sub_count", userVO.getUser_sub_count());
-		model.addAttribute("user_sub_pay_before", userVO.getUser_sub_pay_before());
+    model.addAttribute("mybook",mySubService.mybook(vosession.getUser_id()));
+    model.addAttribute("catemy",mySubService.getcatemy(vosession.getUser_id()));
+		model.addAttribute("user_name", vosession.getUser_name());
+		model.addAttribute("user_point",vosession.getUser_point());
+		model.addAttribute("user_sub_count", vosession.getUser_sub_count());
+		model.addAttribute("user_sub_pay_before", vosession.getUser_sub_pay_before());
 		model.addAttribute("icon", iconService.getIcon());
 		model.addAttribute("sub", subscribeService.getSub(svo));
-		model.addAttribute("cou", couponService.owncoupon(userVO));
+		model.addAttribute("cou", couponService.owncoupon(vosession));
 		
 		return "my_AddReadModify";
 	}
@@ -195,6 +204,7 @@ return "redirect:index.do";
  
     mySubService.subon(vo.getUser_id());
     UserVO vou=seru.onesearch(vo.getUser_id());
+    vou.setUser_password(null);
     String token=util.createToken("유저", vou);
     session.setAttribute("id", token);
     return 1;

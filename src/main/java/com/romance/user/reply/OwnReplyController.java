@@ -48,11 +48,11 @@ public class OwnReplyController {
 	
 	@RequestMapping("/movingReview.do")
 	public String moveInsert(ReplyVO vo, Model model,JwtUtils util, HttpSession session) throws IOException {
-		UserVO userVO = util.getuser(session);
-		if(userVO == null) {
-			return "/login.do";
+		UserVO vosession = util.getuser(session);
+		if ((vosession == null || !vosession.getUser_role().equals("ROLE_MEMBER")) && (vosession == null || !vosession.getUser_role().equals("ROLE_MASTER"))) {
+			return "redirect:index.do";
 		}
-		String iid = userVO.getUser_id();
+		String iid = vosession.getUser_id();
 		ReplyVO replyVO = new ReplyVO();
 		replyVO.setUser_id(iid);
 		model.addAttribute("ownReview", ownReplyService.movingReview(replyVO));
