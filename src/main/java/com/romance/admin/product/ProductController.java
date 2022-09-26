@@ -57,6 +57,8 @@ public class ProductController {
 			int start = page*20-20;
 			int end = page*20-1;
 			
+			svo.setArr(0);
+			
 			System.out.println("count : " + count);
 			System.out.println("page : " + page);
 			System.out.println("fullpage : " + fullpage);
