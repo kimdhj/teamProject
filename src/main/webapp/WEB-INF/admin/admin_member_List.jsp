@@ -10,22 +10,6 @@
 <body>
 	<jsp:include page="/WEB-INF/admin_commonjsp/admin_common_header.jsp"></jsp:include>
 	<!-- 여기서부터 화면 작성 시작 -->
-	<!-- <div class="container">
-		<div class="d-flex flex-row">
-			<div class="col-md-12">
-				<nav class="navbar navbar-dark bg-info">
-					<div class="container-fluid">
-						<a class="navbar-brand">ADMIN</a>
-						<form class="d-flex">
-							<input class="form-control me-2" type="search"
-								placeholder="Search" aria-label="Search">
-							<button class="btn btn-outline-success" type="submit">Search</button>
-						</form>
-					</div>
-				</nav>
-			</div>
-		</div>
-	</div> -->
 	<div class="container">
 		<div class="d-flex flex-row">
 			<div class="col-md-7">
@@ -47,23 +31,9 @@
 							<button type="submit" class="btn btn-light btn-outline-dark">검색</button>
 						</div>
 					</div>
-					<%-- <input type="hidden" name="pageNum" value="${pagination.criteria.getPageNum() }">
-					<input type="hidden" name="perPageNum" value="${pagination.criteria.getPerPageNum() }"> --%>
+					
 				</form>
-				<%-- <select class="form-select form-select mb-3"
-					aria-label=".form-select-lg example" name="searchCondition">
-					<c:forEach items="${conditionMap }" var="option">
-						<option value="${option.value }">${option.key }</option>
-					</c:forEach>
-				</select> --%>
 			</div>
-			<!-- <div class="col-md-2">
-				<input type="text" class="form-control" id="" name="searchKeyword"
-					placeholder="입력하세요">
-			</div>
-			<div class="col-md-1">
-				<button type="submit" class="btn btn-light btn-outline-dark">검색</button>
-			</div> -->
 			<form action="/getAdmin_member_List.mdo" method="get">
 				<div class="col-md-12">
 					<div class="btn-group" role="group"
@@ -143,9 +113,6 @@
 			<div class="col-md-12">
 				<nav aria-label="Page navigation example">
 					<ul class="pagination justify-content-center pagination-sm">
-						<!-- <li class="page-item"><a class="page-link" href="#"
-							aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-						</a></li> -->
 						<c:if test="${pagination.prev}">
 							<li class="page-item"><a class="page-link"
 								href="<c:url value="/getAdmin_member_List.mdo?searchCondition=${pagination.criteria.getSearchCondition() }&searchKeyword=${pagination.criteria.getSearchKeyword() }&pageNum=${pagination.startPage - 1 }&selectCondition=${pagination.criteria.getSelectCondition()}&sortConditionUp=${pagination.criteria.getSortConditionUp()}&sortConditionDown=${pagination.criteria.getSortConditionDown()}" />">이전</a></li>
@@ -159,9 +126,6 @@
 							<li class="page-item"><a class="page-link"
 								href="<c:url value="/getAdmin_member_List.mdo?searchCondition=${pagination.criteria.getSearchCondition() }&searchKeyword=${pagination.criteria.getSearchKeyword() }&pageNum=${pagination.endPage + 1 }&selectCondition=${pagination.criteria.getSelectCondition()}&sortConditionUp=${pagination.criteria.getSortConditionUp()}&sortConditionDown=${pagination.criteria.getSortConditionDown()}" />">다음</a></li>
 						</c:if>
-						<!-- <a class="page-link" href="#" aria-label="Next"> <span
-							aria-hidden="true">&raquo;</span>
-						</a> -->
 					</ul>
 				</nav>
 			</div>
