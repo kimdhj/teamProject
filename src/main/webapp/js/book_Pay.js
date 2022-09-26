@@ -196,3 +196,7 @@ booksum -= booksum*Number($("#coupon_result").text().trim().replaceAll(",", ""))
 		console.log($("#orders_add_point").val());
 	$("#delivery").text($("#deliveryPrice2").text().trim());
 }
+$("#termsopen").on("click",function(){
+console.log("hi")
+window.open("https://www.naver.com","약관 보기","menubar=no, toolbar=no, resizable=no,left=500,top=100,height=500,width=1000")
+})
