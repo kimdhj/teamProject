@@ -30,6 +30,7 @@
 				<if test="Hsort == '작가'" > AND book_author LIKE CONCAT('%', #{Hthing}, '%')</if>
 				<if test="Hsort == '카테고리'" > AND category_num LIKE CONCAT('%', #{Hthing}, '%')</if>
 			</trim>
+			
 			<![CDATA[) tnum where rnum>=(#{Hpage}*20-19) and rnum<=(#{Hpage}*20)]]>
 	</select>
 	<select id="all_count" parameterType="pros" resultType="int">
