@@ -20,7 +20,7 @@
 			<div class="card border-light">
 				<div class="card-header">
 					<div class="d-flex flex-row">
-						<div class="col-md-6" id="terms_header">약관 목록</div>
+						<div class="col-md-6" id="terms_header"><a id="terms_home" onclick="location.reload();" class="select p-2">약관 목록</a></div>
 						<div class="col-md-6">
 							<button type="button"
 								class="btn btn-light btn-outline-dark btn-sm"
@@ -32,8 +32,10 @@
 
 
 				<div class="search">
-					<input type="text" id="search_content" placeholder="검색할 약관 제목 입력">
+				<div id="search_part">
+					<input type="text" id="search_content" placeholder="검색할 약관 항목 입력">
 					<button id="search_btn" >검색</button>
+				</div>
 				</div>
 
 				<div class="card-body">

@@ -51,6 +51,11 @@ public class TermsServiceImpl implements TermsService {
 		dao.alterTerms(vo);
 		
 	}
+
+	@Override
+	public int termsOverlap(TermsSearchVO svo) {
+		return dao.termsOverlap(svo);
+	}
 	
 
 }
