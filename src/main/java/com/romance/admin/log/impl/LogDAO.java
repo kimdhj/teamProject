@@ -17,24 +17,24 @@ public class LogDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 	
-	public int getLoginTotalCount() {
-		return sqlSessionTemplate.selectOne("loggingUtils.getLoginTotalCount");
+	public int getLoginTotalCount(Criteria criteria) {
+		return sqlSessionTemplate.selectOne("loggingUtils.getLoginTotalCount", criteria);
 	}
 	
 	public List<LoginLogVO> getLoginLogList(Criteria criteria) {
 		return sqlSessionTemplate.selectList("loggingUtils.getLoginLogList", criteria);
 	}
 	
-	public int getWorkTotalCount() {
-		return sqlSessionTemplate.selectOne("loggingUtils.getWorkTotalCount");
+	public int getWorkTotalCount(Criteria criteria) {
+		return sqlSessionTemplate.selectOne("loggingUtils.getWorkTotalCount", criteria);
 	}
 	
 	public List<WorkLogVO> getWorkLogList(Criteria criteria) {
 		return sqlSessionTemplate.selectList("loggingUtils.getWorkLogList", criteria);
 	}
 	
-	public int getPaymentTotalCount() {
-		return sqlSessionTemplate.selectOne("loggingUtils.getPaymentTotalCount");
+	public int getPaymentTotalCount(Criteria criteria) {
+		return sqlSessionTemplate.selectOne("loggingUtils.getPaymentTotalCount", criteria);
 	}
 	
 	public List<PaymentLogVO> getPaymentLogList(Criteria criteria) {

@@ -53,10 +53,11 @@ public class LogController {
 			if(criteria.getSearchKeyword() == null) {
 				criteria.setSearchKeyword("");
 			}
-			
+			System.out.println(">>>>>로그인로그 cnt : " + logService.getLoginTotalCount(criteria));
+			System.out.println(">>>>>criteria : " + criteria);
 			Pagination pagination = new Pagination();
 			pagination.setCriteria(criteria);
-			pagination.setTotalCount(logService.getLoginTotalCount());
+			pagination.setTotalCount(logService.getLoginTotalCount(criteria));
 			model.addAttribute("pagination", pagination);
 			model.addAttribute("loginLogList", logService.getLoginLogList(criteria));
 			return "admin_log_login";
@@ -82,10 +83,10 @@ public class LogController {
 			if(criteria.getSearchKeyword() == null) {
 				criteria.setSearchKeyword("");
 			}
-			
+			System.out.println(">>>>>작업로그 cnt : " + logService.getWorkTotalCount(criteria));
 			Pagination pagination = new Pagination();
 			pagination.setCriteria(criteria);
-			pagination.setTotalCount(logService.getWorkTotalCount());
+			pagination.setTotalCount(logService.getWorkTotalCount(criteria));
 			model.addAttribute("pagination", pagination);
 			model.addAttribute("workLogList", logService.getWorkLogList(criteria));
 			System.out.println(">>>>>>>>" + logService.getWorkLogList(criteria));
@@ -110,11 +111,10 @@ public class LogController {
 			if(criteria.getSearchKeyword() == null) {
 				criteria.setSearchKeyword("");
 			}
-			
+			System.out.println(">>>>>결제로그 cnt : " + logService.getPaymentTotalCount(criteria));
 			Pagination pagination = new Pagination();
 			pagination.setCriteria(criteria);
-			pagination.setTotalCount(logService.getPaymentTotalCount());
-			System.out.println(">>>>>>>>>" + logService.getPaymentTotalCount());
+			pagination.setTotalCount(logService.getPaymentTotalCount(criteria));
 			model.addAttribute("pagination", pagination);
 			model.addAttribute("paymentLogList", logService.getPaymentLogList(criteria));
 			System.out.println(logService.getPaymentLogList(criteria));
