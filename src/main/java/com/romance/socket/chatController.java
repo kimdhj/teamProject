@@ -109,8 +109,11 @@ return "redirect:index.do";
   }
   
   @GetMapping("/chatAdmin.mdo")
-  public String chatAdmin(String user, Model model) {
-    
+  public String chatAdmin(String user, Model model,JwtUtils util, HttpSession session) throws IOException  {
+    UserVO vosession = util.getuser(session);
+    if((vosession == null||!vosession.getUser_role().equals("ROLE_ADMIN"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+      return "redirect:admin_login.mdo";
+    }
     model.addAttribute("userid", user);
     return "admin_realchat_admin";
   }
@@ -126,8 +129,12 @@ return "redirect:index.do";
   }
   
   @GetMapping("/chatList.mdo")
-  public String chatList(chatVO vo, chatSearchVO vos, Model model) {
-    
+  public String chatList(chatVO vo, chatSearchVO vos, Model model,JwtUtils util, HttpSession session) throws IOException  {
+    UserVO vosession = util.getuser(session);
+    if((vosession == null||!vosession.getUser_role().equals("ROLE_ADMIN"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+      return "redirect:admin_login.mdo";
+    }
+
     if (vos.getPage() == 0) {
       vos.setPage(1);
     }

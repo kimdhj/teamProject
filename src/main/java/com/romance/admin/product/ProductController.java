@@ -3,6 +3,8 @@ package com.romance.admin.product;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.romance.user.concern.ConcernWriterVO;
+import com.romance.security.JwtUtils;
+import com.romance.user.login.UserVO;
 
 @Controller
 @SessionAttributes("pro")
@@ -25,8 +28,12 @@ public class ProductController {
 	
 		//물품 목록
 		@GetMapping("/getProductList.mdo")
-		public String getProductList(ProductVO vo, Model model, ProductSearchVO svo) {
-			System.out.println("글 목록 검색 처리");
+		public String getProductList(ProductVO vo, Model model, ProductSearchVO svo,JwtUtils util, HttpSession session) throws IOException {
+		  UserVO vosession = util.getuser(session);
+		  if((vosession == null||!vosession.getUser_role().equals("ROLE_ADMIN"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+		    return "redirect:admin_login.mdo";
+		  }
+		  System.out.println("글 목록 검색 처리");
 
 			if(svo.getPage()==0) {
 				svo.setPage(1);
@@ -94,7 +101,11 @@ public class ProductController {
 		
 		//상품 INSERT 가기!
 		@RequestMapping("/product_Insert.mdo")
-		public String product_Insert() {
+		public String product_Insert(JwtUtils util, HttpSession session) throws IOException {
+		  UserVO vosession = util.getuser(session);
+		  if((vosession == null||!vosession.getUser_role().equals("ROLE_ADMIN"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+		    return "redirect:admin_login.mdo";
+		  }
 			
 			return "admin_product_Insert";
 		}
@@ -160,7 +171,13 @@ public class ProductController {
 		
 		//물품 수정 페이지!
 		@GetMapping("/product_Update.mdo")
-		public String product_Update(Model model, @RequestParam(name="book_seq") int book_seq) {
+		public String product_Update(Model model, @RequestParam(name="book_seq") int book_seq,JwtUtils util, HttpSession session) throws IOException {
+		  System.out.println("왜 404");
+		  UserVO vosession = util.getuser(session);
+		  if((vosession == null||!vosession.getUser_role().equals("ROLE_ADMIN"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+		    return "redirect:admin_login.mdo";
+		  }
+
 			model.addAttribute("ProductDAO", productService.product_Update(book_seq));
 			return "admin_product_Update";
 		}

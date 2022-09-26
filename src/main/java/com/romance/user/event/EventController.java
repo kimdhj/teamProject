@@ -96,7 +96,11 @@ public class EventController {
     }
     
 	@RequestMapping("moveInsert.mdo")
-	public String moveInsert(EventVO vo, Model model) {
+	public String moveInsert(EventVO vo, Model model,JwtUtils util, HttpSession session) throws IOException {
+	  UserVO vosession = util.getuser(session);
+    if((vosession == null||!vosession.getUser_role().equals("ROLE_ADMIN"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+      return "redirect:admin_login.mdo";
+    }
 		model.addAttribute("top_check", eventService.topCheck(vo));
 		return "admin_marketing_EventInsert";
 	}
@@ -270,7 +274,11 @@ public class EventController {
 	
 	//관리자가 이벤트 상세보기
 	@RequestMapping("/getEvent.mdo")
-	public String getAdminEvent(EventVO vo, Model model, @RequestParam("event_seq")int seq) {
+	public String getAdminEvent(EventVO vo, Model model, @RequestParam("event_seq")int seq,JwtUtils util, HttpSession session) throws IOException {
+	  UserVO vosession = util.getuser(session);
+    if((vosession == null||!vosession.getUser_role().equals("ROLE_ADMIN"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+      return "redirect:admin_login.mdo";
+    }
 		System.out.println("글 상세 보기 처리");
 		model.addAttribute("event_event", eventService.getEvent(vo));
 		return "admin_marketing_EventUpdate";
@@ -293,7 +301,11 @@ public class EventController {
 	
 	//관리자 이벤트 리스트 보기
 	@RequestMapping("/getEventList.mdo")
-	public String getAdminEventList(EventVO vo, Model model) {
+	public String getAdminEventList(EventVO vo, Model model,JwtUtils util, HttpSession session) throws IOException {
+	  UserVO vosession = util.getuser(session);
+	  if((vosession == null||!vosession.getUser_role().equals("ROLE_ADMIN"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+	    return "redirect:admin_login.mdo";
+	  }
 		System.out.println("글 목록 검색 처리");
 		// null 체크
 //		if (vo.getSearchCondition() == null)

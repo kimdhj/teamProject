@@ -1,6 +1,9 @@
 package com.romance.admin.coupon;
 
+import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.romance.security.JwtUtils;
+import com.romance.user.login.UserVO;
 
 @Controller
 public class CouponController {
@@ -48,7 +54,13 @@ public class CouponController {
 		return count;
 	}
 	@GetMapping("/coupon.mdo")
-	public String coupon(CouponSearchVO vo,Model model) {
+	public String coupon(CouponSearchVO vo,Model model,JwtUtils util, HttpSession session) throws IOException {
+
+    UserVO vosession = util.getuser(session);
+   if((vosession == null||!vosession.getUser_role().equals("ROLE_ADMIN"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+     return "redirect:admin_login.mdo";
+   }
+
 		System.out.println(vo);
 		if(vo.getPage()==0) {
 			vo.setPage(1);
