@@ -35,7 +35,7 @@
 
                         <div class="col" id="option_input">
                             <div class="input-group mb-3 ">
-                                <input disabled value="${user.user_id}" type="text" class="form-control"
+                                <input disabled value="${useddr.user_id}" type="text" class="form-control"
                                     placeholder="username" aria-label="Recipient's username"
                                     aria-describedby="basic-addon2">
                             </div>

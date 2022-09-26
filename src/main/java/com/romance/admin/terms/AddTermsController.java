@@ -22,7 +22,7 @@ public class AddTermsController {
 	
 	// 회원가입 약관 이동
 	@RequestMapping("/join_terms.do")
-	public String join_terms(Model model) {
+	public String join_terms(String kakaoid,Model model) {
 		//무슨 약관인지 명시해주기
 		model.addAttribute("termscategory", "회원가입");
 		model.addAttribute("oc", "Join");
@@ -30,7 +30,7 @@ public class AddTermsController {
 		List<TermsVO> termsvo = addTermsService.getAddTerms();
 		System.out.println(termsvo);
 		model.addAttribute("termsList", termsvo);
-		
+    model.addAttribute("kakaoid", kakaoid);
 		return "all_terms";
 	}	
 	

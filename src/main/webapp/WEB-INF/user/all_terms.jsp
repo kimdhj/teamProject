@@ -72,6 +72,7 @@
 		</div>
 		<div class="col-2"></div>
 	</div>
+  <input type="hidden" id="kakaoid" value="${kakaoid}"> 
 
 
 

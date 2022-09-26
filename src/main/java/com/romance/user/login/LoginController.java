@@ -79,7 +79,7 @@ public class LoginController {
       session.setAttribute("id", token);
       return "redirect:kakaologinend.do";
     }
-    return "redirect:join.do";
+    return "redirect:join_terms.do";
   }
   
   // 인증번호
