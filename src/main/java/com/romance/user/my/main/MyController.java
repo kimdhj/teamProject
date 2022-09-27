@@ -31,8 +31,8 @@ public class MyController {
 	public String myMain(NoticeVO noticeVO, Model model, HttpSession session, JwtUtils utils) throws Exception {
 	  UserVO vosession = utils.getuser(session);
     if((vosession == null||!vosession.getUser_role().equals("ROLE_MEMBER"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
-return "redirect:index.do";
-} 
+    	return "redirect:login.do";
+    } 
 	  UserVO voToken = utils.getuser(session);
 		if(voToken != null) {
 			//유저아이디값
