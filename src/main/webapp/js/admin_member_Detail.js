@@ -128,7 +128,6 @@ function adminAccountCheck() { //유효성 검사
 			text: "수정이 완료되었습니다.",
 			icon: "success"
 		})
-		console.log("수정확인 누름");
 	} else {
 		return false;
 	}
