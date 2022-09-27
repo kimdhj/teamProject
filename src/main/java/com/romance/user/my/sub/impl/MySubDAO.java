@@ -80,4 +80,7 @@ public class MySubDAO {
 	public void joininsert(UserCategoryVO vo) {
 	  sqlSessionTemplate.insert("usercategory.joininsert",vo);
 	}
+	public String cansubpass(String user_id) {
+		return sqlSessionTemplate.selectOne("SubscribeDAO.cansubpass",user_id);
+	}
 }
