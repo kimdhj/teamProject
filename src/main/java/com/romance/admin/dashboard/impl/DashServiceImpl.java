@@ -27,14 +27,11 @@ public class DashServiceImpl implements DashService {
   @Override
   public List<DashOutVO> categorysel(DashDataVO vo) {
    //기본값 현재 껄로 설정
-    if(!((vo.getMonth()!=null&&vo.getMonth()!="")&&(vo.getYear()!=null&&vo.getYear()!=""))) {
-    LocalDate now = LocalDate.now();
-    String year =  String.valueOf(now.getYear());
-    String month = now.getMonth().toString();
+    vo.setMonth(vo.getMonth().replaceAll("0", ""));
+    System.out.println("vo에이지"+vo);
     
-    vo.setYear(year);
-    vo.setMonth(month);
-    }
+   
+   
     // TODO Auto-generated method stub
     return dashDAO.categorysel(vo);
   }
@@ -43,14 +40,8 @@ public class DashServiceImpl implements DashService {
   public List<DashOutVO> booksel(DashDataVO vo) {
     // TODO Auto-generated method stub
     //기본값 현재 껄로 설정
-    if(!((vo.getMonth()!=null&&vo.getMonth()!="")&&(vo.getYear()!=null&&vo.getYear()!=""))) {
-    LocalDate now = LocalDate.now();
-    String year =  String.valueOf(now.getYear());
-    String month = now.getMonth().toString();
-    
-    vo.setYear(year);
-    vo.setMonth(month);
-    }
+    vo.setMonth(vo.getMonth().replaceAll("0", ""));
+    System.out.println("vo에이지"+vo);
     return dashDAO.booksel(vo);
   }
 //한개씩 5번
@@ -58,17 +49,11 @@ public class DashServiceImpl implements DashService {
   public List<DashOutVO> dashcache(DashDataVO vo) {
     // TODO Auto-generated method stub
     //기본값 현재 껄로 설정
-    System.out.println("dashcache"+vo);
-    if(!((vo.getMonth()!=null&&vo.getMonth()!="")&&(vo.getYear()!=null&&vo.getYear()!=""))) {
-      LocalDate now = LocalDate.now();
-      String year =  String.valueOf(now.getYear());
-      String month = now.getMonth().toString();
-      
-      vo.setYear(year);
-      vo.setMonth(month);
-      }
+    vo.setMonth(vo.getMonth().replaceAll("0", ""));
+    System.out.println("vo에이지"+vo);
+    
     List<DashOutVO> dout=new ArrayList<DashOutVO>();
-    System.out.println(vo.getMonth());
+    
     //숫자 5번빼기
     vo.setMonth(String.valueOf(Integer.parseInt(vo.getMonth())-5));
     for(int i=1;i<=5;i++) {
@@ -93,15 +78,9 @@ public class DashServiceImpl implements DashService {
   public List<DashOutVO> dashcount(DashDataVO vo) {
     // TODO Auto-generated method stub
 
-    //기본값 현재 껄로 설정
-    if(!((vo.getMonth()!=null&&vo.getMonth()!="")&&(vo.getYear()!=null&&vo.getYear()!=""))) {
-      LocalDate now = LocalDate.now();
-      String year =  String.valueOf(now.getYear());
-      String month = now.getMonth().toString();
-      
-      vo.setYear(year);
-      vo.setMonth(month);
-      }
+    vo.setMonth(vo.getMonth().replaceAll("0", ""));
+    System.out.println("vo에이지"+vo);
+   
     vo.setMonth(String.valueOf(Integer.parseInt(vo.getMonth())-5));
     List<DashOutVO> dout=new ArrayList<DashOutVO>();
     //숫자 5번빼기
@@ -109,8 +88,7 @@ public class DashServiceImpl implements DashService {
  
      
       vo.setMonth(String.valueOf(Integer.parseInt(vo.getMonth())+1));
-      System.out.println("달수"+vo.getMonth());
-      System.out.println("년수"+vo.getYear());
+   
       DashOutVO vod=dashDAO.dashcount(vo);
       vod.setTitlestr(vo.getYear()+"-"+vo.getMonth());
       dout.add(vod);
@@ -130,14 +108,8 @@ public class DashServiceImpl implements DashService {
   @Override
   public List<DashOutVO> dashbookbuy(DashDataVO vo) {
     // TODO Auto-generated method stub
-    if(!((vo.getMonth()!=null&&vo.getMonth()!="")&&(vo.getYear()!=null&&vo.getYear()!=""))) {
-      LocalDate now = LocalDate.now();
-      String year =  String.valueOf(now.getYear());
-      String month = now.getMonth().toString();
-      
-      vo.setYear(year);
-      vo.setMonth(month);
-      }
+    vo.setMonth(vo.getMonth().replaceAll("0", ""));
+    System.out.println("vo에이지"+vo);
     List<DashOutVO> dout=new ArrayList<DashOutVO>();
     DashOutVO vob=dashDAO.dashbookbuy(vo);
     vob.setTitlestr("책 구매");
@@ -151,6 +123,8 @@ public class DashServiceImpl implements DashService {
   @Override
   public List<DashOutVO> dashgetuser(DashDataVO vo) {
     // TODO Auto-generated method stub
+    vo.setMonth(vo.getMonth().replaceAll("0", ""));
+    System.out.println("vo에이지"+vo);
     List<DashOutVO> dout=new ArrayList<DashOutVO>();
     DashOutVO vob=dashDAO.dashgetuser(vo);
     vob.setTitlestr("구독 회원");
@@ -164,7 +138,7 @@ public class DashServiceImpl implements DashService {
   @Override
   public List<DashOutVO> dashnotcancelcount(DashDataVO vo) {
     LocalDate now = LocalDate.now();
-    System.out.println("now.toString()"+now.toString());
+
     vo.setDate(now.toString());
     List<DashOutVO> dout=new ArrayList<DashOutVO>();
     dout.add(dashDAO.dashnotcancelcount(vo));
@@ -177,7 +151,7 @@ public class DashServiceImpl implements DashService {
   @Override
   public List<DashOutVO> dashcancelcount(DashDataVO vo) {
     LocalDate now = LocalDate.now();
-    System.out.println("now.toString()"+now.toString());
+
     vo.setDate(now.toString());
     List<DashOutVO> dout=new ArrayList<DashOutVO>();
     DashOutVO voo=dashDAO.dashcancelcount(vo);

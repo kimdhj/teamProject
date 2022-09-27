@@ -126,14 +126,17 @@ $(function() {
 	//포인트 페이징 처리
 	$("#allpoints").on("click", function() {
 		$("#statep").val(Number(0));
+		$("#pagep").val(Number(1));
 		makep();
 	})
 	$("#pluspoints").on("click", function() {
 		$("#statep").val(Number(1));
+		$("#pagep").val(Number(1))
 		makep();
 	})
 	$("#usepoints").on("click", function() {
 		$("#statep").val(Number(-1));
+		$("#pagep").val(Number(1))
 		makep();
 	})
 	$(document).on("propertychange change paste input keyUp keyDown", "#date", function() {
