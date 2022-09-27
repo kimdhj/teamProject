@@ -50,8 +50,16 @@
 			</trim>
 	</select>
 	<insert id="insertProduct" parameterType="pros">
-		INSERT INTO book (book_price, book_remain, book_descript, book_imgURL, book_bigimgURL, book_title, book_points, book_publish, book_publish_date, book_author, book_isbn, category_num, author_seq)
-		VALUES(#{book_price}, #{book_remain}, #{book_descript}, #{book_imgURL}, #{book_bigimgURL}, #{book_title}, #{book_points}, #{book_publish}, #{book_publish_date}, #{book_author}, #{book_isbn}, #{category_num}, #{author_seq})
+		INSERT INTO book (book_price,
+		<if test="book_remain!=null and book_remain != ''"><![CDATA[ book_remain,]]></if>
+		<if test="book_descript!=null and book_descript != ''"><![CDATA[ book_descript,]]></if>
+		<if test="book_imgURL!=null and book_imgURL != ''"><![CDATA[ book_imgURL,]]></if>
+		<if test="book_bigimgURL!=null and book_bigimgURL != ''"><![CDATA[ book_bigimgURL,]]></if> book_title, book_points, book_publish, book_publish_date, book_author, book_isbn, category_num, author_seq)
+		VALUES(#{book_price},
+		<if test="book_remain!=null and book_remain != ''"><![CDATA[ #{book_remain},]]></if>
+		<if test="book_descript!=null and book_descript != ''"><![CDATA[ #{book_descript},]]></if>
+		<if test="book_imgURL!=null and book_imgURL != ''"><![CDATA[ #{book_imgURL},]]></if>
+		<if test="book_bigimgURL!=null and book_bigimgURL != ''"><![CDATA[ #{book_bigimgURL},]]></if> #{book_title}, #{book_points}, #{book_publish}, #{book_publish_date}, #{book_author}, #{book_isbn}, #{category_num}, #{author_seq})
 	</insert>
 	<select id="check_author" resultType="String">
 		SELECT author_name FROM author WHERE author_seq = #{author_seq}

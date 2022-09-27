@@ -38,8 +38,10 @@ public class IconController {
 	 
 	 @RequestMapping(value="/updateIcon.mdo", method = RequestMethod.POST)
 	 public String updateIcon(@RequestParam("iconFile") MultipartFile iconFile, @RequestParam("banner_name") List<String> banner_name,@RequestParam("bannerFile") List<MultipartFile> bannerFile, IconVO vo1, BannerVO vo2) throws IOException {
+		if(!iconFile.isEmpty()) {
 		iconService.deleteIcon(vo1);
 		iconService.insertIcon(iconFile, vo1);
+		}
 		iconService.deleteBanner();
 		iconService.insertBanner(banner_name, bannerFile, vo2);
 		return "redirect:getIcon.mdo";
