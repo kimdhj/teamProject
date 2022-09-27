@@ -360,3 +360,34 @@ $(document).on("click", "#all_box #page a", function(e) {
 
 	init();
 });
+
+
+
+
+$(".seldel").click(function(){
+let ids=[];
+$('.delche').map((ind,el)=>{
+console.log($(el).is(':checked'))
+if($(el).is(':checked')){
+console.log($(el).parents("tr").children("td:eq(2)").text().trim())
+ids.push($(el).parents("tr").children("td:eq(2)").text().trim());
+$(el).parents("tr").remove();
+}
+console.log(ids);
+$.ajax({
+		url: "/chatseldel.mdo",
+		data: {
+			delid: ids
+
+		},
+		async: true,
+		method: "GET",
+		dataType: "json",
+		success: function(data) {
+			
+
+		}
+	});
+})
+
+})

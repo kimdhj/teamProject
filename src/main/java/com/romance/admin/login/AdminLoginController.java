@@ -39,6 +39,7 @@ public class AdminLoginController {
 	@PostMapping("admin_login.mdo")
 	public String login(AdminUserVO vo, Model model, HttpSession session, JwtUtils util, RedirectAttributes redirectAttributes) throws Exception {
 		System.out.println("로그인 인증 처리");
+		
 		//로그인 로그 넣기
 		insertLoginLog(vo);
 		
@@ -46,7 +47,7 @@ public class AdminLoginController {
 		user = adminUserService.getUser(vo);
 		System.out.println("로그인 데이터 : " + user);
 		String warning = null;
-				
+		
 		if(user != null && user.getUser_role().equals("ROLE_ADMIN") || user != null && user.getUser_role().equals("ROLE_MASTER")) {
 			System.out.println("입력받은 pw : " + vo.getUser_password());
 			System.out.println("DB상의 pw : " + user.getUser_password());
@@ -99,7 +100,7 @@ public class AdminLoginController {
 		String login_log_url = "";
 		if(_login_log_url.contains("?")) {
 			int idx = _login_log_url.indexOf("?");
-			login_log_url = _login_log_url.substring(idx);
+			login_log_url = _login_log_url.substring(0, idx);
 		} else {
 			login_log_url = _login_log_url;
 		}

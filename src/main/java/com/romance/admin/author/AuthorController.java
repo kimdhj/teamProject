@@ -77,8 +77,9 @@ public class AuthorController {
   @GetMapping("adminauthorcount.mdo")
   @ResponseBody
   public int adminauthorcount(AdminAuthorSearchVO vo){
-    
+    System.out.println("에러:"+vo);
     int count=ser.adminauthorcount(vo)-1;
+    System.out.println("에러:"+count);
     return count;
     
   }

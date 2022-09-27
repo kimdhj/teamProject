@@ -26,6 +26,7 @@
 								<div class="row border-bottom border-2 border-dark">
 									<h1 class="col-4">도서 결제</h1>
 									<div class="col"></div>
+                                    <div class="col-4"></div>
 								</div>
 								<div class="row border-bottom border-2 border-dark">
 									<div class="col-2">주문 일자 :</div>
@@ -188,12 +189,17 @@
 
 								</div>
 
-								<div class="row">
-									<ul id="whisper">
+								<div class="row d-flex">
+									<ul class="col-auto" id="whisper">
 										<li>본사는 회원님의 실수로 적용되지 않은 할인은 적용시켜드리지 못합니다.</li>
 										<li>혹시나 잘 못 적용해서 혜택을 보지 못하셨다면 유감의 말씀을 전합니다.</li>
 										<li>환불계좌 입력 실수 시 고객센터로 연락 바랍니다</li>
 									</ul>
+                  <div class="col"></div>
+                  <div class="col-auto">
+                        <button id="termsopen"  type="button">약관 보기</button>
+                  </div>
+            
 								</div>
 								<div class="row border-bottom border-2 border-dark">
 									<br />

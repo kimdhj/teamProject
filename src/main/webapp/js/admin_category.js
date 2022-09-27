@@ -41,14 +41,15 @@ $(document).ready(function() {
 	$(".allche").prop("checked", false);
 	// 하단에 있는 카테고리 홍보 코드
 	// 리셋 버튼 코드 초기화
-	$(".reset").click(function(e) {
-		$(this).parents("tr").children("td:eq(1)").children().text("default");
-		$(this)
+	$(document).on("click",".reset",function(el) {
+	let e=el.target;
+		$(e).parents("tr").children("td:eq(1)").children().text("default");
+		$(e)
 			.parents("tr")
 			.children("td:eq(2)")
 			.children()
 			.attr("data-default", "0");
-		this.parents("tr").children("td:eq(2)").children().text("0");
+		$(e).parents("tr").children("td:eq(2)").children().text("0");
 	});
 	// 코드 변화 감지에 따른 행동
 	observer = new MutationObserver(function(mutations) {
@@ -188,6 +189,10 @@ $(document).ready(function() {
 				Number($("#all_box #category_btn").val()) +
 				Number($("#all_box #level").val())
 			);
+		}else{
+		if(Number($("#all_box #category_btn").val()) != 0 ||
+			Number($("#all_box #level").val()) != 0)
+		alert("상위 카테고리 카테고리코드 모두 입력해주세요")
 		}
 		make();
 	});
@@ -250,7 +255,7 @@ $(document).ready(function() {
 		if (
 			Number($("#all_box #category_btn").val()) != 0 &&
 			Number($("#all_box #level").val()) != 0 &&
-			name != null
+			name != null&&name!=""
 		) {
 			$.ajax({
 				url: "/categoryInsert.mdo",
@@ -278,6 +283,8 @@ $(document).ready(function() {
 					}
 				},
 			});
+		}else{
+			alert("빈칸없이 입력해주세요")		
 		}
 	});
 

@@ -7,6 +7,8 @@ public class Criteria {
 	private String searchCondition; //검색조건
 	private String searchKeyword; //검색키워드
 	private String selectCondition; //선택조건
+	private String sortConditionUp; //정렬조건
+	private String sortConditionDown; //정렬조건
 	
 	public int getPageStart() {//특정 페이지의 게시글 시작 번호, 행 번호
 		return (this.pageNum - 1) * this.perPageNum; //현재 페이지의 게시글 시작 번호
@@ -14,7 +16,7 @@ public class Criteria {
 	
 	public Criteria() {
 		this.pageNum = 1;
-		this.perPageNum = 7;
+		this.perPageNum = 10;
 	}
 	
 	public int getPageNum() {
@@ -66,5 +68,21 @@ public class Criteria {
 	public void setSelectCondition(String selectCondition) {
 		this.selectCondition = selectCondition;
 	}
-	
+
+	public String getSortConditionUp() {
+		return sortConditionUp;
+	}
+
+	public void setSortConditionUp(String sortConditionUp) {
+		this.sortConditionUp = sortConditionUp;
+	}
+
+	public String getSortConditionDown() {
+		return sortConditionDown;
+	}
+
+	public void setSortConditionDown(String sortConditionDown) {
+		this.sortConditionDown = sortConditionDown;
+	}
+
 }

@@ -1,6 +1,4 @@
-#main_wrapper {
-  margin-top: 10%;
-}
+
 h1 {
   font-size: 3vw !important;
 }
@@ -42,7 +40,7 @@ h1 {
   background-color: antiquewhite;
 }
 #main_wrapper {
-  margin-top: 10%;
+  margin-top: 15%;
 }
 #howmuchsub,
 #usepoint {
