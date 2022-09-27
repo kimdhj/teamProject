@@ -1,35 +1,111 @@
-$(function () {
-  $(".week").click(function () {
-    let st = new Date($("#start_date").val());
-    st.setDate(st.getDate() - 7);
-    $("#start_date").val(st);
-    datePickerSet($("#start_date"), $("#end_date"), true);
-  });
-  $(".month").click(function () {
-    let st = new Date($("#start_date").val());
-    st.setMonth(st.getMonth() - 1);
-    $("#start_date").val(st);
-    datePickerSet($("#start_date"), $("#end_date"), true);
-  });
-  $(".threemonth").click(function () {
-    let st = new Date($("#start_date").val());
-    st.setMonth(st.getMonth() - 3);
-    $("#start_date").val(st);
-    datePickerSet($("#start_date"), $("#end_date"), true);
-  });
-  $(".sixmonth").click(function () {
-    let st = new Date($("#start_date").val());
-    st.setMonth(st.getMonth() - 6);
-    $("#start_date").val(st);
-    datePickerSet($("#start_date"), $("#end_date"), true);
-  });
-  $(".year").click(function () {
-    let st = new Date($("#start_date").val());
-    st.setFullYear(st.getFullYear() - 1);
-    $("#start_date").val(st);
-    datePickerSet($("#start_date"), $("#end_date"), true);
-  });
+$(function() {
+	// datepicker 한국어로 사용하기 위한 언어설정
+	$.datepicker.setDefaults($.datepicker.regional['ko']);
+
+	// 시작일(start_date)은 종료일(end_date) 이후 날짜 선택 불가
+	// 종료일(end_date)은 시작일(start_date) 이전 날짜 선택 불가
+
+	// 시작일.
+	$('#start_date').datepicker({
+		showOn : "both", // 달력을 표시할 타이밍 (both: focus or button)
+		buttonImage : "/img/calendar.png", // 버튼 이미지
+		buttonImageOnly : true, // 버튼 이미지만 표시할지 여부
+		buttonText : "날짜선택", // 버튼의 대체 텍스트
+		dateFormat : "yy-mm-dd", // 날짜의 형식
+		changeMonth : true, // 월을 이동하기 위한 선택상자 표시여부
+		// minDate: 0, // 선택할수있는 최소날짜, ( 0 : 오늘 이전 날짜 선택 불가)
+		maxDate : 0,
+		onClose : function(selectedDate) {
+			// 시작일(fromDate) datepicker가 닫힐때
+			// 종료일(toDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
+			$("#end_date").datepicker("option", "minDate", selectedDate);
+		}
+	});
+
+	// 종료일
+	$('#end_date').datepicker({
+		showOn : "both",
+		buttonImage : "/img/calendar.png",
+		buttonImageOnly : true,
+		buttonText : "날짜선택",
+		dateFormat : "yy-mm-dd",
+		changeMonth : true,
+		// minDate: 0, // 오늘 이전 날짜 선택 불가
+		maxDate : 0,
+		onClose : function(selectedDate) {
+			// 종료일(toDate) datepicker가 닫힐때
+			// 시작일(fromDate)의 선택할수있는 최대 날짜(maxDate)를 선택한 종료일로 지정
+			$("#start_date").datepicker("option", "maxDate", selectedDate);
+		}
+	});
 });
+
+// 기간조회
+function searchDateOneWeek() {
+	let d = new Date();
+	const yearNow = d.getFullYear();
+	const monthNow = ('0' + (d.getMonth() + 1)).slice(-2);
+	const dayNow = ('0' + d.getDate()).slice(-2);
+	const today = yearNow + "-" + monthNow + "-" + dayNow;
+	let sel_day = -7; // 일주일전
+	d.setDate(d.getDate() + sel_day);
+	let year = d.getFullYear();
+	let month = ('0' + (d.getMonth() + 1)).slice(-2);
+	let day = ('0' + d.getDate()).slice(-2);
+	dt = year + "-" + month + "-" + day;
+	console.log(dt);
+	document.getElementById("start_date").value = dt;
+	document.getElementById("end_date").value = today;
+}
+function searchDateOneMonth() {
+	let d = new Date();
+	const yearNow = d.getFullYear();
+	const monthNow = ('0' + (d.getMonth() + 1)).slice(-2);
+	const dayNow = ('0' + d.getDate()).slice(-2);
+	const today = yearNow + "-" + monthNow + "-" + dayNow;
+	let sel_month = -1;
+	d.setMonth(d.getMonth() + sel_month);
+	let year = d.getFullYear();
+	let month = ('0' + (d.getMonth() + 1)).slice(-2);
+	let day = ('0' + d.getDate()).slice(-2);
+	dt = year + "-" + month + "-" + day;
+	console.log(dt);
+	document.getElementById("start_date").value = dt;
+	document.getElementById("end_date").value = today;
+}
+function searchDateThreeMonth() {
+	let d = new Date();
+	const yearNow = d.getFullYear();
+	const monthNow = ('0' + (d.getMonth() + 1)).slice(-2);
+	const dayNow = ('0' + d.getDate()).slice(-2);
+	const today = yearNow + "-" + monthNow + "-" + dayNow;
+	let sel_month = -3;
+	d.setMonth(d.getMonth() + sel_month);
+	let year = d.getFullYear();
+	let month = ('0' + (d.getMonth() + 1)).slice(-2);
+	let day = ('0' + d.getDate()).slice(-2);
+	dt = year + "-" + month + "-" + day;
+	console.log(dt);
+	document.getElementById("start_date").value = dt;
+	document.getElementById("end_date").value = today;
+}
+function searchDateSixMonth() {
+	let d = new Date();
+	const yearNow = d.getFullYear();
+	const monthNow = ('0' + (d.getMonth() + 1)).slice(-2);
+	const dayNow = ('0' + d.getDate()).slice(-2);
+	const today = yearNow + "-" + monthNow + "-" + dayNow;
+	let sel_month = -6;
+	d.setMonth(d.getMonth() + sel_month);
+	let year = d.getFullYear();
+	let month = ('0' + (d.getMonth() + 1)).slice(-2);
+	let day = ('0' + d.getDate()).slice(-2);
+	dt = year + "-" + month + "-" + day;
+	console.log(dt);
+	document.getElementById("start_date").value = dt;
+	document.getElementById("end_date").value = today;
+}
+
 
 $(".oneqjawns").map((e, ind) => {
   $(ind).text($(ind).text().trim().substring(0, 7) + "...");
@@ -40,7 +116,7 @@ $(".oneqjawns").map((e, ind) => {
 // .contentClick 을 click 할 때 해당 function 이 일어남
 // 이걸 처리해줘야 페이징으로 이동했을 때 실행 가능 -> 페이징 처리하는 이벤트 생각하면 쉬움
 $(document).on("click", ".qjawnsno", function () {
-  //	$(".form1").removeClass("hide");
+  //   $(".form1").removeClass("hide");
 
   console.log(
     $(this).parents("tr").children("td:eq(1)").children("input").val()
@@ -83,7 +159,7 @@ $(document).on("click", ".qjawnsno", function () {
 
   if ($(".form1").hasClass("hide")) {
     // hide 가 있으면
-    //		$(".form1").toggle();
+    //      $(".form1").toggle();
     $(".form1").removeClass("hide"); // hide 를 지워서 리뷰를 띄운다.
   } else if (seq == $("#reply_seq").text()) {
     // hide 없고, 값을 받은 seq 랑 jsp 에서의 #reply_seq 의 값이 같다면
@@ -101,7 +177,7 @@ $(document).on("click", ".qjawnsno", function () {
   $("#content1").html(content);
   console.log($("#reply_seq").text());
 
-  //	$(".form1").toggle();
+  //   $(".form1").toggle();
 
   console.log("왜 안되냐");
 });
@@ -111,109 +187,8 @@ $(document).on("click", ".qjawnsno", function () {
 //$(this).parents("#table_user_content").next().toggleClass("hide");
 //
 //if(!ch){
-//	$(this).parents("#table_user_content").next().addClass("hide");
+//   $(this).parents("#table_user_content").next().addClass("hide");
 //}
-
-// 날짜 더하기
-$("#start_date").val(new Date());
-let date = new Date();
-date.setMonth(date.getMonth() + 1);
-
-$("#end_date").val(date);
-datePickerSet($("#start_date"), $("#end_date"), true); // 다중은 시작하는 달력 먼저, 끝달력
-// 2번째
-// var date2 = $('#start_dat').datepicker('getDate', '+1d');
-// date2.setDate(date2.getDate() + 1);
-// $('.dropoffDate').datepicker('setDate', date2)
-
-/*
- * 달력 생성기 @param sDate 파라미터만 넣으면 1개짜리 달력 생성 @example
- * datePickerSet($("#datepicker"));
- *
- *
- * @param sDate, @param eDate 2개 넣으면 연결달력 생성되어 서로의 날짜를 넘어가지 않음 @example
- * datePickerSet($("#datepicker1"), $("#datepicker2"));
- */
-function datePickerSet(sDate, eDate, flag) {
-  // 시작 ~ 종료 2개 짜리 달력 datepicker
-  if (
-    !isValidStr(sDate) &&
-    !isValidStr(eDate) &&
-    sDate.length > 0 &&
-    eDate.length > 0
-  ) {
-    let sDay = sDate.val();
-    let eDay = eDate.val();
-
-    if (flag && !isValidStr(sDay) && !isValidStr(eDay)) {
-      // 처음 입력 날짜 설정,
-      // update...
-      let sdp = sDate.datepicker().data("datepicker");
-      console.log("flag");
-      sdp.selectDate(new Date(sDay.replace(/-/g, "/"))); // 익스에서는 그냥 new
-      // Date하면 -을
-      // 인식못함
-      // replace필요
-
-      let edp = eDate.datepicker().data("datepicker");
-      edp.selectDate(new Date(eDay.replace(/-/g, "/"))); // 익스에서는 그냥 new
-      // Date하면 -을
-      // 인식못함
-      // replace필요
-    }
-
-    // 시작일자 세팅하기 날짜가 없는경우엔 제한을 걸지 않음
-    if (!isValidStr(eDay)) {
-      sDate.datepicker({
-        maxDate: new Date(eDay.replace(/-/g, "/")),
-      });
-    }
-    sDate.datepicker({
-      language: "ko",
-      autoClose: true,
-      onSelect: function () {
-        console.log("select");
-        datePickerSet(sDate, eDate);
-      },
-    });
-
-    // 종료일자 세팅하기 날짜가 없는경우엔 제한을 걸지 않음
-    if (!isValidStr(sDay)) {
-      eDate.datepicker({
-        minDate: new Date(sDay.replace(/-/g, "/")),
-      });
-    }
-    eDate.datepicker({
-      language: "ko",
-      autoClose: true,
-      onSelect: function () {
-        datePickerSet(sDate, eDate);
-      },
-    });
-
-    // 한개짜리 달력 datepicker
-  } else if (!isValidStr(sDate)) {
-    let sDay = sDate.val();
-    if (flag && !isValidStr(sDay)) {
-      // 처음 입력 날짜 설정, update...
-      let sdp = sDate.datepicker().data("datepicker");
-      sdp.selectDate(new Date(sDay.replace(/-/g, "/"))); // 익스에서는 그냥 new
-      // Date하면 -을
-      // 인식못함
-      // replace필요
-    }
-
-    sDate.datepicker({
-      language: "ko",
-      autoClose: true,
-    });
-  }
-
-  function isValidStr(str) {
-    if (str == null || str == undefined || str == "") return true;
-    else return false;
-  }
-}
 
 $(document).ready(function () {
   // 상단 탭 버튼
@@ -655,12 +630,12 @@ $("#all_box #search_btn").click(function (e) {
   } else if ($("#level").val() == "회원등급") {
     $("#all_box #subche").val($("#search").val());
 
-    //		if($("#search").val() == "일반" || $("#search").val() == "일"){ // 일반
-    //			$("#all_box #subche").val($("#search").val("일반"));
-    //		}else if($("#search").val() == "구독" || $("#search").val() == "구"){ // 구독
-    //			$("#all_box #subche").val($("#search").val("구독"));
+    //      if($("#search").val() == "일반" || $("#search").val() == "일"){ // 일반
+    //         $("#all_box #subche").val($("#search").val("일반"));
+    //      }else if($("#search").val() == "구독" || $("#search").val() == "구"){ // 구독
+    //         $("#all_box #subche").val($("#search").val("구독"));
     //
-    //		}
+    //      }
   } else if ($("#level").val() == "블라인드 댓글") {
     $("#all_box #blankche").val($("#search").val());
   }
@@ -726,7 +701,7 @@ function make() {
       let pa = "";
       if (Number($("#all_box #pageche").val()) > 1) {
         pa += `<li class="page-item "><a class="page-link">
-								<</a></li>`;
+                        <</a></li>`;
       }
       if (re % 5 == 0) {
         re--;
@@ -767,7 +742,7 @@ function make() {
         pa += `<li class="page-item"><a class="page-link" href="#">></a></li>`;
       }
       $("#all_box .pagination").html(pa);
-      //			console.log("번호 : " + $("#all_box .pagination").html());
+      //         console.log("번호 : " + $("#all_box .pagination").html());
     },
   });
   $.ajax({
@@ -796,26 +771,26 @@ function make() {
       let con = "";
       re.map((reply) => {
         con += `
-							<tr>
-							<td><input class="form-check-input border-1 border-dark delche chkbox" name="chkbox" type="checkbox" id="flexCheckChecked"></td>
-								</td>
-								<td>
-									<p id="seq">${count}</p>
-									<input type="hidden" value="${reply.reply_seq}" name="reply_seq"/>
-								</td>
-								<td>
-									<p class="rowColumn" id="id">${reply.user_id}</p>
-									<input type="hidden" value="${reply.user_id}" name="user_id"/>
-								</td>
-								<td>
-									<p class="selectColumn" id="name">${reply.user_name}</p>
-									<input type="hidden" value="${reply.user_name}" name="user_name"/>
-								</td>
-								<td>
-									<p class="rowColumn" id="birth">${reply.user_birth}</p>
-									<input type="hidden" value="${reply.user_birth}" name="user_birth"/>
-								</td>
-								<td>`;
+                     <tr>
+                     <td><input class="form-check-input border-1 border-dark delche chkbox" name="chkbox" type="checkbox" id="flexCheckChecked"></td>
+                        </td>
+                        <td>
+                           <p id="seq">${count}</p>
+                           <input type="hidden" value="${reply.reply_seq}" name="reply_seq"/>
+                        </td>
+                        <td>
+                           <p class="rowColumn" id="id">${reply.user_id}</p>
+                           <input type="hidden" value="${reply.user_id}" name="user_id"/>
+                        </td>
+                        <td>
+                           <p class="selectColumn" id="name">${reply.user_name}</p>
+                           <input type="hidden" value="${reply.user_name}" name="user_name"/>
+                        </td>
+                        <td>
+                           <p class="rowColumn" id="birth">${reply.user_birth}</p>
+                           <input type="hidden" value="${reply.user_birth}" name="user_birth"/>
+                        </td>
+                        <td>`;
         console.log("1", reply.book_title);
         if (reply.book_title.length > 7) {
           title = reply.book_title.substring(0, 6);
@@ -825,10 +800,10 @@ function make() {
           con += `<p class="rowColumn" id="title">${reply.book_title}</p>`;
         }
         con += `
-									<input type="hidden" value="${reply.book_title}" name="book_title"/>
-								</td>
-								<td>
-									<p id="content">
+                           <input type="hidden" value="${reply.book_title}" name="book_title"/>
+                        </td>
+                        <td>
+                           <p id="content">
                                      <div class="qjawnsno oneqjawns">
                                       ${reply.reply_cotent}
                                     </div>
@@ -837,43 +812,43 @@ function make() {
                                     <div class="hide" id="recontent">
                                       ${reply.reply_cotent}
                                     </div>
-								</td>
-								<td>
-									<p class="rowColumn" >${reply.reply_date}
+                        </td>
+                        <td>
+                           <p class="rowColumn" >${reply.reply_date}
                                     </p>
                                     <input type="hidden" value="${reply.reply_date}" name="reply_date"/>
-								</td>
-								<td>`;
+                        </td>
+                        <td>`;
         if (reply.user_sub == "0") {
           con += `<p class="rowColumn" id="sub">일반</p>`;
         } else if (reply.user_sub == "1") {
           con += `<p class="rowColumn" id="sub">구독</p>`;
         }
         con += `
-									<input type="hidden" value="${reply.user_sub}" name="user_sub"/>
-									<td>`;
+                           <input type="hidden" value="${reply.user_sub}" name="user_sub"/>
+                           <td>`;
         if (reply.user_blank == false) {
           con += `<button class="btn btn-danger rounded-pill blind">처리</button>`;
         } else if (reply.user_blank == true) {
           con += `<button class="btn btn-outline-danger rounded-pill blindCancel">처리 완료</button>`;
         }
         con += `</td>
-								<td>
-									<button class="btn btn-danger rounded-pill del">삭제</button>
-								</td>
-								</tr>
-							`;
+                        <td>
+                           <button class="btn btn-danger rounded-pill del">삭제</button>
+                        </td>
+                        </tr>
+                     `;
         count++;
       });
-      //			console.log($("#all_box tbody").html());
-      //			console.log(con);
+      //         console.log($("#all_box tbody").html());
+      //         console.log(con);
 
       $("#all_box tbody").html(con);
       $(".oneqjawns").map((e, ind) => {
         $(ind).text($(ind).text().trim().substring(0, 7) + "...");
       });
-      //			console.log("con: " + con);
-      //			console.log("공지사항 목록 : " + $("#all_box tbody").html());
+      //         console.log("con: " + con);
+      //         console.log("공지사항 목록 : " + $("#all_box tbody").html());
     },
   });
 }

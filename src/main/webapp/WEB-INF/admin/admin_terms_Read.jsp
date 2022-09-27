@@ -27,9 +27,6 @@
 							<div class="d-flex flex-row">
 								<div class="col-md-6">제 ${terms.terms_article_number}조 ${terms.terms_title}</div>
 								<div class="col-md-6">
-									<button type="button"
-										class="btn btn-light btn-outline-dark btn-sm"
-										style="float: right;">약관선택</button>
 								</div>
 							</div>
 						</div>
