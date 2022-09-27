@@ -52,7 +52,7 @@ $("#passwordfind #chenum").on("propertychange change paste input keyUp keyDown",
 	}
 });
 var passwordtimers = null;
-let passwordchenum = "";
+let passwordchenum = "aweq";
 let passwordfin = false;
 $("#passwordfind #phchestart").click(function(e) {
 	if (!namereg.test($("#passwordfind #name").val().trim())) {
@@ -285,7 +285,7 @@ $("#idfind #cheemail").on("propertychange change paste input keyUp keyDown", fun
 	}
 });
 var idtimers = null;
-let idchenum = "";
+let idchenum = "qwer";
 let idfin = false;
 $("#idfind #phchestart").click(function(e) {
 
