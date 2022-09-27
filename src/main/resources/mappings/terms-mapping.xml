@@ -4,8 +4,13 @@
 <mapper namespace="AddTerms">
 
 	<select id="getJoin_terms" resultType="termsVO">
-		select * from terms where terms_title LIKE CONCAT('회원가입', '%') AND terms_state = 1 ORDER BY terms_article_number
+		select * from terms where terms_title LIKE CONCAT('이용', '%') AND terms_state = 1 ORDER BY terms_article_number
 	</select>
+	
+	<select id="getPersonal_terms" resultType="termsVO">
+		select * from terms where terms_title LIKE CONCAT('개인정보', '%') AND terms_state = 1 ORDER BY terms_article_number
+	</select>
+	
 	<select id="getSub_terms" resultType="termsVO">
 		select * from terms where terms_title LIKE CONCAT('구독', '%') AND terms_state = 1 ORDER BY terms_article_number
 	</select>

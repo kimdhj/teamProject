@@ -26,14 +26,19 @@ public class TermsController {
 		int count = service.getCount(svo);
 		System.out.println(count);
 		model.addAttribute("termsList",termsList);
+		System.out.println(svo.getPage());
 		model.addAttribute("count", count - (svo.getPage() - 1)*5);
-		if(count % 5 == 0) {
+		if(count % 5 == 0 && count != 0) {
 			count --;
 		}
 		model.addAttribute("page", count/5 + 1);
 		model.addAttribute("currentpage", svo.getPage());
 		model.addAttribute("startpage", (svo.getPage()/5)*5 + 1);
-		model.addAttribute("endpage", ((svo.getPage()/5)+1)*5 );
+		if((count/5+1) <= ((svo.getPage()/5)+1)*5) {
+			model.addAttribute("endpage", (count/5+1));
+		}else {
+			model.addAttribute("endpage", ((svo.getPage()/5)+1)*5 );
+		}
 		model.addAttribute("SearchVO", svo);
 		return "admin_terms_Main";
 	}
