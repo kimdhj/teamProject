@@ -37,11 +37,12 @@ $(document).ready(function() {
 // $(".summertnote").summernotes("pasteHTML", data);
 // console.log($(".summertnote").summernotes("pasteHTML", data)); // pasteHTML 을 사용항 내용을 불러와야 summernote 에서 사용가능한 수정 가능 형태로 값이 들어감
 
+//console.log("찾아라얍" + $(".note-editable").html());
     function i() {
     	console.log("hi");
     	console.log($(".note-editable").html());
     	$("#content").val($(".note-editable").html());
-    	console.log($("#content").val());
+    	console.log($("#content").html());
     	 Swal.fire({
              text: "공지사항을 등록하시겠습니까?",
              icon: 'success',
@@ -93,6 +94,8 @@ $(document).ready(function() {
             	 }else if($("#passwd").val().trim() == ""){
             		 alert("비밀번호를 입력해주세요.");
             		 setTimeout(function(){  $("#passwd").focus(); }, 0);
+            	 }else if($(".summernote").summernote('isEmpty')){
+            		 alert("내용을 입력해주세요.");
             	 }else{
             		 Swal.fire({
                        	text: "등록되었습니다.",

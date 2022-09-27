@@ -53,7 +53,7 @@
 		<div id="all_box" class="bg-white w-100 2all_box">
 			<div class="row d-flex align-items-center" id="input_line_top">
 				<div class="row"></div>
-				<div class="summernote" ></div>
+				<div class="summernote"></div>
 				<input type="hidden" id="content" name="notice_content"/>
 			</div>
 		</div>
