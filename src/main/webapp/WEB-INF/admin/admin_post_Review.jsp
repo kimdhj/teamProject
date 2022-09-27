@@ -76,7 +76,7 @@
 					<table class="table " id="table">
 						<thead>
 							<tr>
-								<th><input class="form-check-input border-1 border-dark allche" type="checkbox" value="" id="flexCheckChecked" checked></th>
+								<th><input class="form-check-input border-1 border-dark allche" type="checkbox" id="flexCheckChecked" checked></th>
 								<th>번호</th>
 								<th>ID</th>
 								<th>이름</th>
@@ -85,7 +85,7 @@
 								<th>내용</th>
 								<th>등록일자</th>
 								<th>등급</th>
-								<th><button class="btn btn-warning rounded-pill allblind allBlind">블라인드</button></th>
+								<th><button class="btn btn-warning rounded-pill chkboxblindAll allBlind">블라인드</button></th>
 								<th><button class="btn btn-warning rounded-pill seldel">선택삭제</button></th>
 							</tr>
 						</thead>

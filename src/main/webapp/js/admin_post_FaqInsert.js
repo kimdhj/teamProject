@@ -141,6 +141,13 @@ $("#register").click(function(){
         		 setTimeout(function(){  $("#title").focus(); }, 0);
 //        		 $("#title").focus();
         		 return false;
+        	 }else if($("#password").val().trim() == ""){
+        		alert("비밀번호를 입력해주세요."); 
+        	 }else if($("#all_box #bigsort").val() == ""){
+        		 console.log("대분류 선택해줘");
+        		 alert("대분류를 선택해주세요");
+        	 }else if($("#content").val().trim() == ""){
+        		 alert("내용을 입력해주세요.");
         	 }else{
         		 Swal.fire({
                    	text: "등록되었습니다.",

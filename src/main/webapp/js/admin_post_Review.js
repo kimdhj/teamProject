@@ -360,10 +360,12 @@ $(document).ready(function() {
 	})
 	
 	
-	// 선택 된 요소 블라인드
+	// 선택 된 요소 블라인드 처리
+	console.log($("tbody").children("tr").children("td:eq(9)").text().trim());
 	$(".chkbox").click(function(e){
 	});
-	$(".allblind").click(function() {
+	$(".chkboxblindAll").click(function() {
+		console.log("나는 블라인드 처리할거야");
 		var chk_arr = [];
 		Swal.fire({
 			text: "선택한 리뷰를 블라인드 처리하시겠습니까?",
@@ -388,7 +390,7 @@ $(document).ready(function() {
 					data: {"reply_seq" : chk_arr},
 					success: function(data){
 						Swal.fire({
-							text: "삭제되었습니다.",
+							text: "블라인드 처리되었습니다.",
 		                	icon: "success",
 		                	showConfirmButton: false,
 		                	timer: 1500,
@@ -403,9 +405,11 @@ $(document).ready(function() {
 		})
 	});	
 	
+	// 선택 된 요소 블라인드 해제
 	$(".chkbox").click(function(e){
 	});
 	$(".allBlind").click(function() {
+		console.log("나는 블라인드 해제할거야");
 		var chk_arr = [];
 		Swal.fire({
 			text: "선택한 리뷰를 블라인드 처리 해제하시겠습니까?",
@@ -430,7 +434,7 @@ $(document).ready(function() {
 					data: {"reply_seq" : chk_arr},
 					success: function(data){
 						Swal.fire({
-							text: "삭제되었습니다.",
+							text: "블라인드 해제되었습니다.",
 							icon: "success",
 							showConfirmButton: false,
 							timer: 1500,
@@ -555,8 +559,6 @@ $("#all_box #search_btn").click(function(e) {
 		
 	}else if($("#level").val() == "블라인드 댓글"){
 		$("#all_box #blankche").val($("#search").val())
-		
-		
 	}
 	
 	if($("#all_box #start_date").val() != null){

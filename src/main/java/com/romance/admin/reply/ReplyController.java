@@ -123,6 +123,7 @@ public class ReplyController {
   @GetMapping("/chkboxBlind.mdo")
   @ResponseBody
   public String chkboxBlind(@RequestParam(value="reply_seq[]") List<String> reply_seq) {
+    System.out.println("블라인드 번호 처리 : " + reply_seq);
     service.chkboxBlind(reply_seq);
     return null;
   }
@@ -130,6 +131,7 @@ public class ReplyController {
   @GetMapping("/chkboxBlindCancel.mdo")
   @ResponseBody
   public String chkboxBlindCancel(@RequestParam(value = "reply_seq[]") List<String> reply_seq) {
+    System.out.println("블라인드 번호 해제 : " + reply_seq);
     service.chkboxBlindCancel(reply_seq);
     return null;
   }

@@ -104,12 +104,14 @@
 		UPDATE reply SET user_blank = 0 WHERE reply_seq = #{reply_seq} AND user_blank = 1
 	</update>
 	
+	<!-- 블라인드 처리 1 -->
 	<update id="chkboxBlind" parameterType="int">
 		UPDATE reply SET user_blank = 1 WHERE reply_seq = #{reply_seq}
 	</update>
 
+	<!-- 블라인드 해제 0  -->
 	<update id="chkboxBlindCancel" parameterType="int">
-		UPDATE reply SET user_blank = 0 WHERE reply_seq = #{reply_seq}
+		UPDATE reply SET user_blank = 0 WHERE reply_seq = #{reply_seq} AND user_blank = 1
 	</update>
 	
 	<delete id="delete" parameterType="reply">
