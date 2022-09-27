@@ -1,6 +1,9 @@
 package com.romance.admin.terms;
 
+import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.romance.security.JwtUtils;
+import com.romance.user.login.UserVO;
+
 @Controller
 public class TermsController {
 	
@@ -17,8 +23,12 @@ public class TermsController {
 	TermsService service;
 	
 	@RequestMapping("/admin_terms_Main.mdo")
-	public String termsMain(TermsVO vo,Model model, TermsSearchVO svo) {
-		System.out.println("admin_terms_main 실행");
+	public String termsMain(TermsVO vo,Model model, TermsSearchVO svo,JwtUtils util, HttpSession session) throws IOException {
+	  UserVO vosession = util.getuser(session);
+    if((vosession == null||!vosession.getUser_role().equals("ROLE_ADMIN"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+      return "redirect:admin_login.mdo";
+    }
+	  System.out.println("admin_terms_main 실행");
 		if(svo.getPage() == 0) {
 			svo.setPage(1);
 		}
@@ -67,7 +77,11 @@ public class TermsController {
 	}
 	
 	@RequestMapping("/admin_terms_Write.mdo")
-	public String termsWrite(Model model,TermsSearchVO svo) {
+	public String termsWrite(Model model,TermsSearchVO svo,JwtUtils util, HttpSession session) throws IOException {
+	  UserVO vosession = util.getuser(session);
+    if((vosession == null||!vosession.getUser_role().equals("ROLE_ADMIN"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+      return "redirect:admin_login.mdo";
+    }
 		System.out.println("insert terms");
 		model.addAttribute("getCount", service.getCount(svo));
 		return "admin_terms_Write";
@@ -81,7 +95,11 @@ public class TermsController {
 	}
 	
 	@RequestMapping("/admin_terms_Read.mdo")
-	public String termsRead(TermsVO vo,Model model,int terms_seq, int count) {
+	public String termsRead(TermsVO vo,Model model,int terms_seq, int count,JwtUtils util, HttpSession session) throws IOException {
+	  UserVO vosession = util.getuser(session);
+    if((vosession == null||!vosession.getUser_role().equals("ROLE_ADMIN"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+      return "redirect:admin_login.mdo";
+    }
 		System.out.println("admin_terms_read 실행");
 //		service.countCnt(seq);
 		vo.setTerms_seq(terms_seq);
@@ -92,7 +110,11 @@ public class TermsController {
 	}
 	
 	@RequestMapping("/admin_terms_Update.mdo")
-	public String termsUpdate(TermsVO vo,Model model,int terms_seq, int count) {
+	public String termsUpdate(TermsVO vo,Model model,int terms_seq, int count,JwtUtils util, HttpSession session) throws IOException {
+	  UserVO vosession = util.getuser(session);
+    if((vosession == null||!vosession.getUser_role().equals("ROLE_ADMIN"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+      return "redirect:admin_login.mdo";
+    }
 		System.out.println("admin_terms_update 페이지 이동");
 		vo.setTerms_seq(terms_seq);
 		model.addAttribute("count", count);
