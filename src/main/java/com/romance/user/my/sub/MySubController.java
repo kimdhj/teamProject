@@ -95,19 +95,44 @@ public class MySubController {
 		
 		return userVO;
 	}
+	//ajax 비밀번호 검증
+	@RequestMapping(value="/cansubpass.do", method=RequestMethod.POST)
+	@ResponseBody
+	public int cansubpass(HttpSession session, JwtUtils util, @RequestParam(name="user_id") String user_id, @RequestParam(name="user_password") String user_password) throws IOException {
+		UserVO vosession = util.getuser(session);
+		if((vosession == null||!vosession.getUser_sub().equals("1"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+			System.out.println("일단 들어왔습니다2");
+		   return 2;
+		}   
+		//DB에서 가져온 암호화된 비밀번호
+		String my_pass = mySubService.cansubpass(user_id);
+		if(bCryptPasswordEncoder.matches(user_password, my_pass)) {
+			return 1;	
+		}else {
+			return 0;
+		}
+		
+	}
 	
 	//마이페이지 구독취소
 	@RequestMapping("/my_cancelSub.do")
 	public String my_cancelSub(HttpSession session, JwtUtils util, Model model, SubscribeVO svo) throws IOException {
-		UserVO userVO = util.getuser(session);
+		UserVO vosession = util.getuser(session);
+		if((vosession == null||!vosession.getUser_sub().equals("1"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+		   return "redirect:index.do";
+		}   
 	
-		model.addAttribute("user_name", userVO.getUser_name());
-		model.addAttribute("user_point", userVO.getUser_point());
-		model.addAttribute("user_sub_count", userVO.getUser_sub_count());
-		model.addAttribute("user_sub_pay_before", userVO.getUser_sub_pay_before());
+		
+		model.addAttribute("user_id", vosession.getUser_id());
+		model.addAttribute("cate", mySubService.getcate(vosession));
+		model.addAttribute("mybook",mySubService.mybook(vosession.getUser_id()));
+		model.addAttribute("user_name", vosession.getUser_name());
+		model.addAttribute("user_point", vosession.getUser_point());
+		model.addAttribute("user_sub_count", vosession.getUser_sub_count());
+		model.addAttribute("user_sub_pay_before", vosession.getUser_sub_pay_before());
 		model.addAttribute("icon", iconService.getIcon());
 		model.addAttribute("sub", subscribeService.getSub(svo));
-		model.addAttribute("cou", couponService.owncoupon(userVO));
+		model.addAttribute("cou", couponService.owncoupon(vosession));
 		
 		return "my_AddReadCancel";
 	}
@@ -139,7 +164,7 @@ public class MySubController {
 	public String cancelSubs(UserVO vo, Model model, HttpSession session, JwtUtils utils) throws Exception {
 		UserVO voToken = utils.getuser(session);
 		if(voToken != null) {
-			System.out.println("회원탈퇴 준비완료 누구?? + " + vo.getUser_id());
+			System.out.println("회원탈퇴 준비완료 누구?? + " + voToken.getUser_id());
 			String user_id = voToken.getUser_id();
 			String user_password = myProfileService.getSessionUser(user_id).getUser_password();
 			System.out.println("세션 회원정보 비밀번호 : " + user_password);
@@ -154,14 +179,15 @@ public class MySubController {
 			    session.removeAttribute("id");
 			    myProfileService.cancelSubs(user_id);
 			    voToken = seru.onesearch(vo.getUser_id());
-			    voToken.setUser_password(null);	
-			    String token = utils.createToken("유저", voToken);
-			    session.setAttribute("id", token);
+			    voToken.setUser_password(null);	//토큰생성전 비밀번호 null - 토큰에 암호 담지않음.
+			    String token = utils.createToken("유저", voToken); //토큰을 생성한다.
+			    session.setAttribute("id", token); //토큰을 세션에 담는다.
 				return "redirect:event_Sub.do";
 			} else {
 				System.out.println("비밀번호가 다르자나!!");
 				return "redirect:my_cancelSub.do";
 			}
+			//비밀번호확인은 없애고 그냥 메서드 들어올시 구독취소 후 어디론가 보낸다
 	
 		} else {
 			return "redirect:login.do";

@@ -24,10 +24,10 @@
 				<div class="col-2"></div>
 				<div class="col-10" id="day_select">
 					<div id="day_calendar" class="col-5" style="margin-top: 1%;">
-						<input class="col-4 notranslate" placeholder="시작날짜" type="text"
+						<input class="col-4" placeholder="시작날짜" type="text"
 							id="start_date" style="height: 50px; margin-top: 2%; text-align:center;" />
 						<div class="notice_font">~</div>
-						<input class="col-4 notranslate" placeholder="마지막 날짜" type="text"
+						<input class="col-4" placeholder="마지막 날짜" type="text"
 							id="end_date" style="height: 50px; margin-top: 2%; text-align:center;" />
 						<div id="day_btn" class="col-7">
 							<div class="btn btn-group" role="group" aria-label="Basic example">

@@ -98,7 +98,11 @@
               사드립니다.
             </li>
           </ul>
-        </div>
+					<div class="col"></div>
+					<div class="col-auto">
+						<button id="termsopen" type="button">약관 보기</button>
+					</div>
+				</div>
         <div><br /><br /></div>
         <div class="row">
 				<div class="col-2" id="big_big">결제 정보</div>

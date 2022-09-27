@@ -236,3 +236,7 @@ function doAddPoint() {
 }
 
 /*bookpay에서 복사 끝*/
+$("#termsopen").on("click",function(){
+	console.log("hi")
+	window.open("/payment_terms.do","약관 보기","menubar=no, toolbar=no, resizable=no,left=500,top=100,height=500,width=1000")
+	})

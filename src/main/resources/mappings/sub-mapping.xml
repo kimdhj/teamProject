@@ -22,6 +22,9 @@
 		SELECT category_name FROM category JOIN user_category
 		ON category.category_num = user_category.category_num WHERE user_category.user_id = #{user_id};
 	</select>
+	<select id="cansubpass" parameterType="String" resultType="String">
+		SELECT user_password FROM user WHERE user_id=#{user_id}
+	</select>
 	<select id="newcate" resultType="bookVO" parameterType="booksearchVO">
 		<![CDATA[select * from (select *,@rownum:=@rownum+1 as rnum from book , (SELECT
 		@rownum:=0) TMP where book_publish_date> (current_date()- INTERVAL 1

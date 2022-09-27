@@ -121,7 +121,7 @@
           </div>
         </div>
         <div class="col m-0 align-items-center" style="align-items: center; display: flex;">
-          <button class="input-group-text" id="basic-addon2" type="button" onclick="#">문의하기</button>
+          <button class="input-group-text" id="basic-addon2" type="button" onclick="location.href='/myRequestWrite.do'">문의하기</button>
         </div>
       </div>
       <div class="table" id="table_table2">
