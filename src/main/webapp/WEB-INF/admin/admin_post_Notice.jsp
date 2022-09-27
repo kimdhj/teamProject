@@ -8,8 +8,7 @@
 <link href="/css/test.css" rel="stylesheet">
 <link href="/css/log.css" rel="stylesheet" />
 <link href="/css/admin_post_Notice.css" rel="stylesheet" />
-<link href="/datepicker/css/datepicker.min.css" rel="stylesheet"
-	type="text/css" media="all">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/admin_commonjsp/admin_common_header.jsp"></jsp:include>
@@ -31,13 +30,11 @@
 						<input class="col-4 notranslate" placeholder="마지막 날짜" type="text"
 							id="end_date" style="height: 50px; margin-top: 2%; text-align:center;" />
 						<div id="day_btn" class="col-7">
-							<div id="dayAdd" class="btn-group me-2" role="group"
-								aria-label="Second group">
-								<button type="button" class="btn btn-secondary week">1주일</button>
-								<button type="button" class="btn btn-secondary month">1개월</button>
-								<button type="button" class="btn btn-secondary threemonth">3개월</button>
-								<button type="button" class="btn btn-secondary sixmonth">6개월</button>
-								<button type="button" class="btn btn-secondary year">1년</button>
+							<div class="btn btn-group" role="group" aria-label="Basic example">
+								<button type="button" class="btn btn-dark btn-sm" name="filterDate" id="oneWeek" value="1" onclick="searchDateOneWeek()">1주일</button>
+								<button type="button" class="btn btn-dark btn-sm" name="filterDate" id="oneMonth" value="2" onclick="searchDateOneMonth()">1개월</button>
+								<button type="button" class="btn btn-dark btn-sm" name="filterDate" id="threeMonth" value="3" onclick="searchDateThreeMonth()">3개월</button>
+								<button type="button" class="btn btn-dark btn-sm" name="filterDate" id="sixMonth" value="4" onclick="searchDateSixMonth()">6개월</button>
 							</div>
 						</div>
 					</div>
@@ -155,8 +152,9 @@
 
 <jsp:include page="/WEB-INF/admin_commonjsp/admin_common_footer.jsp"></jsp:include>
 <!-- 여기서부터 JS 추가 -->
-<script src="./datepicker/js/datepicker.js"></script>
-<script src="./datepicker/js/datepicker.ko.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/i18n/datepicker-ko.js"></script>
 <!-- 알림창 -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="/js/admin_post_Notice.js"></script>
