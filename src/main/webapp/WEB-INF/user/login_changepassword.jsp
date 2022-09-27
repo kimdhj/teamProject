@@ -30,7 +30,7 @@
 				<div class="col-auto">
 					<input required name="user_password" type="password"
 						placeholder="비밀번호를 입력해주세요" class="form-control" id="password">
-					<span class="war" id="pasword"></span>
+					<span class="war" id="paswordword"></span>
 				</div>
 			</div>
 			<div class=" mb-3  col-auto">
@@ -39,14 +39,14 @@
 				<div class="col-auto">
 					<input required  type="password"
 						placeholder="비밀번호를 입력해주세요" class="form-control" id="passwordche">
-					<span class="war" id="paswordche"></span>
+					<span class="war" id="paswordcheword"></span>
 				</div>
 			</div>
 			<div
 				class="col-auto button-field d-flex justify-content-center mt-5 mb-5">
 				<button type="button" id="fin" class="change me-5">비밀번호 변경</button>
 				<input type="hidden" name="user_id" value="${id}" /> <a
-					href="login.do"><button class="cancel">취소</button></a>
+					href="login.do"><button type="button" class="cancel">취소</button></a>
 			</div>
 			
 

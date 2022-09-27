@@ -22,7 +22,10 @@ public class MyCouponController {
 
 	@Autowired
   MyCouponService ser;
-  
+  @GetMapping("/")
+  public String ind() {
+    return "redirect:index.do";
+  }
   @GetMapping("mycoupon.do")
   public String mycoupon(MyCouponSearchVO vo,MyPointsSearchVO vop,Model model,JwtUtils util,HttpSession session) throws IOException {
     

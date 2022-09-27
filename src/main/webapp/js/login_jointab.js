@@ -187,7 +187,7 @@ $("#chenum").on("propertychange change paste input keyUp keyDown", function(e) {
 	}
 });
 var timers = null;
-let chenum = "";
+let chenum = "qwe";
 $("#phchestart").click(function(e) {
 
 
