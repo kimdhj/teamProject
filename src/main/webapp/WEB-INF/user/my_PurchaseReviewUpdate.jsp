@@ -80,7 +80,7 @@
     </div>
   </div>
   
-  <form action="/replyUpdate.do" method="POST" name="update" id="form">
+  <form action="/replyUpdate.do" method="POST" id="updateForm">
   <div class="row">
     <div class="col-11">
       <div class="row">
@@ -90,8 +90,8 @@
       
       <div class="row" id="review_textarea">
         <div class="summernote">${reply.reply_cotent }
-           <input type="hidden" value="${reply_cotent }" name="reply_cotent" id="reply_cotent"/>
         </div>
+           <input type="hidden" value="${reply_cotent }" name="reply_cotent" id="reply_cotent"/>
       </div>
     </div>
     <div class="col-1"></div>
@@ -101,7 +101,7 @@
     <div class="col-3"></div>
     <div class="col-6"></div>
     <div class="col-2" id="review_btn">
-      <button id="update">등록</button>
+      <button id="update" type="button">등록</button>
       <button onclick="location.href='/myPurchase.do'">취소</button>
     </div>
   </div>

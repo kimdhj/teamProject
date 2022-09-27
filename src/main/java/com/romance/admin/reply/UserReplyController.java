@@ -120,7 +120,8 @@ return "redirect:index.do";
     
     service.reviewUpdate(vo);
     
-    return "redirect:bookdetail.do?book_seq=" + vo.getBook_seq();
+//    return "redirect:bookdetail.do?book_seq=" + vo.getBook_seq();
+    return "redirect:movingReview.do";
   }
   
   
