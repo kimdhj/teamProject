@@ -5,18 +5,9 @@ $(function() {
 		let st = new Date($("#start_date").val());
 		let end = new Date($("#end_date").val());
 		
-		console.log("여기는");
-		
-		if(isNaN(st)){
-			st.setDate(end.getDate() - 7);
-			$("#start_date").val(st);
-			console.log("시작" + $("#start_date").val());
-		}
-		
 		st.setDate(st.getDate() - 7);
 		$("#start_date").val(st);
 		datePickerSet($("#start_date"), $("#end_date"), true);
-		console.log("뜨는구나??");
 	});
 	$(".month").click(function() {
 		let st = new Date($("#start_date").val());
