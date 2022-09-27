@@ -36,7 +36,7 @@ function event_writeCheck() {
 	};
 	if(event_start_date.value == "") {
 	alert("시작날짜를 입력하세요!");
-	event_title.focus();
+	event_start_date.focus();
 	return false;
 	};
 	if(event_content.value == "") {

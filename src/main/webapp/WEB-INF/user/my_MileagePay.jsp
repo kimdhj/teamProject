@@ -44,7 +44,7 @@
           <div class="col-4 fs-4" id="big_big">결제 예정 마일리지</div>
           <div class="col-5 d-flex flex-row align-items-center">
             <input
-              type="text"
+              type="number"
               name="howmuchmileage"
               id="howmuchmileage"
               value="0"
@@ -128,7 +128,7 @@
       <div class="col-2" id="right_blank"></div>
     </div>
 	   
-	   //결제 페이지에 필요한 정보
+	   <!-- 결제 페이지에 필요한 정보 -->
 	<input type="hidden" id="orders_title" name="orders_title" value="마일리지" />
 	<input type="hidden" id="orders_email" name="orders_email" value="${mapoint.user_email }" />
 	<input type="hidden" id="orders_name" name="orders_name" value="${mapoint.user_name }" />
@@ -136,9 +136,10 @@
 	<input type="hidden" id="orders_address" name="orders_address" value="${mapoint.user_address }" />
 	<input type="hidden" id="zipcode" name="zipcode" value="${mapoint.user_zipcode }" />
 	
-	//결제 이후 받을 정보
+	<!-- 결제 이후 받을 정보 -->
 	<input type="hidden" name="points_count" id="points_count" />  
-	<input type="hidden" name="points_content"  id="points_content" value="마일리지" />  //결제 금액
+	<!-- 결제 금액 -->
+	<input type="hidden" name="points_content"  id="points_content" value="마일리지" />
 	<input type="hidden" name="orders_status" id="orders_status" /> 
 	<input type="hidden" name="orders_cache_tool" value="카드" id="cache_tool" /> 
 	

@@ -13,3 +13,7 @@
 #Content {
   height: 100vh;
 }
+#spin_button:hover{
+	background-color: gray;
+	cursor: pointer;
+}

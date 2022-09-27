@@ -103,6 +103,7 @@
                   onClick="startSpin();"
                 />
               </div>
+              <br></br>
               <div>매일매일 돌림판을 돌려서 마일리지 얻자!</div>
               <ul>
                 <li>매일 00:00 기준입니다.</li>
@@ -111,7 +112,7 @@
             </div>
           </div>
         </div>
-        <div><br></br></div>
+        <div><br></br><br></br><br></br><br></br></div>
         <div class="row d-flex justify-content-end bg-gray back-to-top" id="endPoint">
           맨위로<i class="bi bi-caret-up-fill col-auto"></i>
         </div>

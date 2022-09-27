@@ -47,7 +47,7 @@
           <div class="row">
             <div class="col-8"></div>
             <div class="col-2">
-              <button type="submit" class="btn btn-primary">수정</button>
+              <button type="button" class="btn btn-primary" onclick="sub_check();">수정</button>
             </div>
             <div class="col-2">
             <a href="/adminMain.mdo">

@@ -1,3 +1,7 @@
 .bg-blue {
   background-color: #0d6efd !important;
 }
+th > a:hover{
+	cursor: pointer;
+	background-color: gray;
+}
