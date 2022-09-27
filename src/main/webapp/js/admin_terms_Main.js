@@ -1,6 +1,8 @@
 //검색버튼
 $("#search_btn").click(function(e) {
 	$("#title").val($("#search_content").val().trim())
+	console.log("a");
+	$("#search #page").val(1);
 	count();
 
 
@@ -11,6 +13,7 @@ $("#search_btn").click(function(e) {
 $("#search_content").keydown(function(e) {
 	if (e.keyCode == "13") {
 		$("#title").val($("#search_content").val().trim())
+		$("#search #page").val(1);
 		count();
 	}
 });
@@ -58,7 +61,11 @@ function count() {
 
 			//게시글 수
 			count = co;
+			if(count%5 == 0){
+				count--;
+			}
 
+			$("#count").val(count/5+1);
 			//현재 페이지
 			let page = $("#page").val();
 			//최대 페이지
@@ -108,7 +115,7 @@ function count() {
 		}
 	});
 
-
+	console.log("a",  $("#search #page").val());
 	$.ajax({
 		url: "/ajax_b.mdo",
 		type: 'POST',

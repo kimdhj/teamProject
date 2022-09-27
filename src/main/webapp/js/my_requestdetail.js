@@ -11,7 +11,7 @@ function checkWriteForm() {
 		ask_content.focus();
 		return false;
 	}
-
+	
 }
 
 $("#updateMyRequestBtn").on("click", function(){
@@ -57,37 +57,37 @@ $("#updateMyRequestBtn").on("click", function(){
 		},
 		success:function(returnValue){
 			if(returnValue == 0) {
-				Swal.fire({
-					text: "비밀번호 확인을 완료하였습니다.",
-					icon: "success"
-				})
-//				alert("비밀번호 확인 완료!");
+//				Swal.fire({
+//					text: "비밀번호 확인을 완료하였습니다.",
+//					icon: "success"
+//				})
+				alert("비밀번호 확인 완료!");
 				$("#updateMyRequestForm").submit();
 				return false;
 				
 			} else if(returnValue == 1) {
-				Swal.fire({
-					text: "비밀번호를 다시 입력하세요.",
-					icon: "error"
-				})
-//				alert("비밀번호를 다시 입력하세요");
+//				Swal.fire({
+//					text: "비밀번호를 다시 입력하세요.",
+//					icon: "error"
+//				})
+				alert("비밀번호를 다시 입력하세요");
 				return false;
 			} else { //returnValue가 2인 경우
-				Swal.fire({
-					text: "로그인을 다시 해주세요.",
-					icon: "warning"
-				})
-//				alert("재로그인 필요");
+//				Swal.fire({
+//					text: "로그인을 다시 해주세요.",
+//					icon: "warning"
+//				})
+				alert("재로그인 필요");
 				return false;
 			}
 			
 		},
 		error:function(){
-			Swal.fire({
-				text: "에러!",
-				icon: "error"
-			})
-//			alert("에러다 이자시가");
+//			Swal.fire({
+//				text: "에러!",
+//				icon: "error"
+//			})
+			alert("에러다 이자시가");
 		}
 	});
 });
@@ -113,22 +113,23 @@ $("#deleteMyRequestBtn").on("click", function(){
 			ask_seq:ask_seq
 		},
 		success:function(returnValue){
+			console.log("비밀번호확인 통신성공");
 			if(returnValue == 0) {
-				deleteMyRequest(ask_password, ask_seq); //글삭제 함수
+				deleteMyRequest(ask_seq); //글삭제 함수
 				return false;
 			} else if(returnValue == 1) {
-				Swal.fire({
-					text: "비밀번호를 다시 입력하세요.",
-					icon: "warning"
-				})
-//				alert("비밀번호를 다시 입력하세요");
+//				Swal.fire({
+//					text: "비밀번호를 다시 입력하세요.",
+//					icon: "warning"
+//				})
+				alert("비밀번호를 다시 입력하세요");
 				return false;
 			} else { //returnValue가 2인 경우
-				Swal.fire({
-					text: "로그인을 다시 해주세요.",
-					icon: "warning"
-				})
-//				alert("재로그인 필요");
+//				Swal.fire({
+//					text: "로그인을 다시 해주세요.",
+//					icon: "warning"
+//				})
+				alert("재로그인 필요");
 				return false;
 			}
 			
@@ -144,26 +145,26 @@ $("#deleteMyRequestBtn").on("click", function(){
 });
 //글 삭제시 비밀번호 체크 하면서 성공하면 글삭제로 가기
 function deleteMyRequest(ask_seq) {
-	console.log(ask_seq);	
+	console.log("삭제할 글번호 : " + ask_seq);	
 	//비밀번호 확인 끝났으니 글번호만 가져가서 삭제한다.
 	$.ajax({
 		url:"deleteMyRequest.do",
 		type:"post",
 		data:{ask_seq:ask_seq},
 		success:function(){
-			Swal.fire({
-				text: "삭제가 완료되었습니다.",
-				icon: "success"
-			})
-//			console.log("삭제완료");
+//			Swal.fire({
+//				text: "삭제가 완료되었습니다.",
+//				icon: "success"
+//			})
+			console.log("삭제완료");
 			location.replace("myRequestList.do");
 		},
 		error:function(){
-			Swal.fire({
-				text: "에러",
-				icon: "error"
-			})
-//			alert("에러다 이자시가");
+//			Swal.fire({
+//				text: "에러",
+//				icon: "error"
+//			})
+			alert("에러다 이자시가");
 		}
 	});
 }

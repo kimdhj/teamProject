@@ -6,5 +6,6 @@ public interface AddTermsService {
 
 	List<TermsVO> getAddTerms();
 	List<TermsVO> getAddsubTerms();
+	List<TermsVO> getAddpersonalTerms();
 	
 }

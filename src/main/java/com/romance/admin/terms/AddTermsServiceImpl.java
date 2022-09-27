@@ -19,5 +19,8 @@ public class AddTermsServiceImpl implements AddTermsService {
 	public List<TermsVO> getAddsubTerms() {
 		return addTermsDAO.getSub_terms();
 	}
-	
+	@Override
+	public List<TermsVO> getAddpersonalTerms() {
+		return addTermsDAO.getPersonal_terms();
+	}
 }
