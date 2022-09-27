@@ -112,6 +112,11 @@ public class MySubServiceImpl implements MySubService {
     // TODO Auto-generated method stub
     mySubDAO.delcate(user_id);
   }
+  @Override
+  public String cansubpass(String user_id) {
+	  // TODO Auto-generated method stub
+	  return mySubDAO.cansubpass(user_id);
+  }
   
   
 	

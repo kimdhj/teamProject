@@ -20,5 +20,6 @@ public interface MySubService {
 	  public String mybook(String user_id) ;
 	  public void joininsert(int[] category_num,String user_id);
 	  public void delcate(String user_id);
+	  public String cansubpass(String user_id) ;
 	
 }

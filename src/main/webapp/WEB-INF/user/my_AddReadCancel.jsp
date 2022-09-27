@@ -47,16 +47,16 @@
 					</div>
 					<div class="align-items-center" id="money">
 						<div id="money_title">지금 까지 결제 금액 : </div>
-						<div id="money_count"><fmt:formatNumber value="${user_sub_pay_before}" type="number" />&nbsp;원</div>
+						<div id="money_count"><fmt:formatNumber value="${user_sub_count*sub.sub_info_price }" type="number" />&nbsp;원</div>
 
 					</div>
 					<div id="nowBook" class="row d-flex">
 						<div id="nowBook_title" class="align-self-center col-3">배송 예정 도서 : </div>
-						<div id="nowBook_content" class="col">{user_book}</div>
+						<div id="nowBook_content" class="col">${mybook}</div>
 						<div></div>
 					</div>
 					<div id="selectType" class="row d-flex">
-						<div id="selectType_title" class="col-3">선택된 장르 :</div>
+						<div id="selectType_title" class="col-3 align-self-center">선택된 장르 :</div>
 						<div id="selectType_content" class="col">
 							${cate}
 						</div>
@@ -69,7 +69,7 @@
 						<div id="inputText" class="col-2">비밀 번호 : </div>
 						<div id="inputBox" class="col-4">
 							<div class="input-group">
-								<input type="password" class="form-control" name="user_password"
+								<input type="password" class="form-control" id="user_password" name="user_password"
 									placeholder="비밀번호 확인"
 									aria-label="비밀번호 확인"
 									aria-describedby="basic-addon2"> <span
@@ -81,7 +81,7 @@
 				</div>
 
 			</div>
-
+		<input type="hidden" value="${user_id }" id="user_id" name="user_id" />
 		</div>
 		</form>
 		<jsp:include page="/WEB-INF/commonjsp/common_mypage_bottom.jsp"></jsp:include>

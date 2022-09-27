@@ -24,7 +24,7 @@ public class BucketController {
 	public String cart(BucketSearchVO vob,Model model,HttpSession session,JwtUtils util) throws IOException {
 	  UserVO vosession = util.getuser(session);
     if((vosession == null||!vosession.getUser_role().equals("ROLE_MEMBER"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
-return "redirect:index.do";
+return "redirect:login.do";
 } 
 	  UserVO vo=util.getuser(session);
 		if(vo!=null) {
@@ -37,7 +37,7 @@ return "redirect:index.do";
 		model.addAttribute("list",list);
 		model.addAttribute("user",vo);
 		}else {
-			return "redirect:index.do";
+			return "redirect:login.do";
 		}
 			
 	
