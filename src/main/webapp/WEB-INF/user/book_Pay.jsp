@@ -358,7 +358,7 @@
 										<input type="button" id="paystart" name="payAccess" value="결제" />
 									</div>
 									<div class="col">
-										<input type="button" name="payCancel" value="취소" />
+										<input type="button" onclick="window.history.back()" name="payCancel" value="취소" />
 									</div>
 								</div>
 								<div>

@@ -42,10 +42,6 @@ $(document).ready(function() {
 		$("#cate_box").show();
 	});
 	$('#cre_cou_btn').click(function() {
-		console.log($("#cate_box #name").val().trim(), $("#cate_box #Coupon_count").val(), $("#cate_box #Coupon_effect").val());
-		console.log(!$("#cate_box #name").val().trim());
-		console.log($("#cate_box #Coupon_count").val() > 0);
-		console.log($("#cate_box #Coupon_effect").val() > 0);
 		$($("#cate_box #name").val().trim());
 		$("#cate_box #Coupon_count").val();
 		$("#cate_box #Coupon_effect").val();
@@ -62,8 +58,6 @@ $(document).ready(function() {
 
 				},
 				success: function(e) {
-					console.log(e);
-					console.log("hi");
 				}
 
 
@@ -77,7 +71,6 @@ $(document).ready(function() {
 		$("#all_box #numche").val('');
 		$("#all_box #pageche").val(1);
 		let count = 0;
-		console.log($("#all_box #name").val(), $("#all_box #num").val())
 		$("#all_box #nameche").val($("#all_box #name").val());
 		$("#all_box #numche").val($("#all_box #num").val());
 
@@ -98,7 +91,6 @@ $(document).ready(function() {
 			}
 
 		});
-		console.log(codelist);
 		$.ajax({
 			url: "/dellist.mdo",
 			method: "get",
@@ -121,7 +113,6 @@ $(document).ready(function() {
 	// 클릭해서 삭제
 	$(document).on('click', ".del", function(e) {
 		let coupon_code = $(this).parents("tr").children('td:eq(3)').text().trim();
-		console.log(coupon_code);
 		$.ajax({
 			url: "/coupondel.mdo",
 			method: "get",
@@ -131,23 +122,17 @@ $(document).ready(function() {
 				coupon_code
 			},
 			success: function(e) {
-				console.log(e);
 				make();
 			},
 			error: function(e) {
-				console.log(e);
 
 			}
 		});
 	});
-	console.log($("#all_box #nameche").val())
 	//버튼 클릭시 실행
 	$(document).on('click', '#all_box #page a', makeDisplay);
 	//태그 클릭에 따른 제한
 	function makeDisplay(e) {
-		console.log($("#all_box #nameche").val())
-		console.log($(e.target).text());
-		console.log($("#all_box #nameche").val())
 
 		if ($(e.target).text().trim() == "<") {
 			$("#all_box #pageche").val(Number($("#all_box #pageche").val()) - 1);
@@ -177,12 +162,9 @@ $(document).ready(function() {
 			if (re % 5 == 0) {
 					re--;
 				}
-				console.log(re);
-			console.log(Number($("#all_box #pageche").val()),re / 5 + 1)
 				if (Number($("#all_box #pageche").val()) >re / 5 + 1) {
 					$("#all_box #pageche").val(Number($("#all_box #pageche").val())-1);
 				}
-				console.log("chd",$("#all_box #pageche").val());
 				count = re;
 				count = count - (Number($("#all_box #pageche").val()) - 1) * 5;
 				page = Number($("#all_box #pageche").val());
@@ -229,7 +211,6 @@ $(document).ready(function() {
 				$("#all_box .pagination").html(pa);
 			},
 			error: function(er) {
-				console.log(er);
 			}
 		});
 		$.ajax({

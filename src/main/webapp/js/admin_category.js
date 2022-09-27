@@ -327,14 +327,11 @@ $(document).ready(function() {
 				if (re % 5 == 0) {
 					re--;
 				}
-				console.log(re);
-				console.log(Number($("#all_box #pageche").val()), re / 5 + 1)
 				if (Number($("#all_box #pageche").val()) > re / 5 + 1) {
 					$("#all_box #pageche").val(Number($("#all_box #pageche").val()) - 1);
 				}
 				let page = Number($("#all_box #pageche").val());
 				count = re;
-				console.log(re);
 				count = count - ($("#all_box #pageche").val() - 1) * 5;
 				let pa = "";
 				if (Number($("#all_box #pageche").val()) > 1) {
@@ -444,7 +441,6 @@ $(document).ready(function() {
 			if ($(el).is(":checked")) {
 				name.push($(el).parents("tr").children("td:eq(2)").text().trim());
 				num.push($(el).parents("tr").children("td:eq(3)").children("p:eq(0)").text().trim());
-				console.log($(el).parents("tr").children("td:eq(3)").children("p:eq(0)").text().trim());
 
 				seq.push($(el).parents("tr").children("td:eq(4)").text().trim());
 			}
@@ -545,7 +541,6 @@ $(document).ready(function() {
 				},
 				async: false,
 				success: function(re) {
-				console.log(re);
 					if (re == 0) {
 						$(e.target).parents("tr").children("td:eq(0)").children("input").removeAttr("disabled");
 						$(e.target).next().text("수정 가능 합니다.");
@@ -576,7 +571,6 @@ $(document).ready(function() {
 				},
 				async: false,
 				success: function(re) {
-				console.log(re);
 					if (re == 0) {
 						$(e.target).parents("tr").children("td:eq(0)").children("input").removeAttr("disabled");
 						$(e.target).next().text("수정 가능 합니다.");

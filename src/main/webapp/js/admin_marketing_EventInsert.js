@@ -87,7 +87,6 @@ function datePickerSet(sDate, eDate, flag) {
     if (flag && !isValidStr(sDay) && !isValidStr(eDay)) {
       //처음 입력 날짜 설정, update...
       let sdp = sDate.datepicker().data("datepicker");
-      console.log("flag");
       sdp.selectDate(new Date(sDay.replace(/-/g, "/"))); //익스에서는 그냥 new Date하면 -을 인식못함 replace필요
 
       let edp = eDate.datepicker().data("datepicker");
@@ -104,7 +103,6 @@ function datePickerSet(sDate, eDate, flag) {
       language: "ko",
       autoClose: true,
       onSelect: function () {
-        console.log("select");
         datePickerSet(sDate, eDate);
       },
     });
