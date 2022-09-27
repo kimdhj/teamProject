@@ -377,9 +377,15 @@ $(document).ready(function() {
 			if(result.isConfirmed){
 				$("input[name='chkbox']:checked").map((ine,el)=>{
 	    			// .text() -> .children("input").val();
+
+	    			let len=$(el).parents('tr').children('td:eq(9)').children('button').text().trim().length;
+	    				    			console.log("len",len)
+	    			if(len<4){
+	    			console.log($(el).parents('tr').children('td:eq(9)').children('button').text());
 					var seq = $(el).parents('tr').children('td:eq(1)').children('input').val();
 					chk_arr.push(seq);
 					console.log(chk_arr);
+					}
 				})
 				$.ajax({
 					url: "/chkboxBlind.mdo",
@@ -393,20 +399,7 @@ $(document).ready(function() {
 		                	showConfirmButton: false,
 		                	timer: 1500,
 						}).then(function(){
-							location.href="/ReplyList.mdo";
-						})
-					}
-				})
-			}else if(result.isDismissed){
-				return false;
-			}
-		})
-	});	
-	
-	$(".chkbox").click(function(e){
-	});
-	$(".allBlind").click(function() {
-		var chk_arr = [];
+						var chk_arr = [];
 		Swal.fire({
 			text: "선택한 리뷰를 블라인드 처리 해제하시겠습니까?",
 			icon: 'warning',
@@ -419,9 +412,59 @@ $(document).ready(function() {
 			if(result.isConfirmed){
 				$("input[name='chkbox']:checked").map((ine,el)=>{
 					// .text() -> .children("input").val();
+					let len=$(el).parents('tr').children('td:eq(9)').children('button').text().trim().length;
+					if(len>=4){
+					console.log();
 					var seq = $(el).parents('tr').children('td:eq(1)').children('input').val();
 					chk_arr.push(seq);
 					console.log(chk_arr);
+					}
+				})
+				$.ajax({
+					url: "/chkboxBlindCancel.mdo",
+					type: "GET",
+					async: false,
+					data: {"reply_seq" : chk_arr},
+					success: function(data){
+						Swal.fire({
+							text: "삭제되었습니다.",
+							icon: "success",
+							showConfirmButton: false,
+							timer: 1500,
+						}).then(function(){
+							location.href="/ReplyList.mdo";
+						})
+					}
+				})
+			}else if(result.isDismissed){
+			location.href="/ReplyList.mdo";
+				return false;
+			}
+		})
+						
+						})
+					}
+				})
+			}else if(result.isDismissed){
+			Swal.fire({
+			text: "선택한 리뷰를 블라인드 처리 해제하시겠습니까?",
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: '예',
+			cancelButtonText: '아니오'
+		}).then((result)=>{
+			if(result.isConfirmed){
+				$("input[name='chkbox']:checked").map((ine,el)=>{
+					// .text() -> .children("input").val();
+					let len=$(el).parents('tr').children('td:eq(9)').children('button').text().trim().length;
+					if(len>=4){
+					console.log();
+					var seq = $(el).parents('tr').children('td:eq(1)').children('input').val();
+					chk_arr.push(seq);
+					console.log(chk_arr);
+					}
 				})
 				$.ajax({
 					url: "/chkboxBlindCancel.mdo",
@@ -443,7 +486,14 @@ $(document).ready(function() {
 				return false;
 			}
 		})
+				
+			}
+		})
 	});	
+	
+	$(".chkbox").click(function(e){
+	});
+	
 	
 	// 해제시 전체 클릭 비활성화+모두 클릭되면 전체 클릭 활성화
 	$('.delche:checked').click(function() {
