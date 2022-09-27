@@ -7,6 +7,7 @@
 <!-- Common head include -->
 <jsp:include page="/WEB-INF/commonjsp/common_head.jsp"></jsp:include>
 <!-- 여기에 css 관련  -->
+<link href="/css/newindex.css" rel="stylesheet">
 </head>
 <body>
   <!-- Common header include -->
@@ -14,7 +15,7 @@
   <!-- Common header include End -->
   <!-- Page Header End -->
   <!-- 여기서부터 바디 작업 하면됨 -->
-  <div class="container-fluid p-0 mb-5 wow fadeIn" data-wow-delay="0.1s">
+  <div class="container-fluid p-0 mb-5 wow fadeIn" id="newindex" data-wow-delay="0.1s">
     <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
       <c:set var="fi" value="0" />
       <div class="carousel-inner bannerroll">

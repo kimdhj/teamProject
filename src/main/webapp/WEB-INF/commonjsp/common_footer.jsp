@@ -7,9 +7,9 @@
             <div id="footer_des" >
                 <div id="foot_address" class=" col-lg-3 col-md-6">
                     <h4 class="text-light mb-4 col-3">Address</h4>
-                    <p><i class="fa fa-map-marker-alt me-3"></i>&nbsp&nbsp 123 Street, New York, USA</p>
-                    <p><i class="fa fa-phone-alt me-3"></i>&nbsp +012 345 67890</p>
-                    <p><i class="fa fa-envelope me-3"></i>&nbsp info@example.com</p>
+                    <p><i class="fa fa-map-marker-alt me-3"></i>서울특별시 동작구 장승배기로 171 노량진아이비빌딩 3층</p>
+                    <p><i class="fa fa-phone-alt me-3"></i>010-3573-9617</p>
+                    <p><i class="fa fa-envelope me-3"></i>qjawns0222@naver.com</p>
                 </div>
 
 
@@ -20,10 +20,7 @@
                         </h1>
                     </div>
                     <div class="col-md-4 text-center text-md-center mb-4 mb-md-0">
-                        <p>Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et
-                            lorem
-                            et sit, sed
-                            stet lorem sit clita</p>
+                        <p>삭막한 서울 도심 속, 험난한 나날에 치이며 살아도 우리는 꿋꿋하게 낭만을 가슴속에 간직하는 것이 우리네 짧은 인생을 풍요로이 할 것이라 믿습니다!</p>
                     </div>
                     <div id="sns_footer" class="col-md-4 text-md-end mb-4 mb-md-0">
 
@@ -47,7 +44,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                        &copy; <a href="#">Your Site Name</a>, All Right Reserved.
+                        &copy; <a href="/index.do">RomanceBookstore</a>, All Right Reserved.
                     </div>
                     <div class="col-md-6 text-center text-md-end">
 

@@ -19,45 +19,82 @@ public class AddTermsController {
 
 	@Autowired
 	AddTermsService addTermsService;
-	
+
 	// 회원가입 약관 이동
 	@RequestMapping("/join_terms.do")
-	public String join_terms(String kakaoid,Model model) {
-		//무슨 약관인지 명시해주기
+	public String join_terms(String kakaoid, Model model) {
+		// 무슨 약관인지 명시해주기
 		model.addAttribute("termscategory", "회원가입");
+		model.addAttribute("title_sub", "이용");
 		model.addAttribute("oc", "Join");
 		System.out.println(addTermsService.getAddTerms());
 		List<TermsVO> termsvo = addTermsService.getAddTerms();
-		System.out.println(termsvo);
+		List<TermsVO> termsPvo = addTermsService.getAddpersonalTerms();
+		
+		for(TermsVO vo:termsvo) {
+			String target= vo.getTerms_title();
+			String [] title_split = target.split("-");
+			String title_terms = title_split[1].trim();
+			vo.setTerms_title(title_terms);
+		};
+		
+		for(TermsVO pvo:termsPvo) {
+			String target= pvo.getTerms_title();
+			String [] title_split = target.split("-");
+			String title_term = title_split[1].trim();
+			pvo.setTerms_title(title_term);
+		};
+		
+
 		model.addAttribute("termsList", termsvo);
-    model.addAttribute("kakaoid", kakaoid);
+		model.addAttribute("termsPList", termsPvo);
+		model.addAttribute("kakaoid", kakaoid);
 		return "all_terms";
-	}	
-	
-	//세션값 가져오기
+	}
+
+	// 세션값 가져오기
 	@RequestMapping("/getUid.do")
 	@ResponseBody
 	public UserVO getUid(JwtUtils util, HttpSession session) throws IOException {
 		UserVO voToken = util.getuser(session);
-		if(voToken != null) {
+		if (voToken != null) {
 			return voToken;
 		} else {
 			return null;
-		}	
+		}
 	}
-	
-		//구독 약관 이동
-		@RequestMapping("/sub_terms.do")
-		public String sub_terms(Model model) {
-			//무슨 약관인지 명시해주기
-			model.addAttribute("termscategory", "구독");
-			model.addAttribute("oc", "Sub");
-			System.out.println(addTermsService.getAddsubTerms());
-			List<TermsVO> termsvo = addTermsService.getAddsubTerms();
-			System.out.println(termsvo);
-			model.addAttribute("termsList", termsvo);
-			
-			return "all_terms";
-		}	
+
+	// 구독 약관 이동
+	@RequestMapping("/sub_terms.do")
+	public String sub_terms(Model model) {
+		// 무슨 약관인지 명시해주기
+		model.addAttribute("termscategory", "구독");
+		model.addAttribute("oc", "Sub");
+		model.addAttribute("title_sub", "구독");
+		System.out.println(addTermsService.getAddsubTerms());
+		List<TermsVO> termsvo = addTermsService.getAddsubTerms();
+		List<TermsVO> termsPvo = addTermsService.getAddpersonalTerms();
 		
+		for(TermsVO vo:termsvo) {
+			String target= vo.getTerms_title();
+			String [] title_split = target.split("-");
+			String title_terms = title_split[1].trim();
+			vo.setTerms_title(title_terms);
+		};
+		
+		for(TermsVO pvo:termsPvo) {
+			String target= pvo.getTerms_title();
+			String [] title_split = target.split("-");
+			String title_term = title_split[1].trim();
+			pvo.setTerms_title(title_term);
+		};
+		
+		
+		
+		model.addAttribute("termsList", termsvo);
+		model.addAttribute("termsPList", termsPvo);
+
+		return "all_terms";
+	}
+
 }

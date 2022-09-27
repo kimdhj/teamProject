@@ -14,12 +14,18 @@ public class AddTermsDAO {
 	private SqlSessionTemplate sqlSessionTemplate;
 	
 	public List<TermsVO> getJoin_terms() {
-		System.out.println("---> MyBatis로 getEventList() 기능 처리");
+		System.out.println("---> MyBatis로 getJoin_terms() 기능 처리");
 		return sqlSessionTemplate.selectList("AddTerms.getJoin_terms");
 	}
+	
 	public List<TermsVO> getSub_terms() {
-		System.out.println("---> MyBatis로 getEventList() 기능 처리");
+		System.out.println("---> MyBatis로 getSub_terms() 기능 처리");
 		return sqlSessionTemplate.selectList("AddTerms.getSub_terms");
+	}
+	
+	public List<TermsVO> getPersonal_terms(){
+		System.out.println("---> MyBatis로 getPersonal_terms() 기능 처리");
+		return sqlSessionTemplate.selectList("AddTerms.getPersonal_terms");
 	}
 	
 }

@@ -28,7 +28,7 @@
 			</div>
 			<c:forEach var="term" items="${termsList}">
 			<div class="row d-flex">
-			<div class="col-4 fw-bold">${term.terms_article_number}조 ${term.terms_title}</div>
+			<div class="col-4 fw-bold"> ${term.terms_article_number}조 ${term.terms_title}</div>
 			<div class="col"></div>
 			</div>
 			<div>
