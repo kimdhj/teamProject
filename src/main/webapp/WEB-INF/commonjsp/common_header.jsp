@@ -88,7 +88,7 @@
             <div class="col"></div>
             <div class="col-auto">
                 <label for="inputPassword2" class="visually-hidden">제목</label>
-                <input type="text" name="title" class="form-control" id="inputPassword2" placeholder="Password">
+                <input type="text" name="title" class="form-control" id="inputPassword2" placeholder="책 제목 입력">
             </div>
             <div class="col-auto">
                 <button type="submit" class="btn btn-primary mb-3">검색</button>

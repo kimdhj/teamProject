@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.romance.admin.log.LoggingService;
 import com.romance.admin.log.PaymentLogVO;
 import com.romance.security.JwtUtils;
+import com.romance.user.login.UserService;
 import com.romance.user.login.UserVO;
 import com.romance.user.my.delivery.DeliveryVO;
 
@@ -29,7 +30,8 @@ import com.romance.user.my.delivery.DeliveryVO;
 public class OrderController {
 	@Autowired
 	OrderService ser;
-	
+	@Autowired
+  UserService seru;
 	@Autowired
 	LoggingService loggingService; //로그입력 서비스
 	@GetMapping("divide.do")
@@ -69,7 +71,7 @@ public class OrderController {
 		return "book_Pay";
 	}
 	@PostMapping("bookfinish.do")
-	public String bookfinish(OrdersVO vo,@RequestParam(value = "book_seq")List<Integer> book_seq,@RequestParam(value = "book_count")List<Integer> book_count,int iscart,int couponselcode,OrderBookListVO lvo,Model model) throws ParseException {
+	public String bookfinish(OrdersVO vo,@RequestParam(value = "book_seq")List<Integer> book_seq,@RequestParam(value = "book_count")List<Integer> book_count,int iscart,int couponselcode,OrderBookListVO lvo,Model model,JwtUtils util,HttpSession session) throws ParseException, IOException {
     if(vo.getOrders_vbank_Date_String()=="") {
       vo.setOrders_vbank_Date_String(null);
     }
@@ -109,7 +111,10 @@ public class OrderController {
 		 model.addAttribute("result", vo);
 			//쿠폰삭제
 		 ser.usecoupon(couponselcode);
-		  
+		 UserVO vou=seru.onesearch(vo.getUser_id());
+	    vou.setUser_password(null);
+	    String token=util.createToken("유저", vou);
+	    session.setAttribute("id", token);
 		return "redirect:bookfin.do";
 	}
 	@GetMapping("bookfin.do")
