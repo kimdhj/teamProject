@@ -38,7 +38,7 @@
 						<tbody>
 							<tr>
 								<th scope="row" colspan="3">
-									<textarea rows="5" style="width:100%;" id="ask_content" name="ask_content" <c:if test="${not empty myRequestReplyVO.ask_reply_seq}">readonly</c:if>>${myRequestVO.ask_content}</textarea>
+									<textarea rows="5" style="width:100%; resize:none;" id="ask_content" name="ask_content" <c:if test="${not empty myRequestReplyVO.ask_reply_seq}">readonly</c:if>>${myRequestVO.ask_content}</textarea>
 								</th>
 							</tr>
 								<tr>
