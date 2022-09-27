@@ -63,8 +63,9 @@ public class AdminAccountController {
 			System.out.println("검색 조건 : " + criteria.getSearchCondition());
 			System.out.println("검색 단어 : " + criteria.getSearchKeyword());
 			System.out.println("현재 페이지 : " + criteria.getPageNum());
-			System.out.println("한페이지당 글 갯수 : " + criteria.getPerPageNum());;
-			
+			System.out.println("한페이지당 글 갯수 : " + criteria.getPerPageNum());
+			System.out.println("정렬 컨디션 up : " + criteria.getSortConditionUp());
+			System.out.println("정렬 컨디션 down : " + criteria.getSortConditionDown());
 			if(criteria.getSearchCondition() == null) {
 				criteria.setSearchCondition("USER_ID");
 			}
@@ -83,7 +84,6 @@ public class AdminAccountController {
 			System.out.println("현재페이지" + criteria.getPageNum());
 			model.addAttribute("pagination", pagination);
 			model.addAttribute("adminUserListWithPaging", adminAccountService.getUserListWithPaging(criteria));
-			
 			return "admin_member_List";
 		} else {
 			return "redirect:admin_login.mdo";
@@ -504,6 +504,7 @@ public class AdminAccountController {
 		loggingService.insertWorkLog(workLogVO);
 	}
 	
+
 	//관리자 계정 생성 로그
 	public void makeAdminAccountLog(AdminUserVO vo, AdminUserVO voToken) throws Exception {
 		String work_log_id = voToken.getUser_id();

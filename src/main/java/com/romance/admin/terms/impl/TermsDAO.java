@@ -48,5 +48,11 @@ public class TermsDAO {
 		System.out.println("---> MyBatis로 deleteTerms() 기능 처리");
 		sqlsession.delete("Terms.deleteTerms", vo);
 	}
+	
+	public int termsOverlap(TermsSearchVO svo) {
+		System.out.println("---> MyBatis로 termsOverlap() 기능 처리");
+		return sqlsession.selectOne("Terms.termsOverlap", svo ); 
+	}
+	
 }
 

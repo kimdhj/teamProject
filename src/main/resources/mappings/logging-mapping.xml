@@ -63,7 +63,7 @@
 		SELECT * FROM user_coupon WHERE user_coupon_seq = #{user_coupon_seq}
 	</select>
 	
-	<select id="getLoginTotalCount" resultType="int">
+	<select id="getLoginTotalCount" parameterType="criteria" resultType="int">
 		SELECT COUNT(*) FROM login_log WHERE 1=1 
 		<if test="searchCondition=='USER_ID'">
 			AND login_log_id LIKE CONCAT('%', #{searchKeyword}, '%')
@@ -78,7 +78,7 @@
 		ORDER BY login_log_seq DESC LIMIT #{pageStart}, #{perPageNum}
 	</select>
 	
-	<select id="getWorkTotalCount" resultType="int">
+	<select id="getWorkTotalCount" parameterType="criteria" resultType="int">
 		SELECT COUNT(*) FROM work_log WHERE 1=1 
 		<if test="searchCondition=='USER_ID'">
 			AND work_log_target_id LIKE CONCAT('%', #{searchKeyword}, '%')
@@ -98,7 +98,7 @@
 		ORDER BY work_log_seq DESC LIMIT #{pageStart}, #{perPageNum}
 	</select>
 	
-	<select id="getPaymentTotalCount" resultType="int">
+	<select id="getPaymentTotalCount" parameterType="criteria" resultType="int">
 		SELECT COUNT(*) FROM payment_log WHERE 1=1 
 		<if test="searchCondition=='USER_ID'">
 			AND payment_log_id LIKE CONCAT('%', #{searchKeyword}, '%')

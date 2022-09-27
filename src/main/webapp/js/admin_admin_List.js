@@ -19,7 +19,7 @@ function adminAccountCheck() { //유효성 검사
 	let user_id = document.getElementById("user_id");
 	let user_password = document.getElementById("user_password");
 	let user_passwordCheck = document.getElementById("user_passwordCheck");
-	let user__phone = document.getElementById("user_phone");
+	let user_phone = document.getElementById("user_phone");
 	let user_email = document.getElementById("user_email");
 	
 	//유효성 정규표현식

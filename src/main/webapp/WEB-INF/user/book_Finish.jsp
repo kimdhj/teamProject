@@ -94,7 +94,7 @@
 			</c:if>
 			<div class="row mt-5 mb-5 justify-content-center" id="main_btns">
 				<div class="col-auto " id="btn_my">
-					<button type="button"
+					<button onclick="location.href='/myMain.do'" type="button"
 						class="bg-gray fs-4 border text-white border-gray rounded-pill mb-3 p-3">마이페이지</button>
 				</div>
 				<div class="col-1"></div>

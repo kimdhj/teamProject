@@ -42,7 +42,7 @@
 			</div>
 			<div class="row text-center mt-1" id="profile_text">
 				<div class="col"></div>
-				<div id="text_Box" class="col-auto p-0">${user.user_point}P</div>
+				<div id="text_Box" class="col-auto p-0"><fmt:formatNumber value="${user.user_point}" pattern="#,###" />P</div>
 				<div id="text_Box" class="col-auto p-0">|</div>
 				<div id="text_unit" class="col-auto p-0">
 					<c:if test="${user.user_role =='ROLE_MEMBER'}">
@@ -102,13 +102,13 @@
 							<div class="row count_check">
 								<div class="col-auto row" id="count_boxs">
 									<div class="col-auto" id="minus_box">
-										<button class="minus" id="minus" class="">-</button>
+										<button type="button" class="minus" id="minus" class="">-</button>
 									</div>
 
 									<div class="col-auto align-self-center bookcount" id="text_box">
 										1</div>
 									<div class="col-auto" id="plus_box">
-										<button class="plus" id="plus">+</button>
+										<button type="button" class="plus" id="plus">+</button>
 									</div>
 
 								</div>
@@ -154,7 +154,7 @@
 				</div>
 				<div class="row justify-content-end mb-5 p-0">
 
-					<button onclick="location.href='/booklist.do'"
+					<button type="button" onclick="location.href='/booklist.do'"
 						class="col-auto p-2 btn rounded-pill border-1 border-gray border p-1 bg-gray me-5">상품
 						둘러보기</button>
 					<input type="submit"

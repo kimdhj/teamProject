@@ -1,0 +1,15 @@
+@charset "UTF-8";
+#search_part{
+	float : right;
+	padding: 10px 20px 0px 0px;
+}
+
+
+#terms_home{
+	color : black;
+}
+
+#terms_home:hover{
+	text-decoration : underline;
+}
+

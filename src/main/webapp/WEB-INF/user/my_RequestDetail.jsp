@@ -18,7 +18,7 @@
 
 		<!-- 여기 삽입 -->
 		<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-			<button class="btn btn-warning me-md-2" type="button">고객문의
+			<button class="btn btn-warning me-md-2" type="button" onclick="location.href='/cs.do'">고객문의
 				바로가기</button>
 		</div>
 
@@ -38,7 +38,7 @@
 						<tbody>
 							<tr>
 								<th scope="row" colspan="3">
-									<textarea rows="10" style="width:100%;" id="ask_content" name="ask_content">${myRequestVO.ask_content}</textarea>
+									<textarea rows="5" style="width:100%; resize:none;" id="ask_content" name="ask_content" <c:if test="${not empty myRequestReplyVO.ask_reply_seq}">readonly</c:if>>${myRequestVO.ask_content}</textarea>
 								</th>
 							</tr>
 								<tr>
@@ -86,7 +86,8 @@
 							<tbody>
 								<tr>
 									<th scope="row" colspan="3">
-										<textarea rows="10" style="width:100%;" readonly>${myRequestReplyVO.ask_reply_content}</textarea>
+										<%-- <textarea rows="10" style="width:100%;" readonly>${myRequestReplyVO.ask_reply_content}</textarea> --%>
+										<div class="editable" contenteditable="false">${myRequestReplyVO.ask_reply_content}</div>
 									</th>
 								</tr>
 							</tbody>

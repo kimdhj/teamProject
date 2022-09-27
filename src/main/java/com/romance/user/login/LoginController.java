@@ -291,7 +291,7 @@ public class LoginController {
 		String login_log_url = "";
 		if(_login_log_url.contains("?")) {
 			int idx = _login_log_url.indexOf("?");
-			login_log_url = _login_log_url.substring(idx);
+			login_log_url = _login_log_url.substring(0, idx);
 		} else {
 			login_log_url = _login_log_url;
 		}

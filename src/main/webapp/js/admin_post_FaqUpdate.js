@@ -253,6 +253,14 @@ $().ready(function () {
         }).then((result) => {
         	if (result.isConfirmed) { // 모달창에서 confirm(예) 버튼 누른 경우
         		console.log("faqUpdateForm.FAQ_passwd : " + faqUpdateForm.FAQ_passwd.value, "faqUpdateForm.FAQ_seq : " + faqUpdateForm.FAQ_seq.value );
+
+        		if($("#title").val().trim() == ""){
+            		alert("제목을 입력해주세요.");
+            	}else if($(".summernote").summernote('isEmpty')){
+            		alert("내용을 입력해주세요.");
+            	}else{
+            		
+        		
         		// ajax 로 사용해서 비밀번호 비교
         		$.ajax({
         			type: "post", // 전송방식
@@ -274,7 +282,9 @@ $().ready(function () {
         	                }).then(function(){ // 예를 눌러야지 admin_post_Notice.mdo 로 이동
         	                	var seq = $("#seq").text();
         	                	console.log(seq);
+        	                	
         	                	i();
+        	                	
         	                	let form = $("#update");
         	                	form.action = "/FaqUpdate.mdo";
         	                	form.method = "POST";
@@ -297,6 +307,7 @@ $().ready(function () {
                         })
         			}
         		})
+            	}
             }else if(result.isDismissed){ // 아니오 버튼 클릭시 
             	return false;
             }

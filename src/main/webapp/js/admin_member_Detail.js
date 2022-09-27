@@ -278,11 +278,7 @@ $(document).ready(function(){
 
 
 $("#givePointBtn").on("click", function(){
-	if(confirm("정말 지급 하시겠습니까?") == true) {
-		console.log("포인트차감");
-	} else {
-		return false;
-	}
+	
 	let givePoint = Number($("#givePoint").val());
 	let user_id = $("#user_id").val();
 	console.log(user_id, givePoint);
@@ -295,12 +291,12 @@ $("#givePointBtn").on("click", function(){
 			user_id:user_id
 		},
 		success:function(){
-			Swal.fire({
-				text: "포인트 선물입니다!",
-				icon: "success"
-			})
-//			alert("포인트선물이라구!");
-			location.reload();
+			if(confirm("정말 지급 하시겠습니까?") == true) {
+				location.reload();
+			} else {
+				return false;
+			}
+			
 		},
 		error:function(){
 			Swal.fire({
