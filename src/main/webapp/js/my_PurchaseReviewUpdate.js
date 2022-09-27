@@ -25,6 +25,12 @@ let star = "rate" + (Number(6) - Number($("#star").val())); // jsp 에서 star �
 star = "#" + star; // rate 랑 합쳐서 문자열로 만들어줌(jsp 에서 id="rateN" 형식)
 $(star).attr("checked", "true"); // star 에 chcekd 속성을 추가 (true : 추가, false : 추가안함)
 
+function i(){
+	console.log($(".note-editable").text());
+	$("#reply_cotent").val($(".note-editable").text());
+	console.log($("#reply_cotent").val());
+};
+
 $("#update").click(function(){
 	console.log($(".note-editable").html());
 	$("#reply_cotent").val($(".note-editable").html());
@@ -39,16 +45,24 @@ $("#update").click(function(){
 	}).then((result)=>{
 		if(result.isConfirmed){
 			console.log("리뷰 수정 성공인가아ㅏ?");
-			Swal.fire({
-				icon: "success",
-				text: "등록되었습니다.",
-				showConfirmButton: false,
-            	timer: 1500,
-			}).then(function(){
-				console.log("여기 뜨는거야 안뜨는거야");
-				location.href="#"; // 리뷰 목록으로 돌아가기
-				
-			})
+			if($("#reply_cotent").val().trim() == ""){
+       		 alert("내용을 입력해주세요.");
+	       	 }else{
+				Swal.fire({
+					icon: "success",
+					text: "등록되었습니다.",
+					showConfirmButton: false,
+	            	timer: 1500,
+				}).then(function(){
+					i();
+					let form = $("#updateForm");
+					form.action="/replyUpdate.do";
+					form.method="post";
+					form.submit();
+					console.log("여기 뜨는거야 안뜨는거야");
+					
+				})
+	       	 }
 		}else if(result.isDismissed){
 			return false;
 		}
