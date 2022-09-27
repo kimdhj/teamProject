@@ -187,7 +187,7 @@
 
 							<div class="row mt-2" id="zipcode_line">
 								<div class="col-2">주소:</div>
-								<div class="col-auto">
+								<div class="col">
 									<input id="my_delivery_zipcode" readonly type="text" class="form-control"
 										id="zipCodeBox" placeholder="우편번호">
 								</div>
