@@ -75,47 +75,76 @@ function event_writeCheck() {
 	var book_author = document.getElementById("book_author");
 	var book_isbn = document.getElementById("book_isbn");
 	
+	if(book_title.value == "") {
+		alert("제목을 입력하세요!");
+		book_title.focus();
+		return false;
+	};
+	if(book_isbn.value == "") {
+		alert("고유번호를 입력하세요!");
+		book_isbn.focus();
+		return false;
+	};
+	if(book_isbn.value < 0 || book_isbn.value > 999999999999) {
+		alert("고유번호를 다시 확인 해주세요!");
+		book_isbn.focus();
+		return false;
+	};
 	if(book_price.value == "") {
 	alert("가격을 입력하세요!");
 	book_price.focus();
 	return false;
 	};
-	if(category_num.value == "") {
-	alert("카테고리를 입력하세요!");
-	category_num.focus();
-	return false;
-	};
-	if(book_title.value == "") {
-	alert("제목을 입력하세요!");
-	book_title.focus();
-	return false;
+	if(book_price.value < 0 || book_price.value > 999999999999) {
+		alert("가격을 다시 확인 해주세요!");
+		book_price.focus();
+		return false;
 	};
 	if(book_points.value == "") {
-	alert("포인트를 입력하세요!");
-	book_points.focus();
-	return false;
+		alert("포인트를 입력하세요!");
+		book_points.focus();
+		return false;
+	};
+	if(book_points.value < 0 || book_points.value > 999999999999) {
+		alert("포인트를 다시 확인 해주세요!");
+		book_points.focus();
+		return false;
+	};
+	if(author_seq.value == "") {
+		alert("작가번호를 입력하세요!");
+		author_seq.focus();
+		return false;
+	};
+	if(author_seq.value < 0 || author_seq.value > 999999999999) {
+		alert("작가번호를 다시 확인 해주세요!");
+		author_seq.focus();
+		return false;
+	};
+	if(book_author.value == "") {
+		alert("작가를 입력하세요!");
+		book_author.focus();
+		return false;
+	};	
+	if(book_remain.value < 0 || book_remain.value > 999999999999) {
+		alert("재고수를 다시 확인 해주세요!");
+		book_remain.focus();
+		return false;
 	};
 	if(book_publish.value == "") {
 	alert("출판사를 입력하세요!");
 	book_publish.focus();
 	return false;
 	};
-	if(author_seq.value == "") {
-	alert("작가번호를 입력하세요!");
-	author_seq.focus();
-	return false;
+	if(category_num.value == "") {
+		alert("카테고리를 입력하세요!");
+		category_num.focus();
+		return false;
 	};
-	if(book_author.value == "") {
-	alert("작가를 입력하세요!");
-	book_author.focus();
-	return false;
+	if(category_num.value < 0 || category_num.value > 999999999999) {
+		alert("카테고리를 다시 확인 해주세요!");
+		category_num.focus();
+		return false;
 	};
-	if(book_isbn.value == "") {
-	alert("고유번호를 입력하세요!");
-	book_isbn.focus();
-	return false;
-	};
-	
 	// isbn 체크해주기 시작
 	
 	console.log($("#book_isbn").val());
@@ -146,14 +175,14 @@ function event_writeCheck() {
 						},
 						success: function(data) {
 							console.log(data);
-							if(date == 0){
+							if(data == 0){
 								Swal.fire({
 									text: "존재하지 않는 카테고리입니다! 다시 확인해주세요!",
 									icon: "error"
 								})
 //								alert("존재하지 않는 카테고리입니다! 다시 확인해주세요!");
 							}else if(data != 0){
-								
+								console.log("왜??");
 								document.upload.submit();
 							}
 

@@ -15,7 +15,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 #book_descript{
 	width:100%;
 }
-input[type=text], input[type=file], input[type=date]{
+input[type=text], input[type=file], input[type=date], input[type=number]{
 	height:40px;
 	font-size:1.2vw;
 	text-align: center;
@@ -26,4 +26,7 @@ textarea{
 button{
 	height: 40px;
 	font-size:1.3vw !important;
+}
+#announce{
+	color: gray;
 }

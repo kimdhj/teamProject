@@ -1,6 +1,10 @@
+
 $(function() {
+	
 	$(".week").click(function() {
 		let st = new Date($("#start_date").val());
+		let end = new Date($("#end_date").val());
+		
 		st.setDate(st.getDate() - 7);
 		$("#start_date").val(st);
 		datePickerSet($("#start_date"), $("#end_date"), true);
@@ -343,27 +347,6 @@ function datePickerSet(sDate, eDate, flag) {
 	}
 }
 
-/*$().ready(function () {
-    $(".del").click(function () {
-        Swal.fire({
-            text: "해당 공지사항을 삭제하시겠습니까?",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: '예',
-            cancelButtonText: '아니오'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire(
-                	'',
-                    '삭제되었습니다.'
-                )
-            }
-        })
-    });
-});*/
-
 $("#start_date").val(null); // 시작날짜 null 값 띄우기
 $("#end_date").val(null); // 마지막 날짜 null 값 띄우기
 console.log($("#start_date").val());
@@ -407,11 +390,14 @@ $("#all_box #search_btn").click(function(e) {
 		console.log($("#all_box #contentche"));
 	}
 	
-	if($("#all_box #start_date").val() != null){
+	if($("#all_box #start_date").val() != null ){
 		$("#all_box #startche").val($("#all_box #start_date").val());
 	}if($("#all_box #end_date").val() != null){
 		$("#all_box #endche").val($("#all_box #end_date").val());
 	}
+	
+	console.log($("#start_date").val());
+	console.log($("#end_date").val());
 	
 	// Date 에 값을 안넣어줄 경우, if 문에 null 값일 때 값 안넘어가도록 진행
 //	$("#all_box #titleche").val($("#all_box #title").val());

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -113,13 +114,14 @@ public class ProductController {
 		}
 		
 		//상품 INSERT 시키기!
-		@RequestMapping(value="product_Insert_real.mdo", method = RequestMethod.POST)
+		@PostMapping("/product_Insert_real.mdo")
 		public String product_Insert_real(@RequestParam(name="imgfile0") MultipartFile imgfile0, @RequestParam(name="imgfile1") MultipartFile imgfile1, ProductVO vo) throws IOException {
+			System.out.println("왜 에러? :"+vo);
 			productService.insertProduct(imgfile0, imgfile1, vo);
 			
 			return "redirect:getProductList.mdo";
 		}
-		
+
 		//상품 UPDATE 시키기!
 		@RequestMapping(value="product_Update_real.mdo", method = RequestMethod.POST)
 		public String product_Update_real(@RequestParam(name="imgfile0") MultipartFile imgfile0, @RequestParam(name="imgfile1") MultipartFile imgfile1, ProductVO vo) throws IOException {

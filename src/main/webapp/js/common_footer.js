@@ -33,8 +33,40 @@ function can_sub() {
 
 //구독 취소 실행
 function cancelsubs() {
-
-	$("form").submit()
+	
+	let user_id = $("#user_id").val(); 
+	let user_password = $("#user_password").val();
+	
+	if(confirm("정말로 구독을 취소하시겠습니까?") == true) {
+		
+		//비밀번호 검증
+		$.ajax({
+			url: "/cansubpass.do",
+			method: "POST",
+			data: {
+				user_id: user_id,
+				user_password: user_password
+			},
+			success: function(vo) {
+				console.log(vo);
+				if(vo==0){
+					alert("비밀번호를 확인해주세요!");
+//					location.href="/my_cancelSub.do";
+				}else if(vo==1){
+//					$("form").submit();
+				}else{
+//					location.href='/login.do';					
+				}
+					
+			},
+			error: function() {
+			}
+		});
+		
+		
+	} else {
+		return false;
+	}
 
 }
 

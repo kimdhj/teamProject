@@ -71,6 +71,12 @@ $(document).ready(function (e) {
         	console.log("queryString" , queryString);
         	if(result.isConfirmed){
         		console.log("12345678910");
+        		if($("#password").val().trim() == ""){
+        			alert("비밀번호를 입력해주세요.");
+        		}else if($(".summernote").summernote('isEmpty')){
+        			alert("내용을 입력해주세요.");
+        		}else{	
+        		
 				$.ajax({
 					type:"post",
 					url: "/QnaCheckPW.mdo",
@@ -151,6 +157,7 @@ $(document).ready(function (e) {
 						})
 							}
 						})
+        		}
 			}else if(result.isDismissed){
 				console.log("하하");
 				return false;

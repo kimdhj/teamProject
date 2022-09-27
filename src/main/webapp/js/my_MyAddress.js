@@ -5,9 +5,7 @@ $(function() {
 	$("#popup_close").click(function() {
 		$("#coupon_popUp").addClass("hide");
 	});
-	$("#Address_Add").click(function() {
-		$("#coupon_popUp").addClass("hide");
-	});
+	
 	$("#add_find").click(function() {
 		console.log("hi");
 		new daum.Postcode({
@@ -139,10 +137,14 @@ $(document).ready(function() {
 	});
 	//추가 함수
 	$("#Address_Add").click(function() {
-		if ($("#my_delivery_nickname").val().length <= 5 && $("#my_delivery_name").val().length <= 5 && $("#my_delivery_phone").val().length == 11 && /^([0-8]).{0,20}$/.test($("#my_delivery_phone").val()) && $("#my_delivery_zipcode").val() != "" && $("#my_delivery_zipcode").val() != null && $("#my_delivery_address").val() != "" && $("#my_delivery_address").val() != null) {
-//			alert("정규식");
+	console.log( /^([0-8]).{0,20}$/.test($("#my_delivery_phone").val()) );
+		if ($("#my_delivery_nickname").val().trim()!="" && $("#my_delivery_name").val().trim() !="" &&$("#my_delivery_nickname").val().trim()!= null && $("#my_delivery_name").val().trim() !=null &&$("#my_delivery_nickname").val().length <= 5 && $("#my_delivery_name").val().length <= 5 && $("#my_delivery_phone").val().length == 11 && /^([0-8]).{0,20}$/.test($("#my_delivery_phone").val()) && $("#my_delivery_zipcode").val() != "" && $("#my_delivery_zipcode").val() != null && $("#my_delivery_address").val() != "" && $("#my_delivery_address").val() != null) {
+			
+		}else{
+		alert("규칙에 맞게 작성해주세요 ");
 			return;
 		}
+		$("#coupon_popUp").addClass("hide");
 		$.ajax({
 			url: "/indelivery.do",
 			method: "get",
