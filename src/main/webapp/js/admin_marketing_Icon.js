@@ -1,3 +1,28 @@
+//관리자 구독 수정 유효성 체크
+function sub_check() {
+	let sub_info_price = document.getElementById("sub_info_price");
+	let sub_info_pre_string = document.getElementById("sub_info_pre_string");
+	let sub_info_post_string = document.getElementById("sub_info_post_string");
+
+	
+	if(sub_info_price.value == "") {
+		alert("구독 가격을 입력하세요!");
+		sub_info_price.focus();
+		return false;
+	};
+	if(sub_info_pre_string.value == "") {
+		alert("구독 안내1을 입력하세요!");
+		sub_info_pre_string.focus();
+		return false;
+	};
+	if(sub_info_post_string.value == "") {
+		alert("구독 안내2를 입력하세요!");
+		sub_info_post_string.focus();
+		return false;
+	};
+	$("#uploadSub").submit();
+}
+
 //추가버튼
 function plus_banner(){
 	var html = '';
