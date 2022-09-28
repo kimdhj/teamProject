@@ -183,7 +183,7 @@ public class EventController {
 	
 	@RequestMapping(value="/updateEvent.mdo", method = RequestMethod.POST)
 	public String updateEvent(@RequestParam(name="uploadFile1") MultipartFile uploadFile1, @RequestParam(name="uploadFile2") MultipartFile uploadFile2, @RequestParam(name="uploadFile3") MultipartFile uploadFile3, @RequestParam(name="uploadFile4") MultipartFile uploadFile4, @RequestParam(name="uploadThumbnail") MultipartFile uploadThumbnail, EventVO vo) throws IllegalStateException, IOException {
-		System.out.println("글 수정 기능 처리");
+		System.out.println("왜 임플 안가지"+uploadThumbnail.getOriginalFilename());
 		if (!uploadFile1.isEmpty()) {
 			String filename=uploadFile1.getOriginalFilename();
 		      String expand=filename.substring(filename.indexOf("."));
@@ -249,8 +249,9 @@ public class EventController {
 		      String uploadFolder = "https://doublejo.s3.ap-northeast-2.amazonaws.com/";  
 		      vo.setEvent_thumbnail(uploadFolder+key);
 		}
-		eventService.updateEvent(vo);
+		System.out.println("파일 세팅후" +vo.getEvent_thumbnail());
 		System.out.println(vo);
+		eventService.updateEvent(vo);
 		return "redirect:getEventList.mdo";
 	}
 

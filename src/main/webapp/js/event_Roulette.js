@@ -121,7 +121,10 @@ function startSpin() {
 // -------------------------------------------------------
 function alertPrize(indicatedSegment) {
   // Do basic alert of the segment text. You would probably want to do something more interesting with this information.
-  alert("You have won " + indicatedSegment.text+"P");
+  Swal.fire({
+		text: indicatedSegment.text+"P"+"를 획득 하셨습니다!",
+		icon: "success"
+	}).then(function(){
   $.ajax({
 		url:"/getPoint.do",
 		type:"post",
@@ -142,4 +145,5 @@ function alertPrize(indicatedSegment) {
   theWheel.stopAnimation(false); // Stop the animation, false as param so does not call callback function.
   theWheel.rotationAngle = 0; // Re-set the wheel angle to 0 degrees.
   theWheel.draw(); // Call draw to render changes to the wheel.
+	});
 }

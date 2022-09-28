@@ -38,25 +38,28 @@ public class EventServiceImpl implements EventService {
 	@Override
 	public void updateEvent(EventVO vo) throws FileNotFoundException, IOException {
 		AwsS3 awsS3 = AwsS3.getInstance();
+		EventVO eventVO = EventDAO.eventFile(vo);
+		System.out.println("검색해온거"+eventVO.getEvent_thumbnail());
+		System.out.println("새로만든거"+vo.getEvent_thumbnail());
 		String key1 = null;
 		String key2 = null;
 		String key3 = null;
 		String key4 = null;
 		String key5 = null;
-		if (vo.getEvent_file1()!=null) {
-			key1 = vo.getEvent_file1();
+		if (eventVO.getEvent_file1()!=null) {
+			key1 = eventVO.getEvent_file1();
 		key1 = key1.replace("https://doublejo.s3.ap-northeast-2.amazonaws.com/", ""); }
-		if (vo.getEvent_file2()!=null) {
-			key2 = vo.getEvent_file2();
+		if (eventVO.getEvent_file2()!=null) {
+			key2 = eventVO.getEvent_file2();
 		key2 = key2.replace("https://doublejo.s3.ap-northeast-2.amazonaws.com/", ""); }
-		if (vo.getEvent_file3()!=null) {
-			key3 = vo.getEvent_file3();
+		if (eventVO.getEvent_file3()!=null) {
+			key3 = eventVO.getEvent_file3();
 		key3 = key3.replace("https://doublejo.s3.ap-northeast-2.amazonaws.com/", ""); }
-		if (vo.getEvent_file4()!=null) {
-			key4 = vo.getEvent_file4();
+		if (eventVO.getEvent_file4()!=null) {
+			key4 = eventVO.getEvent_file4();
 		key4 = key4.replace("https://doublejo.s3.ap-northeast-2.amazonaws.com/", ""); }
-		if (vo.getEvent_thumbnail()!=null) {
-			key5 = vo.getEvent_thumbnail();
+		if (eventVO.getEvent_thumbnail()!=null) {
+			key5 = eventVO.getEvent_thumbnail();
 		key5 = key5.replace("https://doublejo.s3.ap-northeast-2.amazonaws.com/", ""); }
 		EventDAO.updateEvent(vo);
 		if(key1!=null) {awsS3.delete(key1);}

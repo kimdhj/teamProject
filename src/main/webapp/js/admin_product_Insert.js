@@ -76,72 +76,114 @@ function event_writeCheck() {
 	var book_isbn = document.getElementById("book_isbn");
 	
 	if(book_title.value == "") {
-		alert("제목을 입력하세요!");
+		Swal.fire({
+			text: "제목을 입력하세요!",
+			icon: "error"
+		})	
 		book_title.focus();
 		return false;
 	};
 	if(book_isbn.value == "") {
-		alert("고유번호를 입력하세요!");
+		Swal.fire({
+			text: "고유번호를 입력하세요!",
+			icon: "error"
+		})	
 		book_isbn.focus();
 		return false;
 	};
 	if(book_isbn.value < 0 || book_isbn.value > 999999999999) {
-		alert("고유번호를 다시 확인 해주세요!");
+		Swal.fire({
+			text: "고유번호를 다시 확인 해주세요!",
+			icon: "error"
+		})	
 		book_isbn.focus();
 		return false;
 	};
 	if(book_price.value == "") {
-	alert("가격을 입력하세요!");
+		Swal.fire({
+			text: "가격을 입력하세요!",
+			icon: "error"
+		})	
 	book_price.focus();
 	return false;
 	};
 	if(book_price.value < 0 || book_price.value > 999999999999) {
-		alert("가격을 다시 확인 해주세요!");
+		Swal.fire({
+			text: "가격을 다시 확인 해주세요!",
+			icon: "error"
+		})	
 		book_price.focus();
 		return false;
 	};
 	if(book_points.value == "") {
-		alert("포인트를 입력하세요!");
+		Swal.fire({
+			text: "포인트를 입력하세요!",
+			icon: "error"
+		})	
 		book_points.focus();
 		return false;
 	};
 	if(book_points.value < 0 || book_points.value > 999999999999) {
-		alert("포인트를 다시 확인 해주세요!");
+		Swal.fire({
+			text: "포인트를 다시 확인 해주세요!",
+			icon: "error"
+		})	
 		book_points.focus();
 		return false;
 	};
 	if(author_seq.value == "") {
-		alert("작가번호를 입력하세요!");
+		Swal.fire({
+			text: "작가번호를 입력하세요!",
+			icon: "error"
+		})	
 		author_seq.focus();
 		return false;
 	};
 	if(author_seq.value < 0 || author_seq.value > 999999999999) {
-		alert("작가번호를 다시 확인 해주세요!");
+		Swal.fire({
+			text: "작가번호를 다시 확인 해주세요!",
+			icon: "error"
+		})	
 		author_seq.focus();
 		return false;
 	};
 	if(book_author.value == "") {
-		alert("작가를 입력하세요!");
+		Swal.fire({
+			text: "작가를 입력하세요!",
+			icon: "error"
+		})	
 		book_author.focus();
 		return false;
 	};	
 	if(book_remain.value < 0 || book_remain.value > 999999999999) {
-		alert("재고수를 다시 확인 해주세요!");
+		Swal.fire({
+			text: "재고수를 다시 확인 해주세요!",
+			icon: "error"
+		})	
 		book_remain.focus();
 		return false;
 	};
 	if(book_publish.value == "") {
-	alert("출판사를 입력하세요!");
+		Swal.fire({
+			text: "출판사를 입력하세요!",
+			icon: "error"
+		})	
 	book_publish.focus();
 	return false;
 	};
 	if(category_num.value == "") {
-		alert("카테고리를 입력하세요!");
+		Swal.fire({
+			text: "카테고리를 입력하세요!",
+			icon: "error"
+		})	
 		category_num.focus();
 		return false;
 	};
 	if(category_num.value < 0 || category_num.value > 999999999999) {
-		alert("카테고리를 다시 확인 해주세요!");
+		Swal.fire({
+			text: "카테고리를 다시 확인 해주세요!",
+			icon: "error"
+		})	
 		category_num.focus();
 		return false;
 	};
