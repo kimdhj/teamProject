@@ -128,7 +128,6 @@ function adminAccountCheck() { //유효성 검사
 			text: "수정이 완료되었습니다.",
 			icon: "success"
 		})
-		console.log("수정확인 누름");
 	} else {
 		return false;
 	}
@@ -161,14 +160,11 @@ function couponDelete() {
 //쿠폰지급
 function giveCoupon() {
 	if(confirm("정말 지급 하시겠습니까?") == true) {
-		console.log("쿠폰지급");
 	} else {
 		return false;
 	}
 	let couponSeq = $("#giveCouponList").val();
 	let user_id = $("#user_id").val();
-	console.log(couponSeq);
-	console.log(user_id);
 	
 	$.ajax({
 		url:"giveCoupon.mdo",//Controller에서 받는 주소
@@ -178,8 +174,6 @@ function giveCoupon() {
 			user_id:user_id
 			},
 		success:function(){//성공했을때
-//			alert("일단데이터는넘어가");
-			console.log("통신완료");
 			location.reload();
 		},
 		error:function(){
@@ -187,7 +181,6 @@ function giveCoupon() {
 				text: "에러!",
 				icon: "error"
 			})
-//			alert("에러다이자시가");
 		}
 	});
 	
@@ -196,7 +189,6 @@ function giveCoupon() {
 //쿠폰삭제
 function couponDelete() {
 	if(confirm("정말 삭제 하시겠습니까?") == true) {
-		console.log("쿠폰삭제");
 	} else {
 		return false;
 	}
@@ -208,7 +200,6 @@ function couponDelete() {
 		type:"post",
 		data:{user_coupon_seq:userCouponSeq},
 		success:function(){//성공했을때
-			console.log("통신완료");
 			location.reload();
 		},
 		error:function(){
@@ -281,7 +272,6 @@ $("#givePointBtn").on("click", function(){
 	
 	let givePoint = Number($("#givePoint").val());
 	let user_id = $("#user_id").val();
-	console.log(user_id, givePoint);
 	
 	$.ajax({
 		url:"givePoint.mdo",
@@ -310,7 +300,6 @@ $("#givePointBtn").on("click", function(){
 
 $("#deletePointBtn").on("click", function(){
 	if(confirm("정말 차감 하시겠습니까?") == true) {
-		console.log("포인트차감");
 	} else {
 		return false;
 	}

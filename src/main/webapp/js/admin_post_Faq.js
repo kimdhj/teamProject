@@ -26,7 +26,6 @@ $(function() {
 			$(".form-select3").addClass("hide");
 			$(".form-select4").addClass("hide");
 		}
-//		console.log($("#level1").val());
 	});
 });
 
@@ -70,10 +69,8 @@ $(document).ready(function() {
 	            	showConfirmButton: false,
 	            	timer: 1500,
 				}).then(function(){
-					console.log($(e.target).parents('tr').children("td:eq(1)").html());
 					var seq = $(e.target).parents('tr').children("td:eq(1)").children('input').val();
 					seq = parseInt(seq);
-					console.log(seq);
 					location.href="/faqDelete.mdo?FAQ_seq=" + seq;
 				})
 			}else if(result.isDismissed){
@@ -105,10 +102,8 @@ $(document).ready(function() {
 			if(result.isConfirmed){
 				$("input[name='chkbox']:checked").map((ine,el)=>{
 	    			// .text() -> .children("input").val();
-					console.log($(el).parents("tr").children("td:eq(1)").children("input").val());
 					var seq =$(el).parents("tr").children("td:eq(1)").children("input").val();
 					chk_arr.push(seq);
-					console.log(chk_arr);
 				})
 				
 				$.ajax({
@@ -135,7 +130,6 @@ $(document).ready(function() {
 			}
 		})
 
-//		console.log($('.delche:checked'))
 //		$('.delche:checked').parents('tr').remove();
 //		$('.allche').removeAttr('checked');
 	});
@@ -171,7 +165,6 @@ $(document).ready(function() {
 	// 코드 변화 감지에 따른 행동
 	observer = new MutationObserver(function(mutations) {
 		mutations.forEach(function(mutation) {
-			console.log();
 			$(mutation.target).parents('tr').children('td:eq(1)').children().text('default')
 		});
 	});
@@ -191,13 +184,8 @@ $("#all_box #search_btn").click(function(e){
 	$("#all_box #bigsortche").val(null);
 	$("#all_box #smallsortche").val(null);
 	
-//	console.log($("#all_box #level1").val());
 	
-//	console.log($("#level2").val());
 	if($("#all_box #level1").val() == ""){
-//		console.log($("#level1").val());
-//		console.log($("#bigsortche").val());
-//		console.log($("#bigsortche").val($("#all_box #level1").val()));
 		
 		($("#bigsortche").val());
 		$("#askche").val($("#search").val());
@@ -293,13 +281,10 @@ function make(){
 			smallsort: $("#all_box #smallsortche").val()
 		},
 		success: function(re){
-			console.log("countRE", re);
 			count = re;
 			
 //			count =  count - ($("#all_box #pageche").val()); 
 			count = 1 + ($("#all_box #pageche").val() - 1) * 5;
-//			console.log(($("#all_box #pageche").val()));
-			console.log("count" + count);
 			
 			let pa = "";
 			if(Number($("#all_box #pageche").val()) > 1){
@@ -309,7 +294,6 @@ function make(){
 			if(re % 5 == 0){
 				re--;
 			}
-			console.log(Number($("#all_box #pageche").val()), re / 5 + 1);
 			
 			if(Number($("#all_box #pageche").val()) > re / 5 + 1){
 				$("#all_box #pageche").val(Number($("#all_box #pageche").val()) - 1);
@@ -345,9 +329,6 @@ function make(){
 			$("#all_box .pagination").html(pa);
 		}
 	});
-	console.log($("#all_box #bigsortche").val());
-	console.log($("#all_box #smallsortche").val());
-	console.log($("#all_box #askche").val());
 	$.ajax({
 		url: "/faqList.mdo",
 		method: "GET",
@@ -361,10 +342,8 @@ function make(){
 			smallsort: $("#all_box #smallsortche").val()
 		},
 		success: function(re){
-			console.log("listRE", re);
 			let con="";
 			re.map((faq) => {
-				console.log(faq.faq_seq);
 				con += 
 					`
 						<tr>
@@ -390,7 +369,6 @@ function make(){
 					`;
 				count++;
 			});
-//			console.log($("#all_box tbody").html(con));
 			$("#all_box tbody").html(con);
 		}
 	});

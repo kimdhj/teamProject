@@ -50,12 +50,16 @@ function cancelsubs() {
 			success: function(vo) {
 				console.log(vo);
 				if(vo==0){
-					alert("비밀번호를 확인해주세요!");
-//					location.href="/my_cancelSub.do";
+					Swal.fire({
+						text: "비밀번호를 확인해주세요!",
+						icon: "error"
+					}).then(function(){
+						location.href="/my_cancelSub.do";
+					})
 				}else if(vo==1){
-//					$("form").submit();
+					$("form").submit();
 				}else{
-//					location.href='/login.do';					
+					location.href='/login.do';					
 				}
 					
 			},

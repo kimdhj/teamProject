@@ -30,7 +30,7 @@
           <div class="col">
             <!-- 이 안에 내용 -->
             <div id="bigbig_title" class="bg-light align-left">
-              이벤트 추가
+              이벤트 수정
             </div>
             <form action="updateEvent.mdo" method="POST" id="upload" name="upload"  enctype="multipart/form-data">
               <table class="table">

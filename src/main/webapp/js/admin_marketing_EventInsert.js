@@ -25,27 +25,42 @@ function event_writeCheck() {
 	var uploadThumbnail = document.getElementById("uploadThumbnail");
 	
 	if(event_title.value == "") {
-	alert("제목을 입력하세요!");
+		Swal.fire({
+			text: "제목을 입력하세요!",
+			icon: "error"
+		})
 	event_title.focus();
 	return false;
 	};
 	if(event_target.value == "") {
-	alert("대상을 입력하세요!");
+		Swal.fire({
+			text: "대상을 입력하세요!",
+			icon: "error"
+		})
 	event_target.focus();
 	return false;
 	};
 	if(event_start_date.value == "") {
-	alert("시작날짜를 입력하세요!");
+		Swal.fire({
+			text: "시작날짜를 입력하세요!",
+			icon: "error"
+		})
 	event_start_date.focus();
 	return false;
 	};
 	if(event_content.value == "") {
-	alert("내용을 입력하세요!");
+		Swal.fire({
+			text: "내용을 입력하세요!",
+			icon: "error"
+		})
 	event_content.focus();
 	return false;
 	};
 	if(uploadThumbnail.value == "") {
-	alert("썸네일을 추가하세요!");
+		Swal.fire({
+			text: "썸네일을 추가하세요!",
+			icon: "error"
+		})
 	uploadThumbnail.focus();
 	return false;
 	};
@@ -87,7 +102,6 @@ function datePickerSet(sDate, eDate, flag) {
     if (flag && !isValidStr(sDay) && !isValidStr(eDay)) {
       //처음 입력 날짜 설정, update...
       let sdp = sDate.datepicker().data("datepicker");
-      console.log("flag");
       sdp.selectDate(new Date(sDay.replace(/-/g, "/"))); //익스에서는 그냥 new Date하면 -을 인식못함 replace필요
 
       let edp = eDate.datepicker().data("datepicker");
@@ -104,7 +118,6 @@ function datePickerSet(sDate, eDate, flag) {
       language: "ko",
       autoClose: true,
       onSelect: function () {
-        console.log("select");
         datePickerSet(sDate, eDate);
       },
     });

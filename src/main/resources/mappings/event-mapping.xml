@@ -25,6 +25,9 @@
 		INSERT INTO event (event_title, event_target, event_content, event_start_date, event_end_date, event_allday, event_top_event, event_file1, event_file2, event_file3, event_file4, event_thumbnail)
 		VALUES(#{event_title}, #{event_target}, #{event_content}, #{event_start_date}, #{event_end_date}, #{event_allday}, #{event_top_event}, #{event_file1}, #{event_file2}, #{event_file3}, #{event_file4}, #{event_thumbnail})
 	</insert>
+	<select id="eventFile" parameterType="event_event" resultType="event_event">
+		SELECT * FROM event WHERE event_seq=#{event_seq}
+	</select>
 	<update id="updateEvent" parameterType="event_event">
 		UPDATE event
 		SET event_title=#{event_title}, event_target=#{event_target}, event_content=#{event_content}, event_start_date=#{event_start_date}, event_end_date=#{event_end_date}, event_allday=#{event_allday}, event_top_event=#{event_top_event}, event_file1=#{event_file1}, event_file2=#{event_file2}, event_file3=#{event_file3}, event_file4=#{event_file4}, event_thumbnail=#{event_thumbnail} WHERE event_seq = #{event_seq}

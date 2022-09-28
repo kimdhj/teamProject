@@ -27,8 +27,7 @@ function execPostCode() {
          }
 
          // 우편번호와 주소 정보를 해당 필드에 넣는다.
-         console.log(data.zonecode);
-         console.log(fullRoadAddr);
+         
          
          
          $("[name=addr1]").val(data.zonecode);

@@ -17,6 +17,9 @@ local.properties
 # ignore properties file
 *.properties
 
+# ignore ucls file
+*.ucls
+
 # External tool builders
 .externalToolBuilders/
 

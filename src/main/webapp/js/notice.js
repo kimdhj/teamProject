@@ -121,7 +121,7 @@ function make() {
                               <a href="/noticeDetail.do?notice_seq=${notice.notice_seq}&seq=${count}">`
                               
 								if(notice.notice_title.length > 7){
-									title = notice.notice_title.substring(0, 6); console.log("2",title);
+									title = notice.notice_title.substring(0, 6); 
 									con += `${title }...`
 								}else{
 									con += `${notice.notice_title }`

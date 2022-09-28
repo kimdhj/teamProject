@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.4" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="com.romance.security.JwtUtils" project="gitmaste" 
+    file="/gitmaste/src/main/java/com/romance/security/JwtUtils.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="236" width="324" x="576" y="69"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="com.romance.security.KakaoLogin" project="gitmaste" 
+    file="/gitmaste/src/main/java/com/romance/security/KakaoLogin.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="136" width="335" x="229" y="64"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="com.romance.security.LoginSuccessHandler" project="gitmaste" 
+    file="/gitmaste/src/main/java/com/romance/security/LoginSuccessHandler.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="116" width="631" x="465" y="486"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="com.romance.security.MailService" project="gitmaste" 
+    file="/gitmaste/src/main/java/com/romance/security/MailService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="136" width="319" x="1492" y="188"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="com.romance.security.Sms" project="gitmaste" 
+    file="/gitmaste/src/main/java/com/romance/security/Sms.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="116" width="218" x="510" y="312"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
