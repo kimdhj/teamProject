@@ -222,6 +222,7 @@ return "redirect:index.do";
     System.out.println("구독 vo : "+vo);
     mySubService.subupdate(vo);
     UUID ran = UUID.randomUUID();
+    System.out.println("구독 id"+cuid + "|" + ran.toString());
     sc.subpay(cuid, cuid + "|" + ran.toString());
     // 테이블에 시간 밀리세컨드로 만든거 넣기 + 개월수 1로 바꾸기
     
