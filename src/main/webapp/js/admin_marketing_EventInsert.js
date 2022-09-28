@@ -25,27 +25,42 @@ function event_writeCheck() {
 	var uploadThumbnail = document.getElementById("uploadThumbnail");
 	
 	if(event_title.value == "") {
-	alert("제목을 입력하세요!");
+		Swal.fire({
+			text: "제목을 입력하세요!",
+			icon: "error"
+		})
 	event_title.focus();
 	return false;
 	};
 	if(event_target.value == "") {
-	alert("대상을 입력하세요!");
+		Swal.fire({
+			text: "대상을 입력하세요!",
+			icon: "error"
+		})
 	event_target.focus();
 	return false;
 	};
 	if(event_start_date.value == "") {
-	alert("시작날짜를 입력하세요!");
+		Swal.fire({
+			text: "시작날짜를 입력하세요!",
+			icon: "error"
+		})
 	event_start_date.focus();
 	return false;
 	};
 	if(event_content.value == "") {
-	alert("내용을 입력하세요!");
+		Swal.fire({
+			text: "내용을 입력하세요!",
+			icon: "error"
+		})
 	event_content.focus();
 	return false;
 	};
 	if(uploadThumbnail.value == "") {
-	alert("썸네일을 추가하세요!");
+		Swal.fire({
+			text: "썸네일을 추가하세요!",
+			icon: "error"
+		})
 	uploadThumbnail.focus();
 	return false;
 	};
