@@ -13,7 +13,7 @@
 <body>
   <jsp:include page="/WEB-INF/admin_commonjsp/admin_common_header.jsp"></jsp:include>
   <!-- 여기서부터 화면 작성 시작 -->
-  <form class="col-10" action="adminordersmod.mdo" method="get">
+  <form class="col-10" action="adminordersmod.mdo" method="post">
   <div id="main_wrapper" class="m-2  w-100 row">
     <div id="all_box" class="bg-white w-100">
       <div class="row d-flex justify-content-around">

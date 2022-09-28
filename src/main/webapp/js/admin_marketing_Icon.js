@@ -43,7 +43,6 @@ function plus_banner(){
 function minus_banner(obj){
 	var div = $(obj).parent().parent().parent();
 	
-	console.log(div);
 	div.remove();
 }
 

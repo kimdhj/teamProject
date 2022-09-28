@@ -2,7 +2,6 @@
 
 
 $(document).on("change","#yearselect,#monthsel",function(){
-console.log($("rect"));
 
 
 
@@ -45,8 +44,6 @@ function getmonthselect() {
 	$("#monthsel").html(con);
 }
 
-console.log("달", $("#monthsel").val());
-console.log("연도", $("#yearselect").val());
 init();
 function init(){
 
@@ -65,7 +62,6 @@ $.ajax({
 		month: $("#monthsel").val()
 	},
 	success: function(re) {
-		console.log("categorysel", re)
 		let label=[];
 		let data=[];
 		let color=[];
@@ -118,7 +114,6 @@ $.ajax({
 		month: $("#monthsel").val()
 	},
 	success: function(re) {
-		console.log("booksel", re);
 		let label=[];
 		let data=[];
 		let color=[];
@@ -129,7 +124,6 @@ $.ajax({
 		data.push(it.count);
 		color.push(bgcolor[ind]);
 		})
-		console.log(label,data,color);
 		google.charts.load('current', { 'packages': ['corechart'] });
 
 	// Set a callback to run when the Google Visualization API is loaded.
@@ -163,7 +157,6 @@ $.ajax({
 		
 	},
 	error:function(er){
-	console.log(er);
 	}
 
 })
@@ -176,7 +169,6 @@ $.ajax({
 		month: $("#monthsel").val()
 	},
 	success: function(re) {
-		console.log("dashcache", re)
 		let label=[];
 		let data=[];
 		let color=[];
@@ -187,7 +179,6 @@ $.ajax({
 		data.push();
 		color.push(bgcolor[ind]);
 		})
-		console.log(label,data,color);
 		
 	google.charts.load('current', { 'packages': ['corechart'] });
 
@@ -232,7 +223,6 @@ $.ajax({
 		month: $("#monthsel").val()
 	},
 	success: function(re) {
-		console.log("dashcount", re)
 		let label=[];
 		let data=[];
 		let color=[];
@@ -243,7 +233,6 @@ $.ajax({
 		data.push(it.count);
 		color.push(bgcolor[ind]);
 		})
-		console.log(label,data,color);
 			google.charts.load('current', { 'packages': ['corechart'] });
 
 	// Set a callback to run when the Google Visualization API is loaded.
@@ -286,7 +275,6 @@ $.ajax({
 		month: $("#monthsel").val()
 	},
 	success: function(re) {
-		console.log("dashbookbuy", re)
 		let label=[];
 		let data=[];
 		let color=[];
@@ -297,7 +285,6 @@ $.ajax({
 		data.push();
 		color.push(bgcolor[ind]);
 		})
-		console.log(label,data,color);
 		google.charts.load('current', { 'packages': ['corechart'] });
 
 	// Set a callback to run when the Google Visualization API is loaded.
@@ -339,7 +326,6 @@ $.ajax({
 		month: $("#monthsel").val()
 	},
 	success: function(re) {
-		console.log("dashgetuser", re)
 		let label=[];
 		let data=[];
 		let color=[];
@@ -350,7 +336,6 @@ $.ajax({
 	
 		color.push(bgcolor[ind]);
 		})
-		console.log(label,data,color);
 			google.charts.load('current', { 'packages': ['corechart'] });
 
 	// Set a callback to run when the Google Visualization API is loaded.
@@ -393,7 +378,6 @@ $.ajax({
 		month: $("#monthsel").val()
 	},
 	success: function(re) {
-		console.log("dashnotcancelcount", re)
 		let label=[];
 		let data=[];
 		let color=[];
@@ -404,7 +388,6 @@ $.ajax({
 		data.push(it.count);
 		color.push(bgcolor[ind]);
 		})
-		console.log(label,data,color);
 		let up=0;
 		$($("#first .stat-cards-info__num")[1]).text(data[1]);
 		if(Number(data[0])==0){
@@ -434,7 +417,6 @@ $.ajax({
 		month: $("#monthsel").val()
 	},
 	success: function(re) {
-		console.log("dashcancelcount", re)
 		let label=[];
 		let data=[];
 		let color=[];
@@ -445,7 +427,6 @@ $.ajax({
 		data.push(it.count);
 		color.push(bgcolor[ind]);
 		})
-		console.log();
 	
 		let up=0;
 		$($("#first .stat-cards-info__num")[0]).text(data[1]);

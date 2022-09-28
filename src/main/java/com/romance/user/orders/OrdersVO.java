@@ -19,7 +19,7 @@ public class OrdersVO {
 	private int orders_coupon_effect;
 	private int orders_point;
 	private int orders_add_point;
-	private int orders_delivery;
+	private String orders_delivery;
 	private int orders_cache_sum;
 	private int orders_delivery_company;
 	private String user_id;

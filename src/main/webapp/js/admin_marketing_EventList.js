@@ -60,7 +60,6 @@ $.ajax({
 						$("tbody").append(str);
 					},
 					error: function(jqXHR, textStatus, errorThrown) {
-						console.log('error while post');
 						}
 					});
 					$.ajax({
@@ -99,12 +98,10 @@ $.ajax({
 						$("tbody").append(str);
 					},
 					error: function(jqXHR, textStatus, errorThrown) {
-						console.log('error while post');
 						}
 					});
 	},
 	error: function(jqXHR, textStatus, errorThrown) {
-		console.log('error while post');
 		}
 	});
 	
@@ -162,8 +159,6 @@ $(".main_event").on("click", function () {
   let chks = document.querySelectorAll(".main_event:checked"); //네임 선택
   let unchks = document.querySelectorAll(".main_event:not(:checked)");
 
-  console.log(chks.length); //체크된 박스의 개수
-  console.log(unchks.length); //체크된 박스의 개수
   if (chks.length >= 4) {
     $(".main_event:not(:checked)").prop("disabled", true);
   } else {
@@ -191,10 +186,8 @@ function tableDelete(obj) {
 				del: del
 			},
 			success: function(data) {
-				console.log(data);
 			},
 			error: function(jqXHR, textStatus, errorThrown) {
-				console.log('error while post');
 			}
 		});
 		tr.remove();

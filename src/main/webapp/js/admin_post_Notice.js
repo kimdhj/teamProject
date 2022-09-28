@@ -53,7 +53,6 @@ function searchDateOneWeek() {
 	let month = ('0' + (d.getMonth() + 1)).slice(-2);
 	let day = ('0' + d.getDate()).slice(-2);
 	dt = year + "-" + month + "-" + day;
-	console.log(dt);
 	document.getElementById("start_date").value = dt;
 	document.getElementById("end_date").value = today;
 }
@@ -69,7 +68,6 @@ function searchDateOneMonth() {
 	let month = ('0' + (d.getMonth() + 1)).slice(-2);
 	let day = ('0' + d.getDate()).slice(-2);
 	dt = year + "-" + month + "-" + day;
-	console.log(dt);
 	document.getElementById("start_date").value = dt;
 	document.getElementById("end_date").value = today;
 }
@@ -85,7 +83,6 @@ function searchDateThreeMonth() {
 	let month = ('0' + (d.getMonth() + 1)).slice(-2);
 	let day = ('0' + d.getDate()).slice(-2);
 	dt = year + "-" + month + "-" + day;
-	console.log(dt);
 	document.getElementById("start_date").value = dt;
 	document.getElementById("end_date").value = today;
 }
@@ -101,7 +98,6 @@ function searchDateSixMonth() {
 	let month = ('0' + (d.getMonth() + 1)).slice(-2);
 	let day = ('0' + d.getDate()).slice(-2);
 	dt = year + "-" + month + "-" + day;
-	console.log(dt);
 	document.getElementById("start_date").value = dt;
 	document.getElementById("end_date").value = today;
 }
@@ -148,13 +144,9 @@ $(document)
 				                	showConfirmButton: false,
 				                	timer: 1500,
 				                }).then(function(){
-				 //               	console.log(e.target);
-				 //              	console.log($(e.target).parents('tr').children("td:eq(1)").text().trim());
 				           //     	$(e.target).parents('tr').remove();
 					                
-				                	console.log($(e.target).parents('tr').html());
 				                	 var seq = $(e.target).parents('tr').children("td:eq(1)").children("input").val();
-						             console.log(seq);
 						             location.href="/noticeDelete.mdo?notice_seq=" + seq;
 						            	 
 //				                	$(this).parents('tr').remove();
@@ -169,35 +161,28 @@ $(document)
 					})
 					
 //					$(".del").click(function(e) {
-//					//	console.log($(this).parents('tr').children("td:eq(1)").text().trim());
 //						var num = $(this).parents('tr').children("td:eq(1)").text().trim();
 //						num.remove();
 //						
 //						var seq = num;
 //						location.href="/admin_post_NoticeDelete.mdo?notice_seq=" + seq;
 //
-//						console.log(num, seq);
 //					})
 					
 //					var chk_arr = [];
 //					$("input[name=chkbox]:checked").each(function(){
 //						var chk = $(this).val();
 //						chk_arr.push(chk);
-//						console.log(chk_arr);
 //						
 //					})
 				
 //					$(".seldel").click(function(){
 //						var chk_arr = [];
 //						var seq = $(e.target).parents('tr').children("td:eq(1)").text().trim();
-//						console.log(seq);
-//						console.log($("input[name='chkbox']:checked"));
 //						
 //						$("input[name='chkbox']:checked").map((ine,el)=>{
-//							console.log($(el).parents("tr").children("td:eq(1)").text().trim());
 //							var seq = $(el).parents("tr").children("td:eq(1)").text().trim();
 //							chk_arr.push(seq);
-//							console.log(chk_arr);
 //						})
 //						
 //						var allSeq = {"notice_seq" : chk_arr}
@@ -237,10 +222,8 @@ $(document)
 			        	if (result.isConfirmed) {
 			        		$("input[name='chkbox']:checked").map((ine,el)=>{
 			        			// .text() -> .children("input").val();
-								console.log($(el).parents("tr").children("td:eq(1)").children("input").val());
 								var seq =$(el).parents("tr").children("td:eq(1)").children("input").val();
 								chk_arr.push(seq);
-								console.log(chk_arr);
 							})
 							
 							var allSeq = {"notice_seq" : chk_arr}
@@ -314,7 +297,6 @@ $(document)
 					// 코드 변화 감지에 따른 행동
 					observer = new MutationObserver(function(mutations) {
 						mutations.forEach(function(mutation) {
-							console.log();
 							$(mutation.target).parents('tr').children(
 									'td:eq(1)').children().text('default')
 						});
@@ -331,8 +313,6 @@ $(document)
 
 $("#start_date").val(null); // 시작날짜 null 값 띄우기
 $("#end_date").val(null); // 마지막 날짜 null 값 띄우기
-console.log($("#start_date").val());
-console.log($("#end_date").val());
 
 //페이지 네이션 화면 이동
 $(document).on('click', '#all_box #page a', makeDisplay);
@@ -348,28 +328,21 @@ $("#all_box #search_btn").click(function(e) {
 	
 	$("#all_box #startche").val($("#all_box #start_date").val());
 	$("#all_box #endche").val($("#all_box #end_date").val());
-	console.log($("#all_box #startche").val());
-	console.log($("#all_box #endche").val());
 	
 	// 정규표현식
 	let check = /^[0-9]+$/;
 //	$("#all_box #seqche").val($("#search").val());
 	
 //	if(!check.test($("#all_box #seqche").val())){ 
-//		console.log("숫자만 입력해");
 //	}
-	console.log($("#all_box #seqche").val($("#search").val()));
 	
-	console.log($("#level").val());
 	if($("#level").val() == "번호"){
 		$("#all_box #seqche").val($("#search").val());
 	}else if($("#level").val() == "제목"){
-		console.log($("#all_box #titleche"));
 		$("#all_box #titleche").val($("#search").val());
 		
 	}else if($("#level").val() == "내용"){
 		$("#all_box #contentche").val($("#search").val());
-		console.log($("#all_box #contentche"));
 	}
 	
 	if($("#all_box #start_date").val() != null ){
@@ -378,8 +351,6 @@ $("#all_box #search_btn").click(function(e) {
 		$("#all_box #endche").val($("#all_box #end_date").val());
 	}
 	
-	console.log($("#start_date").val());
-	console.log($("#end_date").val());
 	
 	// Date 에 값을 안넣어줄 경우, if 문에 null 값일 때 값 안넘어가도록 진행
 //	$("#all_box #titleche").val($("#all_box #title").val());
@@ -420,11 +391,9 @@ function make() {
 			page: Number($("#all_box #pageche").val())
 		},
 		success: function(re) {
-			console.log("re1", re); // data 를 가져와서 사용하는데, 그 값을 찍어주는 거 (여기서는 Count)
 			count = re;
 			// count = count - (Number($("#all_box #pageche").val()) -1) * 5;
 			count = count - ($("#all_box #pageche").val() - 1) * 5;
-			console.log(count);
 			
 			// 한 페이지당 몇 개의 게시글을 나오게 할 것인지 출력 (<)
 			let pa = "";
@@ -435,8 +404,6 @@ function make() {
 			if (re % 5 == 0) {
 				re--;
 			}
-			console.log("re2", re); // data 를 가져와서 사용하는데, 그 값을 찍어주는 거 (여기서는 Count)
-			console.log(Number($("#all_box #pageche").val()),re / 5 + 1)
 			
 			if (Number($("#all_box #pageche").val()) > re / 5 + 1) {
 				$("#all_box #pageche").val(Number($("#all_box #pageche").val())-1);
@@ -474,7 +441,6 @@ function make() {
 				pa += `<li class="page-item"><a class="page-link" href="#">></a></li>`;
 			}
 			$("#all_box .pagination").html(pa);
-//			console.log("번호 : " + $("#all_box .pagination").html());
 		}
 	});
 	$.ajax({
@@ -491,7 +457,6 @@ function make() {
 			page: Number($("#all_box #pageche").val())
 		},
 		success: function(re) {
-			console.log("ListRe", re); // data 를 가져와서 사용하는데, 그 값을 찍어주는 거 (여기서는 데이터List)
 			let con = "";
 			re.map((notice) => {
 				con += `<tr>
@@ -521,12 +486,8 @@ function make() {
 						`;
 				count--;
 			});
-//			console.log($("#all_box tbody").html());
-//			console.log(con);
 			
 			$("#all_box tbody").html(con);
-//			console.log("con: " + con);
-//			console.log("공지사항 목록 : " + $("#all_box tbody").html());
 		}
 	});
 }

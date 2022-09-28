@@ -26,7 +26,6 @@ $(function() {
 			$(".form-select3").addClass("hide");
 			$(".form-select4").addClass("hide");
 		}
-//		console.log($("#level1").val());
 	});
 });
 
@@ -55,13 +54,10 @@ $(document).ready(function () {
 
 // bigsort 누를 때 - 그리고 smallsort 누를 떄
 $("#all_box #level1").change(function(e){
-//	console.log($("#all_box #level1").val());
 	
 	$("#all_box #bigsort").val(null);
 	$("#all_box #smallsort").val(null);
 	
-	console.log($("#bigsort").val($("#all_box #level1").val()));
-//	console.log($("#level2").val());
 	if($("#all_box #level1").val() == ""){
 		($("#bigsort").val());
 		
@@ -123,9 +119,7 @@ $("#all_box #level1").change(function(e){
 });
 
 $("#register").click(function(){
-	console.log($(".note-editable").html());
 	$("#content").val($(".note-editable").html());
-	console.log($("#content").val());
 	 Swal.fire({
          text: "FAQ를 등록하시겠습니까?",
          icon: 'success',
@@ -144,7 +138,6 @@ $("#register").click(function(){
         	 }else if($("#password").val().trim() == ""){
         		alert("비밀번호를 입력해주세요."); 
         	 }else if($("#all_box #bigsort").val() == ""){
-        		 console.log("대분류 선택해줘");
         		 alert("대분류를 선택해주세요");
         	 }else if($("#content").val().trim() == ""){
         		 alert("내용을 입력해주세요.");
@@ -155,7 +148,6 @@ $("#register").click(function(){
                    	showConfirmButton: false,
                    	timer: 1500,
                    }).then(function(){
-                 	  console.log("권범준은 바보인가?");
                  	  $("#form").submit();
                    })
         	 }

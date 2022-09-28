@@ -117,7 +117,7 @@ function checkId(){
 	const reg_id = /^[A-Za-z]{1}[A-Za-z0-9_-]{3,19}$/; //반드시 영문시작 숫자_언더바/하이픈 허용 4~20자리
 	
 	let user_id = $("#user_id").val();
-	console.log(user_id);
+
 	$.ajax({
 		url:"idCheck.mdo", //Controller에서 받는 주소
 		type:"post",
