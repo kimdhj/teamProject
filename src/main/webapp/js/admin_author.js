@@ -144,7 +144,7 @@ $(document).ready(function() {
 	//태그 클릭에 따른 제한
 	function makeDisplay(e) {
 
-		console.log($(e.target).text());
+		
 
 
 		if ($(e.target).text().trim() == "«") {
@@ -154,12 +154,12 @@ $(document).ready(function() {
 		} else {
 			$("#page").val(Number($(e.target).text()));
 		}
-		console.log("page", $("#page").val());
+	
 		make();
 	}
 	//삭제
 	$(document).on("click", ".del", function(e) {
-		console.log($(e.target).parents("tr").children("td:eq(2)").children("input").val())
+		
 		$.ajax({
 			url: "/adminauthordel.mdo",
 			method: "get",
@@ -167,13 +167,13 @@ $(document).ready(function() {
 			data: {
 				author_seq: $(e.target).parents("tr").children("td:eq(2)").children("input").val()
 			},
-			succcess: function(re) { console.log("suc"); },
+			succcess: function(re) {},
 			error: function(er) { make(); }
 		})
 	})
 	//수정
 	$(document).on("click","#selmod",function(){
-	console.log($(".delche"));
+	
 	let auth_name = [];
 	let auth_seq = [];
 		$(".delche").map((che, el) => {
@@ -185,7 +185,7 @@ $(document).ready(function() {
 			}
 
 		});
-		console.log(auth_seq,auth_name);
+		
 		$.ajax({
 			url: "/adminauthorupdate.mdo",
 			method: "get",
@@ -196,11 +196,10 @@ $(document).ready(function() {
 				auth_name:auth_name
 			},
 			success: function(e) {
-console.log("suc");
+
 				make();
 			},
 			error: function(e) {
-			console.log("err");
 			make();
 
 			}
@@ -216,7 +215,6 @@ console.log("suc");
 	});
 	//수정시 체크됨
 	$(document).on("propertychange change paste input keyUp keyDown",".mod",function(e){
-	console.log($(e.target).parents("tr").children("td:eq(0)").children("input"));
 	$(e.target).parents("tr").children("td:eq(0)").children("input").prop("checked","true");
 	})
 
@@ -233,8 +231,8 @@ console.log("suc");
 			data: {
 				author_name: $("#author_name").val().trim()
 			},
-			succcess: function(re) { console.log("suc"); },
-			error: function(er) { console.log($("#page")); make(); }
+			succcess: function(re) {  },
+			error: function(er) {  make(); }
 		})
 
 	})
@@ -250,13 +248,10 @@ console.log("suc");
 				author_name: $("#nameche").val().trim()
 			},
 			success: function(re) {
-				console.log("갯수" + re);
-				console.log(re);
-				console.log(Number($("#page").val()), re / 5 + 1)
+				
 				if (Number($("#page").val()) > re / 5 + 1) {
 					$("#page").val(Number($("#page").val()) - 1);
 				}
-				console.log("chd", $("#page").val());
 				count = re;
 				count = count - (Number($("#page").val()) - 1) * 5;
 				page = Number($("#page").val());
@@ -297,12 +292,9 @@ console.log("suc");
 					pa += `<li class="page-item"><a class="page-link"  aria-label="Next"> <span aria-hidden="true">&raquo;</span>
                   </a></li>`;
 				}
-				console.log(pa);
-				console.log($(".pagination"));
 				$(".pagination").html(pa);
 			},
 			error: function(er) {
-				console.log(er);
 			}
 		});
 		$.ajax({
@@ -316,7 +308,6 @@ console.log("suc");
 				author_name: $("#nameche").val().trim()
 			},
 			success: function(re) {
-				console.log(re);
 				let con = "";
 				re.map((it) => {
 

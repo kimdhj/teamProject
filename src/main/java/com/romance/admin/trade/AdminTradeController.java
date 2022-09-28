@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -125,9 +126,14 @@ public class AdminTradeController {
     return "redirect:admintrade.mdo";
     
   }
-  @GetMapping("adminordersmod.mdo")
-  public String adminordersmod(OrdersVO vo,@RequestParam(value = "book_seq",required=false)List<Integer> book_seq,@RequestParam(value = "book_count",required=false)List<Integer> book_count) throws Exception {
-   System.out.println("vo수정"+vo);
+  @PostMapping("adminordersmod.mdo")
+  public String adminordersmod(OrdersVO vo,@RequestParam(value = "book_seq",required=false)List<Integer> book_seq,@RequestParam(value = "book_count",required=false)List<Integer> book_count,JwtUtils util, HttpSession session) throws Exception {
+    UserVO vosession = util.getuser(session);
+    if((vosession == null||!vosession.getUser_role().equals("ROLE_ADMIN"))&&(vosession == null||!vosession.getUser_role().equals("ROLE_MASTER"))){
+      return "redirect:admin_login.mdo";
+    }
+
+    System.out.println("vo수정"+vo);
    System.out.println("vo수정"+book_seq);
    System.out.println("vo수정"+book_count);
    List<OrderBookListVO> vol=new ArrayList<OrderBookListVO>();

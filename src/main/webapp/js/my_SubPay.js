@@ -31,28 +31,27 @@ function timestamp(){
 
 	$("#paystart").click(function() {
 	let cuid=$("#user_id").val()+"&"+timestamp().replaceAll(" ","").replaceAll(":","").replaceAll("-","");
-console.log(cuid);
-		console.log("메롱",cuid);
+
 		var radioVal = $('input[name="orders_cache_tools"]:checked').val();
-		console.log(radioVal);
+		
 		
 		if (radioVal.trim() == "카드") {
-		console.log("메롱",cuid);
+		
 			card(cuid);
 		} else {
-		console.log("메롱",cuid);
+		
 			kakao(cuid);
 		}
-
+console.log(cuid);
 
 	});
+	
 	//카카오결제
 	function kakao(cuid) {
 		IMP.request_pay({ // param 설정은 위에서 업급한 PG사별 연동 가이드를 참고하세요.
 			customer_uid: cuid,
 			pg: "kakaopay.TCSUBSCRIP",
-			pay_method: "card",
-		
+			pay_method: "card",	
 			name: '낭만 서점 구독 결제',
 			amount: 30000
 		}, function(rsp) { // callback
@@ -67,7 +66,7 @@ console.log(cuid);
 					async: true,
 					dataType: "JSON",
 					success: function(e) {
-						console.log("성공");
+						
 						location.href="/subfin.do";
 					}
 				})
@@ -86,8 +85,7 @@ console.log(cuid);
 			customer_uid: cuid,
 			pg: "html5_inicis.INIBillTst",
 			pay_method: "card",
-			
-				name: '낭만 서점 구독 결제',
+			name: '낭만 서점 구독 결제',
 			amount: 30000
 
 		}, function(rsp) { // callback
@@ -103,7 +101,7 @@ console.log(cuid);
 					async: true,
 					dataType: "JSON",
 					success: function(e) {
-						console.log("성공");
+						
 						location.href="/subfin.do";
 					}
 				})

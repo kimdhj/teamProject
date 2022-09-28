@@ -27,7 +27,6 @@ $(function() {
 			$(".form-select3").addClass("hide");
 			$(".form-select4").addClass("hide");
 		}
-//		console.log($("#level1").val());
 	});
 });
 
@@ -146,13 +145,10 @@ $(document).ready(function(){
 		
 		
 //		$("#all_box #level1").val($("#bigsort").val());
-////		console.log($("#all_box #level1").val());
 //		
 //		$("#all_box #bigsort").val(null);
 //		$("#all_box #smallsort").val(null);
 //		
-//		console.log($("#bigsort").val($("#all_box #level1").val()));
-////		console.log($("#level2").val());
 //		if($("#all_box #level1").val() == ""){
 //			($("#bigsort").val());
 //			
@@ -236,7 +232,6 @@ $(document).ready(function () {
 
 function i(){
 	$("#content").val($(".note-editable").text());
-	console.log($("#content").val());
 };
 
 // 수정 jquery + checkPW 
@@ -252,7 +247,6 @@ $().ready(function () {
             cancelButtonText: '아니오'
         }).then((result) => {
         	if (result.isConfirmed) { // 모달창에서 confirm(예) 버튼 누른 경우
-        		console.log("faqUpdateForm.FAQ_passwd : " + faqUpdateForm.FAQ_passwd.value, "faqUpdateForm.FAQ_seq : " + faqUpdateForm.FAQ_seq.value );
 
         		if($("#title").val().trim() == ""){
             		alert("제목을 입력해주세요.");
@@ -272,7 +266,6 @@ $().ready(function () {
         			},
         			async: false,
         			success: function(data){ // 정상적으로 응답 받은 경우 호출
-        				console.log(data);
         				if(data == "1"){ // ajax 실행 성공
         					Swal.fire({
         	                	text: "수정 성공!",
@@ -281,7 +274,6 @@ $().ready(function () {
                                	timer: 1500
         	                }).then(function(){ // 예를 눌러야지 admin_post_Notice.mdo 로 이동
         	                	var seq = $("#seq").text();
-        	                	console.log(seq);
         	                	
         	                	i();
         	                	
@@ -327,7 +319,6 @@ $().ready(function () {
             cancelButtonText: '아니오'
         }).then((result) => {
         	if (result.isConfirmed) { // 모달창에서 confirm 버튼 누른 경우
-        		console.log("faqUpdateForm.FAQ_passwd : " + faqUpdateForm.FAQ_passwd.value, "faqUpdateForm.FAQ_seq : " + faqUpdateForm.FAQ_seq.value );
         		$.ajax({
         			type: "post", // 전송방식
         			url: "/FaqCheckPW.mdo", // 컨트롤러 사용할 때, 내가 보낼 데이터의 주소
@@ -338,7 +329,6 @@ $().ready(function () {
         			},
         			async: false,
         			success: function(data){
-        				console.log(data);
         				if(data == "1"){
         					Swal.fire({
         						text: "삭제하셨습니다.",
@@ -398,7 +388,5 @@ $().ready(function () {
 init();
 
 function init(){ // html 로 인식하던 "" 을 value 로 인식시켜서 " 나 ' 를 사용 가능하도록 만들어줌
-	console.log($(".note-editable").text());
 	$("#content").val($(".note-editable").text());
-	console.log($("#content").val());
 }
