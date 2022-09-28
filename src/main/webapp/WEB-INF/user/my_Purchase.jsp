@@ -4,7 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <head>
 <jsp:include page="/WEB-INF/commonjsp/common_head.jsp"></jsp:include>
-<link href="/datepicker/css/datepicker.min.css" rel="stylesheet" type="text/css" media="all">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 <link href="/css/my_Purchase.css" rel="stylesheet">
 </head>
 <body>
@@ -27,16 +27,15 @@
       <div class="col-4" id="day_title">기간 조회</div>
       <div class="col-8" id="day_select">
         <div id="day_calendar" class="col-5">
-          <input class="col-5" placeholder="시작날짜" type="text" id="start_date" style="text-align: center;" />~<input class="col-5" placeholder="마지막 날짜" type="text" id="end_date" style="text-align: center;" />
+          <input class="col-5" placeholder="시작날짜" type="text" id="start_date" style="text-align: center; margin-left: 10%;" />~<input class="col-5" placeholder="마지막 날짜" type="text" id="end_date" style="text-align: center;" />
         </div>
         <div id="day_btn" class="col-7">
-          <div id="dayAdd" class="btn-group me-2" role="group" aria-label="Second group">
-            <button type="button" class="btn btn-secondary week">1주일</button>
-            <button type="button" class="btn btn-secondary month">1개월</button>
-            <button type="button" class="btn btn-secondary threemonth">3개월</button>
-            <button type="button" class="btn btn-secondary sixmonth">6개월</button>
-            <button type="button" class="btn btn-secondary year">1년</button>
-          </div>
+          <div class="btn btn-group" role="group" aria-label="Basic example">
+			<button type="button" class="btn btn-dark btn-sm" name="filterDate" id="oneWeek" value="1" onclick="searchDateOneWeek()">1주일</button>
+			<button type="button" class="btn btn-dark btn-sm" name="filterDate" id="oneMonth" value="2" onclick="searchDateOneMonth()">1개월</button>
+			<button type="button" class="btn btn-dark btn-sm" name="filterDate" id="threeMonth" value="3" onclick="searchDateThreeMonth()">3개월</button>
+			<button type="button" class="btn btn-dark btn-sm" name="filterDate" id="sixMonth" value="4" onclick="searchDateSixMonth()">6개월</button>
+		</div>
         </div>
       </div>
     </div>
@@ -87,7 +86,6 @@
         <img class="mt-3 mb-3" width="100%" src="${purchase.book_bigimgURL }">
       </div>
       
-      ${purchase.orders_seq }
       <div class="col-9 bookBox">
         <div class="row">
           <div class="col-8" style="font-size: large; font-weight: bolder;" id="purchaseList_title">${purchase.book_title }</div>
@@ -194,13 +192,14 @@
       
       </div>
   
-  <jsp:include page="/WEB-INF/commonjsp/common_mypage_bottom.jsp"></jsp:include>
-  <jsp:include page="/WEB-INF/commonjsp/common_footer.jsp"></jsp:include>
-  <!-- Contact End -->
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-  <!-- alert 창 예쁘게 -->
-  <script src="/datepicker/js/datepicker.js"></script>
-  <script src="/datepicker/js/datepicker.ko.js"></script>
-  <script src="/js/my_Purchase.js"></script>
+<jsp:include page="/WEB-INF/commonjsp/common_mypage_bottom.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/commonjsp/common_footer.jsp"></jsp:include>
+<!-- Contact End -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<!-- alert 창 예쁘게 -->
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/i18n/datepicker-ko.js"></script>
+<script src="/js/my_Purchase.js"></script>
 </body>
 </html>

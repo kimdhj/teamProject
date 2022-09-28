@@ -32,8 +32,8 @@
     						<div class="col-3" id="title">
                               <a href="/noticeDetail.do?notice_seq=${notice.notice_seq}&seq=${allCount}">
                               <c:choose>
-                                <c:when test="${fn:length(notice.notice_title) gt 7 }">
-                                  <c:out value="${fn:substring(notice.notice_title, 0, 6) }..."></c:out>
+                                <c:when test="${fn:length(notice.notice_title) gt 19 }">
+                                  <c:out value="${fn:substring(notice.notice_title, 0, 18) }..."></c:out>
                                 </c:when>
                                 <c:otherwise>
                                 <c:out value="${notice.notice_title }"/>
