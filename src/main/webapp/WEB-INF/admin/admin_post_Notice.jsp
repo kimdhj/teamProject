@@ -78,7 +78,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach items="${noticeList }" var="notice" begin="0" end="4">
+							<c:forEach items="${noticeList }" var="notice" >
 							<tr>
 								<td><input class="form-check-input border-1 border-dark delche chkbox" name="chkbox" type="checkbox" id="flexCheckChecked" checked></td>
 								<td>

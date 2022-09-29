@@ -4,7 +4,7 @@
   <class id="1" language="java" name="com.romance.admin.account.AdminAccountController" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/admin/account/AdminAccountController.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="760" y="212"/>    
+    <position height="-1" width="-1" x="1212" y="128"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -14,7 +14,7 @@
   <interface id="2" language="java" name="com.romance.admin.account.AdminAccountService" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/admin/account/AdminAccountService.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1541" y="152"/>    
+    <position height="-1" width="-1" x="2145" y="192"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -24,7 +24,7 @@
   <class id="3" language="java" name="com.romance.admin.account.impl.AdminAccountServiceImpl" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/admin/account/impl/AdminAccountServiceImpl.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1557" y="814"/>    
+    <position height="-1" width="-1" x="2001" y="896"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -34,7 +34,7 @@
   <class id="4" language="java" name="com.romance.admin.account.impl.AdminAccountDAO" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/admin/account/impl/AdminAccountDAO.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="813" y="770"/>    
+    <position height="-1" width="-1" x="1221" y="1319"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -43,7 +43,7 @@
   </class>  
   <class id="5" language="java" name="com.romance.admin.account.Criteria" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/admin/account/Criteria.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="536" width="267" x="174" y="85"/>    
+    <position height="-1" width="-1" x="258" y="973"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -52,7 +52,7 @@
   </class>  
   <class id="6" language="java" name="com.romance.admin.account.Pagination" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/admin/account/Pagination.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="313" y="939"/>    
+    <position height="-1" width="-1" x="596" y="1547"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -60,47 +60,47 @@
     </display>  
   </class>  
   <association id="7">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="8" name="adminAccountService">        
-        <position height="0" width="0" x="0" y="0"/>      
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="8" name="criteria">        
+        <position height="0" width="0" x="-49" y="620"/>      
       </attribute>      
       <multiplicity id="9" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
+        <position height="0" width="0" x="-49" y="620"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
+    <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="10">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="6"/>  
-  </dependency>  
-  <association id="11">    
+  <association id="10">    
     <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="12" name="adminAccountDAO">        
-        <position height="0" width="0" x="578" y="-13"/>      
+      <attribute id="11" name="adminAccountDAO">        
+        <position height="0" width="0" x="986" y="536"/>      
       </attribute>      
-      <multiplicity id="13" minimum="0" maximum="1">        
-        <position height="0" width="0" x="578" y="-13"/>      
+      <multiplicity id="12" minimum="0" maximum="1">        
+        <position height="0" width="0" x="986" y="536"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="14">    
+  <dependency id="13">    
     <end type="SOURCE" refId="3"/>    
     <end type="TARGET" refId="5"/>  
   </dependency>  
+  <dependency id="14">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
   <association id="15">    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="16" name="criteria">        
-        <position height="0" width="0" x="0" y="0"/>      
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="16" name="adminAccountService">        
+        <position height="0" width="0" x="604" y="40"/>      
       </attribute>      
       <multiplicity id="17" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
+        <position height="0" width="0" x="604" y="40"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
+    <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <realization id="18">    
@@ -108,15 +108,15 @@
     <end type="TARGET" refId="2"/>  
   </realization>  
   <dependency id="19">    
-    <end type="SOURCE" refId="4"/>    
+    <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="5"/>  
   </dependency>  
   <dependency id="20">    
     <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="5"/>  
+    <end type="TARGET" refId="6"/>  
   </dependency>  
   <dependency id="21">    
-    <end type="SOURCE" refId="2"/>    
+    <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="5"/>  
   </dependency>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 

@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="com.romance.admin.terms.AddTermsDAO" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/admin/terms/AddTermsDAO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="176" width="317" x="617" y="396"/>    
+    <position height="-1" width="-1" x="179" y="371"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <interface id="3" language="java" name="com.romance.admin.terms.AddTermsService" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/admin/terms/AddTermsService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="136" width="301" x="1260" y="190"/>    
+    <position height="-1" width="-1" x="1529" y="1208"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </interface>  
   <class id="4" language="java" name="com.romance.admin.terms.AddTermsServiceImpl" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/admin/terms/AddTermsServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="156" width="301" x="1519" y="424"/>    
+    <position height="-1" width="-1" x="2110" y="417"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,7 +39,7 @@
   </class>  
   <class id="5" language="java" name="com.romance.admin.terms.TermsController" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/admin/terms/TermsController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="316" width="531" x="407" y="500"/>    
+    <position height="-1" width="-1" x="333" y="804"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -48,7 +48,7 @@
   </class>  
   <class id="6" language="java" name="com.romance.admin.terms.TermsSearchVO" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/admin/terms/TermsSearchVO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="356" width="206" x="1377" y="674"/>    
+    <position height="-1" width="-1" x="1450" y="-75"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -57,7 +57,7 @@
   </class>  
   <interface id="7" language="java" name="com.romance.admin.terms.TermsService" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/admin/terms/TermsService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="236" width="352" x="188" y="702"/>    
+    <position height="-1" width="-1" x="857" y="1115"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -66,7 +66,7 @@
   </interface>  
   <class id="8" language="java" name="com.romance.admin.terms.TermsVO" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/admin/terms/TermsVO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="536" width="260" x="1845" y="498"/>    
+    <position height="-1" width="-1" x="2125" y="963"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -93,141 +93,157 @@
     </display>  
   </class>  
   <dependency id="11">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="8"/>  
-  </dependency>  
-  <dependency id="12">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="8"/>  
-  </dependency>  
-  <dependency id="13">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="6"/>  
-  </dependency>  
-  <dependency id="14">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="8"/>  
-  </dependency>  
-  <dependency id="15">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="8"/>  
-  </dependency>  
-  <dependency id="16">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="6"/>  
-  </dependency>  
-  <realization id="17">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="3"/>  
-  </realization>  
-  <dependency id="18">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="8"/>  
-  </dependency>  
-  <dependency id="19">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="8"/>  
-  </dependency>  
-  <association id="20">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="21" name="service"/>      
-      <multiplicity id="22" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="23">    
-    <end type="SOURCE" refId="10"/>    
-    <end type="TARGET" refId="8"/>  
-  </dependency>  
-  <dependency id="24">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="8"/>  
-  </dependency>  
-  <dependency id="25">    
     <end type="SOURCE" refId="9"/>    
     <end type="TARGET" refId="6"/>  
   </dependency>  
-  <dependency id="26">    
+  <dependency id="12">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <dependency id="13">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <dependency id="14">    
     <end type="SOURCE" refId="10"/>    
     <end type="TARGET" refId="8"/>  
   </dependency>  
-  <dependency id="27">    
-    <end type="SOURCE" refId="3"/>    
+  <dependency id="15">    
+    <end type="SOURCE" refId="10"/>    
     <end type="TARGET" refId="8"/>  
   </dependency>  
-  <realization id="28">    
+  <dependency id="16">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <dependency id="17">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <dependency id="18">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <realization id="19">    
     <end type="SOURCE" refId="10"/>    
     <end type="TARGET" refId="7"/>  
   </realization>  
-  <association id="29">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="30" name="addTermsDAO"/>      
-      <multiplicity id="31" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="32">    
-    <end type="SOURCE" refId="10"/>    
+  <dependency id="20">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <dependency id="21">    
+    <end type="SOURCE" refId="9"/>    
     <end type="TARGET" refId="6"/>  
   </dependency>  
-  <dependency id="33">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="6"/>  
+  <dependency id="22">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="8"/>  
   </dependency>  
-  <dependency id="34">    
-    <end type="SOURCE" refId="10"/>    
-    <end type="TARGET" refId="6"/>  
-  </dependency>  
-  <dependency id="35">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="6"/>  
-  </dependency>  
-  <association id="36">    
+  <association id="23">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="37" name="addTermsService"/>      
-      <multiplicity id="38" minimum="0" maximum="1"/>    
+      <attribute id="24" name="addTermsService">        
+        <position height="0" width="0" x="119" y="950"/>      
+      </attribute>      
+      <multiplicity id="25" minimum="0" maximum="1">        
+        <position height="0" width="0" x="119" y="950"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="39">    
-    <end type="SOURCE" refId="5"/>    
+  <dependency id="26">    
+    <end type="SOURCE" refId="4"/>    
     <end type="TARGET" refId="8"/>  
   </dependency>  
-  <dependency id="40">    
+  <dependency id="27">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <dependency id="28">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <dependency id="29">    
     <end type="SOURCE" refId="7"/>    
     <end type="TARGET" refId="8"/>  
   </dependency>  
-  <dependency id="41">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="8"/>  
-  </dependency>  
-  <dependency id="42">    
+  <dependency id="30">    
     <end type="SOURCE" refId="3"/>    
     <end type="TARGET" refId="8"/>  
   </dependency>  
-  <association id="43">    
+  <dependency id="31">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <dependency id="32">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <dependency id="33">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <association id="34">    
     <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="44" name="dao"/>      
-      <multiplicity id="45" minimum="0" maximum="1"/>    
+      <attribute id="35" name="dao">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="36" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="9" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="46">    
-    <end type="SOURCE" refId="9"/>    
+  <realization id="37">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="3"/>  
+  </realization>  
+  <dependency id="38">    
+    <end type="SOURCE" refId="3"/>    
     <end type="TARGET" refId="8"/>  
   </dependency>  
-  <dependency id="47">    
-    <end type="SOURCE" refId="9"/>    
+  <dependency id="39">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <dependency id="40">    
+    <end type="SOURCE" refId="10"/>    
     <end type="TARGET" refId="6"/>  
   </dependency>  
-  <dependency id="48">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="8"/>  
+  <dependency id="41">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="6"/>  
   </dependency>  
+  <dependency id="42">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <association id="43">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="44" name="service">        
+        <position height="0" width="0" x="493" y="295"/>      
+      </attribute>      
+      <multiplicity id="45" minimum="0" maximum="1">        
+        <position height="0" width="0" x="493" y="295"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="46">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="47" name="addTermsDAO">        
+        <position height="0" width="0" x="-596" y="-113"/>      
+      </attribute>      
+      <multiplicity id="48" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-596" y="-113"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

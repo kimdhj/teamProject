@@ -39,8 +39,8 @@
               <option value="paid">결제 완료</option>
               <option value="delivery">배송중</option>
               <option value="finish">배송완료</option>
-              <option value="cancelwait">취소대기</option>
-              <option value="cancelFinish">취소완료</option>
+              <option value="cancelallwait">취소대기</option>
+              <option value="cancelallfinish">취소완료</option>
             </select>
           </div>
         </div>

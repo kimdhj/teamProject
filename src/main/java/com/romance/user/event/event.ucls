@@ -12,7 +12,7 @@
   </interface>  
   <class id="2" language="java" name="com.romance.user.event.impl.EventDAO" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/user/event/impl/EventDAO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="396" width="343" x="1008" y="972"/>    
+    <position height="-1" width="-1" x="820" y="1222"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="com.romance.user.event.EventVO" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/user/event/EventVO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="1316" width="296" x="672" y="-384"/>    
+    <position height="-1" width="-1" x="141" y="373"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -49,7 +49,7 @@
   </class>  
   <interface id="6" language="java" name="com.romance.admin.sub.SubscribeService" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/admin/sub/SubscribeService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="116" width="278" x="304" y="-165"/>    
+    <position height="-1" width="-1" x="2212" y="187"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -58,81 +58,97 @@
   </interface>  
   <interface id="7" language="java" name="com.romance.user.points.MyPointsService" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/user/points/MyPointsService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="136" width="244" x="338" y="101"/>    
+    <position height="-1" width="-1" x="2047" y="328"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <dependency id="8">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="3"/>  
-  </dependency>  
-  <association id="9">    
+  <association id="8">    
     <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="10" name="eventService"/>      
-      <multiplicity id="11" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="12">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="13" name="myPointsService"/>      
-      <multiplicity id="14" minimum="0" maximum="1"/>    
+      <attribute id="9" name="myPointsService">        
+        <position height="0" width="0" x="1587" y="159"/>      
+      </attribute>      
+      <multiplicity id="10" minimum="0" maximum="1">        
+        <position height="0" width="0" x="1587" y="159"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="15">    
+  <dependency id="11">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="3"/>  
   </dependency>  
-  <association id="16">    
+  <association id="12">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="13" name="eventService">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="14" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="15">    
     <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="17" name="EventDAO"/>      
-      <multiplicity id="18" minimum="0" maximum="1"/>    
+      <attribute id="16" name="EventDAO">        
+        <position height="0" width="0" x="-359" y="52"/>      
+      </attribute>      
+      <multiplicity id="17" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-359" y="52"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <dependency id="18">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="3"/>  
+  </dependency>  
   <dependency id="19">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="3"/>  
   </dependency>  
   <dependency id="20">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="3"/>  
+  </dependency>  
+  <dependency id="21">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="3"/>  
+  </dependency>  
+  <dependency id="22">    
     <end type="SOURCE" refId="4"/>    
     <end type="TARGET" refId="3"/>  
   </dependency>  
-  <association id="21">    
+  <dependency id="23">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="3"/>  
+  </dependency>  
+  <dependency id="24">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="3"/>  
+  </dependency>  
+  <association id="25">    
     <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="22" name="subscribeService"/>      
-      <multiplicity id="23" minimum="0" maximum="1"/>    
+      <attribute id="26" name="subscribeService">        
+        <position height="0" width="0" x="1769" y="294"/>      
+      </attribute>      
+      <multiplicity id="27" minimum="0" maximum="1">        
+        <position height="0" width="0" x="1769" y="294"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="24">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="3"/>  
-  </dependency>  
-  <dependency id="25">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="3"/>  
-  </dependency>  
-  <dependency id="26">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="3"/>  
-  </dependency>  
-  <realization id="27">    
+  <realization id="28">    
     <end type="SOURCE" refId="4"/>    
     <end type="TARGET" refId="1"/>  
   </realization>  
-  <dependency id="28">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="3"/>  
-  </dependency>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

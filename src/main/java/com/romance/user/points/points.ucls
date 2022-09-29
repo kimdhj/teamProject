@@ -12,7 +12,7 @@
   </interface>  
   <class id="2" language="java" name="com.romance.user.points.MyPointsServiceImpl" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/user/points/MyPointsServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="156" width="244" x="1010" y="93"/>    
+    <position height="-1" width="-1" x="850" y="3"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="com.romance.user.points.MyPointsController" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/user/points/MyPointsController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="196" width="431" x="1294" y="93"/>    
+    <position height="-1" width="-1" x="1299" y="89"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </class>  
   <class id="4" language="java" name="com.romance.user.points.MyPointsVO" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/user/points/MyPointsVO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="476" width="234" x="736" y="93"/>    
+    <position height="-1" width="-1" x="366" y="184"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -57,7 +57,7 @@
   </class>  
   <interface id="7" language="java" name="com.romance.admin.log.LoggingService" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/admin/log/LoggingService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="452" y="147"/>    
+    <position height="-1" width="-1" x="1571" y="260"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -77,30 +77,42 @@
     <end type="SOURCE" refId="6"/>    
     <end type="TARGET" refId="4"/>  
   </dependency>  
-  <association id="10">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="11" name="loggingService"/>      
-      <multiplicity id="12" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="13">    
+  <dependency id="10">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="11">    
     <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="12">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="13">    
+    <end type="SOURCE" refId="3"/>    
     <end type="TARGET" refId="4"/>  
   </dependency>  
   <association id="14">    
     <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="15" name="myPointsService"/>      
-      <multiplicity id="16" minimum="0" maximum="1"/>    
+      <attribute id="15" name="ser">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="16" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
+    <end type="TARGET" refId="8" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="17">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="18" name="myPointsDAO"/>      
-      <multiplicity id="19" minimum="0" maximum="1"/>    
+      <attribute id="18" name="myPointsDAO">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="19" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
@@ -110,35 +122,39 @@
     <end type="TARGET" refId="4"/>  
   </dependency>  
   <dependency id="21">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="4"/>  
-  </dependency>  
-  <dependency id="22">    
     <end type="SOURCE" refId="6"/>    
     <end type="TARGET" refId="4"/>  
   </dependency>  
-  <dependency id="23">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="4"/>  
-  </dependency>  
-  <dependency id="24">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="4"/>  
-  </dependency>  
+  <association id="22">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="23" name="myPointsService">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="24" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <realization id="25">    
     <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="1"/>  
   </realization>  
   <dependency id="26">    
-    <end type="SOURCE" refId="3"/>    
+    <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="4"/>  
   </dependency>  
   <association id="27">    
     <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="28" name="ser"/>      
-      <multiplicity id="29" minimum="0" maximum="1"/>    
+      <attribute id="28" name="loggingService">        
+        <position height="0" width="0" x="1119" y="113"/>      
+      </attribute>      
+      <multiplicity id="29" minimum="0" maximum="1">        
+        <position height="0" width="0" x="1119" y="113"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
+    <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 

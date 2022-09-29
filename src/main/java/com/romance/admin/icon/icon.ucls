@@ -12,7 +12,7 @@
   </class>  
   <interface id="2" language="java" name="com.romance.admin.icon.IconService" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/admin/icon/IconService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="196" width="450" x="748" y="36"/>    
+    <position height="-1" width="-1" x="1368" y="134"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </interface>  
   <class id="3" language="java" name="com.romance.admin.icon.BannerVO" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/admin/icon/BannerVO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="416" width="251" x="1442" y="-30"/>    
+    <position height="-1" width="-1" x="1789" y="408"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </class>  
   <class id="4" language="java" name="com.romance.admin.icon.IconVO" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/admin/icon/IconVO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="416" width="229" x="1096" y="144"/>    
+    <position height="-1" width="-1" x="1610" y="829"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,7 +39,7 @@
   </class>  
   <class id="5" language="java" name="com.romance.admin.icon.impl.IconServiceImpl" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/admin/icon/impl/IconServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="236" width="450" x="481" y="332"/>    
+    <position height="-1" width="-1" x="911" y="910"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -56,27 +56,27 @@
     </display>  
   </class>  
   <dependency id="7">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="4"/>  
-  </dependency>  
-  <dependency id="8">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="4"/>  
-  </dependency>  
-  <dependency id="9">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="3"/>  
-  </dependency>  
-  <realization id="10">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="2"/>  
-  </realization>  
-  <dependency id="11">    
     <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <association id="8">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="9" name="iconService">        
+        <position height="0" width="0" x="395" y="0"/>      
+      </attribute>      
+      <multiplicity id="10" minimum="0" maximum="1">        
+        <position height="0" width="0" x="395" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="11">    
+    <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="4"/>  
   </dependency>  
   <dependency id="12">    
-    <end type="SOURCE" refId="2"/>    
+    <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="3"/>  
   </dependency>  
   <dependency id="13">    
@@ -85,27 +85,35 @@
   </dependency>  
   <dependency id="14">    
     <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="15">    
+    <end type="SOURCE" refId="6"/>    
     <end type="TARGET" refId="3"/>  
   </dependency>  
-  <association id="15">    
+  <association id="16">    
     <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="16" name="iconDAO"/>      
-      <multiplicity id="17" minimum="0" maximum="1"/>    
+      <attribute id="17" name="iconDAO">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="18" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="18">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="19" name="iconService"/>      
-      <multiplicity id="20" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="21">    
+  <dependency id="19">    
     <end type="SOURCE" refId="5"/>    
     <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <realization id="20">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="2"/>  
+  </realization>  
+  <dependency id="21">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="3"/>  
   </dependency>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    

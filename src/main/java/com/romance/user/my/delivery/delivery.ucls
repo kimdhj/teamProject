@@ -13,7 +13,7 @@
   <class id="2" language="java" name="com.romance.user.my.delivery.DeliveryController" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/user/my/delivery/DeliveryController.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="236" width="499" x="691" y="-115"/>    
+    <position height="-1" width="-1" x="371" y="28"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -23,7 +23,7 @@
   <class id="3" language="java" name="com.romance.user.my.delivery.DeliveryServiceImpl" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/user/my/delivery/DeliveryServiceImpl.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="196" width="313" x="1230" y="-115"/>    
+    <position height="-1" width="-1" x="1098" y="5"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -51,7 +51,7 @@
   </class>  
   <interface id="6" language="java" name="com.romance.user.login.UserService" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/user/login/UserService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="296" width="281" x="414" y="2"/>    
+    <position height="-1" width="-1" x="253" y="460"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -59,63 +59,75 @@
     </display>  
   </interface>  
   <dependency id="7">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="5"/>  
-  </dependency>  
-  <dependency id="8">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="5"/>  
-  </dependency>  
-  <dependency id="9">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="5"/>  
-  </dependency>  
-  <association id="10">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="11" name="ser"/>      
-      <multiplicity id="12" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="13">    
     <end type="SOURCE" refId="4"/>    
     <end type="TARGET" refId="5"/>  
   </dependency>  
-  <dependency id="14">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="5"/>  
-  </dependency>  
-  <realization id="15">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="4"/>  
-  </realization>  
-  <dependency id="16">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="5"/>  
-  </dependency>  
-  <association id="17">    
+  <association id="8">    
     <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="18" name="dao"/>      
-      <multiplicity id="19" minimum="0" maximum="1"/>    
+      <attribute id="9" name="dao">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="10" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="20">    
+  <dependency id="11">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <dependency id="12">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <association id="13">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="21" name="seru"/>      
-      <multiplicity id="22" minimum="0" maximum="1"/>    
+      <attribute id="14" name="seru">        
+        <position height="0" width="0" x="-301" y="310"/>      
+      </attribute>      
+      <multiplicity id="15" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-301" y="310"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="23">    
+  <realization id="16">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <dependency id="17">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <association id="18">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="19" name="ser">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="20" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="21">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <dependency id="22">    
     <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="5"/>  
   </dependency>  
-  <dependency id="24">    
+  <dependency id="23">    
     <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <dependency id="24">    
+    <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="5"/>  
   </dependency>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 

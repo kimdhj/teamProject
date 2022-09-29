@@ -172,13 +172,15 @@ public class NoticeController {
 	// 공지사항 상세보기
 	@RequestMapping(value = "/admin_post_NoticeDetail.mdo")
 	public String getNotice(Model model, NoticeVO vo, NoticeSearchVO svo) {
-//		System.out.println("컨트롤러 " + svo);
+		System.out.println("컨트롤러 " + svo);
 		System.out.println("컨트롤러 " + vo);
 		vo = noticeService.getNotice(vo);
+	
 		String uploadFolder = "https://doublejo.s3.ap-northeast-2.amazonaws.com/";
-		if(vo.getNotice_fileName() != null) {
+		if(vo.getNotice_fileName() != null && vo.getNotice_fileName() != ""&&!vo.getNotice_fileName().isEmpty()) {
 			String one = vo.getNotice_fileName().replaceAll(uploadFolder, "");
 			int dot = one.indexOf(".");
+			System.out.println("dot"+dot);
 			one = one.substring(0, dot);
 			System.out.println(one);
 			model.addAttribute("one", one);
