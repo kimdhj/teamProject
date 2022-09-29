@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="com.romance.security.LoginSuccessHandler" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/security/LoginSuccessHandler.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="116" width="631" x="465" y="486"/>    
+    <position height="-1" width="-1" x="609" y="524"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </class>  
   <class id="4" language="java" name="com.romance.security.MailService" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/security/MailService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="136" width="319" x="1492" y="188"/>    
+    <position height="-1" width="-1" x="739" y="384"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,7 +39,7 @@
   </class>  
   <class id="5" language="java" name="com.romance.security.Sms" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/security/Sms.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="116" width="218" x="510" y="312"/>    
+    <position height="-1" width="-1" x="412" y="310"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      

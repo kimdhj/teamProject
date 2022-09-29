@@ -12,16 +12,16 @@ function make() {
 			success: function(re) {
 				console.log(re);
 				console.log(re);
-				console.log(Number($("#page").val()), re / 5 + 1)
-				if (Number($("#page").val()) > re / 5 + 1) {
-					$("#page").val(Number($("#page").val()) - 1);
+				console.log(Number($("input#page").val()), re / 5 + 1)
+				if (Number($("input#page").val()) > re / 5 + 1) {
+					$("#page").val(Number($("input#page").val()) - 1);
 				}
-				console.log("chd", $("#page").val());
+				console.log("chd", $("input#page").val());
 				count = re;
 				count = count - (Number($("#page").val()) - 1) * 5;
-				page = Number($("#page").val());
+				page = Number($("input#page").val());
 				let pa = '';
-				if (Number($("#page").val()) > 1) {
+				if (Number($("input#page").val()) > 1) {
 					pa += ` <li class="page-item "><a class="page-link"> < </a></li>`;
 				}
 
@@ -39,11 +39,11 @@ function make() {
 					endpage = page + 2;
 				}
 				for (let i = startpage; i <= endpage; i++) {
-					if (Number($("#page").val()) != i) {
+					if (Number($("input#page").val()) != i) {
 
 						pa += `<li class="page-item"><a class="page-link">${i} </a></li>`;
 					}
-					if (Number($("#page").val()) == i) {
+					if (Number($("input#page").val()) == i) {
 
 						pa += `                  <li class="page-item active" aria-current="page"><a  class="page-link">${i}</a></li>`;
 					}
@@ -52,7 +52,7 @@ function make() {
 
 
 				}
-				if (Number($("#page").val()) < re / 5) {
+				if (Number($("input#page").val()) < re / 5) {
 					pa += ` <li class="page-item"><a class="page-link">></a></li>
                 `;
 				}
@@ -103,6 +103,7 @@ function make() {
 
 
 				});
+				console.log($("tbody"));
 				$("tbody").html(con);
 
 			}
@@ -134,19 +135,19 @@ function make() {
 		
 
 		if ($(e.target).text().trim() == "<") {
-			$("#page").val(Number($("input#page").val()) - 1);
+			$("input#page").val(Number($("input#page").val()) - 1);
 		} else if ($(e.target).text().trim() == ">") {
-			$("#page").val(Number($("input#page").val()) + 1);
+			$("input#page").val(Number($("input#page").val()) + 1);
 		} else {
-			$("#page").val(Number($(e.target).text()));
+			$("input#page").val(Number($(e.target).text()));
 		}
-	console.log("page",$("input#page").val());
+	console.log("input#page",$("input#page").val());
 		make();
 	}
 	$(document).on("click","#search_btn",function(){
 	$("#searchkeyword").val($("#stateche").val().trim());
 	$("#searchcontent").val($("#contentche").val().trim());
-	$("#page").val(Number(1));
+	$("input#page").val(Number(1));
 	console.log($("#searchkeyword").val(),$("#searchcontent").val())
 
 	make();

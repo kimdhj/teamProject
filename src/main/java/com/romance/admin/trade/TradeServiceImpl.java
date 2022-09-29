@@ -245,9 +245,14 @@ public class TradeServiceImpl implements TradeService {
       }
     } else {
       OrdersVO voo = dao.ordersel(vo);
+      int can=0;
+      if(voo.getOrders_coupon_effect()!=0) {
+       can = voo.getOrders_cache_sum() - ((vo.getSum()*100)/voo.getOrders_coupon_effect()+voo.getOrders_point());
+      }else {
+         can = voo.getOrders_cache_sum() - (voo.getOrders_point());
+      }
       
-      
-      int can = voo.getOrders_cache_sum() - ((vo.getSum()*100)/voo.getOrders_coupon_effect()+voo.getOrders_point());
+     
       if (can > 0) {
         System.out.println("양수");
         refund.refund(voo.getOrders_cache_uid(), "주문 취소", Integer.toString(vo.getSum()));

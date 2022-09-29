@@ -1,75 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.2.4" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
-  <package id="1" language="java" name="com.romance.user.orders" project="gitmaste" 
-    file="/gitmaste/src/main/java/com/romance/user/orders" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="62" width="249" x="482" y="300"/>    
-    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
-  </package>  
-  <class id="2" language="java" name="com.romance.user.orders.OrderBookListVO" project="gitmaste" 
+  <class id="1" language="java" name="com.romance.user.orders.OrderBookListVO" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/user/orders/OrderBookListVO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="776" width="382" x="1054" y="-513"/>    
+    <position height="-1" width="-1" x="502" y="793"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="com.romance.user.orders.OrderDAO" project="gitmaste" 
+  <class id="2" language="java" name="com.romance.user.orders.OrderDAO" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/user/orders/OrderDAO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="396" width="429" x="2539" y="1263"/>    
+    <position height="-1" width="-1" x="2439" y="2432"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="com.romance.user.orders.PurchaseController" project="gitmaste" 
+  <class id="3" language="java" name="com.romance.user.orders.PurchaseController" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/user/orders/PurchaseController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="216" width="715" x="3008" y="-513"/>    
+    <position height="-1" width="-1" x="3033" y="-355"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="com.romance.user.orders.OrderServiceImpl" project="gitmaste" 
+  <class id="4" language="java" name="com.romance.user.orders.OrderServiceImpl" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/user/orders/OrderServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="336" width="429" x="2539" y="-513"/>    
+    <position height="-1" width="-1" x="2285" y="-554"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="com.romance.user.orders.PurchaseJoinVO" project="gitmaste" 
+  <class id="5" language="java" name="com.romance.user.orders.PurchaseJoinVO" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/user/orders/PurchaseJoinVO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="836" width="382" x="1476" y="-513"/>    
+    <position height="-1" width="-1" x="271" y="-75"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="7" language="java" name="com.romance.user.orders.OrderService" project="gitmaste" 
+  <interface id="6" language="java" name="com.romance.user.orders.OrderService" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/user/orders/OrderService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="316" width="429" x="3008" y="1263"/>    
+    <position height="-1" width="-1" x="3225" y="1938"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="8" language="java" name="com.romance.user.orders.OrdersVO" project="gitmaste" 
+  <class id="7" language="java" name="com.romance.user.orders.OrdersVO" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/user/orders/OrdersVO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="1736" width="322" x="1898" y="-513"/>    
+    <position height="-1" width="-1" x="830" y="2129"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="9" language="java" name="com.romance.user.orders.OrderController" project="gitmaste" 
+  <class id="8" language="java" name="com.romance.user.orders.OrderController" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/user/orders/OrderController.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="256" width="773" x="3763" y="-513"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -78,250 +73,262 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="com.romance.user.orders.PurchaseSearchVO" project="gitmaste" 
+  <class id="9" language="java" name="com.romance.user.orders.PurchaseSearchVO" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/user/orders/PurchaseSearchVO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="596" width="239" x="2260" y="-513"/>    
+    <position height="-1" width="-1" x="921" y="-538"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="11" language="java" name="com.romance.admin.log.LoggingService" project="gitmaste" 
+  <interface id="10" language="java" name="com.romance.admin.log.LoggingService" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/admin/log/LoggingService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="116" width="306" x="1016" y="478"/>    
+    <position height="-1" width="-1" x="4153" y="339"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <interface id="12" language="java" name="com.romance.user.my.order.MyOrderService" project="gitmaste" 
+  <interface id="11" language="java" name="com.romance.user.my.order.MyOrderService" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/user/my/order/MyOrderService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="136" width="313" x="2453" y="224"/>    
+    <position height="-1" width="-1" x="2836" y="263"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <interface id="13" language="java" name="com.romance.user.login.UserService" project="gitmaste" 
+  <interface id="12" language="java" name="com.romance.user.login.UserService" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/user/login/UserService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="296" width="281" x="3400" y="-112"/>    
+    <position height="-1" width="-1" x="4377" y="-38"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <dependency id="14">    
+  <dependency id="13">    
     <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="10"/>  
+    <end type="TARGET" refId="9"/>  
+  </dependency>  
+  <dependency id="14">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="7"/>  
   </dependency>  
   <dependency id="15">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="6"/>  
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="1"/>  
   </dependency>  
   <dependency id="16">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="8"/>  
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="9"/>  
   </dependency>  
   <dependency id="17">    
     <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="6"/>  
+    <end type="TARGET" refId="5"/>  
   </dependency>  
-  <realization id="18">    
-    <end type="SOURCE" refId="5"/>    
+  <dependency id="18">    
+    <end type="SOURCE" refId="3"/>    
     <end type="TARGET" refId="7"/>  
-  </realization>  
+  </dependency>  
   <dependency id="19">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="10"/>  
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="9"/>  
   </dependency>  
   <dependency id="20">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="8"/>  
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="7"/>  
   </dependency>  
   <dependency id="21">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="2"/>  
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="7"/>  
   </dependency>  
   <dependency id="22">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="2"/>  
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="5"/>  
   </dependency>  
   <dependency id="23">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="2"/>  
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="5"/>  
   </dependency>  
   <dependency id="24">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="8"/>  
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="9"/>  
   </dependency>  
   <dependency id="25">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="12"/>  
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="7"/>  
   </dependency>  
-  <association id="26">    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="27" name="ser"/>      
-      <multiplicity id="28" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="29">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="8"/>  
+  <dependency id="26">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="7"/>  
   </dependency>  
-  <association id="30">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="31" name="dao"/>      
-      <multiplicity id="32" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="33">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="10"/>  
+  <dependency id="27">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="7"/>  
   </dependency>  
-  <dependency id="34">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="10"/>  
-  </dependency>  
-  <dependency id="35">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="2"/>  
-  </dependency>  
-  <dependency id="36">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="6"/>  
-  </dependency>  
-  <dependency id="37">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="8"/>  
-  </dependency>  
-  <dependency id="38">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="6"/>  
-  </dependency>  
-  <dependency id="39">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="10"/>  
-  </dependency>  
-  <dependency id="40">    
-    <end type="SOURCE" refId="12"/>    
-    <end type="TARGET" refId="8"/>  
-  </dependency>  
-  <association id="41">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="42" name="order"/>      
-      <multiplicity id="43" minimum="0" maximum="1"/>    
+  <association id="28">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="29" name="seru">        
+        <position height="0" width="0" x="837" y="-74"/>      
+      </attribute>      
+      <multiplicity id="30" minimum="0" maximum="1">        
+        <position height="0" width="0" x="837" y="-74"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="12" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="44">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="13"/>  
+  <dependency id="31">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="1"/>  
   </dependency>  
-  <dependency id="45">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="6"/>  
+  <dependency id="32">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="9"/>  
   </dependency>  
-  <dependency id="46">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="8"/>  
+  <dependency id="33">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="9"/>  
   </dependency>  
-  <dependency id="47">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="2"/>  
+  <dependency id="34">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="5"/>  
   </dependency>  
-  <dependency id="48">    
-    <end type="SOURCE" refId="12"/>    
-    <end type="TARGET" refId="8"/>  
+  <association id="35">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="36" name="ser">        
+        <position height="0" width="0" x="3" y="517"/>      
+      </attribute>      
+      <multiplicity id="37" minimum="0" maximum="1">        
+        <position height="0" width="0" x="3" y="517"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="38">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="1"/>  
   </dependency>  
-  <dependency id="49">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="10"/>  
+  <dependency id="39">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="7"/>  
   </dependency>  
-  <association id="50">    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="51" name="loggingService"/>      
-      <multiplicity id="52" minimum="0" maximum="1"/>    
+  <association id="40">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="41" name="order">        
+        <position height="0" width="0" x="227" y="-29"/>      
+      </attribute>      
+      <multiplicity id="42" minimum="0" maximum="1">        
+        <position height="0" width="0" x="227" y="-29"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="11" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="53">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="2"/>  
-  </dependency>  
-  <dependency id="54">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="11"/>  
-  </dependency>  
-  <dependency id="55">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="6"/>  
-  </dependency>  
-  <dependency id="56">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="8"/>  
-  </dependency>  
-  <dependency id="57">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="6"/>  
-  </dependency>  
-  <dependency id="58">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="2"/>  
-  </dependency>  
-  <dependency id="59">    
+  <dependency id="43">    
     <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="8"/>  
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
+  <dependency id="44">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
+  <association id="45">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="46" name="dao">        
+        <position height="0" width="0" x="-314" y="971"/>      
+      </attribute>      
+      <multiplicity id="47" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-314" y="971"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="48">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="1"/>  
+  </dependency>  
+  <dependency id="49">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="1"/>  
+  </dependency>  
+  <association id="50">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="51" name="loggingService">        
+        <position height="0" width="0" x="2984" y="-197"/>      
+      </attribute>      
+      <multiplicity id="52" minimum="0" maximum="1">        
+        <position height="0" width="0" x="2984" y="-197"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="53">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <realization id="54">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="6"/>  
+  </realization>  
+  <dependency id="55">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="1"/>  
+  </dependency>  
+  <association id="56">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="57" name="service">        
+        <position height="0" width="0" x="3" y="517"/>      
+      </attribute>      
+      <multiplicity id="58" minimum="0" maximum="1">        
+        <position height="0" width="0" x="3" y="517"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="59">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="5"/>  
   </dependency>  
   <dependency id="60">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="8"/>  
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="1"/>  
   </dependency>  
   <dependency id="61">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="10"/>  
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="1"/>  
   </dependency>  
   <dependency id="62">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="10"/>  
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="7"/>  
   </dependency>  
   <dependency id="63">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="8"/>  
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="5"/>  
   </dependency>  
   <dependency id="64">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="6"/>  
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="5"/>  
   </dependency>  
   <dependency id="65">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="2"/>  
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="7"/>  
   </dependency>  
-  <association id="66">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="67" name="service"/>      
-      <multiplicity id="68" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="69">    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="70" name="seru"/>      
-      <multiplicity id="71" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="13" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
+  <dependency id="66">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="9"/>  
+  </dependency>  
+  <dependency id="67">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="9"/>  
+  </dependency>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

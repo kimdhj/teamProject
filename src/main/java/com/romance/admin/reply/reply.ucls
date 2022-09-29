@@ -3,7 +3,7 @@
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="com.romance.admin.reply.ReplyController" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/admin/reply/ReplyController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="418" y="367"/>    
+    <position height="-1" width="-1" x="728" y="1333"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="com.romance.admin.reply.ReplyJoinVO" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/admin/reply/ReplyJoinVO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="1316" width="382" x="916" y="-487"/>    
+    <position height="-1" width="-1" x="2100" y="1586"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </class>  
   <interface id="4" language="java" name="com.romance.admin.reply.ReplyService" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/admin/reply/ReplyService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="356" width="372" x="1455" y="-495"/>    
+    <position height="-1" width="-1" x="1593" y="-653"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,7 +39,7 @@
   </interface>  
   <class id="5" language="java" name="com.romance.admin.reply.ReplyVO" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/admin/reply/ReplyVO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1642" y="403"/>    
+    <position height="-1" width="-1" x="250" y="571"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -57,7 +57,7 @@
   </class>  
   <class id="7" language="java" name="com.romance.admin.reply.impl.ReplyDAO" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/admin/reply/impl/ReplyDAO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="396" width="372" x="2091" y="-158"/>    
+    <position height="-1" width="-1" x="2450" y="669"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -67,7 +67,7 @@
   <class id="8" language="java" name="com.romance.admin.reply.impl.ReplyServiceImpl" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/admin/reply/impl/ReplyServiceImpl.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="376" width="372" x="2017" y="180"/>    
+    <position height="-1" width="-1" x="1467" y="948"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -75,145 +75,157 @@
     </display>  
   </class>  
   <dependency id="9">    
-    <end type="SOURCE" refId="4"/>    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <dependency id="10">    
+    <end type="SOURCE" refId="7"/>    
     <end type="TARGET" refId="2"/>  
   </dependency>  
-  <realization id="10">    
+  <dependency id="11">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="3"/>  
+  </dependency>  
+  <realization id="12">    
     <end type="SOURCE" refId="8"/>    
     <end type="TARGET" refId="4"/>  
   </realization>  
-  <dependency id="11">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="3"/>  
-  </dependency>  
-  <dependency id="12">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="3"/>  
-  </dependency>  
   <dependency id="13">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="5"/>  
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="3"/>  
   </dependency>  
   <dependency id="14">    
-    <end type="SOURCE" refId="1"/>    
+    <end type="SOURCE" refId="7"/>    
     <end type="TARGET" refId="5"/>  
   </dependency>  
   <dependency id="15">    
-    <end type="SOURCE" refId="7"/>    
+    <end type="SOURCE" refId="8"/>    
     <end type="TARGET" refId="2"/>  
   </dependency>  
   <dependency id="16">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="2"/>  
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="5"/>  
   </dependency>  
   <dependency id="17">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="2"/>  
-  </dependency>  
-  <dependency id="18">    
-    <end type="SOURCE" refId="8"/>    
+    <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="3"/>  
   </dependency>  
+  <dependency id="18">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
   <dependency id="19">    
-    <end type="SOURCE" refId="4"/>    
+    <end type="SOURCE" refId="8"/>    
     <end type="TARGET" refId="5"/>  
   </dependency>  
   <dependency id="20">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="3"/>  
-  </dependency>  
-  <dependency id="21">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="2"/>  
-  </dependency>  
-  <dependency id="22">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="5"/>  
-  </dependency>  
-  <dependency id="23">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="3"/>  
   </dependency>  
-  <dependency id="24">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="5"/>  
-  </dependency>  
-  <dependency id="25">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="2"/>  
-  </dependency>  
-  <dependency id="26">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="2"/>  
-  </dependency>  
+  <association id="21">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="22" name="service">        
+        <position height="0" width="0" x="-48" y="-336"/>      
+      </attribute>      
+      <multiplicity id="23" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-48" y="-336"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="24">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="25" name="service">        
+        <position height="0" width="0" x="-48" y="-336"/>      
+      </attribute>      
+      <multiplicity id="26" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-48" y="-336"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <dependency id="27">    
     <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="5"/>  
+    <end type="TARGET" refId="3"/>  
   </dependency>  
   <dependency id="28">    
     <end type="SOURCE" refId="7"/>    
     <end type="TARGET" refId="3"/>  
   </dependency>  
   <dependency id="29">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="5"/>  
-  </dependency>  
-  <dependency id="30">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="5"/>  
-  </dependency>  
-  <dependency id="31">    
-    <end type="SOURCE" refId="1"/>    
+    <end type="SOURCE" refId="7"/>    
     <end type="TARGET" refId="2"/>  
   </dependency>  
-  <dependency id="32">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="2"/>  
-  </dependency>  
-  <association id="33">    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="34" name="service"/>      
-      <multiplicity id="35" minimum="0" maximum="1"/>    
+  <association id="30">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="31" name="reply">        
+        <position height="0" width="0" x="173" y="629"/>      
+      </attribute>      
+      <multiplicity id="32" minimum="0" maximum="1">        
+        <position height="0" width="0" x="173" y="629"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
+    <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="36">    
+  <dependency id="33">    
     <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="5"/>  
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <dependency id="34">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <dependency id="35">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <dependency id="36">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="2"/>  
   </dependency>  
   <dependency id="37">    
     <end type="SOURCE" refId="7"/>    
     <end type="TARGET" refId="3"/>  
   </dependency>  
   <dependency id="38">    
-    <end type="SOURCE" refId="6"/>    
+    <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="5"/>  
   </dependency>  
   <dependency id="39">    
-    <end type="SOURCE" refId="4"/>    
+    <end type="SOURCE" refId="8"/>    
     <end type="TARGET" refId="3"/>  
   </dependency>  
   <dependency id="40">    
     <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <dependency id="41">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <dependency id="42">    
+    <end type="SOURCE" refId="8"/>    
     <end type="TARGET" refId="2"/>  
   </dependency>  
-  <association id="41">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="42" name="reply"/>      
-      <multiplicity id="43" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="44">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="45" name="service"/>      
-      <multiplicity id="46" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
+  <dependency id="43">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <dependency id="44">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <dependency id="45">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <dependency id="46">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

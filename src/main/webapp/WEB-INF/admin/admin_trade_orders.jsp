@@ -40,12 +40,12 @@
           <div class="mb-3">
             <label for="orders_status" class="form-label border-1 border-dark">주문 상태</label>
             <select class="form-select" name="orders_status" id="orders_status" aria-label="Default select example">
-              <option value="ready">결제 대기</option>
-              <option selected value="paid">결제 완료</option>
+             <option value="ready">결제 대기</option>
+              <option value="paid">결제 완료</option>
               <option value="delivery">배송중</option>
               <option value="finish">배송완료</option>
-              <option value="cancelallwait">환불/교환/반품대기</option>
-              <option value="cancelallfinish">환불/교환/반품완료</option>
+              <option value="cancelallwait">취소대기</option>
+              <option value="cancelallfinish">취소완료</option>
             </select>
           </div>
           <input type="hidden" value="${vo.orders_status}"  id="state"/>

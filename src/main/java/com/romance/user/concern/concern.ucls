@@ -3,7 +3,7 @@
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="com.romance.user.concern.ConcernWriterVO" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/user/concern/ConcernWriterVO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="476" width="277" x="660" y="39"/>    
+    <position height="-1" width="-1" x="346" y="655"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="com.romance.user.concern.ConcernController" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/user/concern/ConcernController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="196" width="568" x="977" y="39"/>    
+    <position height="-1" width="-1" x="734" y="155"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <interface id="3" language="java" name="com.romance.user.concern.ConcernService" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/user/concern/ConcernService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="176" width="431" x="1114" y="555"/>    
+    <position height="-1" width="-1" x="1188" y="1146"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </interface>  
   <class id="4" language="java" name="com.romance.user.concern.ConcernDAO" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/user/concern/ConcernDAO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="236" width="409" x="1585" y="555"/>    
+    <position height="-1" width="-1" x="1984" y="1119"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,7 +39,7 @@
   </class>  
   <class id="5" language="java" name="com.romance.user.concern.ConcernServiceImpl" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/user/concern/ConcernServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="196" width="431" x="1585" y="39"/>    
+    <position height="-1" width="-1" x="1768" y="128"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -48,7 +48,7 @@
   </class>  
   <class id="6" language="java" name="com.romance.user.concern.ConcernSearchVO" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/user/concern/ConcernSearchVO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="296" width="206" x="2056" y="39"/>    
+    <position height="-1" width="-1" x="2150" y="802"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -56,88 +56,96 @@
     </display>  
   </class>  
   <dependency id="7">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="6"/>  
-  </dependency>  
-  <dependency id="8">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="6"/>  
-  </dependency>  
-  <dependency id="9">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="1"/>  
-  </dependency>  
-  <dependency id="10">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="1"/>  
-  </dependency>  
-  <dependency id="11">    
     <end type="SOURCE" refId="3"/>    
     <end type="TARGET" refId="6"/>  
   </dependency>  
-  <dependency id="12">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="1"/>  
-  </dependency>  
-  <dependency id="13">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="1"/>  
-  </dependency>  
-  <realization id="14">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="3"/>  
-  </realization>  
-  <association id="15">    
+  <association id="8">    
     <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="16" name="dao"/>      
-      <multiplicity id="17" minimum="0" maximum="1"/>    
+      <attribute id="9" name="dao">        
+        <position height="0" width="0" x="195" y="446"/>      
+      </attribute>      
+      <multiplicity id="10" minimum="0" maximum="1">        
+        <position height="0" width="0" x="195" y="446"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="18">    
-    <end type="SOURCE" refId="5"/>    
+  <dependency id="11">    
+    <end type="SOURCE" refId="4"/>    
     <end type="TARGET" refId="6"/>  
   </dependency>  
-  <dependency id="19">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="1"/>  
+  <dependency id="12">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="6"/>  
   </dependency>  
-  <dependency id="20">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="1"/>  
-  </dependency>  
-  <association id="21">    
+  <association id="13">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="22" name="ser"/>      
-      <multiplicity id="23" minimum="0" maximum="1"/>    
+      <attribute id="14" name="ser">        
+        <position height="0" width="0" x="-141" y="503"/>      
+      </attribute>      
+      <multiplicity id="15" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-141" y="503"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="24">    
+  <dependency id="16">    
     <end type="SOURCE" refId="4"/>    
     <end type="TARGET" refId="6"/>  
   </dependency>  
-  <dependency id="25">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="6"/>  
+  <dependency id="17">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="1"/>  
   </dependency>  
-  <dependency id="26">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="6"/>  
-  </dependency>  
-  <dependency id="27">    
+  <dependency id="18">    
     <end type="SOURCE" refId="5"/>    
     <end type="TARGET" refId="1"/>  
   </dependency>  
-  <dependency id="28">    
+  <dependency id="19">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="1"/>  
+  </dependency>  
+  <dependency id="20">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="1"/>  
+  </dependency>  
+  <dependency id="21">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="1"/>  
+  </dependency>  
+  <dependency id="22">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <dependency id="23">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="1"/>  
+  </dependency>  
+  <dependency id="24">    
     <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="1"/>  
+  </dependency>  
+  <realization id="25">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="3"/>  
+  </realization>  
+  <dependency id="26">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="1"/>  
+  </dependency>  
+  <dependency id="27">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <dependency id="28">    
+    <end type="SOURCE" refId="3"/>    
     <end type="TARGET" refId="6"/>  
   </dependency>  
   <dependency id="29">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="1"/>  
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="6"/>  
   </dependency>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    

@@ -3,7 +3,7 @@
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="com.romance.user.reply.FineServiceImpl" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/user/reply/FineServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="136" width="169" x="1620" y="-208"/>    
+    <position height="-1" width="-1" x="974" y="-158"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="com.romance.user.reply.FineController" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/user/reply/FineController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="136" width="327" x="1829" y="-208"/>    
+    <position height="-1" width="-1" x="1565" y="-42"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <interface id="3" language="java" name="com.romance.user.reply.OwnReplyService" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/user/reply/OwnReplyService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="136" width="309" x="2545" y="728"/>    
+    <position height="-1" width="-1" x="2812" y="684"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </interface>  
   <class id="4" language="java" name="com.romance.user.reply.OwnReplyServiceImpl" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/user/reply/OwnReplyServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="156" width="309" x="2196" y="-208"/>    
+    <position height="-1" width="-1" x="2057" y="1"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,7 +39,7 @@
   </class>  
   <class id="5" language="java" name="com.romance.user.reply.ReplysearchVO" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/user/reply/ReplysearchVO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="296" width="206" x="818" y="-208"/>    
+    <position height="-1" width="-1" x="136" y="-36"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -57,7 +57,7 @@
   </class>  
   <interface id="7" language="java" name="com.romance.user.reply.FineService" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/user/reply/FineService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="116" width="169" x="1829" y="728"/>    
+    <position height="-1" width="-1" x="1946" y="1060"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -66,7 +66,7 @@
   </interface>  
   <class id="8" language="java" name="com.romance.user.reply.FineDAO" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/user/reply/FineDAO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="156" width="197" x="1592" y="728"/>    
+    <position height="-1" width="-1" x="1606" y="1157"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -75,7 +75,7 @@
   </class>  
   <class id="9" language="java" name="com.romance.user.reply.FineVO" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/user/reply/FineVO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="356" width="226" x="1064" y="-208"/>    
+    <position height="-1" width="-1" x="397" y="-22"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -84,7 +84,7 @@
   </class>  
   <class id="10" language="java" name="com.romance.user.reply.OwnReplyDAO" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/user/reply/OwnReplyDAO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="176" width="317" x="2188" y="728"/>    
+    <position height="-1" width="-1" x="2418" y="969"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -93,7 +93,7 @@
   </class>  
   <class id="11" language="java" name="com.romance.user.reply.ReplyVO" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/user/reply/ReplyVO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="896" width="250" x="1330" y="-208"/>    
+    <position height="-1" width="-1" x="228" y="694"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -102,7 +102,7 @@
   </class>  
   <interface id="12" language="java" name="com.romance.admin.reply.ReplyService" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/admin/reply/ReplyService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="356" width="372" x="641" y="65"/>    
+    <position height="-1" width="-1" x="813" y="1182"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -110,83 +110,103 @@
     </display>  
   </interface>  
   <dependency id="13">    
-    <end type="SOURCE" refId="2"/>    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="11"/>  
+  </dependency>  
+  <dependency id="14">    
+    <end type="SOURCE" refId="8"/>    
     <end type="TARGET" refId="9"/>  
   </dependency>  
-  <association id="14">    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="15" name="replyService"/>      
-      <multiplicity id="16" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="12" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
+  <dependency id="15">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="11"/>  
+  </dependency>  
+  <dependency id="16">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="9"/>  
+  </dependency>  
   <dependency id="17">    
     <end type="SOURCE" refId="10"/>    
     <end type="TARGET" refId="11"/>  
   </dependency>  
-  <dependency id="18">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="11"/>  
-  </dependency>  
-  <dependency id="19">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="11"/>  
-  </dependency>  
-  <dependency id="20">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="9"/>  
-  </dependency>  
-  <association id="21">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="22" name="dao"/>      
-      <multiplicity id="23" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="24">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="7"/>  
-  </realization>  
-  <association id="25">    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="26" name="ownReplyService"/>      
-      <multiplicity id="27" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="28">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="11"/>  
-  </dependency>  
-  <dependency id="29">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="9"/>  
-  </dependency>  
-  <dependency id="30">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="9"/>  
-  </dependency>  
-  <association id="31">    
+  <association id="18">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="32" name="ser"/>      
-      <multiplicity id="33" minimum="0" maximum="1"/>    
+      <attribute id="19" name="ser">        
+        <position height="0" width="0" x="33" y="274"/>      
+      </attribute>      
+      <multiplicity id="20" minimum="0" maximum="1">        
+        <position height="0" width="0" x="33" y="274"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="34">    
+  <dependency id="21">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="9"/>  
+  </dependency>  
+  <association id="22">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="23" name="ownReplyService">        
+        <position height="0" width="0" x="113" y="-112"/>      
+      </attribute>      
+      <multiplicity id="24" minimum="0" maximum="1">        
+        <position height="0" width="0" x="113" y="-112"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="25">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="7"/>  
+  </realization>  
+  <dependency id="26">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="11"/>  
+  </dependency>  
+  <association id="27">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="28" name="replyService">        
+        <position height="0" width="0" x="-14" y="939"/>      
+      </attribute>      
+      <multiplicity id="29" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-14" y="939"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="30">    
     <end type="SOURCE" refId="4"/>    
     <end type="TARGET" refId="3"/>  
   </realization>  
-  <association id="35">    
+  <association id="31">    
     <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="36" name="ownReplyDAO"/>      
-      <multiplicity id="37" minimum="0" maximum="1"/>    
+      <attribute id="32" name="ownReplyDAO">        
+        <position height="0" width="0" x="72" y="153"/>      
+      </attribute>      
+      <multiplicity id="33" minimum="0" maximum="1">        
+        <position height="0" width="0" x="72" y="153"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="34">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="9"/>  
+  </dependency>  
+  <association id="35">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="36" name="dao">        
+        <position height="0" width="0" x="-84" y="351"/>      
+      </attribute>      
+      <multiplicity id="37" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-84" y="351"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 

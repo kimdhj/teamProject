@@ -76,7 +76,9 @@
         	<img src="${event_event.event_file2 }">
         	<img src="${event_event.event_file3 }">
         	<img src="${event_event.event_file4 }">
+          ${event_event.event_content }
         </div>
+       
         <div class="row d-flex justify-content-end bg-gray back-to-top" id="endPoint">
           맨위로<i class="bi bi-caret-up-fill col-auto"></i>
         </div>
@@ -96,7 +98,7 @@
     	<!-- Common Footer include -->
         <jsp:include page="/WEB-INF/commonjsp/common_footer.jsp"></jsp:include>
            <!-- 여기에 js관련  -->
-        <script src="/js/event_Detail.js"></script>
+        
 	<!-- Footer End -->
 </body>
 </html>

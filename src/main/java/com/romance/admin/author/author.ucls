@@ -12,7 +12,7 @@
   </class>  
   <interface id="2" language="java" name="com.romance.admin.author.AdminAuthorService" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/admin/author/AdminAuthorService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="176" width="464" x="979" y="134"/>    
+    <position height="-1" width="-1" x="1716" y="123"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -22,7 +22,7 @@
   <class id="3" language="java" name="com.romance.admin.author.AdminAuthorServiceImpl" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/admin/author/AdminAuthorServiceImpl.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="216" width="464" x="1043" y="567"/>    
+    <position height="-1" width="-1" x="1534" y="948"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -31,7 +31,7 @@
   </class>  
   <class id="4" language="java" name="com.romance.admin.author.AdminAuthorVO" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/admin/author/AdminAuthorVO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="356" width="224" x="473" y="371"/>    
+    <position height="-1" width="-1" x="1915" y="610"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -50,7 +50,7 @@
   </class>  
   <class id="6" language="java" name="com.romance.admin.author.AdminAuthorDAO" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/admin/author/AdminAuthorDAO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="256" width="464" x="415" y="752"/>    
+    <position height="-1" width="-1" x="626" y="933"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -58,64 +58,64 @@
     </display>  
   </class>  
   <dependency id="7">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="5"/>  
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="4"/>  
   </dependency>  
   <dependency id="8">    
-    <end type="SOURCE" refId="6"/>    
+    <end type="SOURCE" refId="3"/>    
     <end type="TARGET" refId="4"/>  
   </dependency>  
   <dependency id="9">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="5"/>  
   </dependency>  
-  <association id="10">    
+  <dependency id="10">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <association id="11">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="11" name="ser">        
-        <position height="0" width="0" x="0" y="0"/>      
+      <attribute id="12" name="ser">        
+        <position height="0" width="0" x="505" y="-99"/>      
       </attribute>      
-      <multiplicity id="12" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
+      <multiplicity id="13" minimum="0" maximum="1">        
+        <position height="0" width="0" x="505" y="-99"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="13">    
+  <dependency id="14">    
     <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <dependency id="15">    
+    <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="4"/>  
   </dependency>  
-  <association id="14">    
+  <realization id="16">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="2"/>  
+  </realization>  
+  <dependency id="17">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <association id="18">    
     <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="15" name="dao">        
-        <position height="0" width="0" x="0" y="0"/>      
+      <attribute id="19" name="dao">        
+        <position height="0" width="0" x="-21" y="53"/>      
       </attribute>      
-      <multiplicity id="16" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
+      <multiplicity id="20" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-21" y="53"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="17">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="2"/>  
-  </realization>  
-  <dependency id="18">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="4"/>  
-  </dependency>  
-  <dependency id="19">    
+  <dependency id="21">    
     <end type="SOURCE" refId="6"/>    
     <end type="TARGET" refId="5"/>  
-  </dependency>  
-  <dependency id="20">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="5"/>  
-  </dependency>  
-  <dependency id="21">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="4"/>  
   </dependency>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    

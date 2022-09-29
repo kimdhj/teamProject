@@ -50,6 +50,7 @@ public class OrderServiceImpl implements OrderService {
 	public void booklistin(List<OrderBookListVO> vol) {
 		// TODO Auto-generated method stub
 		for(OrderBookListVO vo:vol) {
+		  
 			dao.booklistin(vo);
 		}
 	}

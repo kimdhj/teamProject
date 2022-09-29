@@ -12,7 +12,7 @@
   </class>  
   <interface id="2" language="java" name="com.romance.user.my.sub.MySubService" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/user/my/sub/MySubService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="296" width="311" x="1528" y="646"/>    
+    <position height="-1" width="-1" x="1597" y="1133"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </interface>  
   <class id="3" language="java" name="com.romance.user.my.sub.MySubController" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/user/my/sub/MySubController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="576" width="561" x="1278" y="30"/>    
+    <position height="-1" width="-1" x="671" y="876"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -48,7 +48,7 @@
   </class>  
   <class id="6" language="java" name="com.romance.user.my.sub.impl.MySubDAO" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/user/my/sub/impl/MySubDAO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="516" width="317" x="1879" y="646"/>    
+    <position height="-1" width="-1" x="1332" y="655"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -58,7 +58,7 @@
   <class id="7" language="java" name="com.romance.user.my.sub.impl.MySubServiceImpl" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/user/my/sub/impl/MySubServiceImpl.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="316" width="311" x="1879" y="30"/>    
+    <position height="-1" width="-1" x="1525" y="51"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -66,57 +66,65 @@
     </display>  
   </class>  
   <dependency id="8">    
-    <end type="SOURCE" refId="6"/>    
+    <end type="SOURCE" refId="7"/>    
     <end type="TARGET" refId="1"/>  
   </dependency>  
   <dependency id="9">    
     <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="1"/>  
-  </dependency>  
-  <dependency id="10">    
-    <end type="SOURCE" refId="6"/>    
     <end type="TARGET" refId="4"/>  
   </dependency>  
+  <dependency id="10">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="1"/>  
+  </dependency>  
   <dependency id="11">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="12">    
     <end type="SOURCE" refId="6"/>    
     <end type="TARGET" refId="1"/>  
   </dependency>  
-  <association id="12">    
+  <association id="13">    
     <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="13" name="mySubService"/>      
-      <multiplicity id="14" minimum="0" maximum="1"/>    
+      <attribute id="14" name="mySubService">        
+        <position height="0" width="0" x="-86" y="339"/>      
+      </attribute>      
+      <multiplicity id="15" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-86" y="339"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="15">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="4"/>  
-  </dependency>  
-  <dependency id="16">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="1"/>  
-  </dependency>  
-  <dependency id="17">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="4"/>  
-  </dependency>  
-  <realization id="18">    
+  <realization id="16">    
     <end type="SOURCE" refId="7"/>    
     <end type="TARGET" refId="2"/>  
   </realization>  
-  <dependency id="19">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="4"/>  
+  <dependency id="17">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="1"/>  
   </dependency>  
-  <association id="20">    
+  <association id="18">    
     <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="21" name="mySubDAO"/>      
-      <multiplicity id="22" minimum="0" maximum="1"/>    
+      <attribute id="19" name="mySubDAO">        
+        <position height="0" width="0" x="-705" y="-249"/>      
+      </attribute>      
+      <multiplicity id="20" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-705" y="-249"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <dependency id="21">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="22">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

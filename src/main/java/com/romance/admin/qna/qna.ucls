@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="com.romance.admin.qna.AskSearchVO" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/admin/qna/AskSearchVO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="370" y="893"/>    
+    <position height="-1" width="-1" x="250" y="973"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </class>  
   <interface id="4" language="java" name="com.romance.admin.qna.AskService" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/admin/qna/AskService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="973" y="1005"/>    
+    <position height="-1" width="-1" x="948" y="1304"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,7 +39,7 @@
   </interface>  
   <class id="5" language="java" name="com.romance.admin.qna.AskVO" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/admin/qna/AskVO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1511" y="1051"/>    
+    <position height="-1" width="-1" x="1902" y="1629"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -48,7 +48,7 @@
   </class>  
   <class id="6" language="java" name="com.romance.admin.qna.impl.AskDAO" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/admin/qna/impl/AskDAO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1754" y="232"/>    
+    <position height="-1" width="-1" x="2113" y="388"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -57,7 +57,7 @@
   </class>  
   <class id="7" language="java" name="com.romance.admin.qna.impl.AskServiceImpl" project="gitmaste" 
     file="/gitmaste/src/main/java/com/romance/admin/qna/impl/AskServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1910" y="651"/>    
+    <position height="-1" width="-1" x="2223" y="897"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -66,54 +66,58 @@
   </class>  
   <dependency id="8">    
     <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="2"/>  
+    <end type="TARGET" refId="5"/>  
   </dependency>  
   <dependency id="9">    
     <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="3"/>  
-  </dependency>  
-  <dependency id="10">    
-    <end type="SOURCE" refId="4"/>    
     <end type="TARGET" refId="5"/>  
   </dependency>  
-  <association id="11">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="12" name="ask"/>      
-      <multiplicity id="13" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="14">    
-    <end type="SOURCE" refId="6"/>    
+  <dependency id="10">    
+    <end type="SOURCE" refId="7"/>    
     <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <dependency id="11">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="3"/>  
+  </dependency>  
+  <dependency id="12">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="3"/>  
+  </dependency>  
+  <realization id="13">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <dependency id="14">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="5"/>  
   </dependency>  
   <dependency id="15">    
     <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="3"/>  
-  </dependency>  
-  <dependency id="16">    
-    <end type="SOURCE" refId="7"/>    
     <end type="TARGET" refId="2"/>  
   </dependency>  
+  <dependency id="16">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="3"/>  
+  </dependency>  
   <dependency id="17">    
-    <end type="SOURCE" refId="7"/>    
+    <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="2"/>  
   </dependency>  
   <dependency id="18">    
-    <end type="SOURCE" refId="1"/>    
+    <end type="SOURCE" refId="6"/>    
     <end type="TARGET" refId="2"/>  
   </dependency>  
   <dependency id="19">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="2"/>  
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="3"/>  
   </dependency>  
   <dependency id="20">    
-    <end type="SOURCE" refId="1"/>    
+    <end type="SOURCE" refId="4"/>    
     <end type="TARGET" refId="3"/>  
   </dependency>  
   <dependency id="21">    
-    <end type="SOURCE" refId="4"/>    
+    <end type="SOURCE" refId="7"/>    
     <end type="TARGET" refId="3"/>  
   </dependency>  
   <dependency id="22">    
@@ -125,60 +129,64 @@
     <end type="TARGET" refId="5"/>  
   </dependency>  
   <dependency id="24">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="5"/>  
-  </dependency>  
-  <realization id="25">    
     <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="4"/>  
-  </realization>  
-  <dependency id="26">    
-    <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="5"/>  
   </dependency>  
-  <dependency id="27">    
+  <dependency id="25">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <dependency id="26">    
     <end type="SOURCE" refId="6"/>    
     <end type="TARGET" refId="5"/>  
   </dependency>  
-  <dependency id="28">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="3"/>  
-  </dependency>  
-  <dependency id="29">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="5"/>  
-  </dependency>  
-  <association id="30">    
+  <association id="27">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="31" name="service"/>      
-      <multiplicity id="32" minimum="0" maximum="1"/>    
+      <attribute id="28" name="service">        
+        <position height="0" width="0" x="-25" y="299"/>      
+      </attribute>      
+      <multiplicity id="29" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-25" y="299"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <association id="30">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="31" name="ask">        
+        <position height="0" width="0" x="359" y="156"/>      
+      </attribute>      
+      <multiplicity id="32" minimum="0" maximum="1">        
+        <position height="0" width="0" x="359" y="156"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <dependency id="33">    
-    <end type="SOURCE" refId="1"/>    
+    <end type="SOURCE" refId="4"/>    
     <end type="TARGET" refId="2"/>  
   </dependency>  
   <dependency id="34">    
     <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="2"/>  
+    <end type="TARGET" refId="5"/>  
   </dependency>  
   <dependency id="35">    
-    <end type="SOURCE" refId="7"/>    
+    <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="5"/>  
   </dependency>  
   <dependency id="36">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="3"/>  
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="2"/>  
   </dependency>  
   <dependency id="37">    
     <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="3"/>  
+    <end type="TARGET" refId="2"/>  
   </dependency>  
   <dependency id="38">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="5"/>  
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="3"/>  
   </dependency>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    

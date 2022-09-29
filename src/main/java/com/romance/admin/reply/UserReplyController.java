@@ -114,7 +114,7 @@ return "redirect:index.do";
     
     System.out.println();
 //    System.out.println("replyUpdate : " +  vo);
-    System.out.println();
+    System.out.println("");
     
     vo.setUser_id(userVO.getUser_id());
     
