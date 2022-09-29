@@ -102,7 +102,7 @@
     <div class="col-6"></div>
     <div class="col-2" id="review_btn">
       <button id="update" type="button">등록</button>
-      <button onclick="location.href='/myPurchase.do'">취소</button>
+      <button type="button" onclick="location.href='/myPurchase.do'">취소</button>
     </div>
   </div>
   
