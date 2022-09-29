@@ -76,11 +76,12 @@ function cancelsubs() {
 
 
 $("#easter_egg").dblclick(function(){
-	$("#easter_egg").addClass("nullclass");
+	$("#wester_egg").addClass("nullclass");
 	setTimeout(() => {
-		
+		$("#wester_egg").attr("style", "color : #f18605 !important");
 		$(document).on("dblclick", ".nullclass", function(){
 			$("#easter_egg").addClass("notnullclass");
+			$("#easter_egg").attr("style", "color : #dbd5e1 !important");
 		});
 	}, 1000);
 });

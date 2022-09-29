@@ -16,7 +16,7 @@
 
                 <div class="row">
                     <div class="col-md-4 text-center text-md-start mb-4 mb-md-0">
-                        <h1 class="fw-bold text-primary mb-4">낭<span class="text-secondary">만</span>서점
+                        <h1 class="fw-bold text-primary mb-4">낭<span class="text-secondary" id="wester_egg">만</span>서점
                         </h1>
                     </div>
                     <div class="col-md-4 text-center text-md-center mb-4 mb-md-0">
