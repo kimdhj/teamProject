@@ -147,8 +147,8 @@
           <c:if test="${ask.ask_status eq  '답변 완료'}">
             <a href="/csDetail.do?ask_seq=${ask.ask_seq }&seq=${allCount}">
             	<c:choose>
-                                    <c:when test="${fn:length(ask.ask_title) gt 15 }">
-                                      <c:out value="${fn:substring(ask.ask_title, 0, 14) }..."></c:out>
+                                    <c:when test="${fn:length(ask.ask_title) gt 11 }">
+                                      <c:out value="${fn:substring(ask.ask_title, 0, 10) }..."></c:out>
                                     </c:when>
                                     <c:otherwise>
                                     <c:out value="${ask.ask_title }"/>
@@ -168,8 +168,8 @@
           <c:if test="${ask.ask_status eq  '답변 대기'}">
             <a href="/csDetail.do?ask_seq=${ask.ask_seq }&seq=${allCount}">
                 <c:choose>
-                                    <c:when test="${fn:length(ask.ask_title) gt 15 }">
-                                      <c:out value="${fn:substring(ask.ask_title, 0, 14) }..."></c:out>
+                                    <c:when test="${fn:length(ask.ask_title) gt 10 }">
+                                      <c:out value="${fn:substring(ask.ask_title, 0, 9) }..."></c:out>
                                     </c:when>
                                     <c:otherwise>
                                     <c:out value="${ask.ask_title }"/>
