@@ -53,8 +53,6 @@ function cancelsubs() {
 					Swal.fire({
 						text: "비밀번호를 확인해주세요!",
 						icon: "error"
-					}).then(function(){
-						location.href="/my_cancelSub.do";
 					})
 				}else if(vo==1){
 					$("form").submit();
