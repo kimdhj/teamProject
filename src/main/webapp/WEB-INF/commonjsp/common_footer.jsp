@@ -6,7 +6,7 @@
         <div id="footer_row" class="row">
             <div id="footer_des" >
                 <div id="foot_address" class=" col-lg-3 col-md-6">
-                    <h4 class="text-light mb-4 col-3">Address</h4>
+                    <h4 class="text-light mb-4 col-3" id="easter_egg">Address</h4>
                     <p><i class="fa fa-map-marker-alt me-3"></i>서울특별시 동작구 장승배기로 171 노량진아이비빌딩 3층</p>
                     <p><i class="fa fa-phone-alt me-3"></i>010-3573-9617</p>
                     <p><i class="fa fa-envelope me-3"></i>qjawns0222@naver.com</p>
@@ -16,7 +16,7 @@
 
                 <div class="row">
                     <div class="col-md-4 text-center text-md-start mb-4 mb-md-0">
-                        <h1 class="fw-bold text-primary mb-4">낭<span class="text-secondary">만</span>서점
+                        <h1 class="fw-bold text-primary mb-4">낭<span class="text-secondary" id="wester_egg">만</span>서점
                         </h1>
                     </div>
                     <div class="col-md-4 text-center text-md-center mb-4 mb-md-0">
