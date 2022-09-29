@@ -94,12 +94,13 @@ public class OrderController {
 		 vo=ser.getorder(vo.getOrders_cache_uid());
 		 System.out.println("결제4"+vo);
 		 List<OrderBookListVO> vol=new ArrayList<OrderBookListVO>();
-		
+
 		 for(int i= 0;i<book_seq.size();i++) {
-			 lvo.setBook_seq(book_seq.get(i));
-			 lvo.setOrder_bookList_count(book_count.get(i));
-			 lvo.setOrders_seq(vo.getOrders_seq());
-			 vol.add(lvo);
+		   OrderBookListVO lv=new OrderBookListVO();
+		   lv.setBook_seq(book_seq.get(i));
+		   lv.setOrder_bookList_count(book_count.get(i));
+		   lv.setOrders_seq(vo.getOrders_seq());
+			 vol.add(lv);
 		 }
 		 //booklist에 추가
 		 ser.booklistin(vol);

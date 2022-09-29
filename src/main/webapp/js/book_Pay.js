@@ -182,7 +182,7 @@ function init2() {
 	if(booksum>=50000){
 	$("#deliveryPrice2").number(0);
 	}else{
-	$("#deliveryPrice2").number(2500);
+	$("#deliveryPrice2").number(100);
 	}
 booksum -= booksum*Number($("#coupon_result").text().trim().replaceAll(",", ""))/100;
 	booksum -= Number($("#usePointResult").text().trim().replaceAll(",", ""));
