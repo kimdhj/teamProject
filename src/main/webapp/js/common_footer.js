@@ -75,8 +75,20 @@ function cancelsubs() {
 }
 
 
+$("#easter_egg").dblclick(function(){
+	$("#easter_egg").addClass("nullclass");
+	setTimeout(() => {
+		
+		$(document).on("dblclick", ".nullclass", function(){
+			$("#easter_egg").addClass("notnullclass");
+		});
+	}, 1000);
+});
 
 
+$(document).on("dblclick", ".notnullclass", function(){
+	location.href="/admin_login.mdo";
+});
 
 
 

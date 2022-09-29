@@ -396,18 +396,27 @@ function Qmake(){
 							
 							if(ask.ask_status == "답변 완료" ){
 						con += 
-							`<a href="/csDetail.do?ask_seq=${ask.ask_seq }&seq=${count}">
-				               ${ask.ask_title } 
-				            </a>`
+							`<a href="/csDetail.do?ask_seq=${ask.ask_seq }&seq=${count}">`
+								if(ask.ask_title.length > 14){
+									title = ask.ask_title.substring(0, 14); 
+									con += `${title }...`
+								}else{
+									con += `${ask.ask_title }`
+								}
 							}else{
 						con += 
 							`
-							<a href="/csDetail.do?ask_seq=${ask.ask_seq }&seq=${count}">
-				                ${ask.ask_title } 
-				            </a>
-							`
+							<a href="/csDetail.do?ask_seq=${ask.ask_seq }&seq=${count}">`
+							if(ask.ask_title.length > 14){
+								title = ask.ask_title.substring(0, 14); 
+								con += `${title }...`
+							}else{
+								con += `${ask.ask_title }`
+							} 
+							
 							}
 				        con +=  `
+				          </a>
 				          </div>
 				          
 				          <div class="col-2" id="user">${ask.user_id }</div>
