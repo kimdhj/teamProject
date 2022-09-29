@@ -41,134 +41,111 @@ $(document).on("change", $("#stateche"), function(){
 })
 
 $(function() {
-	$(".week").click(function() {
-		let st = new Date($("#start_date").val());
-		st.setDate(st.getDate() - 7);
-		$("#start_date").val(st);
-		datePickerSet($("#start_date"), $("#end_date"), true);
+	// datepicker 한국어로 사용하기 위한 언어설정
+	$.datepicker.setDefaults($.datepicker.regional['ko']);
+
+	// 시작일(start_date)은 종료일(end_date) 이후 날짜 선택 불가
+	// 종료일(end_date)은 시작일(start_date) 이전 날짜 선택 불가
+
+	// 시작일.
+	$('#start_date').datepicker({
+		showOn : "both", // 달력을 표시할 타이밍 (both: focus or button)
+		buttonImage : "/img/calendar.png", // 버튼 이미지
+		buttonImageOnly : true, // 버튼 이미지만 표시할지 여부
+		buttonText : "날짜선택", // 버튼의 대체 텍스트
+		dateFormat : "yy-mm-dd", // 날짜의 형식
+		changeMonth : true, // 월을 이동하기 위한 선택상자 표시여부
+		// minDate: 0, // 선택할수있는 최소날짜, ( 0 : 오늘 이전 날짜 선택 불가)
+		maxDate : 0,
+		onClose : function(selectedDate) {
+			// 시작일(fromDate) datepicker가 닫힐때
+			// 종료일(toDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
+			$("#end_date").datepicker("option", "minDate", selectedDate);
+		}
 	});
-	$(".month").click(function() {
-		let st = new Date($("#start_date").val());
-		st.setMonth(st.getMonth() - 1);
-		$("#start_date").val(st);
-		datePickerSet($("#start_date"), $("#end_date"), true);
-	});
-	$(".threemonth").click(function() {
-		let st = new Date($("#start_date").val());
-		st.setMonth(st.getMonth() - 3);
-		$("#start_date").val(st);
-		datePickerSet($("#start_date"), $("#end_date"), true);
-	});
-	$(".sixmonth").click(function() {
-		let st = new Date($("#start_date").val());
-		st.setMonth(st.getMonth() - 6);
-		$("#start_date").val(st);
-		datePickerSet($("#start_date"), $("#end_date"), true);
-	});
-	$(".year").click(function() {
-		let st = new Date($("#start_date").val());
-		st.setFullYear(st.getFullYear() - 1);
-		$("#start_date").val(st);
-		datePickerSet($("#start_date"), $("#end_date"), true);
+
+	// 종료일
+	$('#end_date').datepicker({
+		showOn : "both",
+		buttonImage : "/img/calendar.png",
+		buttonImageOnly : true,
+		buttonText : "날짜선택",
+		dateFormat : "yy-mm-dd",
+		changeMonth : true,
+		// minDate: 0, // 오늘 이전 날짜 선택 불가
+		maxDate : 0,
+		onClose : function(selectedDate) {
+			// 종료일(toDate) datepicker가 닫힐때
+			// 시작일(fromDate)의 선택할수있는 최대 날짜(maxDate)를 선택한 종료일로 지정
+			$("#start_date").datepicker("option", "maxDate", selectedDate);
+		}
 	});
 });
 
-// 날짜 더하기
-$("#start_date").val(new Date());
-let date = new Date();
-date.setMonth(date.getMonth() + 1);
-
-$("#end_date").val(date);
-datePickerSet($("#start_date"), $("#end_date"), true); // 다중은 시작하는 달력 먼저, 끝달력
-														// 2번째
-// var date2 = $('#start_dat').datepicker('getDate', '+1d');
-// date2.setDate(date2.getDate() + 1);
-// $('.dropoffDate').datepicker('setDate', date2)
-
-/*
- * 달력 생성기 @param sDate 파라미터만 넣으면 1개짜리 달력 생성 @example
- * datePickerSet($("#datepicker"));
- * 
- * 
- * @param sDate, @param eDate 2개 넣으면 연결달력 생성되어 서로의 날짜를 넘어가지 않음 @example
- * datePickerSet($("#datepicker1"), $("#datepicker2"));
- */
-function datePickerSet(sDate, eDate, flag) {
-
-    // 시작 ~ 종료 2개 짜리 달력 datepicker
-    if (!isValidStr(sDate) && !isValidStr(eDate) && sDate.length > 0 && eDate.length > 0) {
-        let sDay = sDate.val();
-        let eDay = eDate.val();
-
-        if (flag && !isValidStr(sDay) && !isValidStr(eDay)) { // 처음 입력 날짜 설정,
-																// update...
-            let sdp = sDate.datepicker().data("datepicker");
-            console.log("flag");
-            sdp.selectDate(new Date(sDay.replace(/-/g, "/")));  // 익스에서는 그냥 new
-																// Date하면 -을
-																// 인식못함
-																// replace필요
-
-            let edp = eDate.datepicker().data("datepicker");
-            edp.selectDate(new Date(eDay.replace(/-/g, "/")));  // 익스에서는 그냥 new
-																// Date하면 -을
-																// 인식못함
-																// replace필요
-        }
-
-        // 시작일자 세팅하기 날짜가 없는경우엔 제한을 걸지 않음
-        if (!isValidStr(eDay)) {
-            sDate.datepicker({
-                maxDate: new Date(eDay.replace(/-/g, "/"))
-            });
-
-        }
-        sDate.datepicker({
-            language: 'ko',
-            autoClose: true,
-            onSelect: function () {
-                console.log("select");
-                datePickerSet(sDate, eDate);
-            }
-        });
-
-        // 종료일자 세팅하기 날짜가 없는경우엔 제한을 걸지 않음
-        if (!isValidStr(sDay)) {
-            eDate.datepicker({
-                minDate: new Date(sDay.replace(/-/g, "/"))
-            });
-        }
-        eDate.datepicker({
-            language: 'ko',
-            autoClose: true,
-            onSelect: function () {
-                datePickerSet(sDate, eDate);
-            }
-        });
-
-        // 한개짜리 달력 datepicker
-    } else if (!isValidStr(sDate)) {
-        let sDay = sDate.val();
-        if (flag && !isValidStr(sDay)) { // 처음 입력 날짜 설정, update...
-            let sdp = sDate.datepicker().data("datepicker");
-            sdp.selectDate(new Date(sDay.replace(/-/g, "/"))); // 익스에서는 그냥 new
-																// Date하면 -을
-																// 인식못함
-																// replace필요
-        }
-
-        sDate.datepicker({
-            language: 'ko',
-            autoClose: true
-        });
-    }
-
-    function isValidStr(str) {
-        if (str == null || str == undefined || str == "")
-            return true;
-        else
-            return false;
-    }
+// 기간조회
+function searchDateOneWeek() {
+	let d = new Date();
+	const yearNow = d.getFullYear();
+	const monthNow = ('0' + (d.getMonth() + 1)).slice(-2);
+	const dayNow = ('0' + d.getDate()).slice(-2);
+	const today = yearNow + "-" + monthNow + "-" + dayNow;
+	let sel_day = -7; // 일주일전
+	d.setDate(d.getDate() + sel_day);
+	let year = d.getFullYear();
+	let month = ('0' + (d.getMonth() + 1)).slice(-2);
+	let day = ('0' + d.getDate()).slice(-2);
+	dt = year + "-" + month + "-" + day;
+	console.log(dt);
+	document.getElementById("start_date").value = dt;
+	document.getElementById("end_date").value = today;
+}
+function searchDateOneMonth() {
+	let d = new Date();
+	const yearNow = d.getFullYear();
+	const monthNow = ('0' + (d.getMonth() + 1)).slice(-2);
+	const dayNow = ('0' + d.getDate()).slice(-2);
+	const today = yearNow + "-" + monthNow + "-" + dayNow;
+	let sel_month = -1;
+	d.setMonth(d.getMonth() + sel_month);
+	let year = d.getFullYear();
+	let month = ('0' + (d.getMonth() + 1)).slice(-2);
+	let day = ('0' + d.getDate()).slice(-2);
+	dt = year + "-" + month + "-" + day;
+	console.log(dt);
+	document.getElementById("start_date").value = dt;
+	document.getElementById("end_date").value = today;
+}
+function searchDateThreeMonth() {
+	let d = new Date();
+	const yearNow = d.getFullYear();
+	const monthNow = ('0' + (d.getMonth() + 1)).slice(-2);
+	const dayNow = ('0' + d.getDate()).slice(-2);
+	const today = yearNow + "-" + monthNow + "-" + dayNow;
+	let sel_month = -3;
+	d.setMonth(d.getMonth() + sel_month);
+	let year = d.getFullYear();
+	let month = ('0' + (d.getMonth() + 1)).slice(-2);
+	let day = ('0' + d.getDate()).slice(-2);
+	dt = year + "-" + month + "-" + day;
+	console.log(dt);
+	document.getElementById("start_date").value = dt;
+	document.getElementById("end_date").value = today;
+}
+function searchDateSixMonth() {
+	let d = new Date();
+	const yearNow = d.getFullYear();
+	const monthNow = ('0' + (d.getMonth() + 1)).slice(-2);
+	const dayNow = ('0' + d.getDate()).slice(-2);
+	const today = yearNow + "-" + monthNow + "-" + dayNow;
+	let sel_month = -6;
+	d.setMonth(d.getMonth() + sel_month);
+	let year = d.getFullYear();
+	let month = ('0' + (d.getMonth() + 1)).slice(-2);
+	let day = ('0' + d.getDate()).slice(-2);
+	dt = year + "-" + month + "-" + day;
+	console.log(dt);
+	document.getElementById("start_date").value = dt;
+	document.getElementById("end_date").value = today;
 }
 
 $("#start_date").val(null); // 시작날짜 null 값 띄우기
@@ -411,14 +388,13 @@ $(document).ready(function () {
             			orders_seq : Number($(e.target).parents('div:eq(3)').children('input').val())
             		},
             		// 컨트롤러에서 return 없으면 success 사용불가 -> 대체를 위해 complete 사용 가능
-            		complete : function(){
-            			location.href="/myPurchase.do";
-            		}
             	})
                 Swal.fire({
                 	html: "구매를 취소하셨습니다. <br>자세한 내용은 취소/교환/반품 조회 페이지에서 <br> 확인해주세요.",
 					icon: "success",
-					showConfirmButton: true,
+					showConfirmButton: true
+                }).then(function(){
+                	location.href="/myPurchase.do";
                 })
             }else if(result.isDismissed){
             	return false;

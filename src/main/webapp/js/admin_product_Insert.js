@@ -91,7 +91,7 @@ function event_writeCheck() {
 		book_isbn.focus();
 		return false;
 	};
-	if(book_isbn.value < 0 || book_isbn.value > 999999999999) {
+	if(book_isbn.value < 0 || book_isbn.value > 999999999999999) {
 		Swal.fire({
 			text: "고유번호를 다시 확인 해주세요!",
 			icon: "error"
