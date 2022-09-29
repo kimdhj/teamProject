@@ -39,7 +39,9 @@ $("#register").click(function(){
          cancelButtonText: '아니오'
 	}).then((result)=>{
 		if(result.isConfirmed){
-			console.log("리뷰 등록 성공인가아ㅏ");
+			if($(".summernote").summernote('isEmpty')){
+	       		 alert("내용을 입력해주세요.");
+		    }else{
 			Swal.fire({
 				icon: "success",
 				text: "등록되었습니다.",
@@ -47,9 +49,9 @@ $("#register").click(function(){
             	timer: 1500,
 			}).then(function(){
 				console.log("여기 뜨는거야 안뜨는거야");
-				location.href="#"; // 리뷰 목록으로 돌아가기
-				
+				location.href="/movingReview.do"; // 리뷰 목록으로 돌아가기
 			})
+		    }
 		}else if(result.isDismissed){
 			return false;
 		}
