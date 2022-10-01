@@ -47,6 +47,9 @@ public class LogServiceImpl implements LogService {
 		return logDAO.getPaymentLogList(criteria);
 	}
 
-	
+	@Override
+	public List<LoginLogVO> getLoginLogExcel(Criteria criteria) throws Exception {
+		return logDAO.getLoginLogExcel(criteria);
+	}
 	
 }
