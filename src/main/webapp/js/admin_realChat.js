@@ -221,7 +221,7 @@ function del(e) {
 
 let names = [];
 
-var sock = new SockJS('http://localhost:8080/echo');
+var sock = new SockJS('http://13.209.163.243/echo');
 sock.onmessage = onMessage;
 
 

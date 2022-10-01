@@ -76,7 +76,7 @@
         	<img src="${event_event.event_file2 }">
         	<img src="${event_event.event_file3 }">
         	<img src="${event_event.event_file4 }">
-          ${event_event.event_content }
+
         </div>
        
         <div class="row d-flex justify-content-end bg-gray back-to-top" id="endPoint">

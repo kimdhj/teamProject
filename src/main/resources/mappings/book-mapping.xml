@@ -24,18 +24,19 @@
 			<if test="category != 0"><![CDATA[AND category_num =#{category}]]></if>
 			<if test="country == 1"><![CDATA[AND category_num >200]]></if>
 			<if test="country == 2"><![CDATA[AND category_num <200]]></if>
+			<if test="author_seq !=0"><![CDATA[AND author_seq=#{author_seq}]]></if>
 		</trim>
 
 	</select>
 	<select resultType="bookVO" parameterType="booksearchVO"
 		id="bestbook">
-		<![CDATA[select * from (select * from (select
-		b.book_imgURL,b.book_price,b.book_bigimgURL,b.category_num,b.book_title,b.book_descript,b.book_seq,sum(order_bookList_count)
-		as sum, @rownum:=@rownum+1 as rnum from book as b join order_bookList
+		<![CDATA[select * from (select *, @rownum:=@rownum+1 as rnum from (select
+		b.book_imgURL,b.book_price,b.book_bigimgURL,b.category_num,b.book_title,b.book_descript,b.book_seq,sum(bl.order_bookList_count)
+		as sum from book as b join order_bookList
 		as bl on b.book_seq=bl.book_seq]]>
 		<trim prefix="WHERE" prefixOverrides="AND |OR">
 
-			<if test="category != 0"><![CDATA[AND category_num =#{category}]]></if>
+		<if test="category != 0"><![CDATA[AND category_num =#{category}]]></if>
 			<if test="country == 1"><![CDATA[AND category_num >200]]></if>
 			<if test="country == 2"><![CDATA[AND category_num <200]]></if>
 		</trim> <![CDATA[ group by b.book_seq) D , (SELECT
@@ -45,13 +46,13 @@
 	<select parameterType="booksearchVO" resultType="int"
 		id="bestcount">
 		<![CDATA[select count(*) from (select
-		b.book_imgURL,b.book_title,b.category_num,b.book_descript,b.book_seq,sum(order_bookList_count)
+		b.book_imgURL,b.book_title,b.category_num,b.book_descript,b.book_seq,sum(bl.order_bookList_count)
 		as sum, @rownum:=@rownum+1 as rnum from book as b join order_bookList
 		as bl on b.book_seq=bl.book_seq]]>
 		<trim prefix="WHERE" prefixOverrides="AND |OR">
-			<if test="category != 0"><![CDATA[AND category_num =#{category}]]></if>
-			<if test="country != 2"><![CDATA[AND category_num >200]]></if>
-			<if test="country != 1"><![CDATA[AND category_num <200]]></if>
+	<if test="category != 0"><![CDATA[AND category_num =#{category}]]></if>
+			<if test="country == 1"><![CDATA[AND category_num >200]]></if>
+			<if test="country == 2"><![CDATA[AND category_num <200]]></if>
 		</trim> <![CDATA[group by b.book_seq) D , (SELECT
 		@rownum:=0) TMP where sum>10]]>
 	</select>
@@ -61,16 +62,16 @@
 		@rownum:=0) TMP where book_publish_date> (current_date()- INTERVAL 1
 		YEAR)]]>
 		<if test="category != 0"><![CDATA[AND category_num =#{category}]]></if>
-		<if test="country != 2"><![CDATA[AND category_num >200]]></if>
-		<if test="country != 1"><![CDATA[AND category_num <200]]></if><![CDATA[) E where rnum>(#{page}-1)*5 AND rnum<=#{page}*5 order by
+			<if test="country == 1"><![CDATA[AND category_num >200]]></if>
+			<if test="country == 2"><![CDATA[AND category_num <200]]></if><![CDATA[) E where rnum>(#{page}-1)*5 AND rnum<=#{page}*5 order by
 		book_seq]]>
 	</select>
 	<select parameterType="booksearchVO" resultType="int"
 		id="newcount">
 		<![CDATA[select count(*) from book where book_publish_date >(current_date()-INTERVAL 1 YEAR)]]>
-		<if test="category != 0"><![CDATA[AND category_num =#{category}]]></if>
-		<if test="country != 2"><![CDATA[AND category_num >200]]></if>
-		<if test="country != 1"><![CDATA[AND category_num <200]]></if>
+	<if test="category != 0"><![CDATA[AND category_num =#{category}]]></if>
+			<if test="country == 1"><![CDATA[AND category_num >200]]></if>
+			<if test="country == 2"><![CDATA[AND category_num <200]]></if>
 	</select>
 	<select resultType="bookVO" parameterType="booksearchVO"
 		id="mainbest">

@@ -36,7 +36,7 @@
                   <input class="form-check-input delche" type="checkbox" value="" id="flexCheckDefault">
                   <input type="number" class="hide" value="${it.author_seq}" id="auth_seq"/>
                 </div>
-                <div onclick="location.href='/booklist.do/author_seq=${it.author_seq}'" class="col-5">${it.author_name}</div>
+                <div onclick="location.href='/booklist.do?author_seq=${it.author_seq}'" class="col-5">${it.author_name}</div>
                 <div class="col">${it.concern_writer_date}</div>
               </div>
             </c:forEach>
