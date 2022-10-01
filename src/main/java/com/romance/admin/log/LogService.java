@@ -18,4 +18,7 @@ public interface LogService {
 	//결제로그 목록
 	public List<PaymentLogVO> getPaymentLogList(Criteria criteria) throws Exception;
 	
+	//로그인로그 엑셀파일
+	public List<LoginLogVO> getLoginLogExcel(Criteria criteria) throws Exception;
+	
 }
