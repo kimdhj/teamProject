@@ -64,7 +64,7 @@
 			<div class="col-md-1">
 				<button type="submit" class="btn btn-light btn-outline-dark">검색</button>
 			</div> -->
-			<div class="col-md-12">
+			<div class="col-md-4">
 				<div class="btn-group" role="group"
 					aria-label="Basic mixed styles example">
 					<button type="button" class="btn btn-danger" onclick="location.href='/adminLoginLog.mdo'">Login Log</button>
@@ -72,7 +72,9 @@
 					<button type="button" class="btn btn-dark" onclick="location.href='/adminPaymentLog.mdo'">Pay Log</button>					
 				</div>
 			</div>
-
+			<div class="col-md-1">
+				<button type="button" class="btn btn-primary" onclick="location.href='/loginLogExcelDownload.mdo'" style="float:right">excel</button>
+			</div>
 		</div>
 		<div class="d-flex flex-row">
 			<p style="color:blue;">${pagination.criteria.pageNum}페이지</p>
@@ -133,6 +135,7 @@
 			</div>
 		</div>
 	</div>
+	
 
 
 

@@ -113,5 +113,12 @@
 		ORDER BY payment_log_seq DESC LIMIT #{pageStart}, #{perPageNum}
 	</select>
 	
+	<select id="getLoginLogExcel" parameterType="criteria" resultType="loginLogVO">
+		SELECT * FROM login_log WHERE 1=1
+		<if test="searchCondition=='USER_ID'">
+			AND login_log_id LIKE CONCAT('%', '#{searchKeyword}', '%')
+		</if>
+		ORDER BY login_log_seq DESC
+	</select>
 	
 </mapper>
