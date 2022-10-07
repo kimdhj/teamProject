@@ -39,6 +39,7 @@ public class BookController {
 		if(vo.getPage()==0) {
 			vo.setPage(1);
 		}
+		System.out.println("book"+vo);
 		//일반 리스트와 카운트
 		int count=ser.bookcount(vo);
 		List<BookVO> list=ser.booklist(vo);
@@ -207,6 +208,7 @@ public class BookController {
 		}
 		int bestcount=ser.bestcount(vo);
 		List<BookVO> bestlist=ser.bestlist(vo);
+		System.out.println("bestlist"+bestlist);
 		if(bestcount%5==0) {
 			bestcount-=1;
 		}

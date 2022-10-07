@@ -365,6 +365,7 @@
 		</div>
 		<input type="hidden" value="${vo.category}" id="category" />
 		<input type="hidden" value="${vo.country}" id="country" />
+		<input type="hidden" value="${vo.author_seq}" id="author_seq" />
 	</div>
 	<!--End -->
 

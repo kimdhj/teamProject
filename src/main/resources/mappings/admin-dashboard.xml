@@ -19,7 +19,7 @@
 	<select parameterType="dashdataVO" resultType="dashoutVO" id="categorysel">
 	<![CDATA[        select * from (select *,@rownum:=@rownum + 1 as rnum  from (select sum(b.order_bookList_count) as count,c.category_num as title,c.category_name as titlestr from orders as o join order_bookList as b on o.orders_seq=b.orders_seq join book bo on b.book_seq=bo.book_seq join category c on c.category_num=bo.category_num where o.orders_status not like concat('%','cancel','%') and o.orders_status not like concat('%','ready','%')]]>
 	
-			<if test="month != null and month != ''"><![CDATA[AND date_format(o.orders_order_day,'%m')=concat('0',#{month}) ]]></if>
+			<if test="month != null and month != ''"><![CDATA[AND date_format(o.orders_order_day,'%m')=#{month} ]]></if>
 			<if test="year != null and year != ''"><![CDATA[AND date_format(o.orders_order_day,'%Y')=#{year} ]]></if>
 	
 	
@@ -31,7 +31,7 @@
 <![CDATA[          select * from (select *,@rownum:=@rownum + 1 as rnum from (select sum(ob.order_bookList_count) as count,b.book_title as titlestr  from order_bookList as ob join book as b on b.book_seq=ob.book_seq join orders as ord on ord.orders_seq=ob.orders_seq
 		where ord.orders_status not like concat('%','cancel','%') and ord.orders_status not like concat('%','ready','%')]]>
 		
-			<if test="month != null and month != ''"><![CDATA[AND date_format(ord.orders_order_day,'%m')=concat('0',#{month}) ]]></if>
+			<if test="month != null and month != ''"><![CDATA[AND date_format(ord.orders_order_day,'%m')=#{month} ]]></if>
 			<if test="year != null and year != ''"><![CDATA[AND date_format(ord.orders_order_day,'%Y')=#{year} ]]></if>
 		
  <![CDATA[group by b.book_seq ) EQ,(SELECT @rownum:=0) TMP order by count desc ) pl where rnum<=5 order by count asc]]>
@@ -44,7 +44,7 @@
 		b.book_seq=bo.book_seq
 		where o.orders_status not like concat('%','cancel','%') and o.orders_status not like concat('%','ready','%')
 	
-			<if test="month != null and month != ''"><![CDATA[AND date_format(o.orders_order_day,'%m')=concat('0',#{month}) ]]></if>
+			<if test="month != null and month != ''"><![CDATA[AND date_format(o.orders_order_day,'%m')=#{month} ]]></if>
 			<if test="year != null and year != ''"><![CDATA[AND date_format(o.orders_order_day,'%Y')=#{year} ]]></if>
 		
 	</select>
@@ -54,7 +54,7 @@
 		order_bookList as b on o.orders_seq=b.orders_seq
 		where o.orders_status not like concat('%','cancel','%') and o.orders_status not like concat('%','ready','%')
 
-			<if test="month != null and month != ''"><![CDATA[AND date_format(o.orders_order_day,'%m')=concat('0',#{month}) ]]></if>
+			<if test="month != null and month != ''"><![CDATA[AND date_format(o.orders_order_day,'%m')=#{month} ]]></if>
 			<if test="year != null and year != ''"><![CDATA[AND date_format(o.orders_order_day,'%Y')=#{year} ]]></if>
 		
 	</select>

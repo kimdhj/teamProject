@@ -10,11 +10,11 @@ function ifRoulSub(e){
 	console.log(sub);
 	
 	if(roul != -1) {
-	location.href = 'http://localhost:8080/event_Roulette.do?event_seq='+seq;
+	location.href = 'http://13.209.163.243/event_Roulette.do?event_seq='+seq;
 	}else if(sub != -1){
-	location.href = 'http://localhost:8080/event_Sub_Info.do?event_seq='+seq;		
+	location.href = 'http://13.209.163.243/event_Sub_Info.do?event_seq='+seq;		
 	}else{
-	location.href = 'http://localhost:8080/getEvent.do?event_seq='+seq;		
+	location.href = 'http://13.209.163.243/getEvent.do?event_seq='+seq;		
 	};
 	
 };
@@ -31,11 +31,11 @@ function ifRoulSub2(t){
 	console.log(sub);
 	
 	if(roul != -1) {
-		location.href = 'http://localhost:8080/event_Roulette.do?event_seq='+seq;
+		location.href = 'http://13.209.163.243/event_Roulette.do?event_seq='+seq;
 		}else if(sub != -1){
-		location.href = 'http://localhost:8080/event_Sub_Info.do?event_seq='+seq;		
+		location.href = 'http://13.209.163.243/event_Sub_Info.do?event_seq='+seq;		
 		}else{
-		location.href = 'http://localhost:8080/getEvent.do?event_seq='+seq;		
+		location.href = 'http://13.209.163.243/getEvent.do?event_seq='+seq;		
 		};
 	
 };

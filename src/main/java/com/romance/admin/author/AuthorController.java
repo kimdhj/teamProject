@@ -20,6 +20,7 @@ import com.romance.user.my.delivery.DeliveryVO;
 public class AuthorController {
   @Autowired
   AdminAuthorService ser;
+ 
   @GetMapping("adminauthor.mdo")
   public String adminauthor(AdminAuthorSearchVO vo,Model model,JwtUtils util,HttpSession session) throws IOException {
     UserVO vosession = util.getuser(session);
