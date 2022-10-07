@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="adminauthor">
+
 	<select parameterType="adminauthorsearchVO" resultType="adminauthorVO" id="adminauthorlist">
 	<![CDATA[select * from (select * ,@rownum:=@rownum+1 as rnum from (select a.author_seq,a.author_name,count(b.book_price)  as count  from author as a left join book as b on a.author_seq=b.author_seq  ]]>
 		<trim prefix="WHERE" prefixOverrides="AND |OR">

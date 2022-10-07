@@ -40,7 +40,7 @@ public class AdminAuthorServiceImpl implements AdminAuthorService{
 
   @Override
   public void updatelist(List<Integer> author_seq,List<String> author_name) {
-    // TODO Auto-generated method stub
+    
     AdminAuthorVO vo=new AdminAuthorVO();
     for(int i=0;i<author_seq.size();i++) {
       vo.setAuthor_name(author_name.get(i));

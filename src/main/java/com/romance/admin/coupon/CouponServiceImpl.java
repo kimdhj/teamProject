@@ -13,7 +13,7 @@ public class CouponServiceImpl implements CouponService {
 	@Autowired
 	CouponDao dao;
 
-	@Override
+	@Override 
 	public String macoupon(CouponVO vo, int count) {
 		String code = "";
 		for (int i = 0; i < count; i++) {
