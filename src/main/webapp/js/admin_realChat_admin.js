@@ -45,11 +45,18 @@ function init() {
 
 			}
 			$("#contents").html(str);
+		console.log("드ㅔ");
 		},
 		error: function(e) {
 			console.log(e);
+		},
+		complete:function(e) {
+			console.log(document.body.scrollHeight);
+			setTimeout(() => {window.scrollTo(0,document.body.scrollHeight);}, 1000);
+				
 		}
 	});
+	
 }
 
 function del() {
@@ -169,10 +176,31 @@ function onMessage(typing) {
 			sessionName = arr[0];
 		}
 		//위의 조건들에 맞는 것들을 데이터베이스에서 불렁옴 이름 기준(db)
-		init();
+		//init();
+		str=``;
+				if (sessionId == cur_session) {
+					str += `<div class="chat row  m-0">
+            <div class="row">
+              <div class="send row col-auto">${sessionId}</div>
+            </div>
+            <div class="row">
+              <div class="content row col-auto">${message}</div>
+            </div>
+          </div>`;
+				} else {
+					str += `<div class="chat row  m-0">
+            <div class="row justify-content-end">
+              <div class="send row col-auto">${sessionId}</div>
+            </div>
+            <div class="row justify-content-end">
+              <div class="content row col-auto">${message}</div>
+            </div>
+          </div>`
+				}
 		//메세지 알림을 뛰워줌
 		//세션 아이디 저장
-
+		$("#contents").append(str);
+window.scrollTo(0,document.body.scrollHeight);
 	}
 
 }

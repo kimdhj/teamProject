@@ -47,12 +47,18 @@ function init() {
 
 			}
 			$("#contents").html(str);
-			$("html, body").animate({ scrollTop: $(document).height() }, 500);
+			
 		},
 		error: function(e) {
 			console.log(e);
+		},
+		complete:function(e) {
+			console.log(document.body.scrollHeight);
+			setTimeout(() => {window.scrollTo(0,document.body.scrollHeight);}, 1000);
+				
 		}
 	})
+
 }
 //전송 버튼 누르는 이벤트
 $("#typing").on("keydown", function(e) {
@@ -88,6 +94,7 @@ function sendMessage() {
 	})
 
 	let mes = userid + ":" + $("#typing").val();
+	console.log(mes);
 	sock.send(mes);
 }
 //서버에서 메시지를 받았을 때
@@ -130,11 +137,12 @@ function onMessage(msg) {
               <div class="send row col-auto">관리자</div>
             </div>
             <div class="row justify-content-end">
-              <div class="content row col-auto">${data[co].real_chat_content}</div>
+              <div class="content row col-auto">${message}</div>
             </div>
           </div>`
 				}
 $("#contents").append(str);
+window.scrollTo(0,document.body.scrollHeight);
 	}
 	
 }
