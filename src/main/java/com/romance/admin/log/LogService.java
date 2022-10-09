@@ -20,5 +20,8 @@ public interface LogService {
 	
 	//로그인로그 엑셀파일
 	public List<LoginLogVO> getLoginLogExcel(Criteria criteria) throws Exception;
-	
+	//작업로그 엑셀파일
+	public List<WorkLogVO> getWorkLogExcel(Criteria criteria) throws Exception;
+	//결제로그 엑셀파일
+	public List<PaymentLogVO> getPaymentLogExcel(Criteria criteria) throws Exception;
 }
