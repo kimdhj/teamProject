@@ -120,5 +120,21 @@
 		</if>
 		ORDER BY login_log_seq DESC
 	</select>
+	<select id="getWorkLogExcel" parameterType="criteria" resultType="workLogVO">
+		SELECT * FROM work_log WHERE 1=1
+		<if test="searchCondition=='USER_ID'">
+			AND work_log_target_id LIKE CONCAT('%', '#{searchKeyword', '%')
+		</if>
+		<if test="searchCondition=='ADMIN_ID'">
+			AND work_log_id LIKE CONCAT('%', 'searchKeyword', '%')
+		</if>
+		ORDER BY work_log_seq DESC
+	</select>
+	<select id="getPaymentLogExcel" parameterType="criteria" resultType="paymentLogVO">
+		SELECT * FROM payment_log WHERE 1=1
+		<if test="searchCondition=='USER_ID'">
+			AND payment_log LIKE CONCAT('%', 'searchKeyword', '%')
+		</if>
+	</select>
 	
 </mapper>
