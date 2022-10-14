@@ -80,6 +80,6 @@ function setBannerThumbnail(ev) {
     $(ev.target).parents("#can_del").children("div#banner_thumbnail").html(img);
    
   };
-  reader.readAsDataURL(event.target.files[0]);
+  reader.readAsDataURL(ev.target.files[0]);
 }
 

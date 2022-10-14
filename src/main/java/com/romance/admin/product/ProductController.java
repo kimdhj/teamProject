@@ -36,6 +36,7 @@ public class ProductController {
 		  }
 		  System.out.println("글 목록 검색 처리");
 
+		  // 현재페이지 1로 초기화
 			if(svo.getPage()==0) {
 				svo.setPage(1);
 			}
@@ -44,6 +45,7 @@ public class ProductController {
 			int count = productService.all_count(svo);
 			int page = svo.getPage();
 			int fullpage = 0;
+			// 20개의 게시글씩 페이지갯수 헤아리기
 			if(count%20 ==0) {
 				fullpage=count/20;
 			}else if(count%20 !=0) {
@@ -52,12 +54,15 @@ public class ProductController {
 			int wherepage = page/10;
 			int startpage = wherepage*10 +1;
 			int endpage = wherepage*10 +10;
+			// 마지막 페이지
 			if(endpage>fullpage) {
 				endpage=fullpage;
 			}
+			// 현재페이지 해당 게시물 범위
 			int start = page*20-20;
 			int end = page*20-1;
 			
+			// arr은 정렬 기준, 0은 시퀀스별 정렬
 			svo.setArr(0);
 			
 			System.out.println("count : " + count);
