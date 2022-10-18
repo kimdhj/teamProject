@@ -41,7 +41,12 @@ public class AdminAuthorServiceImpl implements AdminAuthorService{
 
   @Override
   public void updatelist(List<Integer> author_seq,List<String> author_name) {
+<<<<<<< HEAD
     AdminAuthorVO vo=new AdminAuthorVO(); // for 문 안에서 객체 생성 시, 같은 객체로 계속 받기 때문에 for문 밖에서 작성!
+=======
+    
+    AdminAuthorVO vo=new AdminAuthorVO();
+>>>>>>> a6af60c06b23eef970a37cbbf29a8d20e3c79ca9
     for(int i=0;i<author_seq.size();i++) {
       vo.setAuthor_name(author_name.get(i));
       vo.setAuthor_seq(author_seq.get(i));

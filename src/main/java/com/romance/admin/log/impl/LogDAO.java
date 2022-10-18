@@ -45,4 +45,12 @@ public class LogDAO {
 		return sqlSessionTemplate.selectList("loggingUtils.getLoginLogExcel", criteria);
 	}
 	
+	public List<WorkLogVO> getWorkLogExcel(Criteria criteria) {
+		return sqlSessionTemplate.selectList("loggingUtils.getWorkLogExcel", criteria);
+	}
+	
+	public List<PaymentLogVO> getPaymentLogExcel(Criteria criteria) {
+		return sqlSessionTemplate.selectList("loggingUtils.getPaymentLogExcel", criteria);
+	}
+	
 }

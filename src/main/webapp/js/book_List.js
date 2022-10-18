@@ -97,6 +97,7 @@ $(document).ready(function(e) {
 				page: Number($("#bookpage").val()),
 				country:Number($("#country").val()),
 				category: Number($("#category").val()),
+				author_seq:Number($("#author_seq").val())
 
 			},
 			success: function(re) {
@@ -193,6 +194,7 @@ $(document).ready(function(e) {
 				page: Number($("#newpage").val()),
 				country:Number($("#country").val()),
 				category: Number($("#category").val()),
+				author_seq:Number($("#author_seq").val())
 
 			},
 			success: function(re) {
@@ -289,11 +291,12 @@ $(document).ready(function(e) {
 			data: {
 				page: Number($("#bestpage").val()),
 				category: Number($("#category").val()),
-				country:Number($("#country").val())
+				country:Number($("#country").val()),
+				author_seq:Number($("#author_seq").val())
 
 			},
 			success: function(re) {
-				
+				console.log(re);
 				let str = '';
 				re.bestlist.map((bo) => {
 				let price=bo.book_price.toLocaleString('ko-KR')

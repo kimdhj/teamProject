@@ -45,11 +45,18 @@ function init() {
 
 			}
 			$("#contents").html(str);
+		console.log("드ㅔ");
 		},
 		error: function(e) {
 			console.log(e);
+		},
+		complete:function(e) {
+			console.log(document.body.scrollHeight);
+			setTimeout(() => {window.scrollTo(0,document.body.scrollHeight);}, 1000);
+				
 		}
 	});
+	
 }
 
 function del() {
@@ -95,10 +102,17 @@ $("#typing").on("keydown", function(e) {
 });
 
 let sessionName;
+<<<<<<< HEAD
 var sock = new SockJS('http://localhost:8080/echo'); // 설정해둔 /echo 주소
 sock.onmessage = onMessage; // 메세지 받았을 때 onMessage 실행
 sock.onclose = onClose; // 닫을 때 onClose 실행
 sock.onopen = onOpen; // 채팅 열 때 onOpen 실행
+=======
+var sock = new SockJS('http://13.209.163.243/echo');
+sock.onmessage = onMessage;
+sock.onclose = onClose;
+sock.onopen = onOpen;
+>>>>>>> a6af60c06b23eef970a37cbbf29a8d20e3c79ca9
 
 
 
@@ -169,10 +183,36 @@ function onMessage(typing) {
 			sessionName = arr[0];
 		}
 		//위의 조건들에 맞는 것들을 데이터베이스에서 불렁옴 이름 기준(db)
+<<<<<<< HEAD
 		init();
 		//메세지 알림을 뛰워줌 - init() 해서 새로 만들어주기 떄문에, __님이 들어오셨습니다 가 없어지는 것임!
+=======
+		//init();
+		str=``;
+				if (sessionId == cur_session) {
+					str += `<div class="chat row  m-0">
+            <div class="row">
+              <div class="send row col-auto">${sessionId}</div>
+            </div>
+            <div class="row">
+              <div class="content row col-auto">${message}</div>
+            </div>
+          </div>`;
+				} else {
+					str += `<div class="chat row  m-0">
+            <div class="row justify-content-end">
+              <div class="send row col-auto">${sessionId}</div>
+            </div>
+            <div class="row justify-content-end">
+              <div class="content row col-auto">${message}</div>
+            </div>
+          </div>`
+				}
+		//메세지 알림을 뛰워줌
+>>>>>>> a6af60c06b23eef970a37cbbf29a8d20e3c79ca9
 		//세션 아이디 저장
-
+		$("#contents").append(str);
+window.scrollTo(0,document.body.scrollHeight);
 	}
 
 }

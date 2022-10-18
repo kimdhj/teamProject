@@ -13,9 +13,14 @@ public class CouponServiceImpl implements CouponService {
 	@Autowired
 	CouponDao dao;
 
+<<<<<<< HEAD
 	// 쿠폰 생성
 	@Override
 	public String macoupon(CouponVO vo, int count) { // count 로 몇 개 만들지 받아옴
+=======
+	@Override 
+	public String macoupon(CouponVO vo, int count) {
+>>>>>>> a6af60c06b23eef970a37cbbf29a8d20e3c79ca9
 		String code = "";
 		for (int i = 0; i < count; i++) {
 			int che=1;
