@@ -35,11 +35,11 @@ public class LoginLogExcel {
 		
 		//셀 스타일 지정
 		CellStyle styleDate = workbook.createCellStyle(); //셀 스타일 생성
-		styleDate.setDataFormat(workbook.createDataFormat().getFormat("yyyy-mm-dd HH:mm:ss"));
+		styleDate.setDataFormat(workbook.createDataFormat().getFormat("yyyy-mm-dd HH:mm:ss")); // 날짜 셀로 수정해주는 것
 		
 		//데이터 저장
 		int rowNum = 0;
-		Row headerRow = sheet.createRow(rowNum);
+		Row headerRow = sheet.createRow(rowNum); // 임의로 headerRow 지정
 		headerRow.createCell(0).setCellValue("번호");
 		headerRow.createCell(1).setCellValue("ID");
 		headerRow.createCell(2).setCellValue("결과");
@@ -47,7 +47,7 @@ public class LoginLogExcel {
 		headerRow.createCell(4).setCellValue("접속IP");
 		headerRow.createCell(5).setCellValue("Browser");
 		headerRow.createCell(6).setCellValue("접속일");
-		rowNum++;
+		rowNum++; // 개행시켜주기 위해 ++
 		
 		for(LoginLogVO list : loginLogList) {
 			Row row = sheet.createRow(rowNum);

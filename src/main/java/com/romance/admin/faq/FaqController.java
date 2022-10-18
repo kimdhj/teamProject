@@ -218,6 +218,7 @@ public class FaqController {
 		System.out.println("update : " + vo);
 		String uploadFolder = "https://doublejo.s3.ap-northeast-2.amazonaws.com/";
 		
+		// 삭제를 하는 이유는 서버에서의 공간 절약을 위해 사용해주는 거!
 		if(vo.getFAQ_fileName() != null) { // isEmpty() : 업로드 한 파일 존재 여부를 리턴(없으면 true 리턴) 
 			String key = vo.getFAQ_fileName();
 			String fileName = key.replaceAll(uploadFolder, ""); // 확장자 
@@ -236,10 +237,15 @@ public class FaqController {
 			System.out.println(name);
 			String key = name + UUID.randomUUID().toString() + expand; // 파일 이름 랜덤으로 정해주기
 			System.out.println("key : " + key);
+			
+			// InputStream, contentType, contentLength, key 는 무조건 필요!
 			InputStream is = file.getInputStream();
 			String contentType = file.getContentType();
 			Long contentLength = file.getSize();
-			AwsS3 awsS3 = AwsS3.getInstance();
+			
+			AwsS3 awsS3 = AwsS3.getInstance(); // 우리가 사용하는 AwsS3 에서는 코드가 필요한 것
+			// File 을 넣을 때는 key만, InputStream 에서는 is, key, contentType, contentLength 전부 필요!
+			
 			awsS3.upload(is, key, contentType, contentLength); // 파일 업로드
 			
 			vo.setFAQ_fileName(uploadFolder + key);

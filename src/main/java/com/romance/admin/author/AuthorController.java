@@ -93,6 +93,7 @@ public class AuthorController {
   
   @GetMapping("adminauthorupdate.mdo")
   @ResponseBody
+  // 배열로 받아올 떄는 무조건 List<> 로 해서 받아줘야함 ! 그래야 오류 안남 ! - String 배열 안됨 !
   public String adminauthorupdate(@RequestParam("auth_seq[]")List<Integer> auth_seq,@RequestParam("auth_name[]")List<String> auth_name){
     ser.updatelist(auth_seq,auth_name);
     return "suc";

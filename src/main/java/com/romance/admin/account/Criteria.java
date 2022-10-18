@@ -1,5 +1,6 @@
 package com.romance.admin.account;
 
+// 검색을 위해 작성한 클래스
 public class Criteria {
 	private int pageNum; //현재 페이지 번호
 	private int perPageNum; //한 페이지당 보여질 게시글의 갯수

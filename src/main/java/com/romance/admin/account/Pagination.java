@@ -1,5 +1,6 @@
 package com.romance.admin.account;
 
+// 페이징 클래스
 public class Pagination {
 	private Criteria criteria;
 	private int totalCount; //총 게시글 수
@@ -29,7 +30,7 @@ public class Pagination {
 
 	public void setTotalCount(int totalCount) {
 		this.totalCount = totalCount;
-		calcData();
+		calcData(); // setTotalCount 를 호출할 때 calcData() 자동 실행
 	}
 
 	private void calcData() {

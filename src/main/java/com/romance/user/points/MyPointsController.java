@@ -68,7 +68,8 @@ public class MyPointsController {
 			return "redirect:myMain.do";
 		}
 		
-		public void pointChargeLog(int popoint, UserVO userVO) throws Exception {
+		// 결제가 일어나는 타이밍, 수정이 일어나는 타이밍에 로그를 찍을 수 있도록 지정 (내가 원하는 정보 받아와서 insert -> 내가 원하는 시점에 로그를 찍을 수 있도록!!)
+		public void pointChargeLog(int popoint, UserVO userVO) throws Exception { // 여기서 사용자 정보와 포인트 내역 가져와서 넣어주는 것! 
 			//기록할 정보
 			String payment_log_id = userVO.getUser_id();
 			int payment_log_money = popoint; //마일리지 결제금

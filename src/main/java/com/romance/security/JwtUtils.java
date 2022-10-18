@@ -21,6 +21,7 @@ import io.jsonwebtoken.Header;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
+// 로그인할 때 보안을 위해서 사용하는 암호화느낌 - 암호화와는 또 다르게 여러 데이터 정보를 담고 있음 !
 public class JwtUtils {
 
 	private String key;

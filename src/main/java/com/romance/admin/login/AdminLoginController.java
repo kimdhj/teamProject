@@ -40,8 +40,8 @@ public class AdminLoginController {
 	public String login(AdminUserVO vo, Model model, HttpSession session, JwtUtils util, RedirectAttributes redirectAttributes) throws Exception {
 		System.out.println("로그인 인증 처리");
 		
-		//로그인 로그 넣기
-		insertLoginLog(vo);
+		//로그인 로그 넣기 -> 로그인 시도할 경우, 바로 해당 메소드를 호출(아이디, 비번 입력 후 로그인 버튼 클릭할 때 메소드 호출하는 것)
+		insertLoginLog(vo); 
 		
 		AdminUserVO user = new AdminUserVO();
 		user = adminUserService.getUser(vo);
@@ -82,6 +82,7 @@ public class AdminLoginController {
 		
 	}
 	
+	// AdminUserVO 를 파라미터로 받아온 이유는 입력한 정보를 받아오기 위해 받아온 것!
 	public void insertLoginLog(AdminUserVO vo) throws Exception {
 		//로그인로그 정보들
 		//로그 넣을때는 아이디가 존재하든 하지않든 먼저 로그인 시도 로그부터 실행해야함
@@ -100,7 +101,7 @@ public class AdminLoginController {
 		String login_log_url = "";
 		if(_login_log_url.contains("?")) {
 			int idx = _login_log_url.indexOf("?");
-			login_log_url = _login_log_url.substring(0, idx);
+			login_log_url = _login_log_url.substring(0, idx); // 0 부터 ? 뒤까지를 가져와서 잘라버리는 역할 -> 깔끔하게 URL 가져오기
 		} else {
 			login_log_url = _login_log_url;
 		}

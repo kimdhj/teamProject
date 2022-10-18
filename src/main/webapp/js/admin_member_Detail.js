@@ -123,11 +123,7 @@ function adminAccountCheck() { //유효성 검사
 	
 	//수정확인
 	if(confirm("정말 수정하시겠습니까?") == true) {
-//		alert("수정이 완료되었습니다.")
-		Swal.fire({
-			text: "수정이 완료되었습니다.",
-			icon: "success"
-		})
+		alert("수정이 완료되었습니다.")
 	} else {
 		return false;
 	}

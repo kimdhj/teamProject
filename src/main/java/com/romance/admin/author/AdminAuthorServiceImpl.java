@@ -28,6 +28,7 @@ public class AdminAuthorServiceImpl implements AdminAuthorService{
     dao.adminauthorcreate(vo);
   }
 
+  // 작가 삭제 시, 작가 책이랑 작가 삭제
   @Override
   public void adminauthordelete(AdminAuthorVO vo) {
     // TODO Auto-generated method stub
@@ -40,8 +41,7 @@ public class AdminAuthorServiceImpl implements AdminAuthorService{
 
   @Override
   public void updatelist(List<Integer> author_seq,List<String> author_name) {
-    // TODO Auto-generated method stub
-    AdminAuthorVO vo=new AdminAuthorVO();
+    AdminAuthorVO vo=new AdminAuthorVO(); // for 문 안에서 객체 생성 시, 같은 객체로 계속 받기 때문에 for문 밖에서 작성!
     for(int i=0;i<author_seq.size();i++) {
       vo.setAuthor_name(author_name.get(i));
       vo.setAuthor_seq(author_seq.get(i));

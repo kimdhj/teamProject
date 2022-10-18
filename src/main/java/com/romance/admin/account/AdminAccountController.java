@@ -40,7 +40,8 @@ public class AdminAccountController {
 	@Autowired
 	BCryptPasswordEncoder bCryptPasswordEncoder;
 	
-	@ModelAttribute("conditionMap")
+	// 여러 개를 사용할 수 있음
+	@ModelAttribute("conditionMap") // 이름, 아이디 검색 시 select - option 에서 검색용으로 사용하기 위해 map 사용 -> 다른 내용 추가 더 가능
 	public Map<String, String> searchConditionMap() {
 		Map<String, String> conditionMap = new HashMap<>();
 		conditionMap.put("아이디", "USER_ID");
@@ -105,12 +106,12 @@ public class AdminAccountController {
 						
 			//현재 상세페이지 에서 보고있는 회원의 보유쿠폰명 리스트로 받아오기
 			List<UserCouponVO> myCouponVOList = adminAccountService.getUserCouponList(vo.getUser_id());
-			Map<Integer, String> myCouponMap = new HashMap<>();
+			Map<Integer, String> myCouponMap = new HashMap<>(); // Map 사용 이유 : 시퀀스때문에!
 			//List에 값이 있는경우에만 작업
 			if(myCouponVOList.size() > 0) {
 				System.out.println(">>>>>앙 : " + myCouponVOList);
 				System.out.println(">>>>>잉 : " + myCouponVOList.get(0).getUser_coupon_name());
-				//coupon_seq랑 coupon_name 값을 가져가서 활용하기 위함.
+				//coupon_seq랑 coupon_name 값을 가져가서 활용하기 위함. (유저 갖고있는 쿠폰 시퀀스랑 쿠폰명을 가져와서 출력해주기 위해 사용)
 				for(int i = 0; i < myCouponVOList.size(); i++) {
 					myCouponMap.put(myCouponVOList.get(i).getUser_coupon_seq(), myCouponVOList.get(i).getUser_coupon_name());
 				}
@@ -138,6 +139,8 @@ public class AdminAccountController {
 		}
 	}
 	
+	// 세션(조금 더 무겁다는 단점) vs 토큰(보안 취약하지만 가벼움)
+	// Token
 	//링크로 접속할때 마스터 아니면 들어갈 수 없도록 함
 	@PostMapping("isMaster.mdo")
 	@ResponseBody
@@ -240,10 +243,10 @@ public class AdminAccountController {
 			if(vo.getUser_password() != null && !vo.getUser_password().equals("")) { // 입력비밀번호 null값, ''빈문자열 아닐경우에만 암호화 진행
 				vo.setUser_password(bCryptPasswordEncoder.encode(vo.getUser_password()));
 			}
-			//searchKeyword의 경우 한글인코딩을 해줘서 쿼리스트링으로 보내준다
-			String encodedSearchKeyword = URLEncoder.encode(criteria.getSearchKeyword(), "UTF-8");
-			String queryString = "?user_id=" + vo.getUser_id() + "&pageNum=" + criteria.getPageNum() + "&searchCondition=" + criteria.getSearchCondition() + "&searchKeyword=" + encodedSearchKeyword + "&selectCondition=" + criteria.getSelectCondition();
-			System.out.println("쿼리스트링 : " + queryString);
+			//searchKeyword의 경우 한글인코딩을 해줘서 쿼리스트링으로 보내준다 -> 한글 인코딩 깨짐을 해결하기 위한 코드
+			String encodedSearchKeyword = URLEncoder.encode(criteria.getSearchKeyword(), "UTF-8"); // url 에서 한글 인코딩 변환시켜서 보내주는 코드
+			String queryString = "?user_id=" + vo.getUser_id() + "&pageNum=" + criteria.getPageNum() + "&searchCondition=" + criteria.getSearchCondition() + "&searchKeyword=" + encodedSearchKeyword + "&selectCondition=" + criteria.getSelectCondition(); // encodedSearchKeyword 얘가 물음표처리가 뜨기 때문에, 물음표처리를 해결하기 위해서 변환해주기 위함(윗 코드) 
+			System.out.println("쿼리스트링 : " + queryString); // 쿼리스트링 준 이유 ? 파라미터를 다 들고 들어와서 리다이렉트 시(새로고침) 파라미터를 다 들고 갈 수 있도록 해줌 -> 목적은 페이징 유지를 위해!
 			System.out.println(">>>>>뭐가뭐가들어갔나" + vo);
 			
 			//회원정보 수정로그 (수정전에 체크하여 변경전 값 기록)
@@ -332,6 +335,9 @@ public class AdminAccountController {
 	//포인트 지급
 	@PostMapping("givePoint.mdo")
 	@ResponseBody
+	// @RequestParam("givePoint") int givePoint : jsp 에서 보내준 정보를 특정 변수에 넣어주기 위한 용도가 @RequestParam() 으로,
+	// required = false 를 사용해주면 @RequestParam() 안에 값이 없어도 실행 가능!
+	// 객체를 받아서 오려면 @RequestParam() 으로는 불가능!
 	public boolean givePoint(@RequestParam("givePoint") int givePoint, @RequestParam("user_id") String user_id, HttpSession session, JwtUtils utils) throws Exception {
 		boolean returnValue = false;
 		AdminUserVO voToken = utils.getAdmin(session);

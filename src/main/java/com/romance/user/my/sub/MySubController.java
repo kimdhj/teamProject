@@ -287,7 +287,8 @@ return "redirect:index.do";
     return "sub_Finish";
   }
   
-  //구독로그
+  // 결제가 된 이후에 바로 로그를 찍는다는 점!
+  //구독로그 -> 구독 결제가 돼서 구독 결제완료 페이지로 넘어가기 직전에 결제 user_id, 구독 금액을 받아와서 넣는다!
   public void subPaymentLog(String user_id) throws Exception {
 	  String payment_log_id = user_id;
 	  int payment_log_money = 30000;
@@ -300,7 +301,7 @@ return "redirect:index.do";
 	  paymentLogVO.setPayment_log_contents(payment_log_contents);
 	  loggingService.insertPaymentLog(paymentLogVO);
   }
-  //구독 repay 로그
+  //구독 repay 로그 -> 구독 재결제가 되기 직전에 바로 로그를 찍는다.
   public void subRePaymentLog(String user_id) throws Exception {
 	  String payment_log_id = user_id;
 	  int payment_log_money = 30000;

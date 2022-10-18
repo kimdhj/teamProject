@@ -103,12 +103,12 @@ function onMessage(msg) {
 		console.log('arr[' + i + ']: ' + arr[i]);
 	}
 
-	cur_session = userid; //현재 세션에 로그인 한 사람
+	cur_session = userid; //현재 세션에 로그인 한 사람(현재 유저 아이디)
 	console.log("cur_session : " + cur_session);
 
-	sessionId = arr[1];
+	sessionId = arr[1]; // 세션에서 받아온 유저 아이디
 	message = arr[2];
-	adminid = cur_session + "admin"
+	adminid = cur_session + "admin" 
 	//로그인 한 클라이언트와 타 클라이언트를 분류하기 위함
 	if (sessionId == cur_session || sessionId == adminid) {
 		//위의 조건들에 맞는 것들을 데이터베이스에서 불렁옴 이름 기준(db)

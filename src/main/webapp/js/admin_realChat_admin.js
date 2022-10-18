@@ -85,7 +85,7 @@ function del() {
 $("#typing").on("keydown", function(e) {
 
 	if (e.originalEvent.shiftKey == false && e.originalEvent.keyCode == 13) {
-		sendMessage();
+		sendMessage(); // 엔터를 치면 sendMessage 를 실행시킨다.
 		$('#typing').val('')
 		console.log("hi");
 	};
@@ -95,10 +95,10 @@ $("#typing").on("keydown", function(e) {
 });
 
 let sessionName;
-var sock = new SockJS('http://localhost:8080/echo');
-sock.onmessage = onMessage;
-sock.onclose = onClose;
-sock.onopen = onOpen;
+var sock = new SockJS('http://localhost:8080/echo'); // 설정해둔 /echo 주소
+sock.onmessage = onMessage; // 메세지 받았을 때 onMessage 실행
+sock.onclose = onClose; // 닫을 때 onClose 실행
+sock.onopen = onOpen; // 채팅 열 때 onOpen 실행
 
 
 
@@ -120,7 +120,7 @@ function sendMessage() {
 	})
 
 	let mes = userid + ":" + $("#typing").val();
-	sock.send(mes);
+	sock.send(mes); // 실질적으로 메세지를 보내는 코드
 }
 
 
@@ -129,7 +129,7 @@ function sendMessage() {
 function onMessage(typing) {
 
 	console.log(typing);
-	var data = typing.data;
+	var data = typing.data; // 받은 내용이 저장되는 것
 	var sessionId = null; //데이터를 보낸 사람
 	var message = null;
 
@@ -170,7 +170,7 @@ function onMessage(typing) {
 		}
 		//위의 조건들에 맞는 것들을 데이터베이스에서 불렁옴 이름 기준(db)
 		init();
-		//메세지 알림을 뛰워줌
+		//메세지 알림을 뛰워줌 - init() 해서 새로 만들어주기 떄문에, __님이 들어오셨습니다 가 없어지는 것임!
 		//세션 아이디 저장
 
 	}
